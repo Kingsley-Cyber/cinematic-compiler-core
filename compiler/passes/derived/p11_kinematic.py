@@ -8,28 +8,18 @@ support, grounded/braced/lying means some support; a support change in progress 
 from compiler.authoring import run_authored, seal
 from planner import library_vocab
 from planner.dependency_graph import ROOT, load
-from planner.scene_view import slots
+from planner.scene_view import slots, values_in_progress
 
 NODE, STEP = "kinematic", "S11"
 PLAN_SCHEMA = ROOT / "schemas" / "graphs" / "kinematic_plan.schema.json"
 PROMPT = ROOT / "planner" / "prompts" / "kinematic_organization.txt"
 CUES = ("balance", "loading", "bracing", "yielding", "weight_transfer", "tension", "release", "strain", "restraint", "breathing")
-EPSILON = 1e-9
-
-
-def _support_states(envelope, slot):
-    states = {slot["state"]["support"]}
-    for beat in envelope["nodes"]["beats"]["items"]:
-        if beat["t"] + EPSILON < slot["t"] < beat["t"] + beat["dur"] - EPSILON:
-            states |= {f["value"] for f in beat["effects"]
-                       if f["subject"] == {"kind": "entity", "id": slot["entity"]} and f["property"] == "support"}
-    return sorted(states)
 
 
 def prepare(envelope):
     vocabulary = library_vocab.load("kinematic_cues")
     parts = {e["id"]: e["parts"] for e in envelope["nodes"]["entities"]["items"]}
-    view = [{**s, "allowed_support_states": _support_states(envelope, s)} for s in slots(envelope)]
+    view = [{**s, "allowed_support_states": values_in_progress(envelope, s, "support")} for s in slots(envelope)]
     return seal({"step_id": STEP, "band": "L4a", "kind": "kinematic_plan",
                  "schema": "urn:cinematic-compiler:schema:kinematic_plan:1.0",
                  "instructions": PROMPT.read_text(encoding="utf-8"), "genre": envelope["scene"]["genre"],

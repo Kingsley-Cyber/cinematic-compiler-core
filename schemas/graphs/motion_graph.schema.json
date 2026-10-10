@@ -1,0 +1,242 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:motion_graph:1.0",
+  "title": "S13 motion graph",
+  "description": "motion = key poses (/nodes/motion) with derived quaternions; motion_edges = follows edges (/edges/motion) with derived Euler deltas, interpolation and root trajectory.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "motion",
+    "motion_edges"
+  ],
+  "properties": {
+    "motion": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "entity",
+          "beat",
+          "t",
+          "name",
+          "pos",
+          "rot",
+          "quat",
+          "bones",
+          "turn",
+          "axis_declaration",
+          "heading_basis",
+          "description"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*@b[0-9]{2,3}$"
+          },
+          "entity": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "beat": {
+            "type": "string",
+            "pattern": "^b[0-9]{2,3}$"
+          },
+          "t": {
+            "type": "number",
+            "minimum": 0
+          },
+          "name": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "pos": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "number"
+            }
+          },
+          "rot": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "number",
+              "minimum": -1080,
+              "maximum": 1080
+            },
+            "description": "Root Euler degrees [X, Y, Z], intrinsic XYZ, right-handed; continuous per entity (never wrapped)."
+          },
+          "quat": {
+            "type": "array",
+            "minItems": 4,
+            "maxItems": 4,
+            "items": {
+              "type": "number",
+              "minimum": -1,
+              "maximum": 1
+            },
+            "description": "Derived [w, x, y, z] of the root rot, w >= 0."
+          },
+          "bones": {
+            "type": "object",
+            "patternProperties": {
+              "^[A-Z][A-Za-z]*$": {
+                "type": "array",
+                "minItems": 3,
+                "maxItems": 3,
+                "items": {
+                  "type": "number",
+                  "minimum": -180,
+                  "maximum": 180
+                },
+                "description": "Local joint Euler degrees relative to the rest pose, same convention as the root."
+              }
+            },
+            "additionalProperties": false
+          },
+          "turn": {
+            "enum": [
+              "none",
+              "flip",
+              "spin",
+              "cartwheel"
+            ]
+          },
+          "axis_declaration": {
+            "enum": [
+              "none",
+              "X",
+              "Y",
+              "Z"
+            ]
+          },
+          "heading_basis": {
+            "enum": [
+              "forward",
+              "lateral"
+            ],
+            "description": "Axis that read the root heading for the S04 facing check."
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "motion_edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "from",
+          "to",
+          "relation",
+          "turn",
+          "axis_declaration",
+          "euler_delta",
+          "interpolation",
+          "slerp_angle",
+          "trajectory"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "from": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*@b[0-9]{2,3}$"
+          },
+          "to": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*@b[0-9]{2,3}$"
+          },
+          "relation": {
+            "const": "follows"
+          },
+          "turn": {
+            "enum": [
+              "none",
+              "flip",
+              "spin",
+              "cartwheel"
+            ]
+          },
+          "axis_declaration": {
+            "enum": [
+              "none",
+              "X",
+              "Y",
+              "Z"
+            ]
+          },
+          "euler_delta": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "number",
+              "minimum": -2160,
+              "maximum": 2160
+            },
+            "description": "to.rot - from.rot: the rotation performed."
+          },
+          "interpolation": {
+            "enum": [
+              "slerp",
+              "euler_axis"
+            ],
+            "description": "slerp for undeclared changes (< 90 degrees); euler_axis for declared turns, which a shortest-arc slerp would undo."
+          },
+          "slerp_angle": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 180
+          },
+          "trajectory": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "displacement",
+              "distance",
+              "duration",
+              "speed"
+            ],
+            "properties": {
+              "displacement": {
+                "type": "array",
+                "minItems": 3,
+                "maxItems": 3,
+                "items": {
+                  "type": "number"
+                }
+              },
+              "distance": {
+                "type": "number",
+                "minimum": 0
+              },
+              "duration": {
+                "type": "number",
+                "minimum": 0
+              },
+              "speed": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

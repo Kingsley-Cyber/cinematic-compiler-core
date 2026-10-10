@@ -21,6 +21,8 @@ gates → the pass writes only its paths. A failed gate allows 2 re-authoring at
   `/intent` + `/scene`, post-gen as validation block, cards-only S02, in-session authoring, linear causality,
   closed state vocabulary~~
 - ~~Graph catalog (graph_types.md); URCP removed; standalone repo~~
+- ~~M1 (S04–S07), M1.5 (CLI, replan trigger), M2 (S11 kinematic, S12 Bartenieff, S13 motion); courtyard example
+  through S13~~
 
 ---
 
@@ -57,6 +59,10 @@ Notes on the decisions:
   `no_render_compression` live in `kernel/owner_invariants.yaml` and the generator merges them as `origin: owner`.
 - Consequence of A2 + linear-only: branching is always 0, so a scene scores at most 4 and quadrant A (5–6) is
   unreachable until branching exists. Recorded, not blocking.
+- Q6 consequence (S13, recorded, no change): intrinsic XYZ applies X first, so changing the X angle rotates about
+  world X. A flip is about the performer's own lateral axis only when the performer faces ±Z; at other headings a
+  pure-X flip is oblique. The courtyard backflip (heading −29°) is such a flip; its S04 facing (+29° at landing)
+  agrees with it. Heading-first orders (YXZ) would avoid this; the convention stays the owner's.
 - Still open for review only (nothing blocked): R1 — 11 draft cards, kernel scope (20/6/5/37), loose world match.
 
 ---
@@ -180,15 +186,17 @@ Notes on the decisions:
 - [x] S12.3 `p12_bartenieff.py` + prompt; validator: values from vocabulary; `cpcs:` values flagged as extensions.
 
 ### S13 motion (L4c, authored + derived)
-- [ ] S13.1 `schemas/graphs/motion_graph.schema.json`: key pose `{beat, t, name, pos, rot, bones{Sp, LUL, RUL, LL,
+- [x] S13.1 `schemas/graphs/motion_graph.schema.json`: key pose `{beat, t, name, pos, rot, bones{Sp, LUL, RUL, LL,
   RL, LA, RA, LFA, RFA, HD, NK}, axis_declaration, description}`; edge `follows {axis_declaration, slerp}`. Log.
-- [ ] S13.2 `planner/prompts/euler_solving.txt` + `p13_motion.py` prepare/submit.
-- [ ] S13.3 `solver/euler_solver.py` checks: 11 joints present; degrees; key pose root `pos` equals S04 exactly and
+- [x] S13.2 `planner/prompts/euler_solving.txt` + `p13_motion.py` prepare/submit.
+- [x] S13.3 `solver/euler_solver.py` checks: 11 joints present; degrees; key pose root `pos` equals S04 exactly and
   `rot` agrees with S04 `facing`; a mismatch fails the step and triggers re-authoring (replan), never a silent fix.
-- [ ] S13.4 Axis check: flip about X, spin about Y, cartwheel about Z; the declared axis must match the root
+- [x] S13.4 Axis check: flip about X, spin about Y, cartwheel about Z; the declared axis must match the root
   rotation change.
-- [ ] S13.5 `solver/quaternion.py` (intrinsic XYZ, right-handed, from `scene.ax.rotation_convention`) and
+- [x] S13.5 `solver/quaternion.py` (intrinsic XYZ, right-handed, from `scene.ax.rotation_convention`) and
   `solver/trajectory.py` (root path from key `pos`), both derived. Tests: known rotations round-trip.
+- [x] S13.6 (agent addition, plan silent) Root agrees with the S06 posture when no posture change is in progress
+  (standing/crouching/kneeling upright, inverted upside down, prone/supine level); MOTION_POSTURE.
 
 ---
 

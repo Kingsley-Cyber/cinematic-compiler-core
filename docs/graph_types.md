@@ -16,9 +16,9 @@ is presented), **project, verify** (output). Build status and deltas: [MASTER_PL
 | S08 | Hand role (UGC) | Lock handedness for an interaction | hand_role | hand_role_transition | S07, ontology | S09–S11, S13 | structure | M5 |
 | S09 | Object state (UGC) | Track object internals (zipper closed → open) | object_state | object_state_transition | S07, ontology, S08 | S10, S11, S16 | structure | M5 |
 | S10 | Affordance (UGC) | Prove every functional verb works | affordance | affordance_dependency | S08, S09, affordance library | S11, S16 | structure | M5 |
-| S11 | Kinematic | Describe what the audience sees in the body (support, balance, loading, tension…) | kinematic | kinematic_transition | S06, S07 (+UGC) | S12–S16 | expression | M2 |
-| S12 | Bartenieff | Describe the body's internal coordination (pattern, initiation, follow-through) | bartenieff | bartenieff_transition | S11 | S13, S16 | expression | M2 |
-| S13 | Motion | Provide the explicit key poses the renderer interpolates | motion | motion | S11, S12 | S14–S16 | expression | M2 |
+| S11 | Kinematic | Describe what the audience sees in the body (support, balance, loading, tension…) | kinematic | kinematic_transition | S06, S07 (+UGC) | S12–S16 | expression | built |
+| S12 | Bartenieff | Describe the body's internal coordination (pattern, initiation, follow-through) | bartenieff | bartenieff_transition | S11 | S13, S16 | expression | built |
+| S13 | Motion | Provide the explicit key poses the renderer interpolates | motion | motion | S11, S12 | S14–S16 | expression | built |
 | S14 | Effort | Describe the qualitative feel of motion (LMA) | efforts | effort | S13 | S15, S16 | expression | M3 |
 | S15 | Camera | Present the scene deliberately; every move motivated | camera | camera | S11, S13, S14 | S16 | expression | M3 |
 | S16 | Render | Project the envelope into the target model's format | render | — | all | video model, S17 | project | M4 |

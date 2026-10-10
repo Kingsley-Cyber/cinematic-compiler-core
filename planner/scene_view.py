@@ -16,6 +16,16 @@ def active_supports(envelope, entity, time):
                   and (end is None or time < end - EPSILON))
 
 
+def values_in_progress(envelope, slot, prop):
+    """The slot's S06 value plus any value a beat in progress at the slot time sets (a change under way)."""
+    values = {slot["state"][prop]}
+    for beat in envelope["nodes"]["beats"]["items"]:
+        if beat["t"] + EPSILON < slot["t"] < beat["t"] + beat["dur"] - EPSILON:
+            values |= {f["value"] for f in beat["effects"]
+                       if f["subject"] == {"kind": "entity", "id": slot["entity"]} and f["property"] == prop}
+    return sorted(values)
+
+
 def slots(envelope):
     states = {s["id"]: s for s in envelope["nodes"]["states"]["items"]}
     result = []

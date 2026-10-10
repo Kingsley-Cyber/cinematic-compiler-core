@@ -1,0 +1,1344 @@
+{
+ "step_id": "S13",
+ "band": "L4c",
+ "packet_sha256": "sha256:4643dabd61c4051fbeed754ff9b7da71abed8f3cc298e8ea5039fd0c9389cbae",
+ "author": {
+  "host": "Claude Code desktop, in-session",
+  "model": "claude-opus-5-5"
+ },
+ "attempt": 1,
+ "keys": [
+  {
+   "slot": "acrobat@b01",
+   "name": "low_sprint",
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     25,
+     0,
+     0
+    ],
+    "LUL": [
+     15,
+     0,
+     0
+    ],
+    "RUL": [
+     -55,
+     0,
+     0
+    ],
+    "LL": [
+     40,
+     0,
+     0
+    ],
+    "RL": [
+     70,
+     0,
+     0
+    ],
+    "LA": [
+     -50,
+     0,
+     10
+    ],
+    "RA": [
+     35,
+     0,
+     -10
+    ],
+    "LFA": [
+     -80,
+     0,
+     0
+    ],
+    "RFA": [
+     -60,
+     0,
+     0
+    ],
+    "HD": [
+     -15,
+     0,
+     0
+    ],
+    "NK": [
+     -10,
+     0,
+     0
+    ]
+   },
+   "turn": "none",
+   "axis_declaration": "none",
+   "description": "Low sprint stride: right thigh drives forward, left arm swings forward opposite it, torso pitched over the feet."
+  },
+  {
+   "slot": "acrobat@b02",
+   "name": "crouch_hand_plant",
+   "pos": [
+    0,
+    0,
+    2.4
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     45,
+     0,
+     0
+    ],
+    "LUL": [
+     -95,
+     0,
+     8
+    ],
+    "RUL": [
+     -100,
+     0,
+     -8
+    ],
+    "LL": [
+     120,
+     0,
+     0
+    ],
+    "RL": [
+     125,
+     0,
+     0
+    ],
+    "LA": [
+     -40,
+     0,
+     15
+    ],
+    "RA": [
+     -110,
+     0,
+     -5
+    ],
+    "LFA": [
+     -20,
+     0,
+     0
+    ],
+    "RFA": [
+     -5,
+     0,
+     0
+    ],
+    "HD": [
+     -25,
+     0,
+     0
+    ],
+    "NK": [
+     -10,
+     0,
+     0
+    ]
+   },
+   "turn": "flip",
+   "axis_declaration": "X",
+   "description": "Deep crouch folding forward over the knees, right arm reaching long to plant the hand ahead."
+  },
+  {
+   "slot": "acrobat@b03",
+   "name": "vault_layout",
+   "pos": [
+    0,
+    1.2,
+    3.0
+   ],
+   "rot": [
+    90,
+    0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     -10,
+     0,
+     0
+    ],
+    "LUL": [
+     -20,
+     0,
+     0
+    ],
+    "RUL": [
+     -10,
+     0,
+     0
+    ],
+    "LL": [
+     10,
+     0,
+     0
+    ],
+    "RL": [
+     5,
+     0,
+     0
+    ],
+    "LA": [
+     -165,
+     0,
+     5
+    ],
+    "RA": [
+     -170,
+     0,
+     -5
+    ],
+    "LFA": [
+     -5,
+     0,
+     0
+    ],
+    "RFA": [
+     0,
+     0,
+     0
+    ],
+    "HD": [
+     -20,
+     0,
+     0
+    ],
+    "NK": [
+     -10,
+     0,
+     0
+    ]
+   },
+   "turn": "flip",
+   "axis_declaration": "X",
+   "description": "Mid-vault, body level and head-first over the planted hand, arms overhead, legs long and slightly arched."
+  },
+  {
+   "slot": "acrobat@b04",
+   "name": "inverted_tuck",
+   "pos": [
+    0.8,
+    1.0,
+    3.6
+   ],
+   "rot": [
+    180,
+    0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     30,
+     0,
+     0
+    ],
+    "LUL": [
+     -90,
+     0,
+     5
+    ],
+    "RUL": [
+     -90,
+     0,
+     -5
+    ],
+    "LL": [
+     100,
+     0,
+     0
+    ],
+    "RL": [
+     100,
+     0,
+     0
+    ],
+    "LA": [
+     -60,
+     0,
+     30
+    ],
+    "RA": [
+     -60,
+     0,
+     -30
+    ],
+    "LFA": [
+     -30,
+     0,
+     0
+    ],
+    "RFA": [
+     -30,
+     0,
+     0
+    ],
+    "HD": [
+     15,
+     0,
+     0
+    ],
+    "NK": [
+     10,
+     0,
+     0
+    ]
+   },
+   "turn": "flip",
+   "axis_declaration": "X",
+   "description": "Upside down past the hand, knees pulling to the chest to bring the feet around for the landing."
+  },
+  {
+   "slot": "acrobat@b05",
+   "name": "coiled_spin_windup",
+   "pos": [
+    1.0,
+    0,
+    4.2
+   ],
+   "rot": [
+    360,
+    -16.7,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     20,
+     30,
+     0
+    ],
+    "LUL": [
+     -70,
+     0,
+     10
+    ],
+    "RUL": [
+     -75,
+     0,
+     -10
+    ],
+    "LL": [
+     95,
+     0,
+     0
+    ],
+    "RL": [
+     100,
+     0,
+     0
+    ],
+    "LA": [
+     -50,
+     0,
+     40
+    ],
+    "RA": [
+     20,
+     0,
+     -35
+    ],
+    "LFA": [
+     -90,
+     0,
+     0
+    ],
+    "RFA": [
+     -70,
+     0,
+     0
+    ],
+    "HD": [
+     -10,
+     -25,
+     0
+    ],
+    "NK": [
+     -5,
+     -5,
+     0
+    ]
+   },
+   "turn": "spin",
+   "axis_declaration": "Y",
+   "description": "Low crouch with the torso wound left against the hips, eyes held on the wizard before the spin unwinds."
+  },
+  {
+   "slot": "acrobat@b06",
+   "name": "hurled_off_one_foot",
+   "pos": [
+    0.6,
+    0,
+    4.9
+   ],
+   "rot": [
+    360,
+    -383.96,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     -20,
+     0,
+     0
+    ],
+    "LUL": [
+     -30,
+     0,
+     5
+    ],
+    "RUL": [
+     -60,
+     0,
+     -15
+    ],
+    "LL": [
+     35,
+     0,
+     0
+    ],
+    "RL": [
+     15,
+     0,
+     0
+    ],
+    "LA": [
+     -30,
+     0,
+     60
+    ],
+    "RA": [
+     -30,
+     0,
+     -60
+    ],
+    "LFA": [
+     -20,
+     0,
+     0
+    ],
+    "RFA": [
+     -20,
+     0,
+     0
+    ],
+    "HD": [
+     15,
+     0,
+     0
+    ],
+    "NK": [
+     10,
+     0,
+     0
+    ]
+   },
+   "turn": "none",
+   "axis_declaration": "none",
+   "description": "Kick finished, the ward catches the acrobat on the left foot: torso tipping back, right leg still extended, arms flung wide."
+  },
+  {
+   "slot": "acrobat@b07",
+   "name": "rounded_back_impact",
+   "pos": [
+    2.0,
+    1.2,
+    4.0
+   ],
+   "rot": [
+    360,
+    -360,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     25,
+     0,
+     0
+    ],
+    "LUL": [
+     -60,
+     0,
+     5
+    ],
+    "RUL": [
+     -55,
+     0,
+     -5
+    ],
+    "LL": [
+     80,
+     0,
+     0
+    ],
+    "RL": [
+     75,
+     0,
+     0
+    ],
+    "LA": [
+     -70,
+     0,
+     20
+    ],
+    "RA": [
+     -70,
+     0,
+     -20
+    ],
+    "LFA": [
+     -40,
+     0,
+     0
+    ],
+    "RFA": [
+     -40,
+     0,
+     0
+    ],
+    "HD": [
+     25,
+     0,
+     0
+    ],
+    "NK": [
+     15,
+     0,
+     0
+    ]
+   },
+   "turn": "none",
+   "axis_declaration": "none",
+   "description": "Flying backward into the pillar with the back rounded, knees tucked, arms forward and chin tucked against the impact."
+  },
+  {
+   "slot": "acrobat@b08",
+   "name": "braced_push_off",
+   "pos": [
+    2.5,
+    0.9,
+    3.5
+   ],
+   "rot": [
+    360,
+    -396.87,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     10,
+     0,
+     0
+    ],
+    "LUL": [
+     -80,
+     0,
+     10
+    ],
+    "RUL": [
+     -85,
+     0,
+     -10
+    ],
+    "LL": [
+     90,
+     0,
+     0
+    ],
+    "RL": [
+     95,
+     0,
+     0
+    ],
+    "LA": [
+     -10,
+     0,
+     25
+    ],
+    "RA": [
+     -10,
+     0,
+     -25
+    ],
+    "LFA": [
+     -30,
+     0,
+     0
+    ],
+    "RFA": [
+     -30,
+     0,
+     0
+    ],
+    "HD": [
+     5,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "turn": "none",
+   "axis_declaration": "none",
+   "description": "Back braced on the cracked pillar, legs folded under ready to push off and drop to the feet."
+  },
+  {
+   "slot": "acrobat@b10",
+   "name": "feint_lunge_guard",
+   "pos": [
+    2.2,
+    0,
+    3.8
+   ],
+   "rot": [
+    360,
+    -389.055,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     30,
+     -10,
+     0
+    ],
+    "LUL": [
+     -60,
+     0,
+     10
+    ],
+    "RUL": [
+     -45,
+     0,
+     -10
+    ],
+    "LL": [
+     70,
+     0,
+     0
+    ],
+    "RL": [
+     55,
+     0,
+     0
+    ],
+    "LA": [
+     -30,
+     0,
+     15
+    ],
+    "RA": [
+     -75,
+     0,
+     -10
+    ],
+    "LFA": [
+     -90,
+     0,
+     0
+    ],
+    "RFA": [
+     -30,
+     0,
+     0
+    ],
+    "HD": [
+     -20,
+     10,
+     0
+    ],
+    "NK": [
+     -10,
+     0,
+     0
+    ]
+   },
+   "turn": "none",
+   "axis_declaration": "none",
+   "description": "Low lunge guard leaning toward the wizard, right side and right arm leading the feint."
+  },
+  {
+   "slot": "acrobat@b11",
+   "name": "rising_guard",
+   "pos": [
+    1.2,
+    0,
+    4.8
+   ],
+   "rot": [
+    360,
+    -389.055,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     5,
+     0,
+     0
+    ],
+    "LUL": [
+     -40,
+     0,
+     8
+    ],
+    "RUL": [
+     -35,
+     0,
+     -8
+    ],
+    "LL": [
+     50,
+     0,
+     0
+    ],
+    "RL": [
+     45,
+     0,
+     0
+    ],
+    "LA": [
+     -40,
+     0,
+     20
+    ],
+    "RA": [
+     -40,
+     0,
+     -20
+    ],
+    "LFA": [
+     -70,
+     0,
+     0
+    ],
+    "RFA": [
+     -70,
+     0,
+     0
+    ],
+    "HD": [
+     -5,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "turn": "none",
+   "axis_declaration": "none",
+   "description": "Pulling back out of the lunge and rising, guard up, weight shifting onto the heels."
+  },
+  {
+   "slot": "acrobat@b12",
+   "name": "backflip_takeoff",
+   "pos": [
+    1.0,
+    0,
+    5.0
+   ],
+   "rot": [
+    360,
+    -389.055,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     -15,
+     0,
+     0
+    ],
+    "LUL": [
+     -35,
+     0,
+     5
+    ],
+    "RUL": [
+     -35,
+     0,
+     -5
+    ],
+    "LL": [
+     45,
+     0,
+     0
+    ],
+    "RL": [
+     45,
+     0,
+     0
+    ],
+    "LA": [
+     -160,
+     0,
+     10
+    ],
+    "RA": [
+     -160,
+     0,
+     -10
+    ],
+    "LFA": [
+     -10,
+     0,
+     0
+    ],
+    "RFA": [
+     -10,
+     0,
+     0
+    ],
+    "HD": [
+     -25,
+     0,
+     0
+    ],
+    "NK": [
+     -10,
+     0,
+     0
+    ]
+   },
+   "turn": "flip",
+   "axis_declaration": "X",
+   "description": "Backflip takeoff: arms swung overhead, chest lifting, knees springing from a shallow bend."
+  },
+  {
+   "slot": "acrobat@b13",
+   "name": "inverted_tuck_apex",
+   "pos": [
+    -0.4,
+    1.0,
+    5.2
+   ],
+   "rot": [
+    180,
+    -389.055,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     35,
+     0,
+     0
+    ],
+    "LUL": [
+     -110,
+     0,
+     5
+    ],
+    "RUL": [
+     -110,
+     0,
+     -5
+    ],
+    "LL": [
+     120,
+     0,
+     0
+    ],
+    "RL": [
+     120,
+     0,
+     0
+    ],
+    "LA": [
+     -40,
+     0,
+     20
+    ],
+    "RA": [
+     -40,
+     0,
+     -20
+    ],
+    "LFA": [
+     -60,
+     0,
+     0
+    ],
+    "RFA": [
+     -60,
+     0,
+     0
+    ],
+    "HD": [
+     20,
+     0,
+     0
+    ],
+    "NK": [
+     10,
+     0,
+     0
+    ]
+   },
+   "turn": "none",
+   "axis_declaration": "none",
+   "description": "Apex of the backflip, fully inverted in a tight tuck, hands at the shins, already turned toward the wizard."
+  },
+  {
+   "slot": "wizard@b03",
+   "name": "bolt_cast_extend",
+   "pos": [
+    0,
+    0,
+    6
+   ],
+   "rot": [
+    0,
+    180,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     5,
+     10,
+     0
+    ],
+    "LUL": [
+     -15,
+     0,
+     8
+    ],
+    "RUL": [
+     10,
+     0,
+     -8
+    ],
+    "LL": [
+     15,
+     0,
+     0
+    ],
+    "RL": [
+     10,
+     0,
+     0
+    ],
+    "LA": [
+     -20,
+     0,
+     20
+    ],
+    "RA": [
+     -90,
+     0,
+     -5
+    ],
+    "LFA": [
+     -60,
+     0,
+     0
+    ],
+    "RFA": [
+     0,
+     0,
+     0
+    ],
+    "HD": [
+     0,
+     -10,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "turn": "none",
+   "axis_declaration": "none",
+   "description": "Planted stance, left foot forward, right arm extending straight from the core to release the fire bolt."
+  },
+  {
+   "slot": "wizard@b05",
+   "name": "centered_breath",
+   "pos": [
+    0,
+    0,
+    6
+   ],
+   "rot": [
+    0,
+    180,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     0,
+     0,
+     0
+    ],
+    "LUL": [
+     -5,
+     0,
+     8
+    ],
+    "RUL": [
+     5,
+     0,
+     -8
+    ],
+    "LL": [
+     8,
+     0,
+     0
+    ],
+    "RL": [
+     8,
+     0,
+     0
+    ],
+    "LA": [
+     -15,
+     0,
+     15
+    ],
+    "RA": [
+     -20,
+     0,
+     -15
+    ],
+    "LFA": [
+     -40,
+     0,
+     0
+    ],
+    "RFA": [
+     -40,
+     0,
+     0
+    ],
+    "HD": [
+     0,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "turn": "none",
+   "axis_declaration": "none",
+   "description": "Upright and settled, hands low and soft, breathing as the acrobat comes in."
+  },
+  {
+   "slot": "wizard@b06",
+   "name": "staggered_double_palm",
+   "pos": [
+    0,
+    0,
+    5.8
+   ],
+   "rot": [
+    0,
+    180,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     -15,
+     0,
+     0
+    ],
+    "LUL": [
+     -20,
+     0,
+     10
+    ],
+    "RUL": [
+     15,
+     0,
+     -10
+    ],
+    "LL": [
+     25,
+     0,
+     0
+    ],
+    "RL": [
+     20,
+     0,
+     0
+    ],
+    "LA": [
+     -85,
+     0,
+     10
+    ],
+    "RA": [
+     -85,
+     0,
+     -10
+    ],
+    "LFA": [
+     -10,
+     0,
+     0
+    ],
+    "RFA": [
+     -10,
+     0,
+     0
+    ],
+    "HD": [
+     10,
+     0,
+     0
+    ],
+    "NK": [
+     5,
+     0,
+     0
+    ]
+   },
+   "turn": "none",
+   "axis_declaration": "none",
+   "description": "Knocked back onto the rear leg, torso tipped back, both palms thrusting forward from the core."
+  },
+  {
+   "slot": "wizard@b09",
+   "name": "steadying_guard",
+   "pos": [
+    0,
+    0,
+    5.8
+   ],
+   "rot": [
+    0,
+    180,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     5,
+     0,
+     0
+    ],
+    "LUL": [
+     -10,
+     0,
+     10
+    ],
+    "RUL": [
+     5,
+     0,
+     -10
+    ],
+    "LL": [
+     15,
+     0,
+     0
+    ],
+    "RL": [
+     12,
+     0,
+     0
+    ],
+    "LA": [
+     -45,
+     0,
+     15
+    ],
+    "RA": [
+     -45,
+     0,
+     -15
+    ],
+    "LFA": [
+     -80,
+     0,
+     0
+    ],
+    "RFA": [
+     -80,
+     0,
+     0
+    ],
+    "HD": [
+     0,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "turn": "none",
+   "axis_declaration": "none",
+   "description": "Stance squared and steadied, a breath drawn, both hands rising back into a casting guard."
+  },
+  {
+   "slot": "wizard@b10",
+   "name": "tracking_guard",
+   "pos": [
+    0,
+    0,
+    5.8
+   ],
+   "rot": [
+    0,
+    180,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     5,
+     -5,
+     0
+    ],
+    "LUL": [
+     -15,
+     0,
+     10
+    ],
+    "RUL": [
+     10,
+     0,
+     -10
+    ],
+    "LL": [
+     18,
+     0,
+     0
+    ],
+    "RL": [
+     12,
+     0,
+     0
+    ],
+    "LA": [
+     -45,
+     0,
+     15
+    ],
+    "RA": [
+     -60,
+     0,
+     -10
+    ],
+    "LFA": [
+     -80,
+     0,
+     0
+    ],
+    "RFA": [
+     -60,
+     0,
+     0
+    ],
+    "HD": [
+     -5,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "turn": "none",
+   "axis_declaration": "none",
+   "description": "Guard held, head and torso tracking the acrobat's feint, right hand edging forward."
+  },
+  {
+   "slot": "wizard@b11",
+   "name": "spiral_sweep_windup",
+   "pos": [
+    0,
+    0,
+    5.8
+   ],
+   "rot": [
+    0,
+    163.3,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     5,
+     25,
+     0
+    ],
+    "LUL": [
+     -15,
+     0,
+     10
+    ],
+    "RUL": [
+     10,
+     0,
+     -10
+    ],
+    "LL": [
+     15,
+     0,
+     0
+    ],
+    "RL": [
+     10,
+     0,
+     0
+    ],
+    "LA": [
+     -30,
+     0,
+     30
+    ],
+    "RA": [
+     -80,
+     0,
+     30
+    ],
+    "LFA": [
+     -20,
+     0,
+     0
+    ],
+    "RFA": [
+     -10,
+     0,
+     0
+    ],
+    "HD": [
+     0,
+     -20,
+     0
+    ],
+    "NK": [
+     0,
+     -5,
+     0
+    ]
+   },
+   "turn": "none",
+   "axis_declaration": "none",
+   "description": "Torso wound left, right arm drawn across the body to sweep the thin bolt out in a spiral."
+  }
+ ]
+}

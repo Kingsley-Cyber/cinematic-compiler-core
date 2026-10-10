@@ -1,0 +1,19 @@
+S13 motion (L4c). For every slot write one key pose: the body at the slot's beat start t.
+- pos: copy the slot's S04 pos exactly (Q2). Do not move the root; if the anchor is wrong, the beat plan is re-authored.
+- rot: root Euler degrees [X, Y, Z], intrinsic XYZ, right-handed (convention in the packet). Rest = upright, facing +Z,
+  up +Y, +X = performer's left. +X pitches forward, +Y yaws left, +Z rolls clockwise (right shoulder down).
+  Intrinsic XYZ applies X first, then Y about the new up axis, then Z: keep root X and Z at 0 outside flips and
+  cartwheels and put leans in Sp, so Y alone sets the heading (a pitched root turns the heading; the check uses it).
+- Heading: an upright root's forward axis must point along the slot's facing (within 1 degree). Mid-flip the lateral
+  axis is read instead; mid-cartwheel the forward axis.
+- Posture: with one allowed posture the root must show it (standing/crouching/kneeling upright, inverted upside
+  down, prone/supine level, chest down/up); with several a change is under way and any in-between root is allowed.
+- Angles are continuous per entity, never wrapped: the change from one key to the entity's next key is the rotation
+  performed, sign = direction. A change of 90 degrees or more must be declared on the key where it starts:
+  turn flip/axis X, spin/Y, cartwheel/Z; otherwise turn none, axis none.
+- bones: every kernel joint, local Euler degrees from the rest pose, same convention. Segments that point down
+  (LUL/RUL, LL/RL, LA/RA, LFA/RFA): +X swings them backward, -X forward (hip and shoulder flexion are -X, knee
+  flexion is +X, elbow flexion is -X); +Z raises a left limb out to the left, -Z raises a right limb to the right.
+  Segments that point up (Sp, NK, HD): +X tips forward, +Y turns left, +Z tilts to the right.
+- Read each slot's kinematic and Bartenieff nodes: the pose shows that support, loading and initiation.
+- name: a short snake_case pose name; description: one sentence. Copy packet_sha256.
