@@ -1,0 +1,341 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:temporal_graph:1.0",
+  "title": "S04 temporal graph: beats, temporal edges, beat-constraint edges",
+  "description": "Beats are copied from the beat plan; temporal and beat_constraint edges are computed, never authored.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "beats",
+    "temporal",
+    "beat_constraint"
+  ],
+  "properties": {
+    "beats": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Beat"
+      }
+    },
+    "temporal": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "from",
+          "to",
+          "relation",
+          "duration",
+          "gap"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "from": {
+            "type": "string",
+            "pattern": "^b[0-9]{2,3}$"
+          },
+          "to": {
+            "type": "string",
+            "pattern": "^b[0-9]{2,3}$"
+          },
+          "relation": {
+            "enum": [
+              "precedes",
+              "overlaps",
+              "starts_with"
+            ]
+          },
+          "duration": {
+            "type": "number",
+            "minimum": 0
+          },
+          "gap": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "beat_constraint": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "from",
+          "to"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "from": {
+            "type": "string",
+            "pattern": "^b[0-9]{2,3}$"
+          },
+          "to": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "Ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "id"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "entity",
+            "prop",
+            "surface"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        }
+      }
+    },
+    "Vec3": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "number"
+      }
+    },
+    "Fact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "subject",
+        "property",
+        "value"
+      ],
+      "properties": {
+        "subject": {
+          "$ref": "#/$defs/Ref"
+        },
+        "property": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "Contact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contact_type",
+        "a",
+        "b"
+      ],
+      "properties": {
+        "contact_type": {
+          "enum": [
+            "touch",
+            "possess",
+            "support",
+            "release"
+          ]
+        },
+        "a": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "id",
+            "part"
+          ],
+          "properties": {
+            "kind": {
+              "const": "entity"
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*$"
+            },
+            "part": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*$"
+            }
+          }
+        },
+        "b": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "id",
+            "part"
+          ],
+          "properties": {
+            "kind": {
+              "enum": [
+                "entity",
+                "prop",
+                "surface"
+              ]
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*$"
+            },
+            "part": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^[a-z][a-z0-9_]*$"
+            }
+          }
+        }
+      }
+    },
+    "Cause": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "to",
+        "causal_strength",
+        "why"
+      ],
+      "properties": {
+        "to": {
+          "type": "string",
+          "pattern": "^b[0-9]{2,3}$"
+        },
+        "causal_strength": {
+          "enum": [
+            "hard",
+            "soft"
+          ]
+        },
+        "why": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "Beat": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "t",
+        "dur",
+        "event_type",
+        "actor",
+        "label",
+        "participants",
+        "modes",
+        "pos",
+        "facing",
+        "action",
+        "requires",
+        "effects",
+        "contacts",
+        "causes"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^b[0-9]{2,3}$"
+        },
+        "t": {
+          "type": "number",
+          "minimum": 0
+        },
+        "dur": {
+          "type": "number",
+          "minimum": 0
+        },
+        "event_type": {
+          "enum": [
+            "action",
+            "hold",
+            "transition"
+          ]
+        },
+        "actor": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "label": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "participants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Ref"
+          }
+        },
+        "modes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          }
+        },
+        "pos": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/Vec3"
+          }
+        },
+        "facing": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/Vec3"
+          }
+        },
+        "action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "requires": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Fact"
+          }
+        },
+        "effects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Fact"
+          }
+        },
+        "contacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Contact"
+          }
+        },
+        "causes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Cause"
+          }
+        }
+      }
+    }
+  }
+}

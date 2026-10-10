@@ -1,0 +1,14 @@
+S04 beat planning (LLM call #1). Write the beat plan for this packet as JSON matching the beat_plan schema.
+
+- Use only the entities, props and surfaces in the packet, by id; parts only from each item's parts.
+- One actor per beat (an entity), plus participants it acts on. Times in seconds: t is the start, dur the length.
+- Fit every beat inside the given duration, or inside the duration budget if none is given.
+- For every entity in a beat (actor and entity participants) give root pos [x, y, z] and facing [x, y, z] in the
+  scene axes at the beat start t (the key-pose time); these are authoritative for later steps.
+- requires are read at t; effects and contacts commit at t + dur. Use only vocabulary properties and values.
+- Contact types: touch (instant), possess (held or carried), support (bears weight), release (ends an earlier
+  possess or support of the same pair).
+- causes link this beat to a later beat it makes happen: hard (the later beat needs this beat's effect) or soft.
+- No filler: a beat that is not a hold must change state, make or end a contact, or cause or be caused by another beat.
+- modes: an entity's mode must be one of its card modes; a mode change needs a beat that causes it.
+- Respect every constraint listed. Copy packet_sha256 into the plan. Do not invent ids, values or parts.

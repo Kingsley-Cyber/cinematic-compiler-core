@@ -1911,6 +1911,7 @@
         "kernel_hash",
         "build_timestamp",
         "pass_history",
+        "authored",
         "replan_count",
         "replan_layers",
         "chained_from_envelope_hash"
@@ -1962,6 +1963,74 @@
               "duration_ms": {
                 "type": "number",
                 "minimum": 0
+              }
+            }
+          }
+        },
+        "authored": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "step_id",
+              "packet_sha256",
+              "document_sha256",
+              "author",
+              "attempt"
+            ],
+            "properties": {
+              "step_id": {
+                "enum": [
+                  "S01",
+                  "S02",
+                  "S03",
+                  "S04",
+                  "S05",
+                  "S06",
+                  "S07",
+                  "S08",
+                  "S09",
+                  "S10",
+                  "S11",
+                  "S12",
+                  "S13",
+                  "S14",
+                  "S15",
+                  "S16",
+                  "S17"
+                ]
+              },
+              "packet_sha256": {
+                "type": "string",
+                "pattern": "^sha256:[0-9a-f]{64}$"
+              },
+              "document_sha256": {
+                "type": "string",
+                "pattern": "^sha256:[0-9a-f]{64}$"
+              },
+              "author": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "host",
+                  "model"
+                ],
+                "properties": {
+                  "host": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "model": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              },
+              "attempt": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 3
               }
             }
           }

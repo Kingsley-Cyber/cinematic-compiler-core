@@ -1,0 +1,1142 @@
+{
+ "step_id": "S04",
+ "band": "L1",
+ "packet_sha256": "sha256:7d412f059807aaeb26044bdc17607435aebacab2e73dae15c2cf117608fd407f",
+ "author": {
+  "host": "Claude Code desktop, in-session",
+  "model": "claude-opus-5-5"
+ },
+ "attempt": 1,
+ "beats": [
+  {
+   "id": "b01",
+   "t": 0.0,
+   "dur": 1.2,
+   "event_type": "transition",
+   "actor": "acrobat",
+   "label": "run_in",
+   "participants": [
+    {
+     "kind": "surface",
+     "id": "ground"
+    }
+   ],
+   "modes": {
+    "acrobat": "playful"
+   },
+   "pos": {
+    "acrobat": [
+     0,
+     0,
+     0
+    ]
+   },
+   "facing": {
+    "acrobat": [
+     0,
+     0,
+     1
+    ]
+   },
+   "action": "Acrobat sprints across the flagstones toward the wizard, low and quick, gathering into a crouch.",
+   "requires": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "support",
+     "value": "grounded"
+    },
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "condition",
+     "value": "ok"
+    }
+   ],
+   "effects": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "posture",
+     "value": "crouching"
+    }
+   ],
+   "contacts": [],
+   "causes": [
+    {
+     "to": "b02",
+     "causal_strength": "hard",
+     "why": "The crouch loads the legs for the vault."
+    }
+   ]
+  },
+  {
+   "id": "b02",
+   "t": 1.2,
+   "dur": 0.8,
+   "event_type": "action",
+   "actor": "acrobat",
+   "label": "vault",
+   "participants": [
+    {
+     "kind": "surface",
+     "id": "ground"
+    }
+   ],
+   "modes": {
+    "acrobat": "playful"
+   },
+   "pos": {
+    "acrobat": [
+     0,
+     0,
+     2.4
+    ]
+   },
+   "facing": {
+    "acrobat": [
+     0,
+     0,
+     1
+    ]
+   },
+   "action": "Acrobat plants the right hand and vaults forward, body inverting overhead. NOT a jump straight up.",
+   "requires": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "posture",
+     "value": "crouching"
+    },
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "support",
+     "value": "grounded"
+    }
+   ],
+   "effects": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "support",
+     "value": "airborne"
+    },
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "posture",
+     "value": "inverted"
+    }
+   ],
+   "contacts": [
+    {
+     "contact_type": "touch",
+     "a": {
+      "kind": "entity",
+      "id": "acrobat",
+      "part": "right_hand"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
+    }
+   ],
+   "causes": [
+    {
+     "to": "b04",
+     "causal_strength": "hard",
+     "why": "Airborne after the vault, the acrobat must land."
+    }
+   ]
+  },
+  {
+   "id": "b03",
+   "t": 1.6,
+   "dur": 0.8,
+   "event_type": "action",
+   "actor": "wizard",
+   "label": "cast_fire_bolt",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "acrobat"
+    },
+    {
+     "kind": "surface",
+     "id": "ground"
+    }
+   ],
+   "modes": {
+    "wizard": "calm_casting"
+   },
+   "pos": {
+    "wizard": [
+     0,
+     0,
+     6
+    ],
+    "acrobat": [
+     0,
+     1.2,
+     3.0
+    ]
+   },
+   "facing": {
+    "wizard": [
+     0,
+     0,
+     -1
+    ],
+    "acrobat": [
+     0,
+     0,
+     1
+    ]
+   },
+   "action": "Wizard extends the right hand and fires a bolt at the vaulting acrobat; it misses and scorches the flagstones.",
+   "requires": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "wizard"
+     },
+     "property": "condition",
+     "value": "ok"
+    }
+   ],
+   "effects": [
+    {
+     "subject": {
+      "kind": "surface",
+      "id": "ground"
+     },
+     "property": "damage",
+     "value": "scorched"
+    }
+   ],
+   "contacts": [],
+   "causes": [
+    {
+     "to": "b04",
+     "causal_strength": "soft",
+     "why": "The acrobat lands clear of the scorch."
+    }
+   ]
+  },
+  {
+   "id": "b04",
+   "t": 2.0,
+   "dur": 0.6,
+   "event_type": "transition",
+   "actor": "acrobat",
+   "label": "land",
+   "participants": [
+    {
+     "kind": "surface",
+     "id": "ground"
+    }
+   ],
+   "modes": {
+    "acrobat": "playful"
+   },
+   "pos": {
+    "acrobat": [
+     0.8,
+     1.0,
+     3.6
+    ]
+   },
+   "facing": {
+    "acrobat": [
+     0,
+     0,
+     1
+    ]
+   },
+   "action": "Acrobat lands to the wizard's left in a deep crouch, both feet on the stone.",
+   "requires": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "support",
+     "value": "airborne"
+    }
+   ],
+   "effects": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "support",
+     "value": "grounded"
+    },
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "posture",
+     "value": "crouching"
+    }
+   ],
+   "contacts": [
+    {
+     "contact_type": "support",
+     "a": {
+      "kind": "entity",
+      "id": "acrobat",
+      "part": "left_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
+    },
+    {
+     "contact_type": "support",
+     "a": {
+      "kind": "entity",
+      "id": "acrobat",
+      "part": "right_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
+    }
+   ],
+   "causes": [
+    {
+     "to": "b05",
+     "causal_strength": "hard",
+     "why": "Grounded again, the acrobat can spin into a kick."
+    }
+   ]
+  },
+  {
+   "id": "b05",
+   "t": 2.6,
+   "dur": 1.0,
+   "event_type": "action",
+   "actor": "acrobat",
+   "label": "spinning_kick",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "wizard"
+    }
+   ],
+   "modes": {
+    "acrobat": "focused"
+   },
+   "pos": {
+    "acrobat": [
+     1.0,
+     0,
+     4.2
+    ],
+    "wizard": [
+     0,
+     0,
+     6
+    ]
+   },
+   "facing": {
+    "acrobat": [
+     -0.3,
+     0,
+     1
+    ],
+    "wizard": [
+     0,
+     0,
+     -1
+    ]
+   },
+   "action": "Acrobat spins and drives the right heel into the wizard's chest. NOT a punch.",
+   "requires": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "support",
+     "value": "grounded"
+    }
+   ],
+   "effects": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "wizard"
+     },
+     "property": "condition",
+     "value": "staggered"
+    }
+   ],
+   "contacts": [
+    {
+     "contact_type": "release",
+     "a": {
+      "kind": "entity",
+      "id": "acrobat",
+      "part": "right_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
+    },
+    {
+     "contact_type": "touch",
+     "a": {
+      "kind": "entity",
+      "id": "acrobat",
+      "part": "right_foot"
+     },
+     "b": {
+      "kind": "entity",
+      "id": "wizard",
+      "part": "torso"
+     }
+    }
+   ],
+   "causes": [
+    {
+     "to": "b06",
+     "causal_strength": "hard",
+     "why": "The staggered wizard throws a desperate ward."
+    },
+    {
+     "to": "b09",
+     "causal_strength": "hard",
+     "why": "The wizard must recover from the stagger."
+    }
+   ]
+  },
+  {
+   "id": "b06",
+   "t": 3.6,
+   "dur": 1.0,
+   "event_type": "action",
+   "actor": "wizard",
+   "label": "force_ward",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "acrobat"
+    }
+   ],
+   "modes": {
+    "wizard": "desperate_casting"
+   },
+   "pos": {
+    "wizard": [
+     0,
+     0,
+     5.8
+    ],
+    "acrobat": [
+     0.6,
+     0,
+     4.9
+    ]
+   },
+   "facing": {
+    "wizard": [
+     0,
+     0,
+     -1
+    ],
+    "acrobat": [
+     -0.4,
+     0,
+     0.9
+    ]
+   },
+   "action": "Off balance, the wizard thrusts both palms; a force ward hurls the acrobat backward off the ground.",
+   "requires": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "wizard"
+     },
+     "property": "condition",
+     "value": "staggered"
+    }
+   ],
+   "effects": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "support",
+     "value": "airborne"
+    },
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "condition",
+     "value": "staggered"
+    }
+   ],
+   "contacts": [
+    {
+     "contact_type": "release",
+     "a": {
+      "kind": "entity",
+      "id": "acrobat",
+      "part": "left_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
+    }
+   ],
+   "causes": [
+    {
+     "to": "b07",
+     "causal_strength": "hard",
+     "why": "Thrown through the air, the acrobat hits the pillar."
+    }
+   ]
+  },
+  {
+   "id": "b07",
+   "t": 4.6,
+   "dur": 0.6,
+   "event_type": "action",
+   "actor": "acrobat",
+   "label": "slam_pillar",
+   "participants": [
+    {
+     "kind": "surface",
+     "id": "stone_pillar"
+    }
+   ],
+   "modes": {
+    "acrobat": "focused"
+   },
+   "pos": {
+    "acrobat": [
+     2.0,
+     1.2,
+     4.0
+    ]
+   },
+   "facing": {
+    "acrobat": [
+     0,
+     0,
+     1
+    ]
+   },
+   "action": "Acrobat slams back-first into the stone pillar; the stone cracks behind the shoulders.",
+   "requires": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "support",
+     "value": "airborne"
+    }
+   ],
+   "effects": [
+    {
+     "subject": {
+      "kind": "surface",
+      "id": "stone_pillar"
+     },
+     "property": "damage",
+     "value": "cracked"
+    },
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "support",
+     "value": "braced"
+    },
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "location",
+     "value": "stone_pillar"
+    }
+   ],
+   "contacts": [
+    {
+     "contact_type": "support",
+     "a": {
+      "kind": "entity",
+      "id": "acrobat",
+      "part": "torso"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "stone_pillar",
+      "part": null
+     }
+    }
+   ],
+   "causes": [
+    {
+     "to": "b08",
+     "causal_strength": "hard",
+     "why": "Braced on the pillar, the acrobat pushes off to recover."
+    }
+   ]
+  },
+  {
+   "id": "b08",
+   "t": 5.2,
+   "dur": 1.2,
+   "event_type": "action",
+   "actor": "acrobat",
+   "label": "recover",
+   "participants": [
+    {
+     "kind": "surface",
+     "id": "stone_pillar"
+    },
+    {
+     "kind": "surface",
+     "id": "ground"
+    }
+   ],
+   "modes": {
+    "acrobat": "focused"
+   },
+   "pos": {
+    "acrobat": [
+     2.5,
+     0.9,
+     3.5
+    ]
+   },
+   "facing": {
+    "acrobat": [
+     -0.6,
+     0,
+     0.8
+    ]
+   },
+   "action": "Acrobat pushes off the cracked pillar and drops to both feet in a low guard, shaking off the hit.",
+   "requires": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "support",
+     "value": "braced"
+    }
+   ],
+   "effects": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "support",
+     "value": "grounded"
+    },
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "posture",
+     "value": "crouching"
+    },
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "condition",
+     "value": "ok"
+    },
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "location",
+     "value": "ground"
+    }
+   ],
+   "contacts": [
+    {
+     "contact_type": "release",
+     "a": {
+      "kind": "entity",
+      "id": "acrobat",
+      "part": "torso"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "stone_pillar",
+      "part": null
+     }
+    },
+    {
+     "contact_type": "support",
+     "a": {
+      "kind": "entity",
+      "id": "acrobat",
+      "part": "left_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
+    },
+    {
+     "contact_type": "support",
+     "a": {
+      "kind": "entity",
+      "id": "acrobat",
+      "part": "right_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
+    }
+   ],
+   "causes": [
+    {
+     "to": "b10",
+     "causal_strength": "hard",
+     "why": "Recovered, the acrobat can attack again."
+    }
+   ]
+  },
+  {
+   "id": "b09",
+   "t": 5.2,
+   "dur": 1.4,
+   "event_type": "transition",
+   "actor": "wizard",
+   "label": "regroup",
+   "participants": [],
+   "modes": {
+    "wizard": "desperate_casting"
+   },
+   "pos": {
+    "wizard": [
+     0,
+     0,
+     5.8
+    ]
+   },
+   "facing": {
+    "wizard": [
+     0,
+     0,
+     -1
+    ]
+   },
+   "action": "Wizard steadies the stance and draws breath, hands rising back to a casting guard.",
+   "requires": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "wizard"
+     },
+     "property": "condition",
+     "value": "staggered"
+    }
+   ],
+   "effects": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "wizard"
+     },
+     "property": "condition",
+     "value": "ok"
+    }
+   ],
+   "contacts": [],
+   "causes": [
+    {
+     "to": "b11",
+     "causal_strength": "hard",
+     "why": "Steady again, the wizard can cast."
+    }
+   ]
+  },
+  {
+   "id": "b10",
+   "t": 6.6,
+   "dur": 1.2,
+   "event_type": "action",
+   "actor": "acrobat",
+   "label": "feint_charge",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "wizard"
+    }
+   ],
+   "modes": {
+    "acrobat": "focused"
+   },
+   "pos": {
+    "acrobat": [
+     2.2,
+     0,
+     3.8
+    ],
+    "wizard": [
+     0,
+     0,
+     5.8
+    ]
+   },
+   "facing": {
+    "acrobat": [
+     -0.5,
+     0,
+     0.9
+    ],
+    "wizard": [
+     0,
+     0,
+     -1
+    ]
+   },
+   "action": "Acrobat rises and feints a charge at the wizard, drawing the next spell.",
+   "requires": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "condition",
+     "value": "ok"
+    },
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "support",
+     "value": "grounded"
+    }
+   ],
+   "effects": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "posture",
+     "value": "standing"
+    }
+   ],
+   "contacts": [],
+   "causes": [
+    {
+     "to": "b11",
+     "causal_strength": "soft",
+     "why": "The feint baits the wizard's bolt."
+    }
+   ]
+  },
+  {
+   "id": "b11",
+   "t": 7.6,
+   "dur": 1.0,
+   "event_type": "action",
+   "actor": "wizard",
+   "label": "slicing_bolt",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "acrobat"
+    },
+    {
+     "kind": "surface",
+     "id": "bamboo_wall"
+    }
+   ],
+   "modes": {
+    "wizard": "calm_casting"
+   },
+   "pos": {
+    "wizard": [
+     0,
+     0,
+     5.8
+    ],
+    "acrobat": [
+     1.2,
+     0,
+     4.8
+    ]
+   },
+   "facing": {
+    "wizard": [
+     0.3,
+     0,
+     -1
+    ],
+    "acrobat": [
+     -0.5,
+     0,
+     0.9
+    ]
+   },
+   "action": "Composed again, the wizard sweeps a thin bolt that misses the acrobat and cuts through the bamboo wall.",
+   "requires": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "wizard"
+     },
+     "property": "condition",
+     "value": "ok"
+    }
+   ],
+   "effects": [
+    {
+     "subject": {
+      "kind": "surface",
+      "id": "bamboo_wall"
+     },
+     "property": "damage",
+     "value": "cut"
+    }
+   ],
+   "contacts": [],
+   "causes": [
+    {
+     "to": "b12",
+     "causal_strength": "soft",
+     "why": "The acrobat flips away from the bolt."
+    }
+   ]
+  },
+  {
+   "id": "b12",
+   "t": 8.6,
+   "dur": 0.8,
+   "event_type": "action",
+   "actor": "acrobat",
+   "label": "dodge_flip",
+   "participants": [
+    {
+     "kind": "surface",
+     "id": "ground"
+    }
+   ],
+   "modes": {
+    "acrobat": "focused"
+   },
+   "pos": {
+    "acrobat": [
+     1.0,
+     0,
+     5.0
+    ]
+   },
+   "facing": {
+    "acrobat": [
+     -0.5,
+     0,
+     0.9
+    ]
+   },
+   "action": "Acrobat backflips over the bolt's path, body fully inverted at the apex.",
+   "requires": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "support",
+     "value": "grounded"
+    }
+   ],
+   "effects": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "support",
+     "value": "airborne"
+    },
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "posture",
+     "value": "inverted"
+    }
+   ],
+   "contacts": [
+    {
+     "contact_type": "release",
+     "a": {
+      "kind": "entity",
+      "id": "acrobat",
+      "part": "left_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
+    },
+    {
+     "contact_type": "release",
+     "a": {
+      "kind": "entity",
+      "id": "acrobat",
+      "part": "right_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
+    }
+   ],
+   "causes": [
+    {
+     "to": "b13",
+     "causal_strength": "hard",
+     "why": "Airborne, the acrobat must land."
+    }
+   ]
+  },
+  {
+   "id": "b13",
+   "t": 9.4,
+   "dur": 0.6,
+   "event_type": "hold",
+   "actor": "acrobat",
+   "label": "land_guard",
+   "participants": [
+    {
+     "kind": "surface",
+     "id": "ground"
+    }
+   ],
+   "modes": {
+    "acrobat": "focused"
+   },
+   "pos": {
+    "acrobat": [
+     -0.4,
+     1.0,
+     5.2
+    ]
+   },
+   "facing": {
+    "acrobat": [
+     0.5,
+     0,
+     0.9
+    ]
+   },
+   "action": "Acrobat lands in a crouched guard facing the wizard; the scorch, the crack and the cut bamboo remain.",
+   "requires": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "support",
+     "value": "airborne"
+    }
+   ],
+   "effects": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "support",
+     "value": "grounded"
+    },
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "posture",
+     "value": "crouching"
+    }
+   ],
+   "contacts": [
+    {
+     "contact_type": "support",
+     "a": {
+      "kind": "entity",
+      "id": "acrobat",
+      "part": "left_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
+    },
+    {
+     "contact_type": "support",
+     "a": {
+      "kind": "entity",
+      "id": "acrobat",
+      "part": "right_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
+    }
+   ],
+   "causes": []
+  }
+ ]
+}

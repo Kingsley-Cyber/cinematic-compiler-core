@@ -125,7 +125,7 @@ def build(order):
         "properties": {key: {"enum": ["pass", "fail", None]} for key in VALIDATION_KEYS}}
     defs["Provenance"] = {"type": "object", "additionalProperties": False,
         "required": ["source_prompt", "compiler_version", "kernel_version", "layer_order_version", "kernel_hash",
-                     "build_timestamp", "pass_history", "replan_count", "replan_layers",
+                     "build_timestamp", "pass_history", "authored", "replan_count", "replan_layers",
                      "chained_from_envelope_hash"],
         "properties": {"source_prompt": {"type": "string"}, "compiler_version": _string(),
                        "kernel_version": {"const": KERNEL_VERSION},
@@ -138,6 +138,16 @@ def build(order):
                            "required": ["pass", "commit", "duration_ms"],
                            "properties": {"pass": {"type": "string", "pattern": "^p[0-9]{2}_[a-z0-9_]+$"},
                                           "commit": _string(), "duration_ms": {"type": "number", "minimum": 0}}}},
+                       "authored": {"type": "array", "items": {
+                           "type": "object", "additionalProperties": False,
+                           "required": ["step_id", "packet_sha256", "document_sha256", "author", "attempt"],
+                           "properties": {"step_id": {"enum": steps},
+                                          "packet_sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+                                          "document_sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+                                          "author": {"type": "object", "additionalProperties": False,
+                                                     "required": ["host", "model"],
+                                                     "properties": {"host": _string(), "model": _string()}},
+                                          "attempt": {"type": "integer", "minimum": 1, "maximum": 3}}}},
                        "replan_count": {"type": "integer", "minimum": 0},
                        "replan_layers": {"type": "array", "items": {"enum": labels + steps}}}}
     return {

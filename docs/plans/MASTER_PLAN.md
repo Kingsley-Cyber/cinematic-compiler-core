@@ -91,27 +91,27 @@ Notes on the decisions:
   `origin: owner`, scope kernel. Kernel log.
 
 ### S04 temporal (L1 band, authored) — `nodes.beats`, `edges.temporal`
-- [ ] S04.1 `schemas/graphs/beat_plan.schema.json` (authored input): `id, t, dur, event_type (action|hold|transition),
+- [x] S04.1 `schemas/graphs/beat_plan.schema.json` (authored input): `id, t, dur, event_type (action|hold|transition),
   actor, label, participants[{kind,id}], modes{actor_id: mode}, pos{actor_id: [x,y,z]}, facing{actor_id: [x,y,z]},
   action, requires[], effects[], contacts[], causes[{to, causal_strength, why}]`. Log.
-- [ ] S04.2 `schemas/graphs/temporal_graph.schema.json`: beat node (copied fields) + temporal edge
+- [x] S04.2 `schemas/graphs/temporal_graph.schema.json`: beat node (copied fields) + temporal edge
   `id, from, to, relation (precedes|overlaps|starts_with), duration, gap`. Log.
-- [ ] S04.3 `planner/beat_planner.py`: `prepare(envelope)` → packet {scene, entities (parts, capabilities, modes),
+- [x] S04.3 `planner/beat_planner.py`: `prepare(envelope)` → packet {scene, entities (parts, capabilities, modes),
   props (parts, states), surfaces, applied constraints, state vocabulary, instructions, schema id}; sha256 of
   canonical JSON. Test: same envelope → same packet bytes.
-- [ ] S04.4 `planner/prompts/beat_planning.txt`: authoring instructions shown in the packet. Test: packet embeds its hash.
-- [ ] S04.5 `planner/dynamic_beat_validator.py`: ids unique; times ≥ 0 and inside `scene.duration_s` when known;
+- [x] S04.4 `planner/prompts/beat_planning.txt`: authoring instructions shown in the packet. Test: packet embeds its hash.
+- [x] S04.5 `planner/dynamic_beat_validator.py`: ids unique; times ≥ 0 and inside `scene.duration_s` when known;
   participants/parts resolve to S02 items and card parts; filler rule (non-hold beat with no effect, no contact,
   no causal edge → reject); `mode_coherence` (mode is in the archetype card); `mode_transition` (a mode change
   needs a triggering beat). Tests: one negative case per rule.
-- [ ] S04.6 `compiler/passes/mandatory/p04_temporal.py`: `submit(envelope, packet, plan)` → refuses wrong packet
+- [x] S04.6 `compiler/passes/mandatory/p04_temporal.py`: `submit(envelope, packet, plan)` → refuses wrong packet
   hash → writes `nodes.beats`, `edges.temporal` (computed: duration = from.dur, gap = to.t − from.end) and
   `edges.beat_constraint` (derived: a beat links every constraint applied to its actor or participants; scene-wide
   rules stay implicit). Tests: write scope; mutated input untouched; temporal and beat_constraint never authored.
-- [ ] S04.7 `compiler/pipeline.py`: add `plans={...}` input; stop at S04 if no plan, returning the packet.
-- [ ] S04.9 Duration: if the query/flag gave one, every beat must end within it; otherwise beats are planned inside
+- [x] S04.7 `compiler/pipeline.py`: add `plans={...}` input; stop at S04 if no plan, returning the packet.
+- [x] S04.9 Duration: if the query/flag gave one, every beat must end within it; otherwise beats are planned inside
   the genre's `duration_budget_s` and S04 writes `scene.duration_s` = last beat end, `duration_source: beat_plan_end`.
-- [ ] S04.8 S04 packet and checks use the scene's modality schema (M1.0.6).
+- [x] S04.8 S04 packet and checks use the scene's modality schema (M1.0.6).
 
 ### S05 causal (L1 band, derived) — `edges.causal`, `scene.quadrant`
 - [ ] S05.1 `schemas/graphs/causal_graph.schema.json`: edge `id, from, to, relation (causes), causal_strength
