@@ -1,0 +1,653 @@
+{
+ "step_id": "S14",
+ "band": "L5",
+ "packet_sha256": "sha256:24bdbe9ec48ee14e0916f16d027d84d2a24436ad68de1eef6a76a6d23ede8a35",
+ "author": {
+  "host": "Claude Code desktop, in-session",
+  "model": "claude-opus-5-5"
+ },
+ "attempt": 1,
+ "intervals": [
+  {
+   "actor": "ninja_lean",
+   "beats": [
+    "b01",
+    "b02"
+   ],
+   "effort": {
+    "weight": "light",
+    "time": "sudden",
+    "space": "indirect",
+    "flow": "free"
+   },
+   "effort_action": "flick",
+   "shape": {
+    "quality": "sinking",
+    "mode": "shape_flow"
+   },
+   "space": {
+    "kinesphere": "near",
+    "pathway": "central",
+    "plane": "vertical"
+   },
+   "intensity": 0.5,
+   "effort_mode": "trained"
+  },
+  {
+   "actor": "ninja_lean",
+   "beats": [
+    "b03",
+    "b04"
+   ],
+   "effort": {
+    "weight": "strong",
+    "time": "sudden",
+    "space": "direct",
+    "flow": "free"
+   },
+   "effort_action": "punch",
+   "shape": {
+    "quality": "advancing",
+    "mode": "directional_spoke"
+   },
+   "space": {
+    "kinesphere": "mid",
+    "pathway": "central",
+    "plane": "vertical"
+   },
+   "intensity": 0.8,
+   "effort_mode": "trained"
+  },
+  {
+   "actor": "ninja_lean",
+   "beats": [
+    "b05",
+    "b06"
+   ],
+   "effort": {
+    "weight": "strong",
+    "time": "sudden",
+    "space": "direct",
+    "flow": "bound"
+   },
+   "effort_action": "punch",
+   "shape": {
+    "quality": "sinking",
+    "mode": "directional_spoke"
+   },
+   "space": {
+    "kinesphere": "far",
+    "pathway": "peripheral",
+    "plane": "sagittal"
+   },
+   "intensity": 0.9,
+   "effort_mode": "trained"
+  },
+  {
+   "actor": "ninja_lean",
+   "beats": [
+    "b07",
+    "b08"
+   ],
+   "effort": {
+    "weight": "latent",
+    "time": "sustained",
+    "space": "direct",
+    "flow": "bound"
+   },
+   "effort_action": "none",
+   "shape": {
+    "quality": "sinking",
+    "mode": "shape_flow"
+   },
+   "space": {
+    "kinesphere": "near",
+    "pathway": "central",
+    "plane": "vertical"
+   },
+   "intensity": 0.4,
+   "effort_mode": "calm"
+  },
+  {
+   "actor": "ninja_lean",
+   "beats": [
+    "b09",
+    "b10"
+   ],
+   "effort": {
+    "weight": "light",
+    "time": "sudden",
+    "space": "indirect",
+    "flow": "free"
+   },
+   "effort_action": "flick",
+   "shape": {
+    "quality": "enclosing",
+    "mode": "shape_flow"
+   },
+   "space": {
+    "kinesphere": "near",
+    "pathway": "central",
+    "plane": "horizontal"
+   },
+   "intensity": 0.5,
+   "effort_mode": "trained"
+  },
+  {
+   "actor": "ninja_lean",
+   "beats": [
+    "b11",
+    "b12"
+   ],
+   "effort": {
+    "weight": "strong",
+    "time": "sudden",
+    "space": "direct",
+    "flow": "bound"
+   },
+   "effort_action": "punch",
+   "shape": {
+    "quality": "rising",
+    "mode": "directional_spoke"
+   },
+   "space": {
+    "kinesphere": "near",
+    "pathway": "central",
+    "plane": "vertical"
+   },
+   "intensity": 0.9,
+   "effort_mode": "trained"
+  },
+  {
+   "actor": "ninja_lean",
+   "beats": [
+    "b13",
+    "b14"
+   ],
+   "effort": {
+    "weight": "strong",
+    "time": "sudden",
+    "space": "indirect",
+    "flow": "free"
+   },
+   "effort_action": "slash",
+   "shape": {
+    "quality": "retreating",
+    "mode": "carving"
+   },
+   "space": {
+    "kinesphere": "far",
+    "pathway": "peripheral",
+    "plane": "vertical"
+   },
+   "intensity": 0.85,
+   "effort_mode": "trained"
+  },
+  {
+   "actor": "ninja_lean",
+   "beats": [
+    "b15"
+   ],
+   "effort": {
+    "weight": "light",
+    "time": "sustained",
+    "space": "direct",
+    "flow": "free"
+   },
+   "effort_action": "glide",
+   "shape": {
+    "quality": "sinking",
+    "mode": "directional_spoke"
+   },
+   "space": {
+    "kinesphere": "near",
+    "pathway": "central",
+    "plane": "horizontal"
+   },
+   "intensity": 0.6,
+   "effort_mode": "trained"
+  },
+  {
+   "actor": "ninja_lean",
+   "beats": [
+    "b16"
+   ],
+   "effort": {
+    "weight": "strong",
+    "time": "sudden",
+    "space": "direct",
+    "flow": "bound"
+   },
+   "effort_action": "punch",
+   "shape": {
+    "quality": "rising",
+    "mode": "directional_arc"
+   },
+   "space": {
+    "kinesphere": "mid",
+    "pathway": "peripheral",
+    "plane": "vertical"
+   },
+   "intensity": 0.85,
+   "effort_mode": "trained"
+  },
+  {
+   "actor": "ninja_lean",
+   "beats": [
+    "b17"
+   ],
+   "effort": {
+    "weight": "latent",
+    "time": "sudden",
+    "space": "latent",
+    "flow": "free"
+   },
+   "effort_action": "none",
+   "shape": {
+    "quality": "retreating",
+    "mode": "shape_flow"
+   },
+   "space": {
+    "kinesphere": "far",
+    "pathway": "central",
+    "plane": "sagittal"
+   },
+   "intensity": 0.7,
+   "effort_mode": "desperate"
+  },
+  {
+   "actor": "ninja_lean",
+   "beats": [
+    "b18"
+   ],
+   "effort": {
+    "weight": "strong",
+    "time": "sudden",
+    "space": "direct",
+    "flow": "free"
+   },
+   "effort_action": "punch",
+   "shape": {
+    "quality": "advancing",
+    "mode": "directional_spoke"
+   },
+   "space": {
+    "kinesphere": "mid",
+    "pathway": "central",
+    "plane": "sagittal"
+   },
+   "intensity": 0.8,
+   "effort_mode": "trained"
+  },
+  {
+   "actor": "ninja_lean",
+   "beats": [
+    "b19"
+   ],
+   "effort": {
+    "weight": "light",
+    "time": "sudden",
+    "space": "indirect",
+    "flow": "free"
+   },
+   "effort_action": "flick",
+   "shape": {
+    "quality": "spreading",
+    "mode": "carving"
+   },
+   "space": {
+    "kinesphere": "far",
+    "pathway": "peripheral",
+    "plane": "horizontal"
+   },
+   "intensity": 0.7,
+   "effort_mode": "trained"
+  },
+  {
+   "actor": "ninja_lean",
+   "beats": [
+    "b20"
+   ],
+   "effort": {
+    "weight": "strong",
+    "time": "sustained",
+    "space": "direct",
+    "flow": "bound"
+   },
+   "effort_action": "press",
+   "shape": {
+    "quality": "enclosing",
+    "mode": "directional_spoke"
+   },
+   "space": {
+    "kinesphere": "far",
+    "pathway": "central",
+    "plane": "sagittal"
+   },
+   "intensity": 0.85,
+   "effort_mode": "trained"
+  },
+  {
+   "actor": "ninja_lean",
+   "beats": [
+    "b21",
+    "b22"
+   ],
+   "effort": {
+    "weight": "strong",
+    "time": "sudden",
+    "space": "direct",
+    "flow": "bound"
+   },
+   "effort_action": "punch",
+   "shape": {
+    "quality": "sinking",
+    "mode": "directional_spoke"
+   },
+   "space": {
+    "kinesphere": "near",
+    "pathway": "central",
+    "plane": "vertical"
+   },
+   "intensity": 0.9,
+   "effort_mode": "trained"
+  },
+  {
+   "actor": "ninja_lean",
+   "beats": [
+    "b23"
+   ],
+   "effort": {
+    "weight": "latent",
+    "time": "sustained",
+    "space": "latent",
+    "flow": "bound"
+   },
+   "effort_action": "none",
+   "shape": {
+    "quality": "sinking",
+    "mode": "shape_flow"
+   },
+   "space": {
+    "kinesphere": "near",
+    "pathway": "central",
+    "plane": "vertical"
+   },
+   "intensity": 0.3,
+   "effort_mode": "calm"
+  },
+  {
+   "actor": "ninja_broad",
+   "beats": [
+    "b01",
+    "b04"
+   ],
+   "effort": {
+    "weight": "strong",
+    "time": "sustained",
+    "space": "direct",
+    "flow": "bound"
+   },
+   "effort_action": "press",
+   "shape": {
+    "quality": "advancing",
+    "mode": "shape_flow"
+   },
+   "space": {
+    "kinesphere": "near",
+    "pathway": "central",
+    "plane": "vertical"
+   },
+   "intensity": 0.4,
+   "effort_mode": "calm"
+  },
+  {
+   "actor": "ninja_broad",
+   "beats": [
+    "b05"
+   ],
+   "effort": {
+    "weight": "strong",
+    "time": "sudden",
+    "space": "direct",
+    "flow": "bound"
+   },
+   "effort_action": "punch",
+   "shape": {
+    "quality": "advancing",
+    "mode": "directional_spoke"
+   },
+   "space": {
+    "kinesphere": "far",
+    "pathway": "central",
+    "plane": "sagittal"
+   },
+   "intensity": 0.7,
+   "effort_mode": "trained"
+  },
+  {
+   "actor": "ninja_broad",
+   "beats": [
+    "b06",
+    "b07"
+   ],
+   "effort": {
+    "weight": "strong",
+    "time": "sustained",
+    "space": "latent",
+    "flow": "bound"
+   },
+   "effort_action": "none",
+   "shape": {
+    "quality": "sinking",
+    "mode": "shape_flow"
+   },
+   "space": {
+    "kinesphere": "near",
+    "pathway": "central",
+    "plane": "vertical"
+   },
+   "intensity": 0.5,
+   "effort_mode": "trained"
+  },
+  {
+   "actor": "ninja_broad",
+   "beats": [
+    "b08",
+    "b09"
+   ],
+   "effort": {
+    "weight": "strong",
+    "time": "sudden",
+    "space": "direct",
+    "flow": "bound"
+   },
+   "effort_action": "punch",
+   "shape": {
+    "quality": "rising",
+    "mode": "directional_spoke"
+   },
+   "space": {
+    "kinesphere": "mid",
+    "pathway": "central",
+    "plane": "sagittal"
+   },
+   "intensity": 0.8,
+   "effort_mode": "trained"
+  },
+  {
+   "actor": "ninja_broad",
+   "beats": [
+    "b10",
+    "b11"
+   ],
+   "effort": {
+    "weight": "latent",
+    "time": "sudden",
+    "space": "indirect",
+    "flow": "free"
+   },
+   "effort_action": "none",
+   "shape": {
+    "quality": "advancing",
+    "mode": "shape_flow"
+   },
+   "space": {
+    "kinesphere": "mid",
+    "pathway": "peripheral",
+    "plane": "sagittal"
+   },
+   "intensity": 0.6,
+   "effort_mode": "desperate"
+  },
+  {
+   "actor": "ninja_broad",
+   "beats": [
+    "b12",
+    "b13"
+   ],
+   "effort": {
+    "weight": "latent",
+    "time": "sudden",
+    "space": "latent",
+    "flow": "free"
+   },
+   "effort_action": "none",
+   "shape": {
+    "quality": "advancing",
+    "mode": "shape_flow"
+   },
+   "space": {
+    "kinesphere": "far",
+    "pathway": "central",
+    "plane": "sagittal"
+   },
+   "intensity": 0.8,
+   "effort_mode": "desperate"
+  },
+  {
+   "actor": "ninja_broad",
+   "beats": [
+    "b14"
+   ],
+   "effort": {
+    "weight": "strong",
+    "time": "sudden",
+    "space": "indirect",
+    "flow": "bound"
+   },
+   "effort_action": "slash",
+   "shape": {
+    "quality": "spreading",
+    "mode": "carving"
+   },
+   "space": {
+    "kinesphere": "far",
+    "pathway": "peripheral",
+    "plane": "horizontal"
+   },
+   "intensity": 0.85,
+   "effort_mode": "desperate"
+  },
+  {
+   "actor": "ninja_broad",
+   "beats": [
+    "b15",
+    "b16"
+   ],
+   "effort": {
+    "weight": "strong",
+    "time": "sustained",
+    "space": "direct",
+    "flow": "bound"
+   },
+   "effort_action": "press",
+   "shape": {
+    "quality": "sinking",
+    "mode": "shape_flow"
+   },
+   "space": {
+    "kinesphere": "near",
+    "pathway": "central",
+    "plane": "vertical"
+   },
+   "intensity": 0.6,
+   "effort_mode": "trained"
+  },
+  {
+   "actor": "ninja_broad",
+   "beats": [
+    "b17"
+   ],
+   "effort": {
+    "weight": "strong",
+    "time": "sudden",
+    "space": "indirect",
+    "flow": "bound"
+   },
+   "effort_action": "slash",
+   "shape": {
+    "quality": "enclosing",
+    "mode": "carving"
+   },
+   "space": {
+    "kinesphere": "mid",
+    "pathway": "peripheral",
+    "plane": "horizontal"
+   },
+   "intensity": 0.85,
+   "effort_mode": "trained"
+  },
+  {
+   "actor": "ninja_broad",
+   "beats": [
+    "b19",
+    "b20",
+    "b21"
+   ],
+   "effort": {
+    "weight": "latent",
+    "time": "sudden",
+    "space": "latent",
+    "flow": "bound"
+   },
+   "effort_action": "none",
+   "shape": {
+    "quality": "retreating",
+    "mode": "shape_flow"
+   },
+   "space": {
+    "kinesphere": "mid",
+    "pathway": "central",
+    "plane": "sagittal"
+   },
+   "intensity": 0.8,
+   "effort_mode": "desperate"
+  },
+  {
+   "actor": "ninja_broad",
+   "beats": [
+    "b22",
+    "b23"
+   ],
+   "effort": {
+    "weight": "latent",
+    "time": "sustained",
+    "space": "latent",
+    "flow": "free"
+   },
+   "effort_action": "none",
+   "shape": {
+    "quality": "sinking",
+    "mode": "shape_flow"
+   },
+   "space": {
+    "kinesphere": "near",
+    "pathway": "central",
+    "plane": "horizontal"
+   },
+   "intensity": 0.2,
+   "effort_mode": "calm"
+  }
+ ]
+}

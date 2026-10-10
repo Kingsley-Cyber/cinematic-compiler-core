@@ -37,6 +37,8 @@ def test_courtyard_plan_passes():
     ("BEAT_TIME", lambda p: beat(p, "b13").update(dur=0)),
     ("BEAT_ACTOR", lambda p: beat(p, "b01").update(actor="dragon")),
     ("BEAT_PARTICIPANT", lambda p: beat(p, "b01")["participants"].append({"kind": "prop", "id": "staff"})),
+    ("BEAT_PARTICIPANT", lambda p: beat(p, "b03")["participants"].append({"kind": "entity", "id": "acrobat"})),
+    ("BEAT_PARTICIPANT", lambda p: beat(p, "b01")["participants"].append({"kind": "entity", "id": "acrobat"})),
     ("BEAT_POSE_ANCHOR", lambda p: beat(p, "b05")["pos"].pop("wizard")),
     ("BEAT_POSE_ANCHOR", lambda p: beat(p, "b01")["facing"].update(acrobat=[0, 0, 0])),
     ("BEAT_POSE_ANCHOR", lambda p: beat(p, "b01")["pos"].update(dragon=[0, 0, 0])),

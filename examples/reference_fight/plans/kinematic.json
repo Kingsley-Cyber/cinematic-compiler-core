@@ -1,0 +1,736 @@
+{
+ "step_id": "S11",
+ "band": "L4a",
+ "packet_sha256": "sha256:3e0280d613f377be51dcb23402153007289e54a0ec64a9a4bfae6063e50db824",
+ "author": {
+  "host": "Claude Code desktop, in-session",
+  "model": "claude-opus-5-5"
+ },
+ "attempt": 1,
+ "nodes": [
+  {
+   "slot": "ninja_lean@b01",
+   "support": [],
+   "balance": "precarious",
+   "loading": "unloaded",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "down",
+   "tension": "moderate",
+   "release": "none",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "held",
+   "reads": "Tucked fall from above, arms forward for balance, head down, legs folded to meet the pillar top."
+  },
+  {
+   "slot": "ninja_broad@b01",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "loading",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "none",
+   "tension": "moderate",
+   "release": "none",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "steady",
+   "reads": "Waits planted at z=4.5, kunai in reverse grip, arm winding up."
+  },
+  {
+   "slot": "ninja_lean@b02",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "recovering",
+   "loading": "loaded",
+   "bracing": "braced",
+   "yielding": "yielding",
+   "weight_transfer": "down",
+   "tension": "high",
+   "release": "none",
+   "strain": "mild",
+   "restraint": "none",
+   "breathing": "exhale",
+   "reads": "Deep compressed crouch on the pillar top, knees absorbing the drop."
+  },
+  {
+   "slot": "ninja_lean@b03",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "shifting",
+   "loading": "loading",
+   "bracing": "braced",
+   "yielding": "none",
+   "weight_transfer": "down",
+   "tension": "high",
+   "release": "none",
+   "strain": "mild",
+   "restraint": "none",
+   "breathing": "steady",
+   "reads": "Body horizontal on the pillar face, feet driving down the wood in quick steps."
+  },
+  {
+   "slot": "ninja_lean@b04",
+   "support": [],
+   "balance": "shifting",
+   "loading": "unloading",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "backward",
+   "tension": "high",
+   "release": "releasing",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "exhale",
+   "reads": "Both legs straighten off the pillar; the body arcs back and away toward B."
+  },
+  {
+   "slot": "ninja_broad@b04",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "loading",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "none",
+   "tension": "moderate",
+   "release": "none",
+   "strain": "none",
+   "restraint": "held_back",
+   "breathing": "held",
+   "reads": "Tracks A off the pillar, kunai ready."
+  },
+  {
+   "slot": "ninja_broad@b05",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "unloading",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "up",
+   "tension": "high",
+   "release": "releasing",
+   "strain": "mild",
+   "restraint": "none",
+   "breathing": "exhale",
+   "reads": "Throws the kunai upward at A, the throwing arm extending."
+  },
+  {
+   "slot": "ninja_lean@b05",
+   "support": [],
+   "balance": "precarious",
+   "loading": "loading",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "down",
+   "tension": "moderate",
+   "release": "none",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "held",
+   "reads": "Mid-descent, arms extended, eyes on the rising kunai."
+  },
+  {
+   "slot": "ninja_lean@b06",
+   "support": [],
+   "balance": "precarious",
+   "loading": "loaded",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "down",
+   "tension": "high",
+   "release": "releasing",
+   "strain": "mild",
+   "restraint": "none",
+   "breathing": "exhale",
+   "reads": "Right foot sole snaps down onto the kunai; the left leg trails for the landing."
+  },
+  {
+   "slot": "ninja_broad@b06",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "unloaded",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "none",
+   "tension": "moderate",
+   "release": "released",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "steady",
+   "reads": "Watches the kunai turn back toward the ground."
+  },
+  {
+   "slot": "ninja_lean@b07",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "loaded",
+   "bracing": "light",
+   "yielding": "yielding",
+   "weight_transfer": "down",
+   "tension": "moderate",
+   "release": "none",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "steady",
+   "reads": "Lands squared up, knees soft, rope dart low in the left hand."
+  },
+  {
+   "slot": "ninja_broad@b07",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "loading",
+   "bracing": "light",
+   "yielding": "none",
+   "weight_transfer": "up",
+   "tension": "moderate",
+   "release": "none",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "steady",
+   "reads": "Braces and rises to meet A."
+  },
+  {
+   "slot": "ninja_broad@b08",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "shifting",
+   "loading": "loaded",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "forward",
+   "tension": "high",
+   "release": "none",
+   "strain": "mild",
+   "restraint": "none",
+   "breathing": "held",
+   "reads": "Charges forward, right palm rising toward A's chest."
+  },
+  {
+   "slot": "ninja_lean@b08",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "loading",
+   "bracing": "braced",
+   "yielding": "none",
+   "weight_transfer": "none",
+   "tension": "high",
+   "release": "none",
+   "strain": "none",
+   "restraint": "held_back",
+   "breathing": "held",
+   "reads": "Braced for the rising palm, weight low, ready to vanish."
+  },
+  {
+   "slot": "ninja_lean@b09",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "shifting",
+   "loading": "unloading",
+   "bracing": "none",
+   "yielding": "giving_way",
+   "weight_transfer": "none",
+   "tension": "moderate",
+   "release": "released",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "exhale",
+   "reads": "The body gives way into the smoke as the log takes its place."
+  },
+  {
+   "slot": "ninja_broad@b09",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "shifting",
+   "loading": "unloading",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "forward",
+   "tension": "high",
+   "release": "releasing",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "exhale",
+   "reads": "The palm is already travelling into the smoke."
+  },
+  {
+   "slot": "ninja_broad@b10",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "off_balance",
+   "loading": "unloading",
+   "bracing": "none",
+   "yielding": "giving_way",
+   "weight_transfer": "forward",
+   "tension": "moderate",
+   "release": "released",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "gasp",
+   "reads": "The palm smacks the wooden log; B stumbles through, off balance."
+  },
+  {
+   "slot": "ninja_lean@b10",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "loading",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "none",
+   "tension": "relaxed",
+   "release": "none",
+   "strain": "none",
+   "restraint": "held_back",
+   "breathing": "held",
+   "reads": "Unseen in the smoke, crouched and coiled."
+  },
+  {
+   "slot": "ninja_lean@b11",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "loading",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "up",
+   "tension": "high",
+   "release": "none",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "held",
+   "reads": "Reappears behind B, right elbow cocked, weight rising onto the toes."
+  },
+  {
+   "slot": "ninja_broad@b11",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "off_balance",
+   "loading": "unloaded",
+   "bracing": "none",
+   "yielding": "giving_way",
+   "weight_transfer": "forward",
+   "tension": "moderate",
+   "release": "none",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "gasp",
+   "reads": "Still stumbling forward with A behind."
+  },
+  {
+   "slot": "ninja_lean@b12",
+   "support": [],
+   "balance": "precarious",
+   "loading": "unloading",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "up",
+   "tension": "high",
+   "release": "releasing",
+   "strain": "mild",
+   "restraint": "none",
+   "breathing": "exhale",
+   "reads": "Right knee drives up into B's spine, left leg extended down as the counter."
+  },
+  {
+   "slot": "ninja_broad@b12",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "off_balance",
+   "loading": "unloaded",
+   "bracing": "none",
+   "yielding": "giving_way",
+   "weight_transfer": "up",
+   "tension": "high",
+   "release": "none",
+   "strain": "high",
+   "restraint": "none",
+   "breathing": "gasp",
+   "reads": "Spine struck from behind; lifted off the ground and launched forward."
+  },
+  {
+   "slot": "ninja_lean@b13",
+   "support": [],
+   "balance": "precarious",
+   "loading": "unloaded",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "rotating",
+   "tension": "high",
+   "release": "releasing",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "exhale",
+   "reads": "Full backflip, the left leg sweeping a vertical crescent."
+  },
+  {
+   "slot": "ninja_broad@b13",
+   "support": [],
+   "balance": "off_balance",
+   "loading": "unloaded",
+   "bracing": "none",
+   "yielding": "giving_way",
+   "weight_transfer": "forward",
+   "tension": "moderate",
+   "release": "none",
+   "strain": "mild",
+   "restraint": "none",
+   "breathing": "gasp",
+   "reads": "Airborne from the knee strike, body pitched forward."
+  },
+  {
+   "slot": "ninja_broad@b14",
+   "support": [],
+   "balance": "recovering",
+   "loading": "unloading",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "rotating",
+   "tension": "high",
+   "release": "releasing",
+   "strain": "mild",
+   "restraint": "none",
+   "breathing": "exhale",
+   "reads": "Twists mid-air and throws the three shuriken from the right hand."
+  },
+  {
+   "slot": "ninja_lean@b14",
+   "support": [],
+   "balance": "recovering",
+   "loading": "loading",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "down",
+   "tension": "moderate",
+   "release": "none",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "held",
+   "reads": "Dropping out of the flip into the slide line, eyes on the volley."
+  },
+  {
+   "slot": "ninja_lean@b15",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "loaded",
+   "bracing": "none",
+   "yielding": "yielding",
+   "weight_transfer": "forward",
+   "tension": "moderate",
+   "release": "none",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "held",
+   "reads": "Low slide on the ground, legs folded, the three shuriken passing overhead."
+  },
+  {
+   "slot": "ninja_broad@b15",
+   "support": [],
+   "balance": "recovering",
+   "loading": "loading",
+   "bracing": "none",
+   "yielding": "yielding",
+   "weight_transfer": "down",
+   "tension": "moderate",
+   "release": "none",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "exhale",
+   "reads": "Drops back to the ground behind the volley."
+  },
+  {
+   "slot": "ninja_lean@b16",
+   "support": [],
+   "balance": "shifting",
+   "loading": "unloading",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "up",
+   "tension": "high",
+   "release": "releasing",
+   "strain": "mild",
+   "restraint": "none",
+   "breathing": "exhale",
+   "reads": "Cartwheels up out of the slide, left elbow driving up toward B's chest."
+  },
+  {
+   "slot": "ninja_broad@b16",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "loading",
+   "bracing": "braced",
+   "yielding": "none",
+   "weight_transfer": "none",
+   "tension": "high",
+   "release": "none",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "held",
+   "reads": "Braces facing A as the cartwheel comes in."
+  },
+  {
+   "slot": "ninja_broad@b17",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "shifting",
+   "loading": "unloading",
+   "bracing": "braced",
+   "yielding": "none",
+   "weight_transfer": "rotating",
+   "tension": "high",
+   "release": "releasing",
+   "strain": "high",
+   "restraint": "none",
+   "breathing": "exhale",
+   "reads": "Both hands catch A's left elbow and swing A toward the pillar."
+  },
+  {
+   "slot": "ninja_lean@b17",
+   "support": [],
+   "balance": "off_balance",
+   "loading": "unloaded",
+   "bracing": "none",
+   "yielding": "giving_way",
+   "weight_transfer": "backward",
+   "tension": "moderate",
+   "release": "none",
+   "strain": "high",
+   "restraint": "none",
+   "breathing": "gasp",
+   "reads": "Caught by the left elbow and flung backward toward the pillar, legs trailing."
+  },
+  {
+   "slot": "ninja_lean@b18",
+   "support": [],
+   "balance": "recovering",
+   "loading": "unloading",
+   "bracing": "braced",
+   "yielding": "none",
+   "weight_transfer": "forward",
+   "tension": "high",
+   "release": "releasing",
+   "strain": "mild",
+   "restraint": "none",
+   "breathing": "exhale",
+   "reads": "Feet hit the pillar and push off hard; the left hand snatches the rope dart."
+  },
+  {
+   "slot": "ninja_lean@b19",
+   "support": [],
+   "balance": "shifting",
+   "loading": "loading",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "forward",
+   "tension": "high",
+   "release": "none",
+   "strain": "mild",
+   "restraint": "none",
+   "breathing": "held",
+   "reads": "Left hand whips the rope dart out to wrap B's shoulder; the right hand takes the kunai."
+  },
+  {
+   "slot": "ninja_broad@b19",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "shifting",
+   "loading": "unloaded",
+   "bracing": "none",
+   "yielding": "yielding",
+   "weight_transfer": "forward",
+   "tension": "moderate",
+   "release": "none",
+   "strain": "mild",
+   "restraint": "none",
+   "breathing": "gasp",
+   "reads": "The rope dart wraps the right shoulder and jerks B forward."
+  },
+  {
+   "slot": "ninja_lean@b20",
+   "support": [],
+   "balance": "shifting",
+   "loading": "loaded",
+   "bracing": "braced",
+   "yielding": "none",
+   "weight_transfer": "backward",
+   "tension": "high",
+   "release": "none",
+   "strain": "high",
+   "restraint": "none",
+   "breathing": "held",
+   "reads": "Rope dart taut from the left hand, body braced mid-air, hauling B toward the pillar."
+  },
+  {
+   "slot": "ninja_broad@b20",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "off_balance",
+   "loading": "unloaded",
+   "bracing": "none",
+   "yielding": "giving_way",
+   "weight_transfer": "forward",
+   "tension": "high",
+   "release": "none",
+   "strain": "high",
+   "restraint": "none",
+   "breathing": "gasp",
+   "reads": "Dragged toward the pillar by the taut line."
+  },
+  {
+   "slot": "ninja_lean@b21",
+   "support": [],
+   "balance": "precarious",
+   "loading": "unloading",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "down",
+   "tension": "high",
+   "release": "releasing",
+   "strain": "high",
+   "restraint": "none",
+   "breathing": "exhale",
+   "reads": "Right hand drives the kunai down into B's right shoulder."
+  },
+  {
+   "slot": "ninja_broad@b21",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "off_balance",
+   "loading": "unloaded",
+   "bracing": "none",
+   "yielding": "giving_way",
+   "weight_transfer": "down",
+   "tension": "high",
+   "release": "none",
+   "strain": "high",
+   "restraint": "none",
+   "breathing": "gasp",
+   "reads": "Kunai driven into the right shoulder; B is driven downward."
+  },
+  {
+   "slot": "ninja_lean@b22",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "recovering",
+   "loading": "loaded",
+   "bracing": "braced",
+   "yielding": "yielding",
+   "weight_transfer": "down",
+   "tension": "high",
+   "release": "none",
+   "strain": "mild",
+   "restraint": "none",
+   "breathing": "gasp",
+   "reads": "Lands in a low crouch over B, right hand still on the kunai."
+  },
+  {
+   "slot": "ninja_broad@b22",
+   "support": [
+    "torso"
+   ],
+   "balance": "stable",
+   "loading": "unloaded",
+   "bracing": "none",
+   "yielding": "giving_way",
+   "weight_transfer": "none",
+   "tension": "relaxed",
+   "release": "released",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "gasp",
+   "reads": "Slammed into the ground on the back, stunned, A crouched over."
+  },
+  {
+   "slot": "ninja_lean@b23",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "loaded",
+   "bracing": "light",
+   "yielding": "none",
+   "weight_transfer": "none",
+   "tension": "moderate",
+   "release": "none",
+   "strain": "none",
+   "restraint": "held_back",
+   "breathing": "steady",
+   "reads": "Holds the crouch over B, rope dart trailing from the left hand, breathing still."
+  },
+  {
+   "slot": "ninja_broad@b23",
+   "support": [
+    "torso"
+   ],
+   "balance": "stable",
+   "loading": "unloaded",
+   "bracing": "none",
+   "yielding": "yielding",
+   "weight_transfer": "none",
+   "tension": "relaxed",
+   "release": "released",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "gasp",
+   "reads": "Stays down, kunai in the shoulder, never standing."
+  }
+ ]
+}

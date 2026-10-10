@@ -22,7 +22,7 @@ gates → the pass writes only its paths. A failed gate allows 2 re-authoring at
   closed state vocabulary~~
 - ~~Graph catalog (graph_types.md); URCP removed; standalone repo~~
 - ~~M1 (S04–S07), M1.5 (CLI, replan trigger), M2 (S11 kinematic, S12 Bartenieff, S13 motion), M3 (S14 effort,
-  S15 camera); courtyard example through S15~~
+  S15 camera), M4 (S16 render + reference-fight golden); courtyard and reference examples through S16~~
 
 ---
 
@@ -245,8 +245,15 @@ Notes on the decisions:
   (Built on the courtyard: `renderers/anime_renderer.py` projects every graph into the LBN-2.4-ADV-LMA layout; kernel
   per-actor/per-prop controls are regenerated for the cast (labels A, B… in S02 order), never copied; the owner
   render control is enforced by coverage, not printed; examples write `render.txt` next to `envelope.json`.)
-- [ ] S16.6 Golden: the reference fight compiles and contains every kernel and reference-fight item; the owner
+- [x] S16.6 Golden: the reference fight compiles and contains every kernel and reference-fight item; the owner
   renders (Claude never renders).
+  (Built: `examples/reference_fight/` compiles from the reference preface with in-session plans for S04 and
+  S11–S16; `tests/test_reference_fight_golden.py` finds all 68 kernel + reference items in `render.txt` (kernel 20,
+  per-actor 6, per-prop 5, reference-only 37), A's roots and joints equal the reference rows, the anime directives
+  survive. Recorded deviations from the reference data: A's 10.0 hold row has no beat (beats end at the scene end);
+  possession is tracked on props only (A holds two props at once); the shuriken embed commits at 5.9 (end of the
+  throw beat) instead of 6.3 and smoke dissipation is not a state (no contact triggers it); the reference's own
+  wording is kept verbatim where it disagrees with itself (kunai pickup "at 8.0 during crash landing").)
 
 ## M5 — UGC (S08–S10)
 - [ ] S08 hand role: `grip_types.yaml`, `role_templates.yaml` (draft); schema `{interaction, agent_hand,

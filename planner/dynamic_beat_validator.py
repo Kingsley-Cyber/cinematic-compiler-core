@@ -40,9 +40,11 @@ def validate(plan, packet):
             findings.append(_finding("BEAT_TIME", "A hold needs a positive duration", bid))
         if beat["actor"] not in entities:
             findings.append(_finding("BEAT_ACTOR", "Actor must be a declared entity", bid, beat["actor"]))
-        for ref in beat["participants"]:
+        for index, ref in enumerate(beat["participants"]):
             if ref["id"] not in known[ref["kind"]]:
                 findings.append(_finding("BEAT_PARTICIPANT", "Participant is not declared", bid, ref))
+            if ref in beat["participants"][:index] or (ref["kind"] == "entity" and ref["id"] == beat["actor"]):
+                findings.append(_finding("BEAT_PARTICIPANT", "A participant is listed once and is not the actor", bid, ref))
         bodies = {beat["actor"]} | {r["id"] for r in beat["participants"] if r["kind"] == "entity"}
         for entity in sorted(bodies & set(entities)):
             for key in ("pos", "facing"):

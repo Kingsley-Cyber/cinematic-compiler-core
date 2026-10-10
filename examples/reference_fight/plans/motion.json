@@ -1,0 +1,3194 @@
+{
+ "step_id": "S13",
+ "band": "L4c",
+ "packet_sha256": "sha256:976f6cce609995fc46defb125b20330f605391d8cad3e3b2c30b62f27867a8f8",
+ "author": {
+  "host": "Claude Code desktop, in-session",
+  "model": "claude-opus-5-5"
+ },
+ "attempt": 1,
+ "keys": [
+  {
+   "slot": "ninja_lean@b01",
+   "name": "fall_from_above",
+   "pos": [
+    0,
+    7.5,
+    3.5
+   ],
+   "rot": [
+    15,
+    0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     30,
+     0,
+     0
+    ],
+    "LUL": [
+     -60,
+     0,
+     0
+    ],
+    "RUL": [
+     -60,
+     0,
+     0
+    ],
+    "LL": [
+     -60,
+     0,
+     0
+    ],
+    "RL": [
+     -60,
+     0,
+     0
+    ],
+    "LA": [
+     -30,
+     0,
+     0
+    ],
+    "RA": [
+     -30,
+     0,
+     0
+    ],
+    "LFA": [
+     -45,
+     0,
+     0
+    ],
+    "RFA": [
+     -45,
+     0,
+     0
+    ],
+    "HD": [
+     -20,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "L:arm fwd high bent3, leg fwd mid bent5, lLeg bent5; R:arm fwd high bent3, leg fwd mid bent5, lLeg bent5; support=none airborne; A FALLS FROM ABOVE FRAME, body tucked falling downward, both arms forward for balance, both legs tucked, head pointing down, entering from top, NOT yet landed",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_broad@b01",
+   "name": "wait_with_kunai",
+   "pos": [
+    0,
+    0,
+    4.5
+   ],
+   "rot": [
+    0,
+    180.0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     10,
+     0,
+     0
+    ],
+    "LUL": [
+     -25,
+     0,
+     8
+    ],
+    "RUL": [
+     -10,
+     0,
+     -8
+    ],
+    "LL": [
+     30,
+     0,
+     0
+    ],
+    "RL": [
+     20,
+     0,
+     0
+    ],
+    "LA": [
+     -20,
+     0,
+     25
+    ],
+    "RA": [
+     -60,
+     0,
+     -10
+    ],
+    "LFA": [
+     -70,
+     0,
+     0
+    ],
+    "RFA": [
+     -40,
+     0,
+     0
+    ],
+    "HD": [
+     0,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "Planted at z=4.5 facing -Z, kunai reverse-gripped in the right hand, arm winding up.",
+   "turn": "spin",
+   "axis_declaration": "Y"
+  },
+  {
+   "slot": "ninja_lean@b02",
+   "name": "land_pillar_top",
+   "pos": [
+    0,
+    7.2,
+    5.8
+   ],
+   "rot": [
+    45,
+    0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     75,
+     0,
+     0
+    ],
+    "LUL": [
+     -135,
+     0,
+     0
+    ],
+    "RUL": [
+     -135,
+     0,
+     0
+    ],
+    "LL": [
+     -90,
+     0,
+     0
+    ],
+    "RL": [
+     -90,
+     0,
+     0
+    ],
+    "LA": [
+     -60,
+     0,
+     0
+    ],
+    "RA": [
+     -60,
+     0,
+     0
+    ],
+    "LFA": [
+     -90,
+     0,
+     0
+    ],
+    "RFA": [
+     -90,
+     0,
+     0
+    ],
+    "HD": [
+     -40,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "L:arm fwd low bent5, leg back mid bent7, lLeg bent7; R:arm fwd low bent5, leg back mid bent7, lLeg bent7; support=both feet; LANDING ON PILLAR TOP, both feet on pillar top y=7.2, deep compressed crouch, both arms out for balance, head facing down, NOT airborne",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_lean@b03",
+   "name": "sprint_down_pillar",
+   "pos": [
+    0.3,
+    4.5,
+    5.9
+   ],
+   "rot": [
+    60,
+    0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     60,
+     0,
+     0
+    ],
+    "LUL": [
+     -90,
+     0,
+     0
+    ],
+    "RUL": [
+     90,
+     0,
+     0
+    ],
+    "LL": [
+     0,
+     0,
+     0
+    ],
+    "RL": [
+     0,
+     0,
+     0
+    ],
+    "LA": [
+     60,
+     0,
+     0
+    ],
+    "RA": [
+     -60,
+     0,
+     0
+    ],
+    "LFA": [
+     -30,
+     0,
+     0
+    ],
+    "RFA": [
+     -30,
+     0,
+     0
+    ],
+    "HD": [
+     -15,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "L:arm fwd mid bent3, leg back mid; R:arm back mid bent3, leg fwd mid; support=both feet on pillar; SPRINTING DOWN THE PILLAR FACE, body horizontal facing pillar surface, both feet pressing into wooden pillar at z=6, both arms running motion, head facing down, NOT wallrun upward, NOT airborne",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_lean@b04",
+   "name": "kick_off_pillar",
+   "pos": [
+    0.6,
+    3.2,
+    5.5
+   ],
+   "rot": [
+    50,
+    -30,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     45,
+     -20,
+     0
+    ],
+    "LUL": [
+     -45,
+     0,
+     0
+    ],
+    "RUL": [
+     45,
+     0,
+     0
+    ],
+    "LL": [
+     -45,
+     0,
+     0
+    ],
+    "RL": [
+     -45,
+     0,
+     0
+    ],
+    "LA": [
+     -60,
+     0,
+     0
+    ],
+    "RA": [
+     -60,
+     0,
+     0
+    ],
+    "LFA": [
+     -30,
+     0,
+     0
+    ],
+    "RFA": [
+     -30,
+     0,
+     0
+    ],
+    "HD": [
+     -15,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "L:arm fwd mid bent2, leg back mid bent3, lLeg bent3; R:arm fwd mid bent2, leg fwd mid bent3, lLeg bent3; support=none airborne; KICK OFF THE PILLAR, both feet push hard and A leaves pillar, body arcing backward away from pillar, both arms extending forward, head facing B, NOT still touching pillar",
+   "turn": "spin",
+   "axis_declaration": "Y"
+  },
+  {
+   "slot": "ninja_broad@b04",
+   "name": "track_a_off_pillar",
+   "pos": [
+    1.2,
+    0,
+    4.6
+   ],
+   "rot": [
+    0,
+    326.29,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     5,
+     0,
+     0
+    ],
+    "LUL": [
+     -15,
+     0,
+     8
+    ],
+    "RUL": [
+     -10,
+     0,
+     -8
+    ],
+    "LL": [
+     20,
+     0,
+     0
+    ],
+    "RL": [
+     20,
+     0,
+     0
+    ],
+    "LA": [
+     -15,
+     0,
+     20
+    ],
+    "RA": [
+     -20,
+     0,
+     -20
+    ],
+    "LFA": [
+     -50,
+     0,
+     0
+    ],
+    "RFA": [
+     -50,
+     0,
+     0
+    ],
+    "HD": [
+     -10,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "Turns to follow A off the pillar, kunai ready at the hip.",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_broad@b05",
+   "name": "throw_kunai_upward",
+   "pos": [
+    1.4,
+    0,
+    4.6
+   ],
+   "rot": [
+    0,
+    293.95,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     15,
+     -20,
+     0
+    ],
+    "LUL": [
+     -30,
+     0,
+     8
+    ],
+    "RUL": [
+     10,
+     0,
+     -8
+    ],
+    "LL": [
+     25,
+     0,
+     0
+    ],
+    "RL": [
+     15,
+     0,
+     0
+    ],
+    "LA": [
+     -30,
+     0,
+     20
+    ],
+    "RA": [
+     -120,
+     0,
+     -10
+    ],
+    "LFA": [
+     -45,
+     0,
+     0
+    ],
+    "RFA": [
+     -10,
+     0,
+     0
+    ],
+    "HD": [
+     -15,
+     0,
+     0
+    ],
+    "NK": [
+     -5,
+     0,
+     0
+    ]
+   },
+   "description": "Right arm whips forward and up, releasing the kunai at A mid-descent.",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_lean@b05",
+   "name": "b_throws_kunai",
+   "pos": [
+    0.5,
+    2.5,
+    5.0
+   ],
+   "rot": [
+    25,
+    60,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     30,
+     0,
+     0
+    ],
+    "LUL": [
+     -90,
+     0,
+     0
+    ],
+    "RUL": [
+     -90,
+     0,
+     0
+    ],
+    "LL": [
+     -30,
+     0,
+     0
+    ],
+    "RL": [
+     -30,
+     0,
+     0
+    ],
+    "LA": [
+     90,
+     0,
+     0
+    ],
+    "RA": [
+     90,
+     0,
+     0
+    ],
+    "LFA": [
+     -30,
+     0,
+     0
+    ],
+    "RFA": [
+     -30,
+     0,
+     0
+    ],
+    "HD": [
+     -20,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "L:arm fwd mid bent2, leg fwd mid bent4, lLeg bent4; R:arm fwd mid bent2, leg fwd mid bent4, lLeg bent4; support=none airborne; A DESCENDS toward B, B throws kunai upward at A mid-descent, kunai arrives from below at A, A sees kunai approaching, both arms extended, head facing kunai, NOT yet deflecting",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_lean@b06",
+   "name": "foot_deflect_kunai_downward",
+   "pos": [
+    0.5,
+    1.5,
+    4.5
+   ],
+   "rot": [
+    25,
+    90,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     20,
+     0,
+     0
+    ],
+    "LUL": [
+     -30,
+     0,
+     0
+    ],
+    "RUL": [
+     -135,
+     0,
+     0
+    ],
+    "LL": [
+     -30,
+     0,
+     0
+    ],
+    "RL": [
+     -90,
+     0,
+     0
+    ],
+    "LA": [
+     60,
+     0,
+     0
+    ],
+    "RA": [
+     -30,
+     0,
+     0
+    ],
+    "LFA": [
+     -45,
+     0,
+     0
+    ],
+    "RFA": [
+     -45,
+     0,
+     0
+    ],
+    "HD": [
+     20,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "L:arm fwd mid bent3, leg fwd mid bent3, lLeg bent3; R:arm fwd mid bent3, leg fwd high bent7 FOOT-DEFLECTING-DOWN, lLeg bent7; support=none airborne; RIGHT FOOT strikes the kunai, kunai DEFLECTED DOWNWARD, kunai REVERSES direction from +Z (toward A) to -Z and downward (toward B and ground), kunai STAYS IN FRAME arcing down, this is a foot deflect NOT a kick, NOT an elbow, NOT a punch, right foot sole strikes kunai",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_broad@b06",
+   "name": "watch_kunai_turn",
+   "pos": [
+    1.4,
+    0,
+    4.6
+   ],
+   "rot": [
+    0,
+    263.69,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     5,
+     0,
+     0
+    ],
+    "LUL": [
+     -15,
+     0,
+     8
+    ],
+    "RUL": [
+     -10,
+     0,
+     -8
+    ],
+    "LL": [
+     20,
+     0,
+     0
+    ],
+    "RL": [
+     20,
+     0,
+     0
+    ],
+    "LA": [
+     -15,
+     0,
+     20
+    ],
+    "RA": [
+     -20,
+     0,
+     -20
+    ],
+    "LFA": [
+     -50,
+     0,
+     0
+    ],
+    "RFA": [
+     -50,
+     0,
+     0
+    ],
+    "HD": [
+     -10,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "Watches the kunai turn back down toward the ground.",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_lean@b07",
+   "name": "land_facing_b",
+   "pos": [
+    0.4,
+    0.9,
+    4.8
+   ],
+   "rot": [
+    20,
+    90,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     45,
+     0,
+     0
+    ],
+    "LUL": [
+     -90,
+     0,
+     0
+    ],
+    "RUL": [
+     90,
+     0,
+     0
+    ],
+    "LL": [
+     -45,
+     0,
+     0
+    ],
+    "RL": [
+     -45,
+     0,
+     0
+    ],
+    "LA": [
+     -30,
+     0,
+     0
+    ],
+    "RA": [
+     30,
+     0,
+     0
+    ],
+    "LFA": [
+     -45,
+     0,
+     0
+    ],
+    "RFA": [
+     -45,
+     0,
+     0
+    ],
+    "HD": [
+     -5,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "L:arm fwd low bent3 holding rope dart, leg fwd mid bent5, lLeg bent5; R:arm fwd low bent3, leg fwd mid bent5, lLeg bent5; support=both feet; A LANDS squared up facing B at z=4.8, both arms low and forward, LEFT HAND HOLDING ROPE DART, right hand empty, head facing B, NOT a strike",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_broad@b07",
+   "name": "brace_and_rise",
+   "pos": [
+    1.6,
+    0,
+    4.8
+   ],
+   "rot": [
+    0,
+    270.0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     20,
+     0,
+     0
+    ],
+    "LUL": [
+     -50,
+     0,
+     12
+    ],
+    "RUL": [
+     -45,
+     0,
+     -12
+    ],
+    "LL": [
+     60,
+     0,
+     0
+    ],
+    "RL": [
+     55,
+     0,
+     0
+    ],
+    "LA": [
+     -40,
+     0,
+     20
+    ],
+    "RA": [
+     -40,
+     0,
+     -20
+    ],
+    "LFA": [
+     -80,
+     0,
+     0
+    ],
+    "RFA": [
+     -80,
+     0,
+     0
+    ],
+    "HD": [
+     -10,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "Braces low and rises to meet A squared up.",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_broad@b08",
+   "name": "rising_palm_charge",
+   "pos": [
+    1.4,
+    0,
+    4.7
+   ],
+   "rot": [
+    0,
+    270.0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     25,
+     -15,
+     0
+    ],
+    "LUL": [
+     -60,
+     0,
+     8
+    ],
+    "RUL": [
+     15,
+     0,
+     -8
+    ],
+    "LL": [
+     45,
+     0,
+     0
+    ],
+    "RL": [
+     20,
+     0,
+     0
+    ],
+    "LA": [
+     -30,
+     0,
+     20
+    ],
+    "RA": [
+     -110,
+     0,
+     -5
+    ],
+    "LFA": [
+     -30,
+     0,
+     0
+    ],
+    "RFA": [
+     -5,
+     0,
+     0
+    ],
+    "HD": [
+     -10,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "Charges forward, right palm rising toward A's chest.",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_lean@b08",
+   "name": "b_rising_palm_charge",
+   "pos": [
+    0.4,
+    1.1,
+    4.7
+   ],
+   "rot": [
+    20,
+    90,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     30,
+     0,
+     0
+    ],
+    "LUL": [
+     -60,
+     0,
+     0
+    ],
+    "RUL": [
+     -60,
+     0,
+     0
+    ],
+    "LL": [
+     -30,
+     0,
+     0
+    ],
+    "RL": [
+     -30,
+     0,
+     0
+    ],
+    "LA": [
+     -45,
+     0,
+     0
+    ],
+    "RA": [
+     -45,
+     0,
+     0
+    ],
+    "LFA": [
+     -60,
+     0,
+     0
+    ],
+    "RFA": [
+     -60,
+     0,
+     0
+    ],
+    "HD": [
+     -5,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "L:arm fwd mid bent3 holding rope dart, leg fwd mid bent4, lLeg bent4; R:arm fwd mid bent3, leg fwd mid bent4, lLeg bent4; support=both feet; B CHARGES WITH RISING PALM STRIKE, B right palm rising toward A chest, A braces for impact, both arms visible, head facing B, NOT yet substituted",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_lean@b09",
+   "name": "kawarimi_substitution_smoke",
+   "pos": [
+    0.4,
+    1.1,
+    4.7
+   ],
+   "rot": [
+    20,
+    90,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     60,
+     0,
+     0
+    ],
+    "LUL": [
+     -90,
+     0,
+     0
+    ],
+    "RUL": [
+     -90,
+     0,
+     0
+    ],
+    "LL": [
+     -60,
+     0,
+     0
+    ],
+    "RL": [
+     -60,
+     0,
+     0
+    ],
+    "LA": [
+     60,
+     0,
+     0
+    ],
+    "RA": [
+     60,
+     0,
+     0
+    ],
+    "LFA": [
+     -90,
+     0,
+     0
+    ],
+    "RFA": [
+     -90,
+     0,
+     0
+    ],
+    "HD": [
+     -20,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "L:arm fwd mid bent5, leg fwd mid bent5, lLeg bent5; R:arm fwd mid bent5, leg fwd mid bent5, lLeg bent5; support=both feet; KAWARIMI SUBSTITUTION, A body is REPLACED BY SMOKE BURST, A vanishes from this position, smoke pellet deployed at A current location, A is NO LONGER HERE, this is a SUBSTITUTION JUTSU NOT a strike, body dissolves into smoke, a wooden substitution log is revealed at this position replacing A",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_broad@b09",
+   "name": "palm_into_smoke",
+   "pos": [
+    1.0,
+    0,
+    4.7
+   ],
+   "rot": [
+    0,
+    270.0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     25,
+     -15,
+     0
+    ],
+    "LUL": [
+     -60,
+     0,
+     8
+    ],
+    "RUL": [
+     15,
+     0,
+     -8
+    ],
+    "LL": [
+     45,
+     0,
+     0
+    ],
+    "RL": [
+     20,
+     0,
+     0
+    ],
+    "LA": [
+     -30,
+     0,
+     20
+    ],
+    "RA": [
+     -110,
+     0,
+     -5
+    ],
+    "LFA": [
+     -30,
+     0,
+     0
+    ],
+    "RFA": [
+     -5,
+     0,
+     0
+    ],
+    "HD": [
+     -10,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "The rising palm drives on into the smoke burst.",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_broad@b10",
+   "name": "palm_hits_log",
+   "pos": [
+    0.9,
+    0,
+    4.7
+   ],
+   "rot": [
+    0,
+    270.0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     35,
+     0,
+     0
+    ],
+    "LUL": [
+     -40,
+     0,
+     10
+    ],
+    "RUL": [
+     20,
+     0,
+     -10
+    ],
+    "LL": [
+     50,
+     0,
+     0
+    ],
+    "RL": [
+     30,
+     0,
+     0
+    ],
+    "LA": [
+     -70,
+     0,
+     40
+    ],
+    "RA": [
+     -70,
+     0,
+     -40
+    ],
+    "LFA": [
+     -20,
+     0,
+     0
+    ],
+    "RFA": [
+     -20,
+     0,
+     0
+    ],
+    "HD": [
+     -15,
+     0,
+     0
+    ],
+    "NK": [
+     -5,
+     0,
+     0
+    ]
+   },
+   "description": "Palm smacks the wooden log; B stumbles forward off balance.",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_lean@b10",
+   "name": "b_palm_hits_substitution_log",
+   "pos": [
+    0.4,
+    0.9,
+    4.7
+   ],
+   "rot": [
+    20,
+    90,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     30,
+     0,
+     0
+    ],
+    "LUL": [
+     -60,
+     0,
+     0
+    ],
+    "RUL": [
+     -60,
+     0,
+     0
+    ],
+    "LL": [
+     -30,
+     0,
+     0
+    ],
+    "RL": [
+     -30,
+     0,
+     0
+    ],
+    "LA": [
+     -45,
+     0,
+     0
+    ],
+    "RA": [
+     -45,
+     0,
+     0
+    ],
+    "LFA": [
+     -60,
+     0,
+     0
+    ],
+    "RFA": [
+     -60,
+     0,
+     0
+    ],
+    "HD": [
+     -5,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "L:arm fwd mid bent3 holding rope dart, leg fwd mid bent4, lLeg bent4; R:arm fwd mid bent3, leg fwd mid bent4, lLeg bent4; support=both feet; B RISING PALM STRIKES THE SUBSTITUTION LOG, B hand passes through where A was, B contacts the wooden substitution log, B realizes the substitution, B off balance, this is B HITTING THE LOG NOT A, A is gone, smoke still visible",
+   "turn": "spin",
+   "axis_declaration": "Y"
+  },
+  {
+   "slot": "ninja_lean@b11",
+   "name": "reappear_behind_b",
+   "pos": [
+    0.4,
+    1.1,
+    4.4
+   ],
+   "rot": [
+    20,
+    -90,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     30,
+     0,
+     0
+    ],
+    "LUL": [
+     -60,
+     0,
+     0
+    ],
+    "RUL": [
+     -60,
+     0,
+     0
+    ],
+    "LL": [
+     -30,
+     0,
+     0
+    ],
+    "RL": [
+     -30,
+     0,
+     0
+    ],
+    "LA": [
+     -45,
+     0,
+     0
+    ],
+    "RA": [
+     -90,
+     0,
+     0
+    ],
+    "LFA": [
+     -45,
+     0,
+     0
+    ],
+    "RFA": [
+     -90,
+     0,
+     0
+    ],
+    "HD": [
+     -5,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "L:arm fwd mid bent3 holding rope dart, leg fwd mid bent4, lLeg bent4; R:arm fwd high bent4 cocking, leg fwd mid bent4, lLeg bent4; support=both feet; A REAPPEARS BEHIND B, A has teleported via substitution, A is now BEHIND B at z=4.4 facing B back, right elbow cocking, left hand holding rope dart, head facing B back, NOT a strike, this is the REAPPEARANCE",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_broad@b11",
+   "name": "stumble_forward",
+   "pos": [
+    -0.3,
+    0,
+    4.5
+   ],
+   "rot": [
+    0,
+    270.0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     35,
+     0,
+     0
+    ],
+    "LUL": [
+     -40,
+     0,
+     10
+    ],
+    "RUL": [
+     20,
+     0,
+     -10
+    ],
+    "LL": [
+     50,
+     0,
+     0
+    ],
+    "RL": [
+     30,
+     0,
+     0
+    ],
+    "LA": [
+     -70,
+     0,
+     40
+    ],
+    "RA": [
+     -70,
+     0,
+     -40
+    ],
+    "LFA": [
+     -20,
+     0,
+     0
+    ],
+    "RFA": [
+     -20,
+     0,
+     0
+    ],
+    "HD": [
+     -15,
+     0,
+     0
+    ],
+    "NK": [
+     -5,
+     0,
+     0
+    ]
+   },
+   "description": "Still stumbling forward, unaware of A behind.",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_lean@b12",
+   "name": "right_knee_strike_bspine",
+   "pos": [
+    0.4,
+    1.4,
+    4.5
+   ],
+   "rot": [
+    10,
+    -90,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     20,
+     0,
+     0
+    ],
+    "LUL": [
+     -30,
+     0,
+     0
+    ],
+    "RUL": [
+     -135,
+     0,
+     0
+    ],
+    "LL": [
+     -30,
+     0,
+     0
+    ],
+    "RL": [
+     -90,
+     0,
+     0
+    ],
+    "LA": [
+     60,
+     0,
+     0
+    ],
+    "RA": [
+     -30,
+     0,
+     0
+    ],
+    "LFA": [
+     -45,
+     0,
+     0
+    ],
+    "RFA": [
+     -45,
+     0,
+     0
+    ],
+    "HD": [
+     15,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "L:arm fwd mid bent3 holding rope dart, leg fwd mid bent3, lLeg bent3; R:arm fwd mid bent3, leg fwd high bent7 KNEE-DRIVING-UP, lLeg bent7; support=none airborne; RIGHT KNEE DRIVES UP INTO B SPINE from behind, right leg folded knee-leading, right knee strikes B spine at y=1.6, B LIFTED OFF GROUND and LAUNCHED FORWARD, left leg extended down as counter, left hand still holding rope dart, head facing B back, NOT a kick, NOT a punch, this is a knee strike from behind",
+   "turn": "spin",
+   "axis_declaration": "Y"
+  },
+  {
+   "slot": "ninja_broad@b12",
+   "name": "spine_struck_launched",
+   "pos": [
+    -0.3,
+    0,
+    4.5
+   ],
+   "rot": [
+    0,
+    270.0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     -25,
+     0,
+     0
+    ],
+    "LUL": [
+     -10,
+     0,
+     10
+    ],
+    "RUL": [
+     10,
+     0,
+     -10
+    ],
+    "LL": [
+     40,
+     0,
+     0
+    ],
+    "RL": [
+     60,
+     0,
+     0
+    ],
+    "LA": [
+     -40,
+     0,
+     60
+    ],
+    "RA": [
+     -40,
+     0,
+     -60
+    ],
+    "LFA": [
+     -20,
+     0,
+     0
+    ],
+    "RFA": [
+     -20,
+     0,
+     0
+    ],
+    "HD": [
+     20,
+     0,
+     0
+    ],
+    "NK": [
+     10,
+     0,
+     0
+    ]
+   },
+   "description": "Spine struck from behind by the knee; lifted off the ground and launched forward.",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_lean@b13",
+   "name": "aerial_backflip_kick",
+   "pos": [
+    0.5,
+    2.2,
+    4.0
+   ],
+   "rot": [
+    0,
+    -180,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     10,
+     0,
+     0
+    ],
+    "LUL": [
+     -45,
+     0,
+     0
+    ],
+    "RUL": [
+     -90,
+     0,
+     0
+    ],
+    "LL": [
+     -30,
+     0,
+     0
+    ],
+    "RL": [
+     -30,
+     0,
+     0
+    ],
+    "LA": [
+     90,
+     0,
+     0
+    ],
+    "RA": [
+     90,
+     0,
+     0
+    ],
+    "LFA": [
+     -45,
+     0,
+     0
+    ],
+    "RFA": [
+     -45,
+     0,
+     0
+    ],
+    "HD": [
+     -10,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "L:arm fwd mid bent3 holding rope dart, leg fwd mid bent3, lLeg bent3; R:arm fwd mid bent3, leg fwd mid bent3, lLeg bent3; support=none airborne; AERIAL BACKFLIP KICK, A rotates backward in a full backflip, LEFT LEG extended downward-back in a wide crescent arc, backflip plane is the vertical screen plane, LEFT foot arcs from front to back through the peak of the rotation, A body inverted at apex, right leg tucked, left hand still holding rope dart, this is a BACKFLIP KICK NOT a cartwheel, NOT a wheel, NOT a horizontal arc, arc is VERTICAL crescent on one side",
+   "turn": "spin",
+   "axis_declaration": "Y"
+  },
+  {
+   "slot": "ninja_broad@b13",
+   "name": "airborne_forward",
+   "pos": [
+    -1.2,
+    1.0,
+    4.4
+   ],
+   "rot": [
+    0,
+    270.0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     -25,
+     0,
+     0
+    ],
+    "LUL": [
+     -10,
+     0,
+     10
+    ],
+    "RUL": [
+     10,
+     0,
+     -10
+    ],
+    "LL": [
+     40,
+     0,
+     0
+    ],
+    "RL": [
+     60,
+     0,
+     0
+    ],
+    "LA": [
+     -40,
+     0,
+     60
+    ],
+    "RA": [
+     -40,
+     0,
+     -60
+    ],
+    "LFA": [
+     -20,
+     0,
+     0
+    ],
+    "RFA": [
+     -20,
+     0,
+     0
+    ],
+    "HD": [
+     20,
+     0,
+     0
+    ],
+    "NK": [
+     10,
+     0,
+     0
+    ]
+   },
+   "description": "Airborne from the knee strike, arms flung wide.",
+   "turn": "spin",
+   "axis_declaration": "Y"
+  },
+  {
+   "slot": "ninja_broad@b14",
+   "name": "air_throw_shuriken",
+   "pos": [
+    -1.5,
+    0.8,
+    4.3
+   ],
+   "rot": [
+    0,
+    90.0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     10,
+     -30,
+     0
+    ],
+    "LUL": [
+     -50,
+     0,
+     10
+    ],
+    "RUL": [
+     -20,
+     0,
+     -10
+    ],
+    "LL": [
+     70,
+     0,
+     0
+    ],
+    "RL": [
+     50,
+     0,
+     0
+    ],
+    "LA": [
+     -40,
+     0,
+     30
+    ],
+    "RA": [
+     -130,
+     0,
+     -15
+    ],
+    "LFA": [
+     -40,
+     0,
+     0
+    ],
+    "RFA": [
+     -5,
+     0,
+     0
+    ],
+    "HD": [
+     -10,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "Twists mid-air and fans the three shuriken out of the right hand.",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_lean@b14",
+   "name": "b_recovers_throws_shuriken_volley",
+   "pos": [
+    0.5,
+    1.8,
+    4.3
+   ],
+   "rot": [
+    0,
+    -270,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     20,
+     0,
+     0
+    ],
+    "LUL": [
+     -60,
+     0,
+     0
+    ],
+    "RUL": [
+     -60,
+     0,
+     0
+    ],
+    "LL": [
+     -30,
+     0,
+     0
+    ],
+    "RL": [
+     -30,
+     0,
+     0
+    ],
+    "LA": [
+     -45,
+     0,
+     0
+    ],
+    "RA": [
+     -90,
+     0,
+     0
+    ],
+    "LFA": [
+     -45,
+     0,
+     0
+    ],
+    "RFA": [
+     -90,
+     0,
+     0
+    ],
+    "HD": [
+     -5,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "L:arm fwd mid bent3 holding rope dart, leg fwd mid bent4, lLeg bent4; R:arm fwd high bent4, leg fwd mid bent4, lLeg bent4; support=none airborne; B RECOVERS MID-AIR AND THROWS SHURIKEN VOLLEY, THREE SHURIKEN thrown from B right hand, three shuriken fan out toward A, shuriken fly in a spread pattern, exactly THREE shuriken, no more no less, all three shuriken STAY IN FRAME, this is a VOLLEY OF THREE NOT a single shuriken",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_lean@b15",
+   "name": "slide_dodge_under_shuriken",
+   "pos": [
+    0.5,
+    0.6,
+    3.8
+   ],
+   "rot": [
+    80,
+    -270,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     80,
+     0,
+     0
+    ],
+    "LUL": [
+     -135,
+     0,
+     0
+    ],
+    "RUL": [
+     -135,
+     0,
+     0
+    ],
+    "LL": [
+     -90,
+     0,
+     0
+    ],
+    "RL": [
+     -90,
+     0,
+     0
+    ],
+    "LA": [
+     -45,
+     0,
+     0
+    ],
+    "RA": [
+     -45,
+     0,
+     0
+    ],
+    "LFA": [
+     -45,
+     0,
+     0
+    ],
+    "RFA": [
+     -45,
+     0,
+     0
+    ],
+    "HD": [
+     -40,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "L:arm fwd low bent3 holding rope dart, leg fwd mid bent7, lLeg bent7; R:arm fwd low bent3, leg fwd mid bent7, lLeg bent7; support=both feet; A SLIDES UNDER THE SHURIKEN VOLLEY, A body low to the ground sliding forward, both legs folded under, both arms tucked, left hand still holding rope dart, all THREE shuriken pass OVER A, A is BELOW the shuriken path, head facing forward, this is a SLIDE NOT a roll, NOT a jump",
+   "turn": "spin",
+   "axis_declaration": "Y"
+  },
+  {
+   "slot": "ninja_broad@b15",
+   "name": "land_behind_volley",
+   "pos": [
+    -1.6,
+    0,
+    4.2
+   ],
+   "rot": [
+    0,
+    90.0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     30,
+     0,
+     0
+    ],
+    "LUL": [
+     -80,
+     0,
+     12
+    ],
+    "RUL": [
+     -80,
+     0,
+     -12
+    ],
+    "LL": [
+     100,
+     0,
+     0
+    ],
+    "RL": [
+     100,
+     0,
+     0
+    ],
+    "LA": [
+     -30,
+     0,
+     30
+    ],
+    "RA": [
+     -30,
+     0,
+     -30
+    ],
+    "LFA": [
+     -40,
+     0,
+     0
+    ],
+    "RFA": [
+     -40,
+     0,
+     0
+    ],
+    "HD": [
+     -15,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "Drops back to the ground behind the volley in a low crouch.",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_lean@b16",
+   "name": "cartwheel_to_rising_elbow",
+   "pos": [
+    0.4,
+    1.5,
+    3.5
+   ],
+   "rot": [
+    20,
+    -180,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     20,
+     0,
+     0
+    ],
+    "LUL": [
+     -90,
+     0,
+     0
+    ],
+    "RUL": [
+     -90,
+     0,
+     0
+    ],
+    "LL": [
+     -60,
+     0,
+     0
+    ],
+    "RL": [
+     -60,
+     0,
+     0
+    ],
+    "LA": [
+     -90,
+     0,
+     0
+    ],
+    "RA": [
+     -90,
+     0,
+     0
+    ],
+    "LFA": [
+     -45,
+     0,
+     0
+    ],
+    "RFA": [
+     -90,
+     0,
+     0
+    ],
+    "HD": [
+     10,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "L:arm fwd high bent4 elbow-driving-up, leg fwd mid bent5, lLeg bent5; R:arm fwd high bent4 elbow-driving-up, leg fwd mid bent5, lLeg bent5; support=none airborne; CARTWHEEL TO RISING ELBOW, A rises from slide into a cartwheel, A body rotates sideways in screen plane one quarter turn, then A DRIVES LEFT ELBOW UPWARD, left elbow cocked and driving up toward B chest, right arm extended back for counter, left hand no longer holding rope dart, rope dart has been released during the slide, head facing B, this is a CARTWHEEL TO RISING ELBOW combo, left elbow leads",
+   "turn": "spin",
+   "axis_declaration": "Y"
+  },
+  {
+   "slot": "ninja_broad@b16",
+   "name": "brace_facing_a",
+   "pos": [
+    -1.0,
+    0,
+    3.8
+   ],
+   "rot": [
+    0,
+    90.0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     20,
+     0,
+     0
+    ],
+    "LUL": [
+     -50,
+     0,
+     12
+    ],
+    "RUL": [
+     -45,
+     0,
+     -12
+    ],
+    "LL": [
+     60,
+     0,
+     0
+    ],
+    "RL": [
+     55,
+     0,
+     0
+    ],
+    "LA": [
+     -40,
+     0,
+     20
+    ],
+    "RA": [
+     -40,
+     0,
+     -20
+    ],
+    "LFA": [
+     -80,
+     0,
+     0
+    ],
+    "RFA": [
+     -80,
+     0,
+     0
+    ],
+    "HD": [
+     -10,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "Braces facing A as the cartwheel comes in.",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_broad@b17",
+   "name": "catch_elbow_throw",
+   "pos": [
+    -0.4,
+    0,
+    4.5
+   ],
+   "rot": [
+    0,
+    90.0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     15,
+     20,
+     0
+    ],
+    "LUL": [
+     -40,
+     0,
+     10
+    ],
+    "RUL": [
+     10,
+     0,
+     -10
+    ],
+    "LL": [
+     45,
+     0,
+     0
+    ],
+    "RL": [
+     25,
+     0,
+     0
+    ],
+    "LA": [
+     -80,
+     0,
+     10
+    ],
+    "RA": [
+     -80,
+     0,
+     -10
+    ],
+    "LFA": [
+     -60,
+     0,
+     0
+    ],
+    "RFA": [
+     -60,
+     0,
+     0
+    ],
+    "HD": [
+     -5,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "Both hands clamp A's left elbow and swing A toward the pillar.",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_lean@b17",
+   "name": "b_catches_elbow_throws_a_into_pillar",
+   "pos": [
+    0.3,
+    1.8,
+    4.5
+   ],
+   "rot": [
+    20,
+    -90,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     30,
+     0,
+     0
+    ],
+    "LUL": [
+     -30,
+     0,
+     0
+    ],
+    "RUL": [
+     -30,
+     0,
+     0
+    ],
+    "LL": [
+     -30,
+     0,
+     0
+    ],
+    "RL": [
+     -30,
+     0,
+     0
+    ],
+    "LA": [
+     90,
+     0,
+     0
+    ],
+    "RA": [
+     -90,
+     0,
+     0
+    ],
+    "LFA": [
+     -60,
+     0,
+     0
+    ],
+    "RFA": [
+     -60,
+     0,
+     0
+    ],
+    "HD": [
+     10,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "L:arm fwd mid bent5 elbow-caught, leg fwd mid bent3, lLeg bent3; R:arm fwd mid bent5 elbow-caught, leg fwd mid bent3, lLeg bent3; support=none airborne; B CATCHES A LEFT ELBOW with both B hands, B uses A momentum to THROW A, A is LAUNCHED toward the pillar at z=6, A body flying backward toward pillar, both arms extended, both legs trailing, head facing pillar, this is A BEING THROWN NOT A striking",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_lean@b18",
+   "name": "wall_push_off_pillar",
+   "pos": [
+    0.5,
+    2.8,
+    5.9
+   ],
+   "rot": [
+    60,
+    -30,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     45,
+     -20,
+     0
+    ],
+    "LUL": [
+     -45,
+     0,
+     0
+    ],
+    "RUL": [
+     45,
+     0,
+     0
+    ],
+    "LL": [
+     -45,
+     0,
+     0
+    ],
+    "RL": [
+     -45,
+     0,
+     0
+    ],
+    "LA": [
+     -60,
+     0,
+     0
+    ],
+    "RA": [
+     -60,
+     0,
+     0
+    ],
+    "LFA": [
+     -30,
+     0,
+     0
+    ],
+    "RFA": [
+     -30,
+     0,
+     0
+    ],
+    "HD": [
+     -15,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "L:arm fwd mid bent2, leg back mid bent3, lLeg bent3; R:arm fwd mid bent2, leg fwd mid bent3, lLeg bent3; support=none airborne; A PUSHES OFF PILLAR, A body contacts pillar then pushes off hard, both feet contact pillar face at z=6 then push, A leaves pillar arcing forward back toward B, both arms extending forward, head facing B, NOT still touching pillar",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_lean@b19",
+   "name": "aerial_rope_dart_regrapple",
+   "pos": [
+    0.6,
+    2.2,
+    4.8
+   ],
+   "rot": [
+    30,
+    30,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     20,
+     0,
+     0
+    ],
+    "LUL": [
+     -60,
+     0,
+     0
+    ],
+    "RUL": [
+     -60,
+     0,
+     0
+    ],
+    "LL": [
+     -30,
+     0,
+     0
+    ],
+    "RL": [
+     -30,
+     0,
+     0
+    ],
+    "LA": [
+     -45,
+     0,
+     0
+    ],
+    "RA": [
+     -90,
+     0,
+     0
+    ],
+    "LFA": [
+     -30,
+     0,
+     0
+    ],
+    "RFA": [
+     -30,
+     0,
+     0
+    ],
+    "HD": [
+     -10,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "L:arm fwd mid bent2 holding rope dart, leg fwd mid bent4, lLeg bent4; R:arm fwd high bent2 reaching forward, leg fwd mid bent4, lLeg bent4; support=none airborne; AERIAL ROPE DART REGRAPPLE, A left hand throws rope dart forward, rope dart wraps around B right shoulder again, A PULLS rope dart taut, A pulled rapidly toward B, both arms visible, head facing B, this is a GRAPPLE NOT a strike",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_broad@b19",
+   "name": "rope_dart_wraps_shoulder",
+   "pos": [
+    0.4,
+    0,
+    4.0
+   ],
+   "rot": [
+    0,
+    14.06,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     -15,
+     15,
+     0
+    ],
+    "LUL": [
+     -10,
+     0,
+     10
+    ],
+    "RUL": [
+     -25,
+     0,
+     -10
+    ],
+    "LL": [
+     30,
+     0,
+     0
+    ],
+    "RL": [
+     40,
+     0,
+     0
+    ],
+    "LA": [
+     -20,
+     0,
+     30
+    ],
+    "RA": [
+     10,
+     0,
+     -60
+    ],
+    "LFA": [
+     -30,
+     0,
+     0
+    ],
+    "RFA": [
+     -10,
+     0,
+     0
+    ],
+    "HD": [
+     10,
+     0,
+     0
+    ],
+    "NK": [
+     5,
+     0,
+     0
+    ]
+   },
+   "description": "The rope dart wraps the right shoulder and jerks B forward.",
+   "turn": "spin",
+   "axis_declaration": "Y"
+  },
+  {
+   "slot": "ninja_lean@b20",
+   "name": "pull_b_toward_pillar",
+   "pos": [
+    0.5,
+    1.8,
+    4.5
+   ],
+   "rot": [
+    30,
+    90,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     20,
+     0,
+     0
+    ],
+    "LUL": [
+     -90,
+     0,
+     0
+    ],
+    "RUL": [
+     -90,
+     0,
+     0
+    ],
+    "LL": [
+     -45,
+     0,
+     0
+    ],
+    "RL": [
+     -45,
+     0,
+     0
+    ],
+    "LA": [
+     -45,
+     0,
+     0
+    ],
+    "RA": [
+     -45,
+     0,
+     0
+    ],
+    "LFA": [
+     -45,
+     0,
+     0
+    ],
+    "RFA": [
+     -45,
+     0,
+     0
+    ],
+    "HD": [
+     -10,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "L:arm fwd mid bent3 holding rope dart taut, leg fwd mid bent5, lLeg bent5; R:arm fwd mid bent3, leg fwd mid bent5, lLeg bent5; support=none airborne; A PULLS B TOWARD PILLAR with rope dart, B is being dragged toward the pillar at z=6, rope dart line taut between A left hand and B right shoulder, A body bracing mid-air, both arms visible, head facing B, this is a PULL NOT a strike",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_broad@b20",
+   "name": "dragged_toward_pillar",
+   "pos": [
+    1.4,
+    0,
+    4.7
+   ],
+   "rot": [
+    0,
+    -90.0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     -30,
+     0,
+     0
+    ],
+    "LUL": [
+     -35,
+     0,
+     10
+    ],
+    "RUL": [
+     -5,
+     0,
+     -10
+    ],
+    "LL": [
+     40,
+     0,
+     0
+    ],
+    "RL": [
+     20,
+     0,
+     0
+    ],
+    "LA": [
+     -50,
+     0,
+     45
+    ],
+    "RA": [
+     -20,
+     0,
+     -45
+    ],
+    "LFA": [
+     -20,
+     0,
+     0
+    ],
+    "RFA": [
+     -20,
+     0,
+     0
+    ],
+    "HD": [
+     20,
+     0,
+     0
+    ],
+    "NK": [
+     10,
+     0,
+     0
+    ]
+   },
+   "description": "Dragged toward the pillar by the taut line, heels skidding.",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_lean@b21",
+   "name": "aerial_kunai_drive_bshoulder",
+   "pos": [
+    0.4,
+    1.5,
+    4.9
+   ],
+   "rot": [
+    20,
+    90,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     30,
+     0,
+     0
+    ],
+    "LUL": [
+     -30,
+     0,
+     0
+    ],
+    "RUL": [
+     -30,
+     0,
+     0
+    ],
+    "LL": [
+     -30,
+     0,
+     0
+    ],
+    "RL": [
+     -30,
+     0,
+     0
+    ],
+    "LA": [
+     -30,
+     0,
+     0
+    ],
+    "RA": [
+     -90,
+     0,
+     0
+    ],
+    "LFA": [
+     -45,
+     0,
+     0
+    ],
+    "RFA": [
+     -90,
+     0,
+     0
+    ],
+    "HD": [
+     10,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "L:arm fwd mid bent2 holding rope dart taut, leg fwd mid bent3, lLeg bent3; R:arm fwd high bent5 kunai-driving-down, leg fwd mid bent3, lLeg bent3; support=none airborne; AERIAL KUNAI DRIVE INTO B SHOULDER, A right hand drives kunai downward into B right shoulder, kunai penetrates B shoulder, B STRUCK and DRIVEN DOWNWARD, kunai stays in B shoulder NOT released, left hand still holding rope dart, head facing down, this is a KUNAI DRIVE NOT a punch, NOT an elbow",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_broad@b21",
+   "name": "kunai_in_shoulder",
+   "pos": [
+    1.0,
+    0,
+    5.0
+   ],
+   "rot": [
+    0,
+    -90.0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     40,
+     0,
+     10
+    ],
+    "LUL": [
+     -30,
+     0,
+     10
+    ],
+    "RUL": [
+     -20,
+     0,
+     -10
+    ],
+    "LL": [
+     60,
+     0,
+     0
+    ],
+    "RL": [
+     50,
+     0,
+     0
+    ],
+    "LA": [
+     -40,
+     0,
+     50
+    ],
+    "RA": [
+     20,
+     0,
+     -30
+    ],
+    "LFA": [
+     -30,
+     0,
+     0
+    ],
+    "RFA": [
+     -10,
+     0,
+     0
+    ],
+    "HD": [
+     -20,
+     0,
+     0
+    ],
+    "NK": [
+     -5,
+     0,
+     0
+    ]
+   },
+   "description": "The kunai drives into the right shoulder; B is driven downward.",
+   "turn": "flip",
+   "axis_declaration": "X"
+  },
+  {
+   "slot": "ninja_lean@b22",
+   "name": "crash_to_ground",
+   "pos": [
+    0.4,
+    0.7,
+    5.3
+   ],
+   "rot": [
+    20,
+    90,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     60,
+     0,
+     0
+    ],
+    "LUL": [
+     -135,
+     0,
+     0
+    ],
+    "RUL": [
+     -135,
+     0,
+     0
+    ],
+    "LL": [
+     -90,
+     0,
+     0
+    ],
+    "RL": [
+     -90,
+     0,
+     0
+    ],
+    "LA": [
+     -45,
+     0,
+     0
+    ],
+    "RA": [
+     -90,
+     0,
+     0
+    ],
+    "LFA": [
+     -45,
+     0,
+     0
+    ],
+    "RFA": [
+     -90,
+     0,
+     0
+    ],
+    "HD": [
+     -30,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "L:arm fwd low bent3 holding rope dart, leg fwd mid bent7, lLeg bent7; R:arm fwd high bent5 kunai-in-shoulder, leg fwd mid bent7, lLeg bent7; support=both feet; CRASH TO GROUND, A lands low crouch over B, A body compressed over B on ground, right hand still on kunai driven into B shoulder, left hand still holding rope dart, head facing down at B, B SLAMMED into ground, this is the IMPACT, NOT a strike landing",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_broad@b22",
+   "name": "slammed_down",
+   "pos": [
+    1.0,
+    0,
+    5.3
+   ],
+   "rot": [
+    -90.0,
+    0.0,
+    -90.0
+   ],
+   "bones": {
+    "Sp": [
+     0,
+     0,
+     0
+    ],
+    "LUL": [
+     -10,
+     0,
+     15
+    ],
+    "RUL": [
+     -10,
+     0,
+     -15
+    ],
+    "LL": [
+     20,
+     0,
+     0
+    ],
+    "RL": [
+     15,
+     0,
+     0
+    ],
+    "LA": [
+     0,
+     0,
+     70
+    ],
+    "RA": [
+     0,
+     0,
+     -50
+    ],
+    "LFA": [
+     -20,
+     0,
+     0
+    ],
+    "RFA": [
+     -10,
+     0,
+     0
+    ],
+    "HD": [
+     10,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "Slammed onto the back, stunned, A crouched over.",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_lean@b23",
+   "name": "hold_crouch_over_b",
+   "pos": [
+    0.3,
+    0.7,
+    5.3
+   ],
+   "rot": [
+    20,
+    90,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     50,
+     0,
+     0
+    ],
+    "LUL": [
+     -135,
+     0,
+     0
+    ],
+    "RUL": [
+     -135,
+     0,
+     0
+    ],
+    "LL": [
+     -90,
+     0,
+     0
+    ],
+    "RL": [
+     -90,
+     0,
+     0
+    ],
+    "LA": [
+     -45,
+     0,
+     0
+    ],
+    "RA": [
+     -90,
+     0,
+     0
+    ],
+    "LFA": [
+     -90,
+     0,
+     0
+    ],
+    "RFA": [
+     -90,
+     0,
+     0
+    ],
+    "HD": [
+     -10,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "L:arm fwd low bent5 holding rope dart, leg fwd mid bent7, lLeg bent7; R:arm fwd high bent5 kunai-in-shoulder-grip, leg fwd mid bent7, lLeg bent7; support=both feet; A HOLDS CROUCH OVER B, right hand on kunai in B shoulder, left hand holding rope dart trailing behind, head facing down at B, breathing still, B remains down",
+   "turn": "none",
+   "axis_declaration": "none"
+  },
+  {
+   "slot": "ninja_broad@b23",
+   "name": "remains_down",
+   "pos": [
+    1.0,
+    0,
+    5.3
+   ],
+   "rot": [
+    -90.0,
+    0.0,
+    -90.0
+   ],
+   "bones": {
+    "Sp": [
+     0,
+     0,
+     0
+    ],
+    "LUL": [
+     -10,
+     0,
+     15
+    ],
+    "RUL": [
+     -10,
+     0,
+     -15
+    ],
+    "LL": [
+     20,
+     0,
+     0
+    ],
+    "RL": [
+     15,
+     0,
+     0
+    ],
+    "LA": [
+     0,
+     0,
+     70
+    ],
+    "RA": [
+     0,
+     0,
+     -50
+    ],
+    "LFA": [
+     -20,
+     0,
+     0
+    ],
+    "RFA": [
+     -10,
+     0,
+     0
+    ],
+    "HD": [
+     10,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "description": "Stays down on the back, kunai in the shoulder, never standing.",
+   "turn": "none",
+   "axis_declaration": "none"
+  }
+ ]
+}

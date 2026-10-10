@@ -16,7 +16,7 @@ scripts/check.sh
 DO_NOT_TRACK=1 graft --dir .graphs/graft build . --no-gitignore --no-ignore
 ```
 
-## Built (S01–S07, S11–S16; milestones M1, M1.5, M2, M3; M4 render built, golden pending)
+## Built (S01–S07, S11–S16; milestones M1, M1.5, M2, M3, M4)
 | Step | What it compiles | Code |
 |---|---|---|
 | S01 intent (L0) | query + flags → Intent Document at `/intent`; literal only, evidence per value, `missing`/`ambiguous` | `planner/intent_parser.py`, `compiler/passes/mandatory/p01_intent.py` |
@@ -35,11 +35,12 @@ DO_NOT_TRACK=1 graft --dir .graphs/graft build . --no-gitignore --no-ignore
 
 Pipeline: `python -m compiler.pipeline "<query>" [--genre anime] [--until contact] [--plans DIR]`; an authored step
 with no plan exits 3 and prints (or `--packet-out`) its packet. Example: `examples/wizard_vs_acrobat/` (through S16; plans for S04, S11–S16 written in-session; the prompt is `examples/wizard_vs_acrobat/render.txt`).
+Golden: `examples/reference_fight/` — the LBN reference ninja fight compiled from its preface; its `render.txt` contains all 68 kernel + reference items and A's reference roots exactly. **Both render.txt files are ready for you to render; Claude never renders.**.
 Kernel = the 68 controls both LBN-2.3-ADV and LBN-2.4-ADV-LMA state (`kernel/sources/`), scoped per item.
 
 ## Controls
 Three append-only, hash-chained logs (`schemas/schema_log.jsonl`, `library/library_log.jsonl`,
-`kernel/kernel_log.jsonl`); generated files checked against regeneration; examples recompile byte-for-byte; 335 tests; all in `scripts/check.sh`.
+`kernel/kernel_log.jsonl`); generated files checked against regeneration; examples recompile byte-for-byte; 345 tests; all in `scripts/check.sh`.
 
 ## Owner decisions so far
 Step IDs S01–S17 carry order (L labels are names); keys `step_id`/`band`; constraint built after S02 and before
@@ -55,10 +56,12 @@ linear causality only; closed kernel state vocabulary. Full log: `docs/layer_dep
   disclosed interpretation; `cpcs:spiral` is a labelled extension), `library/body_modes/` (4 cards), `library/laban_vocabulary.yaml`, `library/effort_modes/` (calm, desperate,
   trained), camera library (`camera_subdivisions`, `camera_grammar`, `camera_tempo`, `camera_conventions/` x3,
   `camera_idioms/` x5) — all numbers and rules are drafts.
+- Reference-fight deviations from its own data (recorded in MASTER_PLAN S16.6): 10.0 hold row has no beat;
+  possession tracked on props only; shuriken embed at 5.9; smoke dissipation not a state.
 - S13.6 posture cross-check is an agent addition (plan silent). Q6 note: under intrinsic XYZ a flip is pure-X only
   when facing ±Z (see MASTER_PLAN notes); no change made.
 
 ## Open questions and next work
 All six questions are decided (see **Decided this round** in
-[docs/plans/MASTER_PLAN.md](docs/plans/MASTER_PLAN.md)). Next task: **S16.1 + S16.6** — reference-fight cards and the golden round trip (finishes M4). Completed work is struck through
+[docs/plans/MASTER_PLAN.md](docs/plans/MASTER_PLAN.md)). Next task: **M5 UGC (S08–S10)** + `examples/ugc_glasses_demo/`. Completed work is struck through
 under **Done**.

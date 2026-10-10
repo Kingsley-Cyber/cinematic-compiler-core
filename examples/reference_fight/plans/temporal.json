@@ -1,0 +1,2029 @@
+{
+ "step_id": "S04",
+ "band": "L1",
+ "packet_sha256": "sha256:392ff5347e3f732b73e21b95ce963e023e2c4e8d3435817831617b88017a68bd",
+ "author": {
+  "host": "Claude Code desktop, in-session",
+  "model": "claude-opus-5-5"
+ },
+ "attempt": 1,
+ "beats": [
+  {
+   "id": "b01",
+   "t": 0,
+   "dur": 0.6,
+   "event_type": "action",
+   "actor": "ninja_lean",
+   "label": "fall_from_above",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "ninja_broad"
+    },
+    {
+     "kind": "surface",
+     "id": "wooden_pillar"
+    }
+   ],
+   "modes": {
+    "ninja_lean": "stealth"
+   },
+   "pos": {
+    "ninja_lean": [
+     0,
+     7.5,
+     3.5
+    ],
+    "ninja_broad": [
+     0,
+     0,
+     4.5
+    ]
+   },
+   "facing": {
+    "ninja_lean": [
+     0.0,
+     0,
+     1.0
+    ],
+    "ninja_broad": [
+     0,
+     0,
+     -1
+    ]
+   },
+   "action": "A FALLS FROM ABOVE FRAME at 0.0,enters from top, body tucked, head pointing down, landing on the pillar top; B waits at z=4.5 facing -Z with the kunai in the right hand",
+   "requires": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "ninja_lean"
+     },
+     "property": "support",
+     "value": "airborne"
+    },
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "ninja_broad"
+     },
+     "property": "support",
+     "value": "grounded"
+    }
+   ],
+   "effects": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "ninja_lean"
+     },
+     "property": "support",
+     "value": "grounded"
+    },
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "ninja_lean"
+     },
+     "property": "location",
+     "value": "wooden_pillar"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "kunai"
+     },
+     "property": "holder",
+     "value": "ninja_broad"
+    }
+   ],
+   "contacts": [
+    {
+     "contact_type": "support",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "left_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "wooden_pillar",
+      "part": null
+     }
+    },
+    {
+     "contact_type": "support",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "right_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "wooden_pillar",
+      "part": null
+     }
+    },
+    {
+     "contact_type": "possess",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_broad",
+      "part": "right_hand"
+     },
+     "b": {
+      "kind": "prop",
+      "id": "kunai",
+      "part": "handle"
+     }
+    }
+   ],
+   "causes": [
+    {
+     "to": "b02",
+     "causal_strength": "soft",
+     "why": "fall_from_above leads straight into the next exchange."
+    }
+   ]
+  },
+  {
+   "id": "b02",
+   "t": 0.6,
+   "dur": 0.5,
+   "event_type": "action",
+   "actor": "ninja_lean",
+   "label": "land_pillar_top",
+   "participants": [
+    {
+     "kind": "surface",
+     "id": "wooden_pillar"
+    }
+   ],
+   "modes": {
+    "ninja_lean": "stealth"
+   },
+   "pos": {
+    "ninja_lean": [
+     0,
+     7.2,
+     5.8
+    ]
+   },
+   "facing": {
+    "ninja_lean": [
+     0.0,
+     0,
+     1.0
+    ]
+   },
+   "action": "LANDS ON PILLAR TOP at 0.6,deep crouch, both feet on the pillar top at y=7.2, then tips over the edge onto the pillar face",
+   "requires": [],
+   "effects": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "ninja_lean"
+     },
+     "property": "support",
+     "value": "braced"
+    }
+   ],
+   "contacts": [],
+   "causes": [
+    {
+     "to": "b03",
+     "causal_strength": "soft",
+     "why": "land_pillar_top leads straight into the next exchange."
+    }
+   ]
+  },
+  {
+   "id": "b03",
+   "t": 1.1,
+   "dur": 0.5,
+   "event_type": "action",
+   "actor": "ninja_lean",
+   "label": "sprint_down_pillar",
+   "participants": [
+    {
+     "kind": "surface",
+     "id": "wooden_pillar"
+    }
+   ],
+   "modes": {
+    "ninja_lean": "assault"
+   },
+   "pos": {
+    "ninja_lean": [
+     0.3,
+     4.5,
+     5.9
+    ]
+   },
+   "facing": {
+    "ninja_lean": [
+     0.0,
+     0,
+     1.0
+    ]
+   },
+   "action": "SPRINTS DOWN PILLAR FACE at 1.1,body horizontal facing pillar,NOT wallrun upward",
+   "requires": [],
+   "effects": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "ninja_lean"
+     },
+     "property": "support",
+     "value": "airborne"
+    }
+   ],
+   "contacts": [
+    {
+     "contact_type": "release",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "left_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "wooden_pillar",
+      "part": null
+     }
+    },
+    {
+     "contact_type": "release",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "right_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "wooden_pillar",
+      "part": null
+     }
+    }
+   ],
+   "causes": [
+    {
+     "to": "b04",
+     "causal_strength": "soft",
+     "why": "sprint_down_pillar leads straight into the next exchange."
+    }
+   ]
+  },
+  {
+   "id": "b04",
+   "t": 1.6,
+   "dur": 0.4,
+   "event_type": "action",
+   "actor": "ninja_lean",
+   "label": "kick_off_pillar",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "ninja_broad"
+    }
+   ],
+   "modes": {
+    "ninja_lean": "assault"
+   },
+   "pos": {
+    "ninja_lean": [
+     0.6,
+     3.2,
+     5.5
+    ],
+    "ninja_broad": [
+     1.2,
+     0,
+     4.6
+    ]
+   },
+   "facing": {
+    "ninja_lean": [
+     -0.668,
+     0,
+     0.744
+    ],
+    "ninja_broad": [
+     -0.555,
+     0,
+     0.832
+    ]
+   },
+   "action": "KICKS OFF PILLAR at 1.6, both feet push hard and A arcs away from the pillar toward B, NOT still touching pillar",
+   "requires": [],
+   "effects": [],
+   "contacts": [],
+   "causes": [
+    {
+     "to": "b05",
+     "causal_strength": "soft",
+     "why": "kick_off_pillar leads straight into the next exchange."
+    }
+   ]
+  },
+  {
+   "id": "b05",
+   "t": 2.0,
+   "dur": 0.5,
+   "event_type": "action",
+   "actor": "ninja_broad",
+   "label": "throw_kunai",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "ninja_lean"
+    },
+    {
+     "kind": "prop",
+     "id": "kunai"
+    }
+   ],
+   "modes": {
+    "ninja_broad": "assault"
+   },
+   "pos": {
+    "ninja_lean": [
+     0.5,
+     2.5,
+     5.0
+    ],
+    "ninja_broad": [
+     1.4,
+     0,
+     4.6
+    ]
+   },
+   "facing": {
+    "ninja_lean": [
+     0.886,
+     0,
+     0.464
+    ],
+    "ninja_broad": [
+     -0.914,
+     0,
+     0.406
+    ]
+   },
+   "action": "B THROWS KUNAI at 2.0 toward A, upward at A mid-descent",
+   "requires": [
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "kunai"
+     },
+     "property": "holder",
+     "value": "ninja_broad"
+    }
+   ],
+   "effects": [
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "kunai"
+     },
+     "property": "holder",
+     "value": "none"
+    }
+   ],
+   "contacts": [
+    {
+     "contact_type": "release",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_broad",
+      "part": "right_hand"
+     },
+     "b": {
+      "kind": "prop",
+      "id": "kunai",
+      "part": "handle"
+     }
+    }
+   ],
+   "causes": [
+    {
+     "to": "b06",
+     "causal_strength": "hard",
+     "why": "throw_kunai leads straight into the next exchange."
+    }
+   ]
+  },
+  {
+   "id": "b06",
+   "t": 2.5,
+   "dur": 0.5,
+   "event_type": "action",
+   "actor": "ninja_lean",
+   "label": "foot_deflect_kunai",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "ninja_broad"
+    },
+    {
+     "kind": "prop",
+     "id": "kunai"
+    },
+    {
+     "kind": "prop",
+     "id": "rope_dart"
+    },
+    {
+     "kind": "surface",
+     "id": "ground"
+    }
+   ],
+   "modes": {
+    "ninja_lean": "assault"
+   },
+   "pos": {
+    "ninja_lean": [
+     0.5,
+     1.5,
+     4.5
+    ],
+    "ninja_broad": [
+     1.4,
+     0,
+     4.6
+    ]
+   },
+   "facing": {
+    "ninja_lean": [
+     1.0,
+     0,
+     0.0
+    ],
+    "ninja_broad": [
+     -0.994,
+     0,
+     -0.11
+    ]
+   },
+   "action": "FOOT DEFLECT KINDS: kunai REVERSES from +Z to -Z and downward at 2.5,kunai STAYS IN FRAME,NOT toward B; the right foot sole strikes the kunai, NOT a kick; A lands on both feet at 3.0 holding the rope dart in the left hand",
+   "requires": [
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "kunai"
+     },
+     "property": "holder",
+     "value": "none"
+    }
+   ],
+   "effects": [
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "kunai"
+     },
+     "property": "location",
+     "value": "ground"
+    },
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "ninja_lean"
+     },
+     "property": "support",
+     "value": "grounded"
+    },
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "ninja_lean"
+     },
+     "property": "location",
+     "value": "ground"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "rope_dart"
+     },
+     "property": "holder",
+     "value": "ninja_lean"
+    }
+   ],
+   "contacts": [
+    {
+     "contact_type": "touch",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "right_foot"
+     },
+     "b": {
+      "kind": "prop",
+      "id": "kunai",
+      "part": "blade"
+     }
+    },
+    {
+     "contact_type": "support",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "left_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
+    },
+    {
+     "contact_type": "support",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "right_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
+    },
+    {
+     "contact_type": "possess",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "left_hand"
+     },
+     "b": {
+      "kind": "prop",
+      "id": "rope_dart",
+      "part": "rope"
+     }
+    }
+   ],
+   "causes": [
+    {
+     "to": "b07",
+     "causal_strength": "soft",
+     "why": "foot_deflect_kunai leads straight into the next exchange."
+    }
+   ]
+  },
+  {
+   "id": "b07",
+   "t": 3.0,
+   "dur": 0.4,
+   "event_type": "action",
+   "actor": "ninja_lean",
+   "label": "land_facing_opponent",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "ninja_broad"
+    }
+   ],
+   "modes": {
+    "ninja_lean": "stealth"
+   },
+   "pos": {
+    "ninja_lean": [
+     0.4,
+     0.9,
+     4.8
+    ],
+    "ninja_broad": [
+     1.6,
+     0,
+     4.8
+    ]
+   },
+   "facing": {
+    "ninja_lean": [
+     1.0,
+     0,
+     0.0
+    ],
+    "ninja_broad": [
+     -1,
+     0,
+     0
+    ]
+   },
+   "action": "A LANDS squared up facing B, both arms low and forward, LEFT HAND HOLDING ROPE DART, right hand empty, NOT a strike",
+   "requires": [],
+   "effects": [],
+   "contacts": [],
+   "causes": [
+    {
+     "to": "b08",
+     "causal_strength": "soft",
+     "why": "land_facing_opponent leads straight into the next exchange."
+    }
+   ]
+  },
+  {
+   "id": "b08",
+   "t": 3.4,
+   "dur": 0.3,
+   "event_type": "action",
+   "actor": "ninja_broad",
+   "label": "rising_palm_charge",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "ninja_lean"
+    }
+   ],
+   "modes": {
+    "ninja_broad": "assault"
+   },
+   "pos": {
+    "ninja_lean": [
+     0.4,
+     1.1,
+     4.7
+    ],
+    "ninja_broad": [
+     1.4,
+     0,
+     4.7
+    ]
+   },
+   "facing": {
+    "ninja_lean": [
+     1.0,
+     0,
+     0.0
+    ],
+    "ninja_broad": [
+     -1,
+     0,
+     0
+    ]
+   },
+   "action": "B RISING PALM STRIKE toward A chest,B charges forward",
+   "requires": [],
+   "effects": [],
+   "contacts": [],
+   "causes": [
+    {
+     "to": "b09",
+     "causal_strength": "soft",
+     "why": "rising_palm_charge leads straight into the next exchange."
+    }
+   ]
+  },
+  {
+   "id": "b09",
+   "t": 3.7,
+   "dur": 0.3,
+   "event_type": "action",
+   "actor": "ninja_lean",
+   "label": "kawarimi_substitution",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "ninja_broad"
+    },
+    {
+     "kind": "prop",
+     "id": "smoke_pellet"
+    },
+    {
+     "kind": "prop",
+     "id": "substitution_log"
+    }
+   ],
+   "modes": {
+    "ninja_lean": "stealth"
+   },
+   "pos": {
+    "ninja_lean": [
+     0.4,
+     1.1,
+     4.7
+    ],
+    "ninja_broad": [
+     1.0,
+     0,
+     4.7
+    ]
+   },
+   "facing": {
+    "ninja_lean": [
+     1.0,
+     0,
+     0.0
+    ],
+    "ninja_broad": [
+     -1,
+     0,
+     0
+    ]
+   },
+   "action": "KAWARIMI SUBSTITUTION at 3.7,A body REPLACED BY SMOKE BURST,A vanishes,substitution log reveals,B palm hits LOG NOT A at 4.0,this is a SUBSTITUTION NOT a strike",
+   "requires": [],
+   "effects": [
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "smoke_pellet"
+     },
+     "property": "smoke",
+     "value": "burst"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "substitution_log"
+     },
+     "property": "deployment",
+     "value": "deployed"
+    }
+   ],
+   "contacts": [
+    {
+     "contact_type": "touch",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "right_hand"
+     },
+     "b": {
+      "kind": "prop",
+      "id": "smoke_pellet",
+      "part": "shell"
+     }
+    },
+    {
+     "contact_type": "touch",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "right_hand"
+     },
+     "b": {
+      "kind": "prop",
+      "id": "substitution_log",
+      "part": "log"
+     }
+    }
+   ],
+   "causes": [
+    {
+     "to": "b10",
+     "causal_strength": "hard",
+     "why": "kawarimi_substitution leads straight into the next exchange."
+    }
+   ]
+  },
+  {
+   "id": "b10",
+   "t": 4.0,
+   "dur": 0.4,
+   "event_type": "action",
+   "actor": "ninja_broad",
+   "label": "palm_hits_log",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "ninja_lean"
+    },
+    {
+     "kind": "prop",
+     "id": "substitution_log"
+    }
+   ],
+   "modes": {
+    "ninja_broad": "assault"
+   },
+   "pos": {
+    "ninja_lean": [
+     0.4,
+     0.9,
+     4.7
+    ],
+    "ninja_broad": [
+     0.9,
+     0,
+     4.7
+    ]
+   },
+   "facing": {
+    "ninja_lean": [
+     1.0,
+     0,
+     0.0
+    ],
+    "ninja_broad": [
+     -1,
+     0,
+     0
+    ]
+   },
+   "action": "B palm strikes the substitution log,B realizes the substitution,B off balance,the log falls to the ground",
+   "requires": [
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "substitution_log"
+     },
+     "property": "deployment",
+     "value": "deployed"
+    }
+   ],
+   "effects": [
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "substitution_log"
+     },
+     "property": "deployment",
+     "value": "fallen"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "substitution_log"
+     },
+     "property": "location",
+     "value": "ground"
+    },
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "ninja_broad"
+     },
+     "property": "condition",
+     "value": "staggered"
+    }
+   ],
+   "contacts": [
+    {
+     "contact_type": "touch",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_broad",
+      "part": "right_hand"
+     },
+     "b": {
+      "kind": "prop",
+      "id": "substitution_log",
+      "part": "log"
+     }
+    }
+   ],
+   "causes": [
+    {
+     "to": "b11",
+     "causal_strength": "soft",
+     "why": "palm_hits_log leads straight into the next exchange."
+    }
+   ]
+  },
+  {
+   "id": "b11",
+   "t": 4.4,
+   "dur": 0.3,
+   "event_type": "action",
+   "actor": "ninja_lean",
+   "label": "reappear_behind_opponent",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "ninja_broad"
+    }
+   ],
+   "modes": {
+    "ninja_lean": "stealth"
+   },
+   "pos": {
+    "ninja_lean": [
+     0.4,
+     1.1,
+     4.4
+    ],
+    "ninja_broad": [
+     -0.3,
+     0,
+     4.5
+    ]
+   },
+   "facing": {
+    "ninja_lean": [
+     -1.0,
+     0,
+     0.0
+    ],
+    "ninja_broad": [
+     -1,
+     0,
+     0
+    ]
+   },
+   "action": "A REAPPEARS BEHIND B at 4.4,teleport via substitution,this is the REAPPEARANCE",
+   "requires": [],
+   "effects": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "ninja_lean"
+     },
+     "property": "support",
+     "value": "airborne"
+    }
+   ],
+   "contacts": [
+    {
+     "contact_type": "release",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "left_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
+    },
+    {
+     "contact_type": "release",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "right_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
+    }
+   ],
+   "causes": [
+    {
+     "to": "b12",
+     "causal_strength": "soft",
+     "why": "reappear_behind_opponent leads straight into the next exchange."
+    }
+   ]
+  },
+  {
+   "id": "b12",
+   "t": 4.7,
+   "dur": 0.4,
+   "event_type": "action",
+   "actor": "ninja_lean",
+   "label": "knee_strike_spine",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "ninja_broad"
+    }
+   ],
+   "modes": {
+    "ninja_lean": "assault"
+   },
+   "pos": {
+    "ninja_lean": [
+     0.4,
+     1.4,
+     4.5
+    ],
+    "ninja_broad": [
+     -0.3,
+     0,
+     4.5
+    ]
+   },
+   "facing": {
+    "ninja_lean": [
+     -1.0,
+     0,
+     0.0
+    ],
+    "ninja_broad": [
+     -1,
+     0,
+     0
+    ]
+   },
+   "action": "RIGHT KNEE strikes B spine at 4.7 from behind,NOT a kick,NOT a punch; B lifted and launched forward",
+   "requires": [],
+   "effects": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "ninja_broad"
+     },
+     "property": "support",
+     "value": "airborne"
+    }
+   ],
+   "contacts": [
+    {
+     "contact_type": "touch",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "right_leg"
+     },
+     "b": {
+      "kind": "entity",
+      "id": "ninja_broad",
+      "part": "torso"
+     }
+    }
+   ],
+   "causes": [
+    {
+     "to": "b13",
+     "causal_strength": "soft",
+     "why": "knee_strike_spine leads straight into the next exchange."
+    }
+   ]
+  },
+  {
+   "id": "b13",
+   "t": 5.1,
+   "dur": 0.4,
+   "event_type": "action",
+   "actor": "ninja_lean",
+   "label": "aerial_backflip_kick",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "ninja_broad"
+    }
+   ],
+   "modes": {
+    "ninja_lean": "assault"
+   },
+   "pos": {
+    "ninja_lean": [
+     0.5,
+     2.2,
+     4.0
+    ],
+    "ninja_broad": [
+     -1.2,
+     1.0,
+     4.4
+    ]
+   },
+   "facing": {
+    "ninja_lean": [
+     0.0,
+     0,
+     -1.0
+    ],
+    "ninja_broad": [
+     -1,
+     0,
+     0
+    ]
+   },
+   "action": "AERIAL BACKFLIP KICK at 5.1,full backflip in vertical screen plane,LEFT LEG crescent arc VERTICAL on one side,NOT a cartwheel,NOT a wheel,NOT horizontal arc",
+   "requires": [],
+   "effects": [],
+   "contacts": [],
+   "causes": [
+    {
+     "to": "b14",
+     "causal_strength": "soft",
+     "why": "aerial_backflip_kick leads straight into the next exchange."
+    }
+   ]
+  },
+  {
+   "id": "b14",
+   "t": 5.5,
+   "dur": 0.4,
+   "event_type": "action",
+   "actor": "ninja_broad",
+   "label": "throw_shuriken_volley",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "ninja_lean"
+    },
+    {
+     "kind": "prop",
+     "id": "shuriken_volley"
+    },
+    {
+     "kind": "prop",
+     "id": "rope_dart"
+    },
+    {
+     "kind": "surface",
+     "id": "ground"
+    }
+   ],
+   "modes": {
+    "ninja_broad": "assault"
+   },
+   "pos": {
+    "ninja_lean": [
+     0.5,
+     1.8,
+     4.3
+    ],
+    "ninja_broad": [
+     -1.5,
+     0.8,
+     4.3
+    ]
+   },
+   "facing": {
+    "ninja_lean": [
+     1.0,
+     0,
+     0.0
+    ],
+    "ninja_broad": [
+     1,
+     0,
+     0
+    ]
+   },
+   "action": "THREE SHURIKEN volley at 5.5,exactly THREE no more no less,all three STAY IN FRAME; B recovers mid-air and throws from the right hand; the three shuriken fly past A into the pillar",
+   "requires": [
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "rope_dart"
+     },
+     "property": "holder",
+     "value": "ninja_lean"
+    }
+   ],
+   "effects": [
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "shuriken_volley"
+     },
+     "property": "flight",
+     "value": "embedded"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "shuriken_volley"
+     },
+     "property": "location",
+     "value": "wooden_pillar"
+    },
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "ninja_lean"
+     },
+     "property": "support",
+     "value": "grounded"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "rope_dart"
+     },
+     "property": "holder",
+     "value": "none"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "rope_dart"
+     },
+     "property": "location",
+     "value": "ground"
+    }
+   ],
+   "contacts": [
+    {
+     "contact_type": "touch",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_broad",
+      "part": "right_hand"
+     },
+     "b": {
+      "kind": "prop",
+      "id": "shuriken_volley",
+      "part": "star_1"
+     }
+    },
+    {
+     "contact_type": "support",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "left_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
+    },
+    {
+     "contact_type": "support",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "right_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
+    },
+    {
+     "contact_type": "release",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "left_hand"
+     },
+     "b": {
+      "kind": "prop",
+      "id": "rope_dart",
+      "part": "rope"
+     }
+    }
+   ],
+   "causes": [
+    {
+     "to": "b15",
+     "causal_strength": "soft",
+     "why": "throw_shuriken_volley leads straight into the next exchange."
+    }
+   ]
+  },
+  {
+   "id": "b15",
+   "t": 5.9,
+   "dur": 0.4,
+   "event_type": "action",
+   "actor": "ninja_lean",
+   "label": "slide_under_volley",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "ninja_broad"
+    },
+    {
+     "kind": "prop",
+     "id": "shuriken_volley"
+    }
+   ],
+   "modes": {
+    "ninja_lean": "stealth"
+   },
+   "pos": {
+    "ninja_lean": [
+     0.5,
+     0.6,
+     3.8
+    ],
+    "ninja_broad": [
+     -1.6,
+     0,
+     4.2
+    ]
+   },
+   "facing": {
+    "ninja_lean": [
+     1.0,
+     0,
+     0.0
+    ],
+    "ninja_broad": [
+     1,
+     0,
+     0
+    ]
+   },
+   "action": "A SLIDES UNDER VOLLEY at 5.9,all three shuriken pass OVER A,this is a SLIDE NOT a roll,NOT a jump; rope dart released at 5.9 during slide,picked up again at 7.5 during wall-push recovery",
+   "requires": [],
+   "effects": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "ninja_lean"
+     },
+     "property": "support",
+     "value": "airborne"
+    },
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "ninja_broad"
+     },
+     "property": "support",
+     "value": "grounded"
+    }
+   ],
+   "contacts": [
+    {
+     "contact_type": "release",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "left_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
+    },
+    {
+     "contact_type": "release",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "right_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
+    }
+   ],
+   "causes": [
+    {
+     "to": "b16",
+     "causal_strength": "soft",
+     "why": "slide_under_volley leads straight into the next exchange."
+    }
+   ]
+  },
+  {
+   "id": "b16",
+   "t": 6.3,
+   "dur": 0.3,
+   "event_type": "action",
+   "actor": "ninja_lean",
+   "label": "cartwheel_rising_elbow",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "ninja_broad"
+    }
+   ],
+   "modes": {
+    "ninja_lean": "assault"
+   },
+   "pos": {
+    "ninja_lean": [
+     0.4,
+     1.5,
+     3.5
+    ],
+    "ninja_broad": [
+     -1.0,
+     0,
+     3.8
+    ]
+   },
+   "facing": {
+    "ninja_lean": [
+     0.0,
+     0,
+     -1.0
+    ],
+    "ninja_broad": [
+     1,
+     0,
+     0
+    ]
+   },
+   "action": "CARTWHEEL TO RISING ELBOW at 6.3,left elbow leads, driving up toward B chest",
+   "requires": [],
+   "effects": [],
+   "contacts": [],
+   "causes": [
+    {
+     "to": "b17",
+     "causal_strength": "soft",
+     "why": "cartwheel_rising_elbow leads straight into the next exchange."
+    }
+   ]
+  },
+  {
+   "id": "b17",
+   "t": 6.6,
+   "dur": 0.4,
+   "event_type": "action",
+   "actor": "ninja_broad",
+   "label": "catch_elbow_throw",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "ninja_lean"
+    }
+   ],
+   "modes": {
+    "ninja_broad": "assault"
+   },
+   "pos": {
+    "ninja_lean": [
+     0.3,
+     1.8,
+     4.5
+    ],
+    "ninja_broad": [
+     -0.4,
+     0,
+     4.5
+    ]
+   },
+   "facing": {
+    "ninja_lean": [
+     -1.0,
+     0,
+     0.0
+    ],
+    "ninja_broad": [
+     1,
+     0,
+     0
+    ]
+   },
+   "action": "B CATCHES A LEFT ELBOW at 6.6,B throws A toward pillar,this is A BEING THROWN NOT a striking",
+   "requires": [],
+   "effects": [],
+   "contacts": [
+    {
+     "contact_type": "touch",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_broad",
+      "part": "left_hand"
+     },
+     "b": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "left_arm"
+     }
+    },
+    {
+     "contact_type": "touch",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_broad",
+      "part": "right_hand"
+     },
+     "b": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "left_arm"
+     }
+    }
+   ],
+   "causes": [
+    {
+     "to": "b18",
+     "causal_strength": "soft",
+     "why": "catch_elbow_throw leads straight into the next exchange."
+    }
+   ]
+  },
+  {
+   "id": "b18",
+   "t": 7.0,
+   "dur": 0.5,
+   "event_type": "action",
+   "actor": "ninja_lean",
+   "label": "wall_push_off_pillar",
+   "participants": [
+    {
+     "kind": "surface",
+     "id": "wooden_pillar"
+    },
+    {
+     "kind": "prop",
+     "id": "rope_dart"
+    }
+   ],
+   "modes": {
+    "ninja_lean": "assault"
+   },
+   "pos": {
+    "ninja_lean": [
+     0.5,
+     2.8,
+     5.9
+    ]
+   },
+   "facing": {
+    "ninja_lean": [
+     -0.756,
+     0,
+     0.655
+    ]
+   },
+   "action": "A WALL-PUSH OFF PILLAR at 7.0,NOT still touching pillar; A snatches the rope dart up again with the left hand as the push carries it down",
+   "requires": [],
+   "effects": [
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "rope_dart"
+     },
+     "property": "holder",
+     "value": "ninja_lean"
+    }
+   ],
+   "contacts": [
+    {
+     "contact_type": "touch",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "left_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "wooden_pillar",
+      "part": null
+     }
+    },
+    {
+     "contact_type": "touch",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "right_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "wooden_pillar",
+      "part": null
+     }
+    },
+    {
+     "contact_type": "possess",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "left_hand"
+     },
+     "b": {
+      "kind": "prop",
+      "id": "rope_dart",
+      "part": "rope"
+     }
+    }
+   ],
+   "causes": [
+    {
+     "to": "b19",
+     "causal_strength": "hard",
+     "why": "wall_push_off_pillar leads straight into the next exchange."
+    }
+   ]
+  },
+  {
+   "id": "b19",
+   "t": 7.5,
+   "dur": 0.5,
+   "event_type": "action",
+   "actor": "ninja_lean",
+   "label": "aerial_rope_dart_regrapple",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "ninja_broad"
+    },
+    {
+     "kind": "prop",
+     "id": "rope_dart"
+    },
+    {
+     "kind": "prop",
+     "id": "kunai"
+    }
+   ],
+   "modes": {
+    "ninja_lean": "assault"
+   },
+   "pos": {
+    "ninja_lean": [
+     0.6,
+     2.2,
+     4.8
+    ],
+    "ninja_broad": [
+     0.4,
+     0,
+     4.0
+    ]
+   },
+   "facing": {
+    "ninja_lean": [
+     0.555,
+     0,
+     0.832
+    ],
+    "ninja_broad": [
+     0.243,
+     0,
+     0.97
+    ]
+   },
+   "action": "AERIAL ROPE DART REGRAPPLE at 7.5,left hand throws rope dart,rope dart wraps B right shoulder,A pulled toward B,this is a GRAPPLE NOT a strike; on the way down the right hand takes the kunai from the ground",
+   "requires": [
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "rope_dart"
+     },
+     "property": "holder",
+     "value": "ninja_lean"
+    }
+   ],
+   "effects": [
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "rope_dart"
+     },
+     "property": "line",
+     "value": "wrapped"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "kunai"
+     },
+     "property": "holder",
+     "value": "ninja_lean"
+    }
+   ],
+   "contacts": [
+    {
+     "contact_type": "touch",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_broad",
+      "part": "torso"
+     },
+     "b": {
+      "kind": "prop",
+      "id": "rope_dart",
+      "part": "dart"
+     }
+    },
+    {
+     "contact_type": "possess",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "right_hand"
+     },
+     "b": {
+      "kind": "prop",
+      "id": "kunai",
+      "part": "handle"
+     }
+    }
+   ],
+   "causes": [
+    {
+     "to": "b20",
+     "causal_strength": "soft",
+     "why": "aerial_rope_dart_regrapple leads straight into the next exchange."
+    }
+   ]
+  },
+  {
+   "id": "b20",
+   "t": 8.0,
+   "dur": 0.5,
+   "event_type": "action",
+   "actor": "ninja_lean",
+   "label": "pull_toward_pillar",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "ninja_broad"
+    },
+    {
+     "kind": "prop",
+     "id": "rope_dart"
+    }
+   ],
+   "modes": {
+    "ninja_lean": "assault"
+   },
+   "pos": {
+    "ninja_lean": [
+     0.5,
+     1.8,
+     4.5
+    ],
+    "ninja_broad": [
+     1.4,
+     0,
+     4.7
+    ]
+   },
+   "facing": {
+    "ninja_lean": [
+     1.0,
+     0,
+     0.0
+    ],
+    "ninja_broad": [
+     -1,
+     0,
+     0
+    ]
+   },
+   "action": "A PULLS B toward pillar at 8.0,this is a PULL NOT a strike; kunai picked up from ground at 8.0 during crash landing",
+   "requires": [],
+   "effects": [
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "rope_dart"
+     },
+     "property": "line",
+     "value": "taut"
+    }
+   ],
+   "contacts": [],
+   "causes": [
+    {
+     "to": "b21",
+     "causal_strength": "soft",
+     "why": "pull_toward_pillar leads straight into the next exchange."
+    }
+   ]
+  },
+  {
+   "id": "b21",
+   "t": 8.5,
+   "dur": 0.5,
+   "event_type": "action",
+   "actor": "ninja_lean",
+   "label": "aerial_kunai_drive",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "ninja_broad"
+    },
+    {
+     "kind": "prop",
+     "id": "kunai"
+    },
+    {
+     "kind": "surface",
+     "id": "ground"
+    }
+   ],
+   "modes": {
+    "ninja_lean": "assault"
+   },
+   "pos": {
+    "ninja_lean": [
+     0.4,
+     1.5,
+     4.9
+    ],
+    "ninja_broad": [
+     1.0,
+     0,
+     5.0
+    ]
+   },
+   "facing": {
+    "ninja_lean": [
+     1.0,
+     0,
+     0.0
+    ],
+    "ninja_broad": [
+     -1,
+     0,
+     0
+    ]
+   },
+   "action": "AERIAL KUNAI DRIVE into B right shoulder at 8.5,kunai penetrates shoulder,this is a KUNAI DRIVE NOT a punch,NOT an elbow; the kunai stays in B shoulder, NOT released",
+   "requires": [
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "kunai"
+     },
+     "property": "holder",
+     "value": "ninja_lean"
+    }
+   ],
+   "effects": [
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "kunai"
+     },
+     "property": "embedded",
+     "value": "embedded"
+    },
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "ninja_lean"
+     },
+     "property": "support",
+     "value": "grounded"
+    },
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "ninja_broad"
+     },
+     "property": "support",
+     "value": "lying"
+    },
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "ninja_broad"
+     },
+     "property": "condition",
+     "value": "down"
+    }
+   ],
+   "contacts": [
+    {
+     "contact_type": "touch",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_broad",
+      "part": "torso"
+     },
+     "b": {
+      "kind": "prop",
+      "id": "kunai",
+      "part": "blade"
+     }
+    },
+    {
+     "contact_type": "support",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "left_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
+    },
+    {
+     "contact_type": "support",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "right_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
+    },
+    {
+     "contact_type": "support",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_broad",
+      "part": "torso"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
+    }
+   ],
+   "causes": [
+    {
+     "to": "b22",
+     "causal_strength": "soft",
+     "why": "aerial_kunai_drive leads straight into the next exchange."
+    }
+   ]
+  },
+  {
+   "id": "b22",
+   "t": 9.0,
+   "dur": 0.5,
+   "event_type": "action",
+   "actor": "ninja_lean",
+   "label": "crash_to_ground",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "ninja_broad"
+    }
+   ],
+   "modes": {
+    "ninja_lean": "assault"
+   },
+   "pos": {
+    "ninja_lean": [
+     0.4,
+     0.7,
+     5.3
+    ],
+    "ninja_broad": [
+     1.0,
+     0,
+     5.3
+    ]
+   },
+   "facing": {
+    "ninja_lean": [
+     1.0,
+     0,
+     0.0
+    ],
+    "ninja_broad": [
+     -1,
+     0,
+     0
+    ]
+   },
+   "action": "A and B CRASH to ground at 9.0; B NEVER STANDS after 9.0; A lands in a low crouch over B, right hand still on the kunai",
+   "requires": [],
+   "effects": [],
+   "contacts": [],
+   "causes": [
+    {
+     "to": "b23",
+     "causal_strength": "soft",
+     "why": "crash_to_ground leads straight into the next exchange."
+    }
+   ]
+  },
+  {
+   "id": "b23",
+   "t": 9.5,
+   "dur": 0.5,
+   "event_type": "hold",
+   "actor": "ninja_lean",
+   "label": "hold_crouch_over_opponent",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "ninja_broad"
+    }
+   ],
+   "modes": {
+    "ninja_lean": "stealth"
+   },
+   "pos": {
+    "ninja_lean": [
+     0.3,
+     0.7,
+     5.3
+    ],
+    "ninja_broad": [
+     1.0,
+     0,
+     5.3
+    ]
+   },
+   "facing": {
+    "ninja_lean": [
+     1.0,
+     0,
+     0.0
+    ],
+    "ninja_broad": [
+     -1,
+     0,
+     0
+    ]
+   },
+   "action": "B remains down; end with A in crouch over B,kunai in B shoulder,rope dart in A left hand,shurikens embedded in pillar,substitution log on ground,smoke dissipating",
+   "requires": [],
+   "effects": [],
+   "contacts": [],
+   "causes": []
+  }
+ ]
+}

@@ -1,0 +1,1693 @@
+{
+ "step_id": "S15",
+ "band": "L5.5",
+ "packet_sha256": "sha256:e7168c9e1cd6338c0679019cf4f02471254a049caea920e3d10179a0fb3ef4fa",
+ "author": {
+  "host": "Claude Code desktop, in-session",
+  "model": "claude-opus-5-5"
+ },
+ "attempt": 1,
+ "shots": [
+  {
+   "id": "c01",
+   "t": 0.0,
+   "dur": 0.6,
+   "beats": [
+    "b01"
+   ],
+   "intent": "rhythm",
+   "motivation": {
+    "kind": "beat_type",
+    "ref": "b01"
+   },
+   "framing": {
+    "scale": "wide",
+    "subjects": [
+     "ninja_lean"
+    ],
+    "detail": null,
+    "visible_action": "A falls from above the frame toward the pillar top, body tucked, head pointing down."
+   },
+   "angle": {
+    "elevation_deg": 35,
+    "azimuth_deg": -90.0,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "ninja_lean",
+    "distance_m": 8.6,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 35,
+    "perspective": "normal"
+   },
+   "focus": {
+    "target": "ninja_lean",
+    "depth_of_field": "deep",
+    "transition": "follow"
+   },
+   "movement": {
+    "kind": "tilt",
+    "path": "tilts down with A falling from above the frame"
+   },
+   "movement_quality": {
+    "easing": "ease_in",
+    "stability": "locked",
+    "texture": "none"
+   },
+   "support": {
+    "rig": "tripod"
+   },
+   "relation_to_action": {
+    "mode": "follow",
+    "subject": "ninja_lean",
+    "note": "the fall enters from the top of frame"
+   },
+   "composition": {
+    "placement": {
+     "ninja_lean": "center"
+    },
+    "depth_anchor": "wooden_pillar",
+    "negative_space": "night sky above the falling body"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "subject",
+    "affected": [
+     "ninja_lean"
+    ]
+   },
+   "editing": {
+    "transition_in": "open",
+    "axis": "keep",
+    "eyeline": "A head down"
+   }
+  },
+  {
+   "id": "c02",
+   "t": 0.6,
+   "dur": 1.0,
+   "beats": [
+    "b02",
+    "b03"
+   ],
+   "intent": "spatial",
+   "motivation": {
+    "kind": "contact_event",
+    "ref": "b01_c1"
+   },
+   "framing": {
+    "scale": "wide",
+    "subjects": [
+     "ninja_lean",
+     "ninja_broad"
+    ],
+    "detail": null,
+    "visible_action": "A lands in a deep crouch on the pillar top, then sprints down the pillar face, body horizontal; B waits below with the kunai."
+   },
+   "angle": {
+    "elevation_deg": 5,
+    "azimuth_deg": 90.0,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "midpoint",
+    "distance_m": 4.42,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 18,
+    "perspective": "wide"
+   },
+   "focus": {
+    "target": "ninja_lean",
+    "depth_of_field": "deep",
+    "transition": "follow"
+   },
+   "movement": {
+    "kind": "static",
+    "path": "side view of the whole pillar"
+   },
+   "movement_quality": {
+    "easing": "linear",
+    "stability": "locked",
+    "texture": "none"
+   },
+   "support": {
+    "rig": "tripod"
+   },
+   "relation_to_action": {
+    "mode": "observe",
+    "subject": "ninja_lean",
+    "note": "landing on the pillar top, then sprinting down its face"
+   },
+   "composition": {
+    "placement": {
+     "ninja_broad": "right_third",
+     "ninja_lean": "left_third"
+    },
+    "depth_anchor": "wooden_pillar",
+    "negative_space": "the empty courtyard below the pillar"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "none",
+    "affected": []
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "A to the pillar"
+   }
+  },
+  {
+   "id": "c03",
+   "t": 1.6,
+   "dur": 0.4,
+   "beats": [
+    "b04"
+   ],
+   "intent": "rhythm",
+   "motivation": {
+    "kind": "effort_quality",
+    "ref": "ninja_lean@b03-b04"
+   },
+   "framing": {
+    "scale": "full",
+    "subjects": [
+     "ninja_lean"
+    ],
+    "detail": null,
+    "visible_action": "A kicks off the pillar, both feet pushing hard, arcing away toward B."
+   },
+   "angle": {
+    "elevation_deg": 0,
+    "azimuth_deg": 56.3,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "ninja_lean",
+    "distance_m": 1.88,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 18,
+    "perspective": "wide"
+   },
+   "focus": {
+    "target": "ninja_lean",
+    "depth_of_field": "medium",
+    "transition": "follow"
+   },
+   "movement": {
+    "kind": "tracking",
+    "path": "tracks A arcing away from the pillar"
+   },
+   "movement_quality": {
+    "easing": "ease_out",
+    "stability": "smooth",
+    "texture": "gliding"
+   },
+   "support": {
+    "rig": "gimbal"
+   },
+   "relation_to_action": {
+    "mode": "follow",
+    "subject": "ninja_lean",
+    "note": "the kick off arcs away from the wood"
+   },
+   "composition": {
+    "placement": {
+     "ninja_lean": "center"
+    },
+    "depth_anchor": null,
+    "negative_space": "open air between pillar and B"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "subject",
+    "affected": [
+     "ninja_lean"
+    ]
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "A toward B"
+   }
+  },
+  {
+   "id": "c04",
+   "t": 2.0,
+   "dur": 0.5,
+   "beats": [
+    "b05"
+   ],
+   "intent": "rhythm",
+   "motivation": {
+    "kind": "beat_type",
+    "ref": "b05"
+   },
+   "framing": {
+    "scale": "wide",
+    "subjects": [
+     "ninja_lean",
+     "ninja_broad"
+    ],
+    "detail": null,
+    "visible_action": "B throws the kunai upward at A mid-descent."
+   },
+   "angle": {
+    "elevation_deg": 10,
+    "azimuth_deg": 24.0,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "midpoint",
+    "distance_m": 4.42,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 18,
+    "perspective": "wide"
+   },
+   "focus": {
+    "target": "ninja_broad",
+    "depth_of_field": "deep",
+    "transition": "rack"
+   },
+   "movement": {
+    "kind": "tracking",
+    "path": "tracks the kunai thrown upward from B toward A"
+   },
+   "movement_quality": {
+    "easing": "ease_in_out",
+    "stability": "smooth",
+    "texture": "gliding"
+   },
+   "support": {
+    "rig": "gimbal"
+   },
+   "relation_to_action": {
+    "mode": "follow",
+    "subject": "ninja_broad",
+    "note": "the kunai rises toward A mid-descent"
+   },
+   "composition": {
+    "placement": {
+     "ninja_broad": "right_third",
+     "ninja_lean": "left_third"
+    },
+    "depth_anchor": null,
+    "negative_space": "the air the kunai crosses"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "subject",
+    "affected": [
+     "ninja_broad"
+    ]
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "B up at A"
+   }
+  },
+  {
+   "id": "c05",
+   "t": 2.5,
+   "dur": 0.5,
+   "beats": [
+    "b06"
+   ],
+   "intent": "impact",
+   "motivation": {
+    "kind": "effort_quality",
+    "ref": "ninja_lean@b05-b06"
+   },
+   "framing": {
+    "scale": "insert",
+    "subjects": [
+     "ninja_lean"
+    ],
+    "detail": "right_foot",
+    "visible_action": "A's right foot sole strikes the kunai and sends it back down, NOT a kick."
+   },
+   "angle": {
+    "elevation_deg": -5,
+    "azimuth_deg": -6.3,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "ninja_lean",
+    "distance_m": 0.62,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 85,
+    "perspective": "telephoto"
+   },
+   "focus": {
+    "target": "ninja_lean",
+    "depth_of_field": "shallow",
+    "transition": "hold"
+   },
+   "movement": {
+    "kind": "static",
+    "path": "locked on the right foot"
+   },
+   "movement_quality": {
+    "easing": "snap",
+    "stability": "locked",
+    "texture": "none"
+   },
+   "support": {
+    "rig": "tripod"
+   },
+   "relation_to_action": {
+    "mode": "observe",
+    "subject": "ninja_lean",
+    "note": "the sole meets the kunai"
+   },
+   "composition": {
+    "placement": {
+     "ninja_lean": "center"
+    },
+    "depth_anchor": null,
+    "negative_space": "black falloff around the foot"
+   },
+   "playback": {
+    "treatment": "slow",
+    "speed": 0.25
+   },
+   "blur": {
+    "motion_blur": "subject",
+    "affected": [
+     "right_foot"
+    ]
+   },
+   "editing": {
+    "transition_in": "smash_cut",
+    "axis": "keep",
+    "eyeline": "none"
+   }
+  },
+  {
+   "id": "c06",
+   "t": 3.0,
+   "dur": 0.4,
+   "beats": [
+    "b07"
+   ],
+   "intent": "rhythm",
+   "motivation": {
+    "kind": "contact_event",
+    "ref": "b06_c2"
+   },
+   "framing": {
+    "scale": "full",
+    "subjects": [
+     "ninja_lean",
+     "ninja_broad"
+    ],
+    "detail": null,
+    "visible_action": "A lands squared up facing B, rope dart low in the left hand; the kunai skitters on the ground."
+   },
+   "angle": {
+    "elevation_deg": -2,
+    "azimuth_deg": 0.0,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "midpoint",
+    "distance_m": 1.88,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 18,
+    "perspective": "wide"
+   },
+   "focus": {
+    "target": "ninja_lean",
+    "depth_of_field": "medium",
+    "transition": "follow"
+   },
+   "movement": {
+    "kind": "dolly_in",
+    "path": "low dolly in at ground level as A lands"
+   },
+   "movement_quality": {
+    "easing": "ease_out",
+    "stability": "smooth",
+    "texture": "steady"
+   },
+   "support": {
+    "rig": "dolly"
+   },
+   "relation_to_action": {
+    "mode": "lead",
+    "subject": "ninja_lean",
+    "note": "the landing squares up to B"
+   },
+   "composition": {
+    "placement": {
+     "ninja_broad": "right_third",
+     "ninja_lean": "left_third"
+    },
+    "depth_anchor": null,
+    "negative_space": "ground between the fighters"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "none",
+    "affected": []
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "A to B"
+   }
+  },
+  {
+   "id": "c07",
+   "t": 3.4,
+   "dur": 0.3,
+   "beats": [
+    "b08"
+   ],
+   "intent": "rhythm",
+   "motivation": {
+    "kind": "beat_type",
+    "ref": "b08"
+   },
+   "framing": {
+    "scale": "medium",
+    "subjects": [
+     "ninja_broad"
+    ],
+    "detail": null,
+    "visible_action": "B charges with a rising palm strike toward A's chest."
+   },
+   "angle": {
+    "elevation_deg": 0,
+    "azimuth_deg": 0.0,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "ninja_broad",
+    "distance_m": 1.68,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 35,
+    "perspective": "normal"
+   },
+   "focus": {
+    "target": "ninja_broad",
+    "depth_of_field": "medium",
+    "transition": "follow"
+   },
+   "movement": {
+    "kind": "tracking",
+    "path": "tracks B's charge"
+   },
+   "movement_quality": {
+    "easing": "ease_in",
+    "stability": "smooth",
+    "texture": "driving"
+   },
+   "support": {
+    "rig": "gimbal"
+   },
+   "relation_to_action": {
+    "mode": "follow",
+    "subject": "ninja_broad",
+    "note": "the rising palm comes in"
+   },
+   "composition": {
+    "placement": {
+     "ninja_broad": "center"
+    },
+    "depth_anchor": null,
+    "negative_space": "space ahead of the palm"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "subject",
+    "affected": [
+     "right_arm"
+    ]
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "B to A"
+   }
+  },
+  {
+   "id": "c08",
+   "t": 3.7,
+   "dur": 0.3,
+   "beats": [
+    "b09"
+   ],
+   "intent": "impact",
+   "motivation": {
+    "kind": "beat_type",
+    "ref": "b09"
+   },
+   "framing": {
+    "scale": "medium",
+    "subjects": [
+     "ninja_lean",
+     "ninja_broad"
+    ],
+    "detail": null,
+    "visible_action": "KAWARIMI: A's body is replaced by a smoke burst; the wooden substitution log is revealed."
+   },
+   "angle": {
+    "elevation_deg": 0,
+    "azimuth_deg": 0.0,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "ninja_lean",
+    "distance_m": 1.68,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 35,
+    "perspective": "normal"
+   },
+   "focus": {
+    "target": "ninja_lean",
+    "depth_of_field": "medium",
+    "transition": "hold"
+   },
+   "movement": {
+    "kind": "static",
+    "path": "held on the vanishing body"
+   },
+   "movement_quality": {
+    "easing": "snap",
+    "stability": "locked",
+    "texture": "none"
+   },
+   "support": {
+    "rig": "tripod"
+   },
+   "relation_to_action": {
+    "mode": "observe",
+    "subject": "ninja_lean",
+    "note": "smoke replaces the body"
+   },
+   "composition": {
+    "placement": {
+     "ninja_broad": "right_third",
+     "ninja_lean": "center"
+    },
+    "depth_anchor": null,
+    "negative_space": "smoke filling the frame"
+   },
+   "playback": {
+    "treatment": "ramp",
+    "speed": 0.5
+   },
+   "blur": {
+    "motion_blur": "subject",
+    "affected": [
+     "ninja_lean"
+    ]
+   },
+   "editing": {
+    "transition_in": "smash_cut",
+    "axis": "keep",
+    "eyeline": "none"
+   }
+  },
+  {
+   "id": "c09",
+   "t": 4.0,
+   "dur": 0.4,
+   "beats": [
+    "b10"
+   ],
+   "intent": "rhythm",
+   "motivation": {
+    "kind": "contact_event",
+    "ref": "b09_c2"
+   },
+   "framing": {
+    "scale": "medium",
+    "subjects": [
+     "ninja_lean",
+     "ninja_broad"
+    ],
+    "detail": null,
+    "visible_action": "B's palm strikes the substitution log; B realizes the substitution and stumbles."
+   },
+   "angle": {
+    "elevation_deg": 0,
+    "azimuth_deg": 0.0,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "midpoint",
+    "distance_m": 1.68,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 35,
+    "perspective": "normal"
+   },
+   "focus": {
+    "target": "ninja_broad",
+    "depth_of_field": "medium",
+    "transition": "follow"
+   },
+   "movement": {
+    "kind": "tracking",
+    "path": "tracks B's palm into the log"
+   },
+   "movement_quality": {
+    "easing": "snap",
+    "stability": "shaky",
+    "texture": "impact jolt"
+   },
+   "support": {
+    "rig": "handheld"
+   },
+   "relation_to_action": {
+    "mode": "follow",
+    "subject": "ninja_broad",
+    "note": "the palm meets wood, not A"
+   },
+   "composition": {
+    "placement": {
+     "ninja_broad": "right_third",
+     "ninja_lean": "left_third"
+    },
+    "depth_anchor": null,
+    "negative_space": "smoke where A stood"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "both",
+    "affected": [
+     "ninja_broad"
+    ]
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "B at the log"
+   }
+  },
+  {
+   "id": "c10",
+   "t": 4.4,
+   "dur": 0.3,
+   "beats": [
+    "b11"
+   ],
+   "intent": "rhythm",
+   "motivation": {
+    "kind": "contact_event",
+    "ref": "b10_c1"
+   },
+   "framing": {
+    "scale": "medium",
+    "subjects": [
+     "ninja_lean",
+     "ninja_broad"
+    ],
+    "detail": null,
+    "visible_action": "A reappears behind B, right elbow cocked."
+   },
+   "angle": {
+    "elevation_deg": 0,
+    "azimuth_deg": -171.9,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "midpoint",
+    "distance_m": 1.68,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 35,
+    "perspective": "normal"
+   },
+   "focus": {
+    "target": "ninja_lean",
+    "depth_of_field": "medium",
+    "transition": "rack"
+   },
+   "movement": {
+    "kind": "dolly_in",
+    "path": "pushes in as A reappears behind B"
+   },
+   "movement_quality": {
+    "easing": "ease_in",
+    "stability": "smooth",
+    "texture": "creeping"
+   },
+   "support": {
+    "rig": "dolly"
+   },
+   "relation_to_action": {
+    "mode": "lead",
+    "subject": "ninja_lean",
+    "note": "the reappearance behind B"
+   },
+   "composition": {
+    "placement": {
+     "ninja_broad": "right_third",
+     "ninja_lean": "left_third"
+    },
+    "depth_anchor": null,
+    "negative_space": "B's open back"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "none",
+    "affected": []
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "A at B's back"
+   }
+  },
+  {
+   "id": "c11",
+   "t": 4.7,
+   "dur": 0.4,
+   "beats": [
+    "b12"
+   ],
+   "intent": "impact",
+   "motivation": {
+    "kind": "beat_type",
+    "ref": "b12"
+   },
+   "framing": {
+    "scale": "insert",
+    "subjects": [
+     "ninja_lean",
+     "ninja_broad"
+    ],
+    "detail": "right_leg",
+    "visible_action": "A's RIGHT KNEE drives up into B's spine from behind, NOT a kick."
+   },
+   "angle": {
+    "elevation_deg": -5,
+    "azimuth_deg": 90.0,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "ninja_lean",
+    "distance_m": 0.62,
+    "side": "on_axis"
+   },
+   "lens": {
+    "focal_length_mm": 85,
+    "perspective": "telephoto"
+   },
+   "focus": {
+    "target": "ninja_broad",
+    "depth_of_field": "shallow",
+    "transition": "hold"
+   },
+   "movement": {
+    "kind": "static",
+    "path": "locked on the knee and spine"
+   },
+   "movement_quality": {
+    "easing": "snap",
+    "stability": "locked",
+    "texture": "none"
+   },
+   "support": {
+    "rig": "tripod"
+   },
+   "relation_to_action": {
+    "mode": "observe",
+    "subject": "ninja_lean",
+    "note": "the right knee drives up into the spine"
+   },
+   "composition": {
+    "placement": {
+     "ninja_lean": "center",
+     "ninja_broad": "center"
+    },
+    "depth_anchor": null,
+    "negative_space": "black falloff around the strike"
+   },
+   "playback": {
+    "treatment": "slow",
+    "speed": 0.25
+   },
+   "blur": {
+    "motion_blur": "subject",
+    "affected": [
+     "right_leg"
+    ]
+   },
+   "editing": {
+    "transition_in": "smash_cut",
+    "axis": "keep",
+    "eyeline": "none"
+   }
+  },
+  {
+   "id": "c12",
+   "t": 5.1,
+   "dur": 0.4,
+   "beats": [
+    "b13"
+   ],
+   "intent": "rhythm",
+   "motivation": {
+    "kind": "contact_event",
+    "ref": "b12_c1"
+   },
+   "framing": {
+    "scale": "full",
+    "subjects": [
+     "ninja_lean",
+     "ninja_broad"
+    ],
+    "detail": null,
+    "visible_action": "A backflips, the left leg sweeping a vertical crescent; B flies forward off the knee."
+   },
+   "angle": {
+    "elevation_deg": 5,
+    "azimuth_deg": -166.8,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "midpoint",
+    "distance_m": 1.88,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 18,
+    "perspective": "wide"
+   },
+   "focus": {
+    "target": "ninja_lean",
+    "depth_of_field": "medium",
+    "transition": "follow"
+   },
+   "movement": {
+    "kind": "orbit",
+    "path": "arcs with A's backflip"
+   },
+   "movement_quality": {
+    "easing": "ease_in_out",
+    "stability": "smooth",
+    "texture": "arcing"
+   },
+   "support": {
+    "rig": "gimbal"
+   },
+   "relation_to_action": {
+    "mode": "follow",
+    "subject": "ninja_lean",
+    "note": "the left leg crescent"
+   },
+   "composition": {
+    "placement": {
+     "ninja_broad": "right_third",
+     "ninja_lean": "left_third"
+    },
+    "depth_anchor": null,
+    "negative_space": "sky behind the flip"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "subject",
+    "affected": [
+     "left_leg"
+    ]
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "none"
+   }
+  },
+  {
+   "id": "c13",
+   "t": 5.5,
+   "dur": 0.4,
+   "beats": [
+    "b14"
+   ],
+   "intent": "impact",
+   "motivation": {
+    "kind": "beat_type",
+    "ref": "b14"
+   },
+   "framing": {
+    "scale": "medium",
+    "subjects": [
+     "ninja_broad"
+    ],
+    "detail": null,
+    "visible_action": "B recovers mid-air and throws exactly three shuriken."
+   },
+   "angle": {
+    "elevation_deg": 0,
+    "azimuth_deg": -180.0,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "ninja_broad",
+    "distance_m": 1.68,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 35,
+    "perspective": "normal"
+   },
+   "focus": {
+    "target": "ninja_broad",
+    "depth_of_field": "medium",
+    "transition": "follow"
+   },
+   "movement": {
+    "kind": "whip_pan",
+    "path": "whips with the throwing arm"
+   },
+   "movement_quality": {
+    "easing": "snap",
+    "stability": "locked",
+    "texture": "whip"
+   },
+   "support": {
+    "rig": "tripod"
+   },
+   "relation_to_action": {
+    "mode": "follow",
+    "subject": "ninja_broad",
+    "note": "three shuriken leave the right hand"
+   },
+   "composition": {
+    "placement": {
+     "ninja_broad": "center"
+    },
+    "depth_anchor": null,
+    "negative_space": "the fan of the volley"
+   },
+   "playback": {
+    "treatment": "ramp",
+    "speed": 0.5
+   },
+   "blur": {
+    "motion_blur": "subject",
+    "affected": [
+     "right_arm"
+    ]
+   },
+   "editing": {
+    "transition_in": "whip_pan",
+    "axis": "keep",
+    "eyeline": "B to A"
+   }
+  },
+  {
+   "id": "c14",
+   "t": 5.9,
+   "dur": 0.4,
+   "beats": [
+    "b15"
+   ],
+   "intent": "rhythm",
+   "motivation": {
+    "kind": "contact_event",
+    "ref": "b14_c1"
+   },
+   "framing": {
+    "scale": "full",
+    "subjects": [
+     "ninja_lean",
+     "ninja_broad"
+    ],
+    "detail": null,
+    "visible_action": "A slides under the volley; all three shuriken pass over A into the pillar."
+   },
+   "angle": {
+    "elevation_deg": -3,
+    "azimuth_deg": -169.2,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "midpoint",
+    "distance_m": 1.88,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 18,
+    "perspective": "wide"
+   },
+   "focus": {
+    "target": "ninja_lean",
+    "depth_of_field": "medium",
+    "transition": "follow"
+   },
+   "movement": {
+    "kind": "tracking",
+    "path": "low tracking with the slide"
+   },
+   "movement_quality": {
+    "easing": "ease_out",
+    "stability": "smooth",
+    "texture": "skimming"
+   },
+   "support": {
+    "rig": "dolly"
+   },
+   "relation_to_action": {
+    "mode": "follow",
+    "subject": "ninja_lean",
+    "note": "the slide under the volley"
+   },
+   "composition": {
+    "placement": {
+     "ninja_broad": "right_third",
+     "ninja_lean": "left_third"
+    },
+    "depth_anchor": null,
+    "negative_space": "the volley's path above A"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "subject",
+    "affected": [
+     "ninja_lean"
+    ]
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "none"
+   }
+  },
+  {
+   "id": "c15",
+   "t": 6.3,
+   "dur": 0.3,
+   "beats": [
+    "b16"
+   ],
+   "intent": "rhythm",
+   "motivation": {
+    "kind": "beat_type",
+    "ref": "b16"
+   },
+   "framing": {
+    "scale": "medium_wide",
+    "subjects": [
+     "ninja_lean"
+    ],
+    "detail": null,
+    "visible_action": "A cartwheels up into a rising left elbow."
+   },
+   "angle": {
+    "elevation_deg": 0,
+    "azimuth_deg": -167.9,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "ninja_lean",
+    "distance_m": 2.48,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 35,
+    "perspective": "normal"
+   },
+   "focus": {
+    "target": "ninja_lean",
+    "depth_of_field": "medium",
+    "transition": "follow"
+   },
+   "movement": {
+    "kind": "tracking",
+    "path": "tracks the cartwheel up"
+   },
+   "movement_quality": {
+    "easing": "ease_in",
+    "stability": "smooth",
+    "texture": "rising"
+   },
+   "support": {
+    "rig": "gimbal"
+   },
+   "relation_to_action": {
+    "mode": "follow",
+    "subject": "ninja_lean",
+    "note": "the left elbow leads"
+   },
+   "composition": {
+    "placement": {
+     "ninja_lean": "center"
+    },
+    "depth_anchor": null,
+    "negative_space": "space above the elbow"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "subject",
+    "affected": [
+     "left_arm"
+    ]
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "A up at B"
+   }
+  },
+  {
+   "id": "c16",
+   "t": 6.6,
+   "dur": 0.4,
+   "beats": [
+    "b17"
+   ],
+   "intent": "impact",
+   "motivation": {
+    "kind": "beat_type",
+    "ref": "b17"
+   },
+   "framing": {
+    "scale": "medium",
+    "subjects": [
+     "ninja_lean",
+     "ninja_broad"
+    ],
+    "detail": null,
+    "visible_action": "B catches A's left elbow with both hands and throws A toward the pillar."
+   },
+   "angle": {
+    "elevation_deg": 0,
+    "azimuth_deg": -180.0,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "midpoint",
+    "distance_m": 1.68,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 35,
+    "perspective": "normal"
+   },
+   "focus": {
+    "target": "ninja_broad",
+    "depth_of_field": "medium",
+    "transition": "hold"
+   },
+   "movement": {
+    "kind": "static",
+    "path": "held on the catch"
+   },
+   "movement_quality": {
+    "easing": "snap",
+    "stability": "locked",
+    "texture": "none"
+   },
+   "support": {
+    "rig": "tripod"
+   },
+   "relation_to_action": {
+    "mode": "observe",
+    "subject": "ninja_broad",
+    "note": "both hands clamp the elbow"
+   },
+   "composition": {
+    "placement": {
+     "ninja_broad": "right_third",
+     "ninja_lean": "left_third"
+    },
+    "depth_anchor": null,
+    "negative_space": "the pillar behind A"
+   },
+   "playback": {
+    "treatment": "ramp",
+    "speed": 0.5
+   },
+   "blur": {
+    "motion_blur": "subject",
+    "affected": [
+     "ninja_lean"
+    ]
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "none"
+   }
+  },
+  {
+   "id": "c17",
+   "t": 7.0,
+   "dur": 0.5,
+   "beats": [
+    "b18"
+   ],
+   "intent": "rhythm",
+   "motivation": {
+    "kind": "contact_event",
+    "ref": "b17_c1"
+   },
+   "framing": {
+    "scale": "wide",
+    "subjects": [
+     "ninja_lean",
+     "ninja_broad"
+    ],
+    "detail": null,
+    "visible_action": "A hits the pillar and pushes off, snatching the rope dart."
+   },
+   "angle": {
+    "elevation_deg": 5,
+    "azimuth_deg": 122.7,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "midpoint",
+    "distance_m": 4.42,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 18,
+    "perspective": "wide"
+   },
+   "focus": {
+    "target": "ninja_lean",
+    "depth_of_field": "deep",
+    "transition": "follow"
+   },
+   "movement": {
+    "kind": "tracking",
+    "path": "tracks A into the pillar and back out"
+   },
+   "movement_quality": {
+    "easing": "snap",
+    "stability": "smooth",
+    "texture": "rebound"
+   },
+   "support": {
+    "rig": "gimbal"
+   },
+   "relation_to_action": {
+    "mode": "follow",
+    "subject": "ninja_lean",
+    "note": "the wall push"
+   },
+   "composition": {
+    "placement": {
+     "ninja_broad": "right_third",
+     "ninja_lean": "left_third"
+    },
+    "depth_anchor": "wooden_pillar",
+    "negative_space": "pillar face"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "subject",
+    "affected": [
+     "ninja_lean"
+    ]
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "A to the pillar"
+   }
+  },
+  {
+   "id": "c18",
+   "t": 7.5,
+   "dur": 0.5,
+   "beats": [
+    "b19"
+   ],
+   "intent": "rhythm",
+   "motivation": {
+    "kind": "contact_event",
+    "ref": "b18_c3"
+   },
+   "framing": {
+    "scale": "wide",
+    "subjects": [
+     "ninja_lean",
+     "ninja_broad"
+    ],
+    "detail": null,
+    "visible_action": "A whips the rope dart out; it wraps B's right shoulder; A's right hand takes the kunai."
+   },
+   "angle": {
+    "elevation_deg": 0,
+    "azimuth_deg": 64.0,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "midpoint",
+    "distance_m": 4.42,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 18,
+    "perspective": "wide"
+   },
+   "focus": {
+    "target": "ninja_lean",
+    "depth_of_field": "deep",
+    "transition": "follow"
+   },
+   "movement": {
+    "kind": "tracking",
+    "path": "tracks the rope dart out to B"
+   },
+   "movement_quality": {
+    "easing": "ease_in_out",
+    "stability": "smooth",
+    "texture": "whipping"
+   },
+   "support": {
+    "rig": "gimbal"
+   },
+   "relation_to_action": {
+    "mode": "follow",
+    "subject": "ninja_lean",
+    "note": "the regrapple"
+   },
+   "composition": {
+    "placement": {
+     "ninja_broad": "right_third",
+     "ninja_lean": "left_third"
+    },
+    "depth_anchor": null,
+    "negative_space": "the rope line"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "subject",
+    "affected": [
+     "left_arm"
+    ]
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "A to B"
+   }
+  },
+  {
+   "id": "c19",
+   "t": 8.0,
+   "dur": 0.5,
+   "beats": [
+    "b20"
+   ],
+   "intent": "rhythm",
+   "motivation": {
+    "kind": "contact_event",
+    "ref": "b19_c1"
+   },
+   "framing": {
+    "scale": "medium",
+    "subjects": [
+     "ninja_lean",
+     "ninja_broad"
+    ],
+    "detail": null,
+    "visible_action": "A pulls B toward the pillar with the taut rope dart; the kunai is in A's right hand."
+   },
+   "angle": {
+    "elevation_deg": 0,
+    "azimuth_deg": -12.5,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "midpoint",
+    "distance_m": 1.68,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 35,
+    "perspective": "normal"
+   },
+   "focus": {
+    "target": "ninja_broad",
+    "depth_of_field": "medium",
+    "transition": "follow"
+   },
+   "movement": {
+    "kind": "tracking",
+    "path": "tracks B dragged toward the pillar"
+   },
+   "movement_quality": {
+    "easing": "ease_in",
+    "stability": "smooth",
+    "texture": "hauling"
+   },
+   "support": {
+    "rig": "dolly"
+   },
+   "relation_to_action": {
+    "mode": "follow",
+    "subject": "ninja_broad",
+    "note": "the pull"
+   },
+   "composition": {
+    "placement": {
+     "ninja_broad": "right_third",
+     "ninja_lean": "left_third"
+    },
+    "depth_anchor": null,
+    "negative_space": "the taut line"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "none",
+    "affected": []
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "A to B"
+   }
+  },
+  {
+   "id": "c20",
+   "t": 8.5,
+   "dur": 0.5,
+   "beats": [
+    "b21"
+   ],
+   "intent": "impact",
+   "motivation": {
+    "kind": "beat_type",
+    "ref": "b21"
+   },
+   "framing": {
+    "scale": "insert",
+    "subjects": [
+     "ninja_lean",
+     "ninja_broad"
+    ],
+    "detail": "right_hand",
+    "visible_action": "A drives the kunai down into B's right shoulder, NOT a punch."
+   },
+   "angle": {
+    "elevation_deg": 10,
+    "azimuth_deg": -99.5,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "ninja_lean",
+    "distance_m": 0.62,
+    "side": "on_axis"
+   },
+   "lens": {
+    "focal_length_mm": 85,
+    "perspective": "telephoto"
+   },
+   "focus": {
+    "target": "ninja_broad",
+    "depth_of_field": "shallow",
+    "transition": "hold"
+   },
+   "movement": {
+    "kind": "static",
+    "path": "locked on the kunai and shoulder"
+   },
+   "movement_quality": {
+    "easing": "snap",
+    "stability": "locked",
+    "texture": "none"
+   },
+   "support": {
+    "rig": "tripod"
+   },
+   "relation_to_action": {
+    "mode": "observe",
+    "subject": "ninja_lean",
+    "note": "the kunai drives into the right shoulder"
+   },
+   "composition": {
+    "placement": {
+     "ninja_lean": "center",
+     "ninja_broad": "center"
+    },
+    "depth_anchor": null,
+    "negative_space": "black falloff around the strike"
+   },
+   "playback": {
+    "treatment": "slow",
+    "speed": 0.25
+   },
+   "blur": {
+    "motion_blur": "subject",
+    "affected": [
+     "right_hand"
+    ]
+   },
+   "editing": {
+    "transition_in": "smash_cut",
+    "axis": "keep",
+    "eyeline": "none"
+   }
+  },
+  {
+   "id": "c21",
+   "t": 9.0,
+   "dur": 1.0,
+   "beats": [
+    "b22",
+    "b23"
+   ],
+   "intent": "spatial",
+   "motivation": {
+    "kind": "narrative_intent",
+    "ref": "b22__causes__b23"
+   },
+   "framing": {
+    "scale": "wide",
+    "subjects": [
+     "ninja_lean",
+     "ninja_broad"
+    ],
+    "detail": null,
+    "visible_action": "A and B crash to the ground; A holds a crouch over B; the shuriken stay in the pillar, the log on the ground, smoke thinning."
+   },
+   "angle": {
+    "elevation_deg": 3,
+    "azimuth_deg": 0.0,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "midpoint",
+    "distance_m": 4.42,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 18,
+    "perspective": "wide"
+   },
+   "focus": {
+    "target": "ninja_lean",
+    "depth_of_field": "deep",
+    "transition": "hold"
+   },
+   "movement": {
+    "kind": "dolly_in",
+    "path": "slow push in on the crouch"
+   },
+   "movement_quality": {
+    "easing": "ease_in_out",
+    "stability": "smooth",
+    "texture": "settling"
+   },
+   "support": {
+    "rig": "dolly"
+   },
+   "relation_to_action": {
+    "mode": "observe",
+    "subject": "ninja_lean",
+    "note": "the crash settles into the hold"
+   },
+   "composition": {
+    "placement": {
+     "ninja_broad": "right_third",
+     "ninja_lean": "left_third"
+    },
+    "depth_anchor": "wooden_pillar",
+    "negative_space": "the marked courtyard"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "none",
+    "affected": []
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "A down at B"
+   }
+  }
+ ]
+}
