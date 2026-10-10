@@ -1,0 +1,15 @@
+# Clothing and wearables affordances (S10). Draft by Claude for owner review.
+library_id: clothing
+category: clothing
+version: 1
+status: draft
+basis: Owner S10 plan ((object, action) with preconditions, postconditions, required grip, duration); entries drafted by Claude.
+entries:
+  - {object: glasses, card: present, action: unfold, preconditions: [{property: temples, values: [folded]}], postconditions: [{property: temples, values: [open]}], required_grip: pinch, duration_s: [0.5, 3.0]}
+  - {object: glasses, card: present, action: fold, preconditions: [{property: temples, values: [open]}, {property: worn, values: ["no"]}], postconditions: [{property: temples, values: [folded]}], required_grip: pinch, duration_s: [0.5, 3.0]}
+  - {object: glasses, card: present, action: put_on, preconditions: [{property: temples, values: [open]}, {property: worn, values: ["no"]}], postconditions: [{property: worn, values: ["yes"]}], required_grip: two_hand_temple, duration_s: [0.8, 3.0]}
+  - {object: glasses, card: present, action: take_off, preconditions: [{property: worn, values: ["yes"]}], postconditions: [{property: worn, values: ["no"]}], required_grip: two_hand_temple, duration_s: [0.6, 3.0]}
+  - {object: jacket, card: present, action: unzip, preconditions: [{property: zipper, values: [closed]}], postconditions: [{property: zipper, values: [open]}], required_grip: pinch, duration_s: [0.5, 3.0]}
+  - {object: jacket, card: present, action: zip, preconditions: [{property: zipper, values: [open]}], postconditions: [{property: zipper, values: [closed]}], required_grip: pinch, duration_s: [0.5, 3.0]}
+  - {object: jacket, card: present, action: put_on, preconditions: [{property: worn, values: ["no"]}], postconditions: [{property: worn, values: ["yes"]}], required_grip: two_hand_open, duration_s: [1.5, 6.0]}
+  - {object: jacket, card: present, action: take_off, preconditions: [{property: worn, values: ["yes"]}], postconditions: [{property: worn, values: ["no"]}], required_grip: two_hand_open, duration_s: [1.0, 5.0]}

@@ -23,6 +23,7 @@ from planner.topological_sort import build_order
 from .passes.derived import (
     p08_hand_role,
     p09_object_state,
+    p10_affordance,
     p11_kinematic,
     p12_bartenieff,
     p13_motion,
@@ -104,6 +105,7 @@ def run(query, *, genre=None, duration_s=None, until="constraint", cards=None, p
               "state": lambda env: p06_state.run(env, order=order),
               "contact": lambda env: p07_contact.run(env, order=order),
               "object_state": lambda env: p09_object_state.run(env, order=order),
+              "affordance": lambda env: p10_affordance.run(env, order=order),
               **{node: authored(node) for node in AUTHORED}}
     # The genre decides which steps exist; S01's literal parse reads it from the query when no flag is given.
     sequence = sequence_for(order, genre or parse_intent(query)["parsed"]["genre"])

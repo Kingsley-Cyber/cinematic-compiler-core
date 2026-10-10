@@ -267,8 +267,12 @@ Notes on the decisions:
   (Built derived: internal states = the object card's own state properties from S06 (holder/location stay in S06);
   each change names its trigger beat, the hand contact on the object (or `held:<entity>.<hand>` when a holding hand
   carries it) and the S08 interaction; a change with no hand or outside every interaction fails S09.)
-- [ ] S10 affordance: `library/affordances/` (clothing, food, electronics, cosmetics; draft); schema `(object,
+- [x] S10 affordance: `library/affordances/` (clothing, food, electronics, cosmetics; draft); schema `(object,
   action){preconditions, postconditions, required_grip, duration}`; validator: each functional verb succeeds.
+  (Built derived: one proven verb per S08 interaction — library entry for (object card, verb), preconditions in the
+  S09 state at the start, postconditions after the end, the agent grip equals the required grip, duration in range;
+  `enables` edges link verbs on the same object. Electronics/cosmetics entries are for objects with no card yet
+  (`card: pending`).)
 - [ ] M5.E `examples/ugc_glasses_demo/`: query, packet, Claude-authored beat plan, envelope through S10, render via
   `renderers/ugc_renderer.py`; recompiles byte-for-byte like M1.E1.
 

@@ -1,0 +1,9 @@
+# Electronics affordances (S10). Draft by Claude for owner review; the phone has no object card yet (card: pending).
+library_id: electronics
+category: electronics
+version: 1
+status: draft
+basis: Owner S10 plan ((object, action) with preconditions, postconditions, required grip, duration); entries drafted by Claude.
+entries:
+  - {object: phone, card: pending, action: unlock, preconditions: [{property: screen, values: [locked]}], postconditions: [{property: screen, values: [unlocked]}], required_grip: power, duration_s: [0.3, 2.0]}
+  - {object: phone, card: pending, action: swipe, preconditions: [{property: screen, values: [unlocked]}], postconditions: [{property: screen, values: [unlocked]}], required_grip: power, duration_s: [0.2, 1.5]}

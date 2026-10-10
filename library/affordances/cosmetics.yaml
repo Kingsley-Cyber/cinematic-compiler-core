@@ -1,0 +1,9 @@
+# Cosmetics affordances (S10). Draft by Claude for owner review; the lipstick has no object card yet (card: pending).
+library_id: cosmetics
+category: cosmetics
+version: 1
+status: draft
+basis: Owner S10 plan ((object, action) with preconditions, postconditions, required grip, duration); entries drafted by Claude.
+entries:
+  - {object: lipstick, card: pending, action: uncap, preconditions: [{property: cap, values: ["on"]}], postconditions: [{property: cap, values: ["off"]}], required_grip: tripod, duration_s: [0.3, 2.0]}
+  - {object: lipstick, card: pending, action: apply, preconditions: [{property: cap, values: ["off"]}], postconditions: [{property: cap, values: ["off"]}], required_grip: tripod, duration_s: [1.0, 5.0]}

@@ -1,0 +1,11 @@
+# Food and drink affordances (S10). Draft by Claude for owner review.
+library_id: food
+category: food
+version: 1
+status: draft
+basis: Owner S10 plan ((object, action) with preconditions, postconditions, required grip, duration); entries drafted by Claude.
+entries:
+  - {object: coffee_cup, card: present, action: lift, preconditions: [], postconditions: [], required_grip: handle_hook, duration_s: [0.3, 3.0]}
+  - {object: coffee_cup, card: present, action: place, preconditions: [], postconditions: [], required_grip: handle_hook, duration_s: [0.3, 3.0]}
+  - {object: coffee_cup, card: present, action: sip, preconditions: [{property: fill, values: [full, partly_full]}], postconditions: [{property: fill, values: [partly_full, empty]}], required_grip: handle_hook, duration_s: [0.8, 4.0]}
+  - {object: coffee_cup, card: present, action: pour_into, preconditions: [{property: fill, values: [empty, partly_full]}], postconditions: [{property: fill, values: [partly_full, full]}], required_grip: wrap, duration_s: [1.0, 5.0]}
