@@ -3,6 +3,7 @@
 Merges the owner's conceptual plan (repo tree, layer DAG and corrected table, envelope, graph table, quadrants,
 camera subdivisions, key pose / frame part / Laban / implied pose) with the route already built.
 Detailed S04–S07 specs: [s04-s07-l1-l2.md](s04-s07-l1-l2.md). Layer DAG: `kernel/layer_order.yaml`.
+What each graph is for (owner catalog): [graph_types.md](../graph_types.md).
 
 **Built (local `main`):** S01 intent, S02 query expansion, S03 constraint graph — 167 tests, URCP INTEGRATION_PROVEN,
 schema/library/kernel hash logs, Beads tasks. Head `156e9ea`.
