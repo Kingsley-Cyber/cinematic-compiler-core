@@ -5,7 +5,7 @@ URCP and no Beads. The old `~/Documents/cinematic-compiler` is superseded and ca
 No remote; nothing has been pushed.
 
 ## CLI
-`cinematic compile "<query>" [--genre G] [--until NODE] [--plans DIR] [--packet-out F]` (exit 3 = an authored step needs
+`cinematic compile "<query>" [--genre G] [--until NODE] [--plans DIR] [--packet-out F] [--chain-from PREV.json]` (exit 3 = an authored step needs
 a document, 4 = a gate failed and a replan request was written, 2 = refused); `cinematic validate <envelope>`;
 `cinematic graph <envelope> <group>`.
 
@@ -16,7 +16,7 @@ scripts/check.sh
 DO_NOT_TRACK=1 graft --dir .graphs/graft build . --no-gitignore --no-ignore
 ```
 
-## Built (S01–S16; milestones M1, M1.5, M2, M3, M4, M5)
+## Built (S01–S16; milestones M1, M1.5, M2, M3, M4, M5, M5.5)
 | Step | What it compiles | Code |
 |---|---|---|
 | S01 intent (L0) | query + flags → Intent Document at `/intent`; literal only, evidence per value, `missing`/`ambiguous` | `planner/intent_parser.py`, `compiler/passes/mandatory/p01_intent.py` |
@@ -44,7 +44,7 @@ Kernel = the 68 controls both LBN-2.3-ADV and LBN-2.4-ADV-LMA state (`kernel/sou
 
 ## Controls
 Three append-only, hash-chained logs (`schemas/schema_log.jsonl`, `library/library_log.jsonl`,
-`kernel/kernel_log.jsonl`); generated files checked against regeneration; examples recompile byte-for-byte; 372 tests; all in `scripts/check.sh`.
+`kernel/kernel_log.jsonl`); generated files checked against regeneration; examples recompile byte-for-byte; 378 tests; all in `scripts/check.sh`.
 
 ## Owner decisions so far
 Step IDs S01–S17 carry order (L labels are names); keys `step_id`/`band`; constraint built after S02 and before
@@ -67,5 +67,5 @@ linear causality only; closed kernel state vocabulary. Full log: `docs/layer_dep
 
 ## Open questions and next work
 All six questions are decided (see **Decided this round** in
-[docs/plans/MASTER_PLAN.md](docs/plans/MASTER_PLAN.md)). Next task: **M5.5 clip chaining**. Completed work is struck through
+[docs/plans/MASTER_PLAN.md](docs/plans/MASTER_PLAN.md)). Next task: **M6 deferred tooling** (M7 waits for a chosen target video model). Completed work is struck through
 under **Done**.

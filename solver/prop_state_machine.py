@@ -2,7 +2,8 @@
 
 requires are read at t; effects commit at t + dur (a beat starting when another ends sees its effects).
 A property's starting value is the value its first requirement asserts when that comes before any effect;
-otherwise it is "unknown". Conflicting effects committing at the same time are refused.
+otherwise it is "unknown". A chained clip (M5.5) starts from the previous clip's end values instead, and a first
+requirement must then agree with them. Conflicting effects committing at the same time are refused.
 """
 
 UNKNOWN = "unknown"
@@ -17,7 +18,7 @@ def _key(fact):
     return fact["subject"]["kind"], fact["subject"]["id"], fact["property"]
 
 
-def replay(beats, subjects, tables, end_time):
+def replay(beats, subjects, tables, end_time, carried=None):
     """subjects: [(kind, id)]; tables: {(kind, id): [property, ...]}. Returns (snapshots, transitions, findings)."""
     findings = []
     ordered = sorted(beats, key=lambda b: (b["t"], b["id"]))
@@ -30,7 +31,7 @@ def replay(beats, subjects, tables, end_time):
             findings.append(_finding("STATE_CONFLICT", "Two effects set one property at the same time", beat_id,
                                      [key, previous, value]))
         by_time[(round(time, 9), key)] = (beat_id, value)
-    initial = {}
+    initial = dict(carried or {})
     for beat in ordered:
         for fact in beat["requires"]:
             key = _key(fact)

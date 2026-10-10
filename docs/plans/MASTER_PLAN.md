@@ -281,8 +281,14 @@ Notes on the decisions:
   affordances, enables, frame parts); S16 picks the renderer by genre; `render.txt` written.)
 
 ## M5.5 — clip chaining
-- [ ] S02 accepts an optional previous envelope; S06 starts from its final states; S07 from its active contacts;
+- [x] S02 accepts an optional previous envelope; S06 starts from its final states; S07 from its active contacts;
   S05 reads its unresolved causes; `chained_from` fields filled; cross-clip continuity tests (damage, props, camera).
+  (Built: `--chain-from envelope.json` (pipeline and CLI). S02 alone reads the previous clip (current kernel, compiled
+  through S07, same world, else CHAIN_STALE / CHAIN_INCOMPLETE / CHAIN_WORLD) and writes `scene.chained_from`: end
+  states, contacts still open, unresolved causes (non-hold beats that cause nothing), last shot. S06 starts from the
+  end states (a first requirement must agree); S07 re-opens the carried contacts at t=0 (`chain_c<n>`, beat `chain`);
+  S05 records `quadrant.carried_causes`; S15's first shot cannot open and obeys the axis and jump-cut rules against
+  the previous last shot; S04's packet shows the chain; the render adds a `chained_from` block.)
 
 ## M6 — deferred tooling
 - [ ] `kernel_extraction/` synergy_matrix, bridge_detector, layer_analyzer, kernel_compressor, ablation_runner

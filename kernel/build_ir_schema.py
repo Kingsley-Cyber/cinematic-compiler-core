@@ -85,7 +85,9 @@ def build(order):
                        "style": {"type": "integer", "minimum": 0, "maximum": 2},
                        "quadrant": {"enum": ["A", "B", "C", "D"]},
                        "strata": {"type": "array", "uniqueItems": True, "items": {"enum": [1, 2, 3, 4]}},
-                       "load_bearing": {"type": "boolean"}}}
+                       "load_bearing": {"type": "boolean"},
+                       "carried_causes": {"type": "array", "items": _string(),
+                                          "description": "Chained clip: the previous clip's unresolved causes (open beats)."}}}
     scene_properties = {
         "genre": {"enum": list(order["modalities"])}, "genre_source": source,
         "fps": {"type": "number", "exclusiveMinimum": 0}, "fps_source": source,
@@ -100,7 +102,8 @@ def build(order):
                               "rotation_convention": convention["properties"]["rotation_convention"]}},
         "ax_source": source,
         "quadrant": quadrant,
-        "chained_from": {"type": "null", "description": "Reserved for clip chaining (M5.5)."},
+        "chained_from": {"anyOf": [{"type": "null"}, {"$ref": "#/$defs/ChainedFrom"}],
+                         "description": "M5.5: what this clip continues (planner/chaining.py), or null for a first clip."},
         "missing": {"type": "array", "uniqueItems": True, "items": {
             "enum": ["world", "setting", "style_reference", "choreography", "camera_plan", "geometry_anchors"]}},
         "ambiguous": {"type": "array", "items": {
@@ -111,6 +114,33 @@ def build(order):
             "type": "object", "additionalProperties": False, "required": ["hint", "field", "reason"],
             "properties": {"hint": _string(), "reason": _string(),
                            "field": {"enum": ["entities_hinted", "props_hinted"]}}}}}
+    subject = {"type": "object", "additionalProperties": False, "required": ["kind", "id"],
+               "properties": {"kind": {"enum": ["entity", "prop", "surface"]}, "id": _string()}}
+    vec = {"anyOf": [{"type": "null"}, {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "number"}}]}
+    defs["ChainedFrom"] = {"type": "object", "additionalProperties": False,
+        "required": ["envelope_sha256", "source_prompt", "world", "duration_s", "end_states", "active_contacts", "open_beats",
+                     "last_shot"],
+        "properties": {
+            "envelope_sha256": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}, "source_prompt": {"type": "string"},
+            "world": {"type": ["string", "null"]}, "duration_s": {"type": "number", "exclusiveMinimum": 0},
+            "end_states": {"type": "array", "items": {"type": "object", "additionalProperties": False,
+                                                      "required": ["subject", "conditions", "pos", "facing"],
+                                                      "properties": {"subject": subject, "conditions": {"type": "object"},
+                                                                     "pos": vec, "facing": vec}}},
+            "active_contacts": {"type": "array", "items": {"type": "object", "additionalProperties": False,
+                                                           "required": ["a", "body_part", "b", "contact_type", "since"],
+                                                           "properties": {"a": _string(), "body_part": _string(),
+                                                                          "b": {"type": "object"},
+                                                                          "contact_type": {"enum": ["possess", "support"]},
+                                                                          "since": {"type": "number", "minimum": 0}}}},
+            "open_beats": {"type": "array", "items": {"type": "object", "additionalProperties": False,
+                                                      "required": ["id", "label", "action"],
+                                                      "properties": {"id": _string(), "label": _string(), "action": _string()}}},
+            "last_shot": {"anyOf": [{"type": "null"}, {"type": "object", "additionalProperties": False,
+                                                       "required": ["id", "side", "azimuth_deg", "scale", "target"],
+                                                       "properties": {"id": _string(), "side": _string(),
+                                                                      "azimuth_deg": {"type": "number"}, "scale": _string(),
+                                                                      "target": _string()}}]}}}
     defs["Scene"] = {"type": "object", "additionalProperties": False,
         "description": "S02 writes the scene; carve-outs " + ", ".join(carve_outs) + " are written by later steps. "
                        "Every value names its source; `default` marks a filled default.",
@@ -132,7 +162,8 @@ def build(order):
                        "layer_order_version": {"const": LAYER_ORDER_VERSION},
                        "kernel_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
                        "build_timestamp": _string(),
-                       "chained_from_envelope_hash": {"type": "null"},
+                       "chained_from_envelope_hash": {"anyOf": [{"type": "null"},
+                                                                {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}]},
                        "pass_history": {"type": "array", "items": {
                            "type": "object", "additionalProperties": False,
                            "required": ["pass", "commit", "duration_ms"],

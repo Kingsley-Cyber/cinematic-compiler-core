@@ -46,14 +46,15 @@ def prepare(envelope):
         "contacts": [{"id": c["id"], "t": c["t"], "beat": c["beat"], "contact_type": c["contact_type"], "entity": c["a"]["id"],
                       "part": c["body_part"], "other": c["b"]["id"]}
                      for c in envelope["nodes"]["contacts"]["items"]
-                     if c["contact_type"] in ONSETS and c["a"]["kind"] == "entity"],
+                     if c["contact_type"] in ONSETS and c["a"]["kind"] == "entity" and c["beat"] != "chain"],
         "efforts": [{k: e[k] for k in ("id", "actor", "t", "end", "effort_action", "intensity")}
                     for e in envelope["nodes"]["efforts"]["items"]],
         "causal": [{k: e[k] for k in ("id", "from", "to")} for e in envelope["edges"]["causal"]["items"]],
         "motion": motion, "vocabulary": library_vocab.load("camera_subdivisions")["fields"],
         "grammar": camera_library.grammar(), "tempo": camera_library.tempo(),
         "convention": camera_library.convention(scene["genre"]),
-        "idioms": camera_library.idioms(sorted({e["archetype"] for e in entities.values()}))})
+        "idioms": camera_library.idioms(sorted({e["archetype"] for e in entities.values()})),
+        **({"chained_last_shot": scene["chained_from"]["last_shot"]} if scene.get("chained_from") else {})})
 
 
 def check(document, packet):

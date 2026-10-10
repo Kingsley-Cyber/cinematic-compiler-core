@@ -96,6 +96,9 @@ def run(envelope, *, order=None, load_bearing=False):
     node = node_index(order)[NODE]
     after = copy.deepcopy(envelope)
     after["edges"]["causal"] = {"band": node["band"], "step_id": node["step_id"], "items": edges}
+    chained = envelope["scene"].get("chained_from")
+    if chained:  # M5.5: the previous clip's unresolved causes, recorded for this clip to resolve
+        scores = {**scores, "carried_causes": [b["id"] for b in chained["open_beats"]]}
     after["scene"]["quadrant"] = scores
     findings = check_pass_writes(order, NODE, envelope, after)
     if findings:

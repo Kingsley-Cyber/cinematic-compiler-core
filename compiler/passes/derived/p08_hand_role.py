@@ -11,7 +11,7 @@ import json
 import yaml
 
 from compiler.authoring import run_authored, seal
-from compiler.passes.mandatory.p07_contact import HANDS, events_of, lifecycle
+from compiler.passes.mandatory.p07_contact import HANDS, events_for, lifecycle
 from planner import library_vocab
 from planner.dependency_graph import ROOT, load
 from validators.schema_validator import validate_schema
@@ -30,7 +30,7 @@ def role_templates():
 
 def prepare(envelope):
     beats = sorted(envelope["nodes"]["beats"]["items"], key=lambda b: (b["t"], b["id"]))
-    _, _, intervals = lifecycle(events_of(beats))
+    _, _, intervals = lifecycle(events_for(envelope))
     held = {b["id"]: sorted([pair[0], pair[1], pair[3]] for pair, kind, start, end in intervals
                             if kind == "possess" and pair[2] == "prop" and start <= b["t"] + EPSILON
                             and (end is None or b["t"] < end - EPSILON)) for b in beats}

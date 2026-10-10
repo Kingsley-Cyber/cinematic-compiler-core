@@ -9,7 +9,7 @@ import copy
 import json
 
 from compiler.authoring import StepFailed
-from compiler.passes.mandatory.p07_contact import HANDS, events_of, lifecycle
+from compiler.passes.mandatory.p07_contact import HANDS, events_for, lifecycle
 from kernel.canonical import ContractError
 from planner.dependency_graph import ROOT, load, node_index
 from validators.layer_dependency_validator import check_pass_writes
@@ -30,7 +30,7 @@ def build(envelope):
     internal = {p["id"]: [s["property"] for s in p["states"]] for p in nodes["props"]["items"]}
     interactions = nodes["hand_role"]["items"]
     contacts = nodes["contacts"]["items"]
-    _, _, intervals = lifecycle(events_of(nodes["beats"]["items"]))
+    _, _, intervals = lifecycle(events_for(envelope))
 
     def interaction_at(obj, beat):
         return next((i["id"] for i in interactions if i["object"] == obj and beat in i["beats"]), None)

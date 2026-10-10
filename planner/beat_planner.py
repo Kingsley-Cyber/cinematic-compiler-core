@@ -38,4 +38,6 @@ def prepare(envelope):
                         for c in nodes["constraints"]["items"]],
         "vocabulary": resolve(entities, props, surfaces, kernel_files.load("state_vocabulary")),
         "contact_types": ["touch", "possess", "support", "release"], "event_types": ["action", "hold", "transition"]}
+    if scene.get("chained_from"):  # M5.5: what this clip continues (end states, open contacts, unresolved causes)
+        packet["chained_from"] = scene["chained_from"]
     return seal(packet)

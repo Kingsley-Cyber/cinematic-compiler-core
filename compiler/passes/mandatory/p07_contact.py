@@ -39,6 +39,19 @@ def events_of(beats):
     return events
 
 
+def chain_events(scene):
+    """M5.5: contacts still open at the previous clip's end, re-opened here at t=0 (beat "chain")."""
+    chained = scene.get("chained_from") or {}
+    return [{"id": f"chain_c{index}", "t": 0.0, "beat": "chain", "contact_type": c["contact_type"],
+             "body_part": c["body_part"], "a": {"kind": "entity", "id": c["a"]}, "b": dict(c["b"])}
+            for index, c in enumerate(chained.get("active_contacts", []), 1)]
+
+
+def events_for(envelope):
+    """Every contact event of a clip: carried ones first, then the beat plan's."""
+    return chain_events(envelope.get("scene", {})) + events_of(envelope["nodes"]["beats"]["items"])
+
+
 def lifecycle(events):
     """Returns (edges, findings, intervals) — intervals: [(pair, contact_type, start_t, end_t or None)]."""
     active, last, edges, findings, intervals = {}, {}, [], [], []
@@ -107,7 +120,7 @@ def run(envelope, *, order=None):
     if "states" not in envelope.get("nodes", {}):
         raise ContractError("MISSING_INPUT", "S07 needs the S06 state graph")
     beats = envelope["nodes"]["beats"]["items"]
-    events = events_of(beats)
+    events = events_for(envelope)
     edges, findings, intervals = lifecycle(events)
     findings += cross_check(events, intervals, envelope["nodes"]["states"]["items"],
                             envelope["edges"]["state_transition"]["items"], beats)

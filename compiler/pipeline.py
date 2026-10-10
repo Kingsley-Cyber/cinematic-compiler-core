@@ -78,7 +78,7 @@ def sequence_for(order, genre):
 
 
 def run(query, *, genre=None, duration_s=None, until="constraint", cards=None, plans=None, load_bearing=False,
-        stamp=False):
+        stamp=False, previous=None):
     order = load()
     index = node_index(order)
     plans = plans or {}
@@ -99,7 +99,7 @@ def run(query, *, genre=None, duration_s=None, until="constraint", cards=None, p
         return step
 
     passes = {"intent": lambda env: p01_intent.run(env, query, genre=genre, duration_s=duration_s, order=order),
-              "brief": lambda env: p02_brief.run(env, cards=cards, order=order),
+              "brief": lambda env: p02_brief.run(env, cards=cards, previous=previous, order=order),
               "constraint": lambda env: p03_constraint.run(env, cards=cards, order=order),
               "causal": lambda env: p05_causal.run(env, order=order, load_bearing=load_bearing),
               "state": lambda env: p06_state.run(env, order=order),
@@ -118,6 +118,8 @@ def run(query, *, genre=None, duration_s=None, until="constraint", cards=None, p
             raise ContractError("PASS_MISSING", "This node's pass is not implemented yet", node)
         started = time.perf_counter()
         envelope = passes[node](envelope)
+        if node == "brief" and envelope["scene"]["chained_from"]:
+            envelope["provenance"]["chained_from_envelope_hash"] = envelope["scene"]["chained_from"]["envelope_sha256"]
         if node == "camera":
             envelope["validation"]["camera_kinematic_coupling"] = "pass"  # S15 refuses any coupling failure
         envelope["provenance"]["pass_history"].append({
@@ -136,14 +138,16 @@ def main(argv=None):
     parser.add_argument("--packet-out", help="where to write the packet when a step needs authoring")
     parser.add_argument("--load-bearing", action="store_true", help="scene is load-bearing for the film (stratum 4)")
     parser.add_argument("--stamp", action="store_true", help="record build time, commit and pass durations")
+    parser.add_argument("--chain-from", help="previous clip's envelope.json; this clip continues it (M5.5)")
     args = parser.parse_args(argv)
+    previous = json.loads(Path(args.chain_from).read_text(encoding="utf-8")) if args.chain_from else None
     plans = {}
     if args.plans:
         plans = {p.stem: json.loads(p.read_text(encoding="utf-8")) for p in sorted(Path(args.plans).glob("*.json"))}
     duration = int(args.duration) if args.duration is not None and args.duration.is_integer() else args.duration
     try:
         envelope = run(args.query, genre=args.genre, duration_s=duration, until=args.until, plans=plans,
-                       load_bearing=args.load_bearing, stamp=args.stamp)
+                       load_bearing=args.load_bearing, stamp=args.stamp, previous=previous)
     except AuthorRequired as needed:
         text = canonical_json(needed.packet)
         if args.packet_out:

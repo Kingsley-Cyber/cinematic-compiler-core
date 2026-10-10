@@ -14,12 +14,12 @@ NODES_SCHEMA = ROOT / "schemas" / "graphs" / "brief_nodes.schema.json"
 ENVELOPE_SCHEMA = ROOT / "schemas" / "cinematic_ir.schema.json"
 
 
-def run(envelope, *, cards=None, order=None):
+def run(envelope, *, cards=None, previous=None, order=None):
     """Return a new envelope with S02's paths set; the input envelope is never mutated."""
     order = order or load()
     if "intent" not in envelope or not isinstance(envelope.get("nodes"), dict):
         raise ContractError("MISSING_INPUT", "S02 needs /intent from S01 and the envelope's nodes container")
-    result = expand(envelope["intent"], cards)
+    result = expand(envelope["intent"], cards, previous)
     envelope_schema = json.loads(ENVELOPE_SCHEMA.read_text(encoding="utf-8"))
     validate_schema(result["scene"], {"$ref": "#/$defs/SceneS02", "$defs": envelope_schema["$defs"]})
     groups = {key: result[key] for key in ("entities", "props", "surfaces")}

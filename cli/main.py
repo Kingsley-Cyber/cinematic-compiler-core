@@ -32,9 +32,10 @@ def _compile(args):
         plans = {p.stem: json.loads(p.read_text(encoding="utf-8")) for p in sorted(Path(args.plans).glob("*.json"))}
     duration = int(args.duration) if args.duration is not None and float(args.duration).is_integer() else args.duration
     query = Path(args.query[1:]).read_text(encoding="utf-8").strip() if args.query.startswith("@") else args.query
+    previous = json.loads(Path(args.chain_from).read_text(encoding="utf-8")) if args.chain_from else None
     try:
         envelope = pipeline.run(query, genre=args.genre, duration_s=duration, until=args.until, plans=plans,
-                                load_bearing=args.load_bearing, stamp=args.stamp)
+                                load_bearing=args.load_bearing, stamp=args.stamp, previous=previous)
     except AuthorRequired as needed:
         _write(canonical_json(needed.packet), args.packet_out)
         print(f"{needed.step_id} needs an authored document; packet written", file=sys.stderr)
@@ -44,7 +45,8 @@ def _compile(args):
         node = next(n["id"] for n in order["nodes"] if n["step_id"] == error.step_id)
         target = replan_trigger.owning_step(node, args.genre)
         attempt = plans.get(target, {}).get("attempt", 1)
-        before = pipeline.run(query, genre=args.genre, duration_s=duration, until=_previous(target), plans=plans)
+        before = pipeline.run(query, genre=args.genre, duration_s=duration, until=_previous(target), plans=plans,
+                              previous=previous)
         try:
             replan = replan_trigger.request(error, failed_node=node, attempt=attempt, prepare=pipeline.AUTHORED[target].prepare,
                                             envelope_before=before, genre=args.genre)
@@ -96,6 +98,7 @@ def main(argv=None):
     comp.add_argument("--plans")
     comp.add_argument("--packet-out")
     comp.add_argument("--out")
+    comp.add_argument("--chain-from", help="previous clip's envelope.json; this clip continues it")
     comp.add_argument("--load-bearing", action="store_true")
     comp.add_argument("--stamp", action="store_true")
     val = sub.add_parser("validate")

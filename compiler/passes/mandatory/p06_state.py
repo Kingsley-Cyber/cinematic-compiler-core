@@ -28,7 +28,11 @@ def build(envelope):
     for kind, sid in subjects:
         table = vocabulary["prop"][sid] if kind == "prop" else vocabulary[kind]
         tables[(kind, sid)] = sorted(table)
-    snapshots, transitions, findings = replay(beats, subjects, tables, envelope["scene"]["duration_s"])
+    chained = envelope["scene"].get("chained_from") or {}
+    carried = {(s["subject"]["kind"], s["subject"]["id"], prop): value for s in chained.get("end_states", [])
+               for prop, value in s["conditions"].items()
+               if value != "unknown" and prop in tables.get((s["subject"]["kind"], s["subject"]["id"]), [])}
+    snapshots, transitions, findings = replay(beats, subjects, tables, envelope["scene"]["duration_s"], carried)
     findings += continuity_validator.check(snapshots, transitions, subjects, [b["id"] for b in beats])
     return {"states": snapshots, "state_transition": transitions}, findings
 

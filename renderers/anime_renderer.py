@@ -169,6 +169,8 @@ def project(envelope, frame_parts, block_key, genre_block):
                    for s in _items(envelope, "nodes", "surfaces")}
     for entity in entities:
         _subject_rows(envelope, "entity", entity["id"], states, labels, cover)
+    if scene.get("chained_from"):
+        spec["chained_from"] = _chained(scene["chained_from"], envelope, labels, cover)
     spec["cam"] = _camera_rows(envelope, labels, cover)
     spec[block_key] = genre_block(labels, cover)
     for beat in beats:
@@ -279,6 +281,24 @@ def _subject_rows(envelope, kind, identity, states, labels, cover):
             who = labels.get(c["a"]["id"], c["a"]["id"])
             rows.append(f"{_num(c['t'])} {c['contact_type']} by {who} {c['body_part']}")
     return sorted(rows, key=lambda r: float(r.split(" ", 1)[0]))
+
+
+def _chained(chained, envelope, labels, cover):
+    """M5.5: what this clip continues: carried end states, carried contacts, unresolved causes, the last shot."""
+    carried = []
+    for c in _items(envelope, "nodes", "contacts"):
+        if c["beat"] == "chain":
+            cover.mark("contacts", c["id"])
+            part = "." + c["b"]["part"] if c["b"].get("part") else ""
+            carried.append(f"{c['id']} {c['contact_type']} {labels.get(c['a']['id'], c['a']['id'])} {c['body_part']}->"
+                           f"{labels.get(c['b']['id'], c['b']['id'])}{part} from t=0")
+    return {"previous": chained["envelope_sha256"], "previous_prompt": chained["source_prompt"],
+            "carried_states": [f"{labels.get(s['subject']['id'], s['subject']['id'])}: "
+                               + ",".join(f"{p}={v}" for p, v in sorted(s["conditions"].items()))
+                               for s in chained["end_states"]],
+            "carried_contacts": carried,
+            "unresolved_causes": [f"{b['id']} {b['label']}: {b['action']}" for b in chained["open_beats"]],
+            "last_shot": chained["last_shot"]}
 
 
 def _camera_rows(envelope, labels, cover):

@@ -6,6 +6,7 @@
 - world and surfaces come only from the matched world card; ax = kernel conventions (+ the card's unit).
 - each entity/prop hint becomes an entity (archetype card) or a prop (object card); the card's kind decides.
 - an archetype card's equipment adds props after the query's own (source card:<id>), never twice.
+- a chained clip (previous envelope given) keeps the previous world and records planner/chaining.summary.
 Every value names its source; everything unresolved is listed in missing, ambiguous or unresolved_hints.
 """
 
@@ -14,7 +15,7 @@ import sys
 
 from kernel import kernel_files
 from kernel.canonical import ContractError, canonical_json
-from planner import modality
+from planner import chaining, modality
 from planner.archetype_resolver import entity_from_card
 from planner.card_loader import load_cards, match
 from planner.entity_grounder import prop_from_card
@@ -30,7 +31,7 @@ def _intent_source(intent, field):
     return "flag" if rows and rows[0]["source"] == "flag" else "user"
 
 
-def expand(intent, cards=None):
+def expand(intent, cards=None, previous=None):
     cards = load_cards() if cards is None else cards
     parsed = intent["parsed"]
     if parsed["genre"] is None:
@@ -59,8 +60,11 @@ def expand(intent, cards=None):
     elif len(candidates) > 1:
         ambiguous.append({"field": "world", "candidates": candidates,
                           "reason": "The setting matches several world cards equally."})
+    chained = chaining.summary(previous) if previous is not None else None
+    if chained and chained["world"] and world_id != chained["world"]:
+        raise ContractError("CHAIN_WORLD", "A chained clip continues in the previous clip's world", [world_id, chained["world"]])
     scene.update(world=world_id, world_source="card:" + world_id if world_id else None, ax=ax,
-                 ax_source="kernel+card:" + world_id if world_id else "kernel", chained_from=None)
+                 ax_source="kernel+card:" + world_id if world_id else "kernel", chained_from=chained)
     entities, props, used = [], [], {}
     for field in ("entities_hinted", "props_hinted"):
         for hint, evidence in zip(parsed[field], intent["evidence"].get(field, []), strict=True):

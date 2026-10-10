@@ -4,13 +4,13 @@ A slot exists for every entity that is a beat's actor or an entity participant. 
 S06 state at the beat start, the S04 pose anchor, and the S07 support contacts active at the beat start.
 """
 
-from compiler.passes.mandatory.p07_contact import events_of, lifecycle
+from compiler.passes.mandatory.p07_contact import events_for, lifecycle
 
 EPSILON = 1e-9
 
 
 def active_supports(envelope, entity, time):
-    _, _, intervals = lifecycle(events_of(envelope["nodes"]["beats"]["items"]))
+    _, _, intervals = lifecycle(events_for(envelope))
     return sorted(pair[1] for pair, kind, start, end in intervals
                   if kind == "support" and pair[0] == entity and start <= time + EPSILON
                   and (end is None or time < end - EPSILON))

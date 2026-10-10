@@ -1,6 +1,7 @@
 """S15 camera checks. Every rule reads the sealed packet (scene facts + library), never the envelope.
 
-- tiling: shots run in time order from 0 to the scene end with no gap or overlap; ids unique; first shot opens;
+- tiling: shots run in time order from 0 to the scene end with no gap or overlap; ids unique; the first shot opens,
+  except in a chained clip (M5.5), where it cuts from the previous clip's last shot under the axis and jump-cut rules;
 - coverage: every beat is shown by a shot whose window overlaps it;
 - vocabulary: closed values from library/camera_subdivisions.yaml; ids resolve to scene entities/props/surfaces;
 - motivation: the ref resolves for its kind and falls inside the shot (beat, entity, contact, effort, geometry,
@@ -93,6 +94,12 @@ def check(shots, packet):
         if previous["id"] in derived and shot["id"] in derived:
             for code, message in _cut(previous, shot, derived, packet):
                 add(code, message, shot)
+    last = packet.get("chained_last_shot")
+    if last and ordered and ordered[0]["id"] in derived:
+        carried = {"id": last["id"], "position": {"target": last["target"]}, "framing": {"scale": last["scale"]},
+                   "angle": {"azimuth_deg": last["azimuth_deg"]}}
+        for code, message in _cut(carried, ordered[0], {**derived, last["id"]: {"side": last["side"]}}, packet):
+            add(code, f"Across the clip cut: {message}", ordered[0])
     present = {s["intent"] for s in shots}
     for intent in packet["convention"]["required_intents"]:
         if intent not in present:
@@ -110,8 +117,9 @@ def _tiling(ordered, packet):
             findings.append({"code": "CAMERA_TILING", "message": f"Shot starts at {shot['t']}, expected {round(clock, 6)}",
                              "slot": shot["id"]})
         clock = shot["t"] + shot["dur"]
-        if (shot["editing"]["transition_in"] == "open") != (index == 0):
-            findings.append({"code": "CAMERA_TILING", "message": "Only the first shot opens", "slot": shot["id"]})
+        opens = index == 0 and "chained_last_shot" not in packet
+        if (shot["editing"]["transition_in"] == "open") != opens:
+            findings.append({"code": "CAMERA_TILING", "message": "Only the first shot of a first clip opens", "slot": shot["id"]})
     if ordered and abs(clock - packet["scene"]["duration_s"]) > EPSILON:
         findings.append({"code": "CAMERA_TILING", "message": f"Shots end at {round(clock, 6)}, the scene at "
                          f"{packet['scene']['duration_s']}"})
