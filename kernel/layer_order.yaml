@@ -1,0 +1,157 @@
+# Single source of truth for the cinematic-compiler layer DAG.
+#
+# Each node is one graph build (a pass). `layer` is the owner's label from the
+# layer table; build order comes from the edges below, never from the number.
+# Pass file names, the envelope schema and the validators are checked against
+# this file (tests/test_layer_dependency.py, tests/test_schemas.py).
+#
+# Owner decisions 2026-10-10:
+#   - Effort (L5) is built before camera (L4.5), so a camera beat may cite an
+#     effort quality as its motive. Effort depends on motion only.
+#   - Camera nodes carry 13 subdivisions plus a required `motivation` field.
+#   - Effort holds the four LMA Effort factors (weight, time, space, flow);
+#     LMA Shape and Space are separate fields, not Effort factors.
+#
+# `depends_on` lists data inputs. `validated_by: constraint` also orders the
+# node after the constraint graph, because that check reads it.
+# `when` limits a node to the listed modalities; edges to an inactive node are
+# dropped, and only conditional nodes may be inactive.
+
+version: "1.0"
+kernel: LBN-2.4
+envelope: MGRAPH-1.1
+modalities: [live_action, anime, ugc_ad]
+
+# Envelope paths written outside any layer pass (pipeline and validators).
+pipeline_owned: [/graph_version, /derived_from, /provenance, /validation/schema, /validation/invariants,
+                 /validation/layer_dependency, /validation/camera_kinematic_coupling]
+
+nodes:
+  - id: intent
+    layer: L0
+    builds: Intent Document
+    depends_on: []
+    external_inputs: [user_query]
+    validated_by: [schema]
+    writes: [/scene]
+
+  - id: brief
+    layer: L0.5
+    builds: Expanded brief (entity, archetype and world grounding)
+    depends_on: [intent]
+    external_inputs: [library/ontology, library/archetypes, library/worlds]
+    validated_by: [schema, coherence]
+    writes: [/nodes/actors, /nodes/props, /nodes/surfaces]
+
+  - id: temporal
+    layer: L1
+    builds: Temporal graph
+    depends_on: [brief]
+    validated_by: [schema, invariants]
+    writes: [/nodes/beats, /edges/temporal]
+
+  - id: causal
+    layer: L1
+    builds: Causal graph
+    depends_on: [temporal]
+    validated_by: [schema, invariants]
+    writes: [/edges/causal]
+
+  - id: state
+    layer: L2
+    builds: State graph
+    depends_on: [temporal, causal]
+    validated_by: [schema, invariants]
+    writes: [/nodes/states, /edges/state_transition]
+
+  - id: contact
+    layer: L2
+    builds: Contact graph
+    depends_on: [temporal, causal, state]
+    validated_by: [schema, invariants]
+    writes: [/nodes/contacts, /edges/contact]
+
+  - id: hand_role
+    layer: L2.5
+    builds: Hand-role graph
+    when: [ugc_ad]
+    depends_on: [contact]
+    external_inputs: [library/ontology]
+    validated_by: [schema, invariants, constraint]
+    writes: [/nodes/hand_role, /edges/hand_role_transition]
+
+  - id: object_state
+    layer: L2.6
+    builds: Object-state graph
+    when: [ugc_ad]
+    depends_on: [contact]
+    external_inputs: [library/ontology, library/affordances]
+    validated_by: [schema, invariants, constraint]
+    writes: [/nodes/object_state, /edges/object_state_transition]
+
+  - id: affordance
+    layer: L2.7
+    builds: Affordance graph
+    when: [ugc_ad]
+    depends_on: [hand_role, object_state]
+    validated_by: [schema, invariants, constraint]
+    writes: [/nodes/affordance, /edges/affordance_dependency]
+
+  - id: constraint
+    layer: L3a
+    builds: Constraint graph (kernel + world + archetype invariants)
+    depends_on: [brief]
+    external_inputs: [kernel/invariants.yaml]
+    validated_by: [schema]
+    writes: [/nodes/constraints, /edges/constraint, /invariants]
+
+  - id: kinematic
+    layer: L4a
+    builds: Kinematic graph (visible bodily organization)
+    depends_on: [state, contact, hand_role, object_state, affordance, constraint]
+    validated_by: [schema, invariants, constraint]
+    writes: [/nodes/kinematic, /edges/kinematic_transition]
+
+  - id: bartenieff
+    layer: L4b
+    builds: Bartenieff graph (body coordination patterns)
+    depends_on: [kinematic]
+    validated_by: [schema, invariants, constraint]
+    writes: [/nodes/bartenieff, /edges/bartenieff_transition]
+
+  - id: motion
+    layer: L4c
+    builds: Motion graph (Euler key poses, axes, slerp, root trajectories)
+    depends_on: [kinematic, bartenieff]
+    validated_by: [schema, invariants, constraint]
+    writes: [/nodes/motion, /edges/motion]
+
+  - id: effort
+    layer: L5
+    builds: Effort graph (LMA Effort factors plus Shape and Space)
+    depends_on: [motion]
+    validated_by: [schema, invariants, constraint]
+    writes: [/nodes/efforts, /edges/effort]
+
+  - id: camera
+    layer: L4.5
+    builds: Camera graph (13 subdivisions + motivation)
+    depends_on: [state, contact, kinematic, motion, effort]
+    validated_by: [schema, invariants, constraint, camera_rules]
+    writes: [/nodes/camera, /edges/camera]
+
+  - id: render
+    layer: L6
+    builds: Prose / render projection (per modality and conditioning signal)
+    depends_on: [intent, brief, temporal, causal, state, contact, hand_role, object_state,
+                 affordance, constraint, kinematic, bartenieff, motion, effort, camera]
+    validated_by: [schema, invariants, constraint]
+    writes: []
+
+  - id: post_generation
+    layer: L6.5
+    builds: Post-generation report (only when a video model is available)
+    depends_on: [render]
+    external_inputs: [generated_video]
+    validated_by: [pose, object, state, affordance]
+    writes: [/validation/post_generation]

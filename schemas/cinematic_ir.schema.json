@@ -1,0 +1,676 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:cinematic_ir:MGRAPH-1.1",
+  "title": "Cinematic IR: movement-graph envelope",
+  "description": "Generated from kernel/layer_order.yaml by kernel/build_ir_schema.py; do not edit by hand.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "graph_version",
+    "derived_from",
+    "scene",
+    "nodes",
+    "edges",
+    "invariants",
+    "validation",
+    "provenance"
+  ],
+  "properties": {
+    "graph_version": {
+      "const": "MGRAPH-1.1"
+    },
+    "derived_from": {
+      "const": "LBN-2.4"
+    },
+    "scene": {
+      "$ref": "#/$defs/Scene"
+    },
+    "nodes": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "actors": {
+          "$ref": "#/$defs/Group_L0.5"
+        },
+        "props": {
+          "$ref": "#/$defs/Group_L0.5"
+        },
+        "surfaces": {
+          "$ref": "#/$defs/Group_L0.5"
+        },
+        "beats": {
+          "$ref": "#/$defs/Group_L1"
+        },
+        "states": {
+          "$ref": "#/$defs/Group_L2"
+        },
+        "contacts": {
+          "$ref": "#/$defs/Group_L2"
+        },
+        "hand_role": {
+          "$ref": "#/$defs/Group_L2.5"
+        },
+        "object_state": {
+          "$ref": "#/$defs/Group_L2.6"
+        },
+        "affordance": {
+          "$ref": "#/$defs/Group_L2.7"
+        },
+        "constraints": {
+          "$ref": "#/$defs/Group_L3a"
+        },
+        "kinematic": {
+          "$ref": "#/$defs/Group_L4a"
+        },
+        "bartenieff": {
+          "$ref": "#/$defs/Group_L4b"
+        },
+        "motion": {
+          "$ref": "#/$defs/Group_L4c"
+        },
+        "efforts": {
+          "$ref": "#/$defs/Group_L5"
+        },
+        "camera": {
+          "$ref": "#/$defs/Group_L4.5"
+        }
+      },
+      "required": [
+        "actors",
+        "props",
+        "surfaces",
+        "beats",
+        "states",
+        "contacts",
+        "constraints",
+        "kinematic",
+        "bartenieff",
+        "motion",
+        "efforts",
+        "camera"
+      ]
+    },
+    "edges": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "temporal": {
+          "$ref": "#/$defs/Group_L1"
+        },
+        "causal": {
+          "$ref": "#/$defs/Group_L1"
+        },
+        "state_transition": {
+          "$ref": "#/$defs/Group_L2"
+        },
+        "contact": {
+          "$ref": "#/$defs/Group_L2"
+        },
+        "hand_role_transition": {
+          "$ref": "#/$defs/Group_L2.5"
+        },
+        "object_state_transition": {
+          "$ref": "#/$defs/Group_L2.6"
+        },
+        "affordance_dependency": {
+          "$ref": "#/$defs/Group_L2.7"
+        },
+        "constraint": {
+          "$ref": "#/$defs/Group_L3a"
+        },
+        "kinematic_transition": {
+          "$ref": "#/$defs/Group_L4a"
+        },
+        "bartenieff_transition": {
+          "$ref": "#/$defs/Group_L4b"
+        },
+        "motion": {
+          "$ref": "#/$defs/Group_L4c"
+        },
+        "effort": {
+          "$ref": "#/$defs/Group_L5"
+        },
+        "camera": {
+          "$ref": "#/$defs/Group_L4.5"
+        }
+      },
+      "required": [
+        "temporal",
+        "causal",
+        "state_transition",
+        "contact",
+        "constraint",
+        "kinematic_transition",
+        "bartenieff_transition",
+        "motion",
+        "effort",
+        "camera"
+      ]
+    },
+    "invariants": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Invariant"
+      }
+    },
+    "validation": {
+      "$ref": "#/$defs/Validation"
+    },
+    "provenance": {
+      "$ref": "#/$defs/Provenance"
+    }
+  },
+  "$defs": {
+    "Group_L0": {
+      "type": "object",
+      "required": [
+        "layer",
+        "items"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "layer": {
+          "const": "L0"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Item"
+          }
+        }
+      }
+    },
+    "Group_L0.5": {
+      "type": "object",
+      "required": [
+        "layer",
+        "items"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "layer": {
+          "const": "L0.5"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Item"
+          }
+        }
+      }
+    },
+    "Group_L1": {
+      "type": "object",
+      "required": [
+        "layer",
+        "items"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "layer": {
+          "const": "L1"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Item"
+          }
+        }
+      }
+    },
+    "Group_L2": {
+      "type": "object",
+      "required": [
+        "layer",
+        "items"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "layer": {
+          "const": "L2"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Item"
+          }
+        }
+      }
+    },
+    "Group_L2.5": {
+      "type": "object",
+      "required": [
+        "layer",
+        "items"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "layer": {
+          "const": "L2.5"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Item"
+          }
+        }
+      }
+    },
+    "Group_L2.6": {
+      "type": "object",
+      "required": [
+        "layer",
+        "items"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "layer": {
+          "const": "L2.6"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Item"
+          }
+        }
+      }
+    },
+    "Group_L2.7": {
+      "type": "object",
+      "required": [
+        "layer",
+        "items"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "layer": {
+          "const": "L2.7"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Item"
+          }
+        }
+      }
+    },
+    "Group_L3a": {
+      "type": "object",
+      "required": [
+        "layer",
+        "items"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "layer": {
+          "const": "L3a"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Item"
+          }
+        }
+      }
+    },
+    "Group_L4a": {
+      "type": "object",
+      "required": [
+        "layer",
+        "items"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "layer": {
+          "const": "L4a"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Item"
+          }
+        }
+      }
+    },
+    "Group_L4b": {
+      "type": "object",
+      "required": [
+        "layer",
+        "items"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "layer": {
+          "const": "L4b"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Item"
+          }
+        }
+      }
+    },
+    "Group_L4c": {
+      "type": "object",
+      "required": [
+        "layer",
+        "items"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "layer": {
+          "const": "L4c"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Item"
+          }
+        }
+      }
+    },
+    "Group_L5": {
+      "type": "object",
+      "required": [
+        "layer",
+        "items"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "layer": {
+          "const": "L5"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Item"
+          }
+        }
+      }
+    },
+    "Group_L4.5": {
+      "type": "object",
+      "required": [
+        "layer",
+        "items"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "layer": {
+          "const": "L4.5"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Item"
+          }
+        }
+      }
+    },
+    "Group_L6": {
+      "type": "object",
+      "required": [
+        "layer",
+        "items"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "layer": {
+          "const": "L6"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Item"
+          }
+        }
+      }
+    },
+    "Group_L6.5": {
+      "type": "object",
+      "required": [
+        "layer",
+        "items"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "layer": {
+          "const": "L6.5"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Item"
+          }
+        }
+      }
+    },
+    "Item": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "description": "Per-graph item fields are fixed by that layer's schema when its slice lands."
+    },
+    "Scene": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "duration_s",
+        "fps",
+        "genre",
+        "world",
+        "setting",
+        "ax"
+      ],
+      "properties": {
+        "duration_s": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "fps": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "genre": {
+          "enum": [
+            "live_action",
+            "anime",
+            "ugc_ad"
+          ]
+        },
+        "world": {
+          "type": "string",
+          "minLength": 1
+        },
+        "setting": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ax": {
+          "type": "object",
+          "description": "Axis and set geometry; fixed by the L0 slice."
+        }
+      }
+    },
+    "Invariant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "layer",
+        "rule"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "layer": {
+          "enum": [
+            "L0",
+            "L0.5",
+            "L1",
+            "L2",
+            "L2.5",
+            "L2.6",
+            "L2.7",
+            "L3a",
+            "L4a",
+            "L4b",
+            "L4c",
+            "L5",
+            "L4.5",
+            "L6",
+            "L6.5"
+          ]
+        },
+        "rule": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "Validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "invariants",
+        "layer_dependency",
+        "camera_kinematic_coupling",
+        "post_generation"
+      ],
+      "properties": {
+        "schema": {
+          "enum": [
+            "pass",
+            "fail",
+            null
+          ]
+        },
+        "invariants": {
+          "enum": [
+            "pass",
+            "fail",
+            null
+          ]
+        },
+        "layer_dependency": {
+          "enum": [
+            "pass",
+            "fail",
+            null
+          ]
+        },
+        "camera_kinematic_coupling": {
+          "enum": [
+            "pass",
+            "fail",
+            null
+          ]
+        },
+        "post_generation": {
+          "enum": [
+            "pass",
+            "fail",
+            null
+          ]
+        }
+      }
+    },
+    "Provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_prompt",
+        "compiler_version",
+        "kernel_version",
+        "layer_order_version",
+        "build_timestamp",
+        "pass_history",
+        "replan_count",
+        "replan_layers"
+      ],
+      "properties": {
+        "source_prompt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "compiler_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kernel_version": {
+          "const": "LBN-2.4"
+        },
+        "layer_order_version": {
+          "const": "1.0"
+        },
+        "build_timestamp": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pass_history": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "pass",
+              "commit",
+              "duration_ms"
+            ],
+            "properties": {
+              "pass": {
+                "type": "string",
+                "pattern": "^p[0-9]{2}_[a-z0-9_]+$"
+              },
+              "commit": {
+                "type": "string",
+                "minLength": 1
+              },
+              "duration_ms": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          }
+        },
+        "replan_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "replan_layers": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "L0",
+              "L0.5",
+              "L1",
+              "L2",
+              "L2.5",
+              "L2.6",
+              "L2.7",
+              "L3a",
+              "L4a",
+              "L4b",
+              "L4c",
+              "L5",
+              "L4.5",
+              "L6",
+              "L6.5"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

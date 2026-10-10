@@ -1,0 +1,37 @@
+id: IR_ENVELOPE
+version: 1
+description: MGRAPH-1.1 movement-graph envelope, its layer DAG and the append-only schema log. Structural contract only; per-graph semantics arrive with each layer slice.
+producers:
+  - kernel/layer_order.yaml
+  - kernel/build_ir_schema.py
+  - kernel/version.py
+  - schemas/cinematic_ir.schema.json
+  - schemas/schema_log.jsonl
+consumers:
+  - planner/dependency_graph.py
+  - planner/topological_sort.py
+  - validators/layer_dependency_validator.py
+  - validators/schema_validator.py
+  - kernel/schema_log.py
+depends_on: []
+invariants:
+  - layer_order_yaml_is_single_source_for_layers_edges_and_write_owners
+  - every_envelope_path_has_exactly_one_owner_and_paths_do_not_nest
+  - layer_dag_is_acyclic_for_every_modality
+  - effort_is_built_before_camera
+  - constraint_graph_precedes_every_layer_validated_by_constraint
+  - a_pass_changes_only_the_paths_its_node_owns
+  - group_layer_tags_match_their_owning_node
+  - inactive_modality_layers_hold_no_items
+  - envelope_schema_is_generated_from_layer_order_without_drift
+  - every_schema_file_matches_its_latest_schema_log_entry
+  - schema_log_is_append_only_and_hash_chained
+validation:
+  unit:
+    - tests/test_layer_dependency.py
+    - tests/test_schemas.py
+    - tests/test_validators.py
+  integration:
+    - tests/test_schemas.py
+proof_requirements:
+  CONTRACT_CHANGE: UNIT_PROVEN
