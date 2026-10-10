@@ -9,6 +9,7 @@ prop state change has a contact event in its triggering beat or an active contac
 import copy
 import json
 
+from compiler.authoring import StepFailed
 from kernel.canonical import ContractError
 from planner.dependency_graph import ROOT, load, node_index
 from validators.layer_dependency_validator import check_pass_writes
@@ -111,7 +112,7 @@ def run(envelope, *, order=None):
     findings += cross_check(events, intervals, envelope["nodes"]["states"]["items"],
                             envelope["edges"]["state_transition"]["items"], beats)
     if findings:
-        raise ContractError("GATE_FAILED", "S07 contact checks failed", findings)
+        raise StepFailed("S07", findings)
     graph = {"contacts": events, "contact": edges}
     validate_schema(graph, json.loads(GRAPH_SCHEMA.read_text(encoding="utf-8")))
     node = node_index(order)[NODE]

@@ -11,12 +11,20 @@ class AuthorRequired(ContractError):
         self.step_id, self.packet = step_id, packet
 
 
-class GateFailed(ContractError):
-    """An authored document failed its step's checks; `findings` go back to the author with the same packet."""
+class StepFailed(ContractError):
+    """A step's checks failed; `findings` say why and `step_id` says where (the replan trigger routes from it)."""
+
+    def __init__(self, step_id, findings):
+        super().__init__("GATE_FAILED", f"{step_id} failed {len(findings)} check(s)", findings)
+        self.step_id, self.findings = step_id, findings
+
+
+class GateFailed(StepFailed):
+    """An authored document failed its step's checks; findings go back to the author with the same packet."""
 
     def __init__(self, step_id, findings, packet):
-        super().__init__("GATE_FAILED", f"{step_id} failed {len(findings)} check(s)", sorted({f["code"] for f in findings}))
-        self.step_id, self.findings, self.packet = step_id, findings, packet
+        super().__init__(step_id, findings)
+        self.packet = packet
 
 
 def seal(packet):

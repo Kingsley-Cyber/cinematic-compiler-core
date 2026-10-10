@@ -5,6 +5,9 @@ description = "Layer-DAG compiler from a scene request to a validated movement-g
 requires-python = ">=3.11"
 dependencies = ["pyyaml>=6.0"]
 
+[project.scripts]
+cinematic = "cli.main:main"
+
 [dependency-groups]
 dev = ["pytest>=8", "ruff>=0.6"]
 
@@ -13,7 +16,7 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-include = ["kernel*", "planner*", "validators*", "compiler*", "solver*", "kernel_extraction*"]
+include = ["kernel*", "planner*", "validators*", "compiler*", "solver*", "kernel_extraction*", "cli*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

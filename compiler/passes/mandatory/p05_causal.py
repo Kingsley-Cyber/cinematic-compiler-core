@@ -11,6 +11,7 @@ load-bearing.
 import copy
 import json
 
+from compiler.authoring import StepFailed
 from kernel.canonical import ContractError
 from planner.dependency_graph import ROOT, load, node_index
 from validators.layer_dependency_validator import check_pass_writes
@@ -88,7 +89,7 @@ def run(envelope, *, order=None, load_bearing=False):
     beats = envelope["nodes"]["beats"]["items"]
     edges, findings = edges_and_findings(beats, linear=True)
     if findings:
-        raise ContractError("GATE_FAILED", "S05 causal checks failed", findings)
+        raise StepFailed("S05", findings)
     validate_schema({"causal": edges}, json.loads(GRAPH_SCHEMA.read_text(encoding="utf-8")))
     scores = quadrant(beats, edges, envelope["scene"], linear=True, load_bearing=load_bearing)
     validate_schema(scores, json.loads(ENVELOPE_SCHEMA.read_text(encoding="utf-8"))["$defs"]["Scene"]["properties"]["quadrant"])

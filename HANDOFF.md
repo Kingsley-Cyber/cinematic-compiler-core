@@ -4,6 +4,11 @@ Updated 2026-10-10. This folder (`~/Documents/cinematic-compiler-core`) is the w
 URCP and no Beads. The old `~/Documents/cinematic-compiler` is superseded and can be deleted once you're happy.
 No remote; nothing has been pushed.
 
+## CLI
+`cinematic compile "<query>" [--genre G] [--until NODE] [--plans DIR] [--packet-out F]` (exit 3 = an authored step needs
+a document, 4 = a gate failed and a replan request was written, 2 = refused); `cinematic validate <envelope>`;
+`cinematic graph <envelope> <group>`.
+
 ## Resume in three commands
 ```bash
 mise exec -- uv sync --locked
@@ -43,5 +48,5 @@ linear causality only; closed kernel state vocabulary. Full log: `docs/layer_dep
 
 ## Open questions and next work
 All six questions are decided (see **Decided this round** in
-[docs/plans/MASTER_PLAN.md](docs/plans/MASTER_PLAN.md)). Next task: **M1.5** (CLI, replan trigger), then M2. Completed work is struck through
+[docs/plans/MASTER_PLAN.md](docs/plans/MASTER_PLAN.md)). Next task: **M2** (S11 kinematic, S12 Bartenieff, S13 motion). Completed work is struck through
 under **Done**.

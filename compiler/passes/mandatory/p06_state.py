@@ -3,6 +3,7 @@
 import copy
 import json
 
+from compiler.authoring import StepFailed
 from kernel import kernel_files
 from kernel.canonical import ContractError
 from planner.dependency_graph import ROOT, load, node_index
@@ -38,7 +39,7 @@ def run(envelope, *, order=None):
         raise ContractError("MISSING_INPUT", "S06 needs the S04 beats and the S05 causal graph")
     graph, findings = build(envelope)
     if findings:
-        raise ContractError("GATE_FAILED", "S06 state checks failed", findings)
+        raise StepFailed("S06", findings)
     validate_schema(graph, json.loads(GRAPH_SCHEMA.read_text(encoding="utf-8")))
     node = node_index(order)[NODE]
     tag = {"band": node["band"], "step_id": node["step_id"]}

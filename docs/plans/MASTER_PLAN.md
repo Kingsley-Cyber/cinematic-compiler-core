@@ -156,9 +156,9 @@ Notes on the decisions:
 ---
 
 ## M1.5 — tooling M2 needs
-- [ ] M1.5.1 `cli/compile.py` (`cinematic compile <query|file> --genre … --until …`), `cli/validate.py`,
+- [x] M1.5.1 `cli/compile.py` (`cinematic compile <query|file> --genre … --until …`), `cli/validate.py`,
   `cli/graph.py` (inspect a group); entry point `cinematic` in pyproject.
-- [ ] M1.5.2 `compiler/replan_trigger.py`: a failed gate in an authored step re-issues that step's packet with the
+- [x] M1.5.2 `compiler/replan_trigger.py`: a failed gate in an authored step re-issues that step's packet with the
   findings (max 2); provenance `replan_count` / `replan_layers`. Tests: success on attempt 2; stop after 2.
 
 ---
