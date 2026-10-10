@@ -108,6 +108,9 @@
         "temporal": {
           "$ref": "#/$defs/Group_S04"
         },
+        "beat_constraint": {
+          "$ref": "#/$defs/Group_S04"
+        },
         "causal": {
           "$ref": "#/$defs/Group_S05"
         },
@@ -145,6 +148,7 @@
       "required": [
         "constraint_application",
         "temporal",
+        "beat_constraint",
         "causal",
         "state_transition",
         "contact",
@@ -719,6 +723,9 @@
         "step_id": {
           "const": "S16"
         },
+        "projection": {
+          "const": true
+        },
         "items": {
           "type": "array",
           "items": {
@@ -742,6 +749,7 @@
       "required": [
         "band",
         "step_id",
+        "projection",
         "items"
       ]
     },
@@ -1070,42 +1078,64 @@
     "Scene": {
       "type": "object",
       "additionalProperties": false,
-      "description": "Written by S02. A null value is listed in `missing`; every value names its source.",
+      "description": "S02 writes the scene; carve-outs duration_s, duration_source, quadrant are written by later steps. Every value names its source; `default` marks a filled default.",
       "required": [
-        "duration_s",
-        "fps",
         "genre",
+        "genre_source",
+        "fps",
+        "fps_source",
+        "duration_s",
+        "duration_source",
         "world",
+        "world_source",
         "setting",
+        "setting_source",
         "style_reference",
+        "style_reference_source",
         "ax",
-        "sources",
+        "ax_source",
+        "quadrant",
+        "chained_from",
         "missing",
         "ambiguous",
         "unresolved_hints"
       ],
       "properties": {
-        "duration_s": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "exclusiveMinimum": 0
-        },
-        "fps": {
-          "type": [
-            "number",
-            "null"
-          ],
-          "exclusiveMinimum": 0
-        },
         "genre": {
           "enum": [
-            null,
             "live_action",
             "anime",
             "ugc_ad"
           ]
+        },
+        "genre_source": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^(user|flag|default|beat_plan_end|kernel|card:[a-z][a-z0-9_]*|kernel\\+card:[a-z][a-z0-9_]*)$"
+        },
+        "fps": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "fps_source": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^(user|flag|default|beat_plan_end|kernel|card:[a-z][a-z0-9_]*|kernel\\+card:[a-z][a-z0-9_]*)$"
+        },
+        "duration_s": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "duration_source": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^(user|flag|default|beat_plan_end|kernel|card:[a-z][a-z0-9_]*|kernel\\+card:[a-z][a-z0-9_]*)$"
         },
         "world": {
           "type": [
@@ -1114,12 +1144,26 @@
           ],
           "pattern": "^[a-z][a-z0-9_]*$"
         },
+        "world_source": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^(user|flag|default|beat_plan_end|kernel|card:[a-z][a-z0-9_]*|kernel\\+card:[a-z][a-z0-9_]*)$"
+        },
         "setting": {
           "type": [
             "string",
             "null"
           ],
           "minLength": 1
+        },
+        "setting_source": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^(user|flag|default|beat_plan_end|kernel|card:[a-z][a-z0-9_]*|kernel\\+card:[a-z][a-z0-9_]*)$"
         },
         "style_reference": {
           "type": [
@@ -1128,59 +1172,581 @@
           ],
           "minLength": 1
         },
-        "ax": {
+        "style_reference_source": {
           "type": [
-            "object",
+            "string",
             "null"
           ],
-          "description": "Axis set-up from the world card."
+          "pattern": "^(user|flag|default|beat_plan_end|kernel|card:[a-z][a-z0-9_]*|kernel\\+card:[a-z][a-z0-9_]*)$"
         },
-        "sources": {
+        "ax": {
           "type": "object",
           "additionalProperties": false,
+          "required": [
+            "up",
+            "forward",
+            "ground",
+            "unit",
+            "rotation_convention"
+          ],
           "properties": {
-            "duration_s": {
-              "type": "string",
-              "pattern": "^(intent:(query|flag)|card:[a-z][a-z0-9_]*)$"
+            "up": {
+              "enum": [
+                "+X",
+                "-X",
+                "+Y",
+                "-Y",
+                "+Z",
+                "-Z"
+              ]
             },
-            "fps": {
-              "type": "string",
-              "pattern": "^(intent:(query|flag)|card:[a-z][a-z0-9_]*)$"
+            "forward": {
+              "enum": [
+                "+X",
+                "-X",
+                "+Y",
+                "-Y",
+                "+Z",
+                "-Z"
+              ]
             },
-            "genre": {
+            "ground": {
               "type": "string",
-              "pattern": "^(intent:(query|flag)|card:[a-z][a-z0-9_]*)$"
+              "minLength": 1
             },
-            "world": {
-              "type": "string",
-              "pattern": "^(intent:(query|flag)|card:[a-z][a-z0-9_]*)$"
+            "unit": {
+              "enum": [
+                "m",
+                "scene_unit",
+                null
+              ]
             },
-            "setting": {
-              "type": "string",
-              "pattern": "^(intent:(query|flag)|card:[a-z][a-z0-9_]*)$"
-            },
-            "style_reference": {
-              "type": "string",
-              "pattern": "^(intent:(query|flag)|card:[a-z][a-z0-9_]*)$"
-            },
-            "ax": {
-              "type": "string",
-              "pattern": "^(intent:(query|flag)|card:[a-z][a-z0-9_]*)$"
+            "rotation_convention": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "euler_order",
+                "kind",
+                "handedness",
+                "units",
+                "axes",
+                "x_direction",
+                "rest_pose",
+                "turns"
+              ],
+              "properties": {
+                "euler_order": {
+                  "enum": [
+                    "XYZ",
+                    "XZY",
+                    "YXZ",
+                    "YZX",
+                    "ZXY",
+                    "ZYX"
+                  ]
+                },
+                "kind": {
+                  "enum": [
+                    "intrinsic",
+                    "extrinsic"
+                  ]
+                },
+                "handedness": {
+                  "enum": [
+                    "right",
+                    "left"
+                  ]
+                },
+                "units": {
+                  "enum": [
+                    "degrees",
+                    "radians"
+                  ]
+                },
+                "axes": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "+X",
+                    "+Y",
+                    "+Z"
+                  ],
+                  "properties": {
+                    "+X": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "+Y": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "+Z": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                },
+                "x_direction": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "rest_pose": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "turns": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "flip",
+                    "spin",
+                    "cartwheel"
+                  ],
+                  "properties": {
+                    "flip": {
+                      "enum": [
+                        "X",
+                        "Y",
+                        "Z"
+                      ]
+                    },
+                    "spin": {
+                      "enum": [
+                        "X",
+                        "Y",
+                        "Z"
+                      ]
+                    },
+                    "cartwheel": {
+                      "enum": [
+                        "X",
+                        "Y",
+                        "Z"
+                      ]
+                    }
+                  }
+                }
+              }
             }
           }
+        },
+        "ax_source": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^(user|flag|default|beat_plan_end|kernel|card:[a-z][a-z0-9_]*|kernel\\+card:[a-z][a-z0-9_]*)$"
+        },
+        "quadrant": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "linear",
+            "causal",
+            "style",
+            "quadrant",
+            "strata",
+            "load_bearing"
+          ],
+          "properties": {
+            "linear": {
+              "type": "boolean"
+            },
+            "causal": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "branching",
+                "parallel_effects",
+                "prerequisites"
+              ],
+              "properties": {
+                "branching": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 2
+                },
+                "parallel_effects": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 2
+                },
+                "prerequisites": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 2
+                }
+              }
+            },
+            "style": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2
+            },
+            "quadrant": {
+              "enum": [
+                "A",
+                "B",
+                "C",
+                "D"
+              ]
+            },
+            "strata": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "enum": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              }
+            },
+            "load_bearing": {
+              "type": "boolean"
+            }
+          }
+        },
+        "chained_from": {
+          "type": "null",
+          "description": "Reserved for clip chaining (M5.5)."
         },
         "missing": {
           "type": "array",
           "uniqueItems": true,
           "items": {
             "enum": [
-              "duration_s",
-              "fps",
-              "genre",
               "world",
               "setting",
               "style_reference",
-              "ax",
+              "choreography",
+              "camera_plan",
+              "geometry_anchors"
+            ]
+          }
+        },
+        "ambiguous": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "field",
+              "candidates",
+              "reason"
+            ],
+            "properties": {
+              "field": {
+                "enum": [
+                  "world"
+                ]
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1
+              },
+              "candidates": {
+                "type": "array",
+                "minItems": 2,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        },
+        "unresolved_hints": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "hint",
+              "field",
+              "reason"
+            ],
+            "properties": {
+              "hint": {
+                "type": "string",
+                "minLength": 1
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1
+              },
+              "field": {
+                "enum": [
+                  "entities_hinted",
+                  "props_hinted"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "SceneS02": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The scene as S02 writes it (carve-outs absent).",
+      "required": [
+        "genre",
+        "genre_source",
+        "fps",
+        "fps_source",
+        "world",
+        "world_source",
+        "setting",
+        "setting_source",
+        "style_reference",
+        "style_reference_source",
+        "ax",
+        "ax_source",
+        "chained_from",
+        "missing",
+        "ambiguous",
+        "unresolved_hints"
+      ],
+      "properties": {
+        "genre": {
+          "enum": [
+            "live_action",
+            "anime",
+            "ugc_ad"
+          ]
+        },
+        "genre_source": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^(user|flag|default|beat_plan_end|kernel|card:[a-z][a-z0-9_]*|kernel\\+card:[a-z][a-z0-9_]*)$"
+        },
+        "fps": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "fps_source": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^(user|flag|default|beat_plan_end|kernel|card:[a-z][a-z0-9_]*|kernel\\+card:[a-z][a-z0-9_]*)$"
+        },
+        "world": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "world_source": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^(user|flag|default|beat_plan_end|kernel|card:[a-z][a-z0-9_]*|kernel\\+card:[a-z][a-z0-9_]*)$"
+        },
+        "setting": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "setting_source": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^(user|flag|default|beat_plan_end|kernel|card:[a-z][a-z0-9_]*|kernel\\+card:[a-z][a-z0-9_]*)$"
+        },
+        "style_reference": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "style_reference_source": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^(user|flag|default|beat_plan_end|kernel|card:[a-z][a-z0-9_]*|kernel\\+card:[a-z][a-z0-9_]*)$"
+        },
+        "ax": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "up",
+            "forward",
+            "ground",
+            "unit",
+            "rotation_convention"
+          ],
+          "properties": {
+            "up": {
+              "enum": [
+                "+X",
+                "-X",
+                "+Y",
+                "-Y",
+                "+Z",
+                "-Z"
+              ]
+            },
+            "forward": {
+              "enum": [
+                "+X",
+                "-X",
+                "+Y",
+                "-Y",
+                "+Z",
+                "-Z"
+              ]
+            },
+            "ground": {
+              "type": "string",
+              "minLength": 1
+            },
+            "unit": {
+              "enum": [
+                "m",
+                "scene_unit",
+                null
+              ]
+            },
+            "rotation_convention": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "euler_order",
+                "kind",
+                "handedness",
+                "units",
+                "axes",
+                "x_direction",
+                "rest_pose",
+                "turns"
+              ],
+              "properties": {
+                "euler_order": {
+                  "enum": [
+                    "XYZ",
+                    "XZY",
+                    "YXZ",
+                    "YZX",
+                    "ZXY",
+                    "ZYX"
+                  ]
+                },
+                "kind": {
+                  "enum": [
+                    "intrinsic",
+                    "extrinsic"
+                  ]
+                },
+                "handedness": {
+                  "enum": [
+                    "right",
+                    "left"
+                  ]
+                },
+                "units": {
+                  "enum": [
+                    "degrees",
+                    "radians"
+                  ]
+                },
+                "axes": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "+X",
+                    "+Y",
+                    "+Z"
+                  ],
+                  "properties": {
+                    "+X": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "+Y": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "+Z": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                },
+                "x_direction": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "rest_pose": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "turns": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "flip",
+                    "spin",
+                    "cartwheel"
+                  ],
+                  "properties": {
+                    "flip": {
+                      "enum": [
+                        "X",
+                        "Y",
+                        "Z"
+                      ]
+                    },
+                    "spin": {
+                      "enum": [
+                        "X",
+                        "Y",
+                        "Z"
+                      ]
+                    },
+                    "cartwheel": {
+                      "enum": [
+                        "X",
+                        "Y",
+                        "Z"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "ax_source": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^(user|flag|default|beat_plan_end|kernel|card:[a-z][a-z0-9_]*|kernel\\+card:[a-z][a-z0-9_]*)$"
+        },
+        "chained_from": {
+          "type": "null",
+          "description": "Reserved for clip chaining (M5.5)."
+        },
+        "missing": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "world",
+              "setting",
+              "style_reference",
               "choreography",
               "camera_plan",
               "geometry_anchors"
@@ -1342,15 +1908,16 @@
         "compiler_version",
         "kernel_version",
         "layer_order_version",
+        "kernel_hash",
         "build_timestamp",
         "pass_history",
         "replan_count",
-        "replan_layers"
+        "replan_layers",
+        "chained_from_envelope_hash"
       ],
       "properties": {
         "source_prompt": {
-          "type": "string",
-          "minLength": 1
+          "type": "string"
         },
         "compiler_version": {
           "type": "string",
@@ -1360,11 +1927,18 @@
           "const": "LBN-2.4"
         },
         "layer_order_version": {
-          "const": "1.4"
+          "const": "1.5"
+        },
+        "kernel_hash": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
         },
         "build_timestamp": {
           "type": "string",
           "minLength": 1
+        },
+        "chained_from_envelope_hash": {
+          "type": "null"
         },
         "pass_history": {
           "type": "array",

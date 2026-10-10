@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:kernel_conventions:1.0",
+  "title": "Frame and rotation convention (kernel)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "status",
+    "basis",
+    "up",
+    "forward",
+    "ground",
+    "rotation_convention"
+  ],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "approved"
+      ]
+    },
+    "basis": {
+      "type": "string",
+      "minLength": 1
+    },
+    "up": {
+      "enum": [
+        "+X",
+        "-X",
+        "+Y",
+        "-Y",
+        "+Z",
+        "-Z"
+      ]
+    },
+    "forward": {
+      "enum": [
+        "+X",
+        "-X",
+        "+Y",
+        "-Y",
+        "+Z",
+        "-Z"
+      ]
+    },
+    "ground": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rotation_convention": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "euler_order",
+        "kind",
+        "handedness",
+        "units",
+        "axes",
+        "x_direction",
+        "rest_pose",
+        "turns"
+      ],
+      "properties": {
+        "euler_order": {
+          "enum": [
+            "XYZ",
+            "XZY",
+            "YXZ",
+            "YZX",
+            "ZXY",
+            "ZYX"
+          ]
+        },
+        "kind": {
+          "enum": [
+            "intrinsic",
+            "extrinsic"
+          ]
+        },
+        "handedness": {
+          "enum": [
+            "right",
+            "left"
+          ]
+        },
+        "units": {
+          "enum": [
+            "degrees",
+            "radians"
+          ]
+        },
+        "axes": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "+X",
+            "+Y",
+            "+Z"
+          ],
+          "properties": {
+            "+X": {
+              "type": "string",
+              "minLength": 1
+            },
+            "+Y": {
+              "type": "string",
+              "minLength": 1
+            },
+            "+Z": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "x_direction": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rest_pose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "turns": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "flip",
+            "spin",
+            "cartwheel"
+          ],
+          "properties": {
+            "flip": {
+              "enum": [
+                "X",
+                "Y",
+                "Z"
+              ]
+            },
+            "spin": {
+              "enum": [
+                "X",
+                "Y",
+                "Z"
+              ]
+            },
+            "cartwheel": {
+              "enum": [
+                "X",
+                "Y",
+                "Z"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

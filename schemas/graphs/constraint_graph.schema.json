@@ -73,7 +73,8 @@
             "key",
             "negative",
             "rules",
-            "invariant"
+            "invariant",
+            "owner"
           ]
         },
         "rule": {

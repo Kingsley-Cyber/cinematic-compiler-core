@@ -6,34 +6,27 @@
 # node's band (L0, L0.5, L1 ...) and carries no order. Pass file names, the
 # envelope schema and the validators are checked against this file.
 #
-# Owner decisions 2026-10-10:
-#   - Effort (L5) is built before camera (L5.5); a camera beat may cite an
-#     effort quality as its motive. Effort depends on motion only.
-#   - Entity definitions (entities, props, surfaces) are L0.5; their state
-#     tracks (states, contacts) are L2.
+# Owner decisions 2026-10-10 (see docs/plans/MASTER_PLAN.md, "Decided this round"):
+#   - Effort (L5) is built before camera (L5.5); camera depends on motion + effort.
+#   - Entity definitions (entities, props, surfaces) are L0.5; state tracks (states, contacts) L2.
 #   - Bands: temporal and causal share L1; state and contact share L2.
-#   - Order lives in ordered step IDs, not fractional numbers. The constraint
-#     graph has no L number (band `constraint`): built from brief + kernel
-#     invariants right after L0.5, before the event graphs, and checked at
-#     every later layer. Its edges are `constraint_application`.
-#   - L1 writes one node group (beats) and two edge groups (temporal, causal);
-#     L6 writes a `render` node group. L6.5 writes validation.post_generation
-#     (verdicts, not atoms).
-#   - Keys are `step_id` and `band` everywhere (owner 2026-10-10).
-#   - S01 writes the Intent Document to /intent and never infers; S02 resolves
-#     what is missing and writes the complete /scene.
-#   - Camera nodes carry 13 subdivisions plus a required `motivation` field.
-#   - Effort holds the four LMA Effort factors (weight, time, space, flow);
-#     LMA Shape and Space are separate fields, not Effort factors.
-#   - Graph items need `id` (and may carry `band`) until each layer's slice
-#     fixes its graph schema.
+#   - Order lives in step IDs; constraint has no L number (band `constraint`) and runs
+#     after L0.5, before the event graphs, which depend on it.
+#   - UGC steps chain: hand_role -> object_state -> affordance.
+#   - S01 writes /intent; S02 writes /scene, except carve-outs owned by later steps:
+#     /scene/duration_s and /scene/duration_source (S04), /scene/quadrant (S05).
+#     The most specific owner wins; an inner owner always runs after the outer one.
+#   - S04 also writes edges.beat_constraint (beats -> constraints).
+#   - nodes.render is a projection group (no edges); L6.5 writes validation.post_generation.
 #
 # `depends_on` lists data inputs. `validated_by: constraint` also orders the
 # node after the constraint graph, because that check reads it.
 # `when` limits a node to the listed modalities; edges to an inactive node are
 # dropped, and only conditional nodes may be inactive.
+# `edge_endpoints` names the node groups each edge group connects; `scene` stands for
+# the scene itself. Endpoints must be written at or before the edge group's step.
 
-version: "1.4"
+version: "1.5"
 kernel: LBN-2.4
 envelope: MGRAPH-1.1
 modalities: [live_action, anime, ugc_ad]
@@ -41,6 +34,22 @@ modalities: [live_action, anime, ugc_ad]
 # Envelope paths written outside any layer pass (pipeline and validators).
 pipeline_owned: [/graph_version, /derived_from, /provenance, /validation/schema, /validation/invariants,
                  /validation/layer_dependency, /validation/camera_kinematic_coupling]
+
+edge_endpoints:
+  constraint_application: {from: [constraints], to: [scene, entities, props]}
+  beat_constraint: {from: [beats], to: [constraints]}
+  temporal: {from: [beats], to: [beats]}
+  causal: {from: [beats], to: [beats]}
+  state_transition: {from: [states], to: [states]}
+  contact: {from: [contacts], to: [contacts]}
+  hand_role_transition: {from: [hand_role], to: [hand_role]}
+  object_state_transition: {from: [object_state], to: [object_state]}
+  affordance_dependency: {from: [affordance], to: [affordance]}
+  kinematic_transition: {from: [kinematic], to: [kinematic]}
+  bartenieff_transition: {from: [bartenieff], to: [bartenieff]}
+  motion: {from: [motion], to: [motion]}
+  effort: {from: [efforts], to: [efforts]}
+  camera: {from: [camera], to: [camera]}
 
 nodes:
   - id: intent
@@ -55,9 +64,9 @@ nodes:
   - id: brief
     step_id: S02
     band: L0.5
-    builds: Expanded brief (entity, prop and surface definitions; archetype and world grounding)
+    builds: Expanded brief (entity, prop and surface definitions; world grounding)
     depends_on: [intent]
-    external_inputs: [library/ontology, library/archetypes, library/worlds]
+    external_inputs: [library/ontology, library/archetypes, library/worlds, schemas/modality]
     validated_by: [schema, coherence]
     writes: [/scene, /nodes/entities, /nodes/props, /nodes/surfaces]
 
@@ -73,18 +82,18 @@ nodes:
   - id: temporal
     step_id: S04
     band: L1
-    builds: Temporal graph
-    depends_on: [brief]
+    builds: Temporal graph (authored beat plan)
+    depends_on: [brief, constraint]
     validated_by: [schema, invariants, constraint]
-    writes: [/nodes/beats, /edges/temporal]
+    writes: [/nodes/beats, /edges/temporal, /edges/beat_constraint, /scene/duration_s, /scene/duration_source]
 
   - id: causal
     step_id: S05
     band: L1
-    builds: Causal graph
+    builds: Causal graph and scene quadrant
     depends_on: [temporal]
     validated_by: [schema, invariants, constraint]
-    writes: [/edges/causal]
+    writes: [/edges/causal, /scene/quadrant]
 
   - id: state
     step_id: S06
@@ -117,7 +126,7 @@ nodes:
     band: L2.6
     builds: Object-state graph
     when: [ugc_ad]
-    depends_on: [contact]
+    depends_on: [hand_role]
     external_inputs: [library/ontology, library/affordances]
     validated_by: [schema, invariants, constraint]
     writes: [/nodes/object_state, /edges/object_state_transition]
@@ -127,7 +136,7 @@ nodes:
     band: L2.7
     builds: Affordance graph
     when: [ugc_ad]
-    depends_on: [hand_role, object_state]
+    depends_on: [object_state]
     validated_by: [schema, invariants, constraint]
     writes: [/nodes/affordance, /edges/affordance_dependency]
 
@@ -167,14 +176,15 @@ nodes:
     step_id: S15
     band: L5.5
     builds: Camera graph (13 subdivisions + motivation)
-    depends_on: [state, contact, kinematic, motion, effort]
+    depends_on: [motion, effort]
     validated_by: [schema, invariants, constraint, camera_rules]
     writes: [/nodes/camera, /edges/camera]
 
   - id: render
     step_id: S16
     band: L6
-    builds: Prose / render projection (per modality and conditioning signal)
+    builds: Prose / render projection (full LBN layout, uncompressed)
+    projection: true
     depends_on: [intent, brief, temporal, causal, state, contact, hand_role, object_state,
                  affordance, constraint, kinematic, bartenieff, motion, effort, camera]
     validated_by: [schema, invariants, constraint]

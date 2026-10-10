@@ -21,6 +21,7 @@ from planner.dependency_graph import ROOT
 
 SOURCES = ["kernel/sources/lbn-2.3-adv.txt", "kernel/sources/lbn-2.4-adv-lma.txt"]
 SCOPE_FILE = ROOT / "kernel" / "kernel_scope.yaml"
+OWNER_FILE = "kernel/owner_invariants.yaml"
 TARGET = ROOT / "kernel" / "invariants.yaml"
 SPLIT = {"ax": ",", "key": " ", "negative": ",", "rules": ";"}
 SCOPES = {"kernel", "kernel_actor", "kernel_prop", "scene_reference"}
@@ -70,13 +71,20 @@ def build(root=ROOT):
         if row is None or row["scope"] not in SCOPES:
             raise ContractError("KERNEL_SCOPE", "Shared item has no valid scope entry", [field, text])
         item = {"id": f"k_{field}_{counters[field]:02d}", "field": field, "text": text, "scope": row["scope"],
-                "reason": row["reason"], "reference_labels": row.get("reference_labels", []),
+                "reason": row["reason"], "reference_labels": row.get("reference_labels", []), "origin": "lbn_intersection",
                 "sources": [{"file": SOURCES[0], "span": span}] +
                            [{"file": name, "span": s} for name, s in zip(SOURCES[1:], others, strict=True)]}
         shared.append(item)
     extra = set(entries) - seen
     if extra:
         raise ContractError("KERNEL_SCOPE", "kernel_scope.yaml classifies text no longer shared", sorted(extra))
+    owner_text = (root / OWNER_FILE).read_text(encoding="utf-8")
+    owner = yaml.safe_load(owner_text)
+    for index, row in enumerate(owner["items"]):
+        start = owner_text.index(row["statement"])
+        shared.append({"id": f"k_owner_{index:02d}", "field": "owner", "text": row["statement"], "scope": "kernel",
+                       "reason": row["learned_from"], "reference_labels": [], "origin": "owner",
+                       "sources": [{"file": OWNER_FILE, "span": [start, start + len(row["statement"])]}]})
     return {"version": 1, "status": scope["status"], "basis": scope["basis"], "sources": sources, "items": shared}
 
 

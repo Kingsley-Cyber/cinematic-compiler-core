@@ -137,7 +137,8 @@ class HashLog:
 SCHEMAS = HashLog("schemas/schema_log.jsonl", "schemas", "**/*.schema.json", "schema", "schema_version",
                   _schema_version)
 LIBRARY = HashLog("library/library_log.jsonl", "library", "**/*.yaml", "card", "card_version", _card_version)
-KERNEL = HashLog("kernel/kernel_log.jsonl", "kernel", ("sources/*.txt", "kernel_scope.yaml", "invariants.yaml"),
+KERNEL = HashLog("kernel/kernel_log.jsonl", "kernel", ("sources/*.txt", "kernel_scope.yaml", "invariants.yaml",
+                                                       "state_vocabulary.yaml", "conventions.yaml", "owner_invariants.yaml"),
                  "file", "file_version", _kernel_version)
 LOGS = {"schemas": SCHEMAS, "library": LIBRARY, "kernel": KERNEL}
 

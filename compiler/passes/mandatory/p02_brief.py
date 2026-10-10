@@ -21,7 +21,7 @@ def run(envelope, *, cards=None, order=None):
         raise ContractError("MISSING_INPUT", "S02 needs /intent from S01 and the envelope's nodes container")
     result = expand(envelope["intent"], cards)
     envelope_schema = json.loads(ENVELOPE_SCHEMA.read_text(encoding="utf-8"))
-    validate_schema(result["scene"], {"$ref": "#/$defs/Scene", "$defs": envelope_schema["$defs"]})
+    validate_schema(result["scene"], {"$ref": "#/$defs/SceneS02", "$defs": envelope_schema["$defs"]})
     groups = {key: result[key] for key in ("entities", "props", "surfaces")}
     validate_schema(groups, json.loads(NODES_SCHEMA.read_text(encoding="utf-8")))
     node = node_index(order)[NODE]

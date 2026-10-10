@@ -1,0 +1,19 @@
+# Frame and rotation convention (owner Q6 decision 2026-10-10). Copied into every scene.ax.
+version: 1
+status: approved
+basis: Owner Q6 2026-10-10 (intrinsic XYZ, right-handed); up/forward/ground match the kernel ax items.
+up: "+Y"
+forward: "+Z"
+ground: "y=0"
+rotation_convention:
+  euler_order: XYZ
+  kind: intrinsic
+  handedness: right
+  units: degrees
+  axes:
+    "+X": pitch forward (nose down)
+    "+Y": yaw left (nose left)
+    "+Z": roll clockwise (right shoulder down)
+  x_direction: performer's left (follows from right-handed, +Y up, facing +Z)
+  rest_pose: upright, arms at sides, facing +Z, up +Y
+  turns: {flip: X, spin: Y, cartwheel: Z}

@@ -62,31 +62,31 @@ Notes on the decisions:
 ## M1 — events and substrate (S04–S07) → done when the courtyard example compiles through S07
 
 ### M1.0 Foundations (before S04)
-- [ ] M1.0.1 `kernel/layer_order.yaml` 1.5: owner-table edges (temporal ← constraint; S08 → S09 → S10; camera ←
+- [x] M1.0.1 `kernel/layer_order.yaml` 1.5: owner-table edges (temporal ← constraint; S08 → S09 → S10; camera ←
   motion + effort); every edge group declares `from`/`to` node groups; `beat_constraint` at S04 (beats → constraints);
   `/scene/quadrant` owned by causal; render group marked `projection: true`. Test: anime order unchanged, UGC
   S08 < S09 < S10.
-- [ ] M1.0.2 `validators/layer_dependency_validator.py`: edge endpoints must be node groups written at or before
+- [x] M1.0.2 `validators/layer_dependency_validator.py`: edge endpoints must be node groups written at or before
   that step (projection groups skipped); nested ownership allowed only when the inner owner runs later — most
   specific owner wins, and `check_pass_writes` keeps the outer owner out of the inner path. Tests: each failure.
-- [ ] M1.0.3 Envelope schema: flat per-field sources (`genre_source`, `fps_source`, `duration_source`, … with values
+- [x] M1.0.3 Envelope schema: flat per-field sources (`genre_source`, `fps_source`, `duration_source`, … with values
   user | flag | default | beat_plan_end | card:<id>) replacing the `sources` map; `scene.quadrant` (incl. `linear`);
   `scene.ax.rotation_convention`; `scene.chained_from: null`; `provenance.kernel_hash`;
   `provenance.chained_from_envelope_hash: null`; render `projection` flag; carve-outs `/scene/duration_s`,
   `/scene/duration_source` (S04) and `/scene/quadrant` (S05). Log.
-- [ ] M1.0.4 Kernel split: `kernel/state_vocabulary.yaml` + `schemas/kernel_state_vocabulary.schema.json`;
+- [x] M1.0.4 Kernel split: `kernel/state_vocabulary.yaml` + `schemas/kernel_state_vocabulary.schema.json`;
   `kernel/conventions.yaml` (Q6 rotation convention) + schema; both in the kernel log; S02 copies the convention
   into `scene.ax.rotation_convention`. Test: unknown property/value refused; convention present in every scene.
-- [ ] M1.0.5 `compiler/pipeline.py` writes provenance (source prompt, versions, `kernel_hash` = sha256 of
+- [x] M1.0.5 `compiler/pipeline.py` writes provenance (source prompt, versions, `kernel_hash` = sha256 of
   invariants + state vocabulary + conventions, pass history); determinism tests ignore timing fields;
   `scripts/check.sh` fails on any example whose `kernel_hash` is stale.
-- [ ] M1.0.6 `schemas/modality/{anime,live_action,ugc_ad}.schema.json`: per-genre active steps, required groups,
+- [x] M1.0.6 `schemas/modality/{anime,live_action,ugc_ad}.schema.json`: per-genre active steps, required groups,
   authoring requirements, `default_fps` (anime 24, live_action 24, ugc_ad 30) and a draft `duration_budget_s`;
   the S04 packet carries the scene's modality rules. Log.
-- [ ] M1.0.7 S02 update: refuse with `GENRE_REQUIRED` ("add --genre") when genre is missing; drop the
+- [x] M1.0.7 S02 update: refuse with `GENRE_REQUIRED` ("add --genre") when genre is missing; drop the
   world-card genre rule; fill fps from `default_fps` with `fps_source: default`; stop writing duration.
   Tests: each source value; refusal lists the fix.
-- [ ] M1.0.8 `kernel/owner_invariants.yaml` + schema (`id, band, statement, check, layer, learned_from,
+- [x] M1.0.8 `kernel/owner_invariants.yaml` + schema (`id, band, statement, check, layer, learned_from,
   kernel_version`), first entry `no_render_compression`; the kernel generator merges owner items as
   `origin: owner`, scope kernel. Kernel log.
 

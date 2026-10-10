@@ -1,0 +1,17 @@
+# Closed state vocabulary (owner decision 2026-10-10: closed kernel list). Values drafted by Claude.
+# Any property or value not listed here is refused by S04 checks and S06 replay.
+version: 1
+status: draft
+basis: Owner chose a closed kernel list; the values below are Claude's draft for review.
+actor_properties:
+  support: {values: [grounded, airborne, braced, lying]}
+  posture: {values: [standing, crouching, kneeling, prone, supine, inverted]}
+  possession: {values_from: props, extra: [none]}
+  condition: {values: [ok, staggered, stunned, down]}
+  location: {values_from: surfaces}
+prop_properties:
+  holder: {values_from: entities, extra: [none]}
+  location: {values_from: surfaces}
+prop_card_states: true
+surface_properties:
+  damage: {values: [none, marked, scorched, cracked, cut]}

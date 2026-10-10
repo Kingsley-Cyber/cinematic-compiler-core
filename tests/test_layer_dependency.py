@@ -120,10 +120,11 @@ def test_owner_decisions_2026_10_10_fix_the_exact_order(order):
     assert [node(order, n)["band"] for n in ugc] == [
         "L0", "L0.5", "constraint", "L1", "L1", "L2", "L2", "L2.5", "L2.6", "L2.7",
         "L4a", "L4b", "L4c", "L5", "L5.5", "L6", "L6.5"]
-    assert node(order, "intent")["writes"] == ["/intent"]
     assert node(order, "brief")["writes"] == ["/scene", "/nodes/entities", "/nodes/props", "/nodes/surfaces"]
-    assert node(order, "temporal")["writes"] == ["/nodes/beats", "/edges/temporal"]
-    assert node(order, "causal")["writes"] == ["/edges/causal"]
+    assert node(order, "temporal")["writes"] == ["/nodes/beats", "/edges/temporal", "/edges/beat_constraint",
+                                                 "/scene/duration_s", "/scene/duration_source"]
+    assert node(order, "causal")["writes"] == ["/edges/causal", "/scene/quadrant"]
+    assert node(order, "intent")["writes"] == ["/intent"]
     assert "/edges/constraint_application" in node(order, "constraint")["writes"]
     assert node(order, "render")["writes"] == ["/nodes/render"]
 
@@ -142,3 +143,34 @@ def test_step_and_item_layer_tags_are_checked_against_the_owner(order):
     envelope["nodes"]["states"]["items"].append({"id": "staff_held", "band": "L1"})
     found = [row for row in check_envelope(envelope, order) if row["code"] == "LAYER_TAG"]
     assert {row["subject"][0] for row in found} == {"/edges/causal", "/nodes/states"}
+
+
+def test_edge_groups_need_declared_endpoints_built_no_later(order):
+    del order["edge_endpoints"]["causal"]
+    assert "EDGE_ENDPOINTS" in codes(check_layer_order(order))
+    order = copy.deepcopy(order)
+    order["edge_endpoints"]["causal"] = {"from": ["beats"], "to": ["beats"]}
+    order["edge_endpoints"]["beat_constraint"]["to"] = ["kinematic"]
+    order["edge_endpoints"]["temporal"]["to"] = ["render"]
+    found = [row for row in check_layer_order(order) if row["code"] == "EDGE_ENDPOINTS"]
+    assert {row["subject"][1] for row in found} >= {"kinematic", "render"}
+
+
+def test_carve_outs_need_a_later_owner_and_the_most_specific_owner_wins(order):
+    before = empty_envelope(order, "anime")
+    after = copy.deepcopy(before)
+    after["scene"]["quadrant"]["quadrant"] = "A"
+    assert check_pass_writes(order, "causal", before, after) == []
+    assert check_pass_writes(order, "brief", before, after)[0]["code"] == "WRITE_SCOPE"
+    after = copy.deepcopy(before)
+    after["scene"]["fps"] = 30
+    assert check_pass_writes(order, "brief", before, after) == []
+    assert check_pass_writes(order, "causal", before, after)[0]["code"] == "WRITE_SCOPE"
+    node(order, "intent")["writes"].append("/scene/genre")
+    assert "OVERLAPPING_WRITE" in codes(check_layer_order(order))
+
+
+def test_projection_steps_write_node_groups_only(order):
+    node(order, "render")["writes"].append("/edges/render_links")
+    order["edge_endpoints"]["render_links"] = {"from": ["render"], "to": ["render"]}
+    assert "PROJECTION" in codes(check_layer_order(order))

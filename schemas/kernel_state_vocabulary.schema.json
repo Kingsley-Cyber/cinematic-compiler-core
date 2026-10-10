@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:kernel_state_vocabulary:1.0",
+  "title": "Closed state vocabulary (kernel)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "status",
+    "basis",
+    "actor_properties",
+    "prop_properties",
+    "prop_card_states",
+    "surface_properties"
+  ],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "approved"
+      ]
+    },
+    "basis": {
+      "type": "string",
+      "minLength": 1
+    },
+    "actor_properties": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/Property"
+      }
+    },
+    "prop_properties": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/Property"
+      }
+    },
+    "prop_card_states": {
+      "type": "boolean"
+    },
+    "surface_properties": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/Property"
+      }
+    }
+  },
+  "$defs": {
+    "Property": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "values": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "values_from": {
+          "enum": [
+            "props",
+            "entities",
+            "surfaces"
+          ]
+        },
+        "extra": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "values"
+          ]
+        },
+        {
+          "required": [
+            "values_from"
+          ]
+        }
+      ]
+    }
+  }
+}

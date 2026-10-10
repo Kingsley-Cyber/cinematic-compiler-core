@@ -25,6 +25,11 @@ QUERIES = ["10 seconds choreographed wizard versus acrobat fight scene in a ston
            "ninja vs ninja on the rooftop"]
 
 
+def run(query, **kwargs):
+    genre = None if ("ugc" in query or "anime" in query) else "anime"
+    return pipeline.run(query, genre=genre, cards=CARDS, **kwargs)
+
+
 def graph_of(envelope):
     return {"constraints": envelope["nodes"]["constraints"]["items"],
             "applications": envelope["edges"]["constraint_application"]["items"],
@@ -33,12 +38,12 @@ def graph_of(envelope):
 
 @pytest.mark.parametrize("query", QUERIES)
 def test_schema_gate(query):
-    validate_schema(graph_of(pipeline.run(query, cards=CARDS)), SCHEMA)
+    validate_schema(graph_of(run(query)), SCHEMA)
 
 
 @pytest.mark.parametrize("query", QUERIES)
 def test_completeness_and_non_invention(query):
-    envelope = pipeline.run(query, cards=CARDS)
+    envelope = run(query)
     graph = graph_of(envelope)
     entities = envelope["nodes"]["entities"]["items"]
     props = envelope["nodes"]["props"]["items"]
@@ -69,7 +74,7 @@ def test_completeness_and_non_invention(query):
 
 def test_reference_fight_rules_are_never_applied():
     for query in QUERIES:
-        constraints = graph_of(pipeline.run(query, cards=CARDS))["constraints"]
+        constraints = graph_of(run(query))["constraints"]
         assert not [c for c in constraints if c["scope"] == "scene_reference"]
 
 
@@ -78,19 +83,19 @@ def test_determinism_gate_is_byte_identical_across_processes():
     outputs = set()
     for seed in ("0", "11", "4242"):
         env = {**os.environ, "PYTHONHASHSEED": seed}
-        outputs.add(subprocess.run([sys.executable, "-m", "compiler.pipeline", QUERIES[0]], cwd=ROOT,
+        outputs.add(subprocess.run([sys.executable, "-m", "compiler.pipeline", QUERIES[0], "--genre", "anime"], cwd=ROOT,
                                    capture_output=True, text=True, env=env, check=True).stdout)
-    assert outputs == {canonical_json(pipeline.run(QUERIES[0]))}
+    assert outputs == {canonical_json(pipeline.run(QUERIES[0], genre="anime"))}
 
 
 @pytest.mark.integration
 def test_s03_pass_writes_only_its_paths_and_needs_s02(order):
-    before = pipeline.run(QUERIES[0], until="brief", cards=CARDS)
+    before = run(QUERIES[0], until="brief")
     snapshot = copy.deepcopy(before)
     after = p03_constraint.run(before, cards=CARDS, kernel=KERNEL, order=order)
     assert before == snapshot
     assert check_pass_writes(order, "constraint", before, after) == []
     assert after["nodes"]["constraints"]["band"] == "constraint" and after["nodes"]["constraints"]["step_id"] == "S03"
     with pytest.raises(ContractError) as error:
-        p03_constraint.run(pipeline.run(QUERIES[0], until="intent"), cards=CARDS, kernel=KERNEL, order=order)
+        p03_constraint.run(run(QUERIES[0], until="intent"), cards=CARDS, kernel=KERNEL, order=order)
     assert error.value.code == "MISSING_INPUT"

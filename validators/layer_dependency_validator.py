@@ -12,13 +12,13 @@ import re
 
 from kernel.canonical import ContractError
 from kernel.version import ENVELOPE_VERSION, KERNEL_VERSION, LAYER_ORDER_VERSION
-from planner.dependency_graph import is_active, node_index, write_owners
+from planner.dependency_graph import is_active, node_index, owner_of, write_owners
 from planner.topological_sort import build_order
 
 KNOWN_VALIDATORS = {"schema", "coherence", "invariants", "constraint", "camera_rules",
                     "pose", "object", "state", "affordance"}
 TOP_PATHS = {"/graph_version", "/derived_from", "/intent", "/scene", "/invariants", "/provenance"}
-GROUP_PREFIXES = ("/nodes/", "/edges/", "/validation/")
+GROUP_PREFIXES = ("/nodes/", "/edges/", "/validation/", "/scene/")
 STEP_ID = re.compile(r"S[0-9]{2}")
 
 
@@ -59,11 +59,25 @@ def check_layer_order(order):
             findings.append(_finding("SHARED_WRITE", "Each envelope path has exactly one owner", [path, writers]))
         if path not in TOP_PATHS and not (path.startswith(GROUP_PREFIXES) and path.count("/") == 2):
             findings.append(_finding("UNKNOWN_PATH", "Write path is not a declared envelope location", path))
+    sequences = {}
+    for modality in order["modalities"]:
+        try:
+            sequences[modality] = build_order(order, modality)
+        except ContractError:
+            sequences[modality] = None
     paths = sorted(owners)
     for path in paths:
         for other in paths:
-            if other != path and other.startswith(path + "/"):
-                findings.append(_finding("OVERLAPPING_WRITE", "Write paths may not nest", [path, other]))
+            if other == path or not other.startswith(path + "/"):
+                continue
+            outer, inner = owners[path][0], owners[other][0]
+            # A carve-out is allowed only when its owner always runs after the outer owner.
+            later = all(seq is None or outer not in seq or inner not in seq or seq.index(inner) > seq.index(outer)
+                        for seq in sequences.values())
+            if outer == "pipeline" or inner == "pipeline" or outer == inner or not later:
+                findings.append(_finding("OVERLAPPING_WRITE", "A nested path must be owned by a later step",
+                                         [path, other]))
+    findings.extend(_check_edges(order, owners, sequences))
     steps = [node["step_id"] for node in order["nodes"]]
     for node in order["nodes"]:
         if not STEP_ID.fullmatch(node["step_id"]):
@@ -83,6 +97,37 @@ def check_layer_order(order):
         if ordered != sorted(ordered) or len(set(ordered)) != len(ordered):
             findings.append(_finding("STEP_ORDER", "Step IDs must increase along the build order",
                                      [modality, list(zip(sequence, ordered, strict=True))]))
+    return findings
+
+
+def _check_edges(order, owners, sequences):
+    """Every edge group declares endpoints that are node groups written no later than the edge group."""
+    findings = []
+    index = node_index(order)
+    endpoints = order["edge_endpoints"]
+    written = {path.split("/")[2] for path in owners if path.startswith("/edges/")}
+    for group in sorted(written ^ set(endpoints)):
+        findings.append(_finding("EDGE_ENDPOINTS", "Edge group and endpoint declarations must match", group))
+    for node in order["nodes"]:
+        if node.get("projection") and any(not path.startswith("/nodes/") for path in node["writes"]):
+            findings.append(_finding("PROJECTION", "A projection step writes node groups only", node["id"]))
+        if "projection" in node and node["projection"] is not True:
+            findings.append(_finding("PROJECTION", "projection is either true or absent", node["id"]))
+    for group in sorted(written & set(endpoints)):
+        writer = owners["/edges/" + group][0]
+        for end in endpoints[group]["from"] + endpoints[group]["to"]:
+            if end == "scene":
+                continue
+            owner = owners.get("/nodes/" + end, [None])[0]
+            if owner is None or owner == "pipeline" or index[owner].get("projection"):
+                findings.append(_finding("EDGE_ENDPOINTS", "Endpoint is not a graph node group", [group, end]))
+                continue
+            for modality, seq in sequences.items():
+                if seq is None or writer not in seq:
+                    continue
+                if owner not in seq or seq.index(owner) > seq.index(writer):
+                    findings.append(_finding("EDGE_ENDPOINTS", "Endpoint group is not built before the edge group",
+                                             [group, end, modality]))
     return findings
 
 
@@ -136,11 +181,8 @@ def _changed(before, after, path=""):
 
 
 def check_pass_writes(order, node_id, before, after):
-    """A pass may change only the paths its node owns; earlier graphs stay untouched."""
-    node = node_index(order).get(node_id)
-    if node is None:
+    """A pass may change only paths whose most specific owner is its node; earlier graphs stay untouched."""
+    if node_id not in node_index(order):
         return [_finding("UNKNOWN_NODE", "Pass names an undeclared node", node_id)]
-    allowed = node["writes"]
     return [_finding("WRITE_SCOPE", "Pass changed a path it does not own", [node_id, changed])
-            for changed in _changed(before, after)
-            if not any(changed == path or changed.startswith(path + "/") for path in allowed)]
+            for changed in _changed(before, after) if owner_of(order, changed) != node_id]

@@ -16,6 +16,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -31,6 +32,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -46,6 +48,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -61,6 +64,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -76,6 +80,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -91,6 +96,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -106,6 +112,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -121,6 +128,7 @@ items:
   scope: kernel
   reason: Names no scene entity; applies to every scene as written.
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -136,6 +144,7 @@ items:
   scope: kernel
   reason: Names no scene entity; applies to every scene as written.
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -151,6 +160,7 @@ items:
   scope: kernel
   reason: Names no scene entity; applies to every scene as written.
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -167,6 +177,7 @@ items:
   reason: Per-actor control written for the reference actors; applies to every declared actor.
   reference_labels:
   - A
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -182,6 +193,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -197,6 +209,7 @@ items:
   scope: kernel
   reason: Names no scene entity; applies to every scene as written.
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -212,6 +225,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -227,6 +241,7 @@ items:
   scope: kernel
   reason: Joint key naming shared by both LBN versions.
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -242,6 +257,7 @@ items:
   scope: kernel
   reason: Joint key naming shared by both LBN versions.
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -257,6 +273,7 @@ items:
   scope: kernel
   reason: Joint key naming shared by both LBN versions.
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -272,6 +289,7 @@ items:
   scope: kernel
   reason: Joint key naming shared by both LBN versions.
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -287,6 +305,7 @@ items:
   scope: kernel
   reason: Joint key naming shared by both LBN versions.
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -302,6 +321,7 @@ items:
   scope: kernel
   reason: Joint key naming shared by both LBN versions.
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -317,6 +337,7 @@ items:
   scope: kernel
   reason: Joint key naming shared by both LBN versions.
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -332,6 +353,7 @@ items:
   scope: kernel
   reason: Names no scene entity; applies to every scene as written.
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -347,6 +369,7 @@ items:
   scope: kernel
   reason: Names no scene entity; applies to every scene as written.
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -362,6 +385,7 @@ items:
   scope: kernel
   reason: Names no scene entity; applies to every scene as written.
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -377,6 +401,7 @@ items:
   scope: kernel
   reason: Names no scene entity; applies to every scene as written.
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -392,6 +417,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -407,6 +433,7 @@ items:
   scope: kernel
   reason: Names no scene entity; applies to every scene as written.
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -424,6 +451,7 @@ items:
   reference_labels:
   - A
   - B
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -440,6 +468,7 @@ items:
   reason: Per-actor control written for the reference actors; applies to every declared actor.
   reference_labels:
   - A
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -456,6 +485,7 @@ items:
   reason: Per-prop control written for the reference props; applies to every declared prop.
   reference_labels:
   - kunai
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -472,6 +502,7 @@ items:
   reason: Per-prop control written for the reference props; applies to every declared prop.
   reference_labels:
   - rope dart
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -488,6 +519,7 @@ items:
   reason: Per-prop control written for the reference props; applies to every declared prop.
   reference_labels:
   - smoke pellet
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -504,6 +536,7 @@ items:
   reason: Per-prop control written for the reference props; applies to every declared prop.
   reference_labels:
   - shuriken
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -519,6 +552,7 @@ items:
   scope: kernel
   reason: Names no scene entity; applies to every scene as written.
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -534,6 +568,7 @@ items:
   scope: kernel
   reason: Render negative that names no scene entity; applies to every scene as written.
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -549,6 +584,7 @@ items:
   scope: kernel
   reason: Render negative that names no scene entity; applies to every scene as written.
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -564,6 +600,7 @@ items:
   scope: kernel
   reason: Render negative that names no scene entity; applies to every scene as written.
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -579,6 +616,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -594,6 +632,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -610,6 +649,7 @@ items:
   reason: Per-actor control written for the reference actors; applies to every declared actor.
   reference_labels:
   - A
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -626,6 +666,7 @@ items:
   reason: Per-actor control written for the reference actors; applies to every declared actor.
   reference_labels:
   - A
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -641,6 +682,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -656,6 +698,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -671,6 +714,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -686,6 +730,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -701,6 +746,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -716,6 +762,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -732,6 +779,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -747,6 +795,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -762,6 +811,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -777,6 +827,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -792,6 +843,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -807,6 +859,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -822,6 +875,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -837,6 +891,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -852,6 +907,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -868,6 +924,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -883,6 +940,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -899,6 +957,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -914,6 +973,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -929,6 +989,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -946,6 +1007,7 @@ items:
   reference_labels:
   - A
   - B
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -966,6 +1028,7 @@ items:
   - smoke_pellet
   - shuriken_volley
   - substitution_log
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -981,6 +1044,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -996,6 +1060,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -1011,6 +1076,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -1026,6 +1092,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -1042,6 +1109,7 @@ items:
   scope: scene_reference
   reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
   reference_labels: []
+  origin: lbn_intersection
   sources:
   - file: kernel/sources/lbn-2.3-adv.txt
     span:
@@ -1051,3 +1119,15 @@ items:
     span:
     - 30912
     - 31058
+- id: k_owner_00
+  field: owner
+  text: S16 output is uncompressed. The full envelope is projected; nothing is summarized, truncated, or dropped.
+  scope: kernel
+  reason: Compression removes signal. A compressed prompt loses the constraints that make the output correct.
+  reference_labels: []
+  origin: owner
+  sources:
+  - file: kernel/owner_invariants.yaml
+    span:
+    - 191
+    - 296

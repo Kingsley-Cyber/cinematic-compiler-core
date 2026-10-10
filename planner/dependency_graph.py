@@ -13,9 +13,9 @@ from kernel.canonical import ContractError
 
 ROOT = Path(__file__).resolve().parents[1]
 LAYER_ORDER = ROOT / "kernel" / "layer_order.yaml"
-TOP_KEYS = {"version", "kernel", "envelope", "modalities", "pipeline_owned", "nodes"}
+TOP_KEYS = {"version", "kernel", "envelope", "modalities", "pipeline_owned", "edge_endpoints", "nodes"}
 NODE_KEYS = {"id", "step_id", "band", "builds", "depends_on", "validated_by", "writes"}
-OPTIONAL_NODE_KEYS = {"when", "external_inputs"}
+OPTIONAL_NODE_KEYS = {"when", "external_inputs", "projection"}
 # A node checked by the constraint validator must run after the constraint graph exists.
 ORDERING_VALIDATORS = {"constraint": "constraint"}
 
@@ -72,6 +72,15 @@ def edges(order, modality):
             if validator in node["validated_by"] and producer in active and producer != node["id"]:
                 result.append((producer, node["id"]))
     return sorted(set(result), key=lambda pair: (pair[1], pair[0]))
+
+
+def owner_of(order, path):
+    """The node (or 'pipeline') owning `path`: the most specific declared write path that contains it."""
+    best, owner = "", None
+    for declared, writers in write_owners(order).items():
+        if (path == declared or path.startswith(declared + "/")) and len(declared) > len(best):
+            best, owner = declared, writers[0]
+    return owner
 
 
 def write_owners(order):

@@ -66,7 +66,8 @@
           "scope",
           "reason",
           "reference_labels",
-          "sources"
+          "sources",
+          "origin"
         ],
         "properties": {
           "id": {
@@ -79,7 +80,8 @@
               "ax",
               "key",
               "negative",
-              "rules"
+              "rules",
+              "owner"
             ]
           },
           "text": {
@@ -107,7 +109,7 @@
           },
           "sources": {
             "type": "array",
-            "minItems": 2,
+            "minItems": 1,
             "items": {
               "type": "object",
               "additionalProperties": false,
@@ -137,8 +139,36 @@
                 }
               }
             }
+          },
+          "origin": {
+            "enum": [
+              "lbn_intersection",
+              "owner"
+            ]
           }
-        }
+        },
+        "anyOf": [
+          {
+            "properties": {
+              "origin": {
+                "const": "lbn_intersection"
+              },
+              "sources": {
+                "minItems": 2
+              }
+            }
+          },
+          {
+            "properties": {
+              "origin": {
+                "const": "owner"
+              },
+              "field": {
+                "const": "owner"
+              }
+            }
+          }
+        ]
       }
     }
   }

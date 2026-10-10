@@ -25,16 +25,18 @@ def _string(min_length=1):
     return {"type": "string", "minLength": min_length}
 
 
-def _group(layer, step):
-    """A node/edge group tagged with its band (and step); items may repeat the band tag."""
+def _group(layer, step, projection=False):
+    """A node/edge group tagged with its band and step; items may repeat the band tag."""
     properties = {"band": {"const": layer}}
     if step:
         properties["step_id"] = {"const": step}
+    if projection:
+        properties["projection"] = {"const": True}
     properties["items"] = {"type": "array", "items": {
         "type": "object", "required": ["id"], "properties": {"id": _string(), "band": {"const": layer}},
         "description": "Per-graph item fields are fixed by that layer's schema when its slice lands."}}
     return {"type": "object", "additionalProperties": False, "properties": properties,
-            "required": ["band"] + (["step_id"] if step else []) + ["items"]}
+            "required": ["band"] + (["step_id"] if step else []) + (["projection"] if projection else []) + ["items"]}
 
 
 def _embed(name, path):
@@ -59,7 +61,7 @@ def build(order):
         if step:
             steps.append(step)
         name = "Group_" + (step or node["band"])
-        defs.setdefault(name, _group(node["band"], step))
+        defs.setdefault(name, _group(node["band"], step, node.get("projection", False)))
         for path in node["writes"]:
             kind, _, group = path.strip("/").partition("/")
             if kind in groups:
@@ -68,42 +70,69 @@ def build(order):
                     required[kind].append(group)
     for name, path in EMBEDDED.items():
         defs.update(_embed(name, path))
-    scene_fields = ["duration_s", "fps", "genre", "world", "setting", "style_reference", "ax"]
-    source = {"type": "string", "pattern": "^(intent:(query|flag)|card:[a-z][a-z0-9_]*)$"}
+    carve_outs = sorted(path.split("/")[2] for node in order["nodes"] if node["id"] != "brief"
+                        for path in node["writes"] if path.startswith("/scene/"))
+    source = {"type": ["string", "null"],
+              "pattern": "^(user|flag|default|beat_plan_end|kernel|card:[a-z][a-z0-9_]*|kernel\\+card:[a-z][a-z0-9_]*)$"}
+    convention = json.loads((ROOT / "schemas" / "kernel_conventions.schema.json").read_text(encoding="utf-8"))
+    quadrant = {"type": "object", "additionalProperties": False,
+        "required": ["linear", "causal", "style", "quadrant", "strata", "load_bearing"],
+        "properties": {"linear": {"type": "boolean"},
+                       "causal": {"type": "object", "additionalProperties": False,
+                                  "required": ["branching", "parallel_effects", "prerequisites"],
+                                  "properties": {k: {"type": "integer", "minimum": 0, "maximum": 2}
+                                                 for k in ("branching", "parallel_effects", "prerequisites")}},
+                       "style": {"type": "integer", "minimum": 0, "maximum": 2},
+                       "quadrant": {"enum": ["A", "B", "C", "D"]},
+                       "strata": {"type": "array", "uniqueItems": True, "items": {"enum": [1, 2, 3, 4]}},
+                       "load_bearing": {"type": "boolean"}}}
+    scene_properties = {
+        "genre": {"enum": list(order["modalities"])}, "genre_source": source,
+        "fps": {"type": "number", "exclusiveMinimum": 0}, "fps_source": source,
+        "duration_s": {"type": "number", "exclusiveMinimum": 0}, "duration_source": source,
+        "world": {"type": ["string", "null"], "pattern": "^[a-z][a-z0-9_]*$"}, "world_source": source,
+        "setting": {"type": ["string", "null"], "minLength": 1}, "setting_source": source,
+        "style_reference": {"type": ["string", "null"], "minLength": 1}, "style_reference_source": source,
+        "ax": {"type": "object", "additionalProperties": False,
+               "required": ["up", "forward", "ground", "unit", "rotation_convention"],
+               "properties": {"up": convention["properties"]["up"], "forward": convention["properties"]["forward"],
+                              "ground": _string(), "unit": {"enum": ["m", "scene_unit", None]},
+                              "rotation_convention": convention["properties"]["rotation_convention"]}},
+        "ax_source": source,
+        "quadrant": quadrant,
+        "chained_from": {"type": "null", "description": "Reserved for clip chaining (M5.5)."},
+        "missing": {"type": "array", "uniqueItems": True, "items": {
+            "enum": ["world", "setting", "style_reference", "choreography", "camera_plan", "geometry_anchors"]}},
+        "ambiguous": {"type": "array", "items": {
+            "type": "object", "additionalProperties": False, "required": ["field", "candidates", "reason"],
+            "properties": {"field": {"enum": ["world"]}, "reason": _string(),
+                           "candidates": {"type": "array", "minItems": 2, "items": _string()}}}},
+        "unresolved_hints": {"type": "array", "items": {
+            "type": "object", "additionalProperties": False, "required": ["hint", "field", "reason"],
+            "properties": {"hint": _string(), "reason": _string(),
+                           "field": {"enum": ["entities_hinted", "props_hinted"]}}}}}
     defs["Scene"] = {"type": "object", "additionalProperties": False,
-        "description": "Written by S02. A null value is listed in `missing`; every value names its source.",
-        "required": scene_fields + ["sources", "missing", "ambiguous", "unresolved_hints"],
-        "properties": {"duration_s": {"type": ["number", "null"], "exclusiveMinimum": 0},
-                       "fps": {"type": ["number", "null"], "exclusiveMinimum": 0},
-                       "genre": {"enum": [None, *order["modalities"]]},
-                       "world": {"type": ["string", "null"], "pattern": "^[a-z][a-z0-9_]*$"},
-                       "setting": {"type": ["string", "null"], "minLength": 1},
-                       "style_reference": {"type": ["string", "null"], "minLength": 1},
-                       "ax": {"type": ["object", "null"], "description": "Axis set-up from the world card."},
-                       "sources": {"type": "object", "additionalProperties": False,
-                                   "properties": {field: source for field in scene_fields}},
-                       "missing": {"type": "array", "uniqueItems": True, "items": {
-                           "enum": scene_fields + ["choreography", "camera_plan", "geometry_anchors"]}},
-                       "ambiguous": {"type": "array", "items": {
-                           "type": "object", "additionalProperties": False,
-                           "required": ["field", "candidates", "reason"],
-                           "properties": {"field": {"enum": ["world"]}, "reason": _string(),
-                                          "candidates": {"type": "array", "minItems": 2, "items": _string()}}}},
-                       "unresolved_hints": {"type": "array", "items": {
-                           "type": "object", "additionalProperties": False, "required": ["hint", "field", "reason"],
-                           "properties": {"hint": _string(), "reason": _string(),
-                                          "field": {"enum": ["entities_hinted", "props_hinted"]}}}}}}
+        "description": "S02 writes the scene; carve-outs " + ", ".join(carve_outs) + " are written by later steps. "
+                       "Every value names its source; `default` marks a filled default.",
+        "required": list(scene_properties), "properties": scene_properties}
+    defs["SceneS02"] = {"type": "object", "additionalProperties": False,
+        "description": "The scene as S02 writes it (carve-outs absent).",
+        "required": [k for k in scene_properties if k not in carve_outs],
+        "properties": {k: v for k, v in scene_properties.items() if k not in carve_outs}}
     defs["Invariant"] = {"type": "object", "additionalProperties": False, "required": ["id", "band", "rule"],
         "properties": {"id": _string(), "band": {"enum": labels}, "rule": _string()}}
     defs["Validation"] = {"type": "object", "additionalProperties": False, "required": VALIDATION_KEYS,
         "properties": {key: {"enum": ["pass", "fail", None]} for key in VALIDATION_KEYS}}
     defs["Provenance"] = {"type": "object", "additionalProperties": False,
-        "required": ["source_prompt", "compiler_version", "kernel_version", "layer_order_version",
-                     "build_timestamp", "pass_history", "replan_count", "replan_layers"],
-        "properties": {"source_prompt": _string(), "compiler_version": _string(),
+        "required": ["source_prompt", "compiler_version", "kernel_version", "layer_order_version", "kernel_hash",
+                     "build_timestamp", "pass_history", "replan_count", "replan_layers",
+                     "chained_from_envelope_hash"],
+        "properties": {"source_prompt": {"type": "string"}, "compiler_version": _string(),
                        "kernel_version": {"const": KERNEL_VERSION},
                        "layer_order_version": {"const": LAYER_ORDER_VERSION},
+                       "kernel_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
                        "build_timestamp": _string(),
+                       "chained_from_envelope_hash": {"type": "null"},
                        "pass_history": {"type": "array", "items": {
                            "type": "object", "additionalProperties": False,
                            "required": ["pass", "commit", "duration_ms"],

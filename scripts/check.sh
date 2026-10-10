@@ -9,4 +9,5 @@ for log in schemas library kernel; do
 done
 mise exec -- uv run --locked python -m kernel.build_ir_schema --check
 mise exec -- uv run --locked python -m kernel_extraction.control_inventory --check
+mise exec -- uv run --locked python -m compiler.examples
 echo "check: PASS"

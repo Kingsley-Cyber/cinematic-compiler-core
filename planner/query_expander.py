@@ -1,51 +1,65 @@
 """S02 query expander (band L0.5): resolve the Intent Document against library cards; no model.
 
-- duration_s, fps, setting, style_reference come only from the intent (query or flag).
-- genre comes from the intent, or from the matched world card when that card lists exactly one genre.
-- world, ax and surfaces come only from the matched world card.
+- genre comes only from the query or --genre; missing genre stops here (GENRE_REQUIRED).
+- fps comes from the query/flag, else the genre schema default (fps_source: default).
+- setting and style_reference come only from the query; duration is S04's (beat plan).
+- world and surfaces come only from the matched world card; ax = kernel conventions (+ the card's unit).
 - each entity/prop hint becomes an entity (archetype card) or a prop (object card); the card's kind decides.
-Everything unresolved is listed in scene.missing, scene.ambiguous or scene.unresolved_hints.
+Every value names its source; everything unresolved is listed in missing, ambiguous or unresolved_hints.
 """
 
 import argparse
 import sys
 
-from kernel.canonical import canonical_json
+from kernel import kernel_files
+from kernel.canonical import ContractError, canonical_json
+from planner import modality
 from planner.archetype_resolver import entity_from_card
 from planner.card_loader import load_cards, match
 from planner.entity_grounder import prop_from_card
 from planner.intent_parser import parse_intent
 from planner.world_grounder import ground_world, surfaces_from_card
 
-SCENE_FIELDS = ("duration_s", "fps", "genre", "world", "setting", "style_reference", "ax")
+RESOLVABLE = ("world", "setting", "style_reference")
 NEVER_RESOLVED = ("choreography", "camera_plan", "geometry_anchors")
 
 
 def _intent_source(intent, field):
     rows = intent["evidence"].get(field, [])
-    return "intent:flag" if rows and rows[0]["source"] == "flag" else "intent:query"
+    return "flag" if rows and rows[0]["source"] == "flag" else "user"
 
 
 def expand(intent, cards=None):
     cards = load_cards() if cards is None else cards
     parsed = intent["parsed"]
-    scene = {field: None for field in SCENE_FIELDS}
-    sources, ambiguous, unresolved = {}, [], []
-    for field in ("duration_s", "fps", "genre", "setting", "style_reference"):
-        if parsed[field] is not None:
-            scene[field], sources[field] = parsed[field], _intent_source(intent, field)
+    if parsed["genre"] is None:
+        raise ContractError("GENRE_REQUIRED", "Genre is missing: add --genre (live_action, anime or ugc_ad) "
+                            "or name it in the query", intent["raw_query"])
+    genre = parsed["genre"]
+    conventions = kernel_files.load("conventions")
+    scene = {"genre": genre, "genre_source": _intent_source(intent, "genre")}
+    if parsed["fps"] is not None:
+        scene.update(fps=parsed["fps"], fps_source=_intent_source(intent, "fps"))
+    else:
+        scene.update(fps=modality.default_fps(genre), fps_source="default")
+    for field in ("setting", "style_reference"):
+        value = parsed[field]
+        scene.update({field: value, field + "_source": "user" if value is not None else None})
+    ax = {"up": conventions["up"], "forward": conventions["forward"], "ground": conventions["ground"], "unit": None,
+          "rotation_convention": conventions["rotation_convention"]}
     world_id, candidates = ground_world(parsed["setting"], cards)
-    surfaces = []
+    surfaces, ambiguous, unresolved = [], [], []
     if world_id:
         world = cards[world_id]
-        scene["world"], scene["ax"] = world_id, dict(world["ax"])
-        sources["world"] = sources["ax"] = "card:" + world_id
+        if any(world["ax"][key] != ax[key] for key in ("up", "forward", "ground")):
+            raise ContractError("WORLD_AX_CONFLICT", "World card axes differ from the kernel conventions", world_id)
+        ax["unit"] = world["ax"]["unit"]
         surfaces = surfaces_from_card(world)
-        if scene["genre"] is None and len(world["genres"]) == 1:
-            scene["genre"], sources["genre"] = world["genres"][0], "card:" + world_id
     elif len(candidates) > 1:
         ambiguous.append({"field": "world", "candidates": candidates,
                           "reason": "The setting matches several world cards equally."})
+    scene.update(world=world_id, world_source="card:" + world_id if world_id else None, ax=ax,
+                 ax_source="kernel+card:" + world_id if world_id else "kernel", chained_from=None)
     entities, props, used = [], [], {}
     for field in ("entities_hinted", "props_hinted"):
         for hint, evidence in zip(parsed[field], intent["evidence"].get(field, []), strict=True):
@@ -61,8 +75,8 @@ def expand(intent, cards=None):
                 entities.append(entity_from_card(identity, card, hint, evidence))
             else:
                 props.append(prop_from_card(identity, card, hint, evidence))
-    missing = [field for field in SCENE_FIELDS if scene[field] is None] + list(NEVER_RESOLVED)
-    scene.update(sources=sources, missing=missing, ambiguous=ambiguous, unresolved_hints=unresolved)
+    missing = [field for field in RESOLVABLE if scene[field] is None] + list(NEVER_RESOLVED)
+    scene.update(missing=missing, ambiguous=ambiguous, unresolved_hints=unresolved)
     return {"scene": scene, "entities": entities, "props": props, "surfaces": surfaces}
 
 

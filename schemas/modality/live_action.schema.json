@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:modality:live_action:1.0",
+  "title": "Modality: live_action",
+  "description": "Live action: physically plausible weight, contact and timing; no smear or speedlines; camera grammar of practical rigs. Applies to a complete envelope; scene.fps.default is the genre fps used when the query gives none (marked fps_source: default); scene.duration_s.default is the planning budget S04 uses when the query gives no duration (draft value).",
+  "type": "object",
+  "properties": {
+    "scene": {
+      "type": "object",
+      "required": [
+        "genre"
+      ],
+      "properties": {
+        "genre": {
+          "const": "live_action"
+        },
+        "fps": {
+          "type": "number",
+          "default": 24
+        },
+        "duration_s": {
+          "type": "number",
+          "default": 10
+        }
+      }
+    }
+  },
+  "required": [
+    "scene"
+  ]
+}
