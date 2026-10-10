@@ -34,12 +34,19 @@ DO_NOT_TRACK=1 graft --dir .graphs/graft build . --no-gitignore --no-ignore
 | S13 motion (L4c) | authored Euler key poses (root pos = S04, heading = S04 facing, 11 kernel joints, declared turn axes, S06 posture) → derived quaternions, follows edges (Euler delta, slerp vs euler_axis, root trajectory) | `p13_motion.py`, `solver/{euler_solver,quaternion,trajectory}.py` |
 | S14 effort (L5) | authored LMA intervals per entity (Effort factors, effort action checked against weight x time x space, Shape, Space, intensity in the effort mode's range) → overlaps edges | `p14_effort.py`, `library/laban_vocabulary.yaml`, `library/effort_modes/` |
 | S15 camera (L5.5) | authored shot list: 13 subdivisions + motivation per shot; geometry derived (camera position, axis side, frame height, screen x); checks: tiling, coverage, motivation refs, 180-line, camera–kinematic coupling, composition, 30° cuts, genre card, subdivision coherence, intent + tempo | `p15_camera.py`, `validators/camera_validator.py`, `solver/camera_geometry.py`, `planner/camera_library.py`, `library/camera_*` |
-| S16 render (L6, projection) | authored frame parts (impact, smear on a declared limb/prop only, speedlines, holds, fx, ink) + the full LBN-2.4-ADV-LMA projection of every graph, uncompressed, item-level coverage 100% | `p16_render.py`, `renderers/anime_renderer.py` |
+| S16 render (L6, projection) | authored frame parts (impact, smear on a declared limb/prop only, speedlines, holds, fx, ink) + the full LBN-2.4-ADV-LMA projection of every graph, uncompressed, item-level coverage 100% | `p16_render.py`, `renderers/anime_renderer.py`, `renderers/ugc_renderer.py` |
+| M5.5 chaining | `--chain-from PREV.json`: S02 records the previous clip (end states, open contacts, unresolved causes, last shot); S06/S07 start from it; S15 cuts from its last shot | `planner/chaining.py` |
 
-Pipeline: `python -m compiler.pipeline "<query>" [--genre anime] [--until contact] [--plans DIR]`; an authored step
-with no plan exits 3 and prints (or `--packet-out`) its packet. Example: `examples/wizard_vs_acrobat/` (through S16; plans for S04, S11–S16 written in-session; the prompt is `examples/wizard_vs_acrobat/render.txt`).
-Golden: `examples/reference_fight/` — the LBN reference ninja fight compiled from its preface; its `render.txt` contains all 68 kernel + reference items and A's reference roots exactly. UGC: `examples/ugc_glasses_demo/` (creator unfolds and puts on glasses) through S16 with the UGC renderer.
-**The three render.txt files are ready for you to render; Claude never renders.**.
+Pipeline: `python -m compiler.pipeline "<query>" [--genre anime] [--until contact] [--plans DIR]`; the genre comes
+from the flag or the query's literal parse and decides which steps run; an authored step with no plan exits 3 and
+prints (or `--packet-out`) its packet.
+
+Examples (each recompiles byte-for-byte in the gate and has a `render.txt` ready to paste into a video model):
+- `examples/wizard_vs_acrobat/` — anime courtyard fight, 13 beats, 11 shots.
+- `examples/reference_fight/` — golden: the LBN reference ninja fight compiled from its preface; `render.txt`
+  contains all 68 kernel + reference items and A's reference roots exactly.
+- `examples/ugc_glasses_demo/` — UGC: a creator unfolds and puts on glasses; UGC renderer.
+**The three render.txt files are ready for you to render; Claude never renders.**
 Kernel = the 68 controls both LBN-2.3-ADV and LBN-2.4-ADV-LMA state (`kernel/sources/`), scoped per item.
 
 ## Controls
@@ -54,18 +61,24 @@ starter cards drafted by Claude; kernel = LBN-2.3 ∩ 2.4; beat plans written in
 linear causality only; closed kernel state vocabulary. Full log: `docs/layer_dependency.md`, plans in `docs/plans/`.
 
 ## Waiting for owner review (draft)
-- 11 library cards (`library/`), all `status: draft`.
+- 20 library cards (archetypes, worlds, objects), all `status: draft` — 11 starters plus the reference-fight set
+  (ninja_lean, ninja_broad, five props, bamboo_courtyard_pillar) and ugc_creator.
 - `kernel/kernel_scope.yaml`: kernel 20, per-actor 6, per-prop 5, reference fight only 37.
 - Draft libraries: `library/kinematic_cues.yaml`, `library/bartenieff_vocabulary.yaml` (developmental patterns are a
   disclosed interpretation; `cpcs:spiral` is a labelled extension), `library/body_modes/` (4 cards), `library/laban_vocabulary.yaml`, `library/effort_modes/` (calm, desperate,
   trained), camera library (`camera_subdivisions`, `camera_grammar`, `camera_tempo`, `camera_conventions/` x3,
-  `camera_idioms/` x5) — all numbers and rules are drafts.
+  `camera_idioms/` x5), `grip_types`, `role_templates`, `library/affordances/` x4 — all numbers and rules are drafts.
 - Reference-fight deviations from its own data (recorded in MASTER_PLAN S16.6): 10.0 hold row has no beat;
   possession tracked on props only; shuriken embed at 5.9; smoke dissipation not a state.
 - S13.6 posture cross-check is an agent addition (plan silent). Q6 note: under intrinsic XYZ a flip is pure-X only
   when facing ±Z (see MASTER_PLAN notes); no change made.
 
 ## Open questions and next work
-All six questions are decided (see **Decided this round** in
-[docs/plans/MASTER_PLAN.md](docs/plans/MASTER_PLAN.md)). Next task: **M6 deferred tooling** (M7 waits for a chosen target video model). Completed work is struck through
-under **Done**.
+M1–M5.5 are built (see **Done** in [docs/plans/MASTER_PLAN.md](docs/plans/MASTER_PLAN.md)).
+- **M6 needs your definitions before it can be built.** The plan names five tools (`synergy_matrix`,
+  `bridge_detector`, `layer_analyzer`, `kernel_compressor`, `ablation_runner`) but never says what each computes, and
+  compression/ablation touch B3 (no compression before a target model) and the no-render rule.
+- **M7** waits for a chosen and authorised target video model (S17 post-generation, conditioning emitters,
+  per-model compression).
+- Agent additions to review: S13.6 posture check, S15.5 geometry/composition rules, S04 duplicate-participant
+  check, the reference-fight deviations above.
