@@ -429,11 +429,6 @@
      "to": "b06",
      "causal_strength": "hard",
      "why": "The staggered wizard throws a desperate ward."
-    },
-    {
-     "to": "b09",
-     "causal_strength": "hard",
-     "why": "The wizard must recover from the stagger."
     }
    ]
   },

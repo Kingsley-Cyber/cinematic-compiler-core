@@ -19,7 +19,7 @@ from kernel.version import ENVELOPE_VERSION, KERNEL_VERSION, LAYER_ORDER_VERSION
 from planner.dependency_graph import ROOT, is_active, load, node_index
 from planner.topological_sort import build_order
 
-from .passes.mandatory import p01_intent, p02_brief, p03_constraint, p04_temporal
+from .passes.mandatory import p01_intent, p02_brief, p03_constraint, p04_temporal, p05_causal
 
 AUTHORED = {"temporal": p04_temporal}
 
@@ -63,7 +63,8 @@ def sequence_for(order, genre):
             if all(is_active(index[n], m) for m in order["modalities"])]
 
 
-def run(query, *, genre=None, duration_s=None, until="constraint", cards=None, plans=None, stamp=False):
+def run(query, *, genre=None, duration_s=None, until="constraint", cards=None, plans=None, load_bearing=False,
+        stamp=False):
     order = load()
     index = node_index(order)
     plans = plans or {}
@@ -86,6 +87,7 @@ def run(query, *, genre=None, duration_s=None, until="constraint", cards=None, p
     passes = {"intent": lambda env: p01_intent.run(env, query, genre=genre, duration_s=duration_s, order=order),
               "brief": lambda env: p02_brief.run(env, cards=cards, order=order),
               "constraint": lambda env: p03_constraint.run(env, cards=cards, order=order),
+              "causal": lambda env: p05_causal.run(env, order=order, load_bearing=load_bearing),
               **{node: authored(node) for node in AUTHORED}}
     sequence = sequence_for(order, genre)
     if until not in sequence:
@@ -111,6 +113,7 @@ def main(argv=None):
     parser.add_argument("--duration", type=float)
     parser.add_argument("--plans", help="folder of authored documents named <node>.json")
     parser.add_argument("--packet-out", help="where to write the packet when a step needs authoring")
+    parser.add_argument("--load-bearing", action="store_true", help="scene is load-bearing for the film (stratum 4)")
     parser.add_argument("--stamp", action="store_true", help="record build time, commit and pass durations")
     args = parser.parse_args(argv)
     plans = {}
@@ -118,7 +121,8 @@ def main(argv=None):
         plans = {p.stem: json.loads(p.read_text(encoding="utf-8")) for p in sorted(Path(args.plans).glob("*.json"))}
     duration = int(args.duration) if args.duration is not None and args.duration.is_integer() else args.duration
     try:
-        envelope = run(args.query, genre=args.genre, duration_s=duration, until=args.until, plans=plans, stamp=args.stamp)
+        envelope = run(args.query, genre=args.genre, duration_s=duration, until=args.until, plans=plans,
+                       load_bearing=args.load_bearing, stamp=args.stamp)
     except AuthorRequired as needed:
         text = canonical_json(needed.packet)
         if args.packet_out:

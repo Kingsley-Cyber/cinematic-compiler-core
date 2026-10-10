@@ -55,6 +55,8 @@ Notes on the decisions:
   inside `/scene` (same most-specific-owner rule as `scene.quadrant`).
 - B3: `kernel/invariants.yaml` is the LBN-2.3 ∩ 2.4 intersection, so owner-authored invariants such as
   `no_render_compression` live in `kernel/owner_invariants.yaml` and the generator merges them as `origin: owner`.
+- Consequence of A2 + linear-only: branching is always 0, so a scene scores at most 4 and quadrant A (5–6) is
+  unreachable until branching exists. Recorded, not blocking.
 - Still open for review only (nothing blocked): R1 — 11 draft cards, kernel scope (20/6/5/37), loose world match.
 
 ---
@@ -114,14 +116,14 @@ Notes on the decisions:
 - [x] S04.8 S04 packet and checks use the scene's modality schema (M1.0.6).
 
 ### S05 causal (L1 band, derived) — `edges.causal`, `scene.quadrant`
-- [ ] S05.1 `schemas/graphs/causal_graph.schema.json`: edge `id, from, to, relation (causes), causal_strength
+- [x] S05.1 `schemas/graphs/causal_graph.schema.json`: edge `id, from, to, relation (causes), causal_strength
   (hard|soft), why` — branching allowed by the schema; `scene.quadrant` `{linear, causal{branching, parallel_effects,
   prerequisites}, style, quadrant, strata, load_bearing}`. Log.
-- [ ] S05.2 `compiler/passes/mandatory/p05_causal.py`: edges from plan `causes`; checks: target exists, no cycles,
+- [x] S05.2 `compiler/passes/mandatory/p05_causal.py`: edges from plan `causes`; checks: target exists, no cycles,
   out-degree ≤ 1 while `linear` is true (owner: linear only, so S05 sets `linear: true`),
   hard → target starts at/after source end and one source effect satisfies a target `requires`; soft → target
   starts at/after source start.
-- [ ] S05.3 Quadrant scoring (same file): parallel = most (effects + outgoing causes) of one beat (0–1→0, 2→1,
+- [x] S05.3 Quadrant scoring (same file): parallel = most (effects + outgoing causes) of one beat (0–1→0, 2→1,
   3+→2); prerequisites = hard edges (0→0, 1–2→1, 3+→2); style = +1 style_reference, +1 any hold beat;
   quadrant A/B/C/D and strata per the owner table; `load_bearing` flag from intent/CLI (default off).
   Tests: one scene per quadrant.
