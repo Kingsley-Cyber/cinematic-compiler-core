@@ -1,0 +1,28 @@
+id: INTENT_DOCUMENT
+version: 1
+description: S01 (band L0) Intent Document written to /intent. Literal, deterministic extraction from the query and CLI flags; no model, library or inference.
+producers:
+  - planner/intent_parser.py
+  - compiler/passes/mandatory/p01_intent.py
+  - schemas/intent_document.schema.json
+consumers:
+  - kernel/build_ir_schema.py
+  - schemas/cinematic_ir.schema.json
+depends_on:
+  - IR_ENVELOPE
+invariants:
+  - output_validates_against_intent_document_schema
+  - same_query_and_flags_give_byte_identical_output_across_processes
+  - every_field_is_extracted_with_evidence_or_named_in_missing
+  - every_string_value_is_an_exact_query_substring_and_every_number_parses_from_its_span
+  - distinct_conflicting_values_give_null_plus_ambiguity_never_a_guess
+  - cli_flags_override_the_query_and_are_recorded_as_flag_evidence
+  - genre_is_never_inferred_only_extracted_or_flagged
+  - s01_pass_writes_only_intent
+validation:
+  unit:
+    - tests/test_planner.py
+  integration:
+    - tests/test_planner.py
+proof_requirements:
+  CONTRACT_CHANGE: INTEGRATION_PROVEN

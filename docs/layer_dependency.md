@@ -1,6 +1,6 @@
 # Layer dependency (L0 → L6.5)
 
-The DAG is data: [`kernel/layer_order.yaml`](../kernel/layer_order.yaml) (version 1.2). The envelope
+The DAG is data: [`kernel/layer_order.yaml`](../kernel/layer_order.yaml) (version 1.3). The envelope
 schema is generated from it, and `tests/test_layer_dependency.py` enforces it. Order is encoded only by
 the ordered step IDs (S01–S17); `layer` is the owner's band name and carries no order.
 
@@ -12,8 +12,8 @@ S01 → S02 → S03 → S04 → S05 → S06 → S07 → [S08 → S09 → S10 (UG
 
 | Node | Step / layer name | Depends on | Writes |
 |---|---|---|---|
-| intent | S01 / L0 | user query | `/scene` |
-| brief | S02 / L0.5 | intent + ontology, archetypes, worlds | `/nodes/entities`, `/nodes/props`, `/nodes/surfaces` (definitions) |
+| intent | S01 / L0 | user query + CLI flags | `/intent` (Intent Document) |
+| brief | S02 / L0.5 | intent + ontology, archetypes, worlds | `/scene`, `/nodes/entities`, `/nodes/props`, `/nodes/surfaces` (definitions) |
 | constraint | S03 / constraint | brief + kernel invariants | `/nodes/constraints`, `/edges/constraint_application`, `/invariants` |
 | temporal | S04 / L1 | brief (checked against constraint) | `/nodes/beats`, `/edges/temporal` |
 | causal | S05 / L1 | temporal | `/edges/causal` |
@@ -58,6 +58,10 @@ Every graph from S04 onward is validated against the constraint graph. Pipeline-
 | 2026-10-10 | Order lives in ordered step IDs S01–S17, not fractional numbers; L labels are names only; constraint has no L number | owner |
 | 2026-10-10 | L1 = nodes.beats + edges temporal/causal; constraint edges = constraint_application; L6 writes nodes.render | owner |
 | 2026-10-10 | Incremental schemas: items need `id` (+ optional `layer`) now; full schema per slice; composite at the end | owner |
+| 2026-10-10 | Post-generation stays a validation block (`validation.post_generation`): verdicts, not atoms | owner |
+| 2026-10-10 | S01 is pure deterministic Python; gates: schema, determinism, completeness, non-invention | owner |
+| 2026-10-10 | S01 writes `/intent`; `/scene` moves to S02 (scene needs genre/world/ax, which S01 may not infer) | owner_default |
+| 2026-10-10 | Intent Document adds `flags` and per-value `evidence`; genre uses modality names (`ugc_ad`) | owner_default |
 | 2026-10-10 | One envelope (MGRAPH-1.1) | owner_default |
 | 2026-10-10 | Camera node = 13 subdivisions + required `motivation` | owner_default |
 | 2026-10-10 | L5 holds LMA Effort (weight, time, space, flow) with Shape and Space as separate fields | owner_default |
@@ -67,7 +71,9 @@ Every graph from S04 onward is validated against the constraint graph. Pipeline-
 
 ## Open for owner review
 
-1. **L6.5 output.** Your diagram shows `nodes: (report)` for post-generation. It writes
-   `/validation/post_generation` (from your envelope's validation block). Say if it should be a node group.
-2. **Cross-file `$ref`.** The ported checker supports document-local `$ref` only; cross-file refs are
-   added with the first `schemas/graphs/` file.
+1. **Key names.** The Intent Document uses your S01 names `step_id` and `band`; envelope groups still use
+   `step` and `layer`. Unify on `step_id`/`band` everywhere?
+2. **Post-generation block shape.** `validation.post_generation` is `pass`/`fail`/`null` today; your
+   object shape (run_at, video_ref, checks, verdict, replan_*) lands with the S17 slice.
+3. **Cross-file `$ref`.** Sub-schemas are embedded into the envelope by the generator (document-local refs);
+   a cross-file resolver is still not implemented.

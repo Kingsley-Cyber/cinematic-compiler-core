@@ -17,7 +17,7 @@ from planner.topological_sort import build_order
 
 KNOWN_VALIDATORS = {"schema", "coherence", "invariants", "constraint", "camera_rules",
                     "pose", "object", "state", "affordance"}
-TOP_PATHS = {"/graph_version", "/derived_from", "/scene", "/invariants", "/provenance"}
+TOP_PATHS = {"/graph_version", "/derived_from", "/intent", "/scene", "/invariants", "/provenance"}
 GROUP_PREFIXES = ("/nodes/", "/edges/", "/validation/")
 STEP_ID = re.compile(r"S[0-9]{2}")
 

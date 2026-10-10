@@ -120,7 +120,8 @@ def test_owner_decisions_2026_10_10_fix_the_exact_order(order):
     assert [node(order, n)["layer"] for n in ugc] == [
         "L0", "L0.5", "constraint", "L1", "L1", "L2", "L2", "L2.5", "L2.6", "L2.7",
         "L4a", "L4b", "L4c", "L5", "L5.5", "L6", "L6.5"]
-    assert node(order, "brief")["writes"] == ["/nodes/entities", "/nodes/props", "/nodes/surfaces"]
+    assert node(order, "intent")["writes"] == ["/intent"]
+    assert node(order, "brief")["writes"] == ["/scene", "/nodes/entities", "/nodes/props", "/nodes/surfaces"]
     assert node(order, "temporal")["writes"] == ["/nodes/beats", "/edges/temporal"]
     assert node(order, "causal")["writes"] == ["/edges/causal"]
     assert "/edges/constraint_application" in node(order, "constraint")["writes"]

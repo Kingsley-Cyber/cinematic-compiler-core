@@ -16,6 +16,8 @@ from planner.dependency_graph import ROOT, load
 from .version import ENVELOPE_VERSION, KERNEL_VERSION, LAYER_ORDER_VERSION
 
 TARGET = ROOT / "schemas" / "cinematic_ir.schema.json"
+# Owned sub-schemas embedded under $defs (the checker resolves document-local refs only).
+EMBEDDED = {"Intent": ROOT / "schemas" / "intent_document.schema.json"}
 VALIDATION_KEYS = ["schema", "invariants", "layer_dependency", "camera_kinematic_coupling", "post_generation"]
 
 
@@ -33,6 +35,16 @@ def _group(layer, step):
         "description": "Per-graph item fields are fixed by that layer's schema when its slice lands."}}
     return {"type": "object", "additionalProperties": False, "properties": properties,
             "required": ["layer"] + (["step"] if step else []) + ["items"]}
+
+
+def _embed(name, path):
+    """Copy a sub-schema into $defs, renaming its own $defs so references stay local and unique."""
+    schema = json.loads(path.read_text(encoding="utf-8"))
+    text = json.dumps({k: v for k, v in schema.items() if k not in ("$schema", "$id")})
+    inner = json.loads(text.replace('"#/$defs/', f'"#/$defs/{name}_'))
+    defs = {f"{name}_{key}": value for key, value in inner.pop("$defs", {}).items()}
+    inner["description"] = f"Embedded from {path.relative_to(ROOT).as_posix()}. " + inner.get("description", "")
+    return {name: inner, **defs}
 
 
 def build(order):
@@ -54,6 +66,8 @@ def build(order):
                 groups[kind][group] = {"$ref": "#/$defs/" + name}
                 if "when" not in node:
                     required[kind].append(group)
+    for name, path in EMBEDDED.items():
+        defs.update(_embed(name, path))
     defs["Scene"] = {"type": "object", "additionalProperties": False,
         "required": ["duration_s", "fps", "genre", "world", "setting", "ax"],
         "properties": {"duration_s": {"type": "number", "exclusiveMinimum": 0},
@@ -85,11 +99,12 @@ def build(order):
         "title": "Cinematic IR: movement-graph envelope",
         "description": "Generated from kernel/layer_order.yaml by kernel/build_ir_schema.py; do not edit by hand.",
         "type": "object", "additionalProperties": False,
-        "required": ["graph_version", "derived_from", "scene", "nodes", "edges", "invariants", "validation",
-                     "provenance"],
+        "required": ["graph_version", "derived_from", "intent", "scene", "nodes", "edges", "invariants",
+                     "validation", "provenance"],
         "properties": {
             "graph_version": {"const": ENVELOPE_VERSION},
             "derived_from": {"const": KERNEL_VERSION},
+            "intent": {"$ref": "#/$defs/Intent"},
             "scene": {"$ref": "#/$defs/Scene"},
             "nodes": {"type": "object", "additionalProperties": False, "properties": groups["nodes"],
                       "required": required["nodes"]},

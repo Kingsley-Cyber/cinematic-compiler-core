@@ -13,4 +13,8 @@ mise exec -- uv run --locked pytest -q
 mise exec -- uv run --locked python -m kernel.schema_log verify
 ```
 
-Status: skeleton and DAG check only. No layer pass, solver or renderer exists yet.
+Status: skeleton, DAG check and S01 (intent parser). Try it:
+
+```bash
+mise exec -- uv run --locked python -m planner.intent_parser "10s anime fight, 24fps, moonlit bamboo courtyard"
+```

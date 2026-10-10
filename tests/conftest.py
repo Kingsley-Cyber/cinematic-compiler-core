@@ -10,6 +10,7 @@ sys.path.insert(0, str(ROOT))
 
 from kernel.version import ENVELOPE_VERSION, KERNEL_VERSION, LAYER_ORDER_VERSION  # noqa: E402
 from planner.dependency_graph import is_active, load  # noqa: E402
+from planner.intent_parser import parse_intent  # noqa: E402
 
 
 @pytest.fixture
@@ -35,6 +36,7 @@ def empty_envelope(order, modality):
                                        "items": []}
     return {
         "graph_version": ENVELOPE_VERSION, "derived_from": KERNEL_VERSION,
+        "intent": parse_intent("10s anime fight, 24fps, moonlit bamboo courtyard"),
         "scene": {"duration_s": 10, "fps": 24, "genre": modality, "world": "bamboo_courtyard",
                   "setting": "moonlit bamboo courtyard", "ax": {"up": "Y", "forward": "+Z", "ground": "y=0"}},
         "nodes": groups["nodes"], "edges": groups["edges"], "invariants": [],
