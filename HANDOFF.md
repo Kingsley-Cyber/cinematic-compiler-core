@@ -16,7 +16,7 @@ scripts/check.sh
 DO_NOT_TRACK=1 graft --dir .graphs/graft build . --no-gitignore --no-ignore
 ```
 
-## Built (S01–S07, S11–S16; milestones M1, M1.5, M2, M3, M4)
+## Built (S01–S16; milestones M1, M1.5, M2, M3, M4, M5)
 | Step | What it compiles | Code |
 |---|---|---|
 | S01 intent (L0) | query + flags → Intent Document at `/intent`; literal only, evidence per value, `missing`/`ambiguous` | `planner/intent_parser.py`, `compiler/passes/mandatory/p01_intent.py` |
@@ -26,6 +26,9 @@ DO_NOT_TRACK=1 graft --dir .graphs/graft build . --no-gitignore --no-ignore
 | S05 causal | beat causes → causal edges (linear) + `scene.quadrant` | `p05_causal.py` |
 | S06 state | replay → states per subject per beat + transitions | `solver/prop_state_machine.py`, `validators/continuity_validator.py`, `p06_state.py` |
 | S07 contact | contact events, lifecycle, holder/prop-change cross-checks | `p07_contact.py` |
+| S08 hand role (L2.5, UGC) | authored interactions: verb, object, hands, grips, role template; roles locked, no swaps, no double-booked hand | `p08_hand_role.py`, `library/grip_types.yaml`, `library/role_templates.yaml` |
+| S09 object state (L2.6, UGC) | derived internal card states; every change tied to a hand contact and an interaction | `p09_object_state.py` |
+| S10 affordance (L2.7, UGC) | derived proof per verb: pre/postconditions, grip, duration; `enables` edges | `p10_affordance.py`, `library/affordances/` |
 | S11 kinematic (L4a) | authored per entity per beat: support + 10 cues; support agrees with S06/S07 | `p11_kinematic.py`, `library/kinematic_cues.yaml` |
 | S12 Bartenieff (L4b) | authored coordination: connectivity, pattern, initiation, follow-through, body mode; `cpcs:` labelled | `p12_bartenieff.py`, `library/bartenieff_vocabulary.yaml`, `library/body_modes/` |
 | S13 motion (L4c) | authored Euler key poses (root pos = S04, heading = S04 facing, 11 kernel joints, declared turn axes, S06 posture) → derived quaternions, follows edges (Euler delta, slerp vs euler_axis, root trajectory) | `p13_motion.py`, `solver/{euler_solver,quaternion,trajectory}.py` |
@@ -35,12 +38,13 @@ DO_NOT_TRACK=1 graft --dir .graphs/graft build . --no-gitignore --no-ignore
 
 Pipeline: `python -m compiler.pipeline "<query>" [--genre anime] [--until contact] [--plans DIR]`; an authored step
 with no plan exits 3 and prints (or `--packet-out`) its packet. Example: `examples/wizard_vs_acrobat/` (through S16; plans for S04, S11–S16 written in-session; the prompt is `examples/wizard_vs_acrobat/render.txt`).
-Golden: `examples/reference_fight/` — the LBN reference ninja fight compiled from its preface; its `render.txt` contains all 68 kernel + reference items and A's reference roots exactly. **Both render.txt files are ready for you to render; Claude never renders.**.
+Golden: `examples/reference_fight/` — the LBN reference ninja fight compiled from its preface; its `render.txt` contains all 68 kernel + reference items and A's reference roots exactly. UGC: `examples/ugc_glasses_demo/` (creator unfolds and puts on glasses) through S16 with the UGC renderer.
+**The three render.txt files are ready for you to render; Claude never renders.**.
 Kernel = the 68 controls both LBN-2.3-ADV and LBN-2.4-ADV-LMA state (`kernel/sources/`), scoped per item.
 
 ## Controls
 Three append-only, hash-chained logs (`schemas/schema_log.jsonl`, `library/library_log.jsonl`,
-`kernel/kernel_log.jsonl`); generated files checked against regeneration; examples recompile byte-for-byte; 345 tests; all in `scripts/check.sh`.
+`kernel/kernel_log.jsonl`); generated files checked against regeneration; examples recompile byte-for-byte; 372 tests; all in `scripts/check.sh`.
 
 ## Owner decisions so far
 Step IDs S01–S17 carry order (L labels are names); keys `step_id`/`band`; constraint built after S02 and before
@@ -63,5 +67,5 @@ linear causality only; closed kernel state vocabulary. Full log: `docs/layer_dep
 
 ## Open questions and next work
 All six questions are decided (see **Decided this round** in
-[docs/plans/MASTER_PLAN.md](docs/plans/MASTER_PLAN.md)). Next task: **M5 UGC (S08–S10)** + `examples/ugc_glasses_demo/`. Completed work is struck through
+[docs/plans/MASTER_PLAN.md](docs/plans/MASTER_PLAN.md)). Next task: **M5.5 clip chaining**. Completed work is struck through
 under **Done**.

@@ -5,7 +5,8 @@ applied constraint is rendered (owner invariant no_render_compression) and `cove
 Kernel controls written for the reference actors and props are regenerated from this scene's data (labels,
 facings, props); scene-wide kernel controls are printed as written; card invariants and beat actions go to rules.
 Layout: preface text, then one JSON object: variant, fps, dur, ax, key, lma_legend, negative, laban, one track per
-actor label, one track per prop, set (surfaces), cam, anime (frame-part directives), rules.
+actor label, one track per prop, set (surfaces), cam, the genre block (here: anime frame-part directives), rules.
+`project` is shared with renderers/ugc_renderer.py.
 """
 
 import hashlib
@@ -75,6 +76,11 @@ class _Coverage:
 
 
 def render(envelope, frame_parts):
+    return project(envelope, frame_parts, "anime", lambda labels, cover: _anime(frame_parts, labels))
+
+
+def project(envelope, frame_parts, block_key, genre_block):
+    """The shared LBN projection; `genre_block(labels, cover)` builds the genre's own block (placed before rules)."""
     cover = _Coverage(envelope)
     scene = envelope["scene"]
     entities = _items(envelope, "nodes", "entities")
@@ -164,7 +170,7 @@ def render(envelope, frame_parts):
     for entity in entities:
         _subject_rows(envelope, "entity", entity["id"], states, labels, cover)
     spec["cam"] = _camera_rows(envelope, labels, cover)
-    spec["anime"] = _anime(frame_parts, labels)
+    spec[block_key] = genre_block(labels, cover)
     for beat in beats:
         cover.mark("beats", beat["id"])
     spec["rules"] = ";".join(sections["rules"] + [b["action"] for b in beats])

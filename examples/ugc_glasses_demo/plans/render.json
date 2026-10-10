@@ -1,0 +1,29 @@
+{
+ "step_id": "S16",
+ "band": "L6",
+ "packet_sha256": "sha256:44588841e6506a036275b4d8e8caf0cb4e209621e8bcac397a1b8b156d5e0b42",
+ "author": {
+  "host": "Claude Code desktop, in-session",
+  "model": "claude-opus-5-5"
+ },
+ "attempt": 1,
+ "frame_parts": {
+  "impact": [],
+  "smear": [],
+  "speedlines": [],
+  "holds": [
+   {
+    "t": 5.5,
+    "frames": 12
+   }
+  ],
+  "fx": [
+   {
+    "t": 5.5,
+    "t_end": null,
+    "text": "soft window light glints on the new lenses"
+   }
+  ],
+  "ink": "clean photographic phone footage; no ink, no smear, no speedlines"
+ }
+}

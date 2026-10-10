@@ -22,7 +22,8 @@ gates → the pass writes only its paths. A failed gate allows 2 re-authoring at
   closed state vocabulary~~
 - ~~Graph catalog (graph_types.md); URCP removed; standalone repo~~
 - ~~M1 (S04–S07), M1.5 (CLI, replan trigger), M2 (S11 kinematic, S12 Bartenieff, S13 motion), M3 (S14 effort,
-  S15 camera), M4 (S16 render + reference-fight golden); courtyard and reference examples through S16~~
+  S15 camera), M4 (S16 render + reference-fight golden), M5 (S08 hand role, S09 object state, S10 affordance,
+  UGC glasses demo); three examples through S16~~
 
 ---
 
@@ -273,8 +274,11 @@ Notes on the decisions:
   S09 state at the start, postconditions after the end, the agent grip equals the required grip, duration in range;
   `enables` edges link verbs on the same object. Electronics/cosmetics entries are for objects with no card yet
   (`card: pending`).)
-- [ ] M5.E `examples/ugc_glasses_demo/`: query, packet, Claude-authored beat plan, envelope through S10, render via
+- [x] M5.E `examples/ugc_glasses_demo/`: query, packet, Claude-authored beat plan, envelope through S10, render via
   `renderers/ugc_renderer.py`; recompiles byte-for-byte like M1.E1.
+  (Built: lift, unfold (i01), put on (i02), show; S11–S16 authored in-session; `renderers/ugc_renderer.py` shares
+  the LBN projection with the anime renderer and adds a `ugc` block (hand roles, object-state tracks, proven
+  affordances, enables, frame parts); S16 picks the renderer by genre; `render.txt` written.)
 
 ## M5.5 — clip chaining
 - [ ] S02 accepts an optional previous envelope; S06 starts from its final states; S07 from its active contacts;

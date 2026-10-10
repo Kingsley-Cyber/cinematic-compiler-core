@@ -1,0 +1,61 @@
+{
+ "step_id": "S12",
+ "band": "L4b",
+ "packet_sha256": "sha256:b3b5da288d9cb9703f878f76cb49112f62cd6bd1d21f490d9b9f62548fd1356e",
+ "author": {
+  "host": "Claude Code desktop, in-session",
+  "model": "claude-opus-5-5"
+ },
+ "attempt": 1,
+ "nodes": [
+  {
+   "slot": "ugc_creator@b01",
+   "connectivity": "body_half",
+   "developmental_pattern": "reach",
+   "intent": "take the glasses off the desk",
+   "initiation": "right_hand",
+   "follow_through": [
+    "right_arm",
+    "torso"
+   ],
+   "body_mode": "same_side"
+  },
+  {
+   "slot": "ugc_creator@b02",
+   "connectivity": "upper_lower",
+   "developmental_pattern": "grasp",
+   "intent": "open the temples without dropping the frame",
+   "initiation": "left_hand",
+   "follow_through": [
+    "left_arm",
+    "right_hand"
+   ],
+   "body_mode": "distal_core"
+  },
+  {
+   "slot": "ugc_creator@b03",
+   "connectivity": "core_distal",
+   "developmental_pattern": "reach",
+   "intent": "bring the glasses to the face",
+   "initiation": "core",
+   "follow_through": [
+    "left_arm",
+    "right_arm",
+    "head"
+   ],
+   "body_mode": "core_distal"
+  },
+  {
+   "slot": "ugc_creator@b04",
+   "connectivity": "breath",
+   "developmental_pattern": "yield",
+   "intent": "present the result",
+   "initiation": "core",
+   "follow_through": [
+    "torso",
+    "head"
+   ],
+   "body_mode": "core_distal"
+  }
+ ]
+}

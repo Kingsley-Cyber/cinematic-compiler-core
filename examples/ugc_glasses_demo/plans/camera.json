@@ -1,0 +1,324 @@
+{
+ "step_id": "S15",
+ "band": "L5.5",
+ "packet_sha256": "sha256:668eca62fd1b7b8b98832dccf19d3f99334206daa8cccdadf9159ee2f9bdbc91",
+ "author": {
+  "host": "Claude Code desktop, in-session",
+  "model": "claude-opus-5-5"
+ },
+ "attempt": 1,
+ "shots": [
+  {
+   "id": "c01",
+   "t": 0.0,
+   "dur": 1.5,
+   "beats": [
+    "b01"
+   ],
+   "intent": "product",
+   "motivation": {
+    "kind": "genre_convention",
+    "ref": "ugc_hook_first"
+   },
+   "framing": {
+    "scale": "medium_close",
+    "subjects": [
+     "ugc_creator",
+     "glasses"
+    ],
+    "detail": null,
+    "visible_action": "Talking to camera, the creator picks the folded glasses up off the desk."
+   },
+   "angle": {
+    "elevation_deg": 3,
+    "azimuth_deg": 0,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "ugc_creator",
+    "distance_m": 0.875,
+    "side": "none"
+   },
+   "lens": {
+    "focal_length_mm": 28,
+    "perspective": "wide"
+   },
+   "focus": {
+    "target": "glasses",
+    "depth_of_field": "medium",
+    "transition": "follow"
+   },
+   "movement": {
+    "kind": "tracking",
+    "path": "phone drifts with the hand down to the desk"
+   },
+   "movement_quality": {
+    "easing": "ease_in_out",
+    "stability": "floating",
+    "texture": "handheld breathing"
+   },
+   "support": {
+    "rig": "handheld"
+   },
+   "relation_to_action": {
+    "mode": "follow",
+    "subject": "ugc_creator",
+    "note": "the hand finds the glasses"
+   },
+   "composition": {
+    "placement": {
+     "ugc_creator": "center"
+    },
+    "depth_anchor": "backdrop",
+    "negative_space": "plain backdrop beside the creator"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "none",
+    "affected": []
+   },
+   "editing": {
+    "transition_in": "open",
+    "axis": "keep",
+    "eyeline": "creator into the lens"
+   }
+  },
+  {
+   "id": "c02",
+   "t": 1.5,
+   "dur": 2.0,
+   "beats": [
+    "b02"
+   ],
+   "intent": "product",
+   "motivation": {
+    "kind": "contact_event",
+    "ref": "b01_c1"
+   },
+   "framing": {
+    "scale": "insert",
+    "subjects": [
+     "ugc_creator",
+     "glasses"
+    ],
+    "detail": "right_hand",
+    "visible_action": "Right hand holds the frame; the left fingers swing the temples open."
+   },
+   "angle": {
+    "elevation_deg": 10,
+    "azimuth_deg": 0,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "ugc_creator",
+    "distance_m": 0.625,
+    "side": "none"
+   },
+   "lens": {
+    "focal_length_mm": 50,
+    "perspective": "normal"
+   },
+   "focus": {
+    "target": "glasses",
+    "depth_of_field": "shallow",
+    "transition": "hold"
+   },
+   "movement": {
+    "kind": "static",
+    "path": "close on the hands and the glasses"
+   },
+   "movement_quality": {
+    "easing": "linear",
+    "stability": "smooth",
+    "texture": "steady"
+   },
+   "support": {
+    "rig": "gimbal"
+   },
+   "relation_to_action": {
+    "mode": "observe",
+    "subject": "ugc_creator",
+    "note": "the temples swing open"
+   },
+   "composition": {
+    "placement": {
+     "ugc_creator": "center"
+    },
+    "depth_anchor": "backdrop",
+    "negative_space": "soft falloff behind the hands"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "none",
+    "affected": []
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "down at the glasses"
+   }
+  },
+  {
+   "id": "c03",
+   "t": 3.5,
+   "dur": 2.0,
+   "beats": [
+    "b03"
+   ],
+   "intent": "product",
+   "motivation": {
+    "kind": "contact_event",
+    "ref": "b02_c1"
+   },
+   "framing": {
+    "scale": "medium_close",
+    "subjects": [
+     "ugc_creator",
+     "glasses"
+    ],
+    "detail": null,
+    "visible_action": "Both hands lift the open glasses to the face and slide the temples over the ears."
+   },
+   "angle": {
+    "elevation_deg": 3,
+    "azimuth_deg": 0,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "ugc_creator",
+    "distance_m": 0.875,
+    "side": "none"
+   },
+   "lens": {
+    "focal_length_mm": 28,
+    "perspective": "wide"
+   },
+   "focus": {
+    "target": "glasses",
+    "depth_of_field": "medium",
+    "transition": "follow"
+   },
+   "movement": {
+    "kind": "tracking",
+    "path": "rises with the hands to the face"
+   },
+   "movement_quality": {
+    "easing": "ease_out",
+    "stability": "floating",
+    "texture": "handheld breathing"
+   },
+   "support": {
+    "rig": "handheld"
+   },
+   "relation_to_action": {
+    "mode": "follow",
+    "subject": "ugc_creator",
+    "note": "the glasses go on"
+   },
+   "composition": {
+    "placement": {
+     "ugc_creator": "center"
+    },
+    "depth_anchor": "backdrop",
+    "negative_space": "plain backdrop"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "none",
+    "affected": []
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "creator into the lens"
+   }
+  },
+  {
+   "id": "c04",
+   "t": 5.5,
+   "dur": 2.5,
+   "beats": [
+    "b04"
+   ],
+   "intent": "emotion",
+   "motivation": {
+    "kind": "entity_focus",
+    "ref": "ugc_creator"
+   },
+   "framing": {
+    "scale": "medium_close",
+    "subjects": [
+     "ugc_creator",
+     "glasses"
+    ],
+    "detail": null,
+    "visible_action": "Wearing the glasses, the creator smiles to camera and taps the frame."
+   },
+   "angle": {
+    "elevation_deg": 3,
+    "azimuth_deg": 0,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "ugc_creator",
+    "distance_m": 1.021,
+    "side": "none"
+   },
+   "lens": {
+    "focal_length_mm": 35,
+    "perspective": "normal"
+   },
+   "focus": {
+    "target": "ugc_creator",
+    "depth_of_field": "shallow",
+    "transition": "hold"
+   },
+   "movement": {
+    "kind": "static",
+    "path": "held on the face"
+   },
+   "movement_quality": {
+    "easing": "linear",
+    "stability": "smooth",
+    "texture": "steady"
+   },
+   "support": {
+    "rig": "gimbal"
+   },
+   "relation_to_action": {
+    "mode": "observe",
+    "subject": "ugc_creator",
+    "note": "the smile sells it"
+   },
+   "composition": {
+    "placement": {
+     "ugc_creator": "center"
+    },
+    "depth_anchor": "backdrop",
+    "negative_space": "soft window light behind"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "none",
+    "affected": []
+   },
+   "editing": {
+    "transition_in": "jump_cut",
+    "axis": "keep",
+    "eyeline": "creator into the lens"
+   }
+  }
+ ]
+}

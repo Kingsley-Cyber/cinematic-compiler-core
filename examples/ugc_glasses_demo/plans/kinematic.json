@@ -1,0 +1,84 @@
+{
+ "step_id": "S11",
+ "band": "L4a",
+ "packet_sha256": "sha256:c31388eda51c562b537f349cb80c39a676bc2f289078f8f5e5b4bebaa11c1dbb",
+ "author": {
+  "host": "Claude Code desktop, in-session",
+  "model": "claude-opus-5-5"
+ },
+ "attempt": 1,
+ "nodes": [
+  {
+   "slot": "ugc_creator@b01",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "unloaded",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "forward",
+   "tension": "relaxed",
+   "release": "none",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "steady",
+   "reads": "Leans in slightly to pick the glasses off the desk, chatting."
+  },
+  {
+   "slot": "ugc_creator@b02",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "unloaded",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "none",
+   "tension": "moderate",
+   "release": "none",
+   "strain": "none",
+   "restraint": "held_back",
+   "breathing": "steady",
+   "reads": "Holds still while the fingers work the temples open."
+  },
+  {
+   "slot": "ugc_creator@b03",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "loading",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "up",
+   "tension": "moderate",
+   "release": "none",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "held",
+   "reads": "Lifts both hands to the face, chin up a touch."
+  },
+  {
+   "slot": "ugc_creator@b04",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "unloaded",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "none",
+   "tension": "relaxed",
+   "release": "released",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "exhale",
+   "reads": "Settles back, relaxed, smiling to camera."
+  }
+ ]
+}

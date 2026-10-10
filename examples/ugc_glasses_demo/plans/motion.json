@@ -1,0 +1,308 @@
+{
+ "step_id": "S13",
+ "band": "L4c",
+ "packet_sha256": "sha256:341e8b659c345f4e073c9101c3c78bc7cd3f5d4a43f3218a9dd1a31b8fea4c30",
+ "author": {
+  "host": "Claude Code desktop, in-session",
+  "model": "claude-opus-5-5"
+ },
+ "attempt": 1,
+ "keys": [
+  {
+   "slot": "ugc_creator@b01",
+   "name": "reach_for_glasses",
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     20,
+     0,
+     0
+    ],
+    "LUL": [
+     -5,
+     0,
+     6
+    ],
+    "RUL": [
+     -5,
+     0,
+     -6
+    ],
+    "LL": [
+     5,
+     0,
+     0
+    ],
+    "RL": [
+     5,
+     0,
+     0
+    ],
+    "LA": [
+     -10,
+     0,
+     10
+    ],
+    "RA": [
+     -55,
+     0,
+     -5
+    ],
+    "LFA": [
+     -30,
+     0,
+     0
+    ],
+    "RFA": [
+     -20,
+     0,
+     0
+    ],
+    "HD": [
+     10,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "turn": "none",
+   "axis_declaration": "none",
+   "description": "Upright at the desk, leaning in, the right hand reaching down for the folded glasses."
+  },
+  {
+   "slot": "ugc_creator@b02",
+   "name": "unfold_at_chest",
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     5,
+     0,
+     0
+    ],
+    "LUL": [
+     -5,
+     0,
+     6
+    ],
+    "RUL": [
+     -5,
+     0,
+     -6
+    ],
+    "LL": [
+     5,
+     0,
+     0
+    ],
+    "RL": [
+     5,
+     0,
+     0
+    ],
+    "LA": [
+     -40,
+     0,
+     10
+    ],
+    "RA": [
+     -40,
+     0,
+     -10
+    ],
+    "LFA": [
+     -95,
+     0,
+     0
+    ],
+    "RFA": [
+     -95,
+     0,
+     0
+    ],
+    "HD": [
+     10,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "turn": "none",
+   "axis_declaration": "none",
+   "description": "Glasses held at chest height in the right hand; the left fingers swing the temples open."
+  },
+  {
+   "slot": "ugc_creator@b03",
+   "name": "lift_to_face",
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     0,
+     0,
+     0
+    ],
+    "LUL": [
+     -5,
+     0,
+     6
+    ],
+    "RUL": [
+     -5,
+     0,
+     -6
+    ],
+    "LL": [
+     5,
+     0,
+     0
+    ],
+    "RL": [
+     5,
+     0,
+     0
+    ],
+    "LA": [
+     -70,
+     0,
+     25
+    ],
+    "RA": [
+     -70,
+     0,
+     -25
+    ],
+    "LFA": [
+     -120,
+     0,
+     0
+    ],
+    "RFA": [
+     -120,
+     0,
+     0
+    ],
+    "HD": [
+     -5,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "turn": "none",
+   "axis_declaration": "none",
+   "description": "Both hands raise the open glasses to the face, elbows out."
+  },
+  {
+   "slot": "ugc_creator@b04",
+   "name": "present_result",
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     -3,
+     0,
+     0
+    ],
+    "LUL": [
+     -5,
+     0,
+     6
+    ],
+    "RUL": [
+     -5,
+     0,
+     -6
+    ],
+    "LL": [
+     5,
+     0,
+     0
+    ],
+    "RL": [
+     5,
+     0,
+     0
+    ],
+    "LA": [
+     -15,
+     0,
+     10
+    ],
+    "RA": [
+     -60,
+     0,
+     -5
+    ],
+    "LFA": [
+     -40,
+     0,
+     0
+    ],
+    "RFA": [
+     -110,
+     0,
+     0
+    ],
+    "HD": [
+     0,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "turn": "none",
+   "axis_declaration": "none",
+   "description": "Wearing the glasses, sitting back, the right index finger tapping the frame."
+  }
+ ]
+}

@@ -4,17 +4,23 @@ Authored: frame-part directives (impact, smear, speedlines, holds, fx, ink). Che
 impact shots; a smear names one subject and, for a body, one part (smear only on the declared limb or prop) and sits
 on a sudden effort of that body or an event of that prop; speedlines likewise; holds sit on beat boundaries; fx
 inside the scene; and the projection's coverage is complete (owner invariant no_render_compression).
-Derived: the render node (renderers/anime_renderer.py): target, variant, text, sha256, coverage, frame parts.
+Derived: the render node (renderers/anime_renderer.py;
+ugc_renderer.py for ugc_ad): target, variant, text, sha256, coverage, frame parts.
 """
 
 from compiler.authoring import run_authored, seal
 from planner.dependency_graph import ROOT, load
-from renderers import anime_renderer
+from renderers import anime_renderer, ugc_renderer
 
 NODE, STEP = "render", "S16"
+RENDERERS = {"ugc_ad": ugc_renderer}  # every other genre uses the anime LBN layout
 PLAN_SCHEMA = ROOT / "schemas" / "graphs" / "frame_parts_plan.schema.json"
 PROMPT = ROOT / "planner" / "prompts" / "frame_parts.txt"
 ONSETS = ("touch", "possess", "support")
+
+
+def renderer(envelope):
+    return RENDERERS.get(envelope["scene"]["genre"], anime_renderer)
 
 
 def prepare(envelope):
@@ -81,7 +87,7 @@ def check(document, packet, envelope=None):
         if not 0 <= fx["t"] <= end or (fx["t_end"] is not None and not fx["t"] < fx["t_end"] <= end):
             findings.append({"code": "FRAME_FX", "message": f"fx at {fx['t']} is outside the scene"})
     if envelope is not None:
-        coverage = anime_renderer.render(envelope, frame)["coverage"]
+        coverage = renderer(envelope).render(envelope, frame)["coverage"]
         if not coverage["complete"]:
             missing = {g: row["missing"] for g, row in coverage["groups"].items() if row["missing"]}
             findings.append({"code": "RENDER_COVERAGE", "message": "no_render_compression: the render misses items",
@@ -90,7 +96,7 @@ def check(document, packet, envelope=None):
 
 
 def build(envelope, document, packet):
-    result = anime_renderer.render(envelope, document["frame_parts"])
+    result = renderer(envelope).render(envelope, document["frame_parts"])
     return {"/nodes/render": [{"id": "render", **result, "frame_parts": document["frame_parts"]}]}
 
 
