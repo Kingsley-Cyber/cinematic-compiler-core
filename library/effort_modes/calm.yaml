@@ -1,0 +1,12 @@
+card_id: calm
+kind: effort_mode
+card_version: 1
+status: draft
+names: [calm, composed]
+description: "Unhurried, settled effort; force is spent only where the action needs it."
+intensity: [0.0, 0.5]
+tendencies: {flow: free, time: sustained}
+provenance:
+  authored_by: claude-code
+  date: "2026-10-10"
+  basis: Draft effort mode (owner list calm, desperate, trained); not research-sourced; needs owner review.

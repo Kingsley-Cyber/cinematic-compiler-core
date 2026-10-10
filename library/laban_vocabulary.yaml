@@ -1,0 +1,21 @@
+# Effort, Shape and Space (S14, L5). Draft vocabulary by Claude for owner review.
+# LMA categories stay distinct: Effort = the four motion factors (weight, time, space, flow) with their two
+# elements each; Shape and Space are separate categories, not Effort. `latent` marks a factor that is not active
+# in the interval (LMA states activate two factors, drives three). The eight basic effort actions are Laban's
+# weight x time x space combinations (punch is also called thrust); the step checks the action against the factors.
+vocabulary_id: laban_vocabulary
+version: 1
+status: draft
+basis: Owner L5 list (Effort weight/time/space/flow, 8 effort actions, Shape and Space separate); LMA terms, values drafted by Claude.
+fields:
+  effort.weight: {kind: values, values: [light, strong, latent], description: "Effort factor weight (attitude to force)."}
+  effort.time: {kind: values, values: [sustained, sudden, latent], description: "Effort factor time (attitude to duration)."}
+  effort.space: {kind: values, values: [indirect, direct, latent], description: "Effort factor space (attitude to attention)."}
+  effort.flow: {kind: values, values: [free, bound, latent], description: "Effort factor flow (attitude to control)."}
+  effort_action: {kind: values, values: [float, punch, glide, slash, dab, wring, flick, press, none], description: "Basic effort action named by weight, time and space when all three are active; none otherwise."}
+  shape.quality: {kind: values, values: [rising, sinking, spreading, enclosing, advancing, retreating], description: "Dominant Shape quality (LMA Shape, not Effort)."}
+  shape.mode: {kind: values, values: [shape_flow, directional_spoke, directional_arc, carving], description: "Mode of shape change."}
+  space.kinesphere: {kind: values, values: [near, mid, far], description: "Reach space used (LMA Space)."}
+  space.pathway: {kind: values, values: [central, peripheral, transverse], description: "Spatial pathway through the kinesphere."}
+  space.plane: {kind: values, values: [vertical, horizontal, sagittal], description: "Dominant plane (door, table, wheel)."}
+  effort_mode: {kind: values, values: [calm, desperate, trained], description: "Effort mode card id."}

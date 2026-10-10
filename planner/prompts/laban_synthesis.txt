@@ -1,0 +1,10 @@
+S14 effort (L5). Group each entity's slots into intervals of consecutive slots that share one movement quality;
+every slot belongs to exactly one interval of its entity. For each interval write:
+- effort: the four LMA Effort factors, each one of its two elements or latent when the factor is not active
+  (weight light/strong, time sustained/sudden, space indirect/direct, flow free/bound);
+- effort_action: the basic effort action when weight, time and space are all active (float, punch, glide, slash,
+  dab, wring, flick, press), otherwise none. It must match those three factors;
+- shape (quality, mode) and space (kinesphere, pathway, plane): separate LMA categories, not Effort;
+- intensity 0-1 inside the chosen effort mode's range, and the effort_mode card id.
+Read the slots' motion keys (pose, turn), kinematic cues and Bartenieff pattern: effort is how that motion is
+performed, not what it is. Copy packet_sha256.

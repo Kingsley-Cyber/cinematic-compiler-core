@@ -203,12 +203,13 @@ Notes on the decisions:
 ## M3 — feel and framing (S14–S15)
 
 ### S14 effort (L5, authored)
-- [ ] S14.1 `library/laban_vocabulary.yaml` (draft): Effort weight light|strong, time sustained|sudden, space
+- [x] S14.1 `library/laban_vocabulary.yaml` (draft): Effort weight light|strong, time sustained|sudden, space
   indirect|direct, flow free|bound; 8 effort actions; Shape and Space qualities kept separate.
-- [ ] S14.2 `library/effort_modes/` (calm, desperate, trained; draft).
-- [ ] S14.3 `schemas/graphs/effort_graph.schema.json`: interval `{actor, beats, effort{weight,time,space,flow},
-  shape, space, intensity, effort_mode}`; edges `overlaps`. Log.
-- [ ] S14.4 `p14_effort.py` + `laban_synthesis.txt`; validator: intervals cover each actor's beats; values from vocabulary.
+- [x] S14.2 `library/effort_modes/` (calm, desperate, trained; draft).
+- [x] S14.3 `schemas/graphs/effort_graph.schema.json`: interval `{actor, beats, effort{weight,time,space,flow},
+  shape, space, intensity, effort_mode}`; edges `overlaps`. Log. (Added: `effort_action` checked against weight x time x
+  space; `latent` for an inactive factor; the interval id and time span are derived.)
+- [x] S14.4 `p14_effort.py` + `laban_synthesis.txt`; validator: intervals cover each actor's beats; values from vocabulary.
 
 ### S15 camera (L5.5, authored)
 - [ ] S15.1 Library (draft): camera_subdivisions, camera_grammar, camera_tempo, camera_idioms/, camera_conventions/.

@@ -1,0 +1,12 @@
+card_id: trained
+kind: effort_mode
+card_version: 1
+status: draft
+names: [trained, disciplined]
+description: "Practised, economical effort: precise attention and controlled flow at any speed."
+intensity: [0.3, 0.9]
+tendencies: {flow: bound, space: direct}
+provenance:
+  authored_by: claude-code
+  date: "2026-10-10"
+  basis: Draft effort mode (owner list calm, desperate, trained); not research-sourced; needs owner review.

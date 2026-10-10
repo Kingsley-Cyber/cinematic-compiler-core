@@ -1,0 +1,12 @@
+card_id: desperate
+kind: effort_mode
+card_version: 1
+status: draft
+names: [desperate, frantic]
+description: "Effort under threat: urgent, effortful and held tight."
+intensity: [0.6, 1.0]
+tendencies: {flow: bound, time: sudden, weight: strong}
+provenance:
+  authored_by: claude-code
+  date: "2026-10-10"
+  basis: Draft effort mode (owner list calm, desperate, trained); not research-sourced; needs owner review.

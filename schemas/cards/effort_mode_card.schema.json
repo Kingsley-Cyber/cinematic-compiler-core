@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:effort_mode_card:1.0",
+  "title": "Effort mode card (S14, L5)",
+  "description": "How an entity spends effort: the intensity range an interval in this mode must fall in, and informational factor tendencies (not enforced).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "card_id",
+    "kind",
+    "card_version",
+    "status",
+    "names",
+    "description",
+    "intensity",
+    "tendencies",
+    "provenance"
+  ],
+  "properties": {
+    "card_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "kind": {
+      "const": "effort_mode"
+    },
+    "card_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "approved"
+      ]
+    },
+    "names": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "intensity": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      },
+      "description": "[min, max] intensity of intervals in this mode."
+    },
+    "tendencies": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Typical Effort elements (informational).",
+      "properties": {
+        "weight": {
+          "enum": [
+            "light",
+            "strong"
+          ]
+        },
+        "time": {
+          "enum": [
+            "sustained",
+            "sudden"
+          ]
+        },
+        "space": {
+          "enum": [
+            "indirect",
+            "direct"
+          ]
+        },
+        "flow": {
+          "enum": [
+            "free",
+            "bound"
+          ]
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authored_by",
+        "date",
+        "basis"
+      ],
+      "properties": {
+        "authored_by": {
+          "type": "string",
+          "minLength": 1
+        },
+        "date": {
+          "type": "string",
+          "minLength": 1
+        },
+        "basis": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

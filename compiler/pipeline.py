@@ -19,10 +19,11 @@ from kernel.version import ENVELOPE_VERSION, KERNEL_VERSION, LAYER_ORDER_VERSION
 from planner.dependency_graph import ROOT, is_active, load, node_index
 from planner.topological_sort import build_order
 
-from .passes.derived import p11_kinematic, p12_bartenieff, p13_motion
+from .passes.derived import p11_kinematic, p12_bartenieff, p13_motion, p14_effort
 from .passes.mandatory import p01_intent, p02_brief, p03_constraint, p04_temporal, p05_causal, p06_state, p07_contact
 
-AUTHORED = {"temporal": p04_temporal, "kinematic": p11_kinematic, "bartenieff": p12_bartenieff, "motion": p13_motion}
+AUTHORED = {"temporal": p04_temporal, "kinematic": p11_kinematic, "bartenieff": p12_bartenieff, "motion": p13_motion,
+            "effort": p14_effort}
 
 VALIDATION_KEYS = ("schema", "invariants", "layer_dependency", "camera_kinematic_coupling", "post_generation")
 UNSTAMPED = "unstamped"
