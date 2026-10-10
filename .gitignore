@@ -1,17 +1,9 @@
-.control-state/
-.beads/
-.dolt/
 .venv/
 __pycache__/
 .pytest_cache/
 .ruff_cache/
-.codegraph/
-*.db
-.beads-credential-key
-*.gate.lock*
-/graphify-out/
-.DS_Store
 *.egg-info/
-
-# Beads / Dolt files (added by bd init)
-.beads/proxieddb/
+.graphs/
+/graphify-out/
+.ignore
+.DS_Store

@@ -5,8 +5,8 @@ camera subdivisions, key pose / frame part / Laban / implied pose) with the rout
 Detailed S04–S07 specs: [s04-s07-l1-l2.md](s04-s07-l1-l2.md). Layer DAG: `kernel/layer_order.yaml`.
 What each graph is for (owner catalog): [graph_types.md](../graph_types.md).
 
-**Built (local `main`):** S01 intent, S02 query expansion, S03 constraint graph — 167 tests, URCP INTEGRATION_PROVEN,
-schema/library/kernel hash logs, Beads tasks. Head `156e9ea`.
+**Built:** S01 intent, S02 query expansion, S03 constraint graph — 167 tests, schema/library/kernel hash logs,
+`scripts/check.sh` gate. Current state and open questions: [HANDOFF.md](../../HANDOFF.md).
 
 ## 1. The route (one row per step)
 
@@ -62,8 +62,8 @@ hash-bound packet (no paid API), then checked; "derived" = deterministic code, i
    `provenance.replan_count` / `replan_layers`. Authored files live with the scene (`examples/<scene>/`).
 2. **Gates:** schema, determinism (byte-identical across processes), completeness, non-invention, write scope,
    plus the step's own checks.
-3. **Control:** schema log, library log, kernel log; one URCP contract per step; Beads task per step; graft and
-   graphify refreshed; checkpoint; one commit per step.
+3. **Control:** schema log, library log, kernel log; `scripts/check.sh` before each commit; graft and graphify
+   refreshed; one commit per step.
 4. **Quadrant and strata** (S05): causal score (branching 0, parallel effects, prerequisites) + style score →
    quadrant A–D → strata. S16 uses them to decide how much graph and prose to emit (A full/full, B full/medium,
    C minimal/full, D minimal/minimal). "Load-bearing" (stratum 4) is a CLI/intent flag, default off.
