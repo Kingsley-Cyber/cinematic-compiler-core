@@ -29,7 +29,7 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "actors": {
+        "entities": {
           "$ref": "#/$defs/Group_L0.5"
         },
         "props": {
@@ -38,14 +38,17 @@
         "surfaces": {
           "$ref": "#/$defs/Group_L0.5"
         },
+        "constraints": {
+          "$ref": "#/$defs/Group_L1.5"
+        },
         "beats": {
-          "$ref": "#/$defs/Group_L1"
+          "$ref": "#/$defs/Group_L1.1"
         },
         "states": {
-          "$ref": "#/$defs/Group_L2"
+          "$ref": "#/$defs/Group_L2.1"
         },
         "contacts": {
-          "$ref": "#/$defs/Group_L2"
+          "$ref": "#/$defs/Group_L2.2"
         },
         "hand_role": {
           "$ref": "#/$defs/Group_L2.5"
@@ -55,9 +58,6 @@
         },
         "affordance": {
           "$ref": "#/$defs/Group_L2.7"
-        },
-        "constraints": {
-          "$ref": "#/$defs/Group_L3a"
         },
         "kinematic": {
           "$ref": "#/$defs/Group_L4a"
@@ -72,17 +72,17 @@
           "$ref": "#/$defs/Group_L5"
         },
         "camera": {
-          "$ref": "#/$defs/Group_L4.5"
+          "$ref": "#/$defs/Group_L5.5"
         }
       },
       "required": [
-        "actors",
+        "entities",
         "props",
         "surfaces",
+        "constraints",
         "beats",
         "states",
         "contacts",
-        "constraints",
         "kinematic",
         "bartenieff",
         "motion",
@@ -94,17 +94,20 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
+        "constraint": {
+          "$ref": "#/$defs/Group_L1.5"
+        },
         "temporal": {
-          "$ref": "#/$defs/Group_L1"
+          "$ref": "#/$defs/Group_L1.1"
         },
         "causal": {
-          "$ref": "#/$defs/Group_L1"
+          "$ref": "#/$defs/Group_L1.2"
         },
         "state_transition": {
-          "$ref": "#/$defs/Group_L2"
+          "$ref": "#/$defs/Group_L2.1"
         },
         "contact": {
-          "$ref": "#/$defs/Group_L2"
+          "$ref": "#/$defs/Group_L2.2"
         },
         "hand_role_transition": {
           "$ref": "#/$defs/Group_L2.5"
@@ -114,9 +117,6 @@
         },
         "affordance_dependency": {
           "$ref": "#/$defs/Group_L2.7"
-        },
-        "constraint": {
-          "$ref": "#/$defs/Group_L3a"
         },
         "kinematic_transition": {
           "$ref": "#/$defs/Group_L4a"
@@ -131,15 +131,15 @@
           "$ref": "#/$defs/Group_L5"
         },
         "camera": {
-          "$ref": "#/$defs/Group_L4.5"
+          "$ref": "#/$defs/Group_L5.5"
         }
       },
       "required": [
+        "constraint",
         "temporal",
         "causal",
         "state_transition",
         "contact",
-        "constraint",
         "kinematic_transition",
         "bartenieff_transition",
         "motion",
@@ -163,10 +163,6 @@
   "$defs": {
     "Group_L0": {
       "type": "object",
-      "required": [
-        "layer",
-        "items"
-      ],
       "additionalProperties": false,
       "properties": {
         "layer": {
@@ -175,17 +171,30 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/Item"
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "layer": {
+                "const": "L0"
+              }
+            },
+            "description": "Per-graph item fields are fixed by that layer's schema when its slice lands."
           }
         }
-      }
-    },
-    "Group_L0.5": {
-      "type": "object",
+      },
       "required": [
         "layer",
         "items"
-      ],
+      ]
+    },
+    "Group_L0.5": {
+      "type": "object",
       "additionalProperties": false,
       "properties": {
         "layer": {
@@ -194,55 +203,206 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/Item"
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "layer": {
+                "const": "L0.5"
+              }
+            },
+            "description": "Per-graph item fields are fixed by that layer's schema when its slice lands."
           }
         }
-      }
-    },
-    "Group_L1": {
-      "type": "object",
+      },
       "required": [
         "layer",
         "items"
-      ],
+      ]
+    },
+    "Group_L1.5": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "layer": {
+          "const": "L1.5"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "layer": {
+                "const": "L1.5"
+              }
+            },
+            "description": "Per-graph item fields are fixed by that layer's schema when its slice lands."
+          }
+        }
+      },
+      "required": [
+        "layer",
+        "items"
+      ]
+    },
+    "Group_L1.1": {
+      "type": "object",
       "additionalProperties": false,
       "properties": {
         "layer": {
           "const": "L1"
         },
+        "step": {
+          "const": "L1.1"
+        },
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/Item"
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "layer": {
+                "const": "L1"
+              }
+            },
+            "description": "Per-graph item fields are fixed by that layer's schema when its slice lands."
           }
         }
-      }
-    },
-    "Group_L2": {
-      "type": "object",
+      },
       "required": [
         "layer",
+        "step",
         "items"
-      ],
+      ]
+    },
+    "Group_L1.2": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "layer": {
+          "const": "L1"
+        },
+        "step": {
+          "const": "L1.2"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "layer": {
+                "const": "L1"
+              }
+            },
+            "description": "Per-graph item fields are fixed by that layer's schema when its slice lands."
+          }
+        }
+      },
+      "required": [
+        "layer",
+        "step",
+        "items"
+      ]
+    },
+    "Group_L2.1": {
+      "type": "object",
       "additionalProperties": false,
       "properties": {
         "layer": {
           "const": "L2"
         },
+        "step": {
+          "const": "L2.1"
+        },
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/Item"
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "layer": {
+                "const": "L2"
+              }
+            },
+            "description": "Per-graph item fields are fixed by that layer's schema when its slice lands."
           }
         }
-      }
+      },
+      "required": [
+        "layer",
+        "step",
+        "items"
+      ]
+    },
+    "Group_L2.2": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "layer": {
+          "const": "L2"
+        },
+        "step": {
+          "const": "L2.2"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "layer": {
+                "const": "L2"
+              }
+            },
+            "description": "Per-graph item fields are fixed by that layer's schema when its slice lands."
+          }
+        }
+      },
+      "required": [
+        "layer",
+        "step",
+        "items"
+      ]
     },
     "Group_L2.5": {
       "type": "object",
-      "required": [
-        "layer",
-        "items"
-      ],
       "additionalProperties": false,
       "properties": {
         "layer": {
@@ -251,17 +411,30 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/Item"
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "layer": {
+                "const": "L2.5"
+              }
+            },
+            "description": "Per-graph item fields are fixed by that layer's schema when its slice lands."
           }
         }
-      }
-    },
-    "Group_L2.6": {
-      "type": "object",
+      },
       "required": [
         "layer",
         "items"
-      ],
+      ]
+    },
+    "Group_L2.6": {
+      "type": "object",
       "additionalProperties": false,
       "properties": {
         "layer": {
@@ -270,17 +443,30 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/Item"
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "layer": {
+                "const": "L2.6"
+              }
+            },
+            "description": "Per-graph item fields are fixed by that layer's schema when its slice lands."
           }
         }
-      }
-    },
-    "Group_L2.7": {
-      "type": "object",
+      },
       "required": [
         "layer",
         "items"
-      ],
+      ]
+    },
+    "Group_L2.7": {
+      "type": "object",
       "additionalProperties": false,
       "properties": {
         "layer": {
@@ -289,36 +475,30 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/Item"
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "layer": {
+                "const": "L2.7"
+              }
+            },
+            "description": "Per-graph item fields are fixed by that layer's schema when its slice lands."
           }
         }
-      }
-    },
-    "Group_L3a": {
-      "type": "object",
+      },
       "required": [
         "layer",
         "items"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "layer": {
-          "const": "L3a"
-        },
-        "items": {
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/Item"
-          }
-        }
-      }
+      ]
     },
     "Group_L4a": {
       "type": "object",
-      "required": [
-        "layer",
-        "items"
-      ],
       "additionalProperties": false,
       "properties": {
         "layer": {
@@ -327,17 +507,30 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/Item"
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "layer": {
+                "const": "L4a"
+              }
+            },
+            "description": "Per-graph item fields are fixed by that layer's schema when its slice lands."
           }
         }
-      }
-    },
-    "Group_L4b": {
-      "type": "object",
+      },
       "required": [
         "layer",
         "items"
-      ],
+      ]
+    },
+    "Group_L4b": {
+      "type": "object",
       "additionalProperties": false,
       "properties": {
         "layer": {
@@ -346,17 +539,30 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/Item"
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "layer": {
+                "const": "L4b"
+              }
+            },
+            "description": "Per-graph item fields are fixed by that layer's schema when its slice lands."
           }
         }
-      }
-    },
-    "Group_L4c": {
-      "type": "object",
+      },
       "required": [
         "layer",
         "items"
-      ],
+      ]
+    },
+    "Group_L4c": {
+      "type": "object",
       "additionalProperties": false,
       "properties": {
         "layer": {
@@ -365,17 +571,30 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/Item"
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "layer": {
+                "const": "L4c"
+              }
+            },
+            "description": "Per-graph item fields are fixed by that layer's schema when its slice lands."
           }
         }
-      }
-    },
-    "Group_L5": {
-      "type": "object",
+      },
       "required": [
         "layer",
         "items"
-      ],
+      ]
+    },
+    "Group_L5": {
+      "type": "object",
       "additionalProperties": false,
       "properties": {
         "layer": {
@@ -384,36 +603,62 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/Item"
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "layer": {
+                "const": "L5"
+              }
+            },
+            "description": "Per-graph item fields are fixed by that layer's schema when its slice lands."
           }
         }
-      }
-    },
-    "Group_L4.5": {
-      "type": "object",
+      },
       "required": [
         "layer",
         "items"
-      ],
+      ]
+    },
+    "Group_L5.5": {
+      "type": "object",
       "additionalProperties": false,
       "properties": {
         "layer": {
-          "const": "L4.5"
+          "const": "L5.5"
         },
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/Item"
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "layer": {
+                "const": "L5.5"
+              }
+            },
+            "description": "Per-graph item fields are fixed by that layer's schema when its slice lands."
           }
         }
-      }
-    },
-    "Group_L6": {
-      "type": "object",
+      },
       "required": [
         "layer",
         "items"
-      ],
+      ]
+    },
+    "Group_L6": {
+      "type": "object",
       "additionalProperties": false,
       "properties": {
         "layer": {
@@ -422,17 +667,30 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/Item"
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "layer": {
+                "const": "L6"
+              }
+            },
+            "description": "Per-graph item fields are fixed by that layer's schema when its slice lands."
           }
         }
-      }
-    },
-    "Group_L6.5": {
-      "type": "object",
+      },
       "required": [
         "layer",
         "items"
-      ],
+      ]
+    },
+    "Group_L6.5": {
+      "type": "object",
       "additionalProperties": false,
       "properties": {
         "layer": {
@@ -441,23 +699,27 @@
         "items": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/Item"
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "layer": {
+                "const": "L6.5"
+              }
+            },
+            "description": "Per-graph item fields are fixed by that layer's schema when its slice lands."
           }
         }
-      }
-    },
-    "Item": {
-      "type": "object",
-      "required": [
-        "id"
-      ],
-      "properties": {
-        "id": {
-          "type": "string",
-          "minLength": 1
-        }
       },
-      "description": "Per-graph item fields are fixed by that layer's schema when its slice lands."
+      "required": [
+        "layer",
+        "items"
+      ]
     },
     "Scene": {
       "type": "object",
@@ -517,17 +779,17 @@
           "enum": [
             "L0",
             "L0.5",
+            "L1.5",
             "L1",
             "L2",
             "L2.5",
             "L2.6",
             "L2.7",
-            "L3a",
             "L4a",
             "L4b",
             "L4c",
             "L5",
-            "L4.5",
+            "L5.5",
             "L6",
             "L6.5"
           ]
@@ -612,7 +874,7 @@
           "const": "LBN-2.4"
         },
         "layer_order_version": {
-          "const": "1.0"
+          "const": "1.1"
         },
         "build_timestamp": {
           "type": "string",
@@ -654,19 +916,23 @@
             "enum": [
               "L0",
               "L0.5",
+              "L1.5",
               "L1",
               "L2",
               "L2.5",
               "L2.6",
               "L2.7",
-              "L3a",
               "L4a",
               "L4b",
               "L4c",
               "L5",
-              "L4.5",
+              "L5.5",
               "L6",
-              "L6.5"
+              "L6.5",
+              "L1.1",
+              "L1.2",
+              "L2.1",
+              "L2.2"
             ]
           }
         }

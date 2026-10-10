@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 LAYER_ORDER = ROOT / "kernel" / "layer_order.yaml"
 TOP_KEYS = {"version", "kernel", "envelope", "modalities", "pipeline_owned", "nodes"}
 NODE_KEYS = {"id", "layer", "builds", "depends_on", "validated_by", "writes"}
-OPTIONAL_NODE_KEYS = {"when", "external_inputs"}
+OPTIONAL_NODE_KEYS = {"when", "external_inputs", "step"}
 # A node checked by the constraint validator must run after the constraint graph exists.
 ORDERING_VALIDATORS = {"constraint": "constraint"}
 
@@ -35,8 +35,10 @@ def load(path=LAYER_ORDER):
             value = node.get(key, [])
             if not isinstance(value, list) or any(not isinstance(item, str) or not item for item in value):
                 raise ContractError("LAYER_ORDER_SHAPE", f"{key} must be a list of names", node.get("id"))
-        if not all(isinstance(node[key], str) and node[key] for key in ("id", "layer", "builds")):
-            raise ContractError("LAYER_ORDER_SHAPE", "id, layer and builds must be nonempty strings", f"nodes[{index}]")
+        if not all(isinstance(node[key], str) and node[key] for key in ("id", "layer", "builds") + (
+                ("step",) if "step" in node else ())):
+            raise ContractError("LAYER_ORDER_SHAPE", "id, layer, builds and step must be nonempty strings",
+                                f"nodes[{index}]")
     return order
 
 

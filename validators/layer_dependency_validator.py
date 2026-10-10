@@ -61,11 +61,38 @@ def check_layer_order(order):
         for other in paths:
             if other != path and other.startswith(path + "/"):
                 findings.append(_finding("OVERLAPPING_WRITE", "Write paths may not nest", [path, other]))
+    bands = {}
+    for node in order["nodes"]:
+        bands.setdefault(node["layer"], []).append(node)
+    for layer, members in bands.items():
+        stepped = [row for row in members if "step" in row]
+        if stepped and len(stepped) != len(members):
+            findings.append(_finding("STEP_BAND", "Every node in a stepped band needs a step", layer))
+        for row in stepped:
+            suffix = row["step"][len(layer) + 1:]
+            if not row["step"].startswith(layer + ".") or not suffix.isdigit():
+                findings.append(_finding("STEP_BAND", "Step must be <band>.<number>", [row["id"], row["step"]]))
+        names = [row["step"] for row in stepped]
+        if len(set(names)) != len(names):
+            findings.append(_finding("STEP_BAND", "Steps within a band must be unique", layer))
     for modality in order["modalities"]:
         try:
-            build_order(order, modality)
+            sequence = build_order(order, modality)
         except ContractError as error:
             findings.append(_finding(error.code, error.message, [modality, error.path]))
+            continue
+        for layer, members in bands.items():
+            built = [row for row in members if row["id"] in sequence and "step" in row]
+            by_order = [row["id"] for row in sorted(built, key=lambda row: sequence.index(row["id"]))]
+
+            def number(row, layer=layer):
+                suffix = row["step"][len(layer) + 1:]
+                return int(suffix) if suffix.isdigit() else -1
+
+            by_step = [row["id"] for row in sorted(built, key=number)]
+            if by_order != by_step:
+                findings.append(_finding("STEP_ORDER", "Steps must follow the build order inside their band",
+                                         [modality, layer, by_order]))
     return findings
 
 
@@ -83,9 +110,13 @@ def check_envelope(envelope, order):
                 findings.append(_finding("UNKNOWN_GROUP", "Group has no owning layer in layer_order.yaml", path))
                 continue
             node = index[writer]
-            if value["layer"] != node["layer"]:
-                findings.append(_finding("LAYER_TAG", "Group layer tag differs from its owning node",
-                                         [path, value["layer"], node["layer"]]))
+            if value["layer"] != node["layer"] or value.get("step") != node.get("step"):
+                findings.append(_finding("LAYER_TAG", "Group layer/step tag differs from its owning node",
+                                         [path, [value["layer"], value.get("step")],
+                                          [node["layer"], node.get("step")]]))
+            stray = [item["id"] for item in value["items"] if item.get("layer", node["layer"]) != node["layer"]]
+            if stray:
+                findings.append(_finding("LAYER_TAG", "Item layer tag differs from its group", [path, stray]))
             if not is_active(node, modality) and value["items"]:
                 findings.append(_finding("INACTIVE_LAYER_DATA", "A layer inactive for this modality holds items",
                                          [path, modality]))

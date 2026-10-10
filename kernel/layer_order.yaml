@@ -1,23 +1,30 @@
 # Single source of truth for the cinematic-compiler layer DAG.
 #
-# Each node is one graph build (a pass). `layer` is the owner's label from the
-# layer table; build order comes from the edges below, never from the number.
-# Pass file names, the envelope schema and the validators are checked against
-# this file (tests/test_layer_dependency.py, tests/test_schemas.py).
+# Each node is one graph build (a pass). `layer` is the owner's band label and
+# `step` (optional) orders graphs inside one band. Build order comes from the
+# edges below; tests check that steps follow it. Pass file names, the envelope
+# schema and the validators are checked against this file.
 #
 # Owner decisions 2026-10-10:
-#   - Effort (L5) is built before camera (L4.5), so a camera beat may cite an
+#   - Effort (L5) is built before camera (L5.5); a camera beat may cite an
 #     effort quality as its motive. Effort depends on motion only.
+#   - Entity definitions (entities, props, surfaces) are L0.5; their state
+#     tracks (states, contacts) are L2.
+#   - Bands with steps: L1.1 temporal, L1.2 causal; L2.1 state, L2.2 contact.
+#   - Constraint is L1.5: built from brief + kernel invariants right after
+#     L0.5, before the event graphs, and checked at every later layer.
 #   - Camera nodes carry 13 subdivisions plus a required `motivation` field.
 #   - Effort holds the four LMA Effort factors (weight, time, space, flow);
 #     LMA Shape and Space are separate fields, not Effort factors.
+#   - Graph items need `id` (and may carry `layer`) until each layer's slice
+#     fixes its graph schema.
 #
 # `depends_on` lists data inputs. `validated_by: constraint` also orders the
 # node after the constraint graph, because that check reads it.
 # `when` limits a node to the listed modalities; edges to an inactive node are
 # dropped, and only conditional nodes may be inactive.
 
-version: "1.0"
+version: "1.1"
 kernel: LBN-2.4
 envelope: MGRAPH-1.1
 modalities: [live_action, anime, ugc_ad]
@@ -37,38 +44,50 @@ nodes:
 
   - id: brief
     layer: L0.5
-    builds: Expanded brief (entity, archetype and world grounding)
+    builds: Expanded brief (entity, prop and surface definitions; archetype and world grounding)
     depends_on: [intent]
     external_inputs: [library/ontology, library/archetypes, library/worlds]
     validated_by: [schema, coherence]
-    writes: [/nodes/actors, /nodes/props, /nodes/surfaces]
+    writes: [/nodes/entities, /nodes/props, /nodes/surfaces]
+
+  - id: constraint
+    layer: L1.5
+    builds: Constraint graph (kernel + world + archetype invariants)
+    depends_on: [brief]
+    external_inputs: [kernel/invariants.yaml]
+    validated_by: [schema]
+    writes: [/nodes/constraints, /edges/constraint, /invariants]
 
   - id: temporal
     layer: L1
+    step: L1.1
     builds: Temporal graph
     depends_on: [brief]
-    validated_by: [schema, invariants]
+    validated_by: [schema, invariants, constraint]
     writes: [/nodes/beats, /edges/temporal]
 
   - id: causal
     layer: L1
+    step: L1.2
     builds: Causal graph
     depends_on: [temporal]
-    validated_by: [schema, invariants]
+    validated_by: [schema, invariants, constraint]
     writes: [/edges/causal]
 
   - id: state
     layer: L2
-    builds: State graph
+    step: L2.1
+    builds: State graph (state tracks of L0.5 definitions)
     depends_on: [temporal, causal]
-    validated_by: [schema, invariants]
+    validated_by: [schema, invariants, constraint]
     writes: [/nodes/states, /edges/state_transition]
 
   - id: contact
     layer: L2
+    step: L2.2
     builds: Contact graph
     depends_on: [temporal, causal, state]
-    validated_by: [schema, invariants]
+    validated_by: [schema, invariants, constraint]
     writes: [/nodes/contacts, /edges/contact]
 
   - id: hand_role
@@ -96,14 +115,6 @@ nodes:
     depends_on: [hand_role, object_state]
     validated_by: [schema, invariants, constraint]
     writes: [/nodes/affordance, /edges/affordance_dependency]
-
-  - id: constraint
-    layer: L3a
-    builds: Constraint graph (kernel + world + archetype invariants)
-    depends_on: [brief]
-    external_inputs: [kernel/invariants.yaml]
-    validated_by: [schema]
-    writes: [/nodes/constraints, /edges/constraint, /invariants]
 
   - id: kinematic
     layer: L4a
@@ -134,7 +145,7 @@ nodes:
     writes: [/nodes/efforts, /edges/effort]
 
   - id: camera
-    layer: L4.5
+    layer: L5.5
     builds: Camera graph (13 subdivisions + motivation)
     depends_on: [state, contact, kinematic, motion, effort]
     validated_by: [schema, invariants, constraint, camera_rules]

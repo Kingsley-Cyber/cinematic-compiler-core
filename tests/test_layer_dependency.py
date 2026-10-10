@@ -110,3 +110,37 @@ def test_a_pass_may_change_only_its_own_paths(order):
     found = check_pass_writes(order, "temporal", before, after)
     assert [row["subject"][1] for row in found] == ["/nodes/states/items"]
     assert check_pass_writes(order, "lighting", before, after)[0]["code"] == "UNKNOWN_NODE"
+
+
+def label(order, identity):
+    row = node(order, identity)
+    return row.get("step", row["layer"])
+
+
+def test_owner_decisions_2026_10_10_fix_the_exact_order(order):
+    core = ["L0", "L0.5", "L1.5", "L1.1", "L1.2", "L2.1", "L2.2"]
+    tail = ["L4a", "L4b", "L4c", "L5", "L5.5", "L6", "L6.5"]
+    assert [label(order, n) for n in build_order(order, "anime")] == core + tail
+    assert [label(order, n) for n in build_order(order, "ugc_ad")] == core + ["L2.5", "L2.6", "L2.7"] + tail
+    assert node(order, "brief")["writes"] == ["/nodes/entities", "/nodes/props", "/nodes/surfaces"]
+    assert (node(order, "constraint")["layer"], node(order, "camera")["layer"]) == ("L1.5", "L5.5")
+    assert (node(order, "temporal")["layer"], node(order, "causal")["layer"]) == ("L1", "L1")
+    assert (node(order, "state")["layer"], node(order, "contact")["layer"]) == ("L2", "L2")
+
+
+def test_steps_must_be_well_formed_unique_and_follow_build_order(order):
+    node(order, "temporal")["step"], node(order, "causal")["step"] = "L1.2", "L1.1"
+    assert "STEP_ORDER" in codes(check_layer_order(order))
+    node(order, "temporal")["step"] = "L1.x"
+    node(order, "causal")["step"] = "L2.1"
+    assert "STEP_BAND" in codes(check_layer_order(order))
+    del node(order, "temporal")["step"]
+    assert "STEP_BAND" in codes(check_layer_order(order))
+
+
+def test_step_and_item_layer_tags_are_checked_against_the_owner(order):
+    envelope = empty_envelope(order, "anime")
+    envelope["edges"]["causal"]["step"] = "L1.1"
+    envelope["nodes"]["states"]["items"].append({"id": "staff_held", "layer": "L1"})
+    found = [row for row in check_envelope(envelope, order) if row["code"] == "LAYER_TAG"]
+    assert {row["subject"][0] for row in found} == {"/edges/causal", "/nodes/states"}

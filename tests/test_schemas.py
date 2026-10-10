@@ -35,7 +35,8 @@ def test_empty_envelope_validates(order, envelope_schema, modality):
 
 
 @pytest.mark.parametrize("change", ["graph_version", "extra_key", "missing_group", "group_tag", "bad_genre",
-                                    "item_without_id", "invariant_layer", "pass_name"])
+                                    "item_without_id", "invariant_layer", "pass_name", "missing_step",
+                                    "item_layer", "old_actor_group"])
 def test_schema_refuses_structural_errors(order, envelope_schema, change):
     envelope = empty_envelope(order, "anime")
     if change == "graph_version":
@@ -54,6 +55,12 @@ def test_schema_refuses_structural_errors(order, envelope_schema, change):
         envelope["invariants"].append({"id": "prop_continuity", "layer": "L9", "rule": "props persist"})
     elif change == "pass_name":
         envelope["provenance"]["pass_history"].append({"pass": "temporal", "commit": "abc123", "duration_ms": 4})
+    elif change == "missing_step":
+        del envelope["edges"]["temporal"]["step"]
+    elif change == "item_layer":
+        envelope["nodes"]["camera"]["items"].append({"id": "shot_1", "layer": "L4.5"})
+    elif change == "old_actor_group":
+        envelope["nodes"]["actors"] = {"layer": "L0.5", "items": []}
     with pytest.raises(ContractError) as error:
         validate_schema(envelope, envelope_schema)
     assert error.value.code == "TARGET_SCHEMA"

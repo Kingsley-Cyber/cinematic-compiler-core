@@ -23,25 +23,37 @@ def _string(min_length=1):
     return {"type": "string", "minLength": min_length}
 
 
+def _group(layer, step):
+    """A node/edge group tagged with its band (and step); items may repeat the band tag."""
+    properties = {"layer": {"const": layer}}
+    if step:
+        properties["step"] = {"const": step}
+    properties["items"] = {"type": "array", "items": {
+        "type": "object", "required": ["id"], "properties": {"id": _string(), "layer": {"const": layer}},
+        "description": "Per-graph item fields are fixed by that layer's schema when its slice lands."}}
+    return {"type": "object", "additionalProperties": False, "properties": properties,
+            "required": ["layer"] + (["step"] if step else []) + ["items"]}
+
+
 def build(order):
-    labels = []
+    labels, steps = [], []
     groups = {"nodes": {}, "edges": {}}
     required = {"nodes": [], "edges": []}
+    defs = {}
     for node in order["nodes"]:
         if node["layer"] not in labels:
             labels.append(node["layer"])
+        step = node.get("step")
+        if step:
+            steps.append(step)
+        name = "Group_" + (step or node["layer"])
+        defs.setdefault(name, _group(node["layer"], step))
         for path in node["writes"]:
             kind, _, group = path.strip("/").partition("/")
             if kind in groups:
-                groups[kind][group] = {"$ref": "#/$defs/Group_" + node["layer"]}
+                groups[kind][group] = {"$ref": "#/$defs/" + name}
                 if "when" not in node:
                     required[kind].append(group)
-    defs = {"Group_" + label: {
-        "type": "object", "required": ["layer", "items"], "additionalProperties": False,
-        "properties": {"layer": {"const": label}, "items": {"type": "array", "items": {"$ref": "#/$defs/Item"}}}}
-        for label in labels}
-    defs["Item"] = {"type": "object", "required": ["id"], "properties": {"id": _string()},
-                    "description": "Per-graph item fields are fixed by that layer's schema when its slice lands."}
     defs["Scene"] = {"type": "object", "additionalProperties": False,
         "required": ["duration_s", "fps", "genre", "world", "setting", "ax"],
         "properties": {"duration_s": {"type": "number", "exclusiveMinimum": 0},
@@ -66,7 +78,7 @@ def build(order):
                            "properties": {"pass": {"type": "string", "pattern": "^p[0-9]{2}_[a-z0-9_]+$"},
                                           "commit": _string(), "duration_ms": {"type": "number", "minimum": 0}}}},
                        "replan_count": {"type": "integer", "minimum": 0},
-                       "replan_layers": {"type": "array", "items": {"enum": labels}}}}
+                       "replan_layers": {"type": "array", "items": {"enum": labels + steps}}}}
     return {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "$id": f"urn:cinematic-compiler:schema:cinematic_ir:{ENVELOPE_VERSION}",
