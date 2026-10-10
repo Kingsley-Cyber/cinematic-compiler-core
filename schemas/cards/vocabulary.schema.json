@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:vocabulary:1.0",
+  "title": "Library vocabulary (closed value sets for an authored step)",
+  "description": "Each field is an enum (values), a list of the entity's own parts (parts), a single part or core (part_or_core), or free text (text).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "vocabulary_id",
+    "version",
+    "status",
+    "basis",
+    "fields"
+  ],
+  "properties": {
+    "vocabulary_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "approved"
+      ]
+    },
+    "basis": {
+      "type": "string",
+      "minLength": 1
+    },
+    "fields": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "description"
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "values",
+              "parts",
+              "part_or_core",
+              "text"
+            ]
+          },
+          "values": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

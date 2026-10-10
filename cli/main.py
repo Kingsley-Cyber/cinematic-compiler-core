@@ -16,10 +16,7 @@ from pathlib import Path
 from compiler import pipeline, replan_trigger
 from compiler.authoring import AuthorRequired, StepFailed
 from kernel.canonical import ContractError, canonical_json, load_json
-from planner.beat_planner import prepare as prepare_beats
 from validators.envelope_validator import validate_envelope
-
-PREPARERS = {"temporal": prepare_beats}
 
 
 def _write(text, path):
@@ -49,7 +46,7 @@ def _compile(args):
         attempt = plans.get(target, {}).get("attempt", 1)
         before = pipeline.run(query, genre=args.genre, duration_s=duration, until=_previous(target), plans=plans)
         try:
-            replan = replan_trigger.request(error, failed_node=node, attempt=attempt, prepare=PREPARERS[target],
+            replan = replan_trigger.request(error, failed_node=node, attempt=attempt, prepare=pipeline.AUTHORED[target].prepare,
                                             envelope_before=before, genre=args.genre)
         except ContractError as exhausted:
             print(f"stopped: {exhausted}", file=sys.stderr)

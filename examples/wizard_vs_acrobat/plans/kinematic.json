@@ -1,0 +1,322 @@
+{
+ "step_id": "S11",
+ "band": "L4a",
+ "packet_sha256": "sha256:92cdba3b9ac817c7d61105a9fcb75bcb385a66d14b97bbe930353ea617689500",
+ "author": {
+  "host": "Claude Code desktop, in-session",
+  "model": "claude-opus-5-5"
+ },
+ "attempt": 1,
+ "nodes": [
+  {
+   "slot": "acrobat@b01",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "shifting",
+   "loading": "loading",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "forward",
+   "tension": "moderate",
+   "release": "none",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "steady",
+   "reads": "Weight driving forward over the balls of the feet, knees bending deeper with each stride."
+  },
+  {
+   "slot": "acrobat@b02",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "loaded",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "forward",
+   "tension": "high",
+   "release": "none",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "held",
+   "reads": "Coiled crouch, weight pitched over the front foot, arms swinging forward for the plant."
+  },
+  {
+   "slot": "wizard@b03",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "loaded",
+   "bracing": "light",
+   "yielding": "none",
+   "weight_transfer": "forward",
+   "tension": "high",
+   "release": "none",
+   "strain": "mild",
+   "restraint": "none",
+   "breathing": "held",
+   "reads": "Planted wide stance, weight on the back foot, casting arm locked straight ahead."
+  },
+  {
+   "slot": "acrobat@b03",
+   "support": [],
+   "balance": "shifting",
+   "loading": "unloading",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "up",
+   "tension": "moderate",
+   "release": "releasing",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "exhale",
+   "reads": "Inverted over the planted hand, legs whipping overhead, weight carried by momentum."
+  },
+  {
+   "slot": "acrobat@b04",
+   "support": [],
+   "balance": "recovering",
+   "loading": "loading",
+   "bracing": "none",
+   "yielding": "yielding",
+   "weight_transfer": "down",
+   "tension": "moderate",
+   "release": "none",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "exhale",
+   "reads": "Dropping toward the stone, knees folding to absorb the landing."
+  },
+  {
+   "slot": "acrobat@b05",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "loaded",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "rotating",
+   "tension": "high",
+   "release": "none",
+   "strain": "mild",
+   "restraint": "none",
+   "breathing": "held",
+   "reads": "Weight sinks into the left foot as the hips wind up for the spin."
+  },
+  {
+   "slot": "wizard@b05",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "unloaded",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "none",
+   "tension": "moderate",
+   "release": "none",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "steady",
+   "reads": "Upright and open, unprepared for the heel coming at the chest."
+  },
+  {
+   "slot": "wizard@b06",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "off_balance",
+   "loading": "loaded",
+   "bracing": "braced",
+   "yielding": "yielding",
+   "weight_transfer": "backward",
+   "tension": "high",
+   "release": "none",
+   "strain": "high",
+   "restraint": "none",
+   "breathing": "gasp",
+   "reads": "Reeling backward from the kick, both palms forced out to throw the ward."
+  },
+  {
+   "slot": "acrobat@b06",
+   "support": [
+    "left_foot"
+   ],
+   "balance": "precarious",
+   "loading": "unloaded",
+   "bracing": "none",
+   "yielding": "giving_way",
+   "weight_transfer": "backward",
+   "tension": "moderate",
+   "release": "none",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "gasp",
+   "reads": "Balanced on one foot after the kick, the ward catching the chest and lifting the body."
+  },
+  {
+   "slot": "acrobat@b07",
+   "support": [],
+   "balance": "off_balance",
+   "loading": "unloaded",
+   "bracing": "braced",
+   "yielding": "giving_way",
+   "weight_transfer": "backward",
+   "tension": "high",
+   "release": "none",
+   "strain": "high",
+   "restraint": "none",
+   "breathing": "gasp",
+   "reads": "Flung backward through the air, shoulders rounding to take the impact."
+  },
+  {
+   "slot": "acrobat@b08",
+   "support": [
+    "torso"
+   ],
+   "balance": "recovering",
+   "loading": "loading",
+   "bracing": "braced",
+   "yielding": "none",
+   "weight_transfer": "forward",
+   "tension": "high",
+   "release": "none",
+   "strain": "mild",
+   "restraint": "none",
+   "breathing": "exhale",
+   "reads": "Back pressed to the cracked pillar, legs gathering to push off."
+  },
+  {
+   "slot": "wizard@b09",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "recovering",
+   "loading": "unloading",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "none",
+   "tension": "moderate",
+   "release": "releasing",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "exhale",
+   "reads": "Settling the stance, shoulders dropping as the breath comes back."
+  },
+  {
+   "slot": "acrobat@b10",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "loading",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "forward",
+   "tension": "moderate",
+   "release": "none",
+   "strain": "none",
+   "restraint": "held_back",
+   "breathing": "steady",
+   "reads": "Rising out of the crouch, weight leaning in but held back: a feint, not a charge."
+  },
+  {
+   "slot": "wizard@b10",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "loading",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "none",
+   "tension": "moderate",
+   "release": "none",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "steady",
+   "reads": "Composed, weight centred, casting hand starting to rise toward the acrobat."
+  },
+  {
+   "slot": "wizard@b11",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "unloading",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "rotating",
+   "tension": "high",
+   "release": "releasing",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "exhale",
+   "reads": "Torso turning through the sweep, the casting arm releasing the thin bolt."
+  },
+  {
+   "slot": "acrobat@b11",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "shifting",
+   "loading": "loading",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "backward",
+   "tension": "high",
+   "release": "none",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "held",
+   "reads": "Weight rocking onto the heels, reading the bolt and loading for the flip."
+  },
+  {
+   "slot": "acrobat@b12",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "shifting",
+   "loading": "loaded",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "up",
+   "tension": "high",
+   "release": "none",
+   "strain": "mild",
+   "restraint": "none",
+   "breathing": "held",
+   "reads": "Arms swinging up as both feet drive off the stone into the backflip."
+  },
+  {
+   "slot": "acrobat@b13",
+   "support": [],
+   "balance": "recovering",
+   "loading": "loading",
+   "bracing": "none",
+   "yielding": "yielding",
+   "weight_transfer": "down",
+   "tension": "moderate",
+   "release": "releasing",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "exhale",
+   "reads": "Coming down out of the flip, knees bending to land in the guard."
+  }
+ ]
+}

@@ -20,11 +20,12 @@ def test_example_recompiles_byte_for_byte_with_the_current_kernel():
     assert check_all() == []
 
 
-def test_example_covers_every_m1_group():
+def test_example_covers_every_built_group():
     envelope = json.loads((FOLDER / "envelope.json").read_text(encoding="utf-8"))
-    for group in ("entities", "surfaces", "constraints", "beats", "states", "contacts"):
+    for group in ("entities", "surfaces", "constraints", "beats", "states", "contacts", "kinematic"):
         assert envelope["nodes"][group]["items"], group
-    for group in ("constraint_application", "beat_constraint", "temporal", "causal", "state_transition", "contact"):
+    for group in ("constraint_application", "beat_constraint", "temporal", "causal", "state_transition", "contact",
+                  "kinematic_transition"):
         assert envelope["edges"][group]["items"], group
     scene = envelope["scene"]
     assert (scene["duration_s"], scene["duration_source"], scene["quadrant"]["quadrant"]) == (10, "user", "B")

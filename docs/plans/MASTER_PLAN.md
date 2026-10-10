@@ -166,11 +166,11 @@ Notes on the decisions:
 ## M2 — body (S11–S13) → done when the example has validated key poses
 
 ### S11 kinematic (L4a, authored)
-- [ ] S11.1 `library/kinematic_cues.yaml` (draft, library log): values for support, balance, loading, bracing,
+- [x] S11.1 `library/kinematic_cues.yaml` (draft, library log): values for support, balance, loading, bracing,
   yielding, weight transfer, tension, release, strain, restraint, breathing.
-- [ ] S11.2 `schemas/graphs/kinematic_graph.schema.json`: node per actor per beat with those 11 fields; transition edges. Log.
-- [ ] S11.3 `planner/prompts/kinematic_organization.txt` + prepare/submit in `compiler/passes/derived/p11_kinematic.py`.
-- [ ] S11.4 `validators/kinematic_validator.py`: support agrees with S06 support state and S07 support contacts.
+- [x] S11.2 `schemas/graphs/kinematic_graph.schema.json`: node per actor per beat with those 11 fields; transition edges. Log.
+- [x] S11.3 `planner/prompts/kinematic_organization.txt` + prepare/submit in `compiler/passes/derived/p11_kinematic.py`.
+- [x] S11.4 `validators/kinematic_validator.py`: support agrees with S06 support state and S07 support contacts.
 
 ### S12 Bartenieff (L4b, authored)
 - [ ] S12.1 `library/body_modes/` (core_distal, distal_core, same_side, cross_lateral; draft).

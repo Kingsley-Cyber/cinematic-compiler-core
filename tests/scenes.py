@@ -14,8 +14,12 @@ COURTYARD_PLAN = json.loads((COURTYARD / "plans" / "temporal.json").read_text())
 CUP_QUERY = "6 seconds live action: wizard vs knight, wizard holding a coffee cup in a castle"
 
 
-def courtyard(until):
-    return pipeline.run(COURTYARD_QUERY, until=until, plans={"temporal": COURTYARD_PLAN})
+def courtyard_plans():
+    return {path.stem: json.loads(path.read_text()) for path in sorted((COURTYARD / "plans").glob("*.json"))}
+
+
+def courtyard(until, **overrides):
+    return pipeline.run(COURTYARD_QUERY, until=until, plans={**courtyard_plans(), **overrides})
 
 
 def _fact(kind, sid, prop, value):

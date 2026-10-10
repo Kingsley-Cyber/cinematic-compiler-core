@@ -1,0 +1,17 @@
+# Visible bodily organization (S11, L4a). Draft vocabulary by Claude for owner review.
+vocabulary_id: kinematic_cues
+version: 1
+status: draft
+basis: Owner L4a list (support, balance, loading, bracing, yielding, weight transfer, tension, release, strain, restraint, breathing); values drafted by Claude.
+fields:
+  support: {kind: parts, description: The entity's own parts bearing weight at the beat start; empty when airborne.}
+  balance: {kind: values, values: [stable, shifting, precarious, off_balance, recovering], description: Where the centre of mass sits over the support.}
+  loading: {kind: values, values: [unloaded, loading, loaded, unloading], description: Muscles priming or discharging for the next action.}
+  bracing: {kind: values, values: [none, light, braced], description: Holding the body against an incoming force or surface.}
+  yielding: {kind: values, values: [none, yielding, giving_way], description: Giving in to weight or force.}
+  weight_transfer: {kind: values, values: [none, forward, backward, left, right, up, down, rotating], description: Direction the weight travels during the beat.}
+  tension: {kind: values, values: [relaxed, moderate, high], description: Overall muscular tension the audience can read.}
+  release: {kind: values, values: [none, releasing, released], description: Letting go of built-up tension.}
+  strain: {kind: values, values: [none, mild, high], description: Visible effort against resistance.}
+  restraint: {kind: values, values: [none, held_back], description: Holding a movement back.}
+  breathing: {kind: values, values: [steady, held, exhale, gasp], description: Visible breath.}

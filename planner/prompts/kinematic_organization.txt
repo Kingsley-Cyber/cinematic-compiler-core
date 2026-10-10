@@ -1,0 +1,4 @@
+S11 kinematic organization (L4a). For every slot in the packet write one node: what the audience reads in that
+body at the beat start. support = the entity's own parts bearing weight (empty when airborne); it must match the
+active support contacts when there are any. The ten cues use only the packet vocabulary. `reads` is one plain
+sentence of what a viewer sees in the body (weight, balance, preparation). Copy packet_sha256.

@@ -118,6 +118,8 @@ def test_every_library_card_validates_and_matches_its_log_entry():
     from planner.card_loader import load_cards
 
     cards = load_cards()
-    assert len(cards) == len(schema_log.LIBRARY.files())
+    card_files = [f for f in schema_log.LIBRARY.files()
+                  if f.startswith(("library/archetypes/", "library/worlds/", "library/ontology/"))]
+    assert len(cards) == len(card_files)
     assert set(schema_log.LIBRARY.verify()) == set(schema_log.LIBRARY.files())
     assert {card["status"] for card in cards.values()} == {"draft"}

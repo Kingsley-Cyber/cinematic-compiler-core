@@ -42,3 +42,32 @@ def record(step_id, packet, document):
     """Provenance entry for one authored document."""
     return {"step_id": step_id, "packet_sha256": packet["packet_sha256"], "document_sha256": "sha256:" + content_hash(document),
             "author": dict(document["author"]), "attempt": document["attempt"]}
+
+
+def run_authored(envelope, document, *, node_id, step_id, prepare, schema_path, check, build, order):
+    """Shared path for authored steps: bind to the packet, schema, step checks, build groups, write scope.
+
+    `build(envelope, document, packet)` returns {"/nodes/<g>" or "/edges/<g>": items}.
+    """
+    import copy
+    import json
+
+    from planner.dependency_graph import node_index
+    from validators.layer_dependency_validator import check_pass_writes
+    from validators.schema_validator import validate_schema
+
+    packet = prepare(envelope)
+    bind(packet, document)
+    validate_schema(document, json.loads(schema_path.read_text(encoding="utf-8")))
+    findings = check(document, packet)
+    if findings:
+        raise GateFailed(step_id, findings, packet)
+    node = node_index(order)[node_id]
+    after = copy.deepcopy(envelope)
+    for path, items in build(envelope, document, packet).items():
+        _, kind, group = path.split("/")
+        after[kind][group] = {"band": node["band"], "step_id": node["step_id"], "items": items}
+    findings = check_pass_writes(order, node_id, envelope, after)
+    if findings:
+        raise ContractError("WRITE_SCOPE", f"{step_id} changed paths it does not own", findings)
+    return after, packet

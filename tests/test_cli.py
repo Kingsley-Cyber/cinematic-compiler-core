@@ -19,7 +19,8 @@ def cli(*args):
 
 
 def test_compile_reproduces_the_example_and_stops_for_a_packet():
-    result = cli("compile", COURTYARD_QUERY, "--plans", str(COURTYARD / "plans"))
+    until = json.loads((COURTYARD / "request.json").read_text())["until"]
+    result = cli("compile", COURTYARD_QUERY, "--plans", str(COURTYARD / "plans"), "--until", until)
     assert result.returncode == 0 and result.stdout == (COURTYARD / "envelope.json").read_text(encoding="utf-8")
     result = cli("compile", COURTYARD_QUERY)
     assert result.returncode == 3 and json.loads(result.stdout)["packet_sha256"] == COURTYARD_PLAN["packet_sha256"]
