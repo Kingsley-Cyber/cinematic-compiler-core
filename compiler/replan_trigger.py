@@ -11,7 +11,7 @@ from planner.dependency_graph import load, node_index
 from planner.topological_sort import build_order
 
 MAX_ATTEMPTS = 3
-AUTHORED_NODES = ("temporal", "kinematic", "bartenieff", "motion", "effort", "camera", "render")
+AUTHORED_NODES = ("temporal", "hand_role", "kinematic", "bartenieff", "motion", "effort", "camera", "render")
 
 
 def owning_step(failed_node, genre=None, order=None):

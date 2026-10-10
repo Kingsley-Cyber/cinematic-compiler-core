@@ -1,0 +1,9 @@
+# Hand-role templates (S08, L2.5). Draft by Claude for owner review.
+templates_id: role_templates
+version: 1
+status: draft
+basis: Owner S08 plan (agent hand, support hand, role invariant); templates drafted by Claude.
+templates:
+  - {id: one_hand, support: none, description: "One hand does the whole interaction; the other hand stays off the object."}
+  - {id: stabilize_and_operate, support: required, description: "The support hand holds the object still while the agent hand works a part of it."}
+  - {id: two_hand_symmetric, support: required, description: "Both hands carry the object together; the agent hand leads and lets go last or first as the verb needs."}

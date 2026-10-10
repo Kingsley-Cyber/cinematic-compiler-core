@@ -1,0 +1,40 @@
+{
+ "step_id": "S08",
+ "band": "L2.5",
+ "packet_sha256": "sha256:b642f0f2a3d8c98c3d0c56cd1052f77e240a139de3750253b3d21583e16cea2c",
+ "author": {
+  "host": "Claude Code desktop, in-session",
+  "model": "claude-opus-5-5"
+ },
+ "attempt": 1,
+ "interactions": [
+  {
+   "id": "i01",
+   "verb": "unfold",
+   "object": "glasses",
+   "actor": "ugc_creator",
+   "beats": [
+    "b02"
+   ],
+   "agent_hand": "left_hand",
+   "support_hand": "right_hand",
+   "agent_grip": "pinch",
+   "support_grip": "pinch",
+   "role_template": "stabilize_and_operate"
+  },
+  {
+   "id": "i02",
+   "verb": "put_on",
+   "object": "glasses",
+   "actor": "ugc_creator",
+   "beats": [
+    "b03"
+   ],
+   "agent_hand": "right_hand",
+   "support_hand": "left_hand",
+   "agent_grip": "two_hand_temple",
+   "support_grip": "two_hand_temple",
+   "role_template": "two_hand_symmetric"
+  }
+ ]
+}

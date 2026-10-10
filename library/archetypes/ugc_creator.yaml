@@ -1,0 +1,19 @@
+card_id: ugc_creator
+kind: archetype
+card_version: 1
+status: draft
+names: [creator, ugc creator, presenter]
+description: "A person presenting a product to a phone camera in a home setting."
+silhouette: "Casual figure framed from the waist up, hands near the product."
+costume: "Casual everyday clothes."
+parts: [head, torso, left_arm, right_arm, left_hand, right_hand, left_leg, right_leg, left_foot, right_foot]
+capabilities: [present, demonstrate, talk_to_camera]
+modes: [casual, demo]
+genres: [ugc_ad]
+invariants:
+  - id: hands_in_frame
+    rule: "Hands stay in frame whenever they touch the product."
+provenance:
+  authored_by: claude-code
+  date: "2026-10-10"
+  basis: Draft UGC presenter card (M5, owner UGC extension); not research-sourced; needs owner review.

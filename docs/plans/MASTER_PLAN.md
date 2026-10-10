@@ -256,8 +256,12 @@ Notes on the decisions:
   wording is kept verbatim where it disagrees with itself (kunai pickup "at 8.0 during crash landing").)
 
 ## M5 — UGC (S08–S10)
-- [ ] S08 hand role: `grip_types.yaml`, `role_templates.yaml` (draft); schema `{interaction, agent_hand,
+- [x] S08 hand role: `grip_types.yaml`, `role_templates.yaml` (draft); schema `{interaction, agent_hand,
   support_hand, agent_grip, support_grip, role_invariant, duration}`; validator: roles hold across the interaction.
+  (Built as an authored step: interactions name verb (an object-card affordance), object, actor, consecutive beats,
+  hands, grips, role template; checks also forbid a hand serving two overlapping interactions; the role invariant
+  is derived. The pipeline now reads the genre from the query's literal parse to choose the steps, so UGC-only
+  steps run without --genre. Example `examples/ugc_glasses_demo/` (creator card added) through S08.)
 - [ ] S09 object state: schema `{object, beat, state_name}` + `transitions_to{trigger_contact}`; values from cards;
   every change triggered by a hand contact.
 - [ ] S10 affordance: `library/affordances/` (clothing, food, electronics, cosmetics; draft); schema `(object,

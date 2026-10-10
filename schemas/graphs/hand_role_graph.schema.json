@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:hand_role_graph:1.0",
+  "title": "S08 hand-role graph",
+  "description": "hand_role = interactions with their time span, duration and derived role invariant; hand_role_transition = consecutive interactions of one actor.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "hand_role",
+    "hand_role_transition"
+  ],
+  "properties": {
+    "hand_role": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "verb",
+          "object",
+          "actor",
+          "beats",
+          "agent_hand",
+          "support_hand",
+          "agent_grip",
+          "support_grip",
+          "role_template",
+          "t",
+          "end",
+          "duration",
+          "role_invariant"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^i[0-9]{2,3}$"
+          },
+          "verb": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "object": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "actor": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "beats": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^b[0-9]{2,3}$"
+            }
+          },
+          "agent_hand": {
+            "enum": [
+              "left_hand",
+              "right_hand"
+            ]
+          },
+          "support_hand": {
+            "enum": [
+              "left_hand",
+              "right_hand",
+              "none"
+            ]
+          },
+          "agent_grip": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "support_grip": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "role_template": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "t": {
+            "type": "number",
+            "minimum": 0
+          },
+          "end": {
+            "type": "number",
+            "minimum": 0
+          },
+          "duration": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "role_invariant": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "hand_role_transition": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "from",
+          "to",
+          "relation",
+          "agent_hand_changed",
+          "support_hand_changed",
+          "gap"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "from": {
+            "type": "string",
+            "pattern": "^i[0-9]{2,3}$"
+          },
+          "to": {
+            "type": "string",
+            "pattern": "^i[0-9]{2,3}$"
+          },
+          "relation": {
+            "const": "next_interaction"
+          },
+          "agent_hand_changed": {
+            "type": "boolean"
+          },
+          "support_hand_changed": {
+            "type": "boolean"
+          },
+          "gap": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}

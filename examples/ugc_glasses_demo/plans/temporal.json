@@ -1,0 +1,357 @@
+{
+ "step_id": "S04",
+ "band": "L1",
+ "packet_sha256": "sha256:bd7c53e92b598951aabe5c7671408490aeda7d808091df8c72d01a6694f0b861",
+ "author": {
+  "host": "Claude Code desktop, in-session",
+  "model": "claude-opus-5-5"
+ },
+ "attempt": 1,
+ "beats": [
+  {
+   "id": "b01",
+   "t": 0.0,
+   "dur": 1.5,
+   "event_type": "action",
+   "actor": "ugc_creator",
+   "label": "lift_glasses",
+   "participants": [
+    {
+     "kind": "prop",
+     "id": "glasses"
+    },
+    {
+     "kind": "surface",
+     "id": "tabletop"
+    }
+   ],
+   "modes": {
+    "ugc_creator": "casual"
+   },
+   "pos": {
+    "ugc_creator": [
+     0,
+     0,
+     0
+    ]
+   },
+   "facing": {
+    "ugc_creator": [
+     0,
+     0,
+     1
+    ]
+   },
+   "action": "Talking to camera, the creator picks the folded glasses up off the desk with the right hand.",
+   "requires": [
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "glasses"
+     },
+     "property": "holder",
+     "value": "none"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "glasses"
+     },
+     "property": "location",
+     "value": "tabletop"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "glasses"
+     },
+     "property": "temples",
+     "value": "folded"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "glasses"
+     },
+     "property": "worn",
+     "value": "no"
+    }
+   ],
+   "effects": [
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "glasses"
+     },
+     "property": "holder",
+     "value": "ugc_creator"
+    }
+   ],
+   "contacts": [
+    {
+     "contact_type": "possess",
+     "a": {
+      "kind": "entity",
+      "id": "ugc_creator",
+      "part": "right_hand"
+     },
+     "b": {
+      "kind": "prop",
+      "id": "glasses",
+      "part": "frame"
+     }
+    }
+   ],
+   "causes": [
+    {
+     "to": "b02",
+     "causal_strength": "hard",
+     "why": "Holding the frame lets the other hand open the temples."
+    }
+   ]
+  },
+  {
+   "id": "b02",
+   "t": 1.5,
+   "dur": 2.0,
+   "event_type": "action",
+   "actor": "ugc_creator",
+   "label": "unfold_glasses",
+   "participants": [
+    {
+     "kind": "prop",
+     "id": "glasses"
+    }
+   ],
+   "modes": {
+    "ugc_creator": "demo"
+   },
+   "pos": {
+    "ugc_creator": [
+     0,
+     0,
+     0
+    ]
+   },
+   "facing": {
+    "ugc_creator": [
+     0,
+     0,
+     1
+    ]
+   },
+   "action": "Holding the frame steady in the right hand, the left hand swings the temples open, one then the other.",
+   "requires": [
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "glasses"
+     },
+     "property": "holder",
+     "value": "ugc_creator"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "glasses"
+     },
+     "property": "temples",
+     "value": "folded"
+    }
+   ],
+   "effects": [
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "glasses"
+     },
+     "property": "temples",
+     "value": "open"
+    }
+   ],
+   "contacts": [
+    {
+     "contact_type": "touch",
+     "a": {
+      "kind": "entity",
+      "id": "ugc_creator",
+      "part": "left_hand"
+     },
+     "b": {
+      "kind": "prop",
+      "id": "glasses",
+      "part": "left_temple"
+     }
+    }
+   ],
+   "causes": [
+    {
+     "to": "b03",
+     "causal_strength": "hard",
+     "why": "Open temples let the glasses go on."
+    }
+   ]
+  },
+  {
+   "id": "b03",
+   "t": 3.5,
+   "dur": 2.0,
+   "event_type": "action",
+   "actor": "ugc_creator",
+   "label": "put_on_glasses",
+   "participants": [
+    {
+     "kind": "prop",
+     "id": "glasses"
+    }
+   ],
+   "modes": {
+    "ugc_creator": "demo"
+   },
+   "pos": {
+    "ugc_creator": [
+     0,
+     0,
+     0
+    ]
+   },
+   "facing": {
+    "ugc_creator": [
+     0,
+     0,
+     1
+    ]
+   },
+   "action": "Both hands lift the open glasses to the face and slide the temples over the ears; the right hand lets go.",
+   "requires": [
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "glasses"
+     },
+     "property": "temples",
+     "value": "open"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "glasses"
+     },
+     "property": "worn",
+     "value": "no"
+    }
+   ],
+   "effects": [
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "glasses"
+     },
+     "property": "worn",
+     "value": "yes"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "glasses"
+     },
+     "property": "holder",
+     "value": "none"
+    }
+   ],
+   "contacts": [
+    {
+     "contact_type": "touch",
+     "a": {
+      "kind": "entity",
+      "id": "ugc_creator",
+      "part": "left_hand"
+     },
+     "b": {
+      "kind": "prop",
+      "id": "glasses",
+      "part": "right_temple"
+     }
+    },
+    {
+     "contact_type": "touch",
+     "a": {
+      "kind": "entity",
+      "id": "ugc_creator",
+      "part": "head"
+     },
+     "b": {
+      "kind": "prop",
+      "id": "glasses",
+      "part": "frame"
+     }
+    },
+    {
+     "contact_type": "release",
+     "a": {
+      "kind": "entity",
+      "id": "ugc_creator",
+      "part": "right_hand"
+     },
+     "b": {
+      "kind": "prop",
+      "id": "glasses",
+      "part": "frame"
+     }
+    }
+   ],
+   "causes": [
+    {
+     "to": "b04",
+     "causal_strength": "soft",
+     "why": "Wearing them, the creator shows the result."
+    }
+   ]
+  },
+  {
+   "id": "b04",
+   "t": 5.5,
+   "dur": 2.5,
+   "event_type": "hold",
+   "actor": "ugc_creator",
+   "label": "show_result",
+   "participants": [
+    {
+     "kind": "prop",
+     "id": "glasses"
+    }
+   ],
+   "modes": {
+    "ugc_creator": "casual"
+   },
+   "pos": {
+    "ugc_creator": [
+     0,
+     0,
+     0
+    ]
+   },
+   "facing": {
+    "ugc_creator": [
+     0,
+     0,
+     1
+    ]
+   },
+   "action": "Wearing the glasses, the creator smiles to camera and taps the frame.",
+   "requires": [
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "glasses"
+     },
+     "property": "worn",
+     "value": "yes"
+    }
+   ],
+   "effects": [],
+   "contacts": [],
+   "causes": []
+  }
+ ]
+}

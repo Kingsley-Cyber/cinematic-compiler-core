@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:role_templates:1.0",
+  "title": "Hand-role templates (S08)",
+  "description": "Named two-hand arrangements an interaction declares; `support` says whether a support hand is used.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "templates_id",
+    "version",
+    "status",
+    "basis",
+    "templates"
+  ],
+  "properties": {
+    "templates_id": {
+      "const": "role_templates"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "approved"
+      ]
+    },
+    "basis": {
+      "type": "string",
+      "minLength": 1
+    },
+    "templates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "support",
+          "description"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "support": {
+            "enum": [
+              "none",
+              "required"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

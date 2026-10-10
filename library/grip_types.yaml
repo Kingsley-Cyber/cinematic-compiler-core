@@ -1,0 +1,7 @@
+# Grip types (S08, L2.5). Draft vocabulary by Claude for owner review; every object card grip must be listed here.
+vocabulary_id: grip_types
+version: 1
+status: draft
+basis: Owner S08 plan (agent/support grips per interaction); grip names drafted by Claude from the object cards.
+fields:
+  grip: {kind: values, values: [pinch, power, hook, key, tripod, wrap, handle_hook, two_hand_temple, two_hand_open, reverse, forward, rope_hold, fan_hold, tuck], description: "How a hand holds or works an object part."}

@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:hand_role_plan:1.0",
+  "title": "S08 hand-role plan (authored in-session): one entry per hand interaction with an object",
+  "description": "Each interaction names its verb, object, actor, consecutive beats, agent and support hands and grips, and a role template; support_grip is none when there is no support hand.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "step_id",
+    "band",
+    "packet_sha256",
+    "author",
+    "attempt",
+    "interactions"
+  ],
+  "properties": {
+    "step_id": {
+      "const": "S08"
+    },
+    "band": {
+      "const": "L2.5"
+    },
+    "packet_sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "author": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "host",
+        "model"
+      ],
+      "properties": {
+        "host": {
+          "type": "string",
+          "minLength": 1
+        },
+        "model": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "attempt": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 3
+    },
+    "interactions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "verb",
+          "object",
+          "actor",
+          "beats",
+          "agent_hand",
+          "support_hand",
+          "agent_grip",
+          "support_grip",
+          "role_template"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^i[0-9]{2,3}$"
+          },
+          "verb": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "object": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "actor": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "beats": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^b[0-9]{2,3}$"
+            }
+          },
+          "agent_hand": {
+            "enum": [
+              "left_hand",
+              "right_hand"
+            ]
+          },
+          "support_hand": {
+            "enum": [
+              "left_hand",
+              "right_hand",
+              "none"
+            ]
+          },
+          "agent_grip": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "support_grip": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "role_template": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          }
+        }
+      }
+    }
+  }
+}

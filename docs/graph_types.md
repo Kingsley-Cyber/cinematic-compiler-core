@@ -13,7 +13,7 @@ is presented), **project, verify** (output). Build status and deltas: [MASTER_PL
 | S05 | Causal | Explain the narrative logic (cause vs coincidence) | beats (shared) | causal | S04 | S06, S11, S16 | structure | built |
 | S06 | State | Track entity continuity: no teleporting, cloning, disappearing | states | state_transition | S04, S05, S03 | S07, S11, S14, S16 | structure | built |
 | S07 | Contact | Track physical interaction; every prop state change is triggered by a contact | contacts | contact | S06, S04, S03 | S08, S09, S11, S16 | structure | built |
-| S08 | Hand role (UGC) | Lock handedness for an interaction | hand_role | hand_role_transition | S07, ontology | S09–S11, S13 | structure | M5 |
+| S08 | Hand role (UGC) | Lock handedness for an interaction | hand_role | hand_role_transition | S07, ontology | S09–S11, S13 | structure | built |
 | S09 | Object state (UGC) | Track object internals (zipper closed → open) | object_state | object_state_transition | S07, ontology, S08 | S10, S11, S16 | structure | M5 |
 | S10 | Affordance (UGC) | Prove every functional verb works | affordance | affordance_dependency | S08, S09, affordance library | S11, S16 | structure | M5 |
 | S11 | Kinematic | Describe what the audience sees in the body (support, balance, loading, tension…) | kinematic | kinematic_transition | S06, S07 (+UGC) | S12–S16 | expression | built |

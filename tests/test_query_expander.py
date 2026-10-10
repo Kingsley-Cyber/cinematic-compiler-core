@@ -147,5 +147,5 @@ def test_pipeline_runs_in_dag_order_and_requires_a_genre():
         pipeline.run(CASES[5][0])
     assert error.value.code == "GENRE_REQUIRED"
     with pytest.raises(ContractError) as error:
-        pipeline.run(CASES[1][0], until="hand_role")
+        pipeline.run(CASES[0][0], until="hand_role")  # anime (read from the query): the UGC step does not exist
     assert error.value.code == "PIPELINE_TARGET"
