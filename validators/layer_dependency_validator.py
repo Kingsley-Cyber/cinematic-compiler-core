@@ -64,10 +64,10 @@ def check_layer_order(order):
         for other in paths:
             if other != path and other.startswith(path + "/"):
                 findings.append(_finding("OVERLAPPING_WRITE", "Write paths may not nest", [path, other]))
-    steps = [node["step"] for node in order["nodes"]]
+    steps = [node["step_id"] for node in order["nodes"]]
     for node in order["nodes"]:
-        if not STEP_ID.fullmatch(node["step"]):
-            findings.append(_finding("STEP_ID", "Step IDs read S01, S02 ...", [node["id"], node["step"]]))
+        if not STEP_ID.fullmatch(node["step_id"]):
+            findings.append(_finding("STEP_ID", "Step IDs read S01, S02 ...", [node["id"], node["step_id"]]))
     if len(set(steps)) != len(steps):
         repeated = sorted({step for step in steps if steps.count(step) > 1})
         findings.append(_finding("STEP_ID", "Step IDs must be unique", repeated))
@@ -79,7 +79,7 @@ def check_layer_order(order):
             findings.append(_finding(error.code, error.message, [modality, error.path]))
             continue
         # Step IDs, not layer numbers, encode order: they must rise along every build order.
-        ordered = [index[identity]["step"] for identity in sequence]
+        ordered = [index[identity]["step_id"] for identity in sequence]
         if ordered != sorted(ordered) or len(set(ordered)) != len(ordered):
             findings.append(_finding("STEP_ORDER", "Step IDs must increase along the build order",
                                      [modality, list(zip(sequence, ordered, strict=True))]))
@@ -91,7 +91,7 @@ def check_envelope(envelope, order):
     modality = envelope["scene"]["genre"]
     index = node_index(order)
     owners = write_owners(order)
-    labels = {node["layer"] for node in order["nodes"]}
+    labels = {node["band"] for node in order["nodes"]}
     for kind in ("nodes", "edges"):
         for group, value in envelope[kind].items():
             path = f"/{kind}/{group}"
@@ -100,11 +100,11 @@ def check_envelope(envelope, order):
                 findings.append(_finding("UNKNOWN_GROUP", "Group has no owning layer in layer_order.yaml", path))
                 continue
             node = index[writer]
-            if value["layer"] != node["layer"] or value.get("step") != node.get("step"):
+            if value["band"] != node["band"] or value.get("step_id") != node.get("step_id"):
                 findings.append(_finding("LAYER_TAG", "Group layer/step tag differs from its owning node",
-                                         [path, [value["layer"], value.get("step")],
-                                          [node["layer"], node.get("step")]]))
-            stray = [item["id"] for item in value["items"] if item.get("layer", node["layer"]) != node["layer"]]
+                                         [path, [value["band"], value.get("step_id")],
+                                          [node["band"], node.get("step_id")]]))
+            stray = [item["id"] for item in value["items"] if item.get("band", node["band"]) != node["band"]]
             if stray:
                 findings.append(_finding("LAYER_TAG", "Item layer tag differs from its group", [path, stray]))
             if not is_active(node, modality) and value["items"]:
@@ -118,7 +118,7 @@ def check_envelope(envelope, order):
             if kind in ("nodes", "edges") and group not in envelope[kind]:
                 findings.append(_finding("MISSING_GROUP", "An active layer's group is absent", [path, modality]))
     for invariant in envelope["invariants"]:
-        if invariant["layer"] not in labels:
+        if invariant["band"] not in labels:
             findings.append(_finding("LAYER_TAG", "Invariant names an undeclared layer", invariant["id"]))
     return findings
 

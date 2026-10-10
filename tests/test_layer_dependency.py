@@ -91,9 +91,9 @@ def test_empty_envelope_for_each_modality_has_correct_tags(order, modality):
 
 def test_wrong_layer_tag_inactive_data_missing_and_unknown_groups(order):
     envelope = empty_envelope(order, "anime")
-    envelope["nodes"]["camera"]["layer"] = "L5"
-    envelope["nodes"]["hand_role"] = {"layer": "L2.5", "items": [{"id": "agent_right"}]}
-    envelope["edges"]["lighting"] = {"layer": "L4.5", "items": []}
+    envelope["nodes"]["camera"]["band"] = "L5"
+    envelope["nodes"]["hand_role"] = {"band": "L2.5", "items": [{"id": "agent_right"}]}
+    envelope["edges"]["lighting"] = {"band": "L4.5", "items": []}
     assert {"LAYER_TAG", "INACTIVE_LAYER_DATA", "UNKNOWN_GROUP"} <= codes(check_envelope(envelope, order))
     ugc = empty_envelope(order, "ugc_ad")
     del ugc["nodes"]["object_state"]
@@ -115,9 +115,9 @@ def test_a_pass_may_change_only_its_own_paths(order):
 def test_owner_decisions_2026_10_10_fix_the_exact_order(order):
     anime, ugc = build_order(order, "anime"), build_order(order, "ugc_ad")
     steps = [f"S{n:02d}" for n in range(1, 18)]
-    assert [node(order, n)["step"] for n in ugc] == steps
-    assert [node(order, n)["step"] for n in anime] == steps[:7] + steps[10:]
-    assert [node(order, n)["layer"] for n in ugc] == [
+    assert [node(order, n)["step_id"] for n in ugc] == steps
+    assert [node(order, n)["step_id"] for n in anime] == steps[:7] + steps[10:]
+    assert [node(order, n)["band"] for n in ugc] == [
         "L0", "L0.5", "constraint", "L1", "L1", "L2", "L2", "L2.5", "L2.6", "L2.7",
         "L4a", "L4b", "L4c", "L5", "L5.5", "L6", "L6.5"]
     assert node(order, "intent")["writes"] == ["/intent"]
@@ -129,16 +129,16 @@ def test_owner_decisions_2026_10_10_fix_the_exact_order(order):
 
 
 def test_step_ids_must_be_well_formed_unique_and_rise_with_build_order(order):
-    node(order, "temporal")["step"], node(order, "causal")["step"] = "S05", "S04"
+    node(order, "temporal")["step_id"], node(order, "causal")["step_id"] = "S05", "S04"
     assert "STEP_ORDER" in codes(check_layer_order(order))
-    node(order, "temporal")["step"] = "L1.1"
-    node(order, "causal")["step"] = "S03"
+    node(order, "temporal")["step_id"] = "L1.1"
+    node(order, "causal")["step_id"] = "S03"
     assert {"STEP_ID", "STEP_ORDER"} <= codes(check_layer_order(order))
 
 
 def test_step_and_item_layer_tags_are_checked_against_the_owner(order):
     envelope = empty_envelope(order, "anime")
-    envelope["edges"]["causal"]["step"] = "S04"
-    envelope["nodes"]["states"]["items"].append({"id": "staff_held", "layer": "L1"})
+    envelope["edges"]["causal"]["step_id"] = "S04"
+    envelope["nodes"]["states"]["items"].append({"id": "staff_held", "band": "L1"})
     found = [row for row in check_envelope(envelope, order) if row["code"] == "LAYER_TAG"]
     assert {row["subject"][0] for row in found} == {"/edges/causal", "/nodes/states"}

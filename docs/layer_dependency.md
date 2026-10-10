@@ -1,8 +1,8 @@
 # Layer dependency (L0 → L6.5)
 
-The DAG is data: [`kernel/layer_order.yaml`](../kernel/layer_order.yaml) (version 1.3). The envelope
+The DAG is data: [`kernel/layer_order.yaml`](../kernel/layer_order.yaml) (version 1.4). The envelope
 schema is generated from it, and `tests/test_layer_dependency.py` enforces it. Order is encoded only by
-the ordered step IDs (S01–S17); `layer` is the owner's band name and carries no order.
+the ordered step IDs (S01–S17); `band` is the owner's band name and carries no order.
 
 ## Build order (from `planner/topological_sort.py`)
 
@@ -10,7 +10,7 @@ the ordered step IDs (S01–S17); `layer` is the owner's band name and carries n
 S01 → S02 → S03 → S04 → S05 → S06 → S07 → [S08 → S09 → S10 (UGC)] → S11 → S12 → S13 → S14 → S15 → S16 → S17
 ```
 
-| Node | Step / layer name | Depends on | Writes |
+| Node | step_id / band | Depends on | Writes |
 |---|---|---|---|
 | intent | S01 / L0 | user query + CLI flags | `/intent` (Intent Document) |
 | brief | S02 / L0.5 | intent + ontology, archetypes, worlds | `/scene`, `/nodes/entities`, `/nodes/props`, `/nodes/surfaces` (definitions) |
@@ -40,7 +40,7 @@ Every graph from S04 onward is validated against the constraint graph. Pipeline-
 - A node validated by `constraint` runs after the constraint graph.
 - Step IDs read `S01`, `S02` …, are unique and rise along every modality's build order.
 - A pass may change only the paths its node owns (`check_pass_writes`), so no pass mutates an earlier graph.
-- Every group carries its owner's `layer` and `step`; an item's optional `layer` equals its group's band.
+- Every group carries its owner's `band` and `step_id`; an item's optional `band` equals its group's band.
   Layers inactive for the modality hold no items.
 - The envelope schema equals its generation from the YAML. Each schema's bytes equal its latest entry in
   `schemas/schema_log.jsonl`, and the log is append-only and hash-chained.
@@ -62,6 +62,7 @@ Every graph from S04 onward is validated against the constraint graph. Pipeline-
 | 2026-10-10 | S01 is pure deterministic Python; gates: schema, determinism, completeness, non-invention | owner |
 | 2026-10-10 | S01 writes `/intent`; `/scene` moves to S02 (scene needs genre/world/ax, which S01 may not infer) | owner_default |
 | 2026-10-10 | Intent Document adds `flags` and per-value `evidence`; genre uses modality names (`ugc_ad`) | owner_default |
+| 2026-10-10 | Keys are `step_id` and `band` everywhere | owner |
 | 2026-10-10 | One envelope (MGRAPH-1.1) | owner_default |
 | 2026-10-10 | Camera node = 13 subdivisions + required `motivation` | owner_default |
 | 2026-10-10 | L5 holds LMA Effort (weight, time, space, flow) with Shape and Space as separate fields | owner_default |
@@ -71,9 +72,7 @@ Every graph from S04 onward is validated against the constraint graph. Pipeline-
 
 ## Open for owner review
 
-1. **Key names.** The Intent Document uses your S01 names `step_id` and `band`; envelope groups still use
-   `step` and `layer`. Unify on `step_id`/`band` everywhere?
-2. **Post-generation block shape.** `validation.post_generation` is `pass`/`fail`/`null` today; your
+1. **Post-generation block shape.** `validation.post_generation` is `pass`/`fail`/`null` today; your
    object shape (run_at, video_ref, checks, verdict, replan_*) lands with the S17 slice.
-3. **Cross-file `$ref`.** Sub-schemas are embedded into the envelope by the generator (document-local refs);
+2. **Cross-file `$ref`.** Sub-schemas are embedded into the envelope by the generator (document-local refs);
    a cross-file resolver is still not implemented.

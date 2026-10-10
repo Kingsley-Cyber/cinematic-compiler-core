@@ -46,21 +46,21 @@ def test_schema_refuses_structural_errors(order, envelope_schema, change):
     elif change == "missing_group":
         del envelope["nodes"]["beats"]
     elif change == "group_tag":
-        envelope["nodes"]["camera"]["layer"] = "L5"
+        envelope["nodes"]["camera"]["band"] = "L5"
     elif change == "bad_genre":
         envelope["scene"]["genre"] = "documentary"
     elif change == "item_without_id":
         envelope["nodes"]["beats"]["items"].append({"t": 0})
     elif change == "invariant_layer":
-        envelope["invariants"].append({"id": "prop_continuity", "layer": "L9", "rule": "props persist"})
+        envelope["invariants"].append({"id": "prop_continuity", "band": "L9", "rule": "props persist"})
     elif change == "pass_name":
         envelope["provenance"]["pass_history"].append({"pass": "temporal", "commit": "abc123", "duration_ms": 4})
     elif change == "missing_step":
-        del envelope["edges"]["temporal"]["step"]
+        del envelope["edges"]["temporal"]["step_id"]
     elif change == "item_layer":
-        envelope["nodes"]["camera"]["items"].append({"id": "shot_1", "layer": "L4.5"})
+        envelope["nodes"]["camera"]["items"].append({"id": "shot_1", "band": "L4.5"})
     elif change == "old_actor_group":
-        envelope["nodes"]["actors"] = {"layer": "L0.5", "items": []}
+        envelope["nodes"]["actors"] = {"band": "L0.5", "items": []}
     with pytest.raises(ContractError) as error:
         validate_schema(envelope, envelope_schema)
     assert error.value.code == "TARGET_SCHEMA"

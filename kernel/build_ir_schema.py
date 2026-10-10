@@ -27,14 +27,14 @@ def _string(min_length=1):
 
 def _group(layer, step):
     """A node/edge group tagged with its band (and step); items may repeat the band tag."""
-    properties = {"layer": {"const": layer}}
+    properties = {"band": {"const": layer}}
     if step:
-        properties["step"] = {"const": step}
+        properties["step_id"] = {"const": step}
     properties["items"] = {"type": "array", "items": {
-        "type": "object", "required": ["id"], "properties": {"id": _string(), "layer": {"const": layer}},
+        "type": "object", "required": ["id"], "properties": {"id": _string(), "band": {"const": layer}},
         "description": "Per-graph item fields are fixed by that layer's schema when its slice lands."}}
     return {"type": "object", "additionalProperties": False, "properties": properties,
-            "required": ["layer"] + (["step"] if step else []) + ["items"]}
+            "required": ["band"] + (["step_id"] if step else []) + ["items"]}
 
 
 def _embed(name, path):
@@ -53,13 +53,13 @@ def build(order):
     required = {"nodes": [], "edges": []}
     defs = {}
     for node in order["nodes"]:
-        if node["layer"] not in labels:
-            labels.append(node["layer"])
-        step = node.get("step")
+        if node["band"] not in labels:
+            labels.append(node["band"])
+        step = node.get("step_id")
         if step:
             steps.append(step)
-        name = "Group_" + (step or node["layer"])
-        defs.setdefault(name, _group(node["layer"], step))
+        name = "Group_" + (step or node["band"])
+        defs.setdefault(name, _group(node["band"], step))
         for path in node["writes"]:
             kind, _, group = path.strip("/").partition("/")
             if kind in groups:
@@ -75,8 +75,8 @@ def build(order):
                        "genre": {"enum": list(order["modalities"])},
                        "world": _string(), "setting": _string(),
                        "ax": {"type": "object", "description": "Axis and set geometry; fixed by the L0 slice."}}}
-    defs["Invariant"] = {"type": "object", "additionalProperties": False, "required": ["id", "layer", "rule"],
-        "properties": {"id": _string(), "layer": {"enum": labels}, "rule": _string()}}
+    defs["Invariant"] = {"type": "object", "additionalProperties": False, "required": ["id", "band", "rule"],
+        "properties": {"id": _string(), "band": {"enum": labels}, "rule": _string()}}
     defs["Validation"] = {"type": "object", "additionalProperties": False, "required": VALIDATION_KEYS,
         "properties": {key: {"enum": ["pass", "fail", None]} for key in VALIDATION_KEYS}}
     defs["Provenance"] = {"type": "object", "additionalProperties": False,

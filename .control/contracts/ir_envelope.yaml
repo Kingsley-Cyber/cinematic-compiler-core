@@ -1,5 +1,5 @@
 id: IR_ENVELOPE
-version: 4
+version: 5
 description: MGRAPH-1.1 movement-graph envelope, its layer DAG and the append-only schema log. Structural contract only; per-graph semantics arrive with each layer slice.
 producers:
   - kernel/layer_order.yaml
@@ -25,7 +25,7 @@ invariants:
   - s01_owns_intent_and_s02_owns_scene
   - ordered_step_ids_S01_S17_alone_encode_order_and_rise_with_every_build_order
   - layer_labels_are_names_and_carry_no_order
-  - group_and_item_layer_tags_match_their_owning_node
+  - group_and_item_band_and_step_id_tags_match_their_owning_node
   - constraint_graph_precedes_every_layer_validated_by_constraint
   - a_pass_changes_only_the_paths_its_node_owns
   - inactive_modality_layers_hold_no_items

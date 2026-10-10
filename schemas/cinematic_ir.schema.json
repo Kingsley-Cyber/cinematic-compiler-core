@@ -173,10 +173,10 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "layer": {
+        "band": {
           "const": "L0"
         },
-        "step": {
+        "step_id": {
           "const": "S01"
         },
         "items": {
@@ -191,7 +191,7 @@
                 "type": "string",
                 "minLength": 1
               },
-              "layer": {
+              "band": {
                 "const": "L0"
               }
             },
@@ -200,8 +200,8 @@
         }
       },
       "required": [
-        "layer",
-        "step",
+        "band",
+        "step_id",
         "items"
       ]
     },
@@ -209,10 +209,10 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "layer": {
+        "band": {
           "const": "L0.5"
         },
-        "step": {
+        "step_id": {
           "const": "S02"
         },
         "items": {
@@ -227,7 +227,7 @@
                 "type": "string",
                 "minLength": 1
               },
-              "layer": {
+              "band": {
                 "const": "L0.5"
               }
             },
@@ -236,8 +236,8 @@
         }
       },
       "required": [
-        "layer",
-        "step",
+        "band",
+        "step_id",
         "items"
       ]
     },
@@ -245,10 +245,10 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "layer": {
+        "band": {
           "const": "constraint"
         },
-        "step": {
+        "step_id": {
           "const": "S03"
         },
         "items": {
@@ -263,7 +263,7 @@
                 "type": "string",
                 "minLength": 1
               },
-              "layer": {
+              "band": {
                 "const": "constraint"
               }
             },
@@ -272,8 +272,8 @@
         }
       },
       "required": [
-        "layer",
-        "step",
+        "band",
+        "step_id",
         "items"
       ]
     },
@@ -281,10 +281,10 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "layer": {
+        "band": {
           "const": "L1"
         },
-        "step": {
+        "step_id": {
           "const": "S04"
         },
         "items": {
@@ -299,7 +299,7 @@
                 "type": "string",
                 "minLength": 1
               },
-              "layer": {
+              "band": {
                 "const": "L1"
               }
             },
@@ -308,8 +308,8 @@
         }
       },
       "required": [
-        "layer",
-        "step",
+        "band",
+        "step_id",
         "items"
       ]
     },
@@ -317,10 +317,10 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "layer": {
+        "band": {
           "const": "L1"
         },
-        "step": {
+        "step_id": {
           "const": "S05"
         },
         "items": {
@@ -335,7 +335,7 @@
                 "type": "string",
                 "minLength": 1
               },
-              "layer": {
+              "band": {
                 "const": "L1"
               }
             },
@@ -344,8 +344,8 @@
         }
       },
       "required": [
-        "layer",
-        "step",
+        "band",
+        "step_id",
         "items"
       ]
     },
@@ -353,10 +353,10 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "layer": {
+        "band": {
           "const": "L2"
         },
-        "step": {
+        "step_id": {
           "const": "S06"
         },
         "items": {
@@ -371,7 +371,7 @@
                 "type": "string",
                 "minLength": 1
               },
-              "layer": {
+              "band": {
                 "const": "L2"
               }
             },
@@ -380,8 +380,8 @@
         }
       },
       "required": [
-        "layer",
-        "step",
+        "band",
+        "step_id",
         "items"
       ]
     },
@@ -389,10 +389,10 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "layer": {
+        "band": {
           "const": "L2"
         },
-        "step": {
+        "step_id": {
           "const": "S07"
         },
         "items": {
@@ -407,7 +407,7 @@
                 "type": "string",
                 "minLength": 1
               },
-              "layer": {
+              "band": {
                 "const": "L2"
               }
             },
@@ -416,8 +416,8 @@
         }
       },
       "required": [
-        "layer",
-        "step",
+        "band",
+        "step_id",
         "items"
       ]
     },
@@ -425,10 +425,10 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "layer": {
+        "band": {
           "const": "L2.5"
         },
-        "step": {
+        "step_id": {
           "const": "S08"
         },
         "items": {
@@ -443,7 +443,7 @@
                 "type": "string",
                 "minLength": 1
               },
-              "layer": {
+              "band": {
                 "const": "L2.5"
               }
             },
@@ -452,8 +452,8 @@
         }
       },
       "required": [
-        "layer",
-        "step",
+        "band",
+        "step_id",
         "items"
       ]
     },
@@ -461,10 +461,10 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "layer": {
+        "band": {
           "const": "L2.6"
         },
-        "step": {
+        "step_id": {
           "const": "S09"
         },
         "items": {
@@ -479,7 +479,7 @@
                 "type": "string",
                 "minLength": 1
               },
-              "layer": {
+              "band": {
                 "const": "L2.6"
               }
             },
@@ -488,8 +488,8 @@
         }
       },
       "required": [
-        "layer",
-        "step",
+        "band",
+        "step_id",
         "items"
       ]
     },
@@ -497,10 +497,10 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "layer": {
+        "band": {
           "const": "L2.7"
         },
-        "step": {
+        "step_id": {
           "const": "S10"
         },
         "items": {
@@ -515,7 +515,7 @@
                 "type": "string",
                 "minLength": 1
               },
-              "layer": {
+              "band": {
                 "const": "L2.7"
               }
             },
@@ -524,8 +524,8 @@
         }
       },
       "required": [
-        "layer",
-        "step",
+        "band",
+        "step_id",
         "items"
       ]
     },
@@ -533,10 +533,10 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "layer": {
+        "band": {
           "const": "L4a"
         },
-        "step": {
+        "step_id": {
           "const": "S11"
         },
         "items": {
@@ -551,7 +551,7 @@
                 "type": "string",
                 "minLength": 1
               },
-              "layer": {
+              "band": {
                 "const": "L4a"
               }
             },
@@ -560,8 +560,8 @@
         }
       },
       "required": [
-        "layer",
-        "step",
+        "band",
+        "step_id",
         "items"
       ]
     },
@@ -569,10 +569,10 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "layer": {
+        "band": {
           "const": "L4b"
         },
-        "step": {
+        "step_id": {
           "const": "S12"
         },
         "items": {
@@ -587,7 +587,7 @@
                 "type": "string",
                 "minLength": 1
               },
-              "layer": {
+              "band": {
                 "const": "L4b"
               }
             },
@@ -596,8 +596,8 @@
         }
       },
       "required": [
-        "layer",
-        "step",
+        "band",
+        "step_id",
         "items"
       ]
     },
@@ -605,10 +605,10 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "layer": {
+        "band": {
           "const": "L4c"
         },
-        "step": {
+        "step_id": {
           "const": "S13"
         },
         "items": {
@@ -623,7 +623,7 @@
                 "type": "string",
                 "minLength": 1
               },
-              "layer": {
+              "band": {
                 "const": "L4c"
               }
             },
@@ -632,8 +632,8 @@
         }
       },
       "required": [
-        "layer",
-        "step",
+        "band",
+        "step_id",
         "items"
       ]
     },
@@ -641,10 +641,10 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "layer": {
+        "band": {
           "const": "L5"
         },
-        "step": {
+        "step_id": {
           "const": "S14"
         },
         "items": {
@@ -659,7 +659,7 @@
                 "type": "string",
                 "minLength": 1
               },
-              "layer": {
+              "band": {
                 "const": "L5"
               }
             },
@@ -668,8 +668,8 @@
         }
       },
       "required": [
-        "layer",
-        "step",
+        "band",
+        "step_id",
         "items"
       ]
     },
@@ -677,10 +677,10 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "layer": {
+        "band": {
           "const": "L5.5"
         },
-        "step": {
+        "step_id": {
           "const": "S15"
         },
         "items": {
@@ -695,7 +695,7 @@
                 "type": "string",
                 "minLength": 1
               },
-              "layer": {
+              "band": {
                 "const": "L5.5"
               }
             },
@@ -704,8 +704,8 @@
         }
       },
       "required": [
-        "layer",
-        "step",
+        "band",
+        "step_id",
         "items"
       ]
     },
@@ -713,10 +713,10 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "layer": {
+        "band": {
           "const": "L6"
         },
-        "step": {
+        "step_id": {
           "const": "S16"
         },
         "items": {
@@ -731,7 +731,7 @@
                 "type": "string",
                 "minLength": 1
               },
-              "layer": {
+              "band": {
                 "const": "L6"
               }
             },
@@ -740,8 +740,8 @@
         }
       },
       "required": [
-        "layer",
-        "step",
+        "band",
+        "step_id",
         "items"
       ]
     },
@@ -749,10 +749,10 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "layer": {
+        "band": {
           "const": "L6.5"
         },
-        "step": {
+        "step_id": {
           "const": "S17"
         },
         "items": {
@@ -767,7 +767,7 @@
                 "type": "string",
                 "minLength": 1
               },
-              "layer": {
+              "band": {
                 "const": "L6.5"
               }
             },
@@ -776,8 +776,8 @@
         }
       },
       "required": [
-        "layer",
-        "step",
+        "band",
+        "step_id",
         "items"
       ]
     },
@@ -1113,7 +1113,7 @@
       "additionalProperties": false,
       "required": [
         "id",
-        "layer",
+        "band",
         "rule"
       ],
       "properties": {
@@ -1121,7 +1121,7 @@
           "type": "string",
           "minLength": 1
         },
-        "layer": {
+        "band": {
           "enum": [
             "L0",
             "L0.5",
@@ -1220,7 +1220,7 @@
           "const": "LBN-2.4"
         },
         "layer_order_version": {
-          "const": "1.3"
+          "const": "1.4"
         },
         "build_timestamp": {
           "type": "string",

@@ -32,8 +32,7 @@ def empty_envelope(order, modality):
         for path in node["writes"]:
             kind, _, group = path.strip("/").partition("/")
             if kind in groups:
-                groups[kind][group] = {"layer": node["layer"], **({"step": node["step"]} if "step" in node else {}),
-                                       "items": []}
+                groups[kind][group] = {"band": node["band"], "step_id": node["step_id"], "items": []}
     return {
         "graph_version": ENVELOPE_VERSION, "derived_from": KERNEL_VERSION,
         "intent": parse_intent("10s anime fight, 24fps, moonlit bamboo courtyard"),

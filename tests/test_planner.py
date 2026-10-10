@@ -170,6 +170,6 @@ def test_s01_pass_writes_only_intent_and_never_mutates_input(order):
 
 def test_pass_files_are_named_from_their_step_id(order):
     index = node_index(order)
-    expected = {f"p{node['step'][1:]}_{identity}.py" for identity, node in index.items()}
+    expected = {f"p{node['step_id'][1:]}_{identity}.py" for identity, node in index.items()}
     files = {path.name for path in (ROOT / "compiler" / "passes").rglob("p[0-9][0-9]_*.py")}
     assert files and files <= expected
