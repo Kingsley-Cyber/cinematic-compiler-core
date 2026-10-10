@@ -230,14 +230,17 @@ Notes on the decisions:
 
 - [ ] S16.1 Draft cards for the reference fight: ninja A/B variants, kunai, rope_dart, smoke_pellet,
   shuriken_volley, substitution_log, wooden pillar world.
-- [ ] S16.2 `schemas/graphs/render.schema.json` (projection group, no edges): `{target, text, sha256, coverage}`; frame-part directives
+- [x] S16.2 `schemas/graphs/render.schema.json` (projection group, no edges): `{target, text, sha256, coverage}`; frame-part directives
   `{impact, smear, speedlines, holds, fx, ink}`. Log.
-- [ ] S16.3 `renderers/anime_renderer.py`: deterministic projection into the full LBN-2.x layout (variant, fps, dur,
+- [x] S16.3 `renderers/anime_renderer.py`: deterministic projection into the full LBN-2.x layout (variant, fps, dur,
   ax, key, negative, laban, actor tracks, prop tracks, cam, anime, rules); uncompressed, no length budget, no
   model-specific formatting; quadrant density decides prose detail, never drops graph content.
-- [ ] S16.4 Frame-part directives authored (smear only on the declared limb or prop).
-- [ ] S16.5 Coverage (`no_render_compression`): every node group and every applied constraint has an entry in the
+- [x] S16.4 Frame-part directives authored (smear only on the declared limb or prop).
+- [x] S16.5 Coverage (`no_render_compression`): every node group and every applied constraint has an entry in the
   render; anything missing fails the step.
+  (Built on the courtyard: `renderers/anime_renderer.py` projects every graph into the LBN-2.4-ADV-LMA layout; kernel
+  per-actor/per-prop controls are regenerated for the cast (labels A, B… in S02 order), never copied; the owner
+  render control is enforced by coverage, not printed; examples write `render.txt` next to `envelope.json`.)
 - [ ] S16.6 Golden: the reference fight compiles and contains every kernel and reference-fight item; the owner
   renders (Claude never renders).
 

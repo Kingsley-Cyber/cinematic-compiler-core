@@ -24,6 +24,7 @@ GROUP_SCHEMAS = {  # schema file -> {schema key: (kind, envelope group)}
     "motion_graph": {"motion": ("nodes", "motion"), "motion_edges": ("edges", "motion")},
     "effort_graph": {"efforts": ("nodes", "efforts"), "effort": ("edges", "effort")},
     "camera_graph": {"camera": ("nodes", "camera"), "camera_edges": ("edges", "camera")},
+    "render": {"render": ("nodes", "render")},
 }
 
 

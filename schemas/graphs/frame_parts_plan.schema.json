@@ -1,0 +1,191 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:frame_parts_plan:1.0",
+  "title": "S16 frame-part directives (authored in-session)",
+  "description": "Anime frame parts the renderer projects next to the graphs: impact, smear (only on the declared limb or prop), speedlines, holds, fx, ink.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "step_id",
+    "band",
+    "packet_sha256",
+    "author",
+    "attempt",
+    "frame_parts"
+  ],
+  "properties": {
+    "step_id": {
+      "const": "S16"
+    },
+    "band": {
+      "const": "L6"
+    },
+    "packet_sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "author": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "host",
+        "model"
+      ],
+      "properties": {
+        "host": {
+          "type": "string",
+          "minLength": 1
+        },
+        "model": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "attempt": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 3
+    },
+    "frame_parts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "impact",
+        "smear",
+        "speedlines",
+        "holds",
+        "fx",
+        "ink"
+      ],
+      "properties": {
+        "impact": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "smear": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "t0",
+              "t1",
+              "subject",
+              "part",
+              "note"
+            ],
+            "properties": {
+              "t0": {
+                "type": "number",
+                "minimum": 0
+              },
+              "t1": {
+                "type": "number",
+                "minimum": 0
+              },
+              "subject": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]*$"
+              },
+              "part": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "pattern": "^[a-z][a-z0-9_]*$"
+              },
+              "note": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "speedlines": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "t0",
+              "t1",
+              "subject"
+            ],
+            "properties": {
+              "t0": {
+                "type": "number",
+                "minimum": 0
+              },
+              "t1": {
+                "type": "number",
+                "minimum": 0
+              },
+              "subject": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]*$"
+              }
+            }
+          }
+        },
+        "holds": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "t",
+              "frames"
+            ],
+            "properties": {
+              "t": {
+                "type": "number",
+                "minimum": 0
+              },
+              "frames": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        },
+        "fx": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "t",
+              "t_end",
+              "text"
+            ],
+            "properties": {
+              "t": {
+                "type": "number",
+                "minimum": 0
+              },
+              "t_end": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "ink": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

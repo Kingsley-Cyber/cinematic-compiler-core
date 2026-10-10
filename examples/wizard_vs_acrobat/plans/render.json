@@ -1,0 +1,115 @@
+{
+ "step_id": "S16",
+ "band": "L6",
+ "packet_sha256": "sha256:cdcefd069b39b7e17f77e090d5ca1e72ae8ab593bc4ce79bb85c65e600c3facf",
+ "author": {
+  "host": "Claude Code desktop, in-session",
+  "model": "claude-opus-5-5"
+ },
+ "attempt": 1,
+ "frame_parts": {
+  "impact": [
+   3.6,
+   5.2
+  ],
+  "smear": [
+   {
+    "t0": 1.2,
+    "t1": 2.0,
+    "subject": "acrobat",
+    "part": "right_leg",
+    "note": "vault arc of the trailing leg,body does NOT smear"
+   },
+   {
+    "t0": 2.6,
+    "t1": 3.6,
+    "subject": "acrobat",
+    "part": "right_leg",
+    "note": "spinning heel crescent,body does NOT smear"
+   },
+   {
+    "t0": 7.6,
+    "t1": 8.6,
+    "subject": "wizard",
+    "part": "right_arm",
+    "note": "spiral sweep of the casting arm,body does NOT smear"
+   },
+   {
+    "t0": 8.6,
+    "t1": 9.4,
+    "subject": "acrobat",
+    "part": "left_leg",
+    "note": "backflip leg arc,body does NOT smear"
+   }
+  ],
+  "speedlines": [
+   {
+    "t0": 1.2,
+    "t1": 2.0,
+    "subject": "acrobat"
+   },
+   {
+    "t0": 2.6,
+    "t1": 3.6,
+    "subject": "acrobat"
+   },
+   {
+    "t0": 4.0,
+    "t1": 5.2,
+    "subject": "acrobat"
+   },
+   {
+    "t0": 8.6,
+    "t1": 9.4,
+    "subject": "acrobat"
+   }
+  ],
+  "holds": [
+   {
+    "t": 3.6,
+    "frames": 3
+   },
+   {
+    "t": 5.2,
+    "frames": 2
+   },
+   {
+    "t": 9.4,
+    "frames": 4
+   }
+  ],
+  "fx": [
+   {
+    "t": 2.4,
+    "t_end": null,
+    "text": "fire bolt scorch mark on the flagstones"
+   },
+   {
+    "t": 3.6,
+    "t_end": null,
+    "text": "impact flash at the wizard's chest"
+   },
+   {
+    "t": 3.6,
+    "t_end": 4.6,
+    "text": "force ward ripple from both palms"
+   },
+   {
+    "t": 5.2,
+    "t_end": null,
+    "text": "stone dust and crack at the pillar"
+   },
+   {
+    "t": 8.6,
+    "t_end": null,
+    "text": "cut bamboo stalks fall from the wall"
+   },
+   {
+    "t": 9.4,
+    "t_end": 10.0,
+    "text": "moonlight rim on the scorch, the crack and the cut bamboo"
+   }
+  ],
+  "ink": "heavy on silhouettes,broken in smears,clean on holds,smear follows ONLY the declared limb,body does NOT smear"
+ }
+}

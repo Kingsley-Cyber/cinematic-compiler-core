@@ -67,6 +67,8 @@ def run_authored(envelope, document, *, node_id, step_id, prepare, schema_path, 
     for path, items in build(envelope, document, packet).items():
         _, kind, group = path.split("/")
         after[kind][group] = {"band": node["band"], "step_id": node["step_id"], "items": items}
+        if node.get("projection"):
+            after[kind][group]["projection"] = True
     findings = check_pass_writes(order, node_id, envelope, after)
     if findings:
         raise ContractError("WRITE_SCOPE", f"{step_id} changed paths it does not own", findings)

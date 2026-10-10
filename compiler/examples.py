@@ -1,7 +1,8 @@
 """Committed examples must recompile byte-for-byte and carry the current kernel hash (stale = gate failure).
 
 Layout: examples/<name>/request.json {"query", "genre", "duration_s", "until"}, optional plans/<node>.json
-(authored inputs), and envelope.json (expected canonical output).
+(authored inputs), envelope.json (expected canonical output) and, once S16 has run, render.txt (the rendered prompt,
+exactly the render node's text, ready to paste into a video model).
 """
 
 import json
@@ -25,14 +26,24 @@ def compile_example(folder):
     return pipeline.run(request["query"], **kwargs)
 
 
+def render_text(envelope):
+    render = envelope.get("nodes", {}).get("render")
+    return render["items"][0]["text"] + "\n" if render else None
+
+
 def check_all():
     problems, current = [], kernel_hash()
     for folder in sorted(p for p in EXAMPLES.iterdir() if p.is_dir()) if EXAMPLES.exists() else []:
         expected = (folder / "envelope.json").read_text(encoding="utf-8")
         if json.loads(expected)["provenance"]["kernel_hash"] != current:
             problems.append(f"{folder.name}: built against an older kernel")
-        elif canonical_json(compile_example(folder)) != expected:
+            continue
+        envelope = compile_example(folder)
+        if canonical_json(envelope) != expected:
             problems.append(f"{folder.name}: recompiled bytes differ from envelope.json")
+        text, path = render_text(envelope), folder / "render.txt"
+        if (text is None) != (not path.exists()) or (text is not None and path.read_text(encoding="utf-8") != text):
+            problems.append(f"{folder.name}: render.txt does not match the envelope's render")
     return problems
 
 
@@ -40,8 +51,12 @@ def main():
     if "--write" in sys.argv:
         for name in sys.argv[sys.argv.index("--write") + 1:]:
             folder = EXAMPLES / name
-            (folder / "envelope.json").write_text(canonical_json(compile_example(folder)), encoding="utf-8")
+            envelope = compile_example(folder)
+            (folder / "envelope.json").write_text(canonical_json(envelope), encoding="utf-8")
             print("wrote", folder / "envelope.json")
+            if render_text(envelope) is not None:
+                (folder / "render.txt").write_text(render_text(envelope), encoding="utf-8")
+                print("wrote", folder / "render.txt")
         return
     problems = check_all()
     for problem in problems:
