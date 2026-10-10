@@ -1,0 +1,37 @@
+id: CONSTRAINT_GRAPH
+version: 1
+description: S03 (band constraint) constraint graph built from the kernel (LBN-2.3-ADV and LBN-2.4-ADV-LMA intersection) plus world and archetype card invariants.
+producers:
+  - kernel_extraction/control_inventory.py
+  - kernel/sources/lbn-2.3-adv.txt
+  - kernel/sources/lbn-2.4-adv-lma.txt
+  - kernel/kernel_scope.yaml
+  - kernel/invariants.yaml
+  - kernel/kernel_log.jsonl
+  - schemas/kernel_invariants.schema.json
+  - schemas/graphs/constraint_graph.schema.json
+  - compiler/passes/mandatory/p03_constraint.py
+consumers:
+  - compiler/pipeline.py
+depends_on:
+  - IR_ENVELOPE
+  - BRIEF
+invariants:
+  - kernel_is_exactly_the_controls_both_lbn_sources_state
+  - every_kernel_item_quotes_both_sources_verbatim_by_span
+  - every_shared_item_has_exactly_one_reviewed_scope
+  - kernel_file_equals_its_regeneration_and_all_kernel_files_match_their_log
+  - kernel_scope_applies_to_scene_actor_scope_to_each_entity_prop_scope_to_each_prop
+  - scene_reference_items_are_never_applied
+  - world_and_archetype_rules_come_verbatim_from_their_cards
+  - every_constraint_has_at_least_one_application_and_one_envelope_invariant
+  - s03_pass_writes_only_constraints_constraint_application_and_invariants
+validation:
+  unit:
+    - tests/test_constraint_graph.py
+    - tests/test_kernel_extraction.py
+  integration:
+    - tests/test_constraint_graph.py
+    - tests/test_kernel_extraction.py
+proof_requirements:
+  CONTRACT_CHANGE: INTEGRATION_PROVEN

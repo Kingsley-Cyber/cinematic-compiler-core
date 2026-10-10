@@ -32,6 +32,13 @@ def _card_version(path):
     return f"{card.get('card_version')}:{card.get('status')}"
 
 
+def _kernel_version(path):
+    if path.suffix != ".yaml":
+        return None
+    document = yaml.safe_load(path.read_text(encoding="utf-8"))
+    return f"{document.get('version')}:{document.get('status')}"
+
+
 class HashLog:
     def __init__(self, log, folder, pattern, key, version_key, read_version):
         self.log, self.folder, self.pattern = log, folder, pattern
@@ -40,7 +47,9 @@ class HashLog:
                        "layer_order_version", "reason", "decided_by"}
 
     def files(self, root=ROOT):
-        return sorted(p.relative_to(root).as_posix() for p in (root / self.folder).rglob(self.pattern))
+        patterns = (self.pattern,) if isinstance(self.pattern, str) else self.pattern
+        found = {p.relative_to(root).as_posix() for pattern in patterns for p in (root / self.folder).glob(pattern)}
+        return sorted(found)
 
     def entries(self, root=ROOT):
         path = root / self.log
@@ -125,9 +134,12 @@ class HashLog:
         return row
 
 
-SCHEMAS = HashLog("schemas/schema_log.jsonl", "schemas", "*.schema.json", "schema", "schema_version", _schema_version)
-LIBRARY = HashLog("library/library_log.jsonl", "library", "*.yaml", "card", "card_version", _card_version)
-LOGS = {"schemas": SCHEMAS, "library": LIBRARY}
+SCHEMAS = HashLog("schemas/schema_log.jsonl", "schemas", "**/*.schema.json", "schema", "schema_version",
+                  _schema_version)
+LIBRARY = HashLog("library/library_log.jsonl", "library", "**/*.yaml", "card", "card_version", _card_version)
+KERNEL = HashLog("kernel/kernel_log.jsonl", "kernel", ("sources/*.txt", "kernel_scope.yaml", "invariants.yaml"),
+                 "file", "file_version", _kernel_version)
+LOGS = {"schemas": SCHEMAS, "library": LIBRARY, "kernel": KERNEL}
 
 
 def schema_files(root=ROOT):

@@ -1,0 +1,1053 @@
+version: 1
+status: draft
+basis: Per-item reading of the LBN-2.3-ADV and LBN-2.4-ADV-LMA intersection by Claude (2026-10-10); owner review pending.
+sources:
+- file: kernel/sources/lbn-2.3-adv.txt
+  variant: LBN-2.3-ADV
+  sha256: sha256:b43864cf133703bc0ffa01f534cf4b6652996787dceaf373ec68c8699addda75
+- file: kernel/sources/lbn-2.4-adv-lma.txt
+  variant: LBN-2.4-ADV-LMA
+  sha256: sha256:cf7b4b7471eb730ab5e2e6935e9699a6e9ad00924a444948e7333fb1fbeecc1f
+items:
+- id: k_preface_00
+  field: preface
+  text: 10s anime fight, 24fps, moonlit bamboo courtyard, tall wooden pillar at back z=6 extending from ground y=0 to y=8,
+    dark under-canopy of bamboo on left
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 0
+    - 150
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 0
+    - 150
+- id: k_preface_01
+  field: preface
+  text: 'A: lean ninja, dark coat, red scarf wrapped SMALL at neck, face fully visible'
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 152
+    - 229
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 152
+    - 229
+- id: k_preface_02
+  field: preface
+  text: 'B: broad ninja, grey armor, one shoulder pauldron'
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 231
+    - 280
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 231
+    - 280
+- id: k_preface_03
+  field: preface
+  text: TWO fighters, FOUR props (kunai, rope dart, smoke pellet, shuriken volley)
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 282
+    - 356
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 282
+    - 356
+- id: k_preface_04
+  field: preface
+  text: A starts ABOVE the frame, falling from y=8
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 358
+    - 400
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 358
+    - 400
+- id: k_preface_05
+  field: preface
+  text: B starts at z=4.5 facing -Z
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 402
+    - 429
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 402
+    - 429
+- id: k_preface_06
+  field: preface
+  text: Naruto-tier choreography with substitution and teleport-position counters
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 431
+    - 504
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 431
+    - 504
+- id: k_preface_07
+  field: preface
+  text: Euler degrees XYZ
+  scope: kernel
+  reason: Names no scene entity; applies to every scene as written.
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 506
+    - 523
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 506
+    - 523
+- id: k_preface_08
+  field: preface
+  text: Render spec exactly
+  scope: kernel
+  reason: Names no scene entity; applies to every scene as written.
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 525
+    - 544
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 544
+    - 563
+- id: k_ax_00
+  field: ax
+  text: Y_up
+  scope: kernel
+  reason: Names no scene entity; applies to every scene as written.
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 597
+    - 601
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 620
+    - 624
+- id: k_ax_01
+  field: ax
+  text: A faces +Z
+  scope: kernel_actor
+  reason: Per-actor control written for the reference actors; applies to every declared actor.
+  reference_labels:
+  - A
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 602
+    - 612
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 625
+    - 635
+- id: k_ax_02
+  field: ax
+  text: pillar at z=6 from y=0 to y=8
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 613
+    - 642
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 636
+    - 665
+- id: k_ax_03
+  field: ax
+  text: ground y=0
+  scope: kernel
+  reason: Names no scene entity; applies to every scene as written.
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 643
+    - 653
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 666
+    - 676
+- id: k_ax_04
+  field: ax
+  text: bamboo canopy left side
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 654
+    - 677
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 677
+    - 700
+- id: k_key_00
+  field: key
+  text: Sp=Spine
+  scope: kernel
+  reason: Joint key naming shared by both LBN versions.
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 686
+    - 694
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 709
+    - 717
+- id: k_key_01
+  field: key
+  text: LUL/RUL=UpLeg
+  scope: kernel
+  reason: Joint key naming shared by both LBN versions.
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 695
+    - 708
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 718
+    - 731
+- id: k_key_02
+  field: key
+  text: LL/RL=LowLeg
+  scope: kernel
+  reason: Joint key naming shared by both LBN versions.
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 709
+    - 721
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 732
+    - 744
+- id: k_key_03
+  field: key
+  text: LA/RA=UpArm
+  scope: kernel
+  reason: Joint key naming shared by both LBN versions.
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 722
+    - 733
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 745
+    - 756
+- id: k_key_04
+  field: key
+  text: LFA/RFA=ForeArm
+  scope: kernel
+  reason: Joint key naming shared by both LBN versions.
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 734
+    - 749
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 757
+    - 772
+- id: k_key_05
+  field: key
+  text: HD=Head
+  scope: kernel
+  reason: Joint key naming shared by both LBN versions.
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 750
+    - 757
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 773
+    - 780
+- id: k_key_06
+  field: key
+  text: NK=Neck
+  scope: kernel
+  reason: Joint key naming shared by both LBN versions.
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 758
+    - 765
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 781
+    - 788
+- id: k_negative_00
+  field: negative
+  text: no missing limbs
+  scope: kernel
+  reason: Names no scene entity; applies to every scene as written.
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 779
+    - 795
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 1177
+    - 1193
+- id: k_negative_01
+  field: negative
+  text: no missing arms
+  scope: kernel
+  reason: Names no scene entity; applies to every scene as written.
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 796
+    - 811
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 1194
+    - 1209
+- id: k_negative_02
+  field: negative
+  text: no missing hands
+  scope: kernel
+  reason: Names no scene entity; applies to every scene as written.
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 812
+    - 828
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 1210
+    - 1226
+- id: k_negative_03
+  field: negative
+  text: no headless body
+  scope: kernel
+  reason: Names no scene entity; applies to every scene as written.
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 829
+    - 845
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 1227
+    - 1243
+- id: k_negative_04
+  field: negative
+  text: no scarf covering head
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 846
+    - 868
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 1244
+    - 1266
+- id: k_negative_05
+  field: negative
+  text: no faceless head
+  scope: kernel
+  reason: Names no scene entity; applies to every scene as written.
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 869
+    - 885
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 1267
+    - 1283
+- id: k_negative_06
+  field: negative
+  text: no extra fighters beyond A and B
+  scope: kernel_actor
+  reason: Per-actor control written for the reference actors; applies to every declared actor.
+  reference_labels:
+  - A
+  - B
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 886
+    - 918
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 1284
+    - 1316
+- id: k_negative_07
+  field: negative
+  text: no cloned A
+  scope: kernel_actor
+  reason: Per-actor control written for the reference actors; applies to every declared actor.
+  reference_labels:
+  - A
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 919
+    - 930
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 1317
+    - 1328
+- id: k_negative_08
+  field: negative
+  text: no duplicated kunai
+  scope: kernel_prop
+  reason: Per-prop control written for the reference props; applies to every declared prop.
+  reference_labels:
+  - kunai
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 931
+    - 950
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 1329
+    - 1348
+- id: k_negative_09
+  field: negative
+  text: no duplicated rope dart
+  scope: kernel_prop
+  reason: Per-prop control written for the reference props; applies to every declared prop.
+  reference_labels:
+  - rope dart
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 951
+    - 974
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 1349
+    - 1372
+- id: k_negative_10
+  field: negative
+  text: no duplicated smoke pellet
+  scope: kernel_prop
+  reason: Per-prop control written for the reference props; applies to every declared prop.
+  reference_labels:
+  - smoke pellet
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 975
+    - 1001
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 1373
+    - 1399
+- id: k_negative_11
+  field: negative
+  text: no duplicated shuriken beyond the declared volley of 3
+  scope: kernel_prop
+  reason: Per-prop control written for the reference props; applies to every declared prop.
+  reference_labels:
+  - shuriken
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 1002
+    - 1056
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 1400
+    - 1454
+- id: k_negative_12
+  field: negative
+  text: no extra weapons
+  scope: kernel
+  reason: Names no scene entity; applies to every scene as written.
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 1057
+    - 1073
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 1455
+    - 1471
+- id: k_negative_13
+  field: negative
+  text: no full circle
+  scope: kernel
+  reason: Render negative that names no scene entity; applies to every scene as written.
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 1074
+    - 1088
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 1472
+    - 1486
+- id: k_negative_14
+  field: negative
+  text: no ring
+  scope: kernel
+  reason: Render negative that names no scene entity; applies to every scene as written.
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 1089
+    - 1096
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 1487
+    - 1494
+- id: k_negative_15
+  field: negative
+  text: no halo
+  scope: kernel
+  reason: Render negative that names no scene entity; applies to every scene as written.
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 1097
+    - 1104
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 1495
+    - 1502
+- id: k_negative_16
+  field: negative
+  text: no substitution log as a separate fighter
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 1105
+    - 1146
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 1503
+    - 1544
+- id: k_negative_17
+  field: negative
+  text: substitution log is a wooden block NOT a fighter
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 1147
+    - 1195
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 1545
+    - 1593
+- id: k_rules_00
+  field: rules
+  text: slerp A joints
+  scope: kernel_actor
+  reason: Per-actor control written for the reference actors; applies to every declared actor.
+  reference_labels:
+  - A
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 22386
+    - 22400
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 28792
+    - 28806
+- id: k_rules_01
+  field: rules
+  text: A root exact
+  scope: kernel_actor
+  reason: Per-actor control written for the reference actors; applies to every declared actor.
+  reference_labels:
+  - A
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 22401
+    - 22413
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 28807
+    - 28819
+- id: k_rules_02
+  field: rules
+  text: A FALLS FROM ABOVE FRAME at 0.0,enters from top
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 22414
+    - 22461
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 28962
+    - 29009
+- id: k_rules_03
+  field: rules
+  text: LANDS ON PILLAR TOP at 0.6,deep crouch
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 22462
+    - 22500
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 29010
+    - 29048
+- id: k_rules_04
+  field: rules
+  text: SPRINTS DOWN PILLAR FACE at 1.1,body horizontal facing pillar,NOT wallrun upward
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 22501
+    - 22581
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 29049
+    - 29129
+- id: k_rules_05
+  field: rules
+  text: KICKS OFF PILLAR at 1.6
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 22582
+    - 22605
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 29130
+    - 29153
+- id: k_rules_06
+  field: rules
+  text: B THROWS KUNAI at 2.0 toward A
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 22606
+    - 22636
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 29154
+    - 29184
+- id: k_rules_07
+  field: rules
+  text: 'FOOT DEFLECT KINDS: kunai REVERSES from +Z to -Z and downward at 2.5,kunai STAYS IN FRAME,NOT toward B'
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 22637
+    - 22739
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 29185
+    - 29287
+- id: k_rules_08
+  field: rules
+  text: KAWARIMI SUBSTITUTION at 3.7,A body REPLACED BY SMOKE BURST,A vanishes,substitution log reveals,B palm hits LOG NOT
+    A at 4.0,this is a SUBSTITUTION NOT a strike
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 22740
+    - 22900
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 29288
+    - 29448
+- id: k_rules_09
+  field: rules
+  text: A REAPPEARS BEHIND B at 4.4,teleport via substitution,this is the REAPPEARANCE
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 22901
+    - 22979
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 29449
+    - 29527
+- id: k_rules_10
+  field: rules
+  text: RIGHT KNEE strikes B spine at 4.7 from behind,NOT a kick,NOT a punch
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 22980
+    - 23048
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 29528
+    - 29596
+- id: k_rules_11
+  field: rules
+  text: B lifted and launched forward
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 23049
+    - 23078
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 29597
+    - 29626
+- id: k_rules_13
+  field: rules
+  text: THREE SHURIKEN volley at 5.5,exactly THREE no more no less,all three STAY IN FRAME
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 23236
+    - 23318
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 29784
+    - 29866
+- id: k_rules_14
+  field: rules
+  text: A SLIDES UNDER VOLLEY at 5.9,all three shuriken pass OVER A,this is a SLIDE NOT a roll,NOT a jump
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 23319
+    - 23416
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 29867
+    - 29964
+- id: k_rules_15
+  field: rules
+  text: CARTWHEEL TO RISING ELBOW at 6.3,left elbow leads
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 23417
+    - 23466
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 29965
+    - 30014
+- id: k_rules_16
+  field: rules
+  text: B CATCHES A LEFT ELBOW at 6.6,B throws A toward pillar,this is A BEING THROWN NOT a striking
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 23467
+    - 23559
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 30015
+    - 30107
+- id: k_rules_17
+  field: rules
+  text: A WALL-PUSH OFF PILLAR at 7.0,NOT still touching pillar
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 23560
+    - 23615
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 30108
+    - 30163
+- id: k_rules_18
+  field: rules
+  text: AERIAL ROPE DART REGRAPPLE at 7.5,left hand throws rope dart,rope dart wraps B right shoulder,A pulled toward B,this
+    is a GRAPPLE NOT a strike
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 23616
+    - 23758
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 30164
+    - 30306
+- id: k_rules_19
+  field: rules
+  text: A PULLS B toward pillar at 8.0,this is a PULL NOT a strike
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 23759
+    - 23817
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 30307
+    - 30365
+- id: k_rules_20
+  field: rules
+  text: AERIAL KUNAI DRIVE into B right shoulder at 8.5,kunai penetrates shoulder,this is a KUNAI DRIVE NOT a punch,NOT an
+    elbow
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 23818
+    - 23938
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 30366
+    - 30486
+- id: k_rules_21
+  field: rules
+  text: A and B CRASH to ground at 9.0
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 23939
+    - 23969
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 30487
+    - 30517
+- id: k_rules_22
+  field: rules
+  text: B remains down
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 23970
+    - 23984
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 30518
+    - 30532
+- id: k_rules_23
+  field: rules
+  text: TWO fighter identities A and B never merge or duplicate
+  scope: kernel_actor
+  reason: Per-actor control written for the reference actors; applies to every declared actor.
+  reference_labels:
+  - A
+  - B
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 23985
+    - 24040
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 30533
+    - 30588
+- id: k_rules_24
+  field: rules
+  text: FIVE props tracked separately,never merged:kunai,rope_dart,smoke_pellet,shuriken_volley,substitution_log
+  scope: kernel_prop
+  reason: Per-prop control written for the reference props; applies to every declared prop.
+  reference_labels:
+  - kunai
+  - rope_dart
+  - smoke_pellet
+  - shuriken_volley
+  - substitution_log
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 24041
+    - 24145
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 30589
+    - 30693
+- id: k_rules_25
+  field: rules
+  text: substitution log is a WOODEN BLOCK NOT a fighter
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 24146
+    - 24194
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 30694
+    - 30742
+- id: k_rules_26
+  field: rules
+  text: rope dart released at 5.9 during slide,picked up again at 7.5 during wall-push recovery
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 24195
+    - 24282
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 30743
+    - 30830
+- id: k_rules_27
+  field: rules
+  text: kunai picked up from ground at 8.0 during crash landing
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 24283
+    - 24338
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 30831
+    - 30886
+- id: k_rules_28
+  field: rules
+  text: B NEVER STANDS after 9.0
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 24339
+    - 24363
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 30887
+    - 30911
+- id: k_rules_29
+  field: rules
+  text: end with A in crouch over B,kunai in B shoulder,rope dart in A left hand,shurikens embedded in pillar,substitution
+    log on ground,smoke dissipating
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+  reference_labels: []
+  sources:
+  - file: kernel/sources/lbn-2.3-adv.txt
+    span:
+    - 24364
+    - 24510
+  - file: kernel/sources/lbn-2.4-adv-lma.txt
+    span:
+    - 30912
+    - 31058

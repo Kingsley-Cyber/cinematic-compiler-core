@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:constraint_graph:1.0",
+  "title": "S03 constraint graph (band constraint): constraints, applications, envelope invariants",
+  "description": "Every rule is copied verbatim from the kernel or a library card; every constraint applies to at least one target.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "constraints",
+    "applications",
+    "invariants"
+  ],
+  "properties": {
+    "constraints": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Constraint"
+      }
+    },
+    "applications": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Application"
+      }
+    },
+    "invariants": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Invariant"
+      }
+    }
+  },
+  "$defs": {
+    "Constraint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "origin",
+        "scope",
+        "field",
+        "rule",
+        "source",
+        "reference_labels",
+        "status",
+        "enforcement"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "origin": {
+          "enum": [
+            "kernel",
+            "world",
+            "archetype"
+          ]
+        },
+        "scope": {
+          "enum": [
+            "kernel",
+            "kernel_actor",
+            "kernel_prop",
+            "world",
+            "archetype"
+          ]
+        },
+        "field": {
+          "enum": [
+            "preface",
+            "ax",
+            "key",
+            "negative",
+            "rules",
+            "invariant"
+          ]
+        },
+        "rule": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "ref",
+            "version"
+          ],
+          "properties": {
+            "kind": {
+              "enum": [
+                "kernel_invariant",
+                "card"
+              ]
+            },
+            "ref": {
+              "type": "string",
+              "minLength": 1
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "reference_labels": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "status": {
+          "enum": [
+            "draft",
+            "approved"
+          ]
+        },
+        "enforcement": {
+          "const": "required"
+        }
+      }
+    },
+    "Application": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "constraint_id",
+        "target"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "constraint_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "target": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "id"
+          ],
+          "properties": {
+            "kind": {
+              "enum": [
+                "scene",
+                "entity",
+                "prop"
+              ]
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*$"
+            }
+          }
+        }
+      }
+    },
+    "Invariant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "band",
+        "rule"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "band": {
+          "const": "constraint"
+        },
+        "rule": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

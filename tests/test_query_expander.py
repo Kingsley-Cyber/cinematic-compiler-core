@@ -124,5 +124,5 @@ def test_pipeline_runs_in_dag_order_and_assumes_no_genre():
         pipeline.run(QUERIES[1], until="hand_role")
     assert error.value.code == "PIPELINE_TARGET"
     with pytest.raises(ContractError) as error:
-        pipeline.run(QUERIES[0], genre="anime", until="constraint")
+        pipeline.run(QUERIES[0], genre="anime", until="temporal")
     assert error.value.code == "PASS_MISSING"

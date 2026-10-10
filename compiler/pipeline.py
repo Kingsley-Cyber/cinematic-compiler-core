@@ -1,11 +1,14 @@
 """Run implemented passes in the DAG's build order (kernel/layer_order.yaml), stopping at a named node."""
 
-from kernel.canonical import ContractError
+import argparse
+import sys
+
+from kernel.canonical import ContractError, canonical_json
 from kernel.version import ENVELOPE_VERSION, KERNEL_VERSION
 from planner.dependency_graph import is_active, load, node_index
 from planner.topological_sort import build_order
 
-from .passes.mandatory import p01_intent, p02_brief
+from .passes.mandatory import p01_intent, p02_brief, p03_constraint
 
 VALIDATION_KEYS = ("schema", "invariants", "layer_dependency", "camera_kinematic_coupling", "post_generation")
 
@@ -16,10 +19,11 @@ def skeleton():
             "invariants": [], "validation": dict.fromkeys(VALIDATION_KEYS)}
 
 
-def run(query, *, genre=None, duration_s=None, until="brief", cards=None):
+def run(query, *, genre=None, duration_s=None, until="constraint", cards=None):
     order = load()
     passes = {"intent": lambda env: p01_intent.run(env, query, genre=genre, duration_s=duration_s, order=order),
-              "brief": lambda env: p02_brief.run(env, cards=cards, order=order)}
+              "brief": lambda env: p02_brief.run(env, cards=cards, order=order),
+              "constraint": lambda env: p03_constraint.run(env, cards=cards, order=order)}
     if genre:
         sequence = build_order(order, genre)
     else:
@@ -35,3 +39,16 @@ def run(query, *, genre=None, duration_s=None, until="brief", cards=None):
             raise ContractError("PASS_MISSING", "This node's pass is not implemented yet", node)
         envelope = passes[node](envelope)
     return envelope
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(prog="python -m compiler.pipeline")
+    parser.add_argument("query")
+    parser.add_argument("--genre")
+    parser.add_argument("--until", default="constraint")
+    args = parser.parse_args(argv)
+    sys.stdout.write(canonical_json(run(args.query, genre=args.genre, until=args.until)))
+
+
+if __name__ == "__main__":
+    main()

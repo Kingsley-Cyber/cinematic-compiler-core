@@ -24,6 +24,8 @@ current required proof.
   The log is append-only; `tests/test_schemas.py` fails when a schema's bytes differ from its latest entry.
 - Library cards (`library/**/*.yaml`) use the same control: `python -m kernel.schema_log --log library record ...`
   with the log in `library/library_log.jsonl`; drafts stay `status: draft` until the owner approves them.
+- Kernel files (`kernel/sources/*.txt`, `kernel/kernel_scope.yaml`, `kernel/invariants.yaml`) use the same control:
+  `--log kernel`. Regenerate the kernel with `python -m kernel_extraction.control_inventory` after a scope or source change.
 - Schemas are URCP contracts (`.control/contracts/`); a schema edit marks the contract dirty and needs fresh proof.
 - `kernel/layer_order.yaml` is the single source for layers, edges and write ownership.
   A pass writes only the envelope paths its node owns.

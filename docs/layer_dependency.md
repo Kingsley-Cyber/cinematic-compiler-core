@@ -66,6 +66,8 @@ Every graph from S04 onward is validated against the constraint graph. Pipeline-
 | 2026-10-10 | S02 resolves from library cards only (no model); unresolved stays in `scene.missing` | owner |
 | 2026-10-10 | Starter cards drafted by Claude (status draft), hash-logged in `library/library_log.jsonl` | owner |
 | 2026-10-10 | Scene values nullable with named sources; genre may come from a single-genre world card | owner_default |
+| 2026-10-10 | Kernel = controls both LBN-2.3-ADV and LBN-2.4-ADV-LMA state (68 shared items) | owner |
+| 2026-10-10 | Per-item kernel scope: kernel 20, per-actor 6, per-prop 5, reference fight 37 (draft) | owner_default |
 | 2026-10-10 | One envelope (MGRAPH-1.1) | owner_default |
 | 2026-10-10 | Camera node = 13 subdivisions + required `motivation` | owner_default |
 | 2026-10-10 | L5 holds LMA Effort (weight, time, space, flow) with Shape and Space as separate fields | owner_default |
@@ -75,12 +77,16 @@ Every graph from S04 onward is validated against the constraint graph. Pipeline-
 
 ## Open for owner review
 
-1. **Draft cards (11).** Archetypes: wizard, acrobat, ninja, knight, superman_variant. Worlds:
+1. **Kernel scope (draft).** `kernel/kernel_scope.yaml` tags each of the 68 shared LBN controls. Notable calls:
+   "no full circle / no ring / no halo" are kernel (no scene entity named); "no scarf covering head" is reference-only;
+   "slerp A joints", "A root exact" and "no cloned A" apply to every actor; "no duplicated kunai" and the five-props
+   rule apply to every prop.
+2. **Draft cards (11).** Archetypes: wizard, acrobat, ninja, knight, superman_variant. Worlds:
    bamboo_courtyard, medieval_fantasy, modern_ugc. Objects: glasses, coffee_cup, jacket. All `draft`.
-2. **Loose world match.** Any setting sharing one match term picks the card, so "stone courtyard" becomes
+3. **Loose world match.** Any setting sharing one match term picks the card, so "stone courtyard" becomes
    `bamboo_courtyard` (the only courtyard card) and brings bamboo surfaces. Add a stone-courtyard card, or
    require more shared terms?
-3. **Post-generation block shape.** `validation.post_generation` is `pass`/`fail`/`null` today; your
+4. **Post-generation block shape.** `validation.post_generation` is `pass`/`fail`/`null` today; your
    object shape (run_at, video_ref, checks, verdict, replan_*) lands with the S17 slice.
-4. **Cross-file `$ref`.** Sub-schemas are embedded into the envelope by the generator (document-local refs);
+5. **Cross-file `$ref`.** Sub-schemas are embedded into the envelope by the generator (document-local refs);
    a cross-file resolver is still not implemented.

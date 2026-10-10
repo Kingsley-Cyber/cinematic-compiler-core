@@ -1,0 +1,315 @@
+# Scope of every control shared by LBN-2.3-ADV and LBN-2.4-ADV-LMA (the kernel intersection).
+# kernel: applies to every scene as written. kernel_actor / kernel_prop: written for the reference
+# actors/props (reference_labels) and applied to every declared actor/prop. scene_reference: only the
+# reference courtyard fight; kept for fixtures, not applied to other scenes. Edit scopes here, then run
+# python -m kernel_extraction.control_inventory and log both files.
+version: 1
+status: draft
+decided_by: owner_default
+basis: Per-item reading of the LBN-2.3-ADV and LBN-2.4-ADV-LMA intersection by Claude (2026-10-10); owner review pending.
+items:
+- field: preface
+  text: 10s anime fight, 24fps, moonlit bamboo courtyard, tall wooden pillar at back z=6 extending from ground y=0 to y=8,
+    dark under-canopy of bamboo on left
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: preface
+  text: 'A: lean ninja, dark coat, red scarf wrapped SMALL at neck, face fully visible'
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: preface
+  text: 'B: broad ninja, grey armor, one shoulder pauldron'
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: preface
+  text: TWO fighters, FOUR props (kunai, rope dart, smoke pellet, shuriken volley)
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: preface
+  text: A starts ABOVE the frame, falling from y=8
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: preface
+  text: B starts at z=4.5 facing -Z
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: preface
+  text: Naruto-tier choreography with substitution and teleport-position counters
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: preface
+  text: Euler degrees XYZ
+  scope: kernel
+  reason: Names no scene entity; applies to every scene as written.
+- field: preface
+  text: Render spec exactly
+  scope: kernel
+  reason: Names no scene entity; applies to every scene as written.
+- field: ax
+  text: Y_up
+  scope: kernel
+  reason: Names no scene entity; applies to every scene as written.
+- field: ax
+  text: A faces +Z
+  scope: kernel_actor
+  reason: Per-actor control written for the reference actors; applies to every declared actor.
+  reference_labels:
+  - A
+- field: ax
+  text: pillar at z=6 from y=0 to y=8
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: ax
+  text: ground y=0
+  scope: kernel
+  reason: Names no scene entity; applies to every scene as written.
+- field: ax
+  text: bamboo canopy left side
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: key
+  text: Sp=Spine
+  scope: kernel
+  reason: Joint key naming shared by both LBN versions.
+- field: key
+  text: LUL/RUL=UpLeg
+  scope: kernel
+  reason: Joint key naming shared by both LBN versions.
+- field: key
+  text: LL/RL=LowLeg
+  scope: kernel
+  reason: Joint key naming shared by both LBN versions.
+- field: key
+  text: LA/RA=UpArm
+  scope: kernel
+  reason: Joint key naming shared by both LBN versions.
+- field: key
+  text: LFA/RFA=ForeArm
+  scope: kernel
+  reason: Joint key naming shared by both LBN versions.
+- field: key
+  text: HD=Head
+  scope: kernel
+  reason: Joint key naming shared by both LBN versions.
+- field: key
+  text: NK=Neck
+  scope: kernel
+  reason: Joint key naming shared by both LBN versions.
+- field: negative
+  text: no missing limbs
+  scope: kernel
+  reason: Names no scene entity; applies to every scene as written.
+- field: negative
+  text: no missing arms
+  scope: kernel
+  reason: Names no scene entity; applies to every scene as written.
+- field: negative
+  text: no missing hands
+  scope: kernel
+  reason: Names no scene entity; applies to every scene as written.
+- field: negative
+  text: no headless body
+  scope: kernel
+  reason: Names no scene entity; applies to every scene as written.
+- field: negative
+  text: no scarf covering head
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: negative
+  text: no faceless head
+  scope: kernel
+  reason: Names no scene entity; applies to every scene as written.
+- field: negative
+  text: no extra fighters beyond A and B
+  scope: kernel_actor
+  reason: Per-actor control written for the reference actors; applies to every declared actor.
+  reference_labels:
+  - A
+  - B
+- field: negative
+  text: no cloned A
+  scope: kernel_actor
+  reason: Per-actor control written for the reference actors; applies to every declared actor.
+  reference_labels:
+  - A
+- field: negative
+  text: no duplicated kunai
+  scope: kernel_prop
+  reason: Per-prop control written for the reference props; applies to every declared prop.
+  reference_labels:
+  - kunai
+- field: negative
+  text: no duplicated rope dart
+  scope: kernel_prop
+  reason: Per-prop control written for the reference props; applies to every declared prop.
+  reference_labels:
+  - rope dart
+- field: negative
+  text: no duplicated smoke pellet
+  scope: kernel_prop
+  reason: Per-prop control written for the reference props; applies to every declared prop.
+  reference_labels:
+  - smoke pellet
+- field: negative
+  text: no duplicated shuriken beyond the declared volley of 3
+  scope: kernel_prop
+  reason: Per-prop control written for the reference props; applies to every declared prop.
+  reference_labels:
+  - shuriken
+- field: negative
+  text: no extra weapons
+  scope: kernel
+  reason: Names no scene entity; applies to every scene as written.
+- field: negative
+  text: no full circle
+  scope: kernel
+  reason: Render negative that names no scene entity; applies to every scene as written.
+- field: negative
+  text: no ring
+  scope: kernel
+  reason: Render negative that names no scene entity; applies to every scene as written.
+- field: negative
+  text: no halo
+  scope: kernel
+  reason: Render negative that names no scene entity; applies to every scene as written.
+- field: negative
+  text: no substitution log as a separate fighter
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: negative
+  text: substitution log is a wooden block NOT a fighter
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: rules
+  text: slerp A joints
+  scope: kernel_actor
+  reason: Per-actor control written for the reference actors; applies to every declared actor.
+  reference_labels:
+  - A
+- field: rules
+  text: A root exact
+  scope: kernel_actor
+  reason: Per-actor control written for the reference actors; applies to every declared actor.
+  reference_labels:
+  - A
+- field: rules
+  text: A FALLS FROM ABOVE FRAME at 0.0,enters from top
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: rules
+  text: LANDS ON PILLAR TOP at 0.6,deep crouch
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: rules
+  text: SPRINTS DOWN PILLAR FACE at 1.1,body horizontal facing pillar,NOT wallrun upward
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: rules
+  text: KICKS OFF PILLAR at 1.6
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: rules
+  text: B THROWS KUNAI at 2.0 toward A
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: rules
+  text: 'FOOT DEFLECT KINDS: kunai REVERSES from +Z to -Z and downward at 2.5,kunai STAYS IN FRAME,NOT toward B'
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: rules
+  text: KAWARIMI SUBSTITUTION at 3.7,A body REPLACED BY SMOKE BURST,A vanishes,substitution log reveals,B palm hits LOG NOT
+    A at 4.0,this is a SUBSTITUTION NOT a strike
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: rules
+  text: A REAPPEARS BEHIND B at 4.4,teleport via substitution,this is the REAPPEARANCE
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: rules
+  text: RIGHT KNEE strikes B spine at 4.7 from behind,NOT a kick,NOT a punch
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: rules
+  text: B lifted and launched forward
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: rules
+  text: THREE SHURIKEN volley at 5.5,exactly THREE no more no less,all three STAY IN FRAME
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: rules
+  text: A SLIDES UNDER VOLLEY at 5.9,all three shuriken pass OVER A,this is a SLIDE NOT a roll,NOT a jump
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: rules
+  text: CARTWHEEL TO RISING ELBOW at 6.3,left elbow leads
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: rules
+  text: B CATCHES A LEFT ELBOW at 6.6,B throws A toward pillar,this is A BEING THROWN NOT a striking
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: rules
+  text: A WALL-PUSH OFF PILLAR at 7.0,NOT still touching pillar
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: rules
+  text: AERIAL ROPE DART REGRAPPLE at 7.5,left hand throws rope dart,rope dart wraps B right shoulder,A pulled toward B,this
+    is a GRAPPLE NOT a strike
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: rules
+  text: A PULLS B toward pillar at 8.0,this is a PULL NOT a strike
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: rules
+  text: AERIAL KUNAI DRIVE into B right shoulder at 8.5,kunai penetrates shoulder,this is a KUNAI DRIVE NOT a punch,NOT an
+    elbow
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: rules
+  text: A and B CRASH to ground at 9.0
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: rules
+  text: B remains down
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: rules
+  text: TWO fighter identities A and B never merge or duplicate
+  scope: kernel_actor
+  reason: Per-actor control written for the reference actors; applies to every declared actor.
+  reference_labels:
+  - A
+  - B
+- field: rules
+  text: FIVE props tracked separately,never merged:kunai,rope_dart,smoke_pellet,shuriken_volley,substitution_log
+  scope: kernel_prop
+  reason: Per-prop control written for the reference props; applies to every declared prop.
+  reference_labels:
+  - kunai
+  - rope_dart
+  - smoke_pellet
+  - shuriken_volley
+  - substitution_log
+- field: rules
+  text: substitution log is a WOODEN BLOCK NOT a fighter
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: rules
+  text: rope dart released at 5.9 during slide,picked up again at 7.5 during wall-push recovery
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: rules
+  text: kunai picked up from ground at 8.0 during crash landing
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: rules
+  text: B NEVER STANDS after 9.0
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
+- field: rules
+  text: end with A in crouch over B,kunai in B shoulder,rope dart in A left hand,shurikens embedded in pillar,substitution
+    log on ground,smoke dissipating
+  scope: scene_reference
+  reason: Specific to the reference courtyard fight (its set, props, cast or timeline).
