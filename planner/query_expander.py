@@ -5,6 +5,7 @@
 - setting and style_reference come only from the query; duration is S04's (beat plan).
 - world and surfaces come only from the matched world card; ax = kernel conventions (+ the card's unit).
 - each entity/prop hint becomes an entity (archetype card) or a prop (object card); the card's kind decides.
+- an archetype card's equipment adds props after the query's own (source card:<id>), never twice.
 Every value names its source; everything unresolved is listed in missing, ambiguous or unresolved_hints.
 """
 
@@ -47,7 +48,7 @@ def expand(intent, cards=None):
         scene.update({field: value, field + "_source": "user" if value is not None else None})
     ax = {"up": conventions["up"], "forward": conventions["forward"], "ground": conventions["ground"], "unit": None,
           "rotation_convention": conventions["rotation_convention"]}
-    world_id, candidates = ground_world(parsed["setting"], cards)
+    world_id, candidates = ground_world(parsed["setting"], cards, intent["raw_query"])
     surfaces, ambiguous, unresolved = [], [], []
     if world_id:
         world = cards[world_id]
@@ -75,6 +76,14 @@ def expand(intent, cards=None):
                 entities.append(entity_from_card(identity, card, hint, evidence))
             else:
                 props.append(prop_from_card(identity, card, hint, evidence))
+    present = {p["card_id"] for p in props}
+    for entity in entities:
+        for card_id in cards[entity["card_id"]].get("equipment", []):
+            if card_id not in present:
+                present.add(card_id)
+                card = cards[card_id]
+                props.append(prop_from_card(card_id, card, card["names"][0],
+                                            {"source": "card", "card_id": entity["card_id"], "field": "equipment"}))
     missing = [field for field in RESOLVABLE if scene[field] is None] + list(NEVER_RESOLVED)
     scene.update(missing=missing, ambiguous=ambiguous, unresolved_hints=unresolved)
     return {"scene": scene, "entities": entities, "props": props, "surfaces": surfaces}

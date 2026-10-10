@@ -228,8 +228,12 @@ Notes on the decisions:
 
 ## M4 — render (S16) → done when the reference courtyard fight round-trips
 
-- [ ] S16.1 Draft cards for the reference fight: ninja A/B variants, kunai, rope_dart, smoke_pellet,
+- [x] S16.1 Draft cards for the reference fight: ninja A/B variants, kunai, rope_dart, smoke_pellet,
   shuriken_volley, substitution_log, wooden pillar world.
+  (Built: ninja_lean / ninja_broad, kunai, rope_dart, smoke_pellet, shuriken_volley (count 3), substitution_log,
+  bamboo_courtyard_pillar. To ground the reference preface: S01 reads cast lines "A: <description>" and
+  "props (<list>)"; S02 adds archetype `equipment` as props after the query's own and picks a world only when its
+  `required_terms` appear; S03 turns card negatives (and object invariants) into constraints.)
 - [x] S16.2 `schemas/graphs/render.schema.json` (projection group, no edges): `{target, text, sha256, coverage}`; frame-part directives
   `{impact, smear, speedlines, holds, fx, ink}`. Log.
 - [x] S16.3 `renderers/anime_renderer.py`: deterministic projection into the full LBN-2.x layout (variant, fps, dur,

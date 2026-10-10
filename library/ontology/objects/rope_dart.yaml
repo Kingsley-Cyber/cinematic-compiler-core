@@ -1,0 +1,16 @@
+card_id: rope_dart
+kind: object
+card_version: 1
+status: draft
+names: [rope dart]
+description: "A weighted dart on a long rope, thrown to wrap and pull."
+parts: [dart, rope]
+materials: [steel, hemp]
+states:
+  - {property: line, values: [coiled, thrown, wrapped, taut]}
+affordances: [throw, wrap, pull, pick_up]
+grips: [rope_hold]
+provenance:
+  authored_by: claude-code
+  date: "2026-10-10"
+  basis: Draft reference-fight card (S16.1, from the LBN-2.3/2.4 reference fight); not research-sourced; needs owner review.

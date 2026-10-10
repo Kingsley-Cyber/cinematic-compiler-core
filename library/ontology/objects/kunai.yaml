@@ -1,0 +1,16 @@
+card_id: kunai
+kind: object
+card_version: 1
+status: draft
+names: [kunai]
+description: "A short throwing knife with a ring pommel."
+parts: [blade, handle, ring]
+materials: [steel]
+states:
+  - {property: embedded, values: [loose, embedded]}
+affordances: [throw, deflect, stab, pick_up]
+grips: [reverse, forward]
+provenance:
+  authored_by: claude-code
+  date: "2026-10-10"
+  basis: Draft reference-fight card (S16.1, from the LBN-2.3/2.4 reference fight); not research-sourced; needs owner review.

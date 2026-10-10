@@ -1,0 +1,21 @@
+card_id: ninja_lean
+kind: archetype
+card_version: 1
+status: draft
+names: [lean ninja]
+description: "A lean, fast ninja who fights in the air and on walls and counters with substitution."
+silhouette: "Lean figure in a dark coat; red scarf wrapped small at the neck; face fully visible."
+costume: "Dark coat, red scarf wrapped SMALL at the neck, face fully visible."
+parts: [head, torso, left_arm, right_arm, left_hand, right_hand, left_leg, right_leg, left_foot, right_foot]
+capabilities: [wall_run, aerial_kick, substitution, rope_dart_grapple, kunai_drive]
+modes: [stealth, assault]
+genres: [anime, live_action]
+invariants:
+  - id: substitution_leaves_a_log
+    rule: "A substitution leaves the substitution log where the body was; the body reappears somewhere else."
+negatives: [no scarf covering head]
+equipment: [rope_dart, smoke_pellet, substitution_log]
+provenance:
+  authored_by: claude-code
+  date: "2026-10-10"
+  basis: Draft reference-fight card (S16.1, from the LBN-2.3/2.4 reference fight); not research-sourced; needs owner review.

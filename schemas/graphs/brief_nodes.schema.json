@@ -174,7 +174,14 @@
           "minLength": 1
         },
         "hint_evidence": {
-          "$ref": "#/$defs/Evidence"
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Evidence"
+            },
+            {
+              "$ref": "#/$defs/CardEvidence"
+            }
+          ]
         },
         "name": {
           "type": "string",
@@ -236,6 +243,18 @@
               }
             }
           }
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 2
+        },
+        "unit_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "group_name": {
+          "type": "string",
+          "minLength": 1
         }
       },
       "required": [
@@ -289,6 +308,10 @@
         "description": {
           "type": "string",
           "minLength": 1
+        },
+        "ax": {
+          "type": "string",
+          "minLength": 1
         }
       },
       "required": [
@@ -299,6 +322,27 @@
         "kind",
         "description"
       ]
+    },
+    "CardEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "card_id",
+        "field"
+      ],
+      "properties": {
+        "source": {
+          "const": "card"
+        },
+        "card_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "field": {
+          "const": "equipment"
+        }
+      }
     }
   }
 }

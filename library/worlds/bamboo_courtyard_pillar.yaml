@@ -1,0 +1,21 @@
+card_id: bamboo_courtyard_pillar
+kind: world
+card_version: 1
+status: draft
+names: [bamboo courtyard with wooden pillar]
+description: "A moonlit bamboo courtyard with one tall wooden pillar at the back and a dark bamboo under-canopy on the left."
+match_terms: [bamboo, courtyard]
+required_terms: [pillar]
+genres: [anime, live_action]
+ax: {up: "+Y", forward: "+Z", ground: "y=0", unit: m}
+surfaces:
+  - {id: ground, kind: floor, description: "Flat courtyard ground at y=0."}
+  - {id: wooden_pillar, kind: obstacle, description: "Tall wooden pillar at the back of the courtyard.", ax: "pillar at z=6 from y=0 to y=8"}
+  - {id: bamboo_canopy, kind: backdrop, description: "Dark under-canopy of bamboo on the left.", ax: "bamboo canopy left side"}
+invariants:
+  - id: embedded_stays
+    rule: "Anything embedded in the pillar or a body stays there for the rest of the scene."
+provenance:
+  authored_by: claude-code
+  date: "2026-10-10"
+  basis: Draft reference-fight card (S16.1, from the LBN-2.3/2.4 reference fight); not research-sourced; needs owner review.

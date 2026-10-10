@@ -3,7 +3,8 @@
 - kernel items with scope `kernel` apply to the scene; `kernel_actor` to every declared entity;
   `kernel_prop` to every declared prop; `scene_reference` items are not applied (reference fight only).
 - the matched world card's invariants apply to the scene; each archetype card's invariants apply to
-  the entities built from it.
+  the entities built from it; each object card's invariants apply to the props built from it;
+- card negatives (world, archetype, object) become `negative` constraints on the same targets.
 Rules are copied verbatim; a constraint with nothing to apply to is not emitted.
 Writes /nodes/constraints, /edges/constraint_application and /invariants; nothing else.
 """
@@ -60,16 +61,30 @@ def build(scene, entities, props, *, cards, kernel):
                  "source": {"kind": "card", "ref": world["card_id"],
                             "version": f"{world['card_version']}:{world['status']}"},
                  "reference_labels": [], "status": world["status"], "enforcement": "required"}, [("scene", "scene")])
-    by_card = {}
-    for item in entities:
-        by_card.setdefault(item["card_id"], []).append(("entity", item["id"]))
-    for card_id, targets in by_card.items():
-        card = cards[card_id]
-        for row in card["invariants"]:
-            add({"id": f"c_arch_{card_id}_{row['id']}", "origin": "archetype", "scope": "archetype",
-                 "field": "invariant", "rule": row["rule"],
-                 "source": {"kind": "card", "ref": card_id, "version": f"{card['card_version']}:{card['status']}"},
-                 "reference_labels": [], "status": card["status"], "enforcement": "required"}, targets)
+    def card_rules(card, origin, prefix, targets):
+        source = {"kind": "card", "ref": card["card_id"], "version": f"{card['card_version']}:{card['status']}"}
+        for row in card.get("invariants", []):
+            add({"id": f"c_{prefix}_{card['card_id']}_{row['id']}", "origin": origin, "scope": origin,
+                 "field": "invariant", "rule": row["rule"], "source": source, "reference_labels": [],
+                 "status": card["status"], "enforcement": "required"}, targets)
+        for index, text in enumerate(card.get("negatives", [])):
+            add({"id": f"c_{prefix}_{card['card_id']}_negative_{index:02d}", "origin": origin, "scope": origin,
+                 "field": "negative", "rule": text, "source": source, "reference_labels": [],
+                 "status": card["status"], "enforcement": "required"}, targets)
+
+    if scene["world"]:
+        world = cards[scene["world"]]
+        for index, text in enumerate(world.get("negatives", [])):
+            add({"id": f"c_world_{world['card_id']}_negative_{index:02d}", "origin": "world", "scope": "world",
+                 "field": "negative", "rule": text,
+                 "source": {"kind": "card", "ref": world["card_id"], "version": f"{world['card_version']}:{world['status']}"},
+                 "reference_labels": [], "status": world["status"], "enforcement": "required"}, [("scene", "scene")])
+    for kind, group, origin, prefix in (("entity", entities, "archetype", "arch"), ("prop", props, "object", "obj")):
+        by_card = {}
+        for item in group:
+            by_card.setdefault(item["card_id"], []).append((kind, item["id"]))
+        for card_id, targets in by_card.items():
+            card_rules(cards[card_id], origin, prefix, targets)
     invariants = [{"id": row["id"], "band": "constraint", "rule": row["rule"]} for row in constraints]
     return {"constraints": constraints, "applications": applications, "invariants": invariants}
 

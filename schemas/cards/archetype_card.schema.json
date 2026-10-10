@@ -139,6 +139,24 @@
           }
         }
       }
+    },
+    "negatives": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "Render negatives this card adds (printed in the negative section)."
+    },
+    "equipment": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]*$"
+      },
+      "description": "Object card ids this archetype carries into a scene as props (S02, source card)."
     }
   }
 }

@@ -1,0 +1,19 @@
+card_id: smoke_pellet
+kind: object
+card_version: 1
+status: draft
+names: [smoke pellet]
+description: "A pellet that bursts into a smoke cloud where it lands."
+parts: [shell]
+materials: [clay, powder]
+states:
+  - {property: smoke, values: [sealed, burst, dissipating, gone]}
+affordances: [deploy]
+grips: [pinch]
+invariants:
+  - id: smoke_stays_put
+    rule: "The smoke cloud stays where the pellet burst; it does not follow anyone."
+provenance:
+  authored_by: claude-code
+  date: "2026-10-10"
+  basis: Draft reference-fight card (S16.1, from the LBN-2.3/2.4 reference fight); not research-sourced; needs owner review.

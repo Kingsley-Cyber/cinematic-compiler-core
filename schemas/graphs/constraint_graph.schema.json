@@ -54,7 +54,8 @@
           "enum": [
             "kernel",
             "world",
-            "archetype"
+            "archetype",
+            "object"
           ]
         },
         "scope": {
@@ -63,7 +64,8 @@
             "kernel_actor",
             "kernel_prop",
             "world",
-            "archetype"
+            "archetype",
+            "object"
           ]
         },
         "field": {

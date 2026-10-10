@@ -131,6 +131,49 @@
         "type": "string",
         "pattern": "^[a-z][a-z0-9_]*$"
       }
+    },
+    "invariants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "rule"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "rule": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "negatives": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "Render negatives this card adds (printed in the negative section)."
+    },
+    "count": {
+      "type": "integer",
+      "minimum": 2,
+      "description": "A prop that is a fixed group of identical units (with unit_name and group_name)."
+    },
+    "unit_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "group_name": {
+      "type": "string",
+      "minLength": 1
     }
   }
 }

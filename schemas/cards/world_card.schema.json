@@ -164,6 +164,11 @@
           "description": {
             "type": "string",
             "minLength": 1
+          },
+          "ax": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Geometry statement printed in the render's ax line."
           }
         }
       }
@@ -188,6 +193,24 @@
           }
         }
       }
+    },
+    "required_terms": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]*$"
+      },
+      "description": "Words that must all appear in the query for this world to match; each adds one to its score."
+    },
+    "negatives": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "Render negatives this card adds (printed in the negative section)."
     }
   }
 }

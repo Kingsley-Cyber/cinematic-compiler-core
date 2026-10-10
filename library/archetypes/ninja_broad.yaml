@@ -1,0 +1,20 @@
+card_id: ninja_broad
+kind: archetype
+card_version: 1
+status: draft
+names: [broad ninja]
+description: "A broad, armoured ninja who fights from the ground with thrown weapons and grabs."
+silhouette: "Broad figure in grey armor with one shoulder pauldron."
+costume: "Grey armor, one shoulder pauldron."
+parts: [head, torso, left_arm, right_arm, left_hand, right_hand, left_leg, right_leg, left_foot, right_foot]
+capabilities: [throw_kunai, throw_shuriken, palm_strike, grab_throw]
+modes: [stealth, assault]
+genres: [anime, live_action]
+invariants:
+  - id: thrown_weapon_leaves_hand
+    rule: "A thrown weapon leaves the hand and does not return without a declared catch."
+equipment: [kunai, shuriken_volley]
+provenance:
+  authored_by: claude-code
+  date: "2026-10-10"
+  basis: Draft reference-fight card (S16.1, from the LBN-2.3/2.4 reference fight); not research-sourced; needs owner review.

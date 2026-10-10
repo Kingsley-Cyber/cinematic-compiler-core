@@ -6,8 +6,10 @@ Rules (deterministic; an unmatched field stays null/empty and is named in `missi
 - fps: <digits> fps | <digits> frames per second | fps <digits>.
 - genre: "anime", "ugc"/"ugc ad", "live action"/"live-action" -> the declared modality names.
 - setting: "in|on|at|inside|atop a|an|the <phrase>" or a comma segment, ending in a place noun.
-- entities_hinted: the words on each side of "vs"/"versus", and the words before "product".
-- props_hinted: "with|holding|wielding|carrying a|an|the|his|her|their|its <one or two words>".
+- entities_hinted: the words on each side of "vs"/"versus", the words before "product", and cast lines
+  "<capital letter>: <description>" (up to three words before the first comma, e.g. "A: lean ninja, dark coat").
+- props_hinted: "with|holding|wielding|carrying a|an|the|his|her|their|its <one or two words>", and each comma
+  item of "props (<item>, <item>, ...)".
 - style_reference: "in the style of <phrase>" or "<word>-style".
 CLI flags override the query for genre and duration_s. Several distinct values for a single-valued
 field give null plus an ambiguity entry, never a guess. String values are exact query substrings.
@@ -43,6 +45,8 @@ PREPOSITION = re.compile(r"\b(?:in|on|at|inside|atop)\s+(?:a|an|the)\s+", re.I)
 VERSUS = re.compile(r"\b(?:vs\.?|versus)(?=\s)", re.I)
 PRODUCT = re.compile(r"\bproduct\b", re.I)
 PROP = re.compile(r"\b(?:with|holding|wielding|carrying)\s+(?:a|an|the|his|her|their|its)\s+", re.I)
+CAST = re.compile(r"(?:^|(?<=[.;]\s))([A-Z])\s*:\s+")
+PROP_LIST = re.compile(r"\bprops?\s*\(([^)]*)\)", re.I)
 STYLE_OF = re.compile(r"\bin the style of\s+", re.I)
 STYLE_SUFFIX = re.compile(r"\b([A-Za-z0-9][A-Za-z0-9']*)-style\b", re.I)
 WORD = re.compile(r"[A-Za-z0-9][A-Za-z0-9'.-]*")
@@ -156,6 +160,23 @@ def _collect(raw):
         if left:
             start, end = _phrase(raw, left)
             found["entities_hinted"].append((raw[start:end], _evidence(raw, start, end)))
+    for match in CAST.finditer(raw):
+        seg_start, seg_end = _segment_of(segments, match.end())
+        words = []
+        for word in _words(raw, match.end(), seg_end):
+            if _stop(word[2]) or len(words) == 3:
+                break
+            words.append(word)
+        if words:
+            start, end = _phrase(raw, words)
+            found["entities_hinted"].append((raw[start:end], _evidence(raw, start, end)))
+    for match in PROP_LIST.finditer(raw):
+        start = match.start(1)
+        for item in SEGMENT.finditer(match.group(1)):
+            words = _words(raw, start + item.start(), start + item.end())
+            if words:
+                begin, end = _phrase(raw, words)
+                found["props_hinted"].append((raw[begin:end], _evidence(raw, begin, end)))
     for match in PROP.finditer(raw):
         _, seg_end = _segment_of(segments, match.end())
         words = []

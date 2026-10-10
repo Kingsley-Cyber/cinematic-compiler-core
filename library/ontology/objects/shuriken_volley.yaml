@@ -1,0 +1,19 @@
+card_id: shuriken_volley
+kind: object
+card_version: 1
+status: draft
+names: [shuriken volley, shuriken]
+description: "A volley of exactly three throwing stars thrown together."
+parts: [star_1, star_2, star_3]
+materials: [steel]
+states:
+  - {property: flight, values: [holstered, flying, embedded]}
+affordances: [throw, embed]
+grips: [fan_hold]
+count: 3
+unit_name: shuriken
+group_name: volley
+provenance:
+  authored_by: claude-code
+  date: "2026-10-10"
+  basis: Draft reference-fight card (S16.1, from the LBN-2.3/2.4 reference fight); not research-sourced; needs owner review.
