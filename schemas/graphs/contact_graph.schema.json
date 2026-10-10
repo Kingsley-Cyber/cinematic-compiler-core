@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:contact_graph:1.0",
+  "title": "S07 contact graph: contact events and their sequencing",
+  "description": "One node per contact event (at its beat end). touch is instant; possess and support stay active until a release of the same pair. Edges: precedes (consecutive events of one pair) and releases (a release to the contact it ends).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contacts",
+    "contact"
+  ],
+  "properties": {
+    "contacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "t",
+          "beat",
+          "contact_type",
+          "body_part",
+          "a",
+          "b"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^b[0-9]{2,3}_c[0-9]+$"
+          },
+          "t": {
+            "type": "number",
+            "minimum": 0
+          },
+          "beat": {
+            "type": "string",
+            "pattern": "^b[0-9]{2,3}$"
+          },
+          "contact_type": {
+            "enum": [
+              "touch",
+              "possess",
+              "support",
+              "release"
+            ]
+          },
+          "body_part": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "a": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "id"
+            ],
+            "properties": {
+              "kind": {
+                "const": "entity"
+              },
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]*$"
+              }
+            }
+          },
+          "b": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "id",
+              "part"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "entity",
+                  "prop",
+                  "surface"
+                ]
+              },
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]*$"
+              },
+              "part": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "contact": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "from",
+          "to",
+          "relation"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "relation": {
+            "enum": [
+              "precedes",
+              "releases"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

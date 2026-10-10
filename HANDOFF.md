@@ -11,14 +11,19 @@ scripts/check.sh
 DO_NOT_TRACK=1 graft --dir .graphs/graft build . --no-gitignore --no-ignore
 ```
 
-## Built (S01–S03)
+## Built (S01–S07, milestone M1)
 | Step | What it compiles | Code |
 |---|---|---|
 | S01 intent (L0) | query + flags → Intent Document at `/intent`; literal only, evidence per value, `missing`/`ambiguous` | `planner/intent_parser.py`, `compiler/passes/mandatory/p01_intent.py` |
 | S02 brief (L0.5) | intent + library cards → `/scene`, entities, props, surfaces; cards only, no model | `planner/query_expander.py` + resolvers, `p02_brief.py` |
 | S03 constraint | kernel + world + archetype rules → constraints, constraint_application, `/invariants` | `p03_constraint.py`, `kernel_extraction/control_inventory.py` |
+| S04 temporal | authored beat plan (in-session, hash-bound packet) → beats, temporal, beat_constraint, duration | `planner/beat_planner.py`, `planner/dynamic_beat_validator.py`, `p04_temporal.py` |
+| S05 causal | beat causes → causal edges (linear) + `scene.quadrant` | `p05_causal.py` |
+| S06 state | replay → states per subject per beat + transitions | `solver/prop_state_machine.py`, `validators/continuity_validator.py`, `p06_state.py` |
+| S07 contact | contact events, lifecycle, holder/prop-change cross-checks | `p07_contact.py` |
 
-Pipeline: `python -m compiler.pipeline "<query>" [--genre anime] [--until constraint]`.
+Pipeline: `python -m compiler.pipeline "<query>" [--genre anime] [--until contact] [--plans DIR]`; an authored step
+with no plan exits 3 and prints (or `--packet-out`) its packet. Example: `examples/wizard_vs_acrobat/` (through S07).
 Kernel = the 68 controls both LBN-2.3-ADV and LBN-2.4-ADV-LMA state (`kernel/sources/`), scoped per item.
 
 ## Controls
@@ -38,5 +43,5 @@ linear causality only; closed kernel state vocabulary. Full log: `docs/layer_dep
 
 ## Open questions and next work
 All six questions are decided (see **Decided this round** in
-[docs/plans/MASTER_PLAN.md](docs/plans/MASTER_PLAN.md)). Next task: **M1.0.1**. Completed work is struck through
+[docs/plans/MASTER_PLAN.md](docs/plans/MASTER_PLAN.md)). Next task: **M1.5** (CLI, replan trigger), then M2. Completed work is struck through
 under **Done**.

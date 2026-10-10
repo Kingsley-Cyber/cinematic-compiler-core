@@ -140,18 +140,18 @@ Notes on the decisions:
   changes only through an effect), no clone, no disappearance. Tests: each failure.
 
 ### S07 contact (L2 band, derived) — `nodes.contacts`, `edges.contact`
-- [ ] S07.1 `schemas/graphs/contact_graph.schema.json`: contact-event `{id, t (beat end), contact_type
+- [x] S07.1 `schemas/graphs/contact_graph.schema.json`: contact-event `{id, t (beat end), contact_type
   (touch|possess|support|release), body_part, a{kind,id}, b{kind,id,part}, beat}`; edges
   `precedes` (same pair) and `releases` (release → the contact it ends). Log.
-- [ ] S07.2 `compiler/passes/mandatory/p07_contact.py`: release needs an active same-pair contact; one hand holds
+- [x] S07.2 `compiler/passes/mandatory/p07_contact.py`: release needs an active same-pair contact; one hand holds
   one thing; touch is instant; parts from cards.
-- [ ] S07.3 Cross-checks with S06: holder state agrees with active hand contacts; every prop state change has a
+- [x] S07.3 Cross-checks with S06: holder state agrees with active hand contacts; every prop state change has a
   contact event in its beat. Tests: each failure.
 
 ### M1 example
-- [ ] M1.E1 `examples/wizard_vs_acrobat/` — query, packet, Claude-authored beat plan (~8 beats, 10 s, courtyard),
+- [x] M1.E1 `examples/wizard_vs_acrobat/` — query, packet, Claude-authored beat plan (~8 beats, 10 s, courtyard),
   envelope through S07; `tests/test_example_courtyard.py` recompiles it byte-for-byte.
-- [ ] M1.E2 HANDOFF.md + graph_types.md status → M1 done.
+- [x] M1.E2 HANDOFF.md + graph_types.md status → M1 done.
 
 ---
 

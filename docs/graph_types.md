@@ -9,10 +9,10 @@ is presented), **project, verify** (output). Build status and deltas: [MASTER_PL
 | S01 | Intent Document | Isolate the literal query from anything inferred | — (`/intent`) | — | query | S02 | parse | built |
 | S02 | Query Expansion Brief | Ground the query in the card library | entities, props, surfaces | — | S01, cards | S03, S04 | ground | built |
 | S03 | Constraint | Declare the rules before the scene exists; every later layer validates against them | constraints | constraint_application | S02, kernel, world, archetypes | all later | constrain | built |
-| S04 | Temporal | Define the timeline every graph attaches to | beats | temporal | S02, S03, beat planner | S05–S07, S11, S14–S16 | structure | M1 |
-| S05 | Causal | Explain the narrative logic (cause vs coincidence) | beats (shared) | causal | S04 | S06, S11, S16 | structure | M1 |
-| S06 | State | Track entity continuity: no teleporting, cloning, disappearing | states | state_transition | S04, S05, S03 | S07, S11, S14, S16 | structure | M1 |
-| S07 | Contact | Track physical interaction; every prop state change is triggered by a contact | contacts | contact | S06, S04, S03 | S08, S09, S11, S16 | structure | M1 |
+| S04 | Temporal | Define the timeline every graph attaches to | beats | temporal | S02, S03, beat planner | S05–S07, S11, S14–S16 | structure | built |
+| S05 | Causal | Explain the narrative logic (cause vs coincidence) | beats (shared) | causal | S04 | S06, S11, S16 | structure | built |
+| S06 | State | Track entity continuity: no teleporting, cloning, disappearing | states | state_transition | S04, S05, S03 | S07, S11, S14, S16 | structure | built |
+| S07 | Contact | Track physical interaction; every prop state change is triggered by a contact | contacts | contact | S06, S04, S03 | S08, S09, S11, S16 | structure | built |
 | S08 | Hand role (UGC) | Lock handedness for an interaction | hand_role | hand_role_transition | S07, ontology | S09–S11, S13 | structure | M5 |
 | S09 | Object state (UGC) | Track object internals (zipper closed → open) | object_state | object_state_transition | S07, ontology, S08 | S10, S11, S16 | structure | M5 |
 | S10 | Affordance (UGC) | Prove every functional verb works | affordance | affordance_dependency | S08, S09, affordance library | S11, S16 | structure | M5 |

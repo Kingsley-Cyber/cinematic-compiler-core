@@ -19,7 +19,7 @@ from kernel.version import ENVELOPE_VERSION, KERNEL_VERSION, LAYER_ORDER_VERSION
 from planner.dependency_graph import ROOT, is_active, load, node_index
 from planner.topological_sort import build_order
 
-from .passes.mandatory import p01_intent, p02_brief, p03_constraint, p04_temporal, p05_causal, p06_state
+from .passes.mandatory import p01_intent, p02_brief, p03_constraint, p04_temporal, p05_causal, p06_state, p07_contact
 
 AUTHORED = {"temporal": p04_temporal}
 
@@ -89,6 +89,7 @@ def run(query, *, genre=None, duration_s=None, until="constraint", cards=None, p
               "constraint": lambda env: p03_constraint.run(env, cards=cards, order=order),
               "causal": lambda env: p05_causal.run(env, order=order, load_bearing=load_bearing),
               "state": lambda env: p06_state.run(env, order=order),
+              "contact": lambda env: p07_contact.run(env, order=order),
               **{node: authored(node) for node in AUTHORED}}
     sequence = sequence_for(order, genre)
     if until not in sequence:
