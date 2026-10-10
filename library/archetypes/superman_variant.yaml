@@ -1,0 +1,19 @@
+card_id: superman_variant
+kind: archetype
+card_version: 1
+status: draft
+names: [superman variant, caped flyer, flying strongman, caped hero]
+description: A generic caped strongman who flies and fights with overwhelming physical force.
+silhouette: Muscular figure with a flowing cape; upright heroic stance.
+costume: Close-fitting suit with a cape; no specific emblem or brand marks.
+parts: [head, torso, left_arm, right_arm, left_hand, right_hand, left_leg, right_leg, left_foot, right_foot]
+capabilities: [flight, super_strength, charge]
+modes: [restrained, unleashed]
+genres: [anime, live_action]
+invariants:
+  - id: cape_follows_motion
+    rule: The cape trails the body's motion and settles when the body stops.
+provenance:
+  authored_by: claude-code
+  date: "2026-10-10"
+  basis: Draft starter card (owner chose drafted cards); not research-sourced; needs owner review.

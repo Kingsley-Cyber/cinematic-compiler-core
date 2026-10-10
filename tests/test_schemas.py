@@ -111,3 +111,13 @@ def test_schema_log_is_append_only_and_hash_chained(sandbox):
         with pytest.raises(ContractError) as error:
             schema_log.verify(sandbox)
         assert error.value.code in {"SCHEMA_LOG", "SCHEMA_DRIFT"}
+
+
+@pytest.mark.integration
+def test_every_library_card_validates_and_matches_its_log_entry():
+    from planner.card_loader import load_cards
+
+    cards = load_cards()
+    assert len(cards) == len(schema_log.LIBRARY.files())
+    assert set(schema_log.LIBRARY.verify()) == set(schema_log.LIBRARY.files())
+    assert {card["status"] for card in cards.values()} == {"draft"}

@@ -1,0 +1,19 @@
+card_id: ninja
+kind: archetype
+card_version: 1
+status: draft
+names: [ninja, shinobi]
+description: A stealthy fighter who closes distance fast and uses short blades and thrown weapons.
+silhouette: Lean figure in dark wrapped clothing; low, crouched stance.
+costume: Dark wrapped garments, scarf or hood; face may be partly covered.
+parts: [head, torso, left_arm, right_arm, left_hand, right_hand, left_leg, right_leg, left_foot, right_foot]
+capabilities: [blade_strike, throw_kunai, leap, wall_run]
+modes: [stealth, assault]
+genres: [anime, live_action]
+invariants:
+  - id: thrown_weapon_leaves_hand
+    rule: A thrown weapon leaves the hand and does not return without a declared catch.
+provenance:
+  authored_by: claude-code
+  date: "2026-10-10"
+  basis: Draft starter card (owner chose drafted cards); not research-sourced; needs owner review.

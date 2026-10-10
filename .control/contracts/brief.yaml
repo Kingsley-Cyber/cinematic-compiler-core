@@ -1,0 +1,43 @@
+id: BRIEF
+version: 1
+description: S02 (band L0.5) query expansion. Resolves the Intent Document against library cards only (no model); writes /scene and the entities, props and surfaces node groups.
+producers:
+  - planner/query_expander.py
+  - planner/card_loader.py
+  - planner/archetype_resolver.py
+  - planner/entity_grounder.py
+  - planner/world_grounder.py
+  - compiler/passes/mandatory/p02_brief.py
+  - compiler/pipeline.py
+  - schemas/graphs/brief_nodes.schema.json
+  - schemas/cards/archetype_card.schema.json
+  - schemas/cards/world_card.schema.json
+  - schemas/cards/object_card.schema.json
+  - library/library_log.jsonl
+consumers:
+  - kernel/build_ir_schema.py
+depends_on:
+  - IR_ENVELOPE
+  - INTENT_DOCUMENT
+invariants:
+  - cards_only_no_model_and_no_paid_api
+  - every_card_validates_against_its_kind_schema_and_matches_its_library_log_hash
+  - scene_values_come_from_the_intent_or_a_named_card_and_null_values_are_listed_missing
+  - genre_comes_from_intent_or_a_world_card_with_exactly_one_genre
+  - hint_matching_is_exact_then_trailing_words_and_ties_stay_ambiguous
+  - entity_prop_and_surface_fields_are_copied_from_cards_unchanged
+  - every_hint_becomes_an_item_or_an_unresolved_hint
+  - same_query_gives_byte_identical_output_across_processes
+  - s02_pass_writes_only_scene_entities_props_surfaces
+  - pipeline_runs_passes_in_dag_order_and_assumes_no_genre
+validation:
+  unit:
+    - tests/test_query_expander.py
+    - tests/test_archetype_resolver.py
+    - tests/test_entity_grounder.py
+    - tests/test_world_grounder.py
+  integration:
+    - tests/test_query_expander.py
+    - tests/test_schemas.py
+proof_requirements:
+  CONTRACT_CHANGE: INTEGRATION_PROVEN

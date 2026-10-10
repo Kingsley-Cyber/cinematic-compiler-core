@@ -11,6 +11,7 @@ sys.path.insert(0, str(ROOT))
 from kernel.version import ENVELOPE_VERSION, KERNEL_VERSION, LAYER_ORDER_VERSION  # noqa: E402
 from planner.dependency_graph import is_active, load  # noqa: E402
 from planner.intent_parser import parse_intent  # noqa: E402
+from planner.query_expander import expand  # noqa: E402
 
 
 @pytest.fixture
@@ -33,11 +34,10 @@ def empty_envelope(order, modality):
             kind, _, group = path.strip("/").partition("/")
             if kind in groups:
                 groups[kind][group] = {"band": node["band"], "step_id": node["step_id"], "items": []}
+    intent = parse_intent("10s fight, 24fps, moonlit bamboo courtyard", genre=modality)
     return {
         "graph_version": ENVELOPE_VERSION, "derived_from": KERNEL_VERSION,
-        "intent": parse_intent("10s anime fight, 24fps, moonlit bamboo courtyard"),
-        "scene": {"duration_s": 10, "fps": 24, "genre": modality, "world": "bamboo_courtyard",
-                  "setting": "moonlit bamboo courtyard", "ax": {"up": "Y", "forward": "+Z", "ground": "y=0"}},
+        "intent": intent, "scene": expand(intent)["scene"],
         "nodes": groups["nodes"], "edges": groups["edges"], "invariants": [],
         "validation": {"schema": None, "invariants": None, "layer_dependency": None,
                        "camera_kinematic_coupling": None, "post_generation": None},

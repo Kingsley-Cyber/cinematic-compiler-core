@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:archetype_card:1.0",
+  "title": "Archetype card (character definition; L0.5 entities)",
+  "description": "Library concept card. Draft cards are owner-reviewable data, not research claims.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "card_id",
+    "kind",
+    "card_version",
+    "status",
+    "names",
+    "description",
+    "silhouette",
+    "costume",
+    "parts",
+    "capabilities",
+    "modes",
+    "genres",
+    "invariants",
+    "provenance"
+  ],
+  "properties": {
+    "card_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "card_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "approved"
+      ]
+    },
+    "names": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "Lowercase names and aliases a query hint may match exactly (or as its trailing words)."
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authored_by",
+        "date",
+        "basis"
+      ],
+      "properties": {
+        "authored_by": {
+          "type": "string",
+          "minLength": 1
+        },
+        "date": {
+          "type": "string",
+          "minLength": 1
+        },
+        "basis": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "kind": {
+      "const": "archetype"
+    },
+    "silhouette": {
+      "type": "string",
+      "minLength": 1
+    },
+    "costume": {
+      "type": "string",
+      "minLength": 1
+    },
+    "parts": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]*$"
+      }
+    },
+    "capabilities": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]*$"
+      }
+    },
+    "modes": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]*$"
+      }
+    },
+    "genres": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "live_action",
+          "anime",
+          "ugc_ad"
+        ]
+      }
+    },
+    "invariants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "rule"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "rule": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

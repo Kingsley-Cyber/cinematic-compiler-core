@@ -1,11 +1,10 @@
-"""Append-only schema log: every schema change is recorded with its exact bytes hash.
+"""Append-only hash logs: every schema (and every library card) change is recorded with its exact bytes hash.
 
-`verify()` is the control: a schema whose bytes differ from its latest log entry,
-a schema with no entry, an entry for a missing file, or an edited/reordered log
-are all refused. Record a change with:
+`verify()` is the control: a file whose bytes differ from its latest log entry, a file with no
+entry, an entry for a missing file, or an edited/reordered log are all refused. Record with:
 
-    python -m kernel.schema_log record schemas/x.schema.json --change created \
-        --reason "..." --decided-by owner
+    python -m kernel.schema_log record schemas/x.schema.json --change created --reason "..." --decided-by owner
+    python -m kernel.schema_log --log library record library/worlds/x.yaml --change created --reason "..." ...
 """
 
 import argparse
@@ -14,120 +13,155 @@ import hashlib
 import json
 from pathlib import Path
 
+import yaml
+
 from .canonical import ContractError, load_json
 from .version import LAYER_ORDER_VERSION
 
 ROOT = Path(__file__).resolve().parents[1]
-LOG = ROOT / "schemas" / "schema_log.jsonl"
 CHANGES = {"created", "changed", "removed"}
 DECIDERS = {"owner", "owner_default", "agent_fix"}
-FIELDS = {"seq", "date", "schema", "change", "sha256", "previous_sha256", "schema_version",
-          "layer_order_version", "reason", "decided_by"}
 
 
-def _digest(path):
-    return "sha256:" + hashlib.sha256(path.read_bytes()).hexdigest()
+def _schema_version(path):
+    return load_json(path.read_text(encoding="utf-8")).get("$id")
+
+
+def _card_version(path):
+    card = yaml.safe_load(path.read_text(encoding="utf-8"))
+    return f"{card.get('card_version')}:{card.get('status')}"
+
+
+class HashLog:
+    def __init__(self, log, folder, pattern, key, version_key, read_version):
+        self.log, self.folder, self.pattern = log, folder, pattern
+        self.key, self.version_key, self.read_version = key, version_key, read_version
+        self.fields = {"seq", "date", key, "change", "sha256", "previous_sha256", version_key,
+                       "layer_order_version", "reason", "decided_by"}
+
+    def files(self, root=ROOT):
+        return sorted(p.relative_to(root).as_posix() for p in (root / self.folder).rglob(self.pattern))
+
+    def entries(self, root=ROOT):
+        path = root / self.log
+        if not path.exists():
+            return []
+        rows = []
+        for number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+            if not line.strip():
+                raise ContractError("SCHEMA_LOG", "Blank line in log", f"{self.log} line {number}")
+            row = load_json(line)
+            if set(row) != self.fields:
+                raise ContractError("SCHEMA_LOG", "Log entry fields differ from the log contract",
+                                    f"{self.log} line {number}")
+            rows.append(row)
+        return rows
+
+    def check_chain(self, rows):
+        """The log itself: append-only sequence, known values, and each entry chained to its file's previous hash."""
+        for index, row in enumerate(rows, 1):
+            if row["seq"] != index:
+                raise ContractError("SCHEMA_LOG", "Log is not append-only: sequence gap or reorder",
+                                    f"seq {row['seq']}")
+            if row["change"] not in CHANGES or row["decided_by"] not in DECIDERS or not row["reason"].strip():
+                raise ContractError("SCHEMA_LOG", "Entry needs a known change, decider and a reason", f"seq {index}")
+        previous = {}
+        for row in rows:
+            expected = previous.get(row[self.key])
+            if row["previous_sha256"] != expected:
+                raise ContractError("SCHEMA_LOG", "Entry does not chain to the file's previous hash",
+                                    f"seq {row['seq']}")
+            if (row["change"] == "created") != (expected is None):
+                raise ContractError("SCHEMA_LOG", "Only a file's first entry may be 'created'", f"seq {row['seq']}")
+            previous[row[self.key]] = None if row["change"] == "removed" else row["sha256"]
+
+    def verify(self, root=ROOT):
+        """Refuse any drift between file bytes and the log. Returns the latest entry per file."""
+        rows = self.entries(root)
+        self.check_chain(rows)
+        current = {}
+        for row in rows:
+            current[row[self.key]] = row
+        files = set(self.files(root))
+        for name in sorted(files):
+            row = current.get(name)
+            if row is None or row["change"] == "removed":
+                raise ContractError("SCHEMA_UNLOGGED", "File has no log entry", name)
+            if "sha256:" + hashlib.sha256((root / name).read_bytes()).hexdigest() != row["sha256"]:
+                raise ContractError("SCHEMA_DRIFT", "File bytes differ from their latest log entry", name)
+        for name, row in current.items():
+            if row["change"] != "removed" and name not in files:
+                raise ContractError("SCHEMA_MISSING", "Logged file is missing", name)
+        return current
+
+    def record(self, name, change, reason, decided_by, root=ROOT, today=None):
+        """Append one entry after checking the existing log is intact."""
+        rows = self.entries(root)
+        self.check_chain(rows)
+        previous = None
+        for row in rows:
+            if row[self.key] == name:
+                previous = row
+        live = previous is not None and previous["change"] != "removed"
+        if (change == "created") == live:
+            raise ContractError("SCHEMA_LOG", "'created' is only for a file with no live entry; use 'changed'", name)
+        path = root / name
+        if change == "removed":
+            if path.exists():
+                raise ContractError("SCHEMA_LOG", "Remove the file before recording its removal", name)
+            sha, version = None, None
+        else:
+            sha = "sha256:" + hashlib.sha256(path.read_bytes()).hexdigest()
+            if previous and previous["sha256"] == sha:
+                raise ContractError("SCHEMA_LOG", "File bytes are unchanged since the last entry", name)
+            version = self.read_version(path)
+        row = {"seq": len(rows) + 1, "date": today or datetime.date.today().isoformat(), self.key: name,
+               "change": change, "sha256": sha, "previous_sha256": previous["sha256"] if live else None,
+               self.version_key: version, "layer_order_version": LAYER_ORDER_VERSION, "reason": reason,
+               "decided_by": decided_by}
+        with (root / self.log).open("a", encoding="utf-8") as handle:
+            handle.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
+        self.check_chain(self.entries(root))
+        return row
+
+
+SCHEMAS = HashLog("schemas/schema_log.jsonl", "schemas", "*.schema.json", "schema", "schema_version", _schema_version)
+LIBRARY = HashLog("library/library_log.jsonl", "library", "*.yaml", "card", "card_version", _card_version)
+LOGS = {"schemas": SCHEMAS, "library": LIBRARY}
 
 
 def schema_files(root=ROOT):
-    return sorted(p.relative_to(root).as_posix() for p in (root / "schemas").rglob("*.schema.json"))
+    return SCHEMAS.files(root)
 
 
-def entries(log=LOG):
-    if not log.exists():
-        return []
-    rows = []
-    for number, line in enumerate(log.read_text(encoding="utf-8").splitlines(), 1):
-        if not line.strip():
-            raise ContractError("SCHEMA_LOG", "Blank line in schema log", f"line {number}")
-        row = load_json(line)
-        if set(row) != FIELDS:
-            raise ContractError("SCHEMA_LOG", "Log entry fields differ from the log contract", f"line {number}")
-        rows.append(row)
-    return rows
-
-
-def latest(rows):
-    result = {}
-    for row in rows:
-        result[row["schema"]] = row
-    return result
+def entries(log=None, root=ROOT):
+    return SCHEMAS.entries(root)
 
 
 def verify(root=ROOT, log=None):
-    """Refuse any drift between schema bytes and the log. Returns the latest entry per schema."""
-    log = log or root / "schemas" / "schema_log.jsonl"
-    rows = entries(log)
-    for index, row in enumerate(rows, 1):
-        if row["seq"] != index:
-            raise ContractError("SCHEMA_LOG", "Log is not append-only: sequence gap or reorder", f"seq {row['seq']}")
-        if row["change"] not in CHANGES or row["decided_by"] not in DECIDERS or not row["reason"].strip():
-            raise ContractError("SCHEMA_LOG", "Entry needs a known change, decider and a reason", f"seq {index}")
-    previous = {}
-    for row in rows:
-        expected = previous.get(row["schema"])
-        if row["previous_sha256"] != expected:
-            raise ContractError("SCHEMA_LOG", "Entry does not chain to the schema's previous hash", f"seq {row['seq']}")
-        if (row["change"] == "created") != (expected is None):
-            raise ContractError("SCHEMA_LOG", "Only a schema's first entry may be 'created'", f"seq {row['seq']}")
-        previous[row["schema"]] = None if row["change"] == "removed" else row["sha256"]
-    current = latest(rows)
-    files = set(schema_files(root))
-    for name in sorted(files):
-        row = current.get(name)
-        if row is None or row["change"] == "removed":
-            raise ContractError("SCHEMA_UNLOGGED", "Schema file has no log entry", name)
-        if _digest(root / name) != row["sha256"]:
-            raise ContractError("SCHEMA_DRIFT", "Schema bytes differ from their latest log entry", name)
-    for name, row in current.items():
-        if row["change"] != "removed" and name not in files:
-            raise ContractError("SCHEMA_MISSING", "Logged schema file is missing", name)
-    return current
+    return SCHEMAS.verify(root)
 
 
 def record(schema, change, reason, decided_by, root=ROOT, log=None, today=None):
-    """Append one entry after checking the existing log is intact."""
-    log = log or root / "schemas" / "schema_log.jsonl"
-    rows = entries(log)
-    previous = latest(rows).get(schema)
-    live = previous is not None and previous["change"] != "removed"
-    if (change == "created") == live:
-        raise ContractError("SCHEMA_LOG", "'created' is only for a schema with no live entry; use 'changed'", schema)
-    path = root / schema
-    if change == "removed":
-        if path.exists():
-            raise ContractError("SCHEMA_LOG", "Remove the file before recording its removal", schema)
-        sha, version = None, None
-    else:
-        sha = _digest(path)
-        if previous and previous["sha256"] == sha:
-            raise ContractError("SCHEMA_LOG", "Schema bytes are unchanged since the last entry", schema)
-        version = load_json(path.read_text(encoding="utf-8")).get("$id")
-    row = {"seq": len(rows) + 1, "date": today or datetime.date.today().isoformat(), "schema": schema,
-           "change": change, "sha256": sha,
-           "previous_sha256": None if previous is None or previous["change"] == "removed" else previous["sha256"],
-           "schema_version": version, "layer_order_version": LAYER_ORDER_VERSION, "reason": reason,
-           "decided_by": decided_by}
-    with log.open("a", encoding="utf-8") as handle:
-        handle.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
-    verify(root, log)
-    return row
+    return SCHEMAS.record(schema, change, reason, decided_by, root=root, today=today)
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(prog="python -m kernel.schema_log")
+    parser.add_argument("--log", choices=sorted(LOGS), default="schemas")
     sub = parser.add_subparsers(dest="command", required=True)
     rec = sub.add_parser("record")
-    rec.add_argument("schema")
+    rec.add_argument("path")
     rec.add_argument("--change", choices=sorted(CHANGES), required=True)
     rec.add_argument("--reason", required=True)
     rec.add_argument("--decided-by", choices=sorted(DECIDERS), required=True)
     sub.add_parser("verify")
     args = parser.parse_args(argv)
+    target = LOGS[args.log]
     if args.command == "record":
-        print(json.dumps(record(args.schema, args.change, args.reason, args.decided_by), sort_keys=True))
+        print(json.dumps(target.record(args.path, args.change, args.reason, args.decided_by), sort_keys=True))
     else:
-        print(json.dumps({name: row["sha256"] for name, row in verify().items()}, indent=1, sort_keys=True))
+        print(json.dumps({name: row["sha256"] for name, row in target.verify().items()}, indent=1, sort_keys=True))
 
 
 if __name__ == "__main__":

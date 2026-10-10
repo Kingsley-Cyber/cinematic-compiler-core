@@ -1,0 +1,16 @@
+card_id: coffee_cup
+kind: object
+card_version: 1
+status: draft
+names: [coffee cup, cup, mug]
+description: A single-handled cup that holds a hot drink.
+parts: [body, handle, rim, base]
+materials: [ceramic]
+states:
+  - {property: fill, values: [empty, partly_full, full]}
+affordances: [lift, sip, place, pour_into]
+grips: [handle_hook, wrap]
+provenance:
+  authored_by: claude-code
+  date: "2026-10-10"
+  basis: Draft starter card (owner chose drafted cards); not research-sourced; needs owner review.

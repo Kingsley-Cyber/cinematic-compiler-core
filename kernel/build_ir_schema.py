@@ -68,13 +68,31 @@ def build(order):
                     required[kind].append(group)
     for name, path in EMBEDDED.items():
         defs.update(_embed(name, path))
+    scene_fields = ["duration_s", "fps", "genre", "world", "setting", "style_reference", "ax"]
+    source = {"type": "string", "pattern": "^(intent:(query|flag)|card:[a-z][a-z0-9_]*)$"}
     defs["Scene"] = {"type": "object", "additionalProperties": False,
-        "required": ["duration_s", "fps", "genre", "world", "setting", "ax"],
-        "properties": {"duration_s": {"type": "number", "exclusiveMinimum": 0},
-                       "fps": {"type": "integer", "minimum": 1},
-                       "genre": {"enum": list(order["modalities"])},
-                       "world": _string(), "setting": _string(),
-                       "ax": {"type": "object", "description": "Axis and set geometry; fixed by the L0 slice."}}}
+        "description": "Written by S02. A null value is listed in `missing`; every value names its source.",
+        "required": scene_fields + ["sources", "missing", "ambiguous", "unresolved_hints"],
+        "properties": {"duration_s": {"type": ["number", "null"], "exclusiveMinimum": 0},
+                       "fps": {"type": ["number", "null"], "exclusiveMinimum": 0},
+                       "genre": {"enum": [None, *order["modalities"]]},
+                       "world": {"type": ["string", "null"], "pattern": "^[a-z][a-z0-9_]*$"},
+                       "setting": {"type": ["string", "null"], "minLength": 1},
+                       "style_reference": {"type": ["string", "null"], "minLength": 1},
+                       "ax": {"type": ["object", "null"], "description": "Axis set-up from the world card."},
+                       "sources": {"type": "object", "additionalProperties": False,
+                                   "properties": {field: source for field in scene_fields}},
+                       "missing": {"type": "array", "uniqueItems": True, "items": {
+                           "enum": scene_fields + ["choreography", "camera_plan", "geometry_anchors"]}},
+                       "ambiguous": {"type": "array", "items": {
+                           "type": "object", "additionalProperties": False,
+                           "required": ["field", "candidates", "reason"],
+                           "properties": {"field": {"enum": ["world"]}, "reason": _string(),
+                                          "candidates": {"type": "array", "minItems": 2, "items": _string()}}}},
+                       "unresolved_hints": {"type": "array", "items": {
+                           "type": "object", "additionalProperties": False, "required": ["hint", "field", "reason"],
+                           "properties": {"hint": _string(), "reason": _string(),
+                                          "field": {"enum": ["entities_hinted", "props_hinted"]}}}}}}
     defs["Invariant"] = {"type": "object", "additionalProperties": False, "required": ["id", "band", "rule"],
         "properties": {"id": _string(), "band": {"enum": labels}, "rule": _string()}}
     defs["Validation"] = {"type": "object", "additionalProperties": False, "required": VALIDATION_KEYS,

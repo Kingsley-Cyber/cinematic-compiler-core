@@ -1,0 +1,17 @@
+card_id: jacket
+kind: object
+card_version: 1
+status: draft
+names: [jacket, zip jacket]
+description: A front-zip jacket with sleeves and a collar.
+parts: [body, left_sleeve, right_sleeve, collar, zipper, zipper_pull]
+materials: [fabric, metal]
+states:
+  - {property: zipper, values: [closed, open]}
+  - {property: worn, values: ["no", "yes"]}
+affordances: [unzip, zip, put_on, take_off]
+grips: [pinch, two_hand_open]
+provenance:
+  authored_by: claude-code
+  date: "2026-10-10"
+  basis: Draft starter card (owner chose drafted cards); not research-sourced; needs owner review.

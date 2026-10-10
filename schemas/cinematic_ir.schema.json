@@ -1070,41 +1070,181 @@
     "Scene": {
       "type": "object",
       "additionalProperties": false,
+      "description": "Written by S02. A null value is listed in `missing`; every value names its source.",
       "required": [
         "duration_s",
         "fps",
         "genre",
         "world",
         "setting",
-        "ax"
+        "style_reference",
+        "ax",
+        "sources",
+        "missing",
+        "ambiguous",
+        "unresolved_hints"
       ],
       "properties": {
         "duration_s": {
-          "type": "number",
+          "type": [
+            "number",
+            "null"
+          ],
           "exclusiveMinimum": 0
         },
         "fps": {
-          "type": "integer",
-          "minimum": 1
+          "type": [
+            "number",
+            "null"
+          ],
+          "exclusiveMinimum": 0
         },
         "genre": {
           "enum": [
+            null,
             "live_action",
             "anime",
             "ugc_ad"
           ]
         },
         "world": {
-          "type": "string",
-          "minLength": 1
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-z][a-z0-9_]*$"
         },
         "setting": {
-          "type": "string",
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "style_reference": {
+          "type": [
+            "string",
+            "null"
+          ],
           "minLength": 1
         },
         "ax": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Axis set-up from the world card."
+        },
+        "sources": {
           "type": "object",
-          "description": "Axis and set geometry; fixed by the L0 slice."
+          "additionalProperties": false,
+          "properties": {
+            "duration_s": {
+              "type": "string",
+              "pattern": "^(intent:(query|flag)|card:[a-z][a-z0-9_]*)$"
+            },
+            "fps": {
+              "type": "string",
+              "pattern": "^(intent:(query|flag)|card:[a-z][a-z0-9_]*)$"
+            },
+            "genre": {
+              "type": "string",
+              "pattern": "^(intent:(query|flag)|card:[a-z][a-z0-9_]*)$"
+            },
+            "world": {
+              "type": "string",
+              "pattern": "^(intent:(query|flag)|card:[a-z][a-z0-9_]*)$"
+            },
+            "setting": {
+              "type": "string",
+              "pattern": "^(intent:(query|flag)|card:[a-z][a-z0-9_]*)$"
+            },
+            "style_reference": {
+              "type": "string",
+              "pattern": "^(intent:(query|flag)|card:[a-z][a-z0-9_]*)$"
+            },
+            "ax": {
+              "type": "string",
+              "pattern": "^(intent:(query|flag)|card:[a-z][a-z0-9_]*)$"
+            }
+          }
+        },
+        "missing": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "duration_s",
+              "fps",
+              "genre",
+              "world",
+              "setting",
+              "style_reference",
+              "ax",
+              "choreography",
+              "camera_plan",
+              "geometry_anchors"
+            ]
+          }
+        },
+        "ambiguous": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "field",
+              "candidates",
+              "reason"
+            ],
+            "properties": {
+              "field": {
+                "enum": [
+                  "world"
+                ]
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1
+              },
+              "candidates": {
+                "type": "array",
+                "minItems": 2,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        },
+        "unresolved_hints": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "hint",
+              "field",
+              "reason"
+            ],
+            "properties": {
+              "hint": {
+                "type": "string",
+                "minLength": 1
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1
+              },
+              "field": {
+                "enum": [
+                  "entities_hinted",
+                  "props_hinted"
+                ]
+              }
+            }
+          }
         }
       }
     },

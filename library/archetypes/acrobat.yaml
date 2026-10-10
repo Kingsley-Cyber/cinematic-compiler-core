@@ -1,0 +1,19 @@
+card_id: acrobat
+kind: archetype
+card_version: 1
+status: draft
+names: [acrobat, tumbler, gymnast]
+description: An agile fighter who moves through vaults, flips and cartwheels and strikes with the legs.
+silhouette: Lean, compact figure in close-fitting clothes; limbs clearly readable.
+costume: Fitted top and trousers that do not hide the joints; soft shoes or bare feet.
+parts: [head, torso, left_arm, right_arm, left_hand, right_hand, left_leg, right_leg, left_foot, right_foot]
+capabilities: [vault, flip, cartwheel, spinning_kick, wall_rebound]
+modes: [playful, focused]
+genres: [anime, live_action]
+invariants:
+  - id: airborne_needs_takeoff
+    rule: Every airborne phase starts from a declared support contact and ends in a landing or a new contact.
+provenance:
+  authored_by: claude-code
+  date: "2026-10-10"
+  basis: Draft starter card (owner chose drafted cards); not research-sourced; needs owner review.

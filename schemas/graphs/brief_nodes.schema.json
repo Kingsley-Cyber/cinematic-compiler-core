@@ -1,0 +1,304 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:brief_nodes:1.0",
+  "title": "S02 brief node items (band L0.5): entities, props, surfaces",
+  "description": "Item schemas for the groups S02 writes. Every field is copied from a library card; hints carry their S01 query evidence.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "entities",
+    "props",
+    "surfaces"
+  ],
+  "properties": {
+    "entities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Entity"
+      }
+    },
+    "props": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Prop"
+      }
+    },
+    "surfaces": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Surface"
+      }
+    }
+  },
+  "$defs": {
+    "Evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "span",
+        "text"
+      ],
+      "properties": {
+        "source": {
+          "const": "query"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "span": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "integer",
+              "minimum": 0
+            }
+          ]
+        }
+      }
+    },
+    "Entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "card_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "card_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "card_status": {
+          "enum": [
+            "draft",
+            "approved"
+          ]
+        },
+        "hint": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hint_evidence": {
+          "$ref": "#/$defs/Evidence"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "silhouette": {
+          "type": "string",
+          "minLength": 1
+        },
+        "costume": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          }
+        },
+        "capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          }
+        },
+        "modes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "card_id",
+        "card_version",
+        "card_status",
+        "hint",
+        "hint_evidence",
+        "name",
+        "description",
+        "silhouette",
+        "costume",
+        "parts",
+        "capabilities",
+        "modes"
+      ]
+    },
+    "Prop": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "card_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "card_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "card_status": {
+          "enum": [
+            "draft",
+            "approved"
+          ]
+        },
+        "hint": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hint_evidence": {
+          "$ref": "#/$defs/Evidence"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          }
+        },
+        "materials": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          }
+        },
+        "affordances": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          }
+        },
+        "grips": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          }
+        },
+        "states": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "property",
+              "values"
+            ],
+            "properties": {
+              "property": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]*$"
+              },
+              "values": {
+                "type": "array",
+                "minItems": 2,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "id",
+        "card_id",
+        "card_version",
+        "card_status",
+        "hint",
+        "hint_evidence",
+        "name",
+        "description",
+        "parts",
+        "materials",
+        "affordances",
+        "grips",
+        "states"
+      ]
+    },
+    "Surface": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "world_card_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "card_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "card_status": {
+          "enum": [
+            "draft",
+            "approved"
+          ]
+        },
+        "kind": {
+          "enum": [
+            "floor",
+            "wall",
+            "boundary",
+            "obstacle",
+            "tabletop",
+            "backdrop"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "world_card_id",
+        "card_version",
+        "card_status",
+        "kind",
+        "description"
+      ]
+    }
+  }
+}

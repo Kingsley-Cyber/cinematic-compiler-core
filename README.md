@@ -13,8 +13,9 @@ mise exec -- uv run --locked pytest -q
 mise exec -- uv run --locked python -m kernel.schema_log verify
 ```
 
-Status: skeleton, DAG check and S01 (intent parser). Try it:
+Status: skeleton, DAG check, S01 (intent parser) and S02 (cards-only query expander). Try it:
 
 ```bash
 mise exec -- uv run --locked python -m planner.intent_parser "10s anime fight, 24fps, moonlit bamboo courtyard"
+mise exec -- uv run --locked python -m planner.query_expander "wizard vs superman variant, castle"
 ```

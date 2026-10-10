@@ -1,0 +1,17 @@
+card_id: glasses
+kind: object
+card_version: 1
+status: draft
+names: [glasses, eyeglasses, spectacles, sunglasses]
+description: A pair of glasses with two lenses and folding temples.
+parts: [frame, left_lens, right_lens, left_temple, right_temple, left_hinge, right_hinge]
+materials: [acetate, metal, glass]
+states:
+  - {property: temples, values: [folded, open]}
+  - {property: worn, values: ["no", "yes"]}
+affordances: [unfold, put_on, take_off, fold]
+grips: [pinch, two_hand_temple]
+provenance:
+  authored_by: claude-code
+  date: "2026-10-10"
+  basis: Draft starter card (owner chose drafted cards); not research-sourced; needs owner review.

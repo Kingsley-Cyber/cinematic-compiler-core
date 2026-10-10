@@ -63,6 +63,9 @@ Every graph from S04 onward is validated against the constraint graph. Pipeline-
 | 2026-10-10 | S01 writes `/intent`; `/scene` moves to S02 (scene needs genre/world/ax, which S01 may not infer) | owner_default |
 | 2026-10-10 | Intent Document adds `flags` and per-value `evidence`; genre uses modality names (`ugc_ad`) | owner_default |
 | 2026-10-10 | Keys are `step_id` and `band` everywhere | owner |
+| 2026-10-10 | S02 resolves from library cards only (no model); unresolved stays in `scene.missing` | owner |
+| 2026-10-10 | Starter cards drafted by Claude (status draft), hash-logged in `library/library_log.jsonl` | owner |
+| 2026-10-10 | Scene values nullable with named sources; genre may come from a single-genre world card | owner_default |
 | 2026-10-10 | One envelope (MGRAPH-1.1) | owner_default |
 | 2026-10-10 | Camera node = 13 subdivisions + required `motivation` | owner_default |
 | 2026-10-10 | L5 holds LMA Effort (weight, time, space, flow) with Shape and Space as separate fields | owner_default |
@@ -72,7 +75,12 @@ Every graph from S04 onward is validated against the constraint graph. Pipeline-
 
 ## Open for owner review
 
-1. **Post-generation block shape.** `validation.post_generation` is `pass`/`fail`/`null` today; your
+1. **Draft cards (11).** Archetypes: wizard, acrobat, ninja, knight, superman_variant. Worlds:
+   bamboo_courtyard, medieval_fantasy, modern_ugc. Objects: glasses, coffee_cup, jacket. All `draft`.
+2. **Loose world match.** Any setting sharing one match term picks the card, so "stone courtyard" becomes
+   `bamboo_courtyard` (the only courtyard card) and brings bamboo surfaces. Add a stone-courtyard card, or
+   require more shared terms?
+3. **Post-generation block shape.** `validation.post_generation` is `pass`/`fail`/`null` today; your
    object shape (run_at, video_ref, checks, verdict, replan_*) lands with the S17 slice.
-2. **Cross-file `$ref`.** Sub-schemas are embedded into the envelope by the generator (document-local refs);
+4. **Cross-file `$ref`.** Sub-schemas are embedded into the envelope by the generator (document-local refs);
    a cross-file resolver is still not implemented.
