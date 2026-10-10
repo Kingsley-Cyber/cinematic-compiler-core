@@ -30,49 +30,52 @@
       "additionalProperties": false,
       "properties": {
         "entities": {
-          "$ref": "#/$defs/Group_L0.5"
+          "$ref": "#/$defs/Group_S02"
         },
         "props": {
-          "$ref": "#/$defs/Group_L0.5"
+          "$ref": "#/$defs/Group_S02"
         },
         "surfaces": {
-          "$ref": "#/$defs/Group_L0.5"
+          "$ref": "#/$defs/Group_S02"
         },
         "constraints": {
-          "$ref": "#/$defs/Group_L1.5"
+          "$ref": "#/$defs/Group_S03"
         },
         "beats": {
-          "$ref": "#/$defs/Group_L1.1"
+          "$ref": "#/$defs/Group_S04"
         },
         "states": {
-          "$ref": "#/$defs/Group_L2.1"
+          "$ref": "#/$defs/Group_S06"
         },
         "contacts": {
-          "$ref": "#/$defs/Group_L2.2"
+          "$ref": "#/$defs/Group_S07"
         },
         "hand_role": {
-          "$ref": "#/$defs/Group_L2.5"
+          "$ref": "#/$defs/Group_S08"
         },
         "object_state": {
-          "$ref": "#/$defs/Group_L2.6"
+          "$ref": "#/$defs/Group_S09"
         },
         "affordance": {
-          "$ref": "#/$defs/Group_L2.7"
+          "$ref": "#/$defs/Group_S10"
         },
         "kinematic": {
-          "$ref": "#/$defs/Group_L4a"
+          "$ref": "#/$defs/Group_S11"
         },
         "bartenieff": {
-          "$ref": "#/$defs/Group_L4b"
+          "$ref": "#/$defs/Group_S12"
         },
         "motion": {
-          "$ref": "#/$defs/Group_L4c"
+          "$ref": "#/$defs/Group_S13"
         },
         "efforts": {
-          "$ref": "#/$defs/Group_L5"
+          "$ref": "#/$defs/Group_S14"
         },
         "camera": {
-          "$ref": "#/$defs/Group_L5.5"
+          "$ref": "#/$defs/Group_S15"
+        },
+        "render": {
+          "$ref": "#/$defs/Group_S16"
         }
       },
       "required": [
@@ -87,55 +90,56 @@
         "bartenieff",
         "motion",
         "efforts",
-        "camera"
+        "camera",
+        "render"
       ]
     },
     "edges": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "constraint": {
-          "$ref": "#/$defs/Group_L1.5"
+        "constraint_application": {
+          "$ref": "#/$defs/Group_S03"
         },
         "temporal": {
-          "$ref": "#/$defs/Group_L1.1"
+          "$ref": "#/$defs/Group_S04"
         },
         "causal": {
-          "$ref": "#/$defs/Group_L1.2"
+          "$ref": "#/$defs/Group_S05"
         },
         "state_transition": {
-          "$ref": "#/$defs/Group_L2.1"
+          "$ref": "#/$defs/Group_S06"
         },
         "contact": {
-          "$ref": "#/$defs/Group_L2.2"
+          "$ref": "#/$defs/Group_S07"
         },
         "hand_role_transition": {
-          "$ref": "#/$defs/Group_L2.5"
+          "$ref": "#/$defs/Group_S08"
         },
         "object_state_transition": {
-          "$ref": "#/$defs/Group_L2.6"
+          "$ref": "#/$defs/Group_S09"
         },
         "affordance_dependency": {
-          "$ref": "#/$defs/Group_L2.7"
+          "$ref": "#/$defs/Group_S10"
         },
         "kinematic_transition": {
-          "$ref": "#/$defs/Group_L4a"
+          "$ref": "#/$defs/Group_S11"
         },
         "bartenieff_transition": {
-          "$ref": "#/$defs/Group_L4b"
+          "$ref": "#/$defs/Group_S12"
         },
         "motion": {
-          "$ref": "#/$defs/Group_L4c"
+          "$ref": "#/$defs/Group_S13"
         },
         "effort": {
-          "$ref": "#/$defs/Group_L5"
+          "$ref": "#/$defs/Group_S14"
         },
         "camera": {
-          "$ref": "#/$defs/Group_L5.5"
+          "$ref": "#/$defs/Group_S15"
         }
       },
       "required": [
-        "constraint",
+        "constraint_application",
         "temporal",
         "causal",
         "state_transition",
@@ -161,12 +165,15 @@
     }
   },
   "$defs": {
-    "Group_L0": {
+    "Group_S01": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "layer": {
           "const": "L0"
+        },
+        "step": {
+          "const": "S01"
         },
         "items": {
           "type": "array",
@@ -190,15 +197,19 @@
       },
       "required": [
         "layer",
+        "step",
         "items"
       ]
     },
-    "Group_L0.5": {
+    "Group_S02": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "layer": {
           "const": "L0.5"
+        },
+        "step": {
+          "const": "S02"
         },
         "items": {
           "type": "array",
@@ -222,15 +233,19 @@
       },
       "required": [
         "layer",
+        "step",
         "items"
       ]
     },
-    "Group_L1.5": {
+    "Group_S03": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "layer": {
-          "const": "L1.5"
+          "const": "constraint"
+        },
+        "step": {
+          "const": "S03"
         },
         "items": {
           "type": "array",
@@ -245,7 +260,7 @@
                 "minLength": 1
               },
               "layer": {
-                "const": "L1.5"
+                "const": "constraint"
               }
             },
             "description": "Per-graph item fields are fixed by that layer's schema when its slice lands."
@@ -254,10 +269,11 @@
       },
       "required": [
         "layer",
+        "step",
         "items"
       ]
     },
-    "Group_L1.1": {
+    "Group_S04": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -265,7 +281,7 @@
           "const": "L1"
         },
         "step": {
-          "const": "L1.1"
+          "const": "S04"
         },
         "items": {
           "type": "array",
@@ -293,7 +309,7 @@
         "items"
       ]
     },
-    "Group_L1.2": {
+    "Group_S05": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -301,7 +317,7 @@
           "const": "L1"
         },
         "step": {
-          "const": "L1.2"
+          "const": "S05"
         },
         "items": {
           "type": "array",
@@ -329,7 +345,7 @@
         "items"
       ]
     },
-    "Group_L2.1": {
+    "Group_S06": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -337,7 +353,7 @@
           "const": "L2"
         },
         "step": {
-          "const": "L2.1"
+          "const": "S06"
         },
         "items": {
           "type": "array",
@@ -365,7 +381,7 @@
         "items"
       ]
     },
-    "Group_L2.2": {
+    "Group_S07": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -373,7 +389,7 @@
           "const": "L2"
         },
         "step": {
-          "const": "L2.2"
+          "const": "S07"
         },
         "items": {
           "type": "array",
@@ -401,12 +417,15 @@
         "items"
       ]
     },
-    "Group_L2.5": {
+    "Group_S08": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "layer": {
           "const": "L2.5"
+        },
+        "step": {
+          "const": "S08"
         },
         "items": {
           "type": "array",
@@ -430,15 +449,19 @@
       },
       "required": [
         "layer",
+        "step",
         "items"
       ]
     },
-    "Group_L2.6": {
+    "Group_S09": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "layer": {
           "const": "L2.6"
+        },
+        "step": {
+          "const": "S09"
         },
         "items": {
           "type": "array",
@@ -462,15 +485,19 @@
       },
       "required": [
         "layer",
+        "step",
         "items"
       ]
     },
-    "Group_L2.7": {
+    "Group_S10": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "layer": {
           "const": "L2.7"
+        },
+        "step": {
+          "const": "S10"
         },
         "items": {
           "type": "array",
@@ -494,15 +521,19 @@
       },
       "required": [
         "layer",
+        "step",
         "items"
       ]
     },
-    "Group_L4a": {
+    "Group_S11": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "layer": {
           "const": "L4a"
+        },
+        "step": {
+          "const": "S11"
         },
         "items": {
           "type": "array",
@@ -526,15 +557,19 @@
       },
       "required": [
         "layer",
+        "step",
         "items"
       ]
     },
-    "Group_L4b": {
+    "Group_S12": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "layer": {
           "const": "L4b"
+        },
+        "step": {
+          "const": "S12"
         },
         "items": {
           "type": "array",
@@ -558,15 +593,19 @@
       },
       "required": [
         "layer",
+        "step",
         "items"
       ]
     },
-    "Group_L4c": {
+    "Group_S13": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "layer": {
           "const": "L4c"
+        },
+        "step": {
+          "const": "S13"
         },
         "items": {
           "type": "array",
@@ -590,15 +629,19 @@
       },
       "required": [
         "layer",
+        "step",
         "items"
       ]
     },
-    "Group_L5": {
+    "Group_S14": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "layer": {
           "const": "L5"
+        },
+        "step": {
+          "const": "S14"
         },
         "items": {
           "type": "array",
@@ -622,15 +665,19 @@
       },
       "required": [
         "layer",
+        "step",
         "items"
       ]
     },
-    "Group_L5.5": {
+    "Group_S15": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "layer": {
           "const": "L5.5"
+        },
+        "step": {
+          "const": "S15"
         },
         "items": {
           "type": "array",
@@ -654,15 +701,19 @@
       },
       "required": [
         "layer",
+        "step",
         "items"
       ]
     },
-    "Group_L6": {
+    "Group_S16": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "layer": {
           "const": "L6"
+        },
+        "step": {
+          "const": "S16"
         },
         "items": {
           "type": "array",
@@ -686,15 +737,19 @@
       },
       "required": [
         "layer",
+        "step",
         "items"
       ]
     },
-    "Group_L6.5": {
+    "Group_S17": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
         "layer": {
           "const": "L6.5"
+        },
+        "step": {
+          "const": "S17"
         },
         "items": {
           "type": "array",
@@ -718,6 +773,7 @@
       },
       "required": [
         "layer",
+        "step",
         "items"
       ]
     },
@@ -779,7 +835,7 @@
           "enum": [
             "L0",
             "L0.5",
-            "L1.5",
+            "constraint",
             "L1",
             "L2",
             "L2.5",
@@ -874,7 +930,7 @@
           "const": "LBN-2.4"
         },
         "layer_order_version": {
-          "const": "1.1"
+          "const": "1.2"
         },
         "build_timestamp": {
           "type": "string",
@@ -916,7 +972,7 @@
             "enum": [
               "L0",
               "L0.5",
-              "L1.5",
+              "constraint",
               "L1",
               "L2",
               "L2.5",
@@ -929,10 +985,23 @@
               "L5.5",
               "L6",
               "L6.5",
-              "L1.1",
-              "L1.2",
-              "L2.1",
-              "L2.2"
+              "S01",
+              "S02",
+              "S03",
+              "S04",
+              "S05",
+              "S06",
+              "S07",
+              "S08",
+              "S09",
+              "S10",
+              "S11",
+              "S12",
+              "S13",
+              "S14",
+              "S15",
+              "S16",
+              "S17"
             ]
           }
         }

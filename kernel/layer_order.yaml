@@ -1,18 +1,23 @@
 # Single source of truth for the cinematic-compiler layer DAG.
 #
-# Each node is one graph build (a pass). `layer` is the owner's band label and
-# `step` (optional) orders graphs inside one band. Build order comes from the
-# edges below; tests check that steps follow it. Pass file names, the envelope
-# schema and the validators are checked against this file.
+# Each node is one graph build (a pass). `step` is its ordered ID (S01, S02 ...)
+# and is the only thing that encodes order; tests check that step IDs increase
+# along the build order the edges produce. `layer` is the owner's name for the
+# node's band (L0, L0.5, L1 ...) and carries no order. Pass file names, the
+# envelope schema and the validators are checked against this file.
 #
 # Owner decisions 2026-10-10:
 #   - Effort (L5) is built before camera (L5.5); a camera beat may cite an
 #     effort quality as its motive. Effort depends on motion only.
 #   - Entity definitions (entities, props, surfaces) are L0.5; their state
 #     tracks (states, contacts) are L2.
-#   - Bands with steps: L1.1 temporal, L1.2 causal; L2.1 state, L2.2 contact.
-#   - Constraint is L1.5: built from brief + kernel invariants right after
-#     L0.5, before the event graphs, and checked at every later layer.
+#   - Bands: temporal and causal share L1; state and contact share L2.
+#   - Order lives in ordered step IDs, not fractional numbers. The constraint
+#     graph has no L number (layer `constraint`): built from brief + kernel
+#     invariants right after L0.5, before the event graphs, and checked at
+#     every later layer. Its edges are `constraint_application`.
+#   - L1 writes one node group (beats) and two edge groups (temporal, causal);
+#     L6 writes a `render` node group.
 #   - Camera nodes carry 13 subdivisions plus a required `motivation` field.
 #   - Effort holds the four LMA Effort factors (weight, time, space, flow);
 #     LMA Shape and Space are separate fields, not Effort factors.
@@ -24,7 +29,7 @@
 # `when` limits a node to the listed modalities; edges to an inactive node are
 # dropped, and only conditional nodes may be inactive.
 
-version: "1.1"
+version: "1.2"
 kernel: LBN-2.4
 envelope: MGRAPH-1.1
 modalities: [live_action, anime, ugc_ad]
@@ -35,6 +40,7 @@ pipeline_owned: [/graph_version, /derived_from, /provenance, /validation/schema,
 
 nodes:
   - id: intent
+    step: S01
     layer: L0
     builds: Intent Document
     depends_on: []
@@ -43,6 +49,7 @@ nodes:
     writes: [/scene]
 
   - id: brief
+    step: S02
     layer: L0.5
     builds: Expanded brief (entity, prop and surface definitions; archetype and world grounding)
     depends_on: [intent]
@@ -51,46 +58,48 @@ nodes:
     writes: [/nodes/entities, /nodes/props, /nodes/surfaces]
 
   - id: constraint
-    layer: L1.5
+    step: S03
+    layer: constraint
     builds: Constraint graph (kernel + world + archetype invariants)
     depends_on: [brief]
     external_inputs: [kernel/invariants.yaml]
     validated_by: [schema]
-    writes: [/nodes/constraints, /edges/constraint, /invariants]
+    writes: [/nodes/constraints, /edges/constraint_application, /invariants]
 
   - id: temporal
+    step: S04
     layer: L1
-    step: L1.1
     builds: Temporal graph
     depends_on: [brief]
     validated_by: [schema, invariants, constraint]
     writes: [/nodes/beats, /edges/temporal]
 
   - id: causal
+    step: S05
     layer: L1
-    step: L1.2
     builds: Causal graph
     depends_on: [temporal]
     validated_by: [schema, invariants, constraint]
     writes: [/edges/causal]
 
   - id: state
+    step: S06
     layer: L2
-    step: L2.1
     builds: State graph (state tracks of L0.5 definitions)
     depends_on: [temporal, causal]
     validated_by: [schema, invariants, constraint]
     writes: [/nodes/states, /edges/state_transition]
 
   - id: contact
+    step: S07
     layer: L2
-    step: L2.2
     builds: Contact graph
     depends_on: [temporal, causal, state]
     validated_by: [schema, invariants, constraint]
     writes: [/nodes/contacts, /edges/contact]
 
   - id: hand_role
+    step: S08
     layer: L2.5
     builds: Hand-role graph
     when: [ugc_ad]
@@ -100,6 +109,7 @@ nodes:
     writes: [/nodes/hand_role, /edges/hand_role_transition]
 
   - id: object_state
+    step: S09
     layer: L2.6
     builds: Object-state graph
     when: [ugc_ad]
@@ -109,6 +119,7 @@ nodes:
     writes: [/nodes/object_state, /edges/object_state_transition]
 
   - id: affordance
+    step: S10
     layer: L2.7
     builds: Affordance graph
     when: [ugc_ad]
@@ -117,6 +128,7 @@ nodes:
     writes: [/nodes/affordance, /edges/affordance_dependency]
 
   - id: kinematic
+    step: S11
     layer: L4a
     builds: Kinematic graph (visible bodily organization)
     depends_on: [state, contact, hand_role, object_state, affordance, constraint]
@@ -124,6 +136,7 @@ nodes:
     writes: [/nodes/kinematic, /edges/kinematic_transition]
 
   - id: bartenieff
+    step: S12
     layer: L4b
     builds: Bartenieff graph (body coordination patterns)
     depends_on: [kinematic]
@@ -131,6 +144,7 @@ nodes:
     writes: [/nodes/bartenieff, /edges/bartenieff_transition]
 
   - id: motion
+    step: S13
     layer: L4c
     builds: Motion graph (Euler key poses, axes, slerp, root trajectories)
     depends_on: [kinematic, bartenieff]
@@ -138,6 +152,7 @@ nodes:
     writes: [/nodes/motion, /edges/motion]
 
   - id: effort
+    step: S14
     layer: L5
     builds: Effort graph (LMA Effort factors plus Shape and Space)
     depends_on: [motion]
@@ -145,6 +160,7 @@ nodes:
     writes: [/nodes/efforts, /edges/effort]
 
   - id: camera
+    step: S15
     layer: L5.5
     builds: Camera graph (13 subdivisions + motivation)
     depends_on: [state, contact, kinematic, motion, effort]
@@ -152,14 +168,16 @@ nodes:
     writes: [/nodes/camera, /edges/camera]
 
   - id: render
+    step: S16
     layer: L6
     builds: Prose / render projection (per modality and conditioning signal)
     depends_on: [intent, brief, temporal, causal, state, contact, hand_role, object_state,
                  affordance, constraint, kinematic, bartenieff, motion, effort, camera]
     validated_by: [schema, invariants, constraint]
-    writes: []
+    writes: [/nodes/render]
 
   - id: post_generation
+    step: S17
     layer: L6.5
     builds: Post-generation report (only when a video model is available)
     depends_on: [render]

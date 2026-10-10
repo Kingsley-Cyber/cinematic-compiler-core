@@ -8,6 +8,8 @@
 Each returns a list of findings; an empty list means the check passed.
 """
 
+import re
+
 from kernel.canonical import ContractError
 from kernel.version import ENVELOPE_VERSION, KERNEL_VERSION, LAYER_ORDER_VERSION
 from planner.dependency_graph import is_active, node_index, write_owners
@@ -17,6 +19,7 @@ KNOWN_VALIDATORS = {"schema", "coherence", "invariants", "constraint", "camera_r
                     "pose", "object", "state", "affordance"}
 TOP_PATHS = {"/graph_version", "/derived_from", "/scene", "/invariants", "/provenance"}
 GROUP_PREFIXES = ("/nodes/", "/edges/", "/validation/")
+STEP_ID = re.compile(r"S[0-9]{2}")
 
 
 def _finding(code, message, subject=None):
@@ -61,38 +64,25 @@ def check_layer_order(order):
         for other in paths:
             if other != path and other.startswith(path + "/"):
                 findings.append(_finding("OVERLAPPING_WRITE", "Write paths may not nest", [path, other]))
-    bands = {}
+    steps = [node["step"] for node in order["nodes"]]
     for node in order["nodes"]:
-        bands.setdefault(node["layer"], []).append(node)
-    for layer, members in bands.items():
-        stepped = [row for row in members if "step" in row]
-        if stepped and len(stepped) != len(members):
-            findings.append(_finding("STEP_BAND", "Every node in a stepped band needs a step", layer))
-        for row in stepped:
-            suffix = row["step"][len(layer) + 1:]
-            if not row["step"].startswith(layer + ".") or not suffix.isdigit():
-                findings.append(_finding("STEP_BAND", "Step must be <band>.<number>", [row["id"], row["step"]]))
-        names = [row["step"] for row in stepped]
-        if len(set(names)) != len(names):
-            findings.append(_finding("STEP_BAND", "Steps within a band must be unique", layer))
+        if not STEP_ID.fullmatch(node["step"]):
+            findings.append(_finding("STEP_ID", "Step IDs read S01, S02 ...", [node["id"], node["step"]]))
+    if len(set(steps)) != len(steps):
+        repeated = sorted({step for step in steps if steps.count(step) > 1})
+        findings.append(_finding("STEP_ID", "Step IDs must be unique", repeated))
+    index = node_index(order)
     for modality in order["modalities"]:
         try:
             sequence = build_order(order, modality)
         except ContractError as error:
             findings.append(_finding(error.code, error.message, [modality, error.path]))
             continue
-        for layer, members in bands.items():
-            built = [row for row in members if row["id"] in sequence and "step" in row]
-            by_order = [row["id"] for row in sorted(built, key=lambda row: sequence.index(row["id"]))]
-
-            def number(row, layer=layer):
-                suffix = row["step"][len(layer) + 1:]
-                return int(suffix) if suffix.isdigit() else -1
-
-            by_step = [row["id"] for row in sorted(built, key=number)]
-            if by_order != by_step:
-                findings.append(_finding("STEP_ORDER", "Steps must follow the build order inside their band",
-                                         [modality, layer, by_order]))
+        # Step IDs, not layer numbers, encode order: they must rise along every build order.
+        ordered = [index[identity]["step"] for identity in sequence]
+        if ordered != sorted(ordered) or len(set(ordered)) != len(ordered):
+            findings.append(_finding("STEP_ORDER", "Step IDs must increase along the build order",
+                                     [modality, list(zip(sequence, ordered, strict=True))]))
     return findings
 
 
