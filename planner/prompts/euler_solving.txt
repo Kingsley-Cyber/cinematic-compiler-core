@@ -5,7 +5,8 @@ S13 motion (L4c). For every slot write one key pose: the body at the slot's beat
   Intrinsic XYZ applies X first, then Y about the new up axis, then Z: keep root X and Z at 0 outside flips and
   cartwheels and put leans in Sp, so Y alone sets the heading (a pitched root turns the heading; the check uses it).
 - Heading: an upright root's forward axis must point along the slot's facing (within 1 degree). Mid-flip the lateral
-  axis is read instead; mid-cartwheel the forward axis.
+  axis is read instead; mid-cartwheel the forward axis; a tipped root with no turn (slide, fall) uses the more
+  horizontal of the two.
 - Posture: with one allowed posture the root must show it (standing/crouching/kneeling upright, inverted upside
   down, prone/supine level, chest down/up); with several a change is under way and any in-between root is allowed.
 - Angles are continuous per entity, never wrapped: the change from one key to the entity's next key is the rotation

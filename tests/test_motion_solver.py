@@ -61,6 +61,15 @@ def codes(change):
     return {f["code"] for f in p13_motion.check(plan, PACKET)}
 
 
+def test_a_tipped_root_without_a_turn_reads_its_more_horizontal_axis():
+    from solver.euler_solver import basis_for
+    turns = PACKET["rotation_convention"]["turns"]
+    slide = {"rot": [80, 0, 0], "turn": "none"}          # pitched 80 degrees: the lateral axis stays level
+    on_side = {"rot": [0, 0, 80], "turn": "none"}        # rolled 80 degrees: the forward axis stays level
+    assert basis_for(slide, None, turns) == "lateral" and basis_for(on_side, None, turns) == "forward"
+    assert basis_for({"rot": [0, 30, 0], "turn": "none"}, None, turns) == "forward"
+
+
 def test_courtyard_keys_pass_and_the_joints_come_from_the_kernel():
     assert p13_motion.check(PLAN, PACKET) == [] and PACKET["packet_sha256"] == PLAN["packet_sha256"]
     assert PACKET["joints"] == ["Sp", "LUL", "RUL", "LL", "RL", "LA", "RA", "LFA", "RFA", "HD", "NK"]
@@ -77,8 +86,6 @@ def test_courtyard_keys_pass_and_the_joints_come_from_the_kernel():
     ("MOTION_AXIS", lambda p: key(p, "acrobat@b02").update(turn="none", axis_declaration="none")),
     ("MOTION_AXIS", lambda p: key(p, "acrobat@b05").update(turn="cartwheel", axis_declaration="Z")),
     ("MOTION_AXIS", lambda p: key(p, "wizard@b11").update(turn="spin", axis_declaration="Y")),
-    ("MOTION_ORIENTATION", lambda p: [key(p, s).update(turn="none", axis_declaration="none")
-                                      for s in ("acrobat@b03", "acrobat@b04")]),
     ("MOTION_POSTURE", lambda p: key(p, "acrobat@b12").update(rot=[460, -389.055, 0])),
 ])
 def test_each_rule_rejects_its_violation(code, change):

@@ -3,9 +3,9 @@
 - bones are exactly the kernel joints (names from the kernel `key` items, e.g. "LUL/RUL=UpLeg");
 - root pos equals the S04 anchor exactly;
 - root heading agrees with the S04 facing within 1 degree. An upright root (rotated up axis y >= 0.5) is read from
-  its forward axis (+Z). A root that is not upright must be inside a declared flip or cartwheel and is read from that
-  turn's invariant axis: a flip (about X) keeps the lateral axis, a cartwheel (about Z) keeps the forward axis.
-  A spin (about Y) never tips the body;
+  its forward axis (+Z). A root that is not upright inside a declared flip or cartwheel is read from that turn's
+  invariant axis (a flip about X keeps the lateral axis, a cartwheel about Z keeps the forward axis); otherwise
+  (a slide, a fall) from whichever of the two is more horizontal;
 - Euler angles are continuous per entity (never wrapped), so the change between consecutive keys is the rotation
   performed. A change of 90 degrees or more on any axis must be declared; a declared turn uses the convention axis
   (flip X, spin Y, cartwheel Z) and that axis changes most, by at least 90 degrees, before the entity's next key.
@@ -52,13 +52,16 @@ def heading(rot, basis):
 
 
 def basis_for(key, previous, turns):
-    """Which axis reads the heading: forward when upright, else the invariant axis of the turn in progress."""
+    """Which axis reads the heading: forward when upright, the invariant axis of a flip or cartwheel in progress,
+    else the more horizontal of the lateral and forward axes."""
     if uprightness(key["rot"]) >= UPRIGHT:
         return "forward"
     for candidate in (previous, key):
-        if candidate is not None and candidate["turn"] != "none":
-            return INVARIANT_BASIS.get(turns[candidate["turn"]])
-    return None
+        if candidate is not None and turns.get(candidate["turn"]) in INVARIANT_BASIS:
+            return INVARIANT_BASIS[turns[candidate["turn"]]]
+    m = matrix(key["rot"])
+    lateral, forward = apply(m, (1, 0, 0)), apply(m, (0, 0, 1))
+    return "lateral" if horizontal(lateral) > horizontal(forward) else "forward"
 
 
 def check(keys, slots, joints, turns):
@@ -78,10 +81,7 @@ def check(keys, slots, joints, turns):
                 findings.append({"code": "MOTION_POS", "message": "Root pos must equal the S04 anchor exactly",
                                  "slot": slot_id, "detail": [key["pos"], slot["pos"]]})
             basis = bases[slot_id] = basis_for(key, previous, turns)
-            if basis is None:
-                findings.append({"code": "MOTION_ORIENTATION", "message": "A root that is not upright needs a declared flip "
-                                 "or cartwheel around it", "slot": slot_id})
-            elif horizontal(slot["facing"]) > 0:
+            if horizontal(slot["facing"]) > 0:
                 off = angle_between(heading(key["rot"], basis), heading_degrees(slot["facing"]))
                 if off > HEADING_TOLERANCE:
                     findings.append({"code": "MOTION_FACING", "message": f"Root heading ({basis} axis) disagrees with the "
