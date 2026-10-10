@@ -1,0 +1,25 @@
+# Camera subdivisions (S15, L5.5). Draft vocabulary by Claude for owner review.
+# Closed value sets for the 13 subdivisions + motivation + intent. Numeric fields (angles, distance, focal length,
+# playback speed) and free-text fields are defined in schemas/camera.schema.json.
+vocabulary_id: camera_subdivisions
+version: 1
+status: draft
+basis: Owner camera plan (13 subdivisions + motivation; seven motivation kinds; six intents); closed values drafted by Claude.
+fields:
+  framing.scale: {kind: values, values: [insert, extreme_close, close, medium_close, medium, medium_wide, full, wide, extreme_wide], description: "Shot scale."}
+  lens.perspective: {kind: values, values: [wide, normal, telephoto], description: "Perspective the focal length gives."}
+  focus.depth_of_field: {kind: values, values: [deep, medium, shallow], description: "Depth of field."}
+  focus.transition: {kind: values, values: [hold, rack, follow], description: "What focus does during the shot."}
+  movement.kind: {kind: values, values: [static, pan, tilt, dolly_in, dolly_out, truck, pedestal, crane, orbit, tracking, whip_pan, zoom], description: "Camera movement."}
+  movement_quality.easing: {kind: values, values: [linear, ease_in, ease_out, ease_in_out, snap], description: "Speed profile of the move."}
+  movement_quality.stability: {kind: values, values: [locked, smooth, floating, shaky], description: "Visible stability."}
+  support.rig: {kind: values, values: [tripod, dolly, crane, gimbal, steadicam, handheld, drone], description: "Camera support."}
+  relation_to_action.mode: {kind: values, values: [lead, follow, observe, counter], description: "How the camera relates to the action."}
+  position.side: {kind: values, values: [left, right, on_axis, none], description: "Camera side of the action axis (left = left hand of an observer at the first entity, by id, looking at the second); none when there is no axis."}
+  composition.placement: {kind: values, values: [left_third, center, right_third], description: "Screen placement of a subject."}
+  playback.treatment: {kind: values, values: [normal, slow, fast, ramp, freeze], description: "Playback treatment."}
+  blur.motion_blur: {kind: values, values: [none, subject, camera, both], description: "Where motion blur comes from."}
+  editing.transition_in: {kind: values, values: [open, cut, match_cut, smash_cut, jump_cut, whip_pan, dissolve], description: "How this shot is entered (open = first shot)."}
+  editing.axis: {kind: values, values: [keep, cross], description: "Whether the cut into this shot crosses the action axis."}
+  motivation.kind: {kind: values, values: [beat_type, entity_focus, contact_event, effort_quality, spatial_geometry, narrative_intent, genre_convention], description: "What motivates the shot (owner list)."}
+  intent: {kind: values, values: [impact, reveal, emotion, spatial, rhythm, product], description: "Shot intent; weights the subdivisions (camera_grammar intents)."}

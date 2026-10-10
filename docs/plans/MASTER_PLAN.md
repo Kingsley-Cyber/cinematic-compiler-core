@@ -21,8 +21,8 @@ gates → the pass writes only its paths. A failed gate allows 2 re-authoring at
   `/intent` + `/scene`, post-gen as validation block, cards-only S02, in-session authoring, linear causality,
   closed state vocabulary~~
 - ~~Graph catalog (graph_types.md); URCP removed; standalone repo~~
-- ~~M1 (S04–S07), M1.5 (CLI, replan trigger), M2 (S11 kinematic, S12 Bartenieff, S13 motion); courtyard example
-  through S13~~
+- ~~M1 (S04–S07), M1.5 (CLI, replan trigger), M2 (S11 kinematic, S12 Bartenieff, S13 motion), M3 (S14 effort,
+  S15 camera); courtyard example through S15~~
 
 ---
 
@@ -212,12 +212,17 @@ Notes on the decisions:
 - [x] S14.4 `p14_effort.py` + `laban_synthesis.txt`; validator: intervals cover each actor's beats; values from vocabulary.
 
 ### S15 camera (L5.5, authored)
-- [ ] S15.1 Library (draft): camera_subdivisions, camera_grammar, camera_tempo, camera_idioms/, camera_conventions/.
-- [ ] S15.2 `schemas/camera.schema.json` (node: 13 subdivisions + motivation{kind, ref}, all required) and
+- [x] S15.1 Library (draft): camera_subdivisions, camera_grammar, camera_tempo, camera_idioms/, camera_conventions/.
+- [x] S15.2 `schemas/camera.schema.json` (node: 13 subdivisions + motivation{kind, ref}, all required) and
   `schemas/graphs/camera_graph.schema.json` (shot-to-shot edges). Log.
-- [ ] S15.3 `p15_camera.py` + `camera_selection.txt`.
-- [ ] S15.4 Validators: motivation ref resolves; 180-line (axis); camera–kinematic coupling; continuity; genre;
+- [x] S15.3 `p15_camera.py` + `camera_selection.txt`.
+- [x] S15.4 Validators: motivation ref resolves; 180-line (axis); camera–kinematic coupling; continuity; genre;
   subdivision coherence; intent weighting (impact, reveal, emotion, spatial, rhythm, product).
+- [x] S15.5 (agent additions, plan silent) Shots tile the scene in time; the camera is placed by derived geometry
+  (aim = target + aim height, azimuth/elevation/distance) so side, frame height and screen x are computed, not
+  claimed; composition placement must agree with the projected screen side; contact onsets in a shot must be
+  visible at its scale; `validation.camera_kinematic_coupling` is set to pass when S15 passes. Side convention:
+  left = left hand of an observer at the first entity (by id) facing the second.
 
 ---
 

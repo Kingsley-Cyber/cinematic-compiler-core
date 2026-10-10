@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:camera_tempo:1.0",
+  "title": "Camera tempo (S15, L5.5)",
+  "description": "Story-time shot length range per intent, in seconds.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "tempo_id",
+    "version",
+    "status",
+    "basis",
+    "shot_duration_s"
+  ],
+  "properties": {
+    "tempo_id": {
+      "const": "camera_tempo"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "approved"
+      ]
+    },
+    "basis": {
+      "type": "string",
+      "minLength": 1
+    },
+    "shot_duration_s": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-z][a-z0-9_]*$": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "number",
+            "minimum": 0
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

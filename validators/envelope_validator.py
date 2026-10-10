@@ -19,6 +19,11 @@ GROUP_SCHEMAS = {  # schema file -> {schema key: (kind, envelope group)}
     "causal_graph": {"causal": ("edges", "causal")},
     "state_graph": {"states": ("nodes", "states"), "state_transition": ("edges", "state_transition")},
     "contact_graph": {"contacts": ("nodes", "contacts"), "contact": ("edges", "contact")},
+    "kinematic_graph": {"kinematic": ("nodes", "kinematic"), "kinematic_transition": ("edges", "kinematic_transition")},
+    "bartenieff_graph": {"bartenieff": ("nodes", "bartenieff"), "bartenieff_transition": ("edges", "bartenieff_transition")},
+    "motion_graph": {"motion": ("nodes", "motion"), "motion_edges": ("edges", "motion")},
+    "effort_graph": {"efforts": ("nodes", "efforts"), "effort": ("edges", "effort")},
+    "camera_graph": {"camera": ("nodes", "camera"), "camera_edges": ("edges", "camera")},
 }
 
 
@@ -57,7 +62,7 @@ def validate_envelope(envelope):
         if all(value is not None for value in present.values()):
             attempt(name, present, json.loads((GRAPHS / f"{name}.schema.json").read_text(encoding="utf-8")))
     genre = (scene or {}).get("genre")
-    required = [p.split("/")[2] for n in order["nodes"] if genre and is_active(n, genre) and not n.get("projection")
+    required = [p.split("/")[2] for n in order["nodes"] if genre and is_active(n, genre)
                 for p in n["writes"] if p.startswith(("/nodes/", "/edges/"))]
     complete = bool(genre) and all(any(g in envelope.get(k, {}) for k in ("nodes", "edges")) for g in required)
     if complete:

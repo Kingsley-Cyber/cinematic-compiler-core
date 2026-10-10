@@ -1,0 +1,12 @@
+card_id: wizard
+kind: camera_idiom
+card_version: 1
+status: draft
+archetype: wizard
+idioms:
+  - {id: wizard_cast_low_angle, when: "a spell is released", prefer: "Low angle on the casting hand, the effect travelling toward the lens."}
+  - {id: wizard_ward_frontal, when: "a ward or shield goes up", prefer: "Frontal medium on the palms, the ward filling the foreground plane."}
+provenance:
+  authored_by: claude-code
+  date: "2026-10-10"
+  basis: Draft camera idioms (owner camera plan, per-archetype idioms); not research-sourced; needs owner review.

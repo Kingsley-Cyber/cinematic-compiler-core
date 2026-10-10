@@ -16,7 +16,7 @@ scripts/check.sh
 DO_NOT_TRACK=1 graft --dir .graphs/graft build . --no-gitignore --no-ignore
 ```
 
-## Built (S01–S07, S11–S14; milestones M1, M1.5, M2)
+## Built (S01–S07, S11–S15; milestones M1, M1.5, M2, M3)
 | Step | What it compiles | Code |
 |---|---|---|
 | S01 intent (L0) | query + flags → Intent Document at `/intent`; literal only, evidence per value, `missing`/`ambiguous` | `planner/intent_parser.py`, `compiler/passes/mandatory/p01_intent.py` |
@@ -30,14 +30,15 @@ DO_NOT_TRACK=1 graft --dir .graphs/graft build . --no-gitignore --no-ignore
 | S12 Bartenieff (L4b) | authored coordination: connectivity, pattern, initiation, follow-through, body mode; `cpcs:` labelled | `p12_bartenieff.py`, `library/bartenieff_vocabulary.yaml`, `library/body_modes/` |
 | S13 motion (L4c) | authored Euler key poses (root pos = S04, heading = S04 facing, 11 kernel joints, declared turn axes, S06 posture) → derived quaternions, follows edges (Euler delta, slerp vs euler_axis, root trajectory) | `p13_motion.py`, `solver/{euler_solver,quaternion,trajectory}.py` |
 | S14 effort (L5) | authored LMA intervals per entity (Effort factors, effort action checked against weight x time x space, Shape, Space, intensity in the effort mode's range) → overlaps edges | `p14_effort.py`, `library/laban_vocabulary.yaml`, `library/effort_modes/` |
+| S15 camera (L5.5) | authored shot list: 13 subdivisions + motivation per shot; geometry derived (camera position, axis side, frame height, screen x); checks: tiling, coverage, motivation refs, 180-line, camera–kinematic coupling, composition, 30° cuts, genre card, subdivision coherence, intent + tempo | `p15_camera.py`, `validators/camera_validator.py`, `solver/camera_geometry.py`, `planner/camera_library.py`, `library/camera_*` |
 
 Pipeline: `python -m compiler.pipeline "<query>" [--genre anime] [--until contact] [--plans DIR]`; an authored step
-with no plan exits 3 and prints (or `--packet-out`) its packet. Example: `examples/wizard_vs_acrobat/` (through S14; plans for S04, S11–S14 written in-session).
+with no plan exits 3 and prints (or `--packet-out`) its packet. Example: `examples/wizard_vs_acrobat/` (through S15; plans for S04, S11–S15 written in-session).
 Kernel = the 68 controls both LBN-2.3-ADV and LBN-2.4-ADV-LMA state (`kernel/sources/`), scoped per item.
 
 ## Controls
 Three append-only, hash-chained logs (`schemas/schema_log.jsonl`, `library/library_log.jsonl`,
-`kernel/kernel_log.jsonl`); generated files checked against regeneration; examples recompile byte-for-byte; 300 tests; all in `scripts/check.sh`.
+`kernel/kernel_log.jsonl`); generated files checked against regeneration; examples recompile byte-for-byte; 323 tests; all in `scripts/check.sh`.
 
 ## Owner decisions so far
 Step IDs S01–S17 carry order (L labels are names); keys `step_id`/`band`; constraint built after S02 and before
@@ -51,11 +52,12 @@ linear causality only; closed kernel state vocabulary. Full log: `docs/layer_dep
 - `kernel/kernel_scope.yaml`: kernel 20, per-actor 6, per-prop 5, reference fight only 37.
 - Draft libraries: `library/kinematic_cues.yaml`, `library/bartenieff_vocabulary.yaml` (developmental patterns are a
   disclosed interpretation; `cpcs:spiral` is a labelled extension), `library/body_modes/` (4 cards), `library/laban_vocabulary.yaml`, `library/effort_modes/` (calm, desperate,
-  trained).
+  trained), camera library (`camera_subdivisions`, `camera_grammar`, `camera_tempo`, `camera_conventions/` x3,
+  `camera_idioms/` x5) — all numbers and rules are drafts.
 - S13.6 posture cross-check is an agent addition (plan silent). Q6 note: under intrinsic XYZ a flip is pure-X only
   when facing ±Z (see MASTER_PLAN notes); no change made.
 
 ## Open questions and next work
 All six questions are decided (see **Decided this round** in
-[docs/plans/MASTER_PLAN.md](docs/plans/MASTER_PLAN.md)). Next task: **S15 camera** (finishes M3). Completed work is struck through
+[docs/plans/MASTER_PLAN.md](docs/plans/MASTER_PLAN.md)). Next task: **M4 render (S16)**. Completed work is struck through
 under **Done**.

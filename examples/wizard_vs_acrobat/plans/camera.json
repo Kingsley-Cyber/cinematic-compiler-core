@@ -1,0 +1,891 @@
+{
+ "step_id": "S15",
+ "band": "L5.5",
+ "packet_sha256": "sha256:2c72d7a0e20590ea30211e7be4912d6d0845d0cfad7389029c7e6918f20bb064",
+ "author": {
+  "host": "Claude Code desktop, in-session",
+  "model": "claude-opus-5-5"
+ },
+ "attempt": 1,
+ "shots": [
+  {
+   "id": "c01",
+   "t": 0.0,
+   "dur": 1.2,
+   "beats": [
+    "b01"
+   ],
+   "intent": "spatial",
+   "motivation": {
+    "kind": "genre_convention",
+    "ref": "anime_establishing_wide"
+   },
+   "framing": {
+    "scale": "wide",
+    "subjects": [
+     "acrobat",
+     "wizard"
+    ],
+    "detail": null,
+    "visible_action": "Acrobat sprints across the moonlit flagstones toward the planted wizard."
+   },
+   "angle": {
+    "elevation_deg": 20,
+    "azimuth_deg": 90.0,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "midpoint",
+    "distance_m": 9.04,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 35,
+    "perspective": "wide"
+   },
+   "focus": {
+    "target": "acrobat",
+    "depth_of_field": "deep",
+    "transition": "hold"
+   },
+   "movement": {
+    "kind": "static",
+    "path": "locked-off high wide across the courtyard"
+   },
+   "movement_quality": {
+    "easing": "linear",
+    "stability": "locked",
+    "texture": "none"
+   },
+   "support": {
+    "rig": "tripod"
+   },
+   "relation_to_action": {
+    "mode": "observe",
+    "subject": "acrobat",
+    "note": "the sprint opens the distance"
+   },
+   "composition": {
+    "placement": {
+     "wizard": "left_third",
+     "acrobat": "right_third"
+    },
+    "depth_anchor": "stone_pillar",
+    "negative_space": "moonlit flagstones between the fighters"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "none",
+    "affected": []
+   },
+   "editing": {
+    "transition_in": "open",
+    "axis": "keep",
+    "eyeline": "none"
+   }
+  },
+  {
+   "id": "c02",
+   "t": 1.2,
+   "dur": 1.4,
+   "beats": [
+    "b02",
+    "b03",
+    "b04"
+   ],
+   "intent": "rhythm",
+   "motivation": {
+    "kind": "contact_event",
+    "ref": "b02_c1"
+   },
+   "framing": {
+    "scale": "full",
+    "subjects": [
+     "acrobat",
+     "wizard"
+    ],
+    "detail": null,
+    "visible_action": "Right hand plants, body inverts overhead as the fire bolt passes under and scorches the stone; feet come around."
+   },
+   "angle": {
+    "elevation_deg": 5,
+    "azimuth_deg": 115.0,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "midpoint",
+    "distance_m": 3.0,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 24,
+    "perspective": "wide"
+   },
+   "focus": {
+    "target": "acrobat",
+    "depth_of_field": "deep",
+    "transition": "follow"
+   },
+   "movement": {
+    "kind": "tracking",
+    "path": "tracks left to right with the vault, holding both fighters"
+   },
+   "movement_quality": {
+    "easing": "ease_in_out",
+    "stability": "smooth",
+    "texture": "gliding"
+   },
+   "support": {
+    "rig": "gimbal"
+   },
+   "relation_to_action": {
+    "mode": "follow",
+    "subject": "acrobat",
+    "note": "rides the vault over the bolt"
+   },
+   "composition": {
+    "placement": {
+     "wizard": "left_third",
+     "acrobat": "right_third"
+    },
+    "depth_anchor": null,
+    "negative_space": "night sky above the inverted body"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "subject",
+    "affected": [
+     "acrobat"
+    ]
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "acrobat looks at the wizard"
+   }
+  },
+  {
+   "id": "c03",
+   "t": 2.6,
+   "dur": 1.0,
+   "beats": [
+    "b05"
+   ],
+   "intent": "rhythm",
+   "motivation": {
+    "kind": "effort_quality",
+    "ref": "acrobat@b05"
+   },
+   "framing": {
+    "scale": "full",
+    "subjects": [
+     "acrobat",
+     "wizard"
+    ],
+    "detail": null,
+    "visible_action": "Both feet land in a deep crouch, then the acrobat whips into the spin, right heel chambering."
+   },
+   "angle": {
+    "elevation_deg": 0,
+    "azimuth_deg": 40.9,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "midpoint",
+    "distance_m": 3.03,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 28,
+    "perspective": "wide"
+   },
+   "focus": {
+    "target": "acrobat",
+    "depth_of_field": "medium",
+    "transition": "follow"
+   },
+   "movement": {
+    "kind": "orbit",
+    "path": "short orbit with the spin, 20 degrees around the pair"
+   },
+   "movement_quality": {
+    "easing": "ease_in",
+    "stability": "smooth",
+    "texture": "accelerating with the spin"
+   },
+   "support": {
+    "rig": "gimbal"
+   },
+   "relation_to_action": {
+    "mode": "follow",
+    "subject": "acrobat",
+    "note": "carries the spin"
+   },
+   "composition": {
+    "placement": {
+     "wizard": "left_third",
+     "acrobat": "right_third"
+    },
+    "depth_anchor": null,
+    "negative_space": "open stone behind the spin"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "subject",
+    "affected": [
+     "right_leg"
+    ]
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "acrobat on the wizard's chest"
+   }
+  },
+  {
+   "id": "c04",
+   "t": 3.6,
+   "dur": 0.4,
+   "beats": [
+    "b06"
+   ],
+   "intent": "impact",
+   "motivation": {
+    "kind": "contact_event",
+    "ref": "b05_c2"
+   },
+   "framing": {
+    "scale": "insert",
+    "subjects": [
+     "acrobat",
+     "wizard"
+    ],
+    "detail": "right_foot",
+    "visible_action": "Right heel drives into the wizard's chest; robes buckle around the strike."
+   },
+   "angle": {
+    "elevation_deg": -5,
+    "azimuth_deg": 146.3,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "wizard",
+    "distance_m": 6.0,
+    "side": "on_axis"
+   },
+   "lens": {
+    "focal_length_mm": 450,
+    "perspective": "telephoto"
+   },
+   "focus": {
+    "target": "wizard",
+    "depth_of_field": "shallow",
+    "transition": "hold"
+   },
+   "movement": {
+    "kind": "static",
+    "path": "locked on the strike point"
+   },
+   "movement_quality": {
+    "easing": "snap",
+    "stability": "locked",
+    "texture": "none"
+   },
+   "support": {
+    "rig": "tripod"
+   },
+   "relation_to_action": {
+    "mode": "observe",
+    "subject": "acrobat",
+    "note": "the heel lands dead centre"
+   },
+   "composition": {
+    "placement": {
+     "acrobat": "center",
+     "wizard": "center"
+    },
+    "depth_anchor": null,
+    "negative_space": "black falloff around the strike"
+   },
+   "playback": {
+    "treatment": "slow",
+    "speed": 0.25
+   },
+   "blur": {
+    "motion_blur": "subject",
+    "affected": [
+     "right_foot"
+    ]
+   },
+   "editing": {
+    "transition_in": "smash_cut",
+    "axis": "keep",
+    "eyeline": "none"
+   }
+  },
+  {
+   "id": "c05",
+   "t": 4.0,
+   "dur": 1.2,
+   "beats": [
+    "b06",
+    "b07"
+   ],
+   "intent": "rhythm",
+   "motivation": {
+    "kind": "narrative_intent",
+    "ref": "b06__causes__b07"
+   },
+   "framing": {
+    "scale": "wide",
+    "subjects": [
+     "acrobat",
+     "wizard"
+    ],
+    "detail": null,
+    "visible_action": "Both palms thrust; the force ward hurls the acrobat back toward the stone pillar."
+   },
+   "angle": {
+    "elevation_deg": 8,
+    "azimuth_deg": 66.3,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "midpoint",
+    "distance_m": 4.0,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 24,
+    "perspective": "wide"
+   },
+   "focus": {
+    "target": "acrobat",
+    "depth_of_field": "deep",
+    "transition": "follow"
+   },
+   "movement": {
+    "kind": "whip_pan",
+    "path": "whips with the hurled acrobat toward the pillar"
+   },
+   "movement_quality": {
+    "easing": "snap",
+    "stability": "shaky",
+    "texture": "impact jolt"
+   },
+   "support": {
+    "rig": "handheld"
+   },
+   "relation_to_action": {
+    "mode": "follow",
+    "subject": "acrobat",
+    "note": "chases the body the ward throws"
+   },
+   "composition": {
+    "placement": {
+     "wizard": "left_third",
+     "acrobat": "right_third"
+    },
+    "depth_anchor": "stone_pillar",
+    "negative_space": "empty courtyard the body is thrown across"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "both",
+    "affected": [
+     "acrobat"
+    ]
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "none"
+   }
+  },
+  {
+   "id": "c06",
+   "t": 5.2,
+   "dur": 0.4,
+   "beats": [
+    "b08"
+   ],
+   "intent": "impact",
+   "motivation": {
+    "kind": "contact_event",
+    "ref": "b07_c1"
+   },
+   "framing": {
+    "scale": "medium_close",
+    "subjects": [
+     "acrobat"
+    ],
+    "detail": null,
+    "visible_action": "Back slams into the pillar; the stone cracks behind the shoulders."
+   },
+   "angle": {
+    "elevation_deg": 0,
+    "azimuth_deg": 82.6,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "acrobat",
+    "distance_m": 1.67,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 50,
+    "perspective": "normal"
+   },
+   "focus": {
+    "target": "acrobat",
+    "depth_of_field": "medium",
+    "transition": "hold"
+   },
+   "movement": {
+    "kind": "static",
+    "path": "locked on the pillar"
+   },
+   "movement_quality": {
+    "easing": "snap",
+    "stability": "locked",
+    "texture": "none"
+   },
+   "support": {
+    "rig": "tripod"
+   },
+   "relation_to_action": {
+    "mode": "observe",
+    "subject": "acrobat",
+    "note": "the crack spreads behind the shoulders"
+   },
+   "composition": {
+    "placement": {
+     "acrobat": "center"
+    },
+    "depth_anchor": "stone_pillar",
+    "negative_space": "cracked stone around the shoulders"
+   },
+   "playback": {
+    "treatment": "ramp",
+    "speed": 0.3
+   },
+   "blur": {
+    "motion_blur": "subject",
+    "affected": [
+     "torso"
+    ]
+   },
+   "editing": {
+    "transition_in": "smash_cut",
+    "axis": "keep",
+    "eyeline": "none"
+   }
+  },
+  {
+   "id": "c07",
+   "t": 5.6,
+   "dur": 0.8,
+   "beats": [
+    "b09"
+   ],
+   "intent": "emotion",
+   "motivation": {
+    "kind": "entity_focus",
+    "ref": "wizard"
+   },
+   "framing": {
+    "scale": "close",
+    "subjects": [
+     "wizard"
+    ],
+    "detail": null,
+    "visible_action": "The wizard draws breath, composure returning, eyes on the pillar."
+   },
+   "angle": {
+    "elevation_deg": 0,
+    "azimuth_deg": 120.0,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "wizard",
+    "distance_m": 1.77,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 85,
+    "perspective": "telephoto"
+   },
+   "focus": {
+    "target": "wizard",
+    "depth_of_field": "shallow",
+    "transition": "hold"
+   },
+   "movement": {
+    "kind": "static",
+    "path": "held on the face"
+   },
+   "movement_quality": {
+    "easing": "linear",
+    "stability": "locked",
+    "texture": "none"
+   },
+   "support": {
+    "rig": "tripod"
+   },
+   "relation_to_action": {
+    "mode": "observe",
+    "subject": "wizard",
+    "note": "the breath steadies"
+   },
+   "composition": {
+    "placement": {
+     "wizard": "center"
+    },
+    "depth_anchor": null,
+    "negative_space": "dark bamboo behind the face"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "none",
+    "affected": []
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "wizard toward the acrobat at the pillar"
+   }
+  },
+  {
+   "id": "c08",
+   "t": 6.4,
+   "dur": 1.2,
+   "beats": [
+    "b10"
+   ],
+   "intent": "rhythm",
+   "motivation": {
+    "kind": "effort_quality",
+    "ref": "acrobat@b10"
+   },
+   "framing": {
+    "scale": "full",
+    "subjects": [
+     "acrobat",
+     "wizard"
+    ],
+    "detail": null,
+    "visible_action": "Both feet drop to the stone; the acrobat rises and feints a charge."
+   },
+   "angle": {
+    "elevation_deg": 3,
+    "azimuth_deg": 62.3,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "midpoint",
+    "distance_m": 3.5,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 28,
+    "perspective": "wide"
+   },
+   "focus": {
+    "target": "acrobat",
+    "depth_of_field": "deep",
+    "transition": "follow"
+   },
+   "movement": {
+    "kind": "tracking",
+    "path": "dolly track alongside the feint"
+   },
+   "movement_quality": {
+    "easing": "ease_out",
+    "stability": "smooth",
+    "texture": "steady"
+   },
+   "support": {
+    "rig": "dolly"
+   },
+   "relation_to_action": {
+    "mode": "lead",
+    "subject": "acrobat",
+    "note": "leads the feint into the wizard's space"
+   },
+   "composition": {
+    "placement": {
+     "wizard": "left_third",
+     "acrobat": "right_third"
+    },
+    "depth_anchor": null,
+    "negative_space": "the gap the feint closes"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "none",
+    "affected": []
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "acrobat on the wizard"
+   }
+  },
+  {
+   "id": "c09",
+   "t": 7.6,
+   "dur": 1.0,
+   "beats": [
+    "b11"
+   ],
+   "intent": "spatial",
+   "motivation": {
+    "kind": "spatial_geometry",
+    "ref": "bamboo_wall"
+   },
+   "framing": {
+    "scale": "wide",
+    "subjects": [
+     "acrobat",
+     "wizard"
+    ],
+    "detail": null,
+    "visible_action": "A spiral sweep sends a thin bolt past the acrobat; it slices the bamboo wall."
+   },
+   "angle": {
+    "elevation_deg": 12,
+    "azimuth_deg": 24.8,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "midpoint",
+    "distance_m": 4.5,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 24,
+    "perspective": "wide"
+   },
+   "focus": {
+    "target": "wizard",
+    "depth_of_field": "deep",
+    "transition": "rack"
+   },
+   "movement": {
+    "kind": "pan",
+    "path": "pans with the bolt into the bamboo wall"
+   },
+   "movement_quality": {
+    "easing": "ease_in_out",
+    "stability": "locked",
+    "texture": "none"
+   },
+   "support": {
+    "rig": "tripod"
+   },
+   "relation_to_action": {
+    "mode": "observe",
+    "subject": "wizard",
+    "note": "the sweep reads across the courtyard"
+   },
+   "composition": {
+    "placement": {
+     "wizard": "left_third",
+     "acrobat": "right_third"
+    },
+    "depth_anchor": "bamboo_wall",
+    "negative_space": "the bolt's path to the wall"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "none",
+    "affected": []
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "none"
+   }
+  },
+  {
+   "id": "c10",
+   "t": 8.6,
+   "dur": 0.4,
+   "beats": [
+    "b12"
+   ],
+   "intent": "rhythm",
+   "motivation": {
+    "kind": "effort_quality",
+    "ref": "acrobat@b12-b13"
+   },
+   "framing": {
+    "scale": "full",
+    "subjects": [
+     "acrobat"
+    ],
+    "detail": null,
+    "visible_action": "The acrobat springs into a backflip over the bolt's path."
+   },
+   "angle": {
+    "elevation_deg": -8,
+    "azimuth_deg": 68.7,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "acrobat",
+    "distance_m": 3.5,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 28,
+    "perspective": "wide"
+   },
+   "focus": {
+    "target": "acrobat",
+    "depth_of_field": "medium",
+    "transition": "follow"
+   },
+   "movement": {
+    "kind": "crane",
+    "path": "cranes up with the backflip"
+   },
+   "movement_quality": {
+    "easing": "ease_out",
+    "stability": "smooth",
+    "texture": "rising"
+   },
+   "support": {
+    "rig": "crane"
+   },
+   "relation_to_action": {
+    "mode": "follow",
+    "subject": "acrobat",
+    "note": "rises with the flip"
+   },
+   "composition": {
+    "placement": {
+     "acrobat": "center"
+    },
+    "depth_anchor": null,
+    "negative_space": "sky above the flip"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "subject",
+    "affected": [
+     "acrobat"
+    ]
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "none"
+   }
+  },
+  {
+   "id": "c11",
+   "t": 9.0,
+   "dur": 1.0,
+   "beats": [
+    "b12",
+    "b13"
+   ],
+   "intent": "spatial",
+   "motivation": {
+    "kind": "narrative_intent",
+    "ref": "b12__causes__b13"
+   },
+   "framing": {
+    "scale": "wide",
+    "subjects": [
+     "acrobat",
+     "wizard"
+    ],
+    "detail": null,
+    "visible_action": "Inverted at the apex, the acrobat lands in a crouched guard; scorch, crack and cut bamboo stand behind."
+   },
+   "angle": {
+    "elevation_deg": 15,
+    "azimuth_deg": 43.7,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "midpoint",
+    "distance_m": 4.0,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 24,
+    "perspective": "wide"
+   },
+   "focus": {
+    "target": "acrobat",
+    "depth_of_field": "deep",
+    "transition": "hold"
+   },
+   "movement": {
+    "kind": "static",
+    "path": "held tableau of the courtyard"
+   },
+   "movement_quality": {
+    "easing": "linear",
+    "stability": "locked",
+    "texture": "none"
+   },
+   "support": {
+    "rig": "tripod"
+   },
+   "relation_to_action": {
+    "mode": "observe",
+    "subject": "acrobat",
+    "note": "the landing settles the exchange"
+   },
+   "composition": {
+    "placement": {
+     "wizard": "left_third",
+     "acrobat": "right_third"
+    },
+    "depth_anchor": "bamboo_wall",
+    "negative_space": "the marked courtyard around the pair"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "none",
+    "affected": []
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "fighters face off"
+   }
+  }
+ ]
+}

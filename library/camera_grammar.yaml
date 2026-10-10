@@ -1,0 +1,65 @@
+# Camera grammar (S15, L5.5). Draft rules by Claude for owner review: geometry constants, scale bands, what a
+# scale shows, rig limits, the 30-degree cut rule and the owner's intent weighting as checkable requirements.
+grammar_id: camera_grammar
+version: 1
+status: draft
+basis: Owner camera plan (13 subdivisions, 180-line, shot grammar, intent table); numbers drafted by Claude (full-frame 36x24 mm sensor).
+aim_height_m: 1.0
+sensor_mm: [36, 24]
+on_axis_m: 0.3
+min_cut_angle_deg: 30
+scale_frame_height_m:
+  insert: [0.0, 0.35]
+  extreme_close: [0.0, 0.35]
+  close: [0.25, 0.7]
+  medium_close: [0.5, 1.0]
+  medium: [0.8, 1.5]
+  medium_wide: [1.2, 2.2]
+  full: [1.8, 3.2]
+  wide: [2.8, 9.0]
+  extreme_wide: [7.0, 1000.0]
+visible_parts:
+  extreme_close: [head]
+  close: [head]
+  medium_close: [head, torso, left_arm, right_arm, left_hand, right_hand]
+  medium: [head, torso, left_arm, right_arm, left_hand, right_hand]
+  medium_wide: [head, torso, left_arm, right_arm, left_hand, right_hand, left_leg, right_leg]
+  full: [head, torso, left_arm, right_arm, left_hand, right_hand, left_leg, right_leg, left_foot, right_foot]
+  wide: [head, torso, left_arm, right_arm, left_hand, right_hand, left_leg, right_leg, left_foot, right_foot]
+  extreme_wide: [head, torso, left_arm, right_arm, left_hand, right_hand, left_leg, right_leg, left_foot, right_foot]
+lens_perspective_mm:
+  wide: [8, 35]
+  normal: [35, 70]
+  telephoto: [70, 800]
+rig_movements:
+  tripod: [static, pan, tilt, zoom, whip_pan]
+  dolly: [static, pan, tilt, dolly_in, dolly_out, truck, tracking, zoom]
+  crane: [static, pan, tilt, crane, pedestal, zoom]
+  gimbal: [static, pan, tilt, dolly_in, dolly_out, truck, pedestal, orbit, tracking, whip_pan]
+  steadicam: [static, pan, tilt, dolly_in, dolly_out, truck, orbit, tracking]
+  handheld: [static, pan, tilt, dolly_in, dolly_out, truck, pedestal, crane, orbit, tracking, whip_pan, zoom]
+  drone: [static, pan, crane, orbit, tracking, dolly_in, dolly_out, truck]
+rig_stability:
+  tripod: [locked]
+  dolly: [locked, smooth]
+  crane: [smooth, floating]
+  gimbal: [smooth, floating]
+  steadicam: [smooth, floating]
+  handheld: [shaky, floating]
+  drone: [smooth, floating]
+intents:
+  impact:
+    - {field: framing.scale, in: [insert, extreme_close, close, medium_close, medium]}
+    - {field: playback.treatment, in: [slow, ramp, freeze]}
+    - {field: blur.motion_blur, in: [subject, both]}
+  reveal:
+    - {field: movement.kind, not_in: [static]}
+  emotion:
+    - {field: framing.scale, in: [extreme_close, close, medium_close]}
+    - {field: focus.depth_of_field, in: [shallow, medium]}
+  spatial:
+    - {field: framing.scale, in: [full, wide, extreme_wide]}
+  rhythm:
+    - {field: movement.kind, not_in: [static]}
+  product:
+    - {field: focus.target_kind, in: [prop]}

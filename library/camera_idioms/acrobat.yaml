@@ -1,0 +1,12 @@
+card_id: acrobat
+kind: camera_idiom
+card_version: 1
+status: draft
+archetype: acrobat
+idioms:
+  - {id: acrobat_full_body_air, when: "the body leaves the ground", prefer: "Full or wide so the whole inverted body and the landing stay in frame."}
+  - {id: acrobat_track_spin, when: "a spin or flip", prefer: "Track with the rotation, then settle on the landing."}
+provenance:
+  authored_by: claude-code
+  date: "2026-10-10"
+  basis: Draft camera idioms (owner camera plan, per-archetype idioms); not research-sourced; needs owner review.

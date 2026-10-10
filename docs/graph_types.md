@@ -20,7 +20,7 @@ is presented), **project, verify** (output). Build status and deltas: [MASTER_PL
 | S12 | Bartenieff | Describe the body's internal coordination (pattern, initiation, follow-through) | bartenieff | bartenieff_transition | S11 | S13, S16 | expression | built |
 | S13 | Motion | Provide the explicit key poses the renderer interpolates | motion | motion | S11, S12 | S14–S16 | expression | built |
 | S14 | Effort | Describe the qualitative feel of motion (LMA) | efforts | effort | S13 | S15, S16 | expression | built |
-| S15 | Camera | Present the scene deliberately; every move motivated | camera | camera | S11, S13, S14 | S16 | expression | M3 |
+| S15 | Camera | Present the scene deliberately; every move motivated | camera | camera | S11, S13, S14 | S16 | expression | built |
 | S16 | Render | Project the envelope into the target model's format | render | — | all | video model, S17 | project | M4 |
 | S17 | Post-generation | Verify the generated video; trigger replan on failure | — (`validation.post_generation`) | — | video, S16, all | replan trigger | verify | M7 |
 

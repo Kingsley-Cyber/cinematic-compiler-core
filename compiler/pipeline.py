@@ -19,11 +19,11 @@ from kernel.version import ENVELOPE_VERSION, KERNEL_VERSION, LAYER_ORDER_VERSION
 from planner.dependency_graph import ROOT, is_active, load, node_index
 from planner.topological_sort import build_order
 
-from .passes.derived import p11_kinematic, p12_bartenieff, p13_motion, p14_effort
+from .passes.derived import p11_kinematic, p12_bartenieff, p13_motion, p14_effort, p15_camera
 from .passes.mandatory import p01_intent, p02_brief, p03_constraint, p04_temporal, p05_causal, p06_state, p07_contact
 
 AUTHORED = {"temporal": p04_temporal, "kinematic": p11_kinematic, "bartenieff": p12_bartenieff, "motion": p13_motion,
-            "effort": p14_effort}
+            "effort": p14_effort, "camera": p15_camera}
 
 VALIDATION_KEYS = ("schema", "invariants", "layer_dependency", "camera_kinematic_coupling", "post_generation")
 UNSTAMPED = "unstamped"
@@ -103,6 +103,8 @@ def run(query, *, genre=None, duration_s=None, until="constraint", cards=None, p
             raise ContractError("PASS_MISSING", "This node's pass is not implemented yet", node)
         started = time.perf_counter()
         envelope = passes[node](envelope)
+        if node == "camera":
+            envelope["validation"]["camera_kinematic_coupling"] = "pass"  # S15 refuses any coupling failure
         envelope["provenance"]["pass_history"].append({
             "pass": f"p{index[node]['step_id'][1:]}_{node}", "commit": commit,
             "duration_ms": round((time.perf_counter() - started) * 1000, 3) if stamp else 0})
