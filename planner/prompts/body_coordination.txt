@@ -1,0 +1,5 @@
+S12 body coordination (L4b). For every slot write one node: the connectivity pattern organizing the movement,
+the developmental pattern underneath it, the intent in one phrase, where it initiates (a part or core), the order
+the rest of the body follows, and a body mode whose connectivity list includes the pattern you chose. Read each
+slot's kinematic node: the same support can come from different coordination. Use only packet values; values
+starting with cpcs: are labelled extensions, not Bartenieff terms. Copy packet_sha256.

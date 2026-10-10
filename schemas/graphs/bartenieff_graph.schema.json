@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:bartenieff_graph:1.0",
+  "title": "S12 Bartenieff graph",
+  "description": "Nodes copied from the plan with the extension fields named; transitions computed per entity.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "bartenieff",
+    "bartenieff_transition"
+  ],
+  "properties": {
+    "bartenieff": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "entity",
+          "beat",
+          "t",
+          "connectivity",
+          "developmental_pattern",
+          "intent",
+          "initiation",
+          "follow_through",
+          "body_mode",
+          "extensions"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*@b[0-9]{2,3}$"
+          },
+          "entity": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "beat": {
+            "type": "string",
+            "pattern": "^b[0-9]{2,3}$"
+          },
+          "t": {
+            "type": "number",
+            "minimum": 0
+          },
+          "connectivity": {
+            "type": "string",
+            "minLength": 1
+          },
+          "developmental_pattern": {
+            "type": "string",
+            "minLength": 1
+          },
+          "intent": {
+            "type": "string",
+            "minLength": 1
+          },
+          "initiation": {
+            "type": "string",
+            "minLength": 1
+          },
+          "follow_through": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*$"
+            }
+          },
+          "body_mode": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "extensions": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "connectivity",
+                "developmental_pattern",
+                "intent",
+                "initiation",
+                "follow_through",
+                "body_mode"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "bartenieff_transition": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "from",
+          "to",
+          "changes"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "from": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*@b[0-9]{2,3}$"
+          },
+          "to": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*@b[0-9]{2,3}$"
+          },
+          "changes": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "connectivity",
+                "developmental_pattern",
+                "intent",
+                "initiation",
+                "follow_through",
+                "body_mode"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

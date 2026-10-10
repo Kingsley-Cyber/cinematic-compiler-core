@@ -1,0 +1,15 @@
+# Body coordination (S12, L4b). Draft vocabulary by Claude for owner review.
+# The six connectivity patterns are Bartenieff's Patterns of Total Body Connectivity; cpcs:spiral is a labelled
+# extension (not a native Bartenieff pattern). Developmental patterns are a disclosed interpretation (basic body
+# actions), not quoted from a source.
+vocabulary_id: bartenieff_vocabulary
+version: 1
+status: draft
+basis: Owner L4b list (connectivity, developmental patterns, intent, initiation, follow-through, body mode); values drafted by Claude.
+fields:
+  connectivity: {kind: values, values: [breath, core_distal, head_tail, upper_lower, body_half, cross_lateral, "cpcs:spiral"], description: "Which total-body connectivity pattern organizes the movement."}
+  developmental_pattern: {kind: values, values: [yield, push, reach, grasp, pull], description: "The basic body action underneath the movement (interpretation)."}
+  intent: {kind: text, description: "What the body is organizing toward, in one phrase."}
+  initiation: {kind: part_or_core, description: "Where the movement starts (one of the entity's parts, or core)."}
+  follow_through: {kind: parts, description: "The order in which the rest of the body follows."}
+  body_mode: {kind: values, values: [core_distal, distal_core, same_side, cross_lateral], description: "Body mode card id."}

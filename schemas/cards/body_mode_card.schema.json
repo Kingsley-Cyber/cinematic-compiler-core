@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:body_mode_card:1.0",
+  "title": "Body mode card (S12, L4b)",
+  "description": "How a body organizes a movement; the connectivity patterns a mode allows.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "card_id",
+    "kind",
+    "card_version",
+    "status",
+    "names",
+    "description",
+    "connectivity",
+    "provenance"
+  ],
+  "properties": {
+    "card_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "kind": {
+      "const": "body_mode"
+    },
+    "card_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "approved"
+      ]
+    },
+    "names": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "connectivity": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authored_by",
+        "date",
+        "basis"
+      ],
+      "properties": {
+        "authored_by": {
+          "type": "string",
+          "minLength": 1
+        },
+        "date": {
+          "type": "string",
+          "minLength": 1
+        },
+        "basis": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+card_id: core_distal
+kind: body_mode
+card_version: 1
+status: draft
+names: [core-distal, core to limbs]
+description: Movement starts at the centre and radiates out to head, tail and limbs.
+connectivity: [breath, core_distal, head_tail]
+provenance:
+  authored_by: claude-code
+  date: "2026-10-10"
+  basis: Draft body mode (owner list core-distal, distal-core, same-side, cross-lateral); not research-sourced; needs owner review.

@@ -1,0 +1,11 @@
+card_id: same_side
+kind: body_mode
+card_version: 1
+status: draft
+names: [same-side, homolateral]
+description: One side of the body acts while the other stabilizes.
+connectivity: [body_half, upper_lower]
+provenance:
+  authored_by: claude-code
+  date: "2026-10-10"
+  basis: Draft body mode (owner list core-distal, distal-core, same-side, cross-lateral); not research-sourced; needs owner review.

@@ -1,0 +1,11 @@
+card_id: cross_lateral
+kind: body_mode
+card_version: 1
+status: draft
+names: [cross-lateral, contralateral]
+description: Opposite arm and leg connect through the centre on a diagonal, often spiralling.
+connectivity: [cross_lateral, "cpcs:spiral"]
+provenance:
+  authored_by: claude-code
+  date: "2026-10-10"
+  basis: Draft body mode (owner list core-distal, distal-core, same-side, cross-lateral); not research-sourced; needs owner review.

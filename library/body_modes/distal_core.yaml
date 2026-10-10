@@ -1,0 +1,11 @@
+card_id: distal_core
+kind: body_mode
+card_version: 1
+status: draft
+names: [distal-core, limbs to core]
+description: Movement starts at a hand, foot or head and pulls the centre after it.
+connectivity: [core_distal, head_tail, upper_lower]
+provenance:
+  authored_by: claude-code
+  date: "2026-10-10"
+  basis: Draft body mode (owner list core-distal, distal-core, same-side, cross-lateral); not research-sourced; needs owner review.

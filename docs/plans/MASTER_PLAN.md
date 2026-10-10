@@ -173,11 +173,11 @@ Notes on the decisions:
 - [x] S11.4 `validators/kinematic_validator.py`: support agrees with S06 support state and S07 support contacts.
 
 ### S12 Bartenieff (L4b, authored)
-- [ ] S12.1 `library/body_modes/` (core_distal, distal_core, same_side, cross_lateral; draft).
-- [ ] S12.2 `schemas/graphs/bartenieff_graph.schema.json`: `{actor, beat, connectivity (breath, core-distal,
+- [x] S12.1 `library/body_modes/` (core_distal, distal_core, same_side, cross_lateral; draft).
+- [x] S12.2 `schemas/graphs/bartenieff_graph.schema.json`: `{actor, beat, connectivity (breath, core-distal,
   head-tail, upper-lower, body-half, cross-lateral, cpcs:spiral), developmental_pattern, intent, initiation,
   follow_through, body_mode}`. Log.
-- [ ] S12.3 `p12_bartenieff.py` + prompt; validator: values from vocabulary; `cpcs:` values flagged as extensions.
+- [x] S12.3 `p12_bartenieff.py` + prompt; validator: values from vocabulary; `cpcs:` values flagged as extensions.
 
 ### S13 motion (L4c, authored + derived)
 - [ ] S13.1 `schemas/graphs/motion_graph.schema.json`: key pose `{beat, t, name, pos, rot, bones{Sp, LUL, RUL, LL,

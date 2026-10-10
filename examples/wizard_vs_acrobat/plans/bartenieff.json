@@ -1,0 +1,253 @@
+{
+ "step_id": "S12",
+ "band": "L4b",
+ "packet_sha256": "sha256:79b5fad91c81a9978d97ae128d93e7d8cb4d59e8918354492b4441c5cff48740",
+ "author": {
+  "host": "Claude Code desktop, in-session",
+  "model": "claude-opus-5-5"
+ },
+ "attempt": 1,
+ "nodes": [
+  {
+   "slot": "acrobat@b01",
+   "connectivity": "cross_lateral",
+   "developmental_pattern": "push",
+   "intent": "close the distance fast",
+   "initiation": "left_foot",
+   "follow_through": [
+    "right_arm",
+    "torso",
+    "right_leg",
+    "left_arm"
+   ],
+   "body_mode": "cross_lateral"
+  },
+  {
+   "slot": "acrobat@b02",
+   "connectivity": "upper_lower",
+   "developmental_pattern": "reach",
+   "intent": "plant and pass over the hand",
+   "initiation": "right_hand",
+   "follow_through": [
+    "right_arm",
+    "torso",
+    "left_leg",
+    "right_leg"
+   ],
+   "body_mode": "distal_core"
+  },
+  {
+   "slot": "wizard@b03",
+   "connectivity": "core_distal",
+   "developmental_pattern": "push",
+   "intent": "send the bolt from the centre",
+   "initiation": "core",
+   "follow_through": [
+    "torso",
+    "right_arm",
+    "right_hand"
+   ],
+   "body_mode": "core_distal"
+  },
+  {
+   "slot": "acrobat@b03",
+   "connectivity": "head_tail",
+   "developmental_pattern": "reach",
+   "intent": "carry the legs over the head",
+   "initiation": "head",
+   "follow_through": [
+    "torso",
+    "left_leg",
+    "right_leg"
+   ],
+   "body_mode": "distal_core"
+  },
+  {
+   "slot": "acrobat@b04",
+   "connectivity": "core_distal",
+   "developmental_pattern": "yield",
+   "intent": "absorb the landing",
+   "initiation": "core",
+   "follow_through": [
+    "left_leg",
+    "right_leg",
+    "left_arm",
+    "right_arm"
+   ],
+   "body_mode": "core_distal"
+  },
+  {
+   "slot": "acrobat@b05",
+   "connectivity": "cpcs:spiral",
+   "developmental_pattern": "push",
+   "intent": "whip the heel through on the turn",
+   "initiation": "core",
+   "follow_through": [
+    "torso",
+    "right_leg",
+    "right_foot",
+    "left_arm"
+   ],
+   "body_mode": "cross_lateral"
+  },
+  {
+   "slot": "wizard@b05",
+   "connectivity": "breath",
+   "developmental_pattern": "yield",
+   "intent": "take the hit",
+   "initiation": "torso",
+   "follow_through": [
+    "head",
+    "left_arm",
+    "right_arm"
+   ],
+   "body_mode": "core_distal"
+  },
+  {
+   "slot": "wizard@b06",
+   "connectivity": "core_distal",
+   "developmental_pattern": "push",
+   "intent": "shove the ward out through both palms",
+   "initiation": "core",
+   "follow_through": [
+    "torso",
+    "left_arm",
+    "right_arm",
+    "left_hand",
+    "right_hand"
+   ],
+   "body_mode": "core_distal"
+  },
+  {
+   "slot": "acrobat@b06",
+   "connectivity": "head_tail",
+   "developmental_pattern": "yield",
+   "intent": "go with the force",
+   "initiation": "torso",
+   "follow_through": [
+    "head",
+    "left_leg",
+    "right_leg"
+   ],
+   "body_mode": "core_distal"
+  },
+  {
+   "slot": "acrobat@b07",
+   "connectivity": "head_tail",
+   "developmental_pattern": "yield",
+   "intent": "round the spine into the pillar",
+   "initiation": "head",
+   "follow_through": [
+    "torso",
+    "left_arm",
+    "right_arm"
+   ],
+   "body_mode": "distal_core"
+  },
+  {
+   "slot": "acrobat@b08",
+   "connectivity": "upper_lower",
+   "developmental_pattern": "push",
+   "intent": "drive off the pillar into the legs",
+   "initiation": "torso",
+   "follow_through": [
+    "left_leg",
+    "right_leg",
+    "left_foot",
+    "right_foot"
+   ],
+   "body_mode": "distal_core"
+  },
+  {
+   "slot": "wizard@b09",
+   "connectivity": "breath",
+   "developmental_pattern": "yield",
+   "intent": "settle and recover",
+   "initiation": "core",
+   "follow_through": [
+    "torso",
+    "head",
+    "left_arm",
+    "right_arm"
+   ],
+   "body_mode": "core_distal"
+  },
+  {
+   "slot": "acrobat@b10",
+   "connectivity": "body_half",
+   "developmental_pattern": "reach",
+   "intent": "sell the charge without committing",
+   "initiation": "right_arm",
+   "follow_through": [
+    "torso",
+    "right_leg"
+   ],
+   "body_mode": "same_side"
+  },
+  {
+   "slot": "wizard@b10",
+   "connectivity": "core_distal",
+   "developmental_pattern": "reach",
+   "intent": "track the acrobat and lift the casting hand",
+   "initiation": "head",
+   "follow_through": [
+    "torso",
+    "right_arm"
+   ],
+   "body_mode": "core_distal"
+  },
+  {
+   "slot": "wizard@b11",
+   "connectivity": "cpcs:spiral",
+   "developmental_pattern": "reach",
+   "intent": "sweep the bolt through a turning torso",
+   "initiation": "torso",
+   "follow_through": [
+    "right_arm",
+    "right_hand",
+    "left_arm"
+   ],
+   "body_mode": "cross_lateral"
+  },
+  {
+   "slot": "acrobat@b11",
+   "connectivity": "head_tail",
+   "developmental_pattern": "yield",
+   "intent": "read the bolt and sit back",
+   "initiation": "head",
+   "follow_through": [
+    "torso",
+    "left_leg",
+    "right_leg"
+   ],
+   "body_mode": "distal_core"
+  },
+  {
+   "slot": "acrobat@b12",
+   "connectivity": "head_tail",
+   "developmental_pattern": "push",
+   "intent": "throw the head back to start the flip",
+   "initiation": "head",
+   "follow_through": [
+    "torso",
+    "left_leg",
+    "right_leg"
+   ],
+   "body_mode": "distal_core"
+  },
+  {
+   "slot": "acrobat@b13",
+   "connectivity": "core_distal",
+   "developmental_pattern": "yield",
+   "intent": "land and gather into the guard",
+   "initiation": "core",
+   "follow_through": [
+    "left_leg",
+    "right_leg",
+    "left_arm",
+    "right_arm"
+   ],
+   "body_mode": "core_distal"
+  }
+ ]
+}
