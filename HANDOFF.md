@@ -37,6 +37,6 @@ linear causality only; closed kernel state vocabulary. Full log: `docs/layer_dep
 - `kernel/kernel_scope.yaml`: kernel 20, per-actor 6, per-prop 5, reference fight only 37.
 
 ## Open questions and next work
-Both live in [docs/plans/MASTER_PLAN.md](docs/plans/MASTER_PLAN.md): the **Blockers** table (Q1–Q6, each with the
-proposal used if the owner says "go") and the task list starting at **M1.0.1**. Completed work is struck through
+All six questions are decided (see **Decided this round** in
+[docs/plans/MASTER_PLAN.md](docs/plans/MASTER_PLAN.md)). Next task: **M1.0.1**. Completed work is struck through
 under **Done**.

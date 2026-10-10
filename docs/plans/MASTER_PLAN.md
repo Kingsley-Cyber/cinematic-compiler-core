@@ -24,32 +24,58 @@ gates → the pass writes only its paths. A failed gate allows 2 re-authoring at
 
 ---
 
-## Blockers (owner)
+## Decided this round (owner, 2026-10-10)
 
-| Q | Question | Proposal used if you say "go" | Blocks |
-|---|---|---|---|
-| Q1 | Catalog: constraint graph lists beats per rule, but S03 runs before beats | S04 writes its own `beat_constraint` edge group | S04.6 |
-| Q2 | State graph holds position/orientation, numbers arrive at S13 | Beat plan authors root `pos` + `facing` per actor per beat; S13 must match | S04.1, S06 |
-| Q3 | Contact type: grip (graph table) vs possess (catalog, diagram) | `possess`; `body_part` says how (right_hand = held) | S07.1 |
-| Q4 | Catalog beat has one actor; interactions have two | `actor` + `participants` | S04.1 |
-| Q5 | L4c box Y=cartwheel, Z=spin vs kernel frame Y up / +Z forward | Kernel frame: X flip, Z cartwheel, Y spin | S13.4 |
-| Q6 | Euler XYZ intrinsic/extrinsic, handedness | ask at M2 | S13.5 |
-| R1 | Review: 11 draft cards, kernel scope (20/6/5/37), loose world match | — | nothing; drafts stay usable |
+| # | Decision | Lands in |
+|---|---|---|
+| Q1 | `beat_constraint` is a registered edge group at S04 (beats → constraints) | M1.0.1, S04.6 |
+| Q2 | S04 root `pos` + `facing` are authoritative; S13 must reproduce them exactly or fail and replan | S04.1, S06.2, S13.3 |
+| Q3 | Contact type `possess` (catalog wording); `body_part` says how it is held | S07.1 |
+| Q4 | One `actor` per beat plus `participants` (catalog: "a timestamped event with an actor") | S04.1 |
+| Q6 | Euler **intrinsic XYZ, right-handed**: +X pitch forward (nose down), +Y yaw left, +Z roll clockwise (right shoulder down); rest = upright, facing +Z, up +Y; carried in `scene.ax.rotation_convention` | M1.0.4, S13 |
+| Q5 | Follows from Q6: flip about X (pitch), spin about Y (yaw), cartwheel about Z (roll) | S13.4 |
+| A1 | Quadrant is scene metadata: `scene.quadrant`, written by S05 (most-specific owner wins inside `/scene`) | M1.0.1–3, S05.3 |
+| A2 | Causal schema stays general; `scene.quadrant.linear: true` makes the validator reject out-degree > 1 | S05.2 |
+| A3 | Kernel split: `invariants.yaml` + `state_vocabulary.yaml`, each with a schema and kernel-log entries | M1.0.4 |
+| A6 | `nodes.render` is a projection group (`projection: true`); endpoint checks skip it | M1.0.1–3, S16.2 |
+| A7 | `provenance.kernel_hash` in every envelope; a stale example fails the gate | M1.0.5 |
+| A9 | M5 gets its own example (`examples/ugc_glasses_demo/`) | M5.E |
+| A10 | CLI and replan trigger move to M1.5; modality schemas move to M1.0 (S04 needs them) | M1.0.6, M1.5 |
+
+Notes on the decisions:
+- Q6 as written is right-handed with +X = the performer's left, which matches the earlier notation work and
+  Maya/Mixamo-style Y-up rigs. Unity is left-handed (+X right), so "matches Unity" does not hold; no change made.
+- A7's staleness detection is done by `scripts/check.sh` (URCP is gone): every example's `kernel_hash` must equal
+  the current kernel's.
+- Still open for review only (nothing blocked): R1 — 11 draft cards, kernel scope (20/6/5/37), loose world match.
 
 ---
 
 ## M1 — events and substrate (S04–S07) → done when the courtyard example compiles through S07
 
-### M1.0 DAG update
-- [ ] M1.0.1 `kernel/layer_order.yaml` 1.5: owner table edges — temporal depends on constraint; S08→S09→S10 chain;
-  camera depends on motion + effort; causal also writes `/quadrant`. Test: build order unchanged for anime,
-  UGC order S08<S09<S10.
-- [ ] M1.0.2 `kernel/build_ir_schema.py`: add `/quadrant` (owned by S05). Log schema change. Test: generation check.
+### M1.0 Foundations (before S04)
+- [ ] M1.0.1 `kernel/layer_order.yaml` 1.5: owner-table edges (temporal ← constraint; S08 → S09 → S10; camera ←
+  motion + effort); every edge group declares `from`/`to` node groups; `beat_constraint` at S04 (beats → constraints);
+  `/scene/quadrant` owned by causal; render group marked `projection: true`. Test: anime order unchanged, UGC
+  S08 < S09 < S10.
+- [ ] M1.0.2 `validators/layer_dependency_validator.py`: edge endpoints must be node groups written at or before
+  that step (projection groups skipped); nested ownership allowed only when the inner owner runs later — most
+  specific owner wins, and `check_pass_writes` keeps the outer owner out of the inner path. Tests: each failure.
+- [ ] M1.0.3 Envelope schema: `scene.quadrant` (incl. `linear`), `scene.ax.rotation_convention`,
+  `provenance.kernel_hash`, render `projection` flag. Log.
+- [ ] M1.0.4 Kernel split: `kernel/state_vocabulary.yaml` + `schemas/kernel_state_vocabulary.schema.json`;
+  `kernel/conventions.yaml` (Q6 rotation convention) + schema; both in the kernel log; S02 copies the convention
+  into `scene.ax.rotation_convention`. Test: unknown property/value refused; convention present in every scene.
+- [ ] M1.0.5 `compiler/pipeline.py` writes provenance (source prompt, versions, `kernel_hash` = sha256 of
+  invariants + state vocabulary + conventions, pass history); determinism tests ignore timing fields;
+  `scripts/check.sh` fails on any example whose `kernel_hash` is stale.
+- [ ] M1.0.6 `schemas/modality/{anime,live_action,ugc_ad}.schema.json`: per-genre active steps, required groups and
+  authoring requirements; the S04 packet carries the scene's modality rules. Log.
 
 ### S04 temporal (L1 band, authored) — `nodes.beats`, `edges.temporal`
 - [ ] S04.1 `schemas/graphs/beat_plan.schema.json` (authored input): `id, t, dur, event_type (action|hold|transition),
-  actor, label, participants[{kind,id}], modes{actor_id: mode}, action, requires[], effects[], contacts[],
-  causes[{to, causal_strength, why}]`, plus `pos`/`facing` per actor if Q2. Log.
+  actor, label, participants[{kind,id}], modes{actor_id: mode}, pos{actor_id: [x,y,z]}, facing{actor_id: [x,y,z]},
+  action, requires[], effects[], contacts[], causes[{to, causal_strength, why}]`. Log.
 - [ ] S04.2 `schemas/graphs/temporal_graph.schema.json`: beat node (copied fields) + temporal edge
   `id, from, to, relation (precedes|overlaps|starts_with), duration, gap`. Log.
 - [ ] S04.3 `planner/beat_planner.py`: `prepare(envelope)` → packet {scene, entities (parts, capabilities, modes),
@@ -61,14 +87,18 @@ gates → the pass writes only its paths. A failed gate allows 2 re-authoring at
   no causal edge → reject); `mode_coherence` (mode is in the archetype card); `mode_transition` (a mode change
   needs a triggering beat). Tests: one negative case per rule.
 - [ ] S04.6 `compiler/passes/mandatory/p04_temporal.py`: `submit(envelope, packet, plan)` → refuses wrong packet
-  hash → writes `nodes.beats`, `edges.temporal` (computed: duration = from.dur, gap = to.t − from.end), and the
-  `beat_constraint` group if Q1. Tests: write scope; mutated input untouched; temporal edges never authored.
+  hash → writes `nodes.beats`, `edges.temporal` (computed: duration = from.dur, gap = to.t − from.end) and
+  `edges.beat_constraint` (derived: a beat links every constraint applied to its actor or participants; scene-wide
+  rules stay implicit). Tests: write scope; mutated input untouched; temporal and beat_constraint never authored.
 - [ ] S04.7 `compiler/pipeline.py`: add `plans={...}` input; stop at S04 if no plan, returning the packet.
+- [ ] S04.8 S04 packet and checks use the scene's modality schema (M1.0.6).
 
-### S05 causal (L1 band, derived) — `edges.causal`, `/quadrant`
+### S05 causal (L1 band, derived) — `edges.causal`, `scene.quadrant`
 - [ ] S05.1 `schemas/graphs/causal_graph.schema.json`: edge `id, from, to, relation (causes), causal_strength
-  (hard|soft), why`; quadrant `{causal{branching=0, parallel_effects, prerequisites}, style, quadrant, strata}`. Log.
+  (hard|soft), why` — branching allowed by the schema; `scene.quadrant` `{linear, causal{branching, parallel_effects,
+  prerequisites}, style, quadrant, strata, load_bearing}`. Log.
 - [ ] S05.2 `compiler/passes/mandatory/p05_causal.py`: edges from plan `causes`; checks: target exists, no cycles,
+  out-degree ≤ 1 while `linear` is true (owner: linear only, so S05 sets `linear: true`),
   hard → target starts at/after source end and one source effect satisfies a target `requires`; soft → target
   starts at/after source start.
 - [ ] S05.3 Quadrant scoring (same file): parallel = most (effects + outgoing causes) of one beat (0–1→0, 2→1,
@@ -80,7 +110,7 @@ gates → the pass writes only its paths. A failed gate allows 2 re-authoring at
 - [ ] S06.1 `kernel/state_vocabulary.yaml` (kernel log): actor support/posture/possession/condition/location;
   prop card states + holder + location; surface damage. Test: loader refuses unknown property or value.
 - [ ] S06.2 `schemas/graphs/state_graph.schema.json`: entity-state node per entity per beat
-  `{id, subject, beat, t, conditions{property: value|unknown}}` (+ pos/facing if Q2); transition
+  `{id, subject, beat, t, pos, facing, conditions{property: value|unknown}}` (pos/facing copied from S04); transition
   `{id, from_state, to_state, trigger_event}`. Log.
 - [ ] S06.3 `solver/prop_state_machine.py`: replay — `requires` read at `t`, `effects` commit at `t + dur`;
   initial value only from a first `requires`, else `unknown`; same-time conflicting effects rejected.
@@ -89,7 +119,7 @@ gates → the pass writes only its paths. A failed gate allows 2 re-authoring at
 
 ### S07 contact (L2 band, derived) — `nodes.contacts`, `edges.contact`
 - [ ] S07.1 `schemas/graphs/contact_graph.schema.json`: contact-event `{id, t (beat end), contact_type
-  (touch|possess|support|release per Q3), body_part, a{kind,id}, b{kind,id,part}, beat}`; edges
+  (touch|possess|support|release), body_part, a{kind,id}, b{kind,id,part}, beat}`; edges
   `precedes` (same pair) and `releases` (release → the contact it ends). Log.
 - [ ] S07.2 `compiler/passes/mandatory/p07_contact.py`: release needs an active same-pair contact; one hand holds
   one thing; touch is instant; parts from cards.
@@ -100,6 +130,14 @@ gates → the pass writes only its paths. A failed gate allows 2 re-authoring at
 - [ ] M1.E1 `examples/wizard_vs_acrobat/` — query, packet, Claude-authored beat plan (~8 beats, 10 s, courtyard),
   envelope through S07; `tests/test_example_courtyard.py` recompiles it byte-for-byte.
 - [ ] M1.E2 HANDOFF.md + graph_types.md status → M1 done.
+
+---
+
+## M1.5 — tooling M2 needs
+- [ ] M1.5.1 `cli/compile.py` (`cinematic compile <query|file> --genre … --until …`), `cli/validate.py`,
+  `cli/graph.py` (inspect a group); entry point `cinematic` in pyproject.
+- [ ] M1.5.2 `compiler/replan_trigger.py`: a failed gate in an authored step re-issues that step's packet with the
+  findings (max 2); provenance `replan_count` / `replan_layers`. Tests: success on attempt 2; stop after 2.
 
 ---
 
@@ -123,9 +161,12 @@ gates → the pass writes only its paths. A failed gate allows 2 re-authoring at
 - [ ] S13.1 `schemas/graphs/motion_graph.schema.json`: key pose `{beat, t, name, pos, rot, bones{Sp, LUL, RUL, LL,
   RL, LA, RA, LFA, RFA, HD, NK}, axis_declaration, description}`; edge `follows {axis_declaration, slerp}`. Log.
 - [ ] S13.2 `planner/prompts/euler_solving.txt` + `p13_motion.py` prepare/submit.
-- [ ] S13.3 `solver/euler_solver.py` checks: 11 joints present; degrees; pos/facing match S04 (Q2).
-- [ ] S13.4 Axis check: declared flip/cartwheel/spin axis matches the root rotation change (Q5).
-- [ ] S13.5 `solver/quaternion.py` (needs Q6) and `solver/trajectory.py` (root path from key `pos`), both derived.
+- [ ] S13.3 `solver/euler_solver.py` checks: 11 joints present; degrees; key pose root `pos` equals S04 exactly and
+  `rot` agrees with S04 `facing`; a mismatch fails the step and triggers re-authoring (replan), never a silent fix.
+- [ ] S13.4 Axis check: flip about X, spin about Y, cartwheel about Z; the declared axis must match the root
+  rotation change.
+- [ ] S13.5 `solver/quaternion.py` (intrinsic XYZ, right-handed, from `scene.ax.rotation_convention`) and
+  `solver/trajectory.py` (root path from key `pos`), both derived. Tests: known rotations round-trip.
 
 ---
 
@@ -153,7 +194,7 @@ gates → the pass writes only its paths. A failed gate allows 2 re-authoring at
 
 - [ ] S16.1 Draft cards for the reference fight: ninja A/B variants, kunai, rope_dart, smoke_pellet,
   shuriken_volley, substitution_log, wooden pillar world.
-- [ ] S16.2 `schemas/graphs/render.schema.json`: `{target, text, sha256, coverage}`; frame-part directives
+- [ ] S16.2 `schemas/graphs/render.schema.json` (projection group, no edges): `{target, text, sha256, coverage}`; frame-part directives
   `{impact, smear, speedlines, holds, fx, ink}`. Log.
 - [ ] S16.3 `renderers/anime_renderer.py`: deterministic projection into the LBN-2.x layout (variant, fps, dur, ax,
   key, negative, laban, actor tracks, prop tracks, cam, anime, rules); density from the quadrant.
@@ -169,13 +210,12 @@ gates → the pass writes only its paths. A failed gate allows 2 re-authoring at
   every change triggered by a hand contact.
 - [ ] S10 affordance: `library/affordances/` (clothing, food, electronics, cosmetics; draft); schema `(object,
   action){preconditions, postconditions, required_grip, duration}`; validator: each functional verb succeeds.
-- [ ] M5.E `renderers/ugc_renderer.py` + glasses smoke test.
+- [ ] M5.E `examples/ugc_glasses_demo/`: query, packet, Claude-authored beat plan, envelope through S10, render via
+  `renderers/ugc_renderer.py`; recompiles byte-for-byte like M1.E1.
 
-## M6 — tooling
-- [ ] `cli/` compile, validate, graph inspect, kernel extract, ablate (ablate never renders).
-- [ ] `compiler/replan_trigger.py`: failed gate → re-author the failing step; provenance replan fields.
-- [ ] `kernel_extraction/` synergy_matrix, bridge_detector, layer_analyzer, kernel_compressor, ablation_runner.
-- [ ] `schemas/modality/` live_action, anime, ugc_ad.
+## M6 — deferred tooling
+- [ ] `kernel_extraction/` synergy_matrix, bridge_detector, layer_analyzer, kernel_compressor, ablation_runner
+  (ablation never renders; the owner renders).
 
 ## M7 — when a video model is authorised
 - [ ] S17 `validation.post_generation` object `{run_at, video_ref, checks[pose, object, state, affordance],

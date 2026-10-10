@@ -29,11 +29,14 @@ is presented), **project, verify** (output). Build status and deltas: [MASTER_PL
 - **S02** — the catalog adds surface geometry, position and material, and archetype idioms and forbidden beats.
   Cards do not carry these yet; they are added (draft) to the world and archetype card schemas with M1.
 - **S04** — catalog beat = "timestamped event with an actor, a name and a description" → repo fields `t`, `actor`,
-  `label`, `action` (+ `participants`, `dur`, `event_type`, archetype `mode`).
+  `label`, `action` (+ `participants`, `dur`, `event_type`, archetype `mode`, authoritative root `pos`/`facing`).
+  S04 also writes `edges.beat_constraint` (beats → constraints).
+- **S05** — writes `scene.quadrant` (scene metadata, not a graph), including `linear`.
 - **S05** — catalog "cause label" → repo `why`; `causal_strength` as in the graph table.
-- **S07** — contact types: see open question; "every prop state transition is triggered by a contact" becomes an
-  S07 check against S06.
+- **S07** — contact types touch/possess/support/release; "every prop state transition is triggered by a contact"
+  is an S07 check against S06.
 - **S08 / S10** — catalog adds `agent_grip`, `support_grip`, `duration` (S08) and `required_grip`, `duration` (S10).
 - **S12** — catalog adds `initiation point` and `follow-through`.
 - **S14** — LMA kept distinct (Effort = weight, time, space, flow; Shape and Space separate), as in the plan.
 - **S15** — catalog confirms 14 required fields = 13 subdivisions + `motivation`.
+- **S16** — `nodes.render` is a projection group (`projection: true`), not a graph; no edges.
