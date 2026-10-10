@@ -1,151 +1,183 @@
-# cinematic-compiler — master build plan
+# cinematic-compiler — micro plan (remaining work)
 
-Merges the owner's conceptual plan (repo tree, layer DAG and corrected table, envelope, graph table, quadrants,
-camera subdivisions, key pose / frame part / Laban / implied pose) with the route already built.
-Detailed S04–S07 specs: [s04-s07-l1-l2.md](s04-s07-l1-l2.md). Layer DAG: `kernel/layer_order.yaml`.
-What each graph is for (owner catalog): [graph_types.md](../graph_types.md).
+One plan. Tick a task when its test passes; when a whole step is done, move it to **Done** and strike it.
+What each graph is for: [graph_types.md](../graph_types.md). DAG and write ownership: `kernel/layer_order.yaml`.
 
-**Built:** S01 intent, S02 query expansion, S03 constraint graph — 167 tests, schema/library/kernel hash logs,
-`scripts/check.sh` gate. Current state and open questions: [HANDOFF.md](../../HANDOFF.md).
+**Every step ends the same way:** schemas logged before code → `scripts/check.sh` PASS → graft/graphify
+refreshed → one commit `Sxx: …` → HANDOFF.md updated.
+**Every authored step** (S04, S08–S15, S16 frame parts) uses one loop: `prepare(envelope) → packet (sha256)` →
+Claude writes JSON in-session → `submit(envelope, packet, json)` checks the packet hash, schema and the step's
+gates → the pass writes only its paths. A failed gate allows 2 re-authoring attempts, recorded in provenance.
+**Every step's tests:** schema, determinism across processes, completeness, non-invention, write scope, step checks.
 
-## 1. The route (one row per step)
+---
 
-Order lives in step IDs; L labels are the owner's names. "Authored" = written in-session by Claude from a
-hash-bound packet (no paid API), then checked; "derived" = deterministic code, invents nothing.
+## Done
 
-| Step | Owner label | Node group | Edge group | Depends on (owner table) | Made by | Status |
-|---|---|---|---|---|---|---|
-| S01 | L0 | `/intent` | — | user query | derived (regex) | built |
-| S02 | L0.5 | entities, props, surfaces (+ `/scene`) | — | S01 | derived (library cards) | built |
-| S03 | constraint (was L1.5) | constraints (+ `/invariants`) | constraint_application | S02 | derived (kernel + cards) | built |
-| S04 | L1 | beats | temporal | S03 | **authored** beat plan (LLM call #1) | planned M1 |
-| S05 | L1 | (beats, shared) | causal (+ `/quadrant`) | S04 | derived | planned M1 |
-| S06 | L2 | states | state_transition | S05 | derived (replay) | planned M1 |
-| S07 | L2 | contacts | contact | S06 | derived (lifecycle) | planned M1 |
-| S08 | L2.5 UGC | hand_role | hand_role_transition | S07 | authored + checks | M5 |
-| S09 | L2.6 UGC | object_state | object_state_transition | S08 | authored + checks | M5 |
-| S10 | L2.7 UGC | affordance | affordance_dependency | S09 | authored + checks | M5 |
-| S11 | L4a | kinematic | kinematic_transition | S07 (+S08–S10 if UGC) | authored | M2 |
-| S12 | L4b | bartenieff | bartenieff_transition | S11 | authored | M2 |
-| S13 | L4c | motion (key poses) | motion | S12 | authored key poses + derived quaternion/trajectory | M2 |
-| S14 | L5 | efforts | effort | S13 | authored | M3 |
-| S15 | L5.5 | camera | camera | S13 + S14 | authored + camera rules | M3 |
-| S16 | L6 | render | — | all | derived projection + authored frame-part directives | M4 |
-| S17 | L6.5 | — (`validation.post_generation`) | — | S16 + video | deferred: needs an authorised video model | M7 |
+- ~~Skeleton: layer DAG, envelope schema, DAG validator, pass write-scope check~~
+- ~~Controls: schema / library / kernel hash logs, regeneration checks, `scripts/check.sh`~~
+- ~~S01 intent (L0)~~ · ~~S02 brief (L0.5), 11 draft cards~~ · ~~S03 constraint, kernel = LBN-2.3 ∩ 2.4~~
+- ~~Owner decisions: step IDs, `step_id`/`band`, constraint before events, effort before camera, entities at L0.5,
+  `/intent` + `/scene`, post-gen as validation block, cards-only S02, in-session authoring, linear causality,
+  closed state vocabulary~~
+- ~~Graph catalog (graph_types.md); URCP removed; standalone repo~~
 
-## 2. Conceptual plan → repo (what changed, and why)
+---
 
-| Conceptual plan says | In the repo | Why / decided by |
-|---|---|---|
-| Fractional layer numbers order the layers | Step IDs S01–S17 order them; L labels are names | owner |
-| Constraint at L3 / L3a / L1.5 | S03, after S02, before the event graphs, checked at every later step | owner |
-| Camera L4.5 before effort L5 | Effort (S14) then camera (S15, label L5.5) | owner |
-| `actors` group | `entities` (definitions at L0.5); states/contacts at L2 | owner |
-| `layer` / `step` keys | `band` / `step_id` everywhere | owner |
-| p02_temporal = temporal + causal; p03_entity_tracking = state + contact | One pass per graph, named from its step ID (p04_temporal … p07_contact) | owner (step IDs) |
-| UGC: object_state and affordance both from contact (earlier table) | Owner's latest table chains them: S08 → S09 → S10 | owner; **layer_order 1.5 change, first M1 commit** |
-| Camera depends on L2 + L4a + L4c | Latest table: S13 + S14; S15 still reads states, contacts and kinematic through them | owner |
-| "14 composable subdivisions" (13 listed) | 13 subdivisions + required `motivation` | owner_default |
-| Laban graph fields "effort, space, shape, weight, time, flow" | LMA kept distinct: Effort = weight, time, space, flow (two poles each); Shape and Space separate; Body/Bartenieff at S12 | owner_default (LMA concept) |
-| Bartenieff list includes "spiral" | Not one of the six total-body-connectivity patterns; kept as a labelled `cpcs:` extension, not native LMA | owner_default (extension rule) |
-| Kernel = v2.3 + v2.4 intersection | 68 shared controls quoted from both LBN prompts; per-item scope (draft) | owner; built |
-| Branching scored by quadrants | Linear only for now; branching score 0 | owner |
-| Beat planner = LLM call #1 | Authored in-session, packet-hash bound | owner (no preference) |
-| Post-gen block | `validation.post_generation` (verdicts, not atoms); object shape lands at S17 | owner |
-| Key pose / frame / frame part / Laban / implied pose | Key poses authored at S13; frame-part directives authored at S16; Laban at S14; frames and implied poses never authored — constrained by S11 + S12 + S14 | owner |
+## Blockers (owner)
 
-## 3. Machinery every step reuses
+| Q | Question | Proposal used if you say "go" | Blocks |
+|---|---|---|---|
+| Q1 | Catalog: constraint graph lists beats per rule, but S03 runs before beats | S04 writes its own `beat_constraint` edge group | S04.6 |
+| Q2 | State graph holds position/orientation, numbers arrive at S13 | Beat plan authors root `pos` + `facing` per actor per beat; S13 must match | S04.1, S06 |
+| Q3 | Contact type: grip (graph table) vs possess (catalog, diagram) | `possess`; `body_part` says how (right_hand = held) | S07.1 |
+| Q4 | Catalog beat has one actor; interactions have two | `actor` + `participants` | S04.1 |
+| Q5 | L4c box Y=cartwheel, Z=spin vs kernel frame Y up / +Z forward | Kernel frame: X flip, Z cartwheel, Y spin | S13.4 |
+| Q6 | Euler XYZ intrinsic/extrinsic, handedness | ask at M2 | S13.5 |
+| R1 | Review: 11 draft cards, kernel scope (20/6/5/37), loose world match | — | nothing; drafts stay usable |
 
-1. **Authoring loop** (S04, S08–S15, S16 frame parts): `prepare` writes a canonical packet (sha256) →
-   Claude authors JSON in-session → `submit` checks the packet hash, schema and semantic gates → the pass writes
-   only its groups. A failed gate allows at most 2 targeted re-authoring attempts; each is recorded in
-   `provenance.replan_count` / `replan_layers`. Authored files live with the scene (`examples/<scene>/`).
-2. **Gates:** schema, determinism (byte-identical across processes), completeness, non-invention, write scope,
-   plus the step's own checks.
-3. **Control:** schema log, library log, kernel log; `scripts/check.sh` before each commit; graft and graphify
-   refreshed; one commit per step.
-4. **Quadrant and strata** (S05): causal score (branching 0, parallel effects, prerequisites) + style score →
-   quadrant A–D → strata. S16 uses them to decide how much graph and prose to emit (A full/full, B full/medium,
-   C minimal/full, D minimal/minimal). "Load-bearing" (stratum 4) is a CLI/intent flag, default off.
-5. **Provenance:** the pipeline records pass history; timing fields are kept out of the determinism comparison.
-6. **Library (all drafted by Claude, `status: draft`, hash-logged):** per step in section 4.
-7. **Golden fixtures:** the owner's reference courtyard fight (both LBN prompts) is the anime golden: compiling
-   it must reproduce every kernel item and every reference-fight item in the S16 output. Plus
-   `wizard_vs_superman_query.txt` and the UGC glasses smoke test.
+---
 
-## 4. Steps S04–S17
+## M1 — events and substrate (S04–S07) → done when the courtyard example compiles through S07
 
-**S04–S07 (M1)** — as in [s04-s07-l1-l2.md](s04-s07-l1-l2.md), plus from the conceptual plan:
-beat participants carry an archetype `mode` (L1 capability-mode selection); `mode_coherence` (mode is in the
-archetype card) and `mode_transition` (a mode change needs a triggering beat) run at S04.
+### M1.0 DAG update
+- [ ] M1.0.1 `kernel/layer_order.yaml` 1.5: owner table edges — temporal depends on constraint; S08→S09→S10 chain;
+  camera depends on motion + effort; causal also writes `/quadrant`. Test: build order unchanged for anime,
+  UGC order S08<S09<S10.
+- [ ] M1.0.2 `kernel/build_ir_schema.py`: add `/quadrant` (owned by S05). Log schema change. Test: generation check.
 
-**S08 hand role (UGC).** Nodes: interaction `{id, beats, agent_hand, support_hand, grip_types, role_invariant}`;
-edges `role_preserved` with `handoff_event`. Checks: the agent hand has the grip contact; roles hold through the
-interaction; grip types come from the object card and `library/grip_types.yaml`. Library: grip_types,
-role_templates.
+### S04 temporal (L1 band, authored) — `nodes.beats`, `edges.temporal`
+- [ ] S04.1 `schemas/graphs/beat_plan.schema.json` (authored input): `id, t, dur, event_type (action|hold|transition),
+  actor, label, participants[{kind,id}], modes{actor_id: mode}, action, requires[], effects[], contacts[],
+  causes[{to, causal_strength, why}]`, plus `pos`/`facing` per actor if Q2. Log.
+- [ ] S04.2 `schemas/graphs/temporal_graph.schema.json`: beat node (copied fields) + temporal edge
+  `id, from, to, relation (precedes|overlaps|starts_with), duration, gap`. Log.
+- [ ] S04.3 `planner/beat_planner.py`: `prepare(envelope)` → packet {scene, entities (parts, capabilities, modes),
+  props (parts, states), surfaces, applied constraints, state vocabulary, instructions, schema id}; sha256 of
+  canonical JSON. Test: same envelope → same packet bytes.
+- [ ] S04.4 `planner/prompts/beat_planning.txt`: authoring instructions shown in the packet. Test: packet embeds its hash.
+- [ ] S04.5 `planner/dynamic_beat_validator.py`: ids unique; times ≥ 0 and inside `scene.duration_s` when known;
+  participants/parts resolve to S02 items and card parts; filler rule (non-hold beat with no effect, no contact,
+  no causal edge → reject); `mode_coherence` (mode is in the archetype card); `mode_transition` (a mode change
+  needs a triggering beat). Tests: one negative case per rule.
+- [ ] S04.6 `compiler/passes/mandatory/p04_temporal.py`: `submit(envelope, packet, plan)` → refuses wrong packet
+  hash → writes `nodes.beats`, `edges.temporal` (computed: duration = from.dur, gap = to.t − from.end), and the
+  `beat_constraint` group if Q1. Tests: write scope; mutated input untouched; temporal edges never authored.
+- [ ] S04.7 `compiler/pipeline.py`: add `plans={...}` input; stop at S04 if no plan, returning the packet.
 
-**S09 object state (UGC).** Nodes: object-state `{id, object, state_name, from_t, to_t}`; edges `transitions_to`
-with `trigger_contact`. Checks: values from the object card; every transition is triggered by a hand contact on
-that object.
+### S05 causal (L1 band, derived) — `edges.causal`, `/quadrant`
+- [ ] S05.1 `schemas/graphs/causal_graph.schema.json`: edge `id, from, to, relation (causes), causal_strength
+  (hard|soft), why`; quadrant `{causal{branching=0, parallel_effects, prerequisites}, style, quadrant, strata}`. Log.
+- [ ] S05.2 `compiler/passes/mandatory/p05_causal.py`: edges from plan `causes`; checks: target exists, no cycles,
+  hard → target starts at/after source end and one source effect satisfies a target `requires`; soft → target
+  starts at/after source start.
+- [ ] S05.3 Quadrant scoring (same file): parallel = most (effects + outgoing causes) of one beat (0–1→0, 2→1,
+  3+→2); prerequisites = hard edges (0→0, 1–2→1, 3+→2); style = +1 style_reference, +1 any hold beat;
+  quadrant A/B/C/D and strata per the owner table; `load_bearing` flag from intent/CLI (default off).
+  Tests: one scene per quadrant.
 
-**S10 affordance (UGC).** Nodes: `(object, action)` `{preconditions, postconditions, typical_duration}`; edges
-`requires`. Checks: every functional verb in the beats has its preconditions true before and postconditions true
-after. Library: affordances (clothing, food, electronics, cosmetics).
+### S06 state (L2 band, derived) — `nodes.states`, `edges.state_transition`
+- [ ] S06.1 `kernel/state_vocabulary.yaml` (kernel log): actor support/posture/possession/condition/location;
+  prop card states + holder + location; surface damage. Test: loader refuses unknown property or value.
+- [ ] S06.2 `schemas/graphs/state_graph.schema.json`: entity-state node per entity per beat
+  `{id, subject, beat, t, conditions{property: value|unknown}}` (+ pos/facing if Q2); transition
+  `{id, from_state, to_state, trigger_event}`. Log.
+- [ ] S06.3 `solver/prop_state_machine.py`: replay — `requires` read at `t`, `effects` commit at `t + dur`;
+  initial value only from a first `requires`, else `unknown`; same-time conflicting effects rejected.
+- [ ] S06.4 `compiler/passes/mandatory/p06_state.py` + `validators/continuity_validator.py`: no teleport (location
+  changes only through an effect), no clone, no disappearance. Tests: each failure.
 
-**S11 kinematic (L4a).** Nodes per actor per beat: support, balance, loading, bracing, yielding, weight transfer,
-tension, release, strain, restraint, breathing. Checks: support agrees with S06 support state and S07 support
-contacts; cue values from `library/kinematic_cues.yaml`. This is what constrains the implied pose.
+### S07 contact (L2 band, derived) — `nodes.contacts`, `edges.contact`
+- [ ] S07.1 `schemas/graphs/contact_graph.schema.json`: contact-event `{id, t (beat end), contact_type
+  (touch|possess|support|release per Q3), body_part, a{kind,id}, b{kind,id,part}, beat}`; edges
+  `precedes` (same pair) and `releases` (release → the contact it ends). Log.
+- [ ] S07.2 `compiler/passes/mandatory/p07_contact.py`: release needs an active same-pair contact; one hand holds
+  one thing; touch is instant; parts from cards.
+- [ ] S07.3 Cross-checks with S06: holder state agrees with active hand contacts; every prop state change has a
+  contact event in its beat. Tests: each failure.
 
-**S12 Bartenieff (L4b).** Nodes per actor per beat: connectivity pattern (breath, core-distal, head-tail,
-upper-lower, body-half, cross-lateral; `cpcs:spiral` extension), developmental pattern, intent, body mode.
-Checks: values from the vocabulary; body mode from `library/body_modes/`.
+### M1 example
+- [ ] M1.E1 `examples/wizard_vs_acrobat/` — query, packet, Claude-authored beat plan (~8 beats, 10 s, courtyard),
+  envelope through S07; `tests/test_example_courtyard.py` recompiles it byte-for-byte.
+- [ ] M1.E2 HANDOFF.md + graph_types.md status → M1 done.
 
-**S13 motion (L4c).** Key pose per beat in the LBN key shape:
-`{beat, t, name, pos, rot, bones{Sp, LUL, RUL, LL, RL, LA, RA, LFA, RFA, HD, NK}, axis_declaration, description}`
-(joint names from the kernel key); edges `follows` with `axis_declaration` and `slerp_params`. Derived:
-quaternion conversion (p23) and root trajectory (p24). Checks: all 11 joints present; Euler degrees XYZ (kernel);
-the axis declaration matches the root rotation change; contacts and support agree with pose height. Needs Q1 and Q2.
+---
 
-**S14 effort (L5).** Effort intervals per actor:
-`{beats, effort{weight, time, space, flow}, shape, space, intensity, effort_mode}`; edges `overlaps`. Checks:
-values from `library/laban_vocabulary.yaml`; intervals cover the actor's beats; effort mode from
-`library/effort_modes/`. LMA words only here, never written into a notation column as native.
+## M2 — body (S11–S13) → done when the example has validated key poses
 
-**S15 camera (L5.5).** Camera beat per beat: `{at, action_beat, motivation{kind, ref}}` plus 13 required
-subdivisions (framing, angle, position, movement, movement quality, support, relation to action, lens, focus,
-composition, playback, blur, editing). Motivation kind: beat type, entity focus, contact event, effort quality,
-spatial geometry, narrative intent, genre convention — its `ref` must resolve. Edges: shot-to-shot editing and
-continuity. Checks: 180-line (axis), camera–kinematic coupling (frames what changes in the beat),
-continuity, genre conventions, intent weighting (impact, reveal, emotion, spatial, rhythm, product). Library:
-camera_grammar, camera_subdivisions, camera_tempo, camera_idioms, camera_conventions.
+### S11 kinematic (L4a, authored)
+- [ ] S11.1 `library/kinematic_cues.yaml` (draft, library log): values for support, balance, loading, bracing,
+  yielding, weight transfer, tension, release, strain, restraint, breathing.
+- [ ] S11.2 `schemas/graphs/kinematic_graph.schema.json`: node per actor per beat with those 11 fields; transition edges. Log.
+- [ ] S11.3 `planner/prompts/kinematic_organization.txt` + prepare/submit in `compiler/passes/derived/p11_kinematic.py`.
+- [ ] S11.4 `validators/kinematic_validator.py`: support agrees with S06 support state and S07 support contacts.
 
-**S16 render (L6).** Derived projection to the anime text prompt in the LBN-2.x structure (variant, fps, dur, ax,
-key, negative, laban, actor key tracks, prop tracks, cam, anime{impact, smear, speedlines, holds, fx, ink},
-rules); live-action and UGC text after. Authored frame-part directives (smear scoped to the declared limb or prop,
-speedlines, holds, ink). `nodes.render` items `{target, text, sha256, coverage}`; coverage proves every applied
-constraint reaches the rules or negative block. Pose/depth/flow/HOI emitters and skeletal export deferred.
-Library: fx_presets, style_tags, negatives per genre.
+### S12 Bartenieff (L4b, authored)
+- [ ] S12.1 `library/body_modes/` (core_distal, distal_core, same_side, cross_lateral; draft).
+- [ ] S12.2 `schemas/graphs/bartenieff_graph.schema.json`: `{actor, beat, connectivity (breath, core-distal,
+  head-tail, upper-lower, body-half, cross-lateral, cpcs:spiral), developmental_pattern, intent, initiation,
+  follow_through, body_mode}`. Log.
+- [ ] S12.3 `p12_bartenieff.py` + prompt; validator: values from vocabulary; `cpcs:` values flagged as extensions.
 
-**S17 post-generation (L6.5).** Deferred until a video model is authorised. Block shape per owner: `run_at,
-video_ref, checks[pose, object, state, affordance], verdict, replan_triggered, replan_scope, replan_target`.
+### S13 motion (L4c, authored + derived)
+- [ ] S13.1 `schemas/graphs/motion_graph.schema.json`: key pose `{beat, t, name, pos, rot, bones{Sp, LUL, RUL, LL,
+  RL, LA, RA, LFA, RFA, HD, NK}, axis_declaration, description}`; edge `follows {axis_declaration, slerp}`. Log.
+- [ ] S13.2 `planner/prompts/euler_solving.txt` + `p13_motion.py` prepare/submit.
+- [ ] S13.3 `solver/euler_solver.py` checks: 11 joints present; degrees; pos/facing match S04 (Q2).
+- [ ] S13.4 Axis check: declared flip/cartwheel/spin axis matches the root rotation change (Q5).
+- [ ] S13.5 `solver/quaternion.py` (needs Q6) and `solver/trajectory.py` (root path from key `pos`), both derived.
 
-## 5. Milestones
+---
 
-| M | Steps | Done when |
-|---|---|---|
-| M1 | layer_order 1.5 (UGC chain), S04–S07 | courtyard wizard-vs-acrobat compiles through S07 |
-| M2 | S11–S13 (+ quaternion, trajectory) | key poses for the example validate |
-| M3 | S14–S15 | effort and 13-part camera beats validate |
-| M4 | S16 anime + quadrant density | reference courtyard fight round-trips; first full prompt (owner renders) |
-| M5 | S08–S10 + UGC render | glasses smoke test compiles |
-| M6 | CLI, replan trigger, kernel-extraction extras (synergy, bridges, ablation — never renders) | `cinematic compile` end to end |
-| M7 | S17 + conditioning emitters | when a video model is authorised |
+## M3 — feel and framing (S14–S15)
 
-Anime path first (it matches the reference prompt the owner reports renders well); UGC after.
+### S14 effort (L5, authored)
+- [ ] S14.1 `library/laban_vocabulary.yaml` (draft): Effort weight light|strong, time sustained|sudden, space
+  indirect|direct, flow free|bound; 8 effort actions; Shape and Space qualities kept separate.
+- [ ] S14.2 `library/effort_modes/` (calm, desperate, trained; draft).
+- [ ] S14.3 `schemas/graphs/effort_graph.schema.json`: interval `{actor, beats, effort{weight,time,space,flow},
+  shape, space, intensity, effort_mode}`; edges `overlaps`. Log.
+- [ ] S14.4 `p14_effort.py` + `laban_synthesis.txt`; validator: intervals cover each actor's beats; values from vocabulary.
 
-## 6. Open questions (only these; everything else follows the plan or a recorded default)
+### S15 camera (L5.5, authored)
+- [ ] S15.1 Library (draft): camera_subdivisions, camera_grammar, camera_tempo, camera_idioms/, camera_conventions/.
+- [ ] S15.2 `schemas/camera.schema.json` (node: 13 subdivisions + motivation{kind, ref}, all required) and
+  `schemas/graphs/camera_graph.schema.json` (shot-to-shot edges). Log.
+- [ ] S15.3 `p15_camera.py` + `camera_selection.txt`.
+- [ ] S15.4 Validators: motivation ref resolves; 180-line (axis); camera–kinematic coupling; continuity; genre;
+  subdivision coherence; intent weighting (impact, reveal, emotion, spatial, rhythm, product).
 
-1. **Axis declarations contradict the kernel frame.** The L4c box says "X=backflip, Y=cartwheel, Z=spin", but the
-   kernel is `Y_up` with fighters facing `+Z`: about Y is a spin and about Z (forward) is a cartwheel.
-2. **Euler XYZ interpretation** for the quaternion pass: intrinsic or extrinsic, and which handedness
-   (the earlier notation work used +X = performer's left).
+---
+
+## M4 — render (S16) → done when the reference courtyard fight round-trips
+
+- [ ] S16.1 Draft cards for the reference fight: ninja A/B variants, kunai, rope_dart, smoke_pellet,
+  shuriken_volley, substitution_log, wooden pillar world.
+- [ ] S16.2 `schemas/graphs/render.schema.json`: `{target, text, sha256, coverage}`; frame-part directives
+  `{impact, smear, speedlines, holds, fx, ink}`. Log.
+- [ ] S16.3 `renderers/anime_renderer.py`: deterministic projection into the LBN-2.x layout (variant, fps, dur, ax,
+  key, negative, laban, actor tracks, prop tracks, cam, anime, rules); density from the quadrant.
+- [ ] S16.4 Frame-part directives authored (smear only on the declared limb or prop).
+- [ ] S16.5 Coverage: every applied constraint appears in rules or negatives.
+- [ ] S16.6 Golden: the reference fight compiles and contains every kernel and reference-fight item; the owner
+  renders (Claude never renders).
+
+## M5 — UGC (S08–S10)
+- [ ] S08 hand role: `grip_types.yaml`, `role_templates.yaml` (draft); schema `{interaction, agent_hand,
+  support_hand, agent_grip, support_grip, role_invariant, duration}`; validator: roles hold across the interaction.
+- [ ] S09 object state: schema `{object, beat, state_name}` + `transitions_to{trigger_contact}`; values from cards;
+  every change triggered by a hand contact.
+- [ ] S10 affordance: `library/affordances/` (clothing, food, electronics, cosmetics; draft); schema `(object,
+  action){preconditions, postconditions, required_grip, duration}`; validator: each functional verb succeeds.
+- [ ] M5.E `renderers/ugc_renderer.py` + glasses smoke test.
+
+## M6 — tooling
+- [ ] `cli/` compile, validate, graph inspect, kernel extract, ablate (ablate never renders).
+- [ ] `compiler/replan_trigger.py`: failed gate → re-author the failing step; provenance replan fields.
+- [ ] `kernel_extraction/` synergy_matrix, bridge_detector, layer_analyzer, kernel_compressor, ablation_runner.
+- [ ] `schemas/modality/` live_action, anime, ugc_ad.
+
+## M7 — when a video model is authorised
+- [ ] S17 `validation.post_generation` object `{run_at, video_ref, checks[pose, object, state, affordance],
+  verdict, replan_triggered, replan_scope, replan_target}` + `validators/post_generation/`.
+- [ ] `renderers/conditioning/` pose, depth, flow, HOI emitters; live-action skeletal export.

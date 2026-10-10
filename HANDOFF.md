@@ -36,18 +36,7 @@ linear causality only; closed kernel state vocabulary. Full log: `docs/layer_dep
 - 11 library cards (`library/`), all `status: draft`.
 - `kernel/kernel_scope.yaml`: kernel 20, per-actor 6, per-prop 5, reference fight only 37.
 
-## Open questions — S04 waits on 1–4; S13 waits on 5–6
-1. **Rules on beats:** the catalog says the constraint graph lists the beats each rule applies to, but S03 runs
-   before beats exist. Proposal: S04 writes its own beat↔rule edge group.
-2. **Positions at L2:** the state graph holds position/orientation, but numbers arrive at S13. Proposal: the S04
-   beat plan authors root position and facing per actor per beat (as LBN keys do).
-3. **Contact type name:** graph table says touch/**grip**/support/release; catalog and diagram say
-   touch/**possess**/support/release.
-4. **Actors per beat:** catalog beat has one actor; interactions involve two. Proposal: one `actor` plus `participants`.
-5. **Flip axes:** the L4c box says Y=cartwheel, Z=spin; in the kernel frame (Y up, facing +Z) Y is a spin and
-   Z is a cartwheel.
-6. **Euler XYZ:** intrinsic or extrinsic, and handedness, for the quaternion pass.
-
-## Next
-M1 in `docs/plans/MASTER_PLAN.md`: layer_order 1.5 (UGC chain S08→S09→S10), then S04–S07 per
-`docs/plans/s04-s07-l1-l2.md`, then the wizard-vs-acrobat courtyard example through S07.
+## Open questions and next work
+Both live in [docs/plans/MASTER_PLAN.md](docs/plans/MASTER_PLAN.md): the **Blockers** table (Q1–Q6, each with the
+proposal used if the owner says "go") and the task list starting at **M1.0.1**. Completed work is struck through
+under **Done**.
