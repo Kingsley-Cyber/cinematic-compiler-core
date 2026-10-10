@@ -262,8 +262,11 @@ Notes on the decisions:
   hands, grips, role template; checks also forbid a hand serving two overlapping interactions; the role invariant
   is derived. The pipeline now reads the genre from the query's literal parse to choose the steps, so UGC-only
   steps run without --genre. Example `examples/ugc_glasses_demo/` (creator card added) through S08.)
-- [ ] S09 object state: schema `{object, beat, state_name}` + `transitions_to{trigger_contact}`; values from cards;
+- [x] S09 object state: schema `{object, beat, state_name}` + `transitions_to{trigger_contact}`; values from cards;
   every change triggered by a hand contact.
+  (Built derived: internal states = the object card's own state properties from S06 (holder/location stay in S06);
+  each change names its trigger beat, the hand contact on the object (or `held:<entity>.<hand>` when a holding hand
+  carries it) and the S08 interaction; a change with no hand or outside every interaction fails S09.)
 - [ ] S10 affordance: `library/affordances/` (clothing, food, electronics, cosmetics; draft); schema `(object,
   action){preconditions, postconditions, required_grip, duration}`; validator: each functional verb succeeds.
 - [ ] M5.E `examples/ugc_glasses_demo/`: query, packet, Claude-authored beat plan, envelope through S10, render via

@@ -20,7 +20,16 @@ from planner.dependency_graph import ROOT, is_active, load, node_index
 from planner.intent_parser import parse_intent
 from planner.topological_sort import build_order
 
-from .passes.derived import p08_hand_role, p11_kinematic, p12_bartenieff, p13_motion, p14_effort, p15_camera, p16_render
+from .passes.derived import (
+    p08_hand_role,
+    p09_object_state,
+    p11_kinematic,
+    p12_bartenieff,
+    p13_motion,
+    p14_effort,
+    p15_camera,
+    p16_render,
+)
 from .passes.mandatory import p01_intent, p02_brief, p03_constraint, p04_temporal, p05_causal, p06_state, p07_contact
 
 AUTHORED = {"temporal": p04_temporal, "hand_role": p08_hand_role, "kinematic": p11_kinematic,
@@ -94,6 +103,7 @@ def run(query, *, genre=None, duration_s=None, until="constraint", cards=None, p
               "causal": lambda env: p05_causal.run(env, order=order, load_bearing=load_bearing),
               "state": lambda env: p06_state.run(env, order=order),
               "contact": lambda env: p07_contact.run(env, order=order),
+              "object_state": lambda env: p09_object_state.run(env, order=order),
               **{node: authored(node) for node in AUTHORED}}
     # The genre decides which steps exist; S01's literal parse reads it from the query when no flag is given.
     sequence = sequence_for(order, genre or parse_intent(query)["parsed"]["genre"])

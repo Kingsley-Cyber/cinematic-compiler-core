@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:object_state_graph:1.0",
+  "title": "S09 object-state graph",
+  "description": "object_state = each object's internal card states per beat (+ end) with the S08 interaction in progress; object_state_transition = each internal change with its triggering beat, hand contact (or held:<entity>.<hand>) and interaction.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "object_state",
+    "object_state_transition"
+  ],
+  "properties": {
+    "object_state": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "object",
+          "beat",
+          "t",
+          "state",
+          "state_name",
+          "interaction"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*@(b[0-9]{2,3}|end)$"
+          },
+          "object": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "beat": {
+            "type": "string",
+            "pattern": "^(b[0-9]{2,3}|end)$"
+          },
+          "t": {
+            "type": "number",
+            "minimum": 0
+          },
+          "state": {
+            "type": "object",
+            "patternProperties": {
+              "^[a-z][a-z0-9_]*$": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "additionalProperties": false
+          },
+          "state_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "interaction": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^i[0-9]{2,3}$"
+          }
+        }
+      }
+    },
+    "object_state_transition": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "from",
+          "to",
+          "relation",
+          "changes",
+          "trigger_beat",
+          "trigger_contact",
+          "interaction"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "from": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*@(b[0-9]{2,3}|end)$"
+          },
+          "to": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*@(b[0-9]{2,3}|end)$"
+          },
+          "relation": {
+            "const": "transitions_to"
+          },
+          "changes": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "property",
+                "from",
+                "to"
+              ],
+              "properties": {
+                "property": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                },
+                "from": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "to": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          "trigger_beat": {
+            "type": "string",
+            "pattern": "^b[0-9]{2,3}$"
+          },
+          "trigger_contact": {
+            "type": "string",
+            "minLength": 1
+          },
+          "interaction": {
+            "type": "string",
+            "pattern": "^i[0-9]{2,3}$"
+          }
+        }
+      }
+    }
+  }
+}
