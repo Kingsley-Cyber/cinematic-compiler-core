@@ -129,14 +129,14 @@ Notes on the decisions:
   Tests: one scene per quadrant.
 
 ### S06 state (L2 band, derived) — `nodes.states`, `edges.state_transition`
-- [ ] S06.1 `kernel/state_vocabulary.yaml` (kernel log): actor support/posture/possession/condition/location;
+- [x] S06.1 `kernel/state_vocabulary.yaml` (kernel log): actor support/posture/possession/condition/location;
   prop card states + holder + location; surface damage. Test: loader refuses unknown property or value.
-- [ ] S06.2 `schemas/graphs/state_graph.schema.json`: entity-state node per entity per beat
+- [x] S06.2 `schemas/graphs/state_graph.schema.json`: entity-state node per entity per beat
   `{id, subject, beat, t, pos, facing, conditions{property: value|unknown}}` (pos/facing copied from S04); transition
   `{id, from_state, to_state, trigger_event}`. Log.
-- [ ] S06.3 `solver/prop_state_machine.py`: replay — `requires` read at `t`, `effects` commit at `t + dur`;
+- [x] S06.3 `solver/prop_state_machine.py`: replay — `requires` read at `t`, `effects` commit at `t + dur`;
   initial value only from a first `requires`, else `unknown`; same-time conflicting effects rejected.
-- [ ] S06.4 `compiler/passes/mandatory/p06_state.py` + `validators/continuity_validator.py`: no teleport (location
+- [x] S06.4 `compiler/passes/mandatory/p06_state.py` + `validators/continuity_validator.py`: no teleport (location
   changes only through an effect), no clone, no disappearance. Tests: each failure.
 
 ### S07 contact (L2 band, derived) — `nodes.contacts`, `edges.contact`

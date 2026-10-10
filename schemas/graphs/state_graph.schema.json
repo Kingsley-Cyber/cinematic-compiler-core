@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:state_graph:1.0",
+  "title": "S06 state graph: one state per subject per beat (+ end), transitions with triggering beats",
+  "description": "States are replayed from the beat plan: requires are read at t, effects commit at t + dur; a property's starting value comes only from its first requirement, else unknown. pos/facing come from the beat (authoritative) or are carried from the entity's last anchor (pos_source says which).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "states",
+    "state_transition"
+  ],
+  "properties": {
+    "states": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "subject",
+          "beat",
+          "t",
+          "pos",
+          "facing",
+          "pos_source",
+          "conditions"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "subject": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "id"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "entity",
+                  "prop",
+                  "surface"
+                ]
+              },
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]*$"
+              }
+            }
+          },
+          "beat": {
+            "type": "string",
+            "pattern": "^(b[0-9]{2,3}|end)$"
+          },
+          "t": {
+            "type": "number",
+            "minimum": 0
+          },
+          "pos": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "number"
+            }
+          },
+          "facing": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "number"
+            }
+          },
+          "pos_source": {
+            "enum": [
+              "beat",
+              "carried",
+              null
+            ]
+          },
+          "conditions": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "state_transition": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "from_state",
+          "to_state",
+          "trigger_event",
+          "changes"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "from_state": {
+            "type": "string"
+          },
+          "to_state": {
+            "type": "string"
+          },
+          "trigger_event": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "pattern": "^b[0-9]{2,3}$"
+            }
+          },
+          "changes": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "property",
+                "from",
+                "to"
+              ],
+              "properties": {
+                "property": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                },
+                "from": {
+                  "type": "string"
+                },
+                "to": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
