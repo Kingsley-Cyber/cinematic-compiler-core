@@ -12,7 +12,7 @@ high
 L1.1
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -43,4 +43,4 @@ ADR-O18
 - docs/reports/2026-10-11-renders-and-dag-adherence.md section 3
 
 ## Resolution
-Open: no code catches it yet.
+Caught by AIRBORNE_PICKUP (the checklist's caught_by; validators/checklist.py FINDINGS): A takes the rope dart and the kunai on the ground (backlog M9-03, session S-004).

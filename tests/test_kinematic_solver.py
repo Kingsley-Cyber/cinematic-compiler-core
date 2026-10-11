@@ -66,3 +66,23 @@ def test_s11_writes_only_its_paths_and_refuses_failed_gates(order):
     with pytest.raises(GateFailed) as failed:
         p11_kinematic.run(before, bad, order=order)
     assert failed.value.step_id == "S11"
+
+
+def test_airborne_pickup_needs_a_supported_body_within_reach():
+    """AIRBORNE_PICKUP (owner O18, M9-03): the reference fight takes the rope dart (7.5) and the kunai (8.0) from the
+    ground crouched; the same pickups with no support, or from out of reach, are refused."""
+    from planner.scene_view import slots
+
+    envelope = json.loads((ROOT / "examples" / "reference_fight" / "envelope.json").read_text(encoding="utf-8"))
+    document = {"nodes": [{"slot": n["id"], "support": n["support"]} for n in envelope["nodes"]["kinematic"]["items"]]}
+    packet = {"slots": slots(envelope)}
+    assert p11_kinematic.pickup_findings(document, packet, envelope) == []
+    airborne = copy.deepcopy(document)
+    next(n for n in airborne["nodes"] if n["slot"] == "ninja_lean@b19")["support"] = []
+    refused = p11_kinematic.pickup_findings(airborne, packet, envelope)
+    assert [(f["code"], f["message"]) for f in refused] == [
+        ("AIRBORNE_PICKUP", "ninja_lean takes the resting rope_dart at 7.5 with no support")]
+    far = copy.deepcopy(packet)
+    next(s for s in far["slots"] if s["slot"] == "ninja_lean@b20")["pos"] = [-3.0, 0.6, 5.1]
+    assert [f["message"] for f in p11_kinematic.pickup_findings(document, far, envelope)] == [
+        "ninja_lean takes kunai at 8.0 from 3.36 m away"]

@@ -12,7 +12,7 @@ high
 L1.1
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -43,4 +43,4 @@ ADR-O18
 - backlog M9-03
 
 ## Resolution
-Open.
+Resolved in backlog M9-03 (session S-004): A lands crouched by the rope dart (7.5) and by the kunai (8.0) before taking them; AIRBORNE_PICKUP (S11 and the prompt) refuses a pickup with no support or out of reach.

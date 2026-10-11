@@ -1766,7 +1766,7 @@
     {
      "to": "b18",
      "causal_strength": "soft",
-     "why": "Thrown at the pillar, A meets it with the feet and pushes off, snatching up the rope dart on the way down."
+     "why": "Thrown at the pillar, A meets it with the feet, pushes off and lands crouched by the rope dart."
     }
    ]
   },
@@ -1804,7 +1804,7 @@
      0.655
     ]
    },
-   "action": "A WALL-PUSH OFF PILLAR at 7.0,NOT still touching pillar; A snatches the rope dart up again with the left hand as the push carries it down",
+   "action": "A WALL-PUSH OFF PILLAR at 7.0,NOT still touching pillar; A lands crouched by the rope dart on the ground and takes it with the left hand at 7.5",
    "requires": [],
    "effects": [
     {
@@ -1814,6 +1814,14 @@
      },
      "property": "holder",
      "value": "ninja_lean"
+    },
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "ninja_lean"
+     },
+     "property": "support",
+     "value": "grounded"
     }
    ],
    "contacts": [
@@ -1828,7 +1836,8 @@
       "kind": "surface",
       "id": "wooden_pillar",
       "part": null
-     }
+     },
+     "at": "start"
     },
     {
      "contact_type": "touch",
@@ -1841,7 +1850,8 @@
       "kind": "surface",
       "id": "wooden_pillar",
       "part": null
-     }
+     },
+     "at": "start"
     },
     {
      "contact_type": "possess",
@@ -1855,13 +1865,39 @@
       "id": "rope_dart",
       "part": "rope"
      }
+    },
+    {
+     "contact_type": "support",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "left_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
+    },
+    {
+     "contact_type": "support",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "right_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
     }
    ],
    "causes": [
     {
      "to": "b19",
      "causal_strength": "hard",
-     "why": "Back in the air with the rope dart in the left hand, A throws it to wrap B's right shoulder."
+     "why": "Crouched by the rope dart with it in the left hand, A whips it out to wrap B's right shoulder."
     }
    ]
   },
@@ -1871,7 +1907,7 @@
    "dur": 0.5,
    "event_type": "action",
    "actor": "ninja_lean",
-   "label": "aerial_rope_dart_regrapple",
+   "label": "rope_dart_regrapple",
    "participants": [
     {
      "kind": "entity",
@@ -1891,9 +1927,9 @@
    },
    "pos": {
     "ninja_lean": [
+     -0.1,
      0.6,
-     2.2,
-     4.8
+     3.2
     ],
     "ninja_broad": [
      0.4,
@@ -1913,7 +1949,7 @@
      0.97
     ]
    },
-   "action": "AERIAL ROPE DART REGRAPPLE at 7.5,left hand throws rope dart,rope dart wraps B right shoulder,A pulled toward B,this is a GRAPPLE NOT a strike; on the way down the right hand takes the kunai from the ground",
+   "action": "ROPE DART REGRAPPLE at 7.5 from a crouch,left hand throws rope dart,rope dart wraps B right shoulder,A pulled toward B,this is a GRAPPLE NOT a strike; A runs to the kunai and takes it from the ground with the right hand at 8.0",
    "requires": [
     {
      "subject": {
@@ -1982,9 +2018,9 @@
      "prop": "rope_dart",
      "t": 7.5,
      "p": [
-      0.6,
-      2.0,
-      4.6
+      0.4,
+      0.0,
+      3.8
      ],
      "v": null,
      "float": false
@@ -2013,9 +2049,9 @@
    },
    "pos": {
     "ninja_lean": [
-     0.5,
-     1.8,
-     4.5
+     -0.2,
+     0.6,
+     5.1
     ],
     "ninja_broad": [
      1.4,
@@ -2035,7 +2071,7 @@
      0
     ]
    },
-   "action": "A PULLS B toward pillar at 8.0,this is a PULL NOT a strike; kunai picked up from ground at 8.0 during crash landing",
+   "action": "A PULLS B toward pillar at 8.0,this is a PULL NOT a strike; kunai picked up from ground at 8.0,A crouched by it",
    "requires": [],
    "effects": [
     {
@@ -2045,9 +2081,44 @@
      },
      "property": "line",
      "value": "taut"
+    },
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "ninja_lean"
+     },
+     "property": "support",
+     "value": "airborne"
     }
    ],
-   "contacts": [],
+   "contacts": [
+    {
+     "contact_type": "release",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "left_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
+    },
+    {
+     "contact_type": "release",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "right_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
+    }
+   ],
    "causes": [
     {
      "to": "b21",
@@ -2060,9 +2131,9 @@
      "prop": "kunai",
      "t": 8.0,
      "p": [
-      0.4,
-      1.6,
-      4.8
+      0.3,
+      0.0,
+      5.3
      ],
      "v": null,
      "float": false
@@ -2071,9 +2142,9 @@
      "prop": "rope_dart",
      "t": 8.0,
      "p": [
-      0.4,
-      1.3,
-      4.0
+      0.2,
+      0.9,
+      4.9
      ],
      "v": null,
      "float": false

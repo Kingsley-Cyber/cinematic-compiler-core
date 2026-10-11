@@ -1,7 +1,7 @@
 {
  "step_id": "S16",
  "band": "L5.5",
- "packet_sha256": "sha256:cc132492cc2ce8d25e8e8232555ded21d74175abce19d59514f2c2615bb4dfa2",
+ "packet_sha256": "sha256:6668886688aefcf53ee9b3ea476eae9c2d2b7158ac8a7bc72b6586efd7aa5b32",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -1304,7 +1304,7 @@
      "ninja_broad"
     ],
     "detail": null,
-    "visible_action": "A hits the pillar and pushes off, snatching the rope dart."
+    "visible_action": "A meets the pillar with the feet, pushes off and lands crouched by the rope dart."
    },
    "angle": {
     "elevation_deg": 5,
@@ -1327,7 +1327,7 @@
    },
    "movement": {
     "kind": "tracking",
-    "path": "tracks A into the pillar and back out"
+    "path": "tracks A into the pillar and down to the rope dart"
    },
    "movement_quality": {
     "easing": "snap",
@@ -1385,11 +1385,11 @@
      "ninja_broad"
     ],
     "detail": null,
-    "visible_action": "A whips the rope dart out; it wraps B's right shoulder; A's right hand takes the kunai."
+    "visible_action": "From a crouch A takes the rope dart and whips it out; it wraps B's right shoulder; A runs to the kunai."
    },
    "angle": {
     "elevation_deg": 0,
-    "azimuth_deg": 64.0,
+    "azimuth_deg": 28.0,
     "roll_deg": 0
    },
    "position": {
@@ -1466,11 +1466,11 @@
      "ninja_broad"
     ],
     "detail": null,
-    "visible_action": "A pulls B toward the pillar with the taut rope dart; the kunai is in A's right hand."
+    "visible_action": "Crouched by the kunai, A takes it in the right hand and pulls B toward the pillar on the taut rope dart."
    },
    "angle": {
     "elevation_deg": 0,
-    "azimuth_deg": -12.5,
+    "azimuth_deg": 10.0,
     "roll_deg": 0
    },
    "position": {

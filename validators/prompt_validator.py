@@ -9,6 +9,7 @@ Codes whose atoms the repo does not have yet are listed in the map as `gaps`, ne
 
 import re
 
+from compiler.passes.derived import p11_kinematic
 from compiler.passes.mandatory.p07_contact import events_for, lifecycle
 from planner import dynamic_beat_validator
 from planner.scene_view import slots
@@ -56,6 +57,7 @@ CODES = {
     "HIDDEN_PHRASING": "a prop is called hidden or not visible (probes R12, R17 drew it from the start anyway)",
     "IMPACT_CONTACT_SYNC": "a strike bow sits off every printed impact frame, or an impact frame has no contact on it "
                            "(one time per hit, O23; F-021)",
+    "AIRBORNE_PICKUP": "a body takes a prop resting on a surface on a NO SUPPORT line (O18; renders R3, R4: F7)",
     "CAUSAL_LIST_MISSING": "a causal edge is absent from CAUSAL LINKS",
     "CAUSE_REASON": "a causal link's reason is not printed in CAUSAL LINKS, or does not state a cause",
     "REACTION_WITHOUT_CAUSE": "a hard effect's line comes before its cause's contact",
@@ -88,7 +90,7 @@ READS = {
     "DOUBLED_WORD": (), "COUNT_CONTRADICTION": (),
     "VANISHED_BODY": (STAFF, RULES), "TURN_LABEL": (STAFF,),
     "BODY_HOLD_FRAMES": (), "EMPTY_HAND_UNSTATED": (STAFF,), "ROTATION_ANGLES_PRINTED": (), "HIDDEN_PHRASING": (),
-    "IMPACT_CONTACT_SYNC": (STAFF, "[ANIME]", "[UGC]", "[LIVE ACTION]"),
+    "IMPACT_CONTACT_SYNC": (STAFF, "[ANIME]", "[UGC]", "[LIVE ACTION]"), "AIRBORNE_PICKUP": (STAFF,),
     "CAUSAL_LIST_MISSING": ("[CAUSAL LINKS]",), "CAUSE_REASON": ("[CAUSAL LINKS]",),
     "REACTION_WITHOUT_CAUSE": (),
     "CAUSAL_RULE_MISSING": (RULES,), "CONSERVATION_RULE_MISSING": (RULES,), "SPAN_RULE_MISSING": (STAFF, RULES),
@@ -195,6 +197,7 @@ def check(text, envelope, mode):
     _turn_checks(envelope, parts, labels, mode, add)
     _wording_checks(envelope, text, parts, labels, mode, add)
     _impact_checks(envelope, parts, mode, add)
+    _pickup_checks(envelope, parts, labels, mode, add)
     _rules_checks(envelope, parts, labels, mode, add)
     _camera_checks(envelope, parts, labels, add)
     return findings
@@ -375,6 +378,17 @@ RATE = re.compile(r"degrees per second|deg/s|°/s", re.I)
 ANGLE_AT = re.compile(r"-?\d+(?:\.\d+)?\s*(?:degrees|deg|°)\s+at\s+\d+\.\d\d")
 INNER_ANGLE = re.compile(r"EulerXYZ \[|\d\s*(?:degrees|deg|°)|sign \([^)]*\d")
 HIDDEN = re.compile(r"\b(?:hidden|not visible|invisible|concealed|out of sight)\b", re.I)
+
+
+def _pickup_checks(envelope, parts, labels, mode, add):
+    """AIRBORNE_PICKUP (owner O18, backlog M9-03): at the instant a body takes a prop resting on a surface, its staff
+    line (the last one at or before that time) does not say NO SUPPORT."""
+    rows = _staff(parts, mode)
+    for c in p11_kinematic.resting_pickups(envelope):
+        label = labels.get(c["a"]["id"])
+        own = [r for r in rows if r["label"] == label and r["t"] <= c["t"] + EPSILON]
+        if own and own[-1]["columns"][0].startswith("SUPPORT NO SUPPORT"):
+            add("AIRBORNE_PICKUP", f"{label} takes the resting {c['b']['id']} at {c['t']:.2f} on a NO SUPPORT line")
 
 
 BOW_TIME = re.compile(r" at (\d+\.\d\d)\]?$")

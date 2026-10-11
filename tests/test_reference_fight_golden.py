@@ -25,14 +25,24 @@ PREFACE_RECOUNTED = {"k_preface_03": "TWO fighters, FIVE props (kunai, rope dart
                                      "substitution log)"}
 
 
+# Owner O18 (2026-10-11, backlog M9-03, audit X2/X3): the golden's own tracks say A lands by the rope dart ("7.5 A lands
+# near ground rope dart, A picks up rope dart") and takes the kunai from the ground at 8.0, while its rows and two of
+# its rules put A in the air. The numbers and those two rules follow the words: A lands crouched by the rope dart at
+# 7.5, runs to the kunai and takes it crouched at 8.0, then leaps at 8.5 for the drive.
+GROUNDED_RULES = {"k_rules_18": "ROPE DART REGRAPPLE at 7.5 from a crouch,left hand throws rope dart,rope dart wraps B right "
+                                "shoulder,A pulled toward B,this is a GRAPPLE NOT a strike",
+                  "k_rules_27": "kunai picked up from ground at 8.0,A crouched by it"}
+REWORDED = {**PREFACE_RECOUNTED, **GROUNDED_RULES}
+
+
 def test_every_kernel_and_reference_item_is_in_the_render():
     items = load_kernel("invariants")["items"]
     printed = [i for i in items if i["origin"] != "owner"]
     scopes = ("kernel", "kernel_actor", "kernel_prop", "scene_reference")
     counts = {scope: sum(i["scope"] == scope for i in printed) for scope in scopes}
     assert counts == {"kernel": 20, "kernel_actor": 6, "kernel_prop": 5, "scene_reference": 37}
-    assert [i["id"] for i in printed if PREFACE_RECOUNTED.get(i["id"], i["text"]) not in TEXT] == []
-    assert next(i["text"] for i in printed if i["id"] == "k_preface_03") not in TEXT  # the recount replaced it
+    assert [i["id"] for i in printed if REWORDED.get(i["id"], i["text"]) not in TEXT] == []
+    assert [i["id"] for i in printed if i["id"] in REWORDED and i["text"] in TEXT] == []  # the rewording replaced them
     assert RENDER["coverage"]["complete"] and RENDER["coverage"]["constraints"]["enforced_by_renderer"] == ["c_k_owner_00"]
 
 
@@ -50,12 +60,35 @@ ROOT_TURNS = ((5.1, 0, -360), (6.3, 2, -360))
 # literal p/v (e.g. kunai thrown at 0.5 toward -Z, yet at +Z 5.0 at 2.0) are not copied, as they disagree with gravity.
 
 
+GROUNDED_PICKUPS = {  # O18: A's rows at the two pickups, crouched on the ground (from A's own crouches at 5.9 and 9.5)
+    7.5: [7.5, "rope_dart_regrapple", [-0.1, 0.6, 3.2], [-330, 30, -360],
+          {"Sp": [50, 0, 0], "LUL": [-120, 0, 0], "RUL": [-120, 0, 0], "LL": [90, 0, 0], "RL": [90, 0, 0], "LA": [-30, 0, 0],
+           "RA": [-45, 0, 0], "LFA": [-10, 0, 0], "RFA": [-45, 0, 0], "HD": [-10, 0, 0], "NK": [0, 0, 0]}],
+    8.0: [8.0, "pull_b_toward_pillar", [-0.2, 0.6, 5.1], [-330, 90, -360],
+          {"Sp": [45, 0, 0], "LUL": [-110, 0, 0], "RUL": [-110, 0, 0], "LL": [80, 0, 0], "RL": [80, 0, 0], "LA": [-60, 0, 0],
+           "RA": [-30, 0, 0], "LFA": [-30, 0, 0], "RFA": [-10, 0, 0], "HD": [-10, 0, 0], "NK": [0, 0, 0]}],
+}
+
+
+GROUNDED_DESCRIPTIONS = {
+    7.5: "L:arm fwd low bent1 taking the rope dart from the ground, leg fwd mid bent7, lLeg bent7; R:arm fwd mid bent3, leg "
+         "fwd mid bent7, lLeg bent7; support=both feet; A LANDS CROUCHED BY THE ROPE DART and takes it with the left hand, "
+         "then whips it forward to wrap B right shoulder, head facing B, this is a GRAPPLE NOT a strike",
+    8.0: "L:arm fwd mid bent3 holding rope dart taut, leg fwd mid bent7, lLeg bent7; R:arm fwd low bent1 taking the kunai "
+         "from the ground, leg fwd mid bent7, lLeg bent7; support=both feet; A CROUCHES BY THE KUNAI, the right hand takes "
+         "it from the ground while the left hand hauls the taut rope dart, B dragged toward the pillar at z=6, this is a "
+         "PULL NOT a strike",
+}
+
+
 def normalised(row):
     joints = {j: list(v) for j, v in row[4].items()}
     for knee in ("LL", "RL"):
         joints[knee][0] = abs(joints[knee][0])
     if row[0] in HIP_CLAMPS:
         joints["RUL"][0] = HIP_CLAMPS[row[0]]
+    if row[0] in GROUNDED_PICKUPS:
+        return GROUNDED_PICKUPS[row[0]]
     rot = list(row[3])
     for after, axis, degrees in ROOT_TURNS:
         if row[0] > after:
@@ -68,7 +101,11 @@ def test_a_roots_and_joints_are_the_reference_rows_with_the_recorded_deviations(
     reference = [row for row in REFERENCE["A"] if row[0] < 10 and row[0] not in VANISHED]  # 10.0 hold: no beat
     assert [[row["t"], row["label"], row["pos"], row["rot"], row["joints"]] for row in SPEC["A"]] == \
         [normalised(row) for row in reference]
-    assert all(row["desc"].endswith(ref[5]) for row, ref in zip(SPEC["A"], reference, strict=True))
+    assert all(row["desc"].endswith(ref[5]) for row, ref in zip(SPEC["A"], reference, strict=True)
+               if row["t"] not in GROUNDED_PICKUPS)
+    pinned = {row["t"]: row["desc"] for row in SPEC["A"] if row["t"] in GROUNDED_PICKUPS}
+    assert pinned.keys() == GROUNDED_DESCRIPTIONS.keys()
+    assert all(pinned[t].endswith(text) for t, text in GROUNDED_DESCRIPTIONS.items())
 
 
 # Owner O10 (2026-10-11): the golden passes conformance, so the two fx the source draws as a 'ring' read as a 'burst'

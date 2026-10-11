@@ -94,9 +94,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 1.0; backlog 1.
-- Last session: S-003 (2026-10-11, applied): M9-02: strike, throw and release contacts at their pose (IMPACT_CONTACT_SYNC).
-- Next slice: M9-03 F6.3 grounded pickups at 7.5 and 8.0 (step contact).
-- Open findings: 37; decisions: 94 (0 proposed).
+- Last session: S-004 (2026-10-11, applied): M9-03: grounded pickups at 7.5 and 8.0 (AIRBORNE_PICKUP).
+- Next slice: M9-03b GAP-03 carried_by on prop nodes from the archetype card (O63) (step brief).
+- Open findings: 36; decisions: 94 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

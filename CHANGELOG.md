@@ -6,6 +6,8 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Added
+- AIRBORNE_PICKUP (S11 and the prompt): a prop resting on a surface is taken only by a body with support, within
+  reach; F7 is caught.
 - IMPACT_CONTACT_SYNC (S17 and the prompt): every impact frame has a touch or support onset on it, every strike
   lands on an impact frame; S07 counts a release at its own beat's start as still holding at that instant.
 - The docs plane (owner O64-O67, session S-002): AGENTS.md as a 17-section operating manual; five generated indexes
@@ -23,6 +25,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 - Prompt codes BODY_HOLD_FRAMES, EMPTY_HAND_UNSTATED, ROTATION_ANGLES_PRINTED, HIDDEN_PHRASING (M9 step 1, S-001).
 
 ### Changed
+- Grounded pickups (M9-03, owner O18, S-004): A pushes off the pillar at 7.0, lands crouched by the rope dart and
+  takes it at 7.5, runs to the kunai and takes it crouched at 8.0, then leaps at 8.5; c18 and c19 re-aimed (azimuth
+  28 and 10) so both bodies stay framed on their sides; two golden rules reworded (k_rules_18, k_rules_27).
 - One time per hit (M9-02, owner O23, S-003): the reference fight's strike, throw and release contacts happen at
   their pose (throw 2.0, deflect 2.5, palm 4.0, knee 4.7, shuriken 5.5, catch 6.6, kunai drive 8.5); the kunai and
   log fly and fall under gravity; four camera cuts are motivated by their own beat and the 8.5 insert shows B's torso;

@@ -18,7 +18,7 @@ flowchart LR
   cli -->|1| kernel
   cli -->|1| validators
   compiler -->|19| kernel
-  compiler -->|42| planner
+  compiler -->|43| planner
   compiler -->|4| renderers
   compiler -->|7| solver
   compiler -->|29| validators
@@ -34,7 +34,7 @@ flowchart LR
   renderers -->|5| planner
   renderers -->|1| solver
   solver -->|1| kernel
-  validators -->|2| compiler
+  validators -->|3| compiler
   validators -->|4| kernel
   validators -->|8| planner
   validators -->|3| renderers
@@ -51,7 +51,7 @@ flowchart LR
 | `compiler.passes.derived.p08_hand_role` | `compiler.authoring`, `compiler.passes.mandatory.p07_contact`, `planner.dependency_graph`, `planner.library_vocab`, `validators.schema_validator` | json, yaml |
 | `compiler.passes.derived.p09_object_state` | `compiler.authoring`, `compiler.passes.mandatory.p07_contact`, `kernel.canonical`, `planner.dependency_graph`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
 | `compiler.passes.derived.p10_affordance` | `compiler.authoring`, `kernel.canonical`, `planner.dependency_graph`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, functools, json, yaml |
-| `compiler.passes.derived.p11_kinematic` | `compiler.authoring`, `planner.dependency_graph`, `planner.library_vocab`, `planner.scene_view` | — |
+| `compiler.passes.derived.p11_kinematic` | `compiler.authoring`, `planner.dependency_graph`, `planner.dynamic_beat_validator`, `planner.library_vocab`, `planner.scene_view` | math |
 | `compiler.passes.derived.p12_bartenieff` | `compiler.authoring`, `planner.dependency_graph`, `planner.library_vocab`, `planner.scene_view`, `validators.schema_validator` | json, yaml |
 | `compiler.passes.derived.p13_motion` | `compiler.authoring`, `kernel.kernel_files`, `planner.dependency_graph`, `planner.scene_view`, `solver.euler_solver`, `solver.quaternion`, `solver.trajectory`, `validators.schema_validator` | json, yaml |
 | `compiler.passes.derived.p14_facial` | `compiler.authoring`, `planner.dependency_graph`, `planner.scene_view`, `solver.quaternion`, `validators.facial_validator`, `validators.schema_validator` | functools, json, yaml |
@@ -111,5 +111,5 @@ flowchart LR
 | `validators.envelope_validator` | `kernel.kernel_files`, `planner.dependency_graph`, `planner.modality`, `validators.layer_dependency_validator`, `validators.schema_validator` | json |
 | `validators.facial_validator` | — | json, re |
 | `validators.layer_dependency_validator` | `kernel.canonical`, `kernel.version`, `planner.dependency_graph`, `planner.topological_sort` | re |
-| `validators.prompt_validator` | `compiler.passes.mandatory.p07_contact`, `planner.dynamic_beat_validator`, `planner.scene_view`, `renderers.anime_renderer`, `renderers.prop_samples`, `renderers.prose_renderer`, `solver.euler_solver`, `solver.staff_geometry`, `validators.cause_reason` | re |
+| `validators.prompt_validator` | `compiler.passes.derived.p11_kinematic`, `compiler.passes.mandatory.p07_contact`, `planner.dynamic_beat_validator`, `planner.scene_view`, `renderers.anime_renderer`, `renderers.prop_samples`, `renderers.prose_renderer`, `solver.euler_solver`, `solver.staff_geometry`, `validators.cause_reason` | re |
 | `validators.schema_validator` | `kernel.canonical` | re |

@@ -44,8 +44,9 @@ BREAKS = [
     ("checklist's caught_by", _edit(("docs/findings", "F-001-*.md"), "## Status\nresolved\n", "## Status\nopen\n")),
     ("link to missing file", _edit(("docs/sessions", "S-001-*.md"), "## Next\n", "## Next\nSee [x](nowhere.md).\n")),
     ("are not in the code", _edit("docs/plans/backlog.yaml", "codes: [BODY_HOLD_FRAMES,", "codes: [NO_SUCH_CODE,")),
-    ("every new code is in the code", _edit("docs/plans/backlog.yaml", "codes: [AIRBORNE_PICKUP]",
-                                            "codes: [CAUSE_REASON]")),
+    ("every new code is in the code", lambda root: (root / "docs/plans/backlog.yaml").open("a", encoding="utf-8").write(
+        "  - {id: ZZ-01, title: x, status: ready, step: docs, plan: PLAN-005, depends_on: [], findings: [],"
+        " codes: [CAUSE_REASON]}\n")),
     ("which is superseded", _edit("docs/rules.yaml", "source: [ADR-O46]", "source: [ADR-O45]")),
     ("does not say", _edit(("docs/decisions", "ADR-O45-*.md"), "## Superseded By\nADR-O46", "## Superseded By\n—")),
     ("is stale", _edit("docs/index/findings.md", "| F-001 |", "| F-001x |")),

@@ -154,16 +154,19 @@ rows:
     class: mandatory
     step: S11
     status: partial
-    codes: [SUPPORT_MISMATCH, AIRBORNE_UNBOOKENDED]
+    codes: [SUPPORT_MISMATCH, AIRBORNE_UNBOOKENDED, AIRBORNE_PICKUP]
     gaps: [WEIGHT_TRAVEL, OPPOSITION]
     enforced_by:
+      - {file: compiler/passes/derived/p11_kinematic.py, check: pickup_findings, code: AIRBORNE_PICKUP,
+         test: tests/test_kinematic_solver.py::test_airborne_pickup_needs_a_supported_body_within_reach}
       - {file: solver/euler_solver.py, check: limit_findings, code: JOINT_LIMIT,
          test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
       - {file: compiler/passes/derived/p11_kinematic.py, check: check, code: KINEMATIC_SUPPORT,
          test: tests/test_kinematic_solver.py::test_each_rule_rejects_its_violation}
       - {file: solver/euler_solver.py, check: check, code: MOTION_POSTURE,
          test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
-    note: "B-2 support-change logic (S11 vs S07/S06), posture (S13), joint limits (S13 JOINT_LIMIT, owner O11:
+    note: "M9-03 (owner O18, audit X2/X3, render finding F7): a prop resting on a surface is taken only by a body that
+      has support and is within reach then (AIRBORNE_PICKUP, S11 and the prompt). B-2 support-change logic (S11 vs S07/S06), posture (S13), joint limits (S13 JOINT_LIMIT, owner O11:
       the ROM table on the kernel joints, anime +30) and airborne bookends (AIRBORNE_UNBOOKENDED) hold. Not checked:
       B-1 weight travel and B-4 opposition (gaps); B-5 lag and B-6 breath are carried by the prose implied guidance.
       Exception gates B-X1..3 not modelled."

@@ -170,6 +170,8 @@ BREAKS = [
         "ONE backflip about the side-to-side axis (sagittal plane), 5.10–5.50",
         "backflip: 0 degrees at 5.10, -180 degrees at 5.30, -360 degrees at 5.50")),
     ("IMPACT_CONTACT_SYNC", "reference_fight", "mixed", _replace("Impact frames: 2.50,", "Impact frames: 2.40,")),
+    ("AIRBORNE_PICKUP", "reference_fight", "mixed", _replace("7.50 A: SUPPORT steps right-forward alternating [f:alt] |",
+                                                             "7.50 A: SUPPORT NO SUPPORT |")),
     ("HIDDEN_PHRASING", "reference_fight", "mixed", _replace("substitution log (on the ground, deployment standing until 4.00)",
                                                              "substitution log (hidden in A's coat until 3.70)")),
     ("CAUSAL_LIST_MISSING", "wizard_vs_acrobat", "mixed", _drop_causal_threads),

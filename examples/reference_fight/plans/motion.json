@@ -1,7 +1,7 @@
 {
  "step_id": "S13",
  "band": "L4c",
- "packet_sha256": "sha256:7367ed80d45afe2571565d8708105f1c367587587171faabf6f586802795e30a",
+ "packet_sha256": "sha256:52f1204ae3b0a45bbe5b4e8326277c8780e34f600c927a3d52dc64f5fe8a1ca8",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -2378,11 +2378,11 @@
   },
   {
    "slot": "ninja_lean@b19",
-   "name": "aerial_rope_dart_regrapple",
+   "name": "rope_dart_regrapple",
    "pos": [
+    -0.1,
     0.6,
-    2.2,
-    4.8
+    3.2
    ],
    "rot": [
     -330,
@@ -2391,47 +2391,47 @@
    ],
    "bones": {
     "Sp": [
-     20,
+     50,
      0,
      0
     ],
     "LUL": [
-     -60,
+     -120,
      0,
      0
     ],
     "RUL": [
-     -60,
+     -120,
      0,
      0
     ],
     "LL": [
-     30,
+     90,
      0,
      0
     ],
     "RL": [
-     30,
+     90,
      0,
      0
     ],
     "LA": [
-     -45,
+     -30,
      0,
      0
     ],
     "RA": [
-     -90,
+     -45,
      0,
      0
     ],
     "LFA": [
-     -30,
+     -10,
      0,
      0
     ],
     "RFA": [
-     -30,
+     -45,
      0,
      0
     ],
@@ -2446,7 +2446,7 @@
      0
     ]
    },
-   "description": "L:arm fwd mid bent2 holding rope dart, leg fwd mid bent4, lLeg bent4; R:arm fwd high bent2 reaching forward, leg fwd mid bent4, lLeg bent4; support=none airborne; AERIAL ROPE DART REGRAPPLE, A left hand throws rope dart forward, rope dart wraps around B right shoulder again, A PULLS rope dart taut, A pulled rapidly toward B, both arms visible, head facing B, this is a GRAPPLE NOT a strike",
+   "description": "L:arm fwd low bent1 taking the rope dart from the ground, leg fwd mid bent7, lLeg bent7; R:arm fwd mid bent3, leg fwd mid bent7, lLeg bent7; support=both feet; A LANDS CROUCHED BY THE ROPE DART and takes it with the left hand, then whips it forward to wrap B right shoulder, head facing B, this is a GRAPPLE NOT a strike",
    "turn": "none",
    "axis_declaration": "none"
   },
@@ -2528,9 +2528,9 @@
    "slot": "ninja_lean@b20",
    "name": "pull_b_toward_pillar",
    "pos": [
-    0.5,
-    1.8,
-    4.5
+    -0.2,
+    0.6,
+    5.1
    ],
    "rot": [
     -330,
@@ -2539,47 +2539,47 @@
    ],
    "bones": {
     "Sp": [
-     20,
+     45,
      0,
      0
     ],
     "LUL": [
-     -90,
+     -110,
      0,
      0
     ],
     "RUL": [
-     -90,
+     -110,
      0,
      0
     ],
     "LL": [
-     45,
+     80,
      0,
      0
     ],
     "RL": [
-     45,
+     80,
      0,
      0
     ],
     "LA": [
-     -45,
+     -60,
      0,
      0
     ],
     "RA": [
-     -45,
+     -30,
      0,
      0
     ],
     "LFA": [
-     -45,
+     -30,
      0,
      0
     ],
     "RFA": [
-     -45,
+     -10,
      0,
      0
     ],
@@ -2594,7 +2594,7 @@
      0
     ]
    },
-   "description": "L:arm fwd mid bent3 holding rope dart taut, leg fwd mid bent5, lLeg bent5; R:arm fwd mid bent3, leg fwd mid bent5, lLeg bent5; support=none airborne; A PULLS B TOWARD PILLAR with rope dart, B is being dragged toward the pillar at z=6, rope dart line taut between A left hand and B right shoulder, A body bracing mid-air, both arms visible, head facing B, this is a PULL NOT a strike",
+   "description": "L:arm fwd mid bent3 holding rope dart taut, leg fwd mid bent7, lLeg bent7; R:arm fwd low bent1 taking the kunai from the ground, leg fwd mid bent7, lLeg bent7; support=both feet; A CROUCHES BY THE KUNAI, the right hand takes it from the ground while the left hand hauls the taut rope dart, B dragged toward the pillar at z=6, this is a PULL NOT a strike",
    "turn": "none",
    "axis_declaration": "none"
   },

@@ -14,20 +14,20 @@ items:
      codes: [BODY_HOLD_FRAMES, EMPTY_HAND_UNSTATED, ROTATION_ANGLES_PRINTED, HIDDEN_PHRASING]}
   - {id: M9-02, title: "F5.3 strike, throw and release contacts at their pose (V1b's deflect wording)", status: done,
      step: temporal, plan: PLAN-003, depends_on: [M9-01], findings: [F-021, F-031, F-061], codes: [IMPACT_CONTACT_SYNC]}
-  - {id: M9-03, title: "F6.3 grounded pickups at 7.5 and 8.0", status: next, step: contact, plan: PLAN-003,
+  - {id: M9-03, title: "F6.3 grounded pickups at 7.5 and 8.0 (check moved to S11: support is known there for every genre)", status: done, step: kinematic, plan: PLAN-003,
      depends_on: [M9-02], findings: [F-022, F-007], codes: [AIRBORNE_PICKUP]}
   - {id: M9-03a, title: "GAP-04/05 checkable constraint form and the per-layer constraint run", status: blocked,
      blocked_by: "owner approval of the checkable constraint schema (O61)", step: constraint, plan: PLAN-004,
      depends_on: [M9-02], findings: [F-019, F-020], codes: [CONSTRAINT_BEAT]}
-  - {id: M9-03b, title: "GAP-03 carried_by on prop nodes from the archetype card (O63)", status: ready, step: brief,
+  - {id: M9-03b, title: "GAP-03 carried_by on prop nodes from the archetype card (O63)", status: next, step: brief,
      plan: PLAN-004, depends_on: [], findings: [F-018], codes: []}
   - {id: M9-04, title: "F2.1/F2.2 prop physics contract, F6.1/F6.2 positions and rest", status: ready, step: render,
-     plan: PLAN-003, depends_on: [M9-02], findings: [], codes: [PROP_PHYSICS_UNSTATED, PROP_VISIBILITY]}
+     plan: PLAN-003, depends_on: [M9-02], findings: [F-062], codes: [PROP_PHYSICS_UNSTATED, PROP_VISIBILITY]}
   - {id: M9-05, title: "FR.1/FR.3 derived rotation path and rotation checks", status: ready, step: motion,
      plan: PLAN-003, depends_on: [M9-01], findings: [F-028, F-058],
      codes: [ROTATION_PATH_UNSTATED, ROTATION_INCOMPLETE, ROTATION_NOT_MONOTONIC, INVERSION_MISSING]}
   - {id: M9-06, title: "F5.1/F5.2 world contact points by forward kinematics", status: ready, step: motion,
-     plan: PLAN-003, depends_on: [M9-02], findings: [F-025, F-028], codes: [CONTACT_WORLD]}
+     plan: PLAN-003, depends_on: [M9-02], findings: [F-025, F-028, F-062], codes: [CONTACT_WORLD]}
   - {id: M9-07, title: "F4.1/F4.2 combat verbs on contacts and Laban wording", status: ready, step: temporal,
      plan: PLAN-003, depends_on: [M9-02], findings: [F-025], codes: []}
   - {id: M9-08, title: "O21 opening from above in V6's wording", status: ready, step: temporal, plan: PLAN-003,

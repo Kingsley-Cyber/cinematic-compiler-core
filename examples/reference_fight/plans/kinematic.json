@@ -1,7 +1,7 @@
 {
  "step_id": "S11",
  "band": "L4a",
- "packet_sha256": "sha256:e99175453a82152a1e38fd114ab5736cbd13bdbbe4302a0ecfee67133772d3c2",
+ "packet_sha256": "sha256:02904401b11c7c0663800baf26649b577a11ae8b4355e3da8d6e9349d15c6007",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -547,18 +547,21 @@
   },
   {
    "slot": "ninja_lean@b19",
-   "support": [],
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
    "balance": "shifting",
-   "loading": "loading",
-   "bracing": "none",
-   "yielding": "none",
+   "loading": "loaded",
+   "bracing": "light",
+   "yielding": "yielding",
    "weight_transfer": "forward",
    "tension": "high",
    "release": "none",
    "strain": "mild",
    "restraint": "none",
    "breathing": "held",
-   "reads": "Left hand whips the rope dart out to wrap B's shoulder; the right hand takes the kunai."
+   "reads": "Lands crouched by the rope dart; the left hand takes it from the ground and whips it out to wrap B's shoulder."
   },
   {
    "slot": "ninja_broad@b19",
@@ -580,8 +583,11 @@
   },
   {
    "slot": "ninja_lean@b20",
-   "support": [],
-   "balance": "shifting",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
    "loading": "loaded",
    "bracing": "braced",
    "yielding": "none",
@@ -591,7 +597,7 @@
    "strain": "high",
    "restraint": "none",
    "breathing": "held",
-   "reads": "Rope dart taut from the left hand, body braced mid-air, hauling B toward the pillar."
+   "reads": "Crouched by the kunai: the right hand takes it from the ground while the left hauls the taut rope dart."
   },
   {
    "slot": "ninja_broad@b20",
