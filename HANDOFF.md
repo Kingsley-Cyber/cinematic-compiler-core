@@ -5,20 +5,19 @@ URCP and no Beads. The old `~/Documents/cinematic-compiler` is superseded and ca
 Remote: github.com/Kingsley-Cyber/cinematic-compiler-core (public, MIT); push only when the owner says so.
 
 ## Bootstrap after compaction (read this first)
-- **State:** M1–M5.5 and M3.5 built; S01–S17 run (S18 post-generation waits for M7). Checkpoint tag
-  `checkpoint-2026-10-11-m3.5`. Four examples with `render.txt`: `wizard_vs_acrobat`, `reference_fight` (golden),
-  `ugc_glasses_demo`, `live_action_standoff`. K1: the owner's knowledge DAG is frozen at
-  `docs/sources/knowledge_dag_v1.md` and mapped row by row in `kernel/knowledge_map.yaml` (kernel log guards it).
-  **M8 (in progress):** every example also writes `prose_<mode>.txt` — the DAG's Master Template in four movement
-  modes alongside `render.txt` (LBN-2.4; actor rows are named fields since O9). `validators/prompt_validator.py`
-  checks a final prompt by 37 semantic codes; `tests/test_dag_conformance.py` compiles every example through
-  S01-S17 and requires zero findings — the golden (reference_fight) included, nothing set aside (O10). Pipeline
-  checks added in M8.6-M8.8: JOINT_LIMIT (S13, owner ROM table, knee flexion +X), TELEPORT (S04, 25 m/s,
-  substitution exempt), PROP_KINEMATICS (S04, prop p/v under gravity). Owner decisions O1-O12 in MASTER_PLAN.
-  The golden's recorded deviations (knees, two hip clamps, fx wording, solved prop p/v) live in
-  tests/test_reference_fight_golden.py. Next: the gap slices in MASTER_PLAN M8.10+.
-- **Latest findings (2026-10-11):** [docs/findings/2026-10-11-renders-and-dag-adherence.md](docs/findings/2026-10-11-renders-and-dag-adherence.md)
-  — five owner renders, root causes, 38/84 map rows verified, open decisions Q1-Q8, the checklist plan.
+- **Start with [docs/handoff/NEXT_SESSION.md](docs/handoff/NEXT_SESSION.md)** — the owner's steering prompt, the
+  ordered work queue and the lessons of 2026-10-11. Evidence: [docs/findings/2026-10-11-renders-and-dag-adherence.md](docs/findings/2026-10-11-renders-and-dag-adherence.md).
+- **Mission now:** every prompt the compiler emits must provably adhere to the owner's knowledge DAG
+  (`docs/sources/knowledge_dag_v1.md`, mapped in `kernel/knowledge_map.yaml`), row by row, as a checklist. Today only
+  38 of 84 checklist rows are verified per prompt; five owner renders (R1–R5, `docs/render_log.md`) failed for the
+  reasons the unverified rows describe. A green conformance test is not adherence.
+- **State:** M1–M5.5 and M3.5 built; S01–S17 run (S18 waits for M7). K1 + M8.0–M8.9: four structured-prose modes
+  (`prose_<mode>.txt`) beside LBN-2.4 `render.txt` (actor rows as named fields), 37 prompt codes
+  (`validators/prompt_validator.py`), `tests/test_dag_conformance.py`, JOINT_LIMIT (S13), TELEPORT (S04),
+  PROP_KINEMATICS (S04). Owner decisions O1–O12 in MASTER_PLAN; the golden's recorded deviations in
+  `tests/test_reference_fight_golden.py`. Examples: `wizard_vs_acrobat`, `reference_fight` (golden),
+  `ugc_glasses_demo`, `live_action_standoff`. GitHub `main` = `cda5ffe`; later commits are local until the owner
+  says push.
 - **Read order:** this file → `docs/plans/MASTER_PLAN.md` (decisions Q/A/B/F, every milestone) →
   `docs/reference/README.md` (generated DAG, schemas, data files, code) → `kernel/layer_order.yaml`.
 - **Commit rule (O5: one local commit per slice):** commit only when `scripts/check.sh` exits 0. Don't pipe it into `tail` (that hides the exit
@@ -31,15 +30,16 @@ Remote: github.com/Kingsley-Cyber/cinematic-compiler-core (public, MIT); push on
   for each authored step in build order, compile until the step before it, call
   `compiler.pipeline.AUTHORED[node].prepare(envelope)` and copy the new `packet_sha256` (and `step_id`) into the plan.
   Change nothing else, then prove it: the `render.txt` files must stay byte-identical unless the change was meant to
-  alter them.
+  alter them. Tool: `python -m compiler.rebind` reports moved packets; `python -m compiler.rebind --write NAME`
+  re-binds them.
 - **Logs:** every schema / library / kernel file change gets `python -m kernel.schema_log [--log library|kernel]
   record <file> --change created|changed --reason ... --decided-by owner|owner_default|agent_fix`; logs are
   append-only and hash-chained. After DAG, schema, library or import changes run `python -m kernel.build_docs`.
 - **Never:** paid model API, renders (the owner renders), pushing without the owner, editing logged files without a
   log entry.
-- **Waiting on the owner:** M6 tool definitions; P3.2-6 PRESERVE_AXIS (keep or drop S16's 180-degree rule); review
-  of library/joint_limits.yaml's axis mapping, the 2 m reach / 0.25 m prop tolerance, draft cards and agent
-  additions (below).
+- **Waiting on the owner:** Q1–Q8 in the findings' section 9 (Q1 scope and Q2 not-applicable rulings block the
+  checklist); M6 tool definitions; review of `library/joint_limits.yaml`'s axis mapping, the 2 m reach / 0.25 m prop
+  tolerance, draft cards and agent additions (below).
 
 ## CLI
 `cinematic compile "<query>" [--genre G] [--until NODE] [--plans DIR] [--packet-out F] [--chain-from PREV.json]` (exit 3 = an authored step needs

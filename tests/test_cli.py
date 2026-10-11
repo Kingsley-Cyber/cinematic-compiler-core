@@ -74,3 +74,10 @@ def test_every_dag_group_has_a_graph_schema_in_the_envelope_validator():
     covered = {(kind, group) for parts in GROUP_SCHEMAS.values() for kind, group in parts.values() if kind != "top"}
     written = {tuple(p.split("/")[1:3]) for n in load()["nodes"] for p in n["writes"] if p.startswith(("/nodes/", "/edges/"))}
     assert written - covered == set()
+
+
+def test_every_example_plan_is_bound_to_its_current_packet():
+    """compiler/rebind.py finds nothing to re-bind on a clean tree (it would after a prompt or library edit)."""
+    from compiler.rebind import rebind
+    names = sorted(p.name for p in (ROOT / "examples").iterdir() if (p / "request.json").exists())
+    assert rebind(names) == []

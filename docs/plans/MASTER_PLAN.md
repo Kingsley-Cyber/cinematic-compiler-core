@@ -455,7 +455,10 @@ Spec and codes: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
   'no ring', audit X29); every code fires on its break. Mandatory 17/27 enforced, required 9/15.
 - [x] M8.5 named fields in LBN-2.4 actor rows (O9)
 - [x] M8.6 joint limits (O11, O7): library/joint_limits.yaml + S13 JOINT_LIMIT; 47 example values normalised · [x] M8.7 teleport + substitution (O12): S04 TELEPORT (25 m/s), event_type substitution (reference b09) · [x] M8.8 prop p/v + gravity (O8): S04 prop_samples + PROP_KINEMATICS; both prompts print p/v · [x] M8.9 golden passes conformance, KNOWN emptied (O10): fx 'dust ring' -> 'dust burst'
-- [ ] M8.10+ close the remaining gaps, one per slice. Derivable: PROP_TWO_HOLDERS (C5, S07), POST_CONTACT_MISSING (C21),
+- [ ] M8.10 per-prompt DAG checklist: all 84 checklist rows PASS / FAIL / NOT CHECKED per prompt; the gate refuses
+  FAIL and NOT CHECKED (after the owner's Q1 scope and Q2 not-applicable rulings). Plan and queue:
+  docs/handoff/NEXT_SESSION.md; evidence: docs/findings/2026-10-11-renders-and-dag-adherence.md
+- [ ] M8.11+ close the rows in the queue's order: causes, camera, body and props, density and format, the rest. Derivable: PROP_TWO_HOLDERS (C5, S07), POST_CONTACT_MISSING (C21),
   PHRASING_MISSING (LMA, T6), MOMENTUM_MISSING (C22, T10), CHAIN_ORDER (KC), ANTICIPATION_MISSING (KF),
   SHOT_TRANSITION_MISSING (C25), PROP_KINEMATICS (C31). Need the owner: JOINT_LIMIT ranges (BIO, T7; the DAG gives
   none), TELEPORT speed bound and the substitution exemption (T10). By design partial: T3/T4 (superseded orders),
