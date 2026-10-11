@@ -574,7 +574,8 @@ rows:
     class: mandatory
     step: S06
     status: partial
-    codes: [PROP_TRACK_MISSING, PROP_STATE_ORDER, PROP_INVARIANT_MISSING, PROP_FIRST_STATE, COUNT_CONTRADICTION]
+    codes: [PROP_TRACK_MISSING, PROP_STATE_ORDER, PROP_INVARIANT_MISSING, PROP_FIRST_STATE, COUNT_CONTRADICTION,
+            PROP_PHYSICS_UNSTATED, PROP_VISIBILITY]
     gaps: [PROP_TWO_HOLDERS]
     enforced_by:
       - {file: validators/continuity_validator.py, check: first_states, code: PROP_FIRST_STATE,
@@ -585,7 +586,11 @@ rows:
          test: tests/test_state_pass.py::test_unmet_requirement_and_same_time_conflict_are_refused}
       - {file: compiler/passes/mandatory/p07_contact.py, check: lifecycle, code: CONTACT_HAND,
          test: tests/test_contact_pass.py::test_each_contact_rule_rejects_its_violation}
-    note: "Counts stated anywhere in the prompt agree with each prop's count (COUNT_CONTRADICTION, M8.12). M8.12: every prop's holder and card states are known from the first beat (S06 and the prompt, PROP_FIRST_STATE). Ordered states per prop (S06 replay), never lost or cloned, possession agrees with contacts, a hand holds
+      - {file: validators/prompt_validator.py, check: _where_checks, code: PROP_VISIBILITY,
+         test: tests/test_prop_track.py::test_a_prop_with_no_place_is_refused}
+    note: "M9-04b (plan F6.1 as amended by W4, F6.2): each prop's block has a WHERE line that tiles the scene with where
+      the prop is (held by a hand, carried by its owner, in flight, at rest at a place and until when), derived from
+      holds, samples and S06 locations (PROP_VISIBILITY; flights PROP_PHYSICS_UNSTATED). Counts stated anywhere in the prompt agree with each prop's count (COUNT_CONTRADICTION, M8.12). M8.12: every prop's holder and card states are known from the first beat (S06 and the prompt, PROP_FIRST_STATE). Ordered states per prop (S06 replay), never lost or cloned, possession agrees with contacts, a hand holds
       one thing at a time; each prop's history is a render track. Gap: nothing refuses two entities holding active
       possess contacts on one prop at once (holder is single-valued; HOLDER_CONTACT only checks it is among them)."
 
@@ -828,9 +833,11 @@ rows:
     class: required
     step: S02
     status: enforced
-    codes: [ANCHOR_PHRASE_MISSING, PROP_FIRST_STATE]
+    codes: [ANCHOR_PHRASE_MISSING, PROP_FIRST_STATE, PROP_VISIBILITY]
     enforced_by:
       - {file: schemas/cards/archetype_card.schema.json}
+      - {file: validators/prompt_validator.py, check: _where_checks, code: PROP_VISIBILITY,
+         test: tests/test_prop_track.py::test_a_prop_with_no_place_is_refused}
     note: "M8.12: SCENE also gives each prop's state at the start, with the time it first changes ('deployment hidden until 4.00'; R1-R5 drew the log from the first second) (PROP_FIRST_STATE). Archetype cards must have description, silhouette and costume and the envelope carries them; LBN-2.4 drops
       them (only reference_fight and ugc_glasses_demo carry appearance, through their preface). The prose [SCENE]
       (M8.2) gives every entity one phrase from its silhouette and costume; ANCHOR_PHRASE_MISSING lands in M8.4."
@@ -942,16 +949,23 @@ rows:
     class: required
     step: S04
     status: enforced
-    codes: [PROP_TRACK_MISSING, PROP_LINE_MISSING]
+    codes: [PROP_TRACK_MISSING, PROP_LINE_MISSING, PROP_PHYSICS_UNSTATED]
     enforced_by:
       - {file: planner/dynamic_beat_validator.py, check: _prop_kinematics, code: PROP_KINEMATICS,
          test: tests/test_dynamic_beat_validator.py::test_prop_kinematics_holds_free_flight_to_gravity}
+      - {file: planner/dynamic_beat_validator.py, check: _contact_pairs, code: PROP_KINEMATICS,
+         test: tests/test_dynamic_beat_validator.py::test_one_sample_at_a_contact_on_a_flying_prop_is_refused}
+      - {file: validators/prompt_validator.py, check: _where_checks, code: PROP_PHYSICS_UNSTATED,
+         test: tests/test_prop_track.py::test_a_flight_without_its_physics_is_refused}
     note: "M8.12: where a sample sits on a line prop fastened to two bodies, the track says which body holds which end (PROP_LINE_MISSING, F8). Owner O8: beats carry prop samples (p[x,y,z], v at throws, releases and deflects) like body positions. S04
       refuses a held prop over 2 m from its holder, a free prop that leaves gravity between two samples by over
       0.25 m (anime may declare a float), and a resting prop that moves with no contact (reach and tolerance are
       Claude's interpretation). Both prompts print each sample ('2.50 p[...] v[...] moving up toward A');
       reference_fight (17 samples) and ugc_glasses_demo (5) are solved under gravity, not copied from the golden's
-      literal numbers, which the DAG notes disagree with gravity."
+      literal numbers, which the DAG notes disagree with gravity. M9-04a (plan F2.2): a contact on a free moving prop is a
+      pre/post sample pair at one time and place, gravity reaching the pre sample in velocity too. M9-04b (plan F2.1):
+      each flight between samples is printed as 'ballistic under gravity from p[…] v[…]' in the prop's WHERE line
+      (PROP_PHYSICS_UNSTATED)."
 
   - id: C32
     name: Event-separation rule

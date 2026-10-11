@@ -628,6 +628,7 @@ def _props(envelope, labels):
         rows += lines_of.get(prop["id"], [])
         count = prop.get("count", 1)
         lines = [" · ".join(text for _, text in sorted(rows, key=lambda r: r[0]))]
+        lines.append(prop_samples.where_line(prop_samples.track(envelope, labels, prop["id"])))  # plan F2.1, F6.1, F6.2
         lines.append((f"ONE {prop['name']} only" if count == 1 else f"Exactly {count} {prop['unit_name']} in the "
                       f"{prop['group_name']}") + ": never duplicated, never in two hands at once, never lost.")
         holders = {s["conditions"].get("holder") for s in own}

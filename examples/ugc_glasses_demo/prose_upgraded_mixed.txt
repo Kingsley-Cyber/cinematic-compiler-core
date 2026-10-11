@@ -51,6 +51,7 @@ Height used: y 0 to 0 m; depth used: z 0 to 0 m.
 
 [PROP STATE MACHINE – glasses]
 0.00 holder none, location tabletop, temples folded, worn no · 0.00 p[0.25, 0.75, 0.35] at rest · 1.50 holder none -> A · 1.50 held by A R hand · 1.50 p[0.2, 1.1, 0.3] held by A · 3.50 temples folded -> open · 3.50 touched by A L hand · 3.50 p[0, 1.25, 0.25] held by A · 5.50 holder A -> none, worn no -> yes · 5.50 touched by A L hand · 5.50 touched by A head · 5.50 released by A R hand · 5.50 p[0, 1.6, 0.1] at rest · 8.00 p[0, 1.6, 0.1] at rest
+WHERE: 0.00-1.50 at rest on the tabletop at [0.25, 0.75, 0.35] · 1.50-5.50 held by A R hand · 5.50-8.00 at rest at [0, 1.6, 0.1]
 ONE glasses only: never duplicated, never in two hands at once, never lost.
 
 [CAUSAL LINKS]

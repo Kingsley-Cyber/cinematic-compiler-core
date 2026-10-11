@@ -99,9 +99,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 2.0; backlog 2.
-- Last session: S-009 (2026-10-11, applied): M9-04a: pre- and post-contact prop samples (F2.2).
-- Next slice: M9-04b F2.1/F6.1/F6.2 prop physics contract, positions and rest, as amended by W4 (split from M9-04) (step render).
-- Open findings: 37; decisions: 98 (0 proposed).
+- Last session: S-010 (2026-10-11, applied): M9-04b: where each prop is, its physics while free and its rest (F2.1, F6.1, F6.2).
+- Next slice: M9-05 FR.1/FR.3 derived rotation path and rotation checks (step motion).
+- Open findings: 38; decisions: 98 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

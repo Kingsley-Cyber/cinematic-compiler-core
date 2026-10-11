@@ -154,7 +154,9 @@ def test_one_sample_at_a_contact_on_a_flying_prop_is_refused():
                                                "float": False}],
               "contacts": [{"contact_type": "touch", "a": {"kind": "entity", "id": "a", "part": "right_foot"},
                             "b": {"kind": "prop", "id": "k", "part": None}, "at": "start"}]}
-    assert [f["message"] for f in _prop_kinematics([first, second], {"k": {}}, "anime")] == [
+    findings = _prop_kinematics([first, second], {"k": {}}, "anime")
+    assert [f["code"] for f in findings] == ["PROP_KINEMATICS"]
+    assert [f["message"] for f in findings] == [
         "k is moving free into a contact at 0.5: give it a pre and a post sample there (F2.2)"]
 
 

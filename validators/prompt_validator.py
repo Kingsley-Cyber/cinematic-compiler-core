@@ -58,6 +58,10 @@ CODES = {
     "IMPACT_CONTACT_SYNC": "a strike bow sits off every printed impact frame, or an impact frame has no contact on it "
                            "(one time per hit, O23; F-021)",
     "AIRBORNE_PICKUP": "a body takes a prop resting on a surface on a NO SUPPORT line (O18; renders R3, R4: F7)",
+    "PROP_PHYSICS_UNSTATED": "a free prop's flight is not written as ballistic under gravity (or a declared float) from its "
+                             "p and v (plan F2.1: the model skips between samples)",
+    "PROP_VISIBILITY": "a prop's WHERE line is missing, leaves a gap, disagrees with the derived track, or a span has no "
+                       "place (plan F6.1 as amended by W4, F6.2)",
     "CAUSAL_LIST_MISSING": "a causal edge is absent from CAUSAL LINKS",
     "CAUSE_REASON": "a causal link's reason is not printed in CAUSAL LINKS, or does not state a cause",
     "REACTION_WITHOUT_CAUSE": "a hard effect's line comes before its cause's contact",
@@ -91,6 +95,7 @@ READS = {
     "VANISHED_BODY": (STAFF, RULES), "TURN_LABEL": (STAFF,),
     "BODY_HOLD_FRAMES": (), "EMPTY_HAND_UNSTATED": (STAFF,), "ROTATION_ANGLES_PRINTED": (), "HIDDEN_PHRASING": (),
     "IMPACT_CONTACT_SYNC": (STAFF, "[ANIME]", "[UGC]", "[LIVE ACTION]"), "AIRBORNE_PICKUP": (STAFF,),
+    "PROP_PHYSICS_UNSTATED": (PROPS,), "PROP_VISIBILITY": (PROPS,),
     "CAUSAL_LIST_MISSING": ("[CAUSAL LINKS]",), "CAUSE_REASON": ("[CAUSAL LINKS]",),
     "REACTION_WITHOUT_CAUSE": (),
     "CAUSAL_RULE_MISSING": (RULES,), "CONSERVATION_RULE_MISSING": (RULES,), "SPAN_RULE_MISSING": (STAFF, RULES),
@@ -190,6 +195,7 @@ def check(text, envelope, mode):
     _guidance_checks(envelope, parts, labels, mode, add)
     _scene_and_space(envelope, parts, labels, add)
     _props_and_causes(envelope, parts, labels, mode, add)
+    _where_checks(envelope, parts, labels, add)
     _first_state_checks(envelope, parts, labels, add)
     _line_and_word_checks(envelope, text, parts, labels, add)
     _count_checks(envelope, text, add)
@@ -606,6 +612,34 @@ def _props_and_causes(envelope, parts, labels, mode, add):
     for word in ("ring", "halo", "full circle"):
         if f"no {word}" in negatives and re.search(rf"\b{word}\b", fx):
             add("PROMPT_CONTRADICTION", f"FX draws a {word} while NEGATIVES forbid it (audit X29)")
+
+
+def _where_checks(envelope, parts, labels, add):
+    """Plan F2.1, F6.1 (as amended by W4) and F6.2: each prop block's WHERE line tiles 0 to the end with the derived
+    track; flights state their physics (PROP_PHYSICS_UNSTATED), every other span its place (PROP_VISIBILITY)."""
+    end = f"{envelope['scene']['duration_s']:.2f}"
+    for prop in envelope["nodes"]["props"]["items"]:
+        block = _body(parts, f"[PROP STATE MACHINE – {prop['name']}]")
+        if not block:
+            continue  # PROP_TRACK_MISSING
+        line = next((row for row in block.splitlines() if row.startswith("WHERE: ")), "")
+        items = line[len("WHERE: "):].split(" · ") if line else []
+        for start, stop, kind, text in prop_samples.track(envelope, labels, prop["id"]):
+            item = f"{start:.2f}-{stop:.2f} {text}"
+            if kind == "flight" and item not in items:
+                add("PROP_PHYSICS_UNSTATED", f"{prop['name']}: the flight {start:.2f}-{stop:.2f} is not stated as {text}")
+            elif kind == "unplaced":
+                add("PROP_VISIBILITY", f"{prop['name']}: nothing says where it is {start:.2f}-{stop:.2f}")
+            elif kind != "flight" and line and item not in items:
+                add("PROP_VISIBILITY", f"{prop['name']}: the WHERE line does not say '{item}'")
+        if not line:
+            add("PROP_VISIBILITY", f"{prop['name']} has no WHERE line")
+            continue
+        times = [re.match(r"(\d+\.\d\d)-(\d+\.\d\d) ", item) for item in items]
+        spans = [(m.group(1), m.group(2)) for m in times if m]
+        if len(spans) < len(items) or not spans or spans[0][0] != "0.00" or spans[-1][1] != end or any(
+                a[1] != b[0] for a, b in zip(spans, spans[1:], strict=False)):
+            add("PROP_VISIBILITY", f"{prop['name']}: the WHERE spans do not run from 0.00 to {end} without a gap")
 
 
 def _lasting_expected(envelope, labels):

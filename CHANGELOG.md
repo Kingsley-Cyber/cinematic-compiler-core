@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Added
+- PROP_PHYSICS_UNSTATED and PROP_VISIBILITY (M9-04b, plan F2.1, F6.1 as amended by W4, F6.2, S-010): each prose prop
+  block gains a WHERE line that tiles the scene with where the prop is (held by a hand, carried by its owner,
+  ballistic under gravity from p and v, at rest at a place until the next event), derived in
+  `renderers/prop_samples.track`; map rows C31, C5, C23 (kernel log). F-065 found.
 - Pre- and post-contact prop samples (M9-04a, plan F2.2, S-009): PropSample gains `phase: pre | post` (beat 1.1,
   beat_plan and temporal_graph 1.4); PROP_KINEMATICS takes two samples at one time only as a pair on a contact at one
   position, checks gravity into the pre sample in velocity too, and needs the pair where a free prop moves into a

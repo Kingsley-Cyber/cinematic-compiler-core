@@ -22,3 +22,4 @@ one that supersedes it).
 | L-15 | A hand-typed number in a test can be wrong: compute expected distances in Python before pinning them. | S-004 |
 | L-16 | A commit message needs a blank line after its first line; without it git folds the whole body into the subject. Write the message file with the blank line, check `git log -1 --format=%s`. | S-008 |
 | L-17 | `python -m compiler.rebind` takes bare example names (`reference_fight`), not paths; with no names it reports every example, and silence means no packet moved. | S-009 |
+| L-18 | A knowledge-map `enforced_by` test must name its code in quotes (`tests/test_knowledge_map.py` locators); the generic BREAKS test in test_dag_conformance does not, so point at a test that asserts the code. | S-010 |
