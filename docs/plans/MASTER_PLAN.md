@@ -87,6 +87,23 @@ Design calls from the concept review (agent, recorded for owner review):
   (Ekman, Hager & Friesen 1981 found deliberate expressions more asymmetric than spontaneous ones; Ekman's contempt
   is a one-sided AU14, not AU12). Until then the bounds table is a draft.
 
+### Knowledge DAG and structured prose (owner, 2026-10-11)
+
+The owner's DAG (`docs/sources/knowledge_dag_v1.md`, mapped in `kernel/knowledge_map.yaml`) is the compiler and
+workflow for writing the owner's prompts in structured prose: dependency chains plus graph QA/QC for the final
+outputs. Spec: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
+
+| # | Decision | Lands in |
+|---|---|---|
+| O1 | Keep LBN-2.4 unchanged and compile structured prose alongside it, composed as the DAG says | M8.2-M8.3 |
+| O2 | Compile all four movement modes (pure staff, Mixed, Upgraded Mixed, Euler-heavy); no per-scene choice | M8.2 |
+| O3 | Prose leaves out "root exact" and states "Laban support and contacts primary; Euler precision override"; LBN-2.4 keeps the kernel rule | M8.2 |
+| O4 | The repo layer order stands (effort after motion); the prose is built from the atoms the graphs hold | M8.0 map |
+| O5 | One local commit per slice when the gate passes; no push without the owner | all |
+| O6 | A conformance test checks the final prompts against every mandatory and required map row by semantic codes | M8.4 |
+
+Still open: P3.2-6 PRESERVE_AXIS (S16's 180-degree rule) — the owner's call.
+
 ---
 
 ## M1 — events and substrate (S04–S07) → done when the courtyard example compiles through S07
@@ -415,6 +432,16 @@ F.9 (examples) → F.10 (docs). One commit per block; the gate passes after each
   (Done: the glasses demo and `examples/live_action_standoff/` (wizard vs knight, 4 beats: the knight's glare, the
   wizard's one-sided contemptuous smirk, a suppressed fear micro-expression, the set jaw) compile through S17 with
   faces in words; render.txt written for the owner. M3.5 complete.)
+
+## M8 — structured-prose prompts + DAG conformance → done when every mandatory and required map row passes
+Spec and codes: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
+- [x] K1 knowledge-DAG map: frozen copy, 109-row map, coverage test, kernel log guards the map
+- [ ] M8.0 plan + owner decisions O1-O4 recorded in the map
+- [ ] M8.1 staff geometry atoms (direction, level, fold, support words, turn signs)
+- [ ] M8.2 prose renderer: SCENE, MOVEMENT LANGUAGE, FORMAT, staff in four modes, RULES, NEGATIVES
+- [ ] M8.3 remaining sections (implied guidance, motion control, spatial anchors, props, causal links, camera, genre)
+- [ ] M8.4 prompt validator + semantic codes + conformance test
+- [ ] M8.5+ close the listed gaps, one per slice
 
 ## M6 — deferred tooling
 - [ ] `kernel_extraction/` synergy_matrix, bridge_detector, layer_analyzer, kernel_compressor, ablation_runner

@@ -26,7 +26,8 @@
 
 version: 1
 status: draft
-basis: "Mapped by Claude 2026-10-11 against the repo at 9c9fd98 (layer_order 1.7); owner review pending."
+basis: "Mapped by Claude 2026-10-11 against the repo at 9c9fd98 (layer_order 1.7); owner decisions O1-O4 recorded
+  2026-10-11 (docs/plans/M8_DAG_PROSE.md); owner review pending."
 source:
   path: docs/sources/knowledge_dag_v1.md
   original: "~/Downloads/untitled folder/video-prompt-framework-knowledge-graph.md"
@@ -68,16 +69,16 @@ rows:
     anchor: "§2.2 L838; §2.3 L1166; §1.2 L55-L61; §2.4 L1332"
     class: mandatory
     step: all
-    status: clashes_with_repo
+    status: partial
     enforced_by:
       - {file: solver/euler_solver.py, check: check, code: MOTION_POS,
          test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
       - {file: compiler/passes/derived/p11_kinematic.py, check: check, code: KINEMATIC_SUPPORT,
          test: tests/test_kinematic_solver.py::test_each_rule_rejects_its_violation}
     note: "Lower never contradicts higher holds for position, facing and posture (S13 vs S04/S06) and support
-      (S11 vs S07/S06). Clash: the DAG lets Laban Effort veto a contradicting joint Euler; the repo builds S15 effort
-      after S13 motion (owner order 2026-10-10, layer_order.yaml) and its packet reads the finished keys, so nothing
-      checks Euler against Effort. Owner's call."
+      (S11 vs S07/S06). Owner O4 (2026-10-11): the repo order stands, so S15 effort is authored from the finished
+      keys rather than vetoing them. The prose states 'Laban support and contacts primary; Euler precision override'
+      (O3, M8.2); its codes land in M8.4."
 
   - id: M4
     name: Model-as-reader contradiction check
@@ -373,12 +374,12 @@ rows:
     anchor: "§2.2 L870; §2.3 L1236; §2.4 L190"
     class: mandatory
     step: all
-    status: clashes_with_repo
+    status: partial
     enforced_by:
       - {file: kernel/layer_order.yaml}
-    note: "Clash: v3 is linear with Laban Effort the highest movement authority above key poses, and Support above
-      Spatial. The repo authors S04 pos/facing (authoritative, owner Q2) before S11 support, and S15 effort after
-      S13 motion (owner order 2026-10-10). Owner's call."
+    note: "v3 is linear with Laban Effort above key poses and Support above Spatial. Owner O4 (2026-10-11): the repo
+      order stands (S04 pos/facing authoritative, owner Q2, before S11 support; S15 effort after S13 motion). The
+      prose sections follow the DAG's order (M8.2); SECTION_ORDER lands in M8.4."
 
   - id: T6
     name: Laban checklist
@@ -621,8 +622,7 @@ rows:
     class: style
     step: S17
     status: missing
-    note: "No staff projection. As a replacement mode it would drop Euler data that no_render_compression requires
-      (V9 clash); staff lines added beside the full data would not."
+    note: "No staff projection yet. Owner O2: compiled alongside LBN-2.4, which keeps the full data (M8.2)."
 
   - id: C15
     name: Mixed Mode
@@ -630,7 +630,7 @@ rows:
     class: style
     step: S17
     status: missing
-    note: "Not rendered. Root Euler on a few keys only would drop data no_render_compression requires (V9 clash)."
+    note: "Not rendered yet. Owner O2: compiled alongside LBN-2.4 (M8.2)."
 
   - id: C16
     name: Upgraded Mixed
@@ -638,7 +638,7 @@ rows:
     class: style
     step: S17
     status: missing
-    note: "Not rendered. Full joints on impact keys only would drop data no_render_compression requires (V9 clash)."
+    note: "Not rendered yet. Owner O2: compiled alongside LBN-2.4 (M8.2)."
 
   - id: C17
     name: Euler-heavy keypose
@@ -669,7 +669,8 @@ rows:
     class: style
     step: S17
     status: missing
-    note: "The render uses the kernel layout (LBN-2.4-ADV-LMA), not the [SCENE]...[RULES] template; one variant only."
+    note: "The render uses the kernel layout (LBN-2.4-ADV-LMA) only. Owner O1/O2: the [SCENE]...[NEGATIVES] template
+      compiles alongside it in four modes (M8.2-M8.3)."
 
   - id: C20
     name: Attention tags
@@ -909,12 +910,9 @@ rows:
     anchor: "§2.2 L921; §2.3 L1298; §2.14 L338"
     class: style
     step: S17
-    status: clashes_with_repo
-    enforced_by:
-      - {file: kernel/owner_invariants.yaml}
-    note: "Clash: the DAG picks the movement language by need (pure staff for movement quality, hybrid only for
-      precise roots or multi-prop choreography); the repo always renders Euler-heavy LBN-2.4-ADV-LMA and
-      no_render_compression forbids dropping the Euler data a staff or mixed mode leaves out. Owner's call."
+    status: missing
+    note: "Owner O1/O2 (2026-10-11): no per-scene choice; all four modes compile alongside LBN-2.4, which stays the
+      uncompressed projection no_render_compression is checked on (M8.2)."
 
   - id: V10
     name: Motion-density budget
@@ -1126,14 +1124,14 @@ rows:
     anchor: "P3.2 L1648"
     class: excluded
     step: S13
-    status: clashes_with_repo
+    status: excluded
     enforced_by:
       - {file: solver/euler_solver.py, check: check, code: MOTION_POS,
          test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
       - {file: kernel/kernel_scope.yaml}
-    note: "Clash: every render carries the kernel rule '<label> root exact' (kernel_actor scope, from the
-      LBN-2.3/2.4 intersection) and S13 must reproduce the S04 root exactly (owner Q2). Inside the repo S04 is
-      primary and S13 derived, which agrees with M3; the clash is the rule sentence sent to the model. Owner's call."
+    note: "Owner O3 (2026-10-11): the prose leaves the rule out, as the DAG does (ROOT_EXACT_PRESENT, M8.4); LBN-2.4
+      keeps the kernel rule '<label> root exact'. Inside the repo S04 is primary and S13 must reproduce it (owner Q2),
+      which agrees with M3."
 
   - id: P3.2-6
     name: "screen_geometry: PRESERVE_AXIS"
@@ -1186,10 +1184,10 @@ rows:
     anchor: "P4.2 L1693"
     class: excluded
     step: S13
-    status: clashes_with_repo
+    status: excluded
     enforced_by:
       - {file: kernel/kernel_scope.yaml}
-    note: "Same clash as P3.2-5: the rule '<label> root exact' is rendered for every actor."
+    note: "Settled with P3.2-5 by owner O3: the prose leaves it out; LBN-2.4 keeps it."
 
   - id: P4.2-2
     name: "'>' does two jobs as a design principle"

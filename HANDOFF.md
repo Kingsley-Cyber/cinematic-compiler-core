@@ -2,15 +2,19 @@
 
 Updated 2026-10-11. This folder (`~/Documents/cinematic-compiler-core`) is the working repo: full git history, no
 URCP and no Beads. The old `~/Documents/cinematic-compiler` is superseded and can be deleted once you're happy.
-No remote; nothing has been pushed.
+Remote: github.com/Kingsley-Cyber/cinematic-compiler-core (public, MIT); push only when the owner says so.
 
 ## Bootstrap after compaction (read this first)
 - **State:** M1–M5.5 and M3.5 built; S01–S17 run (S18 post-generation waits for M7). Checkpoint tag
   `checkpoint-2026-10-11-m3.5`. Four examples with `render.txt`: `wizard_vs_acrobat`, `reference_fight` (golden),
-  `ugc_glasses_demo`, `live_action_standoff`.
+  `ugc_glasses_demo`, `live_action_standoff`. K1: the owner's knowledge DAG is frozen at
+  `docs/sources/knowledge_dag_v1.md` and mapped row by row in `kernel/knowledge_map.yaml` (kernel log guards it).
+  **In progress: M8** — structured-prose prompts in four modes alongside LBN-2.4, plus a conformance test of the
+  final prompts against every mandatory and required map row by semantic codes. Spec, owner decisions O1-O6 and
+  slices: `docs/plans/M8_DAG_PROSE.md`.
 - **Read order:** this file → `docs/plans/MASTER_PLAN.md` (decisions Q/A/B/F, every milestone) →
   `docs/reference/README.md` (generated DAG, schemas, data files, code) → `kernel/layer_order.yaml`.
-- **Commit rule:** commit only when `scripts/check.sh` exits 0. Don't pipe it into `tail` (that hides the exit
+- **Commit rule (O5: one local commit per slice):** commit only when `scripts/check.sh` exits 0. Don't pipe it into `tail` (that hides the exit
   code); run `scripts/check.sh > gate.log 2>&1 && git commit ...`.
 - **Authored steps** (S04, S08, S11–S17): `cinematic compile "<query>" --until <node> --plans <dir> --packet-out p.json`
   exits 3 with the sealed packet; write the plan from the packet (copy `packet_sha256`), save it as
@@ -24,8 +28,10 @@ No remote; nothing has been pushed.
 - **Logs:** every schema / library / kernel file change gets `python -m kernel.schema_log [--log library|kernel]
   record <file> --change created|changed --reason ... --decided-by owner|owner_default|agent_fix`; logs are
   append-only and hash-chained. After DAG, schema, library or import changes run `python -m kernel.build_docs`.
-- **Never:** paid model API, renders (the owner renders), pushing, editing logged files without a log entry.
-- **Waiting on the owner:** M6 tool definitions; review of draft cards, libraries and agent additions (below).
+- **Never:** paid model API, renders (the owner renders), pushing without the owner, editing logged files without a
+  log entry.
+- **Waiting on the owner:** M6 tool definitions; P3.2-6 PRESERVE_AXIS (keep or drop S16's 180-degree rule);
+  review of draft cards, libraries and agent additions (below).
 
 ## CLI
 `cinematic compile "<query>" [--genre G] [--until NODE] [--plans DIR] [--packet-out F] [--chain-from PREV.json]` (exit 3 = an authored step needs
