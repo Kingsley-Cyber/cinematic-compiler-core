@@ -436,8 +436,9 @@ F.9 (examples) → F.10 (docs). One commit per block; the gate passes after each
 ## M8 — structured-prose prompts + DAG conformance → done when every mandatory and required map row passes
 Spec and codes: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
 - [x] K1 knowledge-DAG map: frozen copy, 109-row map, coverage test, kernel log guards the map
-- [ ] M8.0 plan + owner decisions O1-O4 recorded in the map
-- [ ] M8.1 staff geometry atoms (direction, level, fold, support words, turn signs)
+- [x] M8.0 plan + owner decisions O1-O4 recorded in the map
+- [x] M8.1 staff geometry atoms (direction, level, fold, support words, turn signs); levels follow the owner's
+  laban-notation lookup (mid inside +-45 degrees, place within 10 of vertical)
 - [ ] M8.2 prose renderer: SCENE, MOVEMENT LANGUAGE, FORMAT, staff in four modes, RULES, NEGATIVES
 - [ ] M8.3 remaining sections (implied guidance, motion control, spatial anchors, props, causal links, camera, genre)
 - [ ] M8.4 prompt validator + semantic codes + conformance test

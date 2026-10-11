@@ -93,6 +93,7 @@ flowchart LR
 | `solver.euler_solver` | `solver.quaternion` | — |
 | `solver.prop_state_machine` | — | — |
 | `solver.quaternion` | `kernel.canonical` | math |
+| `solver.staff_geometry` | `solver.quaternion` | math |
 | `solver.trajectory` | — | math |
 | `validators.camera_validator` | `planner.library_vocab`, `solver.camera_geometry` | — |
 | `validators.continuity_validator` | `solver.prop_state_machine` | — |
