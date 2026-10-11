@@ -43,25 +43,27 @@ MESSAGE_CHARS = 120
 FINDINGS_DOC = "docs/findings/2026-10-11-renders-and-dag-adherence.md"
 RENDERED = ("reference_fight",)
 EVERY = ("reference_fight", "live_action_standoff", "wizard_vs_acrobat", "ugc_glasses_demo")
-# The findings doc, section 3: the checklist rows each finding implicates and the examples it holds for (renders R1-R5
-# were all of the reference fight; F1 found placeholder causes in live_action_standoff too; F2 holds for every prose
-# prompt). A finding beside a PASS cell means the passing codes do not cover what the finding saw.
+# The findings doc, section 3: per finding, the examples it holds for (renders R1-R5 were all of the reference fight; F1
+# found placeholder causes in live_action_standoff too; F2 holds for every prose prompt), the checklist rows it
+# implicates, and the codes that now catch it (a test reproduces what was seen and the code fails it). A finding that
+# no code of a row catches turns that row's PASS into NOT CHECKED: a render contradicts it (owner, 2026-10-11:
+# "harden the 16 pass rows"). F2 no longer names V8: stacking two graphs is not what F2 saw (reasons unprinted).
 FINDINGS = {
-    "F1": (("reference_fight", "live_action_standoff"), ("C6", "T9", "C21", "C26", "C27")),
-    "F2": (EVERY, ("C6", "V7", "V8")),
-    "F3": (("reference_fight", "live_action_standoff"), ("M4",)),
-    "F4": (RENDERED, ("C10", "C11", "C25", "V3", "V6")),
-    "F5": (RENDERED, ("C10", "C12", "C25")),
-    "F6": (RENDERED, ("C2", "C3", "C4")),
-    "F7": (RENDERED, ("BIO", "T7", "C5")),
-    "F8": (RENDERED, ("C5", "C7", "C31")),
-    "F9": (RENDERED, ("C5", "C23")),
-    "F10": (RENDERED, ("M1", "C9")),
-    "F11": (RENDERED, ("C5", "C24")),
-    "F12": (RENDERED, ("C5", "NEG")),
-    "F13": (RENDERED, ("C9", "C23")),
-    "F14": (RENDERED, ("C1", "C2")),
-    "F15": (RENDERED, ("C12", "C25")),
+    "F1": (("reference_fight", "live_action_standoff"), ("C6", "T9", "C21", "C26", "C27"), ("CAUSE_REASON",)),
+    "F2": (EVERY, ("C6", "V7"), ("CAUSE_REASON",)),
+    "F3": (("reference_fight", "live_action_standoff"), ("M4",), ()),
+    "F4": (RENDERED, ("C10", "C11", "C25", "V3", "V6"), ()),
+    "F5": (RENDERED, ("C10", "C12", "C25"), ()),
+    "F6": (RENDERED, ("C2", "C3", "C4"), ()),
+    "F7": (RENDERED, ("BIO", "T7", "C5"), ()),
+    "F8": (RENDERED, ("C5", "C7", "C31"), ()),
+    "F9": (RENDERED, ("C5", "C23"), ()),
+    "F10": (RENDERED, ("M1", "C9"), ()),
+    "F11": (RENDERED, ("C5", "C24"), ()),
+    "F12": (RENDERED, ("C5", "NEG"), ()),
+    "F13": (RENDERED, ("C9", "C23"), ()),
+    "F14": (RENDERED, ("C1", "C2"), ()),
+    "F15": (RENDERED, ("C12", "C25"), ()),
 }
 
 
@@ -140,6 +142,21 @@ def judge(row, found, mode, genre, lbn):
         row["note"])
 
 
+def findings_for(name, row):
+    """[(finding, caught)] for a row on an example: caught when one of the row's codes catches what the render saw."""
+    codes = set(row.get("codes", []))
+    return [(f, bool(codes & set(caught))) for f, (where, ids, caught) in sorted(FINDINGS.items(), key=lambda i: int(i[0][1:]))
+            if name in where and row["id"] in ids]
+
+
+def contested(cell, open_findings):
+    """A PASS that a render contradicts, with no code checking what the render saw, is NOT CHECKED."""
+    result, evidence = cell
+    if result != PASS or not open_findings:
+        return cell
+    return OPEN, f"{evidence}, but render finding {', '.join(open_findings)} contradicts it and no code here checks what it saw"
+
+
 def union(results):
     """The Any column (O13): PASS if one prompt passes, else NOT CHECKED if one is unchecked, else FAIL."""
     applicable = [r for r in results if r != NA]
@@ -162,8 +179,10 @@ def evaluate(name):
         data = (folder / file).read_bytes()
         lbn = file == "render.txt"
         found = fired(data.decode("utf-8"), envelope, mode, lbn)
+        cells = [contested(judge(row, found, mode, genre, lbn), [f for f, caught in findings_for(name, row) if not caught])
+                 for row in checklist]
         columns.append({"label": label, "file": file, "sha256": hashlib.sha256(data).hexdigest(), "bytes": len(data),
-                        "cells": [judge(row, found, mode, genre, lbn) for row in checklist]})
+                        "cells": cells})
     return {"genre": genre, "columns": columns, "rows": checklist}
 
 
@@ -193,7 +212,8 @@ def markdown(name, result=None):
            f"{len(checklist)} checklist rows of [kernel/knowledge_map.yaml](../../kernel/knowledge_map.yaml) (the 25 "
            "evidence rows are never checked). Rules and the owner's rulings O13 and O14: "
            "[validators/checklist.py](../../validators/checklist.py). Findings: F-numbers in "
-           f"[the 2026-10-11 findings]({'../../' + FINDINGS_DOC}), section 3.", "",
+           f"[the 2026-10-11 findings]({'../../' + FINDINGS_DOC}), section 3; '(caught)' = a code of the row now fails "
+           "what that render saw, otherwise the finding turns a PASS into NOT CHECKED.", "",
            f"Genre: {result['genre']}. LBN-2.4 is read against the DAG's Master Template (O13), so many of its FAIL "
            "cells are layout gaps: it keeps rules, negatives, props and shots in its own JSON fields. A prompt is a "
            "deliverable only with no FAIL and no NOT CHECKED row; Any is the union of the five (O13).", "",
@@ -210,11 +230,10 @@ def markdown(name, result=None):
             "| Row | Name | Class | " + " | ".join(c["label"] for c in columns) + " | Any | Findings | Evidence |",
             "|---|---|---|" + "---|" * len(columns) + "---|---|---|"]
     for i, row in enumerate(checklist):
-        seen = sorted((f for f, (where, ids) in FINDINGS.items() if name in where and row["id"] in ids),
-                      key=lambda f: int(f[1:]))
+        seen = ", ".join(f + (" (caught)" if caught else "") for f, caught in findings_for(name, row))
         out.append(f"| {row['id']} | {_cell(row['name'])} | {row['class']} | "
                    + " | ".join(c["cells"][i][0] for c in columns)
-                   + f" | {any_column[i]} | {', '.join(seen)} | {_cell(_evidence(columns, i))} |")
+                   + f" | {any_column[i]} | {seen} | {_cell(_evidence(columns, i))} |")
     return "\n".join(out) + "\n"
 
 

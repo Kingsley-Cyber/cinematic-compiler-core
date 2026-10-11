@@ -102,8 +102,21 @@ def test_the_gate_refuses_every_prompt_with_a_red_row(tables, capsys):
     assert f"deliverable prompts: {20 - refused} of 20" in capsys.readouterr().out
 
 
-def test_findings_name_real_rows_and_examples():
+def test_findings_name_real_rows_examples_and_codes():
     ids = {row["id"] for row in checklist.rows()}
     assert (ROOT / checklist.FINDINGS_DOC).is_file()
-    for finding, (where, rows) in checklist.FINDINGS.items():
+    for finding, (where, rows, caught) in checklist.FINDINGS.items():
         assert set(rows) <= ids and set(where) <= set(checklist.names()), finding
+        assert set(caught) <= set(prompt_validator.CODES), finding
+
+
+def test_no_pass_is_contradicted_by_an_uncaught_render_finding(tables):
+    """Owner 2026-10-11: a render that contradicts a PASS row makes it NOT CHECKED until a code catches what it saw."""
+    for name, table in tables.items():
+        for column in table["columns"]:
+            for row, (result, _) in zip(table["rows"], column["cells"], strict=True):
+                uncaught = [f for f, caught in checklist.findings_for(name, row) if not caught]
+                assert not (result == checklist.PASS and uncaught), (name, column["label"], row["id"])
+    fight = _results(tables["reference_fight"], "Pure")
+    assert fight["M1"][0] == checklist.OPEN and "F10" in fight["M1"][1]
+    assert fight["C6"][0] == checklist.PASS  # F1, F2 are caught by CAUSE_REASON

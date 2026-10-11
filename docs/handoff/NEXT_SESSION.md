@@ -76,6 +76,8 @@ Then read, in order: `HANDOFF.md` bootstrap → this file → the findings → `
 | 0 | ~~Owner answers Q1 and Q2~~ done: O13 (the five are fragments of one complete prompt; checklist on all five + union), O14 (N/A only T3, T4, C26's 14 unnamed; menus when selected) | Recorded in MASTER_PLAN |
 | 1 | ~~M8.10 checklist per prompt~~ done: `validators/checklist.py`, `examples/<name>/checklist.md` (five prompts + Any), `--gate` refuses red; tests/test_checklist.py keeps the tables current | Shown to the owner 2026-10-11 |
 | 2 | ~~Causes (F1, F2, F3)~~ done (M8.11): 22 + 3 reasons rewritten from DAG D5/D2 and the golden; S05 and the prompt refuse placeholders (CAUSE_REASON); the prose prints every reason under the chain; C6 enforced. LBN prints none (Q3) | Checklist: prose 38 PASS |
+| 2b | Harden the 16 contested PASS rows (owner, after M8.11): no PASS a render contradicts; one check per finding | Every finding caught or the row NOT CHECKED |
+| 2c | Applicability stage (O16): rows that apply + what each demands, V4/V5 choice, open questions, before authoring | Checklist splits 'applies, unbuilt' from 'does not apply' |
 | 3 | Camera (F4, F5) | The reference camera plan follows C10 and D9 (about 11 shots, holds on hits with both bodies, no limb inserts); C10's rules are codes; C10, C25 green |
 | 4 | Body and props (F7–F12) | No airborne ground pickup without the owner's Q5 ruling; props hidden until used; rope dart as one line; counts held; C5 green |
 | 5 | Density and format (F6) | Staff lines follow D9 (owner's Q4); C2 bands checked as ranges; prompt sizes recorded |

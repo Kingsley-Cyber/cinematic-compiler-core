@@ -857,8 +857,9 @@ rows:
     class: mandatory
     step: all
     status: enforced
-    codes: [REACTION_WITHOUT_CAUSE, DISCONNECTED_CAMERA_MOTION]
-    note: "Owner O14 (2026-10-11): the two named states are checked; the 14 the source does not name are not
+    codes: [REACTION_WITHOUT_CAUSE, CAUSE_REASON, DISCONNECTED_CAMERA_MOTION]
+    note: "A reaction whose printed reason names no cause is reaction_without_cause too (CAUSE_REASON, M8.11).
+      Owner O14 (2026-10-11): the two named states are checked; the 14 the source does not name are not
       applicable until named. Finding codes are named invalid states (the 37 prompt codes plus the pipeline's). reaction_without_cause =
       REACTION_WITHOUT_CAUSE; disconnected_camera_motion = DISCONNECTED_CAMERA_MOTION. The other 14 F2 names are
       unknown (the write-up does not list them), so they cannot be coded."
@@ -869,11 +870,11 @@ rows:
     class: mandatory
     step: S05
     status: enforced
-    codes: [REACTION_WITHOUT_CAUSE]
+    codes: [REACTION_WITHOUT_CAUSE, CAUSE_REASON]
     enforced_by:
       - {file: compiler/passes/mandatory/p05_causal.py, check: edges_and_findings, code: CAUSE_TIMING,
          test: tests/test_causal_pass.py::test_each_causal_rule_rejects_its_violation}
-    note: "A soft cause's target may start once the source starts (brace or dodge while the attack approaches); a
+    note: "The response's printed reason must name what it responds to (CAUSE_REASON, M8.11). A soft cause's target may start once the source starts (brace or dodge while the attack approaches); a
       hard cause's target only after the source ends, so no reaction precedes contact."
 
   - id: C28

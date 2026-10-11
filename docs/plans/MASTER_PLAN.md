@@ -110,6 +110,8 @@ outputs. Spec: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
 | O12 | Teleport: a body faster than 25 m/s between keys is a teleport, refused unless its beat is a declared substitution (decoy revealed, the body reappears at a declared position) | M8.7 |
 | O13 | The five prompts per example (LBN-2.4 and the four prose modes) are fragments of one complete prompt: one content set in the DAG's template (C19), the mode as a setting (Euler blocks filled or left empty, DAG §2.14), detail adaptive (C2). The checklist judges all five and their union (Any) | M8.10 |
 | O14 | Not applicable only for T3 and T4 (superseded by T5 in the DAG) and C26's 14 unnamed states; T5 is checked on the prompt (section order, precedence; build order per O4); menus count only where selected: V4/V5 by the request, C14-C17 by mode, C11 by genre | M8.10 |
+| O15 | Keep the printed reasons: one 'Why each link holds:' line per causal link under the DAG's chain (CAUSE_REASON) | M8.11 |
+| O16 | Build an applicability stage (planned, after the hardening): from what S01/S02 parse (genre, performers, props, abilities), decide which DAG rows apply and what each demands, make the V4/V5 menu choice, and list the questions the prompt leaves open before anything is authored. It never rewrites the owner's words | M8.13+ |
 
 Still open: P3.2-6 PRESERVE_AXIS (S16's 180-degree rule) — the owner's call.
 
@@ -466,7 +468,10 @@ Spec and codes: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
   (each link's reason printed under the chain, 'Why each link holds:'); reference_fight's 22 and live_action_standoff's 3
   placeholder reasons rewritten from the DAG's D5 instance, D2's causal_graph and the golden's action text; beat-planning
   prompt states the rule; C6 back to enforced, T9 gains CAUSE_REASON; render.txt byte-identical (LBN prints no reasons, Q3).
-- [ ] M8.12+ close the rows in the queue's order: camera, body and props, density and format, the rest. Derivable: PROP_TWO_HOLDERS (C5, S07), POST_CONTACT_MISSING (C21),
+- [ ] M8.12 harden the 16 PASS rows the renders contradict (owner 2026-10-11): a render finding no code catches turns a
+  PASS into NOT CHECKED (done: reference fight prose 38 -> 26 PASS; F1, F2 caught by CAUSE_REASON); then one check per
+  finding (prop first states F11/F9, the rope line F8, counts/start/set F12/F10/F13, the DAG's X-audit F3, density F6/F14).
+- [ ] M8.13+ the applicability stage (O16), then camera, body and props, density and format, the rest. Derivable: PROP_TWO_HOLDERS (C5, S07), POST_CONTACT_MISSING (C21),
   PHRASING_MISSING (LMA, T6), MOMENTUM_MISSING (C22, T10), CHAIN_ORDER (KC), ANTICIPATION_MISSING (KF),
   SHOT_TRANSITION_MISSING (C25), PROP_KINEMATICS (C31). Need the owner: JOINT_LIMIT ranges (BIO, T7; the DAG gives
   none), TELEPORT speed bound and the substitution exemption (T10). By design partial: T3/T4 (superseded orders),
