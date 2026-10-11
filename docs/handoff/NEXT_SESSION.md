@@ -7,19 +7,16 @@ Written 2026-10-11 (end of session), before a compaction. Read after the bootstr
 ## The steering prompt (the owner pastes this)
 
 ```text
-Resume cinematic-compiler-core (~/Documents/cinematic-compiler-core). Read HANDOFF.md's bootstrap block,
-docs/handoff/NEXT_SESSION.md, then docs/plans/MASTER_PLAN.md (the M8 section and decisions O1-O21).
+Resume cinematic-compiler-core (~/Documents/cinematic-compiler-core; work in the worktree ~/Documents/ccc-m810). Read
+HANDOFF.md's bootstrap block, docs/handoff/NEXT_SESSION.md, docs/plans/MASTER_PLAN.md (M9 and decisions O22-O44) and
+docs/plans/deconfliction_2026-10-11.md (the fixes F*, FR*, FP* with their files and checks).
 
-This session I send my plan. Deconflict it against the repo before building anything:
-1. Split my plan into items (one requirement each), each with its source line.
-2. For each item give the repo status DONE / PARTIAL / MISSING / CONFLICTS with evidence (file:function, commit, test or
-   checklist row), and for a conflict the decision or code it conflicts with (O1-O21, the DAG map, the layer order).
-3. Write docs/plans/<date>-plan-deconfliction.md: the table, then the merged plan (my order; repo work kept where it
-   already meets an item; repo work my plan supersedes, named, never deleted unasked), then one-line questions only
-   where my plan contradicts my earlier decisions or the DAG.
-4. Show me the table and the questions. Build nothing until I answer.
-Rules: verify every claim in my plan and in this file against the code (predict, then check); no renders, no paid API,
-no push without me; the other session's uncommitted files stay untouched.
+Build M9 in its order, one slice per commit, scripts/check.sh green before each: F5.3 strike timing first (every strike,
+throw and release at its key pose, IMPACT_CONTACT_SYNC), then F6.3 grounded pickups, F2.1/F2.2 prop physics, and on.
+Each fix: predict, add the check with its break test, fix the content as a recorded golden deviation where O22-O44 say
+so, re-bind, rewrite the examples, keep render.txt byte-identical unless the fix is meant to change it, rewrite the
+checklists, and show which rows went from NOT CHECKED to PASS. Never edit authored data silently (O39). Ask Q-G
+(which beats are callbacks) before F4.6. No renders, no paid API, no push without me.
 ```
 
 ## State (exact, 2026-10-11 end)
@@ -42,7 +39,11 @@ no push without me; the other session's uncommitted files stay untouched.
 `8d169c5` M8.12b first states · `9204ff5` M8.12c rope line, doubled words · `e194c28` M8.12d counts, O17-O20 ·
 `10bb1a5` M8.12e X9 vanish, O21 · `fdb29ce` M8.12f X5/X6 turns.
 
-## Incomplete work, with resume steps (owner-approved order unless the plan changes it)
+## Incomplete work, with resume steps
+
+The owner's plan was deconflicted on 2026-10-11 (docs/plans/deconfliction_2026-10-11.md, O22-O44): its build order in
+MASTER_PLAN M9 supersedes the order below. Item 1 = F6.3, item 2 = the O21 opening, item 3 = O19 D9 lines, item 4 =
+camera C10 + FR.5, item 5 = the applicability stage (O16), item 6 = the gap codes inside F9.x and FP.x.
 
 | # | Item | Decision | Remains to do | Check to add | Closes |
 |---|---|---|---|---|---|

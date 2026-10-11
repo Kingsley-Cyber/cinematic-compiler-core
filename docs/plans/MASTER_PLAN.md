@@ -117,6 +117,29 @@ outputs. Spec: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
 | O19 | Prose staff lines in the DAG's D9 style: only the limbs that matter (~120-200 characters), density adaptive (C2); LBN-2.4 keeps every number (answers Q4) | M8.12+ |
 | O20 | Render findings with no cause found in the prompt (F13 set drift, F14 late beats) keep their rows NOT CHECKED until a fixed-seed render repeats or clears them | M8.12 |
 | O21 | X7: the pillar keeps its 8 m top; A starts above the frame at root y=10 ('falling from y=10') and lands with the feet on the top at y=8 (root about 8.5) | M8.12h |
+| O22 | Effort action stays Laban (punch = thrust: strong, sudden, direct); combat verbs (deflect, parry, catch, redirect, trap, bind, disarm, throw, grapple) go on contacts as `verb`; the prose prints Laban actions as qualities (deconfliction Q-A) | M9 |
+| O23 | Strike, throw and release contacts happen at their key pose (`at: start`), so bow, impact frame and pose share one time (the deflect at 2.5); the golden's contact times become recorded deviations (deconfliction Q-B) | M9 |
+| O24 | World contact points are computed from the pose by forward kinematics (a segment-length card) and checked against the target, never authored (deconfliction Q-C) | M9 |
+| O25 | All 16 plan layers live in the graph; the prompt prints them selectively (strike and support-change lines), per DAG C2 and O19 (deconfliction Q-D) | M9 |
+| O26 | O7, O10, O17, O18 and O21 stand: where the golden contradicts its own words or the DAG it is fixed as a recorded deviation (deconfliction Q-E) | M9 |
+| O27 | B gets active keys in the reference fight (recorded deviations); IDLE_FIGHTER allows 0.8 s without an active key while the other fighter acts (deconfliction Q-F) | M9 |
+| O28 | World state uses the existing damage values first (pillar marked by shuriken and kunai, ground cracked at the crash); debris and embers later (deconfliction Q-H) | M9 |
+| O29 | Causes show only through existing FX and the printed reasons, never drawn arrows or markers (deconfliction Q-I) | M9 |
+| O30 | No Pydantic (JSON Schema contracts stay); the per-frame retry loop waits for M7 (deconfliction Q-J) | M9 |
+| O31 | Laban direction is checked against both the root's path and the body's form change (deconfliction Q-K) | M9 |
+| O32 | Axes stay the repo's: flip (somersault) about the lateral X axis, spin about Y, cartwheel about the sagittal Z axis (deconfliction Q-L) | M9 |
+| O33 | Rotation keyframes (quarter turns, inversion time, angular speed) are derived from the declared turn and printed, not authored (deconfliction Q-M) | M9 |
+| O34 | Anime bodies escape the airborne gravity check only where a hang or float is declared, as props do (O8) (deconfliction Q-N) | M9 |
+| O35 | Limb extension keeps O11 (anime +30 degrees per joint over the human table) (deconfliction Q-O) | M9 |
+| O36 | Camera arc = 0.5 × the rotation in anime, 0.1 × in live action (within 10 degrees), as camera-card values (deconfliction Q-P) | M9 |
+| O37 | Genre values go in the existing per-genre cards plus a new FX card per genre; realism = live_action (deconfliction Q-Q) | M9 |
+| O38 | A named flip completes its full turn inside the clip (the wizard's dodge_flip gets its landing key) (deconfliction Q-R) | M9 |
+| O39 | Scripts derive and refuse, never edit authored beats (resolve, integrate, apply become derivations and checks) (deconfliction Q-S) | M9 |
+| O40 | Rendering, render validation, retry and per-model hints wait for M7, after the owner picks the model and authorises API use (deconfliction Q-T) | M9 |
+| O41 | Sound waits until the model is chosen (deconfliction Q-U) | M9 |
+| O42 | Curve, secondary-motion and world-motion numbers stay in the graph; the prompt prints words (the DAG's implied-guidance format) (deconfliction Q-V) | M9 |
+| O43 | Phrasing uses impulsive, impactive, swing and sustained; drives derive from the latent Effort factor; 'remote' (a Laban state) is dropped (deconfliction Q-W) | M9 |
+| O44 | Character state adds wounds, costume damage and exhaustion as states; first use: B's shoulder wound at 9.00 (deconfliction Q-X) | M9 |
 
 Still open: P3.2-6 PRESERVE_AXIS (S16's 180-degree rule) — the owner's call.
 
@@ -484,7 +507,17 @@ Spec and codes: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
   no rotation across a substitution) · [x] X5/X6 (the 5.1 backflip pitches -360 about X, the 6.3 cartwheel rolls -360 about
   Z, later roots carry the turns; TURN_LABEL at S13 and in the staff) · [ ] X2/X3 · [ ] X7 (O21: A starts at root y=10) · [ ] D9 lines + density (O19, F6) · F13/F14 stay
   open (O20).
-- [ ] M8.13+ the applicability stage (O16), then camera, body and props, density and format, the rest. Derivable: PROP_TWO_HOLDERS (C5, S07), POST_CONTACT_MISSING (C21),
+- [ ] M8.13+ the applicability stage (O16), then camera, body and props, density and format, the rest.
+
+## M9 — the owner's cinematic_beat_v2 plan, deconflicted (2026-10-11)
+Plan, audit, gap table and fixes: [deconfliction_2026-10-11.md](deconfliction_2026-10-11.md); decisions O22-O44 (the
+owner chose every recommendation; Q-G, which beats are callbacks, is open). Build order: F5.3 strike timing → F6.3
+grounded pickups → F2.1/F2.2 prop physics → F6.1/F6.2 visibility → FR.1/FR.3 rotation path and checks → F5.1/F5.2 world
+contact → F4.1/F4.2 verbs → O21 opening → F9.1 Laban direction → F9.2 momentum + FR.4 → F4.3/F4.4 B active → FR.7
+genre cards → FR.6/FR.2 money-shot frame parts, limb paths → O19 D9 lines → camera C10 + FR.5 + F8.1-F8.3 → F4.5,
+F4.6, F9.3, F9.4 → F6.4 → part 3 (FP.1, FP.4, FP.8 → FP.2, FP.3, FP.5-FP.7, FP.9, FP.11 → FP.10, FP.12) → applicability
+stage (O16) with the 16-layer coverage report. Deferred to M7: per-frame tracks, rendering, validation, retry, per-model
+hints, sound. Evidence: the owner's Seedance axis tests R6-R10 (docs/render_tests/2026-10-11-seedance-axis/). Derivable: PROP_TWO_HOLDERS (C5, S07), POST_CONTACT_MISSING (C21),
   PHRASING_MISSING (LMA, T6), MOMENTUM_MISSING (C22, T10), CHAIN_ORDER (KC), ANTICIPATION_MISSING (KF),
   SHOT_TRANSITION_MISSING (C25), PROP_KINEMATICS (C31). Need the owner: JOINT_LIMIT ranges (BIO, T7; the DAG gives
   none), TELEPORT speed bound and the substitution exemption (T10). By design partial: T3/T4 (superseded orders),
