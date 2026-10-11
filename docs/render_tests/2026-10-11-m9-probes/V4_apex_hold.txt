@@ -1,0 +1,13 @@
+5s anime, 24fps. A lone ninja (dark coat, red scarf wrapped small at the neck) on flat stone ground.
+
+0.00-1.00 A stands, then crouches, loading the legs.
+1.00 TAKEOFF: both feet push off the ground.
+1.00-1.40 BACKFLIP begins, backward about the side-to-side (lateral) axis: 0 degrees at 1.00, 90 at 1.20, 180 at 1.40 (fully inverted, head below hips, at the top of the jump).
+1.40 APEX HOLD: the inverted pose freezes for exactly 3 frames (0.125 s of screen time, 1.40 to 1.53). Then the motion resumes at full speed.
+1.53-1.93 the same rotation completes: 270 degrees at 1.73, 360 at 1.93 (upright). Exactly one rotation in total.
+1.93 LANDING on both feet, knees bend.
+1.93-5.00 A holds the landing crouch, still.
+
+CAMERA: static side view, whole body in frame; no camera movement, no cut.
+RULES: the hold lasts 3 frames only, not longer; exactly one rotation; airborne only from 1.00 to 1.93.
+NEGATIVES: no long hang, no slow-motion stretch, no second flip, no twist.

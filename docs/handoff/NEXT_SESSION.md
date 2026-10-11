@@ -7,16 +7,21 @@ Written 2026-10-11 (end of session), before a compaction. Read after the bootstr
 ## The steering prompt (the owner pastes this)
 
 ```text
-Resume cinematic-compiler-core (~/Documents/cinematic-compiler-core; work in the worktree ~/Documents/ccc-m810). Read
-HANDOFF.md's bootstrap block, docs/handoff/NEXT_SESSION.md, docs/plans/MASTER_PLAN.md (M9 and decisions O22-O44) and
-docs/plans/deconfliction_2026-10-11.md (the fixes F*, FR*, FP* with their files and checks).
+Resume cinematic-compiler-core. Work in the worktree ~/Documents/ccc-m810 (the main folder holds another session's
+uncommitted files; fast-forward main after each commit). Read HANDOFF.md's bootstrap block, this file,
+docs/plans/MASTER_PLAN.md (M9; decisions O22-O46) and docs/plans/deconfliction_2026-10-11.md (fixes F*, FR*, FP* with
+files, current behaviour, gap, enhancement, priority, dependencies).
 
-Build M9 in its order, one slice per commit, scripts/check.sh green before each: F5.3 strike timing first (every strike,
-throw and release at its key pose, IMPACT_CONTACT_SYNC), then F6.3 grounded pickups, F2.1/F2.2 prop physics, and on.
-Each fix: predict, add the check with its break test, fix the content as a recorded golden deviation where O22-O44 say
-so, re-bind, rewrite the examples, keep render.txt byte-identical unless the fix is meant to change it, rewrite the
-checklists, and show which rows went from NOT CHECKED to PASS. Never edit authored data silently (O39). Ask Q-G
-(which beats are callbacks) before F4.6. No renders, no paid API, no push without me.
+Build M9 in its order, one slice per commit, scripts/check.sh green before each: F5.3 strike timing first (strike,
+throw and release contacts at their key pose; IMPACT_CONTACT_SYNC), then F6.3 grounded pickups, F2.1/F2.2 prop
+physics, F6.1/F6.2 visibility, FR.1/FR.3 rotation path and checks, and on. Rule O46: test the uncertain, build the
+certain. Build every check and data change now; the printed wording of a fix whose probe (V1-V6) has no result yet
+follows the probe's wording, and changes if the owner's render of that probe fails. Each slice: predict, add the check
+with two or three breaks plus a should-not-fire run over every prompt, fix content as a recorded golden deviation where
+O22-O44 say so, re-bind, rewrite the examples, keep render.txt byte-identical unless the slice is meant to change it,
+rewrite the checklists, report the rows that went from NOT CHECKED to PASS. Never edit authored data silently (O39).
+Ask Q-G (which beats are callbacks) before F4.6. Log the owner's probe renders against the probe sha256 values. No
+renders by Claude, no paid API, no push without the owner.
 ```
 
 ## State (exact, 2026-10-11 end)
@@ -38,6 +43,13 @@ checklists, and show which rows went from NOT CHECKED to PASS. Never edit author
 `78a7e6e` M8.10 checklist · `664cf16` M8.11 causes · `63113ca` M8.12a no PASS a render contradicts, O15/O16 ·
 `8d169c5` M8.12b first states · `9204ff5` M8.12c rope line, doubled words · `e194c28` M8.12d counts, O17-O20 ·
 `10bb1a5` M8.12e X9 vanish, O21 · `fdb29ce` M8.12f X5/X6 turns.
+
+## Probes waiting for the owner's renders (O46)
+
+Six 5 s prompts in `docs/render_tests/2026-10-11-m9-probes/` (README: question, scorecard, sha256 each): V1 deflect on
+time (F5.3, F5.1/F5.2, F4.1/F4.2, F2), V2 hidden log and substitution (F6.1, causes), V3 one backflip (FR.1/FR.3), V4
+apex hold (FR.6), V5 hit held with both bodies + crane (C10, F8.1), V6 opening from above (O21). Then one full-fight
+render after the build (D9 lines, camera, part 3 words). No fixed seed.
 
 ## Incomplete work, with resume steps
 

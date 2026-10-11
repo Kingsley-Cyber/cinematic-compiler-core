@@ -1,0 +1,11 @@
+5s anime, 24fps. A lone ninja (dark coat, red scarf wrapped small at the neck) on flat stone ground.
+
+0.00-1.00 A stands, then crouches, loading the legs.
+1.00 TAKEOFF: both feet push off the ground.
+1.00-1.80 BACKFLIP, exactly ONE rotation, backward about the side-to-side (lateral) axis, in the sagittal plane: 0 degrees at 1.00, 90 at 1.20 (body horizontal, face up), 180 at 1.40 (fully inverted, head below hips, at the top of the jump), 270 at 1.60, 360 at 1.80 (upright). About 450 degrees per second.
+1.80 LANDING: both feet touch down, knees bend to absorb.
+1.80-5.00 A holds the landing crouch, still.
+
+CAMERA: static side view, whole body in frame; no camera movement, no cut.
+RULES: exactly one rotation; airborne only from 1.00 to 1.80; no spin about the vertical axis.
+NEGATIVES: no second flip, no twist, no hanging in the air, no slow motion.

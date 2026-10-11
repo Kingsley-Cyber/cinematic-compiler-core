@@ -1,0 +1,10 @@
+5s anime, 24fps. Moonlit bamboo courtyard with one tall wooden pillar, 8 m high, its flat top in the centre of the frame.
+
+0.00 the frame shows only the pillar top and the night sky; A (lean ninja, dark coat, red scarf) is ABOVE the frame, not visible.
+0.20 A drops into the frame from the top edge, feet first, body tucked, coat and scarf trailing upward.
+0.60 A lands in a deep crouch, both feet on the flat top of the pillar; dust puffs off the top.
+0.60-5.00 A holds the crouch on the pillar top, looking down.
+
+CAMERA: static, framed on the pillar top from slightly below; no camera movement, no cut.
+RULES: A is not visible before 0.20. A's feet touch the pillar top at 0.60, not earlier. A never stands on the ground.
+NEGATIVES: no A standing on the pillar at the start, no second pillar, no ground-level shot.

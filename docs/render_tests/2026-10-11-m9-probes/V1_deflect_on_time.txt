@@ -1,0 +1,13 @@
+5s anime fight, 24fps. Moonlit bamboo courtyard, flat stone ground. A: lean ninja, dark coat, red scarf wrapped small at the neck, face visible. B: broad ninja, grey armor, one shoulder pauldron. Exactly one kunai.
+Frame: Y up, metres; A stands at [0, 0, 0] facing B; B stands at [0, 0, 3] facing A.
+
+0.00 B: both feet, kunai in the right hand, throwing arm drawn back. A: both feet, guard up, watching B.
+1.00 B: THROW - the right arm whips forward and releases the kunai at A's chest height.
+1.00-1.50 kunai: flies at A blade first, a shallow arc under gravity.
+1.50 A: DEFLECT (not a kick, not a stomp, not a punch) - the right knee lifts and the right foot SOLE meets the kunai BLADE in front of A's chest at [0, 1.3, 0.5]. One contact, at 1.50 exactly; the frame holds 3 frames on it.
+1.50 kunai: reverses at the sole - knocked down and back toward B, spinning; it hits the ground 1 m in front of A at 1.80 and lies flat, still, until the end.
+1.80-5.00 A: right foot back down, guard up. B: stops and stares at the kunai on the ground.
+
+CAMERA: one continuous medium-wide side view, both fighters fully in frame the whole time; no cut, no close-up; it holds still for 3 frames on the deflect.
+RULES: one kunai only - in B's hand, in the air, or on the ground, never two. The deflect lands at 1.50, sole on blade. The kunai does not move after 1.80.
+NEGATIVES: no punch, no second kunai, no kick to B, no camera cut, no slow motion except the 3-frame hold.

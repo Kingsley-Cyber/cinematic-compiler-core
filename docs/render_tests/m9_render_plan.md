@@ -1,4 +1,7 @@
-# M9 render plan (owner O45, 2026-10-11)
+# M9 render plan (owner O45, superseded by O46 the same day)
+
+**Superseded:** the owner's rule O46 (test only what is uncertain and visual) replaces the eight fight renders below
+with six 5 s probes and one final full-fight render: [2026-10-11-m9-probes](2026-10-11-m9-probes/README.md).
 
 At most eight renders of the reference fight, one after each slice below. Same model (Seedance 2.0 Mini), same seed,
 same length (10 s, as R1-R5) and the same prompt file every time, so each render differs from the one before only by

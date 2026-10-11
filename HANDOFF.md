@@ -12,12 +12,13 @@ Remote: github.com/Kingsley-Cyber/cinematic-compiler-core (public, MIT); push on
   (`docs/sources/knowledge_dag_v1.md`, mapped in `kernel/knowledge_map.yaml`), row by row, as a checklist
   (`python -m validators.checklist`, `examples/<name>/checklist.md`). A green test is not adherence; a PASS a render
   contradicts is NOT CHECKED until a code catches what the render saw.
-- **State (2026-10-11, end of session):** local `main` = `fdb29ce`, 9 commits ahead of GitHub `main` (`16ff68c`, tag
-  `checkpoint-2026-10-11-m8.9`); not pushed. Gate green (553 tests). Built: S01-S17; K1 map; M8.0-M8.9 (four prose
-  modes beside LBN-2.4); M8.10 checklist (five prompts + union, O13/O14); M8.11 causes (CAUSE_REASON); M8.12a-f
-  hardening (honesty rule, prop first states, the rope line, counts, X9 vanish, X5/X6 turns). 44 prompt codes.
-  0 of 20 prompts are deliverables; reference fight prose 30 PASS / 48 NOT CHECKED / 6 N/A, no FAIL.
-- **Owner decisions:** O1-O21 in `docs/plans/MASTER_PLAN.md` (O13-O21 this session). Golden deviations, each an
+- **State (2026-10-11, evening):** local `main` = the latest commit on branch `m8.12-harden` (unpushed; GitHub `main` =
+  `16ff68c`). Gate green (553 tests, 44 prompt codes); 0 of 20 prompts deliverable. The owner's cinematic_beat_v2 plan
+  is deconflicted (`docs/plans/deconfliction_2026-10-11.md`), decisions O22-O46 recorded, M9 is the build order
+  (F5.3 strike timing first), six 5 s probes wait for the owner's renders (`docs/render_tests/2026-10-11-m9-probes/`),
+  and the owner's Seedance axis tests are logged as R6-R10.
+- **Owner decisions:** O1-O46 in `docs/plans/MASTER_PLAN.md` (O13-O46 on 2026-10-11; O46: test only what is uncertain and
+  visual, build the rest). Golden deviations, each an
   owner decision, in `tests/test_reference_fight_golden.py` (HIP_CLAMPS, VANISHED, ROOT_TURNS, PREFACE_RECOUNTED,
   FX_REWORDED, knee signs).
 - **Parallel session warning:** another Claude session left uncommitted work in this folder (`scripts/check.sh` +1
