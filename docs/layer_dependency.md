@@ -74,6 +74,10 @@ Every graph from S04 onward is validated against the constraint graph. Pipeline-
 | 2026-10-10 | Quadrant scoring gains a separately scored style-density question | owner_default |
 | 2026-10-10 | No paid model API or renders; authoring via host callback / IDE; post-generation `null` | owner_default |
 | 2026-10-10 | `pyyaml` is the only runtime dependency | owner_default |
+| 2026-10-11 | F1: facial step (FACS + valence/arousal) for ugc_ad and live_action only | owner |
+| 2026-10-11 | F2: renumber; facial = S14, effort S15, camera S16, render S17, post-generation S18 | owner |
+| 2026-10-11 | F3: valence and arousal both on −1…1 | owner |
+| 2026-10-11 | F4: the render describes faces in words only (codes stay in the envelope) | owner |
 
 ## Open for owner review
 

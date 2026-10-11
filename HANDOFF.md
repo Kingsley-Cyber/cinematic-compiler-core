@@ -82,6 +82,9 @@ linear causality only; closed kernel state vocabulary. Full log: `docs/layer_dep
 
 ## Open questions and next work
 M1–M5.5 are built (see **Done** in [docs/plans/MASTER_PLAN.md](docs/plans/MASTER_PLAN.md)).
+- **Next: M3.5 face layer** (owner decisions F1–F4, 2026-10-11): renumber first (facial becomes S14; effort,
+  camera, render, post-generation move to S15–S18), then the S14 facial step for ugc_ad and live_action, camera and
+  render reading it, a live-action example. Plan: MASTER_PLAN "M3.5".
 - **M6 needs your definitions before it can be built.** The plan names five tools (`synergy_matrix`,
   `bridge_detector`, `layer_analyzer`, `kernel_compressor`, `ablation_runner`) but never says what each computes, and
   compression/ablation touch B3 (no compression before a target model) and the no-render rule.
