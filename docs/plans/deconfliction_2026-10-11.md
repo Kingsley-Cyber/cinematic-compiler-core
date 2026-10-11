@@ -660,9 +660,13 @@ camera arc were not followed).
 ## 9. Final build order (v1.0)
 
 1. **W wording rules** (W1-W4: BODY_HOLD_FRAMES, EMPTY_HAND_UNSTATED, ROTATION_ANGLES_PRINTED, HIDDEN_PHRASING; O48's
-   post) and O54's four negatives in the reference fight's cards.
+   post) and O54's four negatives in the reference fight's cards. **Built 2026-10-11, awaiting the owner's review of
+   the diff (O61).** O48 needed the log state `standing` (S05 refuses a hard link whose cause changes nothing).
 2. F5.3 strike timing (IMPACT_CONTACT_SYNC) with V1b's deflect wording.
 3. F6.3 grounded pickups (AIRBORNE_PICKUP).
+3a. In parallel after F5.3, once the owner approves the checkable constraint schema (O61, O62): GAP-04 checkable
+   constraint form at L1.5 and GAP-05 the declared validators after every layer that declares them; GAP-03 equipment
+   edges at L0.5 (O62; see the open point on O58).
 4. F2.1/F2.2 prop physics, F6.1/F6.2 positions and rest (as amended by W4).
 5. FR.1/FR.3 rotation path and checks (as amended by W3).
 6. F5.1/F5.2 world contact points (CONTACT_WORLD).

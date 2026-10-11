@@ -7,7 +7,7 @@ description: "A wooden block swapped in for a body during a substitution."
 parts: [log]
 materials: [wood]
 states:
-  - {property: deployment, values: [hidden, deployed, fallen]}
+  - {property: deployment, values: [hidden, standing, deployed, fallen]}  # standing: a post in the scene before the swap (O48)
 affordances: [deploy, take_hit]
 grips: [tuck]
 invariants:

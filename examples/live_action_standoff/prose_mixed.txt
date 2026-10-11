@@ -13,7 +13,7 @@ Each line = one measure for one performer; time in seconds; a symbol lasts until
 SUPPORT names what bears the weight; NO SUPPORT = airborne.
 Contact bow = touch; [contact: X-Y retained] = held; [contact: Y ENDS – released] = let go; DOUBLE BOW + accent = a strike (interp.: a momentary contact with a strong accent).
 Directions are relative to the performer's front: forward, back, left, right and the diagonals between them; levels high, mid, low; place-high / place-low = straight up / down. A limb reads mid while within 45 degrees of horizontal (interp.). Lower arm and lower leg: straight, or folded by degrees.
-Turn signs name the axis: flip = lateral axis, turn = vertical axis, cartwheel = sagittal axis.
+Turns name the axis and the plane: a flip turns about the side-to-side axis (sagittal plane), a spin about the vertical axis (transverse plane), a cartwheel about the front-to-back axis (frontal plane); each turn is written once, on the line where it starts, with its count.
 Precision tags: [f:L|R|both] feet, [h:L|R|both] hands, [f:alt] stepping, _on_<surface> when the support is not the ground.
 Explicit = the written lines (every support change, contact and accent has one); implied = everything between lines.
 Root [x, y, z] is the scene position in metres; EulerXYZ and joints are degrees.
@@ -77,7 +77,6 @@ Camera rules: Establish the space before the action needs it. Cut during the mov
 Impact frames: none.
 Smears, only on the declared limb or prop (the body does not smear): none.
 Speedlines: none.
-Holds: 6.50 for 12 frames.
 FX: 0.00–8.00 torchlight flicker on the stone walls.
 Ink: photographic live-action footage; no ink, no smears, no speedlines.
 

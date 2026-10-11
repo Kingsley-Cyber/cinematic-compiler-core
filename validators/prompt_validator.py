@@ -48,6 +48,12 @@ CODES = {
     "COUNT_CONTRADICTION": "a stated count (fighters, props, a prop's units) disagrees with the scene",
     "VANISHED_BODY": "a substituted body has a staff line before it reappears, or RULES do not say it is gone",
     "TURN_LABEL": "a line whose beat names a flip or a cartwheel does not write that turn",
+    "BODY_HOLD_FRAMES": "a hold, freeze or pause is written in frames (probes R10, R11, R14 stretched each to about 1 s)",
+    "EMPTY_HAND_UNSTATED": "a hand that releases a prop and then holds nothing is not said to be empty (probe R11 kept a "
+                           "second kunai in the throwing hand)",
+    "ROTATION_ANGLES_PRINTED": "a turn is written as angles at times or a rate, or a line inside a turn prints its "
+                               "angles (probe R13 flipped twice)",
+    "HIDDEN_PHRASING": "a prop is called hidden or not visible (probes R12, R17 drew it from the start anyway)",
     "CAUSAL_LIST_MISSING": "a causal edge is absent from CAUSAL LINKS",
     "CAUSE_REASON": "a causal link's reason is not printed in CAUSAL LINKS, or does not state a cause",
     "REACTION_WITHOUT_CAUSE": "a hard effect's line comes before its cause's contact",
@@ -79,6 +85,7 @@ READS = {
     "CUSTODY_RULE_MISSING": (PROPS,), "PROP_FIRST_STATE": ("[SCENE]", PROPS), "PROP_LINE_MISSING": (PROPS,),
     "DOUBLED_WORD": (), "COUNT_CONTRADICTION": (),
     "VANISHED_BODY": (STAFF, RULES), "TURN_LABEL": (STAFF,),
+    "BODY_HOLD_FRAMES": (), "EMPTY_HAND_UNSTATED": (STAFF,), "ROTATION_ANGLES_PRINTED": (), "HIDDEN_PHRASING": (),
     "CAUSAL_LIST_MISSING": ("[CAUSAL LINKS]",), "CAUSE_REASON": ("[CAUSAL LINKS]",),
     "REACTION_WITHOUT_CAUSE": (),
     "CAUSAL_RULE_MISSING": (RULES,), "CONSERVATION_RULE_MISSING": (RULES,), "SPAN_RULE_MISSING": (STAFF, RULES),
@@ -183,6 +190,7 @@ def check(text, envelope, mode):
     _count_checks(envelope, text, add)
     _vanish_checks(envelope, parts, labels, mode, add)
     _turn_checks(envelope, parts, labels, mode, add)
+    _wording_checks(envelope, text, parts, labels, mode, add)
     _rules_checks(envelope, parts, labels, mode, add)
     _camera_checks(envelope, parts, labels, add)
     return findings
@@ -203,6 +211,7 @@ def _staff_checks(envelope, mode, parts, labels, frame_parts, add):
     if len(rows) != len(expected):
         add("KEY_LINE_MISSING", f"{len(rows)} staff lines for {len(expected)} slots")
     slot_of = {(t, label): slot for t, label, slot in expected}
+    mids = {s for run in prose_renderer.turn_runs(envelope, labels) for s in run["slots"][1:]}
     first_of, last_of = {}, {}
     for _, label, slot in expected:
         first_of.setdefault(label, slot)
@@ -236,7 +245,8 @@ def _staff_checks(envelope, mode, parts, labels, frame_parts, add):
         for part, word in (("body", words["body"]), ("head", words["head"])):
             if (word is not None) != (f", {part} " in columns[1]) or (word and f", {part} {word}" not in columns[1]):
                 add("GESTURE_MISMATCH", f"{row['label']} {row['t']:.2f}: {part} should read {word or 'nothing (upright)'}")
-        _euler_check(row, key, mode, first_of[row["label"]] is slot, last_of[row["label"]] is slot, add)
+        _euler_check(row, key, mode, first_of[row["label"]] is slot, last_of[row["label"]] is slot, add,
+                     slot["slot"] in mids)
         if "[DOUBLE BOW + accent:" in columns[3] and "chain " not in columns[4]:
             add("KINETIC_CHAIN_MISSING", f"{row['label']} {row['t']:.2f}: the strike line has no chain")
     labels_in = {row["label"] for row in rows}
@@ -251,9 +261,10 @@ def _staff_checks(envelope, mode, parts, labels, frame_parts, add):
             add("SKELETON_KEY_MISSING", f"The mode carries joints but the skeleton key lacks {missing or 'everything'}")
 
 
-def _euler_check(row, key, mode, first, last, add):
+def _euler_check(row, key, mode, first, last, add, mid=False):
     """Euler blocks by mode (D6/D7/D10 reading): Mixed root on strikes, first and last lines; Upgraded root and joints
-    on strikes and last lines; Euler-heavy everything everywhere; pure staff nothing. Numbers equal the S13 key."""
+    on strikes and last lines; Euler-heavy everything everywhere; pure staff nothing. Numbers equal the S13 key; a line
+    inside a turn writes its root position and 'EulerXYZ mid-turn' (W3)."""
     blocks = row["columns"][4].split(" · ")[1:]
     root = next((b for b in blocks if b.startswith("Root [")), None)
     joints = next((b for b in blocks if b.startswith("Joints {")), None)
@@ -266,7 +277,7 @@ def _euler_check(row, key, mode, first, last, add):
         add("EULER_MODE_MISMATCH", f"{label}: Root block {'missing' if want_root else 'not allowed'} in {mode}")
     if (joints is not None) != want_joints:
         add("EULER_MODE_MISMATCH", f"{label}: Joints block {'missing' if want_joints else 'not allowed'} in {mode}")
-    if root is not None and _numbers(root) != [float(v) for v in key["pos"] + key["rot"]]:
+    if root is not None and _numbers(root) != [float(v) for v in key["pos"] + ([] if mid else key["rot"])]:
         add("EULER_MODE_MISMATCH", f"{label}: Root/EulerXYZ numbers differ from the S13 key")
     if joints is not None:
         expected = [float(v) for j in prose_renderer.JOINTS for v in key["bones"][j]]
@@ -352,6 +363,49 @@ def _scene_and_space(envelope, parts, labels, add):
 
 
 NUMBER_WORDS = {w: i for i, w in enumerate(("zero one two three four five six seven eight nine ten eleven twelve").split())}
+COUNT_WORD = rf"(?:\d+|{'|'.join(NUMBER_WORDS)})"
+HOLD_FRAMES = re.compile(rf"\b(?:hold|holds|held|holding|freeze|freezes|frozen|freezing|pause|pauses|paused)\b"
+                         r"(?:[^.;\n]|\.(?=\d))*?"  # one clause; a time's point (0.60) is not a full stop
+                         rf"\b{COUNT_WORD}[- ]frames?\b|\b{COUNT_WORD}[- ]frames? (?:hold|freeze|pause)", re.I)
+RATE = re.compile(r"degrees per second|deg/s|°/s", re.I)
+ANGLE_AT = re.compile(r"-?\d+(?:\.\d+)?\s*(?:degrees|deg|°)\s+at\s+\d+\.\d\d")
+INNER_ANGLE = re.compile(r"EulerXYZ \[|\d\s*(?:degrees|deg|°)|sign \([^)]*\d")
+HIDDEN = re.compile(r"\b(?:hidden|not visible|invisible|concealed|out of sight)\b", re.I)
+
+
+def _wording_checks(envelope, text, parts, labels, mode, add):
+    """The probe wording rules W1-W4 (owner O47-O49; docs/render_tests/2026-10-11-m9-probes): no hold or freeze in
+    frames, the empty hand after a release, a turn named once without angles, no prop called hidden."""
+    for match in HOLD_FRAMES.finditer(text):
+        add("BODY_HOLD_FRAMES", f"'{match.group(0)[:70]}'")
+    rows = _staff(parts, mode)
+    staff = "\n".join(row["line"] for row in rows)
+    for phrase in prose_renderer.empty_hands(envelope, labels).values():
+        if phrase not in staff:
+            add("EMPTY_HAND_UNSTATED", f"STAFF lacks '{phrase}'")
+    for match in RATE.finditer(text):
+        add("ROTATION_ANGLES_PRINTED", f"a rate is written: '{match.group(0)}'")
+    for line in text.splitlines():
+        if len(ANGLE_AT.findall(line)) >= 2:
+            add("ROTATION_ANGLES_PRINTED", f"angles at times: '{line[:60]}'")
+    times = {s["slot"]: (labels.get(s["entity"]), round(s["t"], 6)) for s in slots(envelope)}
+    inside = {times[s] for run in prose_renderer.turn_runs(envelope, labels) for s in run["slots"][1:]}
+    for row in rows:
+        if (row["label"], round(row["t"], 6)) in inside and INNER_ANGLE.search(row["line"]):
+            add("ROTATION_ANGLES_PRINTED", f"{row['label']} {row['t']:.2f} prints angles inside a turn")
+    props = envelope["nodes"]["props"]["items"]
+    names = [p["name"].lower() for p in props] + [p["unit_name"].lower() for p in props if p.get("unit_name")]
+    for header, lines in parts:
+        body = "\n".join(lines)
+        if header.startswith(PROPS):
+            clauses = [body]
+        else:
+            clauses = [c for c in re.split(r"[.;\n]", body) if any(n in c.lower() for n in names)]
+        for clause in clauses:
+            for match in HIDDEN.finditer(clause):
+                add("HIDDEN_PHRASING", f"{header}: '{match.group(0)}' near '{clause.strip()[:50]}'")
+
+
 
 
 def _vanish_checks(envelope, parts, labels, mode, add):
@@ -367,14 +421,18 @@ def _vanish_checks(envelope, parts, labels, mode, add):
 
 
 def _turn_checks(envelope, parts, labels, mode, add):
-    """TURN_LABEL (owner O18, audit X5/X6: the golden's 'full backflip' had pitch 0, its 'cartwheel' no roll)."""
+    """TURN_LABEL (owner O18, audit X5/X6: the golden's 'full backflip' had pitch 0, its 'cartwheel' no roll): the line
+    of a beat that names a flip or a cartwheel writes that turn (W3: its run's first line names it, later lines continue
+    it)."""
     rows = {(row["label"], round(row["t"], 6)): row["line"] for row in _staff(parts, mode)}
+    runs = prose_renderer.turn_runs(envelope, labels)
     for slot in slots(envelope):
         turn = euler_solver.named_turn(slot["label"]) if slot["role"] == "actor" else None
         if turn is None:
             continue
         line = rows.get((labels.get(slot["entity"]), round(slot["t"], 6)), "")
-        if f"{turn} sign (" not in line:
+        run = next((r for r in runs if slot["slot"] in r["slots"]), None)
+        if run is None or run["turn"] != turn or (run["head"] if run["slots"][0] == slot["slot"] else run["more"]) not in line:
             add("TURN_LABEL", f"{labels.get(slot['entity'])} {slot['t']:.2f} ({slot['label']}) does not write its {turn}")
 
 
@@ -563,7 +621,8 @@ def _rules_checks(envelope, parts, labels, mode, add):
 
 
 def _camera_checks(envelope, parts, labels, add):
-    lines = [line for line in _body(parts, "[CAMERA]").splitlines() if line and not line.startswith("Camera rules:")]
+    lines = [line for line in _body(parts, "[CAMERA]").splitlines()
+             if line and not line.startswith(("Camera rules:", "Holds on hits:"))]
     shots = envelope["nodes"]["camera"]["items"]
     if len(lines) != len(shots):
         add("DISCONNECTED_CAMERA_MOTION", f"{len(lines)} camera lines for {len(shots)} shots")

@@ -13,7 +13,7 @@ cross_line: allowed
 required_intents: []
 conventions:
   - {id: anime_establishing_wide, statement: "Open on a wide that sets the arena geometry before the first exchange."}
-  - {id: anime_impact_hold, statement: "Hold or freeze on the frame of impact so the hit reads in one frame."}
+  - {id: anime_impact_hold, statement: "Hold on the frame of impact so the hit reads."}
   - {id: anime_speed_follow, statement: "A fast body move is followed by a tracking or whip move with speedlines on the moving limb."}
   - {id: anime_reaction_close, statement: "Cut close on the receiver after a blow lands."}
 provenance:

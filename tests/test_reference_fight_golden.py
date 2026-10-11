@@ -94,5 +94,17 @@ def test_props_cast_and_anime_directives_survive():
     assert len(SPEC["cam"]) == 21 and (SPEC["fps"], SPEC["dur"]) == (24, 10.0)
 
 
+# Owner O48 (2026-10-11, probes R12 and R17, as in R1-R5): the source keeps the log 'hidden in A coat' until 3.7, but the
+# model draws a later object from the start whatever the prompt says. The log stands beside A as a post from 0.0 and is
+# deployed into A's place in the smoke at the substitution (card state 'standing').
+SUBSTITUTION_POST = ["0 deployment=standing,holder=none,location=ground", "0 p[0.4,1,5.3] at rest"]
+
+
+def test_the_substitution_log_stands_as_a_post_from_the_start():
+    assert REFERENCE["substitution_log"][0].startswith("0.0 not present,hidden in A coat")
+    assert SPEC["substitution_log"][:2] == SUBSTITUTION_POST
+    assert "4 deployment standing->deployed" in SPEC["substitution_log"]
+
+
 def test_render_txt_is_the_render_node():
     assert (FOLDER / "render.txt").read_text(encoding="utf-8") == TEXT + "\n"

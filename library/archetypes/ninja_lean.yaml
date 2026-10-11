@@ -13,7 +13,8 @@ genres: [anime, live_action]
 invariants:
   - id: substitution_leaves_a_log
     rule: "A substitution leaves the substitution log where the body was; the body reappears somewhere else."
-negatives: [no scarf covering head]
+negatives: [no scarf covering head, no scarf covering head or face, no scarf physics errors, no floating limbs,
+            no inverted gravity errors]  # O54: FINAL's four negatives
 equipment: [rope_dart, smoke_pellet, substitution_log]
 face_profile:  # reference: face fully visible
   visible_regions: [brows, eyes, cheeks, nose, mouth, jaw]

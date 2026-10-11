@@ -40,5 +40,8 @@ def test_card_negatives_and_object_invariants_become_constraints():
     constraints = pipeline.run(QUERY, until="constraint")["nodes"]["constraints"]["items"]
     negatives = {c["rule"] for c in constraints if c["field"] == "negative" and c["origin"] != "kernel"}
     assert negatives == {"no scarf covering head", "no substitution log as a separate fighter",
-                         "substitution log is a wooden block NOT a fighter"}
+                         "substitution log is a wooden block NOT a fighter",
+                         # owner O54: FINAL's four negatives, through the fighters' cards
+                         "no scarf covering head or face", "no scarf physics errors", "no floating limbs",
+                         "no inverted gravity errors"}
     assert "substitution log is a WOODEN BLOCK NOT a fighter" in {c["rule"] for c in constraints if c["origin"] == "object"}

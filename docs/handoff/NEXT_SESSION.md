@@ -13,7 +13,7 @@ docs/plans/MASTER_PLAN.md (M9; decisions O22-O46) and docs/plans/deconfliction_2
 files, current behaviour, gap, enhancement, priority, dependencies).
 
 Build M9 by the FINAL plan v1.0 (deconfliction doc, section 9), one slice per commit, scripts/check.sh green before
-each: first the W wording rules from the probes (W1-W4, O47-O49; O48's post), then F5.3 strike timing with V1b's
+each: the W wording rules from the probes (W1-W4, O47-O49; O48's post) are built (review pending, O61); next F5.3 strike timing with V1b's
 deflect wording (IMPACT_CONTACT_SYNC), then F6.3 grounded pickups, F2/F6 prop physics and positions, FR.1/FR.3, and on.
 Model-agnostic, built for Seedance, no model cards (O49). Rule O46: test the uncertain, build the
 certain. Build every check and data change now; the printed wording of a fix whose probe (V1-V6) has no result yet

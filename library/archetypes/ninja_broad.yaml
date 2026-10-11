@@ -13,6 +13,7 @@ genres: [anime, live_action]
 invariants:
   - id: thrown_weapon_leaves_hand
     rule: "A thrown weapon leaves the hand and does not return without a declared catch."
+negatives: [no floating limbs, no inverted gravity errors]  # O54: FINAL's two body negatives
 equipment: [kunai, shuriken_volley]
 face_profile:
   visible_regions: [brows, eyes, cheeks, nose, mouth, jaw]

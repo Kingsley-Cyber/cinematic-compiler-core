@@ -153,7 +153,7 @@ def test_props_causal_links_and_shots_are_all_carried(folder):
         arrow = "→" if edge["causal_strength"] == "hard" else "⇢"
         assert f"{name(edge['from'])} {arrow} {name(edge['to'])}" in causal, edge["id"]
     camera = text.split("[CAMERA]")[1].split("\n\n")[0].splitlines()
-    shots = [line for line in camera if line and not line.startswith("Camera rules:")]
+    shots = [line for line in camera if line and not line.startswith(("Camera rules:", "Holds on hits:"))]
     assert len(shots) == len(envelope["nodes"]["camera"]["items"])
 
 

@@ -16,6 +16,9 @@ pure staff none; Mixed root + EulerXYZ on strike lines and each performer's firs
 root + EulerXYZ + joints on strike lines and each performer's last line; Euler-heavy everything on every line
 (the key choice reads D6/D7/D10's instances; interpretation). The prose leaves out the kernel rule
 '<label> root exact' (owner O3) and lists the constraints it leaves out.
+Probe wording rules W1-W4 (owner O47-O49, renders R10-R18): no hold or freeze in frames (a hit gets a camera hold with
+the bodies in frame); a hand that releases and then holds nothing is said to be empty; a turn is named once by axis,
+plane and count, and the lines inside it write 'EulerXYZ mid-turn'; no prop is called hidden.
 """
 
 import hashlib
@@ -24,7 +27,7 @@ from compiler.passes.mandatory.p07_contact import events_for, lifecycle
 from planner import camera_library, dynamic_beat_validator
 from planner.scene_view import slots
 from renderers import prop_samples, ugc_renderer
-from renderers.anime_renderer import _face_words, _items, _num, constraint_rows
+from renderers.anime_renderer import NUMBERS, _face_words, _items, _num, constraint_rows
 from solver import staff_geometry
 
 TARGET = "structured-prose"
@@ -42,6 +45,20 @@ JOINTS = ("Sp", "LUL", "RUL", "LL", "RL", "LA", "RA", "LFA", "RFA", "HD", "NK")
 ROOT_EXACT = "k_rules_01"  # '<label> root exact': left out of the prose (owner O3)
 GENRES = {"anime": "anime", "live_action": "live-action", "ugc_ad": "UGC ad"}
 TRAVEL_M = 0.2
+HANDS = ("left_hand", "right_hand")
+# W3 (owner O47; probes R13, R18): each turn is named once with its axis and plane. (noun, tail, partial verb) per side.
+TURN_TEXT = {
+    "flip": ("side-to-side axis (sagittal plane)", {"forward": ("front flip", "", "tips forward"),
+                                                    "backward": ("backflip", "", "tips backward")}),
+    "spin": ("vertical axis (transverse plane)", {"to the left": ("spin", " to the left", "turns to the left"),
+                                                 "to the right": ("spin", " to the right", "turns to the right")}),
+    "cartwheel": ("front-to-back axis (frontal plane)",
+                  {"toward the performer's right": ("cartwheel", " toward the performer's right",
+                                                    "tilts toward the performer's right"),
+                   "toward the performer's left": ("cartwheel", " toward the performer's left",
+                                                   "tilts toward the performer's left")}),
+}
+FULL_TURN_SLACK = 30  # degrees off a whole number of turns that still count as whole (interpretation)
 GAP_S = 1.5  # C2: never more than 1.5 s without an explicit key or strong implied guidance
 EPSILON = 1e-6
 GENRE_BLOCKS = {"anime": "ANIME", "ugc_ad": "UGC", "live_action": "LIVE ACTION"}
@@ -102,6 +119,120 @@ def _time(t):
     return f"{t:.2f}"
 
 
+def empty_hands(envelope, labels):
+    """{contact id: phrase}: W2 (owner O47; probes R11, R16: unstated, B kept a second kunai; stated, it held one). A hand
+    that releases a prop and then holds nothing is said to be empty: "B's right hand is empty from 2.50", with "until
+    <t>" when it grips again."""
+    _, _, intervals = lifecycle(events_for(envelope))
+    out = {}
+    for c in _items(envelope, "nodes", "contacts"):
+        entity, part, t = c["a"]["id"], c["body_part"], c["t"]
+        if c["contact_type"] != "release" or part not in HANDS or entity not in labels or not any(
+                pair[:2] == (entity, part) and pair[3] == c["b"]["id"] and kind == "possess" and end is not None
+                and abs(end - t) <= EPSILON for pair, kind, start, end in intervals):
+            continue
+        grips = [(start, end) for pair, kind, start, end in intervals if pair[:2] == (entity, part) and kind == "possess"]
+        if any(start <= t + EPSILON and (end is None or end > t + EPSILON) for start, end in grips):
+            continue  # the hand still holds something else
+        later = [start for start, _ in grips if start > t + EPSILON]
+        out[c["id"]] = (f"{labels[entity]}'s {part.split('_')[0]} hand is empty from {_time(t)}"
+                        + (f" until {_time(min(later))}" if later else ""))
+    return out
+
+
+def turn_runs(envelope, labels):
+    """W3 (owner O47; probes R13 vs R18: an angle list gave two flips, plain words one): consecutive lines of one
+    performer whose keys declare the same turn in the same direction are one turn, written once on its first line:
+    'ONE backflip about the side-to-side axis (sagittal plane), 5.10–5.50; takeoff 4.70, landing 5.90'. The angles in
+    between stay in the graph and in LBN-2.4. [{entity, slots, head, more}]: `more` is written on the run's later lines."""
+    keys = {k["id"]: k for k in _items(envelope, "nodes", "motion")}
+    support = {k["id"]: k["support"] for k in _items(envelope, "nodes", "kinematic")}
+    by_entity = {}
+    for slot in sorted(slots(envelope), key=lambda s: (s["t"], labels[s["entity"]])):
+        by_entity.setdefault(slot["entity"], []).append(slot)
+    runs = []
+    for entity, own in by_entity.items():
+        current = None
+        for i, slot in enumerate(own):
+            key = keys[slot["slot"]]
+            following = keys[own[i + 1]["slot"]] if i + 1 < len(own) else None
+            if key.get("turn", "none") == "none":
+                current = None
+                continue
+            axis, _, sides = staff_geometry.TURNS[key["turn"]]
+            delta = following["rot"][axis] - key["rot"][axis] if following else 0.0
+            side = sides[0] if delta >= 0 else sides[1]
+            if current is not None and (current["turn"], current["side"]) == (key["turn"], side):
+                current["slots"].append(slot["slot"])
+            else:
+                current = {"entity": entity, "turn": key["turn"], "side": side, "index": i, "total": 0.0,
+                           "slots": [slot["slot"]]}
+                runs.append(current)
+            current["total"] += abs(delta)
+            current["end"] = following["t"] if following else None
+        for run in (r for r in runs if r["entity"] == entity):
+            run.update(_turn_text(run, own, keys, support))
+    return runs
+
+
+def _turn_text(run, own, keys, support):
+    axis, sides = TURN_TEXT[run["turn"]]
+    noun, tail, verb = sides[run["side"]]
+    start = keys[own[run["index"]]["slot"]]["t"]
+    count = round(run["total"] / 360)
+    whole = count >= 1 and abs(run["total"] - 360 * count) <= FULL_TURN_SLACK
+    if run["end"] is None:
+        head = f"{verb} about the {axis} from {_time(start)} to the end"
+    elif whole:
+        head = f"{NUMBERS[count]} {noun}{'s' if count > 1 else ''}{tail} about the {axis}, {_time(start)}–{_time(run['end'])}"
+    else:
+        head = f"{verb} {round(run['total'])} degrees about the {axis}, {_time(start)}–{_time(run['end'])}"
+    span = range(run["index"], run["index"] + len(run["slots"]))
+    i = next((j for j in span if not support[own[j]["slot"]]), None)  # the first airborne line of the turn
+    if i is not None:
+        first = i
+        while first > 0 and not support[own[first - 1]["slot"]]:
+            first -= 1
+        last = i
+        while last < len(own) and not support[own[last]["slot"]]:
+            last += 1
+        took = keys[own[first]["slot"]]["t"]
+        head += f"; {'takeoff' if first > 0 else 'airborne from'} {_time(took)}, " + (
+            f"landing {_time(keys[own[last]['slot']]['t'])}" if last < len(own) else "no landing before the end")
+    return {"head": head, "more": f"continues the {noun if whole else 'turn'} begun at {_time(start)}"}
+
+
+CLOSE = ("insert", "close")
+
+
+def hit_holds(envelope, frame_parts, labels):
+    """W1 (owner O47; probes R10, R11, R14 stretched every hold or freeze given in frames to 0.85-1.75 s; R15 held a hit
+    as V5 wrote it): an S17 hold on an impact frame is printed as the camera holding the hit with the bodies in frame,
+    never as a body freeze in frames, and only where the shot covering it frames two or more bodies (or the only one)
+    without a close-up; holds elsewhere stay in the graph and in LBN-2.4."""
+    tolerance = 0.5 / envelope["scene"]["fps"] + 1e-9
+    entities = [e["id"] for e in _items(envelope, "nodes", "entities")]
+    out = []
+    for hold in frame_parts["holds"]:
+        t = hold["t"]
+        if not any(abs(t - i) <= tolerance for i in frame_parts["impact"]):
+            continue
+        shot = next((s for s in _items(envelope, "nodes", "camera") if s["t"] - tolerance <= t < s["t"] + s["dur"] - tolerance),
+                    None)
+        if shot is None or any(word in shot["framing"]["scale"] for word in CLOSE):
+            continue
+        bodies = [labels[x] for x in shot["framing"]["subjects"] if x in labels]
+        if len(bodies) >= 2:
+            who = (f"{'BOTH' if len(bodies) == 2 else 'ALL ' + NUMBERS[len(bodies)]} bodies in frame "
+                   f"({', '.join(bodies[:-1])} and {bodies[-1]})")
+        elif len(bodies) == 1 and len(entities) == 1:
+            who = f"the whole body in frame ({bodies[0]})"
+        else:
+            continue
+        out.append(f"{_time(t)} impact: hold with {who}, no close-up")
+    return out
+
+
 def _supports(envelope, labels):
     """(entity, body part) -> list of (start, end, what it rests on) for support contacts (S07 lifecycle)."""
     _, _, intervals = lifecycle(events_for(envelope))
@@ -157,6 +288,10 @@ def staff_lines(envelope, frame_parts, labels):
     tolerance = 0.5 / envelope["scene"]["fps"] + 1e-9
     impacts = frame_parts["impact"]
     spans = _supports(envelope, labels)
+    empty = empty_hands(envelope, labels)
+    runs = turn_runs(envelope, labels)
+    heads = {r["slots"][0]: r["head"] for r in runs}
+    mids = {s: r["more"] for r in runs for s in r["slots"][1:]}
     ordered = sorted(slots(envelope), key=lambda s: (s["t"], labels[s["entity"]]))
     by_entity = {}
     for slot in ordered:
@@ -194,6 +329,8 @@ def staff_lines(envelope, frame_parts, labels):
                 relationship.append(f"[contact: {part}-{target} retained{at}]")
             elif c["contact_type"] == "release" and c["b"]["kind"] != "surface":
                 relationship.append(f"[contact: {target} ENDS – released{at}]")
+                if c["id"] in empty:
+                    relationship.append(empty[c["id"]])
             elif c["contact_type"] == "support" and c["b"]["kind"] != "surface":
                 relationship.append(f"support bow: {part} on {target}{at}")
         left = (f"L arm {words['left']['arm']}, lower arm {words['left']['lower_arm']}, L leg {words['left']['leg']}, "
@@ -202,8 +339,7 @@ def staff_lines(envelope, frame_parts, labels):
         left += f", head {words['head']}" if words["head"] else ""
         right = (f"R arm {words['right']['arm']}, lower arm {words['right']['lower_arm']}, R leg {words['right']['leg']}, "
                  f"lower leg {words['right']['lower_leg']}")
-        notes = [n for n in (_path(horizontal, rise),
-                             staff_geometry.turn_words(key, keys[following["slot"]] if following else None)) if n]
+        notes = [n for n in (_path(horizontal, rise), heads.get(slot["slot"]) or mids.get(slot["slot"])) if n]
         if strike:
             b = bartenieff[slot["slot"]]
             notes.append(f"chain {_words(b['initiation'])} > {' > '.join(_words(p) for p in b['follow_through'])}")
@@ -220,13 +356,14 @@ def staff_lines(envelope, frame_parts, labels):
                 f"{' ' + support['tags'] if support['tags'] else ''} | {left} | {right} | "
                 f"{'; '.join(relationship) or '-'} | {'; '.join(notes) or '-'}")
         lines.append({"text": text, "strike": strike, "key": key, "entity": entity, "kin": kin,
-                      "first": index == 0, "last": following is None})
+                      "first": index == 0, "last": following is None, "mid_turn": slot["slot"] in mids})
     return lines
 
 
 def _euler(line, mode):
     key = line["key"]
-    root = f"Root {_numbers(key['pos'])} EulerXYZ {_numbers(key['rot'])}"
+    # W3: inside a turn the root's angles would read as an angle list (R13); the run is named on its first line
+    root = f"Root {_numbers(key['pos'])} EulerXYZ " + ("mid-turn" if line["mid_turn"] else _numbers(key["rot"]))
     joints = "Joints {" + ", ".join(f"{j}: {_numbers(key['bones'][j])}" for j in JOINTS) + "}"
     if mode == "euler_heavy":
         return f" · {root} · {joints}"
@@ -247,7 +384,9 @@ def _movement_language(mode, rows):
         "Directions are relative to the performer's front: forward, back, left, right and the diagonals between them; "
         "levels high, mid, low; place-high / place-low = straight up / down. A limb reads mid while within 45 degrees "
         "of horizontal (interp.). Lower arm and lower leg: straight, or folded by degrees.",
-        "Turn signs name the axis: flip = lateral axis, turn = vertical axis, cartwheel = sagittal axis.",
+        "Turns name the axis and the plane: a flip turns about the side-to-side axis (sagittal plane), a spin about the "
+        "vertical axis (transverse plane), a cartwheel about the front-to-back axis (frontal plane); each turn is written "
+        "once, on the line where it starts, with its count.",
         "Precision tags: [f:L|R|both] feet, [h:L|R|both] hands, [f:alt] stepping, _on_<surface> when the support is "
         "not the ground.",
         "Explicit = the written lines (every support change, contact and accent has one); implied = everything "
@@ -505,7 +644,7 @@ def _causal(envelope, labels):
                                           + (["Why each link holds:"] + reasons if reasons else []))
 
 
-def _camera(envelope, labels):
+def _camera(envelope, frame_parts, labels):
     beats = {b["id"]: b for b in _items(envelope, "nodes", "beats")}
 
     def name(identifier):
@@ -528,7 +667,9 @@ def _camera(envelope, labels):
         f"Shots last {_num(card['shot_duration_s'][0])}-{_num(card['shot_duration_s'][1])} s.",
         "Crossing the action axis is " + ("allowed when a cut declares it." if card["cross_line"] == "allowed"
                                           else "never allowed.")]
-    return "[CAMERA]\n" + "\n".join(out + ["Camera rules: " + " ".join(rules)])
+    holds = hit_holds(envelope, frame_parts, labels)
+    return "[CAMERA]\n" + "\n".join(out + (["Holds on hits: " + "; ".join(holds) + "."] if holds else [])
+                                     + ["Camera rules: " + " ".join(rules)])
 
 
 class _Unseen:
@@ -550,8 +691,6 @@ def _genre_block(envelope, frame_parts, labels):
                f"{span(x)} {who(x['subject'])}{' ' + _words(x['part']) if x['part'] else ''}, {x['note']}"
                for x in frame_parts["smear"]) or "none") + ".",
            "Speedlines: " + ("; ".join(f"{span(x)} {who(x['subject'])}" for x in frame_parts["speedlines"]) or "none") + ".",
-           "Holds: " + ("; ".join(f"{_time(h['t'])} for {h['frames']} frames" for h in frame_parts["holds"]) or "none")
-           + ".",
            "FX: " + ("; ".join(f"{_time(x['t'])}{'–' + _time(x['t_end']) if x['t_end'] is not None else ''} {x['text']}"
                               for x in frame_parts["fx"]) or "none") + ".",
            f"Ink: {frame_parts['ink']}."]
@@ -679,7 +818,8 @@ def render_all(envelope, frame_parts, labels):
     lines = staff_lines(envelope, frame_parts, labels)
     shared = {"scene": _scene(envelope, frame_parts, lines, labels, rows), "implied": _implied(envelope, lines, labels),
               "motion": _motion_control(lines, labels), "spatial": _spatial(envelope, lines, labels, rows),
-              "props": _props(envelope, labels), "causal": _causal(envelope, labels), "camera": _camera(envelope, labels),
+              "props": _props(envelope, labels), "causal": _causal(envelope, labels),
+              "camera": _camera(envelope, frame_parts, labels),
               "genre": _genre_block(envelope, frame_parts, labels), "negatives": _negatives(rows)}
     result = {}
     for mode, (title, _) in MODES.items():

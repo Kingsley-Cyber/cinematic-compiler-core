@@ -1,7 +1,7 @@
 {
  "step_id": "S04",
  "band": "L1",
- "packet_sha256": "sha256:8db8665ea479a4afe5733a5c0079aced906bef5494c146bec3b3de5861bd2055",
+ "packet_sha256": "sha256:91e12c7ee89769f71e05ede29d2d309b7309c53bf2b17bcba162fa0eb0ddc006",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -148,7 +148,15 @@
       "id": "substitution_log"
      },
      "property": "deployment",
-     "value": "hidden"
+     "value": "standing"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "substitution_log"
+     },
+     "property": "location",
+     "value": "ground"
     }
    ],
    "effects": [
@@ -226,6 +234,17 @@
       1.1,
       1.3,
       4.4
+     ],
+     "v": null,
+     "float": false
+    },
+    {
+     "prop": "substitution_log",
+     "t": 0,
+     "p": [
+      0.4,
+      1.0,
+      5.3
      ],
      "v": null,
      "float": false
@@ -998,14 +1017,6 @@
      },
      "property": "deployment",
      "value": "fallen"
-    },
-    {
-     "subject": {
-      "kind": "prop",
-      "id": "substitution_log"
-     },
-     "property": "location",
-     "value": "ground"
     },
     {
      "subject": {
