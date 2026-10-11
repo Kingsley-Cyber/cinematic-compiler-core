@@ -144,6 +144,7 @@ outputs. Spec: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
 | O46 | Test the uncertain, build the certain: a change gets a render only if it is uncertain, visual and not verifiable without a render; everything else is built and moved past. M9 gets six 5 s probes now (docs/render_tests/2026-10-11-m9-probes: V1 deflect on time, V2 hidden log and substitution, V3 one backflip, V4 apex hold, V5 hit held with both bodies, V6 opening from above) and one full-fight render after the build; no fixed seed (supersedes O45's eight) | M9 |
 | O47 | Probe results set the printed wording (per O46): the deflect follows V1b (empty hand after a release, one instant contact, no hold line); rotations print "ONE <turn> about the <axis> axis (<plane>)" with takeoff and landing, the quarter-turn angles staying in the graph (narrows O33); body holds are never printed in frames, camera holds on hits follow V5; hidden-prop staging waits for the owner (R12, R17 drew the log from the start) | M9 |
 | O48 | The substitution is staged with a wooden post already standing beside A from 0.00; A swaps places with it in the smoke (the model draws a later object from the start whatever the prompt says: R12, R17, R1-R5). The golden's 'log hidden until 3.7' becomes a recorded deviation; general rule: an object the scene needs later is placed in the scene from the start and the prompt says where | M9 |
+| O49 | The repo stays model-agnostic, built for Seedance: the probe wording rules (W1-W4) are renderer defaults with prompt checks, no model cards; other models come later as adapters (M7) | M9 |
 
 Still open: P3.2-6 PRESERVE_AXIS (S16's 180-degree rule) — the owner's call.
 
@@ -515,7 +516,7 @@ Spec and codes: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
 
 ## M9 — the owner's cinematic_beat_v2 plan, deconflicted (2026-10-11)
 Plan, audit, gap table and fixes: [deconfliction_2026-10-11.md](deconfliction_2026-10-11.md); decisions O22-O44 (the
-owner chose every recommendation; Q-G, which beats are callbacks, is open). Build order: F5.3 strike timing → F6.3
+owner chose every recommendation; Q-G, which beats are callbacks, is open). Final plan v1.0: build order in the deconfliction doc, section 9 (W wording rules first, then F5.3). Original order: F5.3 strike timing → F6.3
 grounded pickups → F2.1/F2.2 prop physics → F6.1/F6.2 visibility → FR.1/FR.3 rotation path and checks → F5.1/F5.2 world
 contact → F4.1/F4.2 verbs → O21 opening → F9.1 Laban direction → F9.2 momentum + FR.4 → F4.3/F4.4 B active → FR.7
 genre cards → FR.6/FR.2 money-shot frame parts, limb paths → O19 D9 lines → camera C10 + FR.5 + F8.1-F8.3 → F4.5,

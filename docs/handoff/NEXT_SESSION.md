@@ -12,9 +12,10 @@ uncommitted files; fast-forward main after each commit). Read HANDOFF.md's boots
 docs/plans/MASTER_PLAN.md (M9; decisions O22-O46) and docs/plans/deconfliction_2026-10-11.md (fixes F*, FR*, FP* with
 files, current behaviour, gap, enhancement, priority, dependencies).
 
-Build M9 in its order, one slice per commit, scripts/check.sh green before each: F5.3 strike timing first (strike,
-throw and release contacts at their key pose; IMPACT_CONTACT_SYNC), then F6.3 grounded pickups, F2.1/F2.2 prop
-physics, F6.1/F6.2 visibility, FR.1/FR.3 rotation path and checks, and on. Rule O46: test the uncertain, build the
+Build M9 by the FINAL plan v1.0 (deconfliction doc, section 9), one slice per commit, scripts/check.sh green before
+each: first the W wording rules from the probes (W1-W4, O47-O49; O48's post), then F5.3 strike timing with V1b's
+deflect wording (IMPACT_CONTACT_SYNC), then F6.3 grounded pickups, F2/F6 prop physics and positions, FR.1/FR.3, and on.
+Model-agnostic, built for Seedance, no model cards (O49). Rule O46: test the uncertain, build the
 certain. Build every check and data change now; the printed wording of a fix whose probe (V1-V6) has no result yet
 follows the probe's wording, and changes if the owner's render of that probe fails. Each slice: predict, add the check
 with two or three breaks plus a should-not-fire run over every prompt, fix content as a recorded golden deviation where

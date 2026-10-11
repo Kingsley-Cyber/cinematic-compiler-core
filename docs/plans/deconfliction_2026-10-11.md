@@ -1,6 +1,9 @@
 # Deconfliction: the owner's cinematic_beat_v2 plan (parts 1-3) against the repo (2026-10-11)
 
-Status: **answered by the owner 2026-10-11: every recommendation accepted (O22-O44 in MASTER_PLAN); Q-G open.** No code changed by this document. Repo at local `main` `7e962cc` (553 tests, 44 prompt
+Status: **FINAL, v1.0 (2026-10-11).** Every recommendation accepted (O22-O44); the probe results amend the printed
+wording (O47, O48); the repo stays model-agnostic, built for Seedance with no model cards, adapters later (O49). Open:
+Q-G (which beats are callbacks, needed only for F4.6) and probe V6 (optional; the opening is built with V6's wording).
+The build order is in section 9. Repo at local `main` `7e962cc` (553 tests, 44 prompt
 codes, gate green). Every repo claim below was checked against the code on disk; `file:line` points at it.
 
 ## 1. Executive summary
@@ -278,6 +281,23 @@ Status: DONE · PARTIAL · MISSING · CONFLICTS. "Fix" names the enhancement in 
 
 ## 5. Surgical flow enhancements (grouped by the plan's stages)
 
+### W. Wording rules from the owner's probes (O47-O49): the first slice
+
+The probes (R10-R18, `docs/render_tests/2026-10-11-m9-probes/`) showed which wordings Seedance follows. They become
+default rules of `renderers/prose_renderer.py` for every prompt, each with a prompt code in
+`validators/prompt_validator.py` (and a break test), with no model card (O49):
+
+| Rule | Evidence | Renderer change | Check |
+|---|---|---|---|
+| W1 Never print a body hold or freeze in frames; camera holds on a hit use V5's wording ("hold with BOTH bodies in frame, no close-up") | stretched 0.85-1.75 s in R10, R11, R14; gone in R16; V5 passed (R15) | holds stay in the graph and LBN; the prose prints camera holds only | BODY_HOLD_FRAMES |
+| W2 After every release, state the releasing hand is empty | R11 kept a second kunai in B's hand; R16 with the line held one | a release line ends "<label>'s <side> hand is empty from <t>" | EMPTY_HAND_UNSTATED |
+| W3 Print a turn as "ONE <turn> about the <axis> axis (<plane>)" with takeoff and landing; never print quarter-turn angles or degrees per second | the angle list gave two flips (R13); plain wording one (R18) | the derived angles stay in the graph (narrows O33) | ROTATION_ANGLES_PRINTED |
+| W4 An object the scene needs later is placed in the scene from the start, with where it stands; never "hidden" or "not visible before" | the log was drawn from 0.00 when named hidden (R12) and when unnamed (R17), as in R1-R5 | M8.12b's "deployment hidden until 4.00" goes; the reference log becomes a post beside A from 0.00 (O48, golden deviation) | HIDDEN_PHRASING |
+
+Timing: aerial takeoffs rendered 0.75-1.6 s late in every probe, strikes within about 0.2 s. Times stay in the prompt;
+renders are judged with that drift in mind.
+
+
 Each fix is additive: a field in an existing schema (version bump, logged), a function in an existing module, a new
 prompt code with its break, or plan content recorded as a golden deviation. "Rows" are knowledge-map rows it closes.
 
@@ -406,6 +426,8 @@ prompt code with its break, or plan content recorded as a golden deviation. "Row
   stowed; visible otherwise) and print "kunai visible 0.00-10.00 (in B's hand, in flight, on the ground at […] 3.40-8.00,
   in A's hand)"; "substitution log hidden until 4.00".
 - Why: derived from S06/S07; no new state.
+- **Amended by W4 (O47, O48):** no "hidden" segment is printed. A prop that appears later is in the scene from the start
+  (the reference log stands beside A as a post); the track prints where each prop is and when it changes hands or state.
 
 **F6.2 Rest persistence** · P1 · Depends on: F6.1
 - File/Module: `prop_samples.motion_words` (:25).
@@ -427,9 +449,12 @@ prompt code with its break, or plan content recorded as a golden deviation. "Row
   (`prose_renderer.py:539`).
 - Enhancement: optional per impact `force` (0-1), `freeze` (bool), `shake` (camera, 0-3); anime card ranges; checks:
   freeze implies a hold, shake only on an impact.
+- **Amended by W1 (O47):** freezes and holds stay in the graph and LBN; the prose prints only camera holds on a hit, in
+  V5's wording.
 
 **F8.2 Contact frame numbers** · P2 · Depends on: F5.3
 - Enhancement: print each impact as "frame 60 (2.50 s at 24 fps), hold 3 frames, reaction from frame 63"; derived.
+- **Amended by W1 (O47):** the prose prints the impact time only ("impact at 2.50"), no frame counts.
 
 **F8.3 Per-limb speedlines** · P3 · Depends on: —
 - Enhancement: optional `part` on speedlines, checked like smear (FRAME_SMEAR's rule).
@@ -446,6 +471,9 @@ prompt code with its break, or plan content recorded as a golden deviation. "Row
   5.20, -180 at 5.30 (inverted, head below hips), -270 at 5.40, -360 at 5.50; 900 degrees per second". Time spacing is
   linear between the keys (interpretation; easing from the Effort could follow).
 - Why: computed from the keys, so it cannot disagree with them; no authored data, no new key.
+- **Amended by W3 (O47, probes R13 and R18):** the quarter-turn angles, the inversion time and the degrees per second
+  are derived and checked but not printed; the prose prints "ONE backflip about the side-to-side axis (sagittal plane),
+  takeoff 5.10, landing 5.50". ROTATION_PATH_UNSTATED checks those words.
 
 **FR.2 Limb paths during a turn** · P2 · Depends on: FR.1
 - File/Module: `schemas/graphs/motion_plan.schema.json` (optional `limb_paths` on a turning key), `p13_motion.py`, the
@@ -478,6 +506,8 @@ prompt code with its break, or plan content recorded as a golden deviation. "Row
 - Enhancement: in anime, a flip or cartwheel gets a hold at its derived inversion time (2-3 frames) inside a shot played
   slow, and a smear on the kicking limb during the turn; check MONEY_SHOT reads the genre card. Reference content:
   hold at 5.30, left-leg smear 5.1-5.5, cartwheel inversion hold at 6.45.
+- **Amended by W1 (O47):** the apex hold stays in the graph; the prose prints the smear on the kicking limb and, if any,
+  a camera hold in V5's wording, never a body freeze in frames (R14 froze 0.85 s for "3 frames").
 
 **FR.7 Genre values in the existing cards** · P2 · Depends on: Q-Q, Q-N, Q-O
 - File/Module: `library/camera_conventions/<genre>.yaml` (arc ratio, apex slow motion), `library/joint_limits.yaml`
@@ -621,3 +651,27 @@ Q-O → O35 (keep +30 degrees), Q-P → O36, Q-Q → O37, Q-R → O38, Q-S → O
 The owner's Seedance axis tests (R6-R10, `docs/render_tests/2026-10-11-seedance-axis/`) support O32 (the axis and plane
 words were followed in all five) and add evidence for FR.1, FR.5 and FR.6 (timing, rotation counts, holds and the
 camera arc were not followed).
+
+## 9. Final build order (v1.0)
+
+1. **W wording rules** (W1-W4: BODY_HOLD_FRAMES, EMPTY_HAND_UNSTATED, ROTATION_ANGLES_PRINTED, HIDDEN_PHRASING; O48's
+   post).
+2. F5.3 strike timing (IMPACT_CONTACT_SYNC) with V1b's deflect wording.
+3. F6.3 grounded pickups (AIRBORNE_PICKUP).
+4. F2.1/F2.2 prop physics, F6.1/F6.2 positions and rest (as amended by W4).
+5. FR.1/FR.3 rotation path and checks (as amended by W3).
+6. F5.1/F5.2 world contact points (CONTACT_WORLD).
+7. F4.1/F4.2 verbs and Laban wording.
+8. O21 opening (V6's wording; SURFACE_HEIGHT).
+9. F9.1 Laban direction, F9.2 momentum, FR.4 launch.
+10. F4.3/F4.4 B's active keys (IDLE_FIGHTER).
+11. FR.7 genre cards; FR.6/FR.2 money-shot frame parts and limb paths (as amended by W1).
+12. O19 D9 lines (LINE_DENSITY).
+13. C10 camera in V5's wording, FR.5, F8.1-F8.3 (as amended by W1).
+14. F4.5 chain timing, F4.6 callbacks (after Q-G), F9.3 anticipation, F9.4 reaction.
+15. F6.4 world state; part 3: FP.1, FP.4, FP.8, then FP.2, FP.3, FP.5-FP.7, FP.9, FP.11, then FP.10, FP.12.
+16. The applicability stage (O16) with the 16-layer coverage report.
+17. One full-fight render by the owner (D9 lines, camera, part 3 words), logged.
+
+Checks planned: 43 new codes (the 39 of the earlier count plus W1-W4). Deferred to M7: per-frame tracks, rendering,
+render validation, retry, model adapters (O49), sound (O41).
