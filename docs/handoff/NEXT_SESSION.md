@@ -48,7 +48,7 @@ model and seed, and each result goes into the render log.
 |---|---|
 | Repo | Pushed: GitHub `main` = `16ff68c`, tag `checkpoint-2026-10-11-m8.9`. Push again only when the owner says so |
 | Built | S01–S17 (layer DAG); K1 knowledge map (109 rows); M8.1–M8.9: four structured-prose modes beside LBN-2.4, 37 prompt codes, conformance test, joint limits, teleport ban, prop p/v under gravity |
-| Truth about adherence | 38/84 checklist rows verified per prompt; 46 unverified (findings §8). The conformance test is green but covers only those 38 |
+| Truth about adherence | M8.10 checklist built (`examples/<name>/checklist.md`, `python -m validators.checklist`): 0 of 20 prompts are deliverables. Prose 37 PASS / 0 FAIL / 41 NOT CHECKED / 6 N/A per prompt; LBN 4-6 PASS / 44-47 FAIL (read against the DAG's template, O13); union 40 PASS. A finding (F1-F15) beside a PASS marks codes too weak for what the renders showed |
 | Renders | R1–R5 of the reference fight, all poor; LBN `render.txt` (R2) the most cohesive. See `docs/render_log.md` |
 | Map honesty | C6 (causal graph) was downgraded to partial after R4; mandatory 16/27, required 10/15 enforced |
 
@@ -73,8 +73,8 @@ Then read, in order: `HANDOFF.md` bootstrap → this file → the findings → `
 
 | # | Slice | Done when |
 |---|---|---|
-| 0 | Owner answers Q1 and Q2 | Scope and the not-applicable list recorded in MASTER_PLAN as owner decisions |
-| 1 | M8.10 checklist per prompt (`validators/checklist.py` or inside the prompt validator; a file per prompt, e.g. `examples/<name>/checklist_<mode>.md`) | Every prompt in scope has an 84-row table; the gate refuses FAIL and NOT CHECKED; the current red state is shown to the owner |
+| 0 | ~~Owner answers Q1 and Q2~~ done: O13 (the five are fragments of one complete prompt; checklist on all five + union), O14 (N/A only T3, T4, C26's 14 unnamed; menus when selected) | Recorded in MASTER_PLAN |
+| 1 | ~~M8.10 checklist per prompt~~ done: `validators/checklist.py`, `examples/<name>/checklist.md` (five prompts + Any), `--gate` refuses red; tests/test_checklist.py keeps the tables current | Shown to the owner 2026-10-11 |
 | 2 | Causes (F1, F2, F3) | reference_fight and live_action_standoff carry real reasons; prompts print them; CAUSE_REASON fires on a placeholder; C6 back to enforced |
 | 3 | Camera (F4, F5) | The reference camera plan follows C10 and D9 (about 11 shots, holds on hits with both bodies, no limb inserts); C10's rules are codes; C10, C25 green |
 | 4 | Body and props (F7–F12) | No airborne ground pickup without the owner's Q5 ruling; props hidden until used; rope dart as one line; counts held; C5 green |

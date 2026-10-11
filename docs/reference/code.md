@@ -34,9 +34,9 @@ flowchart LR
   renderers -->|4| planner
   renderers -->|1| solver
   solver -->|1| kernel
-  validators -->|1| compiler
+  validators -->|2| compiler
   validators -->|4| kernel
-  validators -->|6| planner
+  validators -->|7| planner
   validators -->|3| renderers
   validators -->|3| solver
 ```
@@ -103,6 +103,7 @@ flowchart LR
 | `solver.staff_geometry` | `solver.quaternion` | math |
 | `solver.trajectory` | — | math |
 | `validators.camera_validator` | `planner.library_vocab`, `solver.camera_geometry` | — |
+| `validators.checklist` | `compiler.examples`, `planner.dependency_graph`, `validators.prompt_validator` | hashlib, json, sys, yaml |
 | `validators.continuity_validator` | `solver.prop_state_machine` | — |
 | `validators.envelope_validator` | `kernel.kernel_files`, `planner.dependency_graph`, `planner.modality`, `validators.layer_dependency_validator`, `validators.schema_validator` | json |
 | `validators.facial_validator` | — | json, re |

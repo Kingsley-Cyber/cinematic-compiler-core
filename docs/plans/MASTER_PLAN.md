@@ -108,6 +108,8 @@ outputs. Spec: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
 | O10 | The golden (reference fight) passes conformance with nothing set aside: its fx 'dust ring' become 'dust burst' (the kernel negative 'no ring' stays), knees as O7, prop p/v consistent with gravity | M8.6-M8.9 |
 | O11 | Joint limits: the owner's human ROM table (cited AAOS / Kendall / Norkin & Levangie) mapped onto the kernel joints; anime may exceed by up to +30 degrees for shoulder, hip, knee, spine and neck | M8.6 |
 | O12 | Teleport: a body faster than 25 m/s between keys is a teleport, refused unless its beat is a declared substitution (decoy revealed, the body reappears at a declared position) | M8.7 |
+| O13 | The five prompts per example (LBN-2.4 and the four prose modes) are fragments of one complete prompt: one content set in the DAG's template (C19), the mode as a setting (Euler blocks filled or left empty, DAG §2.14), detail adaptive (C2). The checklist judges all five and their union (Any) | M8.10 |
+| O14 | Not applicable only for T3 and T4 (superseded by T5 in the DAG) and C26's 14 unnamed states; T5 is checked on the prompt (section order, precedence; build order per O4); menus count only where selected: V4/V5 by the request, C14-C17 by mode, C11 by genre | M8.10 |
 
 Still open: P3.2-6 PRESERVE_AXIS (S16's 180-degree rule) — the owner's call.
 
@@ -455,9 +457,11 @@ Spec and codes: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
   'no ring', audit X29); every code fires on its break. Mandatory 17/27 enforced, required 9/15.
 - [x] M8.5 named fields in LBN-2.4 actor rows (O9)
 - [x] M8.6 joint limits (O11, O7): library/joint_limits.yaml + S13 JOINT_LIMIT; 47 example values normalised · [x] M8.7 teleport + substitution (O12): S04 TELEPORT (25 m/s), event_type substitution (reference b09) · [x] M8.8 prop p/v + gravity (O8): S04 prop_samples + PROP_KINEMATICS; both prompts print p/v · [x] M8.9 golden passes conformance, KNOWN emptied (O10): fx 'dust ring' -> 'dust burst'
-- [ ] M8.10 per-prompt DAG checklist: all 84 checklist rows PASS / FAIL / NOT CHECKED per prompt; the gate refuses
-  FAIL and NOT CHECKED (after the owner's Q1 scope and Q2 not-applicable rulings). Plan and queue:
-  docs/handoff/NEXT_SESSION.md; evidence: docs/findings/2026-10-11-renders-and-dag-adherence.md
+- [x] M8.10 per-prompt DAG checklist (O13, O14): `validators/checklist.py` judges every prompt (LBN-2.4 + four prose
+  modes) on all 84 rows (PASS / FAIL / NOT CHECKED / N/A with evidence, a section a code reads must be present) plus
+  the union of the five; `examples/<name>/checklist.md` next to the prompts, kept current by tests/test_checklist.py;
+  `python -m validators.checklist --gate` refuses any prompt with FAIL or NOT CHECKED. Day one: 0 of 20 prompts are
+  deliverables; prose 37 PASS / 0 FAIL / 41-42 NOT CHECKED, LBN 4-6 PASS / 44-47 FAIL; union 40 PASS (reference fight).
 - [ ] M8.11+ close the rows in the queue's order: causes, camera, body and props, density and format, the rest. Derivable: PROP_TWO_HOLDERS (C5, S07), POST_CONTACT_MISSING (C21),
   PHRASING_MISSING (LMA, T6), MOMENTUM_MISSING (C22, T10), CHAIN_ORDER (KC), ANTICIPATION_MISSING (KF),
   SHOT_TRANSITION_MISSING (C25), PROP_KINEMATICS (C31). Need the owner: JOINT_LIMIT ranges (BIO, T7; the DAG gives

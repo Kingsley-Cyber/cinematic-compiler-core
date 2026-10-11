@@ -8,6 +8,8 @@ import pytest
 import yaml
 from conftest import ROOT
 
+from renderers.prose_renderer import MODES
+
 pytestmark = pytest.mark.unit
 MAP = yaml.safe_load((ROOT / "kernel" / "knowledge_map.yaml").read_text(encoding="utf-8"))
 SOURCE = ROOT / MAP["source"]["path"]
@@ -88,7 +90,7 @@ def test_rows_use_known_fields_classes_statuses_and_steps():
     order = yaml.safe_load((ROOT / "kernel" / "layer_order.yaml").read_text(encoding="utf-8"))
     steps = {node["step_id"] for node in order["nodes"]} | {"all"}
     for row in MAP["rows"]:
-        assert FIELDS <= set(row) <= FIELDS | {"enforced_by", "codes", "gaps"}, row["id"]
+        assert FIELDS <= set(row) <= FIELDS | {"enforced_by", "codes", "gaps", "not_applicable", "applies_when"}, row["id"]
         assert row["class"] in CLASSES and row["status"] in STATUSES, row["id"]
         assert row["step"] in steps, row["id"]
         if row["class"] == "excluded":
@@ -98,6 +100,17 @@ def test_rows_use_known_fields_classes_statuses_and_steps():
         if row["class"] == "evidence":
             assert row["status"] != "enforced", row["id"]
         assert row["note"].strip(), row["id"]
+
+
+def test_not_applicable_and_menus_follow_owner_o14():
+    """N/A on every prompt only for the superseded layer orders; menu rows name the mode, genre or menu that selects them."""
+    assert sorted(row["id"] for row in MAP["rows"] if "not_applicable" in row) == ["T3", "T4"]
+    assert all("O14" in row["not_applicable"] for row in MAP["rows"] if "not_applicable" in row)
+    menus = {row["id"]: row["applies_when"] for row in MAP["rows"] if "applies_when" in row}
+    assert menus == {"C11": {"genre": ["ugc_ad"]}, "C14": {"mode": "pure_staff"}, "C15": {"mode": "mixed"},
+                     "C16": {"mode": "upgraded_mixed"}, "C17": {"mode": "euler_heavy"},
+                     "V4": {"selection": "V4 alteration goal"}, "V5": {"selection": "V5 style template"}}
+    assert {when["mode"] for when in menus.values() if "mode" in when} == set(MODES)
 
 
 def test_locators_name_real_files_functions_and_tests():

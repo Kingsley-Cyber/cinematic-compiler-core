@@ -23,13 +23,18 @@
 # A locator is {file, check (function in file), code (finding code), test (tests/file.py::function)}.
 # codes: the semantic codes of validators/prompt_validator.py that verify the row on the final prose prompts (M8.4,
 #   proven by tests/test_dag_conformance.py). gaps: codes for atoms the repo does not have yet (never emitted).
+# not_applicable: owner O14 (2026-10-11): the reason a row is N/A on every prompt (T3, T4 only).
+# applies_when: owner O14: a menu row counts only where it is selected: {mode: <prose mode>} (LBN-2.4 is the
+#   euler_heavy layout), {genre: [...]}, or {selection: <menu>} (nothing selects one yet, so it stays NOT CHECKED).
+# The per-prompt checklist (M8.10, validators/checklist.py) judges the 84 non-evidence rows on every prompt.
 # Anchors are line numbers in the frozen copy (§2.2 = Mermaid block, §2.3 = node catalogue).
 # X1-X41 (§3.5) are findings about specific prompts, not rules, and are not mapped.
 
 version: 1
 status: draft
 basis: "Mapped by Claude 2026-10-11 against the repo at 9c9fd98 (layer_order 1.7); owner decisions O1-O4 recorded
-  2026-10-11 (docs/plans/M8_DAG_PROSE.md); owner review pending."
+  2026-10-11 (docs/plans/M8_DAG_PROSE.md); O13-O14 (checklist scope, not-applicable rulings) 2026-10-11; owner
+  review pending."
 source:
   path: docs/sources/knowledge_dag_v1.md
   original: "~/Downloads/untitled folder/video-prompt-framework-knowledge-graph.md"
@@ -383,6 +388,7 @@ rows:
     codes: [SECTION_ORDER]
     enforced_by:
       - {file: kernel/layer_order.yaml}
+    not_applicable: "Superseded by T5 in the DAG itself (§2.4, v2 -> v3 changes); owner O14 (2026-10-11)."
     note: "Superseded in the DAG by T4 and T5 (improves_upon) and in the repo by kernel/layer_order.yaml. Its
       Effort-above-key-poses order is the M3/T5 clash."
 
@@ -395,6 +401,7 @@ rows:
     codes: [SECTION_ORDER]
     enforced_by:
       - {file: kernel/layer_order.yaml}
+    not_applicable: "Superseded by T5 in the DAG itself (§2.4, v2 -> v3 changes); owner O14 (2026-10-11)."
     note: "Superseded by T5 and by kernel/layer_order.yaml. Its parallel Spatial/Support/Timing children of L2 have
       no repo counterpart; Effort placement is the M3/T5 clash."
 
@@ -403,11 +410,12 @@ rows:
     anchor: "§2.2 L870; §2.3 L1236; §2.4 L190"
     class: mandatory
     step: all
-    status: partial
+    status: enforced
     codes: [SECTION_ORDER, PRECEDENCE_RULE_MISSING]
     enforced_by:
       - {file: kernel/layer_order.yaml}
-    note: "v3 is linear with Laban Effort above key poses and Support above Spatial. Owner O4 (2026-10-11): the repo
+    note: "Owner O14 (2026-10-11): checked on the prompt as section order and the precedence rule; the build order
+      differs by owner O4. v3 is linear with Laban Effort above key poses and Support above Spatial. Owner O4 (2026-10-11): the repo
       order stands (S04 pos/facing authoritative, owner Q2, before S11 support; S15 effort after S13 motion). The
       prose sections follow the DAG's order (M8.2); SECTION_ORDER lands in M8.4."
 
@@ -649,6 +657,7 @@ rows:
     class: style
     step: S16
     status: partial
+    applies_when: {genre: [ugc_ad]}
     enforced_by:
       - {file: library/camera_conventions/ugc_ad.yaml}
     note: "Draft ugc_ad card: handheld/gimbal/tripod rigs, jump cuts, roll at most 10, shots 0.4-4.0 s, axis never
@@ -689,6 +698,7 @@ rows:
     class: style
     step: S17
     status: enforced
+    applies_when: {mode: pure_staff}
     codes: [EULER_MODE_MISMATCH, STAFF_FORMAT]
     enforced_by:
       - {file: renderers/prose_renderer.py, check: render_all, test: tests/test_prose_render.py::test_euler_blocks_sit_on_the_lines_each_mode_names}
@@ -701,6 +711,7 @@ rows:
     class: style
     step: S17
     status: enforced
+    applies_when: {mode: mixed}
     codes: [EULER_MODE_MISMATCH]
     enforced_by:
       - {file: renderers/prose_renderer.py, check: render_all, test: tests/test_prose_render.py::test_euler_blocks_sit_on_the_lines_each_mode_names}
@@ -713,6 +724,7 @@ rows:
     class: style
     step: S17
     status: enforced
+    applies_when: {mode: upgraded_mixed}
     codes: [EULER_MODE_MISMATCH]
     enforced_by:
       - {file: renderers/prose_renderer.py, check: render_all, test: tests/test_prose_render.py::test_euler_blocks_sit_on_the_lines_each_mode_names}
@@ -725,6 +737,7 @@ rows:
     class: style
     step: S17
     status: enforced
+    applies_when: {mode: euler_heavy}
     codes: [EULER_MODE_MISMATCH]
     enforced_by:
       - {file: solver/euler_solver.py, check: check, code: MOTION_JOINTS,
@@ -842,9 +855,10 @@ rows:
     anchor: "§2.2 L904; P3.1 L1625"
     class: mandatory
     step: all
-    status: partial
+    status: enforced
     codes: [REACTION_WITHOUT_CAUSE, DISCONNECTED_CAMERA_MOTION]
-    note: "Finding codes are named invalid states (the 37 prompt codes plus the pipeline's). reaction_without_cause =
+    note: "Owner O14 (2026-10-11): the two named states are checked; the 14 the source does not name are not
+      applicable until named. Finding codes are named invalid states (the 37 prompt codes plus the pipeline's). reaction_without_cause =
       REACTION_WITHOUT_CAUSE; disconnected_camera_motion = DISCONNECTED_CAMERA_MOTION. The other 14 F2 names are
       unknown (the write-up does not list them), so they cannot be coded."
 
@@ -980,7 +994,8 @@ rows:
     class: style
     step: all
     status: missing
-    note: "Not encoded."
+    applies_when: {selection: V4 alteration goal}
+    note: "Not encoded. Owner O14: a menu; the goal the request selects becomes checks (none is selected yet)."
 
   - id: V5
     name: Style templates
@@ -988,10 +1003,11 @@ rows:
     class: style
     step: all
     status: partial
+    applies_when: {selection: V5 style template}
     enforced_by:
       - {file: library/camera_conventions/ugc_ad.yaml}
       - {file: library/camera_conventions/anime.yaml}
-    note: "Genre camera cards cover part of UGC Raw (handheld, imperfect) and Premium Anime (holds, motivated camera).
+    note: "Owner O14: a menu; the template the request selects becomes checks (none is selected yet). Genre camera cards cover part of UGC Raw (handheld, imperfect) and Premium Anime (holds, motivated camera).
       Music-Video Hyper and Grounded Technical have no card."
 
   - id: V6
@@ -1253,6 +1269,7 @@ rows:
     class: excluded
     step: S13
     status: excluded
+    codes: [ROOT_EXACT_PRESENT]
     enforced_by:
       - {file: solver/euler_solver.py, check: check, code: MOTION_POS,
          test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
@@ -1313,6 +1330,7 @@ rows:
     class: excluded
     step: S13
     status: excluded
+    codes: [ROOT_EXACT_PRESENT]
     enforced_by:
       - {file: kernel/kernel_scope.yaml}
     note: "Settled with P3.2-5 by owner O3: the prose leaves it out; LBN-2.4 keeps it."

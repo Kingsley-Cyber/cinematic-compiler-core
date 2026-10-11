@@ -119,8 +119,8 @@ checked as absent).
 
 | # | Question |
 |---|---|
-| Q1 | Must every prompt pass the map, including `render.txt` (LBN-2.4), or only the four prose prompts? (LBN would need causal links, implied guidance and the other DAG sections.) |
-| Q2 | Rows that cannot be checked on a prompt — C26's 14 unnamed states, T3/T4 (overridden by O4), V4/V5 (menus, not rules): accept "not applicable" with a reason, or must each become a check? |
+| Q1 | Must every prompt pass the map, including `render.txt` (LBN-2.4), or only the four prose prompts? (LBN would need causal links, implied guidance and the other DAG sections.) Answered later on 2026-10-11: owner O13, the five are fragments of one complete prompt; the checklist judges all five and their union. |
+| Q2 | Rows that cannot be checked on a prompt — C26's 14 unnamed states, T3/T4 (overridden by O4), V4/V5 (menus, not rules): accept "not applicable" with a reason, or must each become a check? Answered later on 2026-10-11: owner O14, N/A only for T3, T4 and C26's 14 unnamed states; V4/V5 checked when selected. |
 | Q3 | Print reasons in LBN-2.4 too (a new causal field changes its layout)? |
 | Q4 | Staff lines in the DAG's brief D9 style (only the limbs that matter), with every number kept in LBN? |
 | Q5 | Ground the pickups at 7.5 and 8.0 (A lands by the rope dart and by the kunai): changes the golden's root positions there. |

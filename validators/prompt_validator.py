@@ -54,6 +54,25 @@ CODES = {
     "END_STATE_MISSING": "a performer lacks its end state (position and support)",
     "STACKED_GRAPHS": "a section other than the Master Template's is embedded (only prop state machines and causal links)",
 }
+STAFF, PROPS, RULES, NEGATIVES = "[LABAN STAFF", "[PROP STATE MACHINE", "[RULES]", "[NEGATIVES]"
+# The Master Template sections (header prefixes) each code reads. A prompt without one of them cannot pass the code
+# (M8.10 checklist): silence is not a pass. Layout codes read the whole text (SECTION_ORDER also the query in SCENE);
+# REACTION_WITHOUT_CAUSE reads the envelope's beats and contacts only.
+READS = {
+    "SECTION_MISSING": (), "SECTION_ORDER": ("[SCENE]",), "PROSE_STALE": (), "ROOT_EXACT_PRESENT": (), "STACKED_GRAPHS": (),
+    "PRECEDENCE_RULE_MISSING": (RULES,), "PROMPT_CONTRADICTION": (STAFF, PROPS, NEGATIVES), "KEY_LINE_MISSING": (STAFF,),
+    "STAFF_FORMAT": (STAFF,), "SUPPORT_MISMATCH": (STAFF,), "AIRBORNE_UNBOOKENDED": (STAFF, RULES),
+    "GESTURE_MISMATCH": (STAFF,), "EULER_MODE_MISMATCH": (STAFF,), "SKELETON_KEY_MISSING": ("[MOVEMENT LANGUAGE]",),
+    "EFFORT_UNDECLARED": (STAFF,), "KINETIC_CHAIN_MISSING": (STAFF,), "KEY_GAP_UNGUIDED": (STAFF, "[IMPLIED GUIDANCE]"),
+    "IMPLIED_GUIDANCE_MISSING": (STAFF, "[IMPLIED GUIDANCE]"), "INTERPOLATION_UNDECLARED": ("[MOTION CONTROL]",),
+    "CONVENTION_MISSING": ("[SPATIAL ANCHORS]",), "SPATIAL_ANCHOR_MISSING": ("[SPATIAL ANCHORS]",),
+    "PROP_TRACK_MISSING": (PROPS,), "PROP_STATE_ORDER": (PROPS,), "PROP_INVARIANT_MISSING": (PROPS,),
+    "CUSTODY_RULE_MISSING": (PROPS,), "CAUSAL_LIST_MISSING": ("[CAUSAL LINKS]",), "REACTION_WITHOUT_CAUSE": (),
+    "CAUSAL_RULE_MISSING": (RULES,), "CONSERVATION_RULE_MISSING": (RULES,), "SPAN_RULE_MISSING": (STAFF, RULES),
+    "EVENT_SEPARATION_MISSING": (STAFF, RULES), "RULES_MISSING": (RULES,), "NEGATIVES_MISSING": (NEGATIVES,),
+    "DISCONNECTED_CAMERA_MOTION": ("[CAMERA]",), "ANCHOR_PHRASE_MISSING": ("[SCENE]",),
+    "RENDER_INTENT_MISSING": ("[SCENE]",), "END_STATE_MISSING": (RULES,),
+}
 HEADER = re.compile(r"^\[[A-Z][^\]]*\]$")
 LINE = re.compile(r"^(\d+\.\d\d) ([A-Z]): SUPPORT (.*)$")
 NUMBERS = re.compile(r"-?\d+(?:\.\d+)?")
@@ -98,6 +117,18 @@ def _expected_headers(envelope, mode):
              "[MOTION CONTROL]", "[SPATIAL ANCHORS]"]
             + [f"[PROP STATE MACHINE – {p['name']}]" for p in envelope["nodes"]["props"]["items"]]
             + ["[CAUSAL LINKS]", "[CAMERA]", GENRE_TITLES.get(envelope["scene"]["genre"], "[GENRE]"), "[RULES]", "[NEGATIVES]"])
+
+
+def unread(text, envelope, mode):
+    """{code: [headers]}: the expected sections a code reads that this prompt lacks, so the code cannot pass on it."""
+    expected = _expected_headers(envelope, mode)
+    present = {h for h, _ in sections(text)}
+    out = {}
+    for code, kinds in READS.items():
+        missing = [h for h in expected if h.startswith(kinds) and h not in present] if kinds else []
+        if missing:
+            out[code] = missing
+    return out
 
 
 def check(text, envelope, mode):

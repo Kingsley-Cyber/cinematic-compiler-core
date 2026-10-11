@@ -37,8 +37,10 @@ Remote: github.com/Kingsley-Cyber/cinematic-compiler-core (public, MIT); push on
   append-only and hash-chained. After DAG, schema, library or import changes run `python -m kernel.build_docs`.
 - **Never:** paid model API, renders (the owner renders), pushing without the owner, editing logged files without a
   log entry.
-- **Waiting on the owner:** Q1–Q8 in the findings' section 9 (Q1 scope and Q2 not-applicable rulings block the
-  checklist); M6 tool definitions; review of `library/joint_limits.yaml`'s axis mapping, the 2 m reach / 0.25 m prop
+- **Checklist (M8.10, owner O13/O14):** `python -m validators.checklist` judges every prompt on all 84 map rows
+  (`examples/<name>/checklist.md`, five prompts + their union); `--gate` refuses any prompt with FAIL or NOT CHECKED.
+  Never call a prompt adherent without its table.
+- **Waiting on the owner:** Q3–Q8 in the findings' section 9 (Q1, Q2 answered as O13, O14); M6 tool definitions; review of `library/joint_limits.yaml`'s axis mapping, the 2 m reach / 0.25 m prop
   tolerance, draft cards and agent additions (below).
 
 ## CLI
