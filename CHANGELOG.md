@@ -6,6 +6,12 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Added
+- Combat verbs on contacts (M9-07a, plan F4.1, owner O22, S-013): Contact gains `verb` (contact 1.1, beat 1.2,
+  beat_plan and temporal_graph 1.5, contact_graph 1.1); a draft card `library/combat_verbs.yaml` says which contact
+  type takes which verb; S04 refuses a mismatch, a throw, catch or disarm naming no prop, and a throw whose prop is not
+  moving (CONTACT_VERB); the staff prints THROW, DEFLECT, STRIKE before the bow; the reference fight's five named
+  contacts carry their verbs. S04's packet named beat_plan 1.3 since S-009; a test now ties every packet's schema id
+  to the file.
 - Rotation runs (M9-05, plan FR.1 as amended by W3 and FR.3, owner O38, S-011): S13 refuses a run of keys that turns
   both ways (ROTATION_NOT_MONOTONIC), a named flip or cartwheel that ends off a whole turn or after the clip
   (ROTATION_INCOMPLETE), and one that is not upside down where it passes 180 degrees (INVERSION_MISSING); the prompt's

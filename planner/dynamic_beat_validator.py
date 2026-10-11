@@ -15,6 +15,9 @@ prop stays within 2 m of its holder's anchor; between two samples of a free prop
 moving prop follows gravity from the first sample's velocity to the second position within 0.25 m, and a prop at rest
 (v null or zero) does not move unless a contact on it at the second sample picks it up or knocks it down. A float
 (stylised, no gravity) is allowed in anime only. The 2 m reach and the 0.25 m tolerance are Claude's interpretation.
+Combat verbs (owner O22, plan F4.1, CONTACT_VERB): a contact's optional verb is one its contact type takes in the
+packet's `combat_verbs` (library/combat_verbs.yaml); catch, throw and disarm name a prop, and a thrown prop has a sample
+with velocity at the throw (interpretation: a throw sends the prop off moving, so a touch may throw).
 Contact pairs (plan F2.2): two samples of a prop share a time only as a `pre` and a `post` on a contact on that prop at
 that instant, at one position (the contact is instantaneous); gravity is checked into the pre sample, velocity too,
 and out of the post sample. Interpretation (Claude's, for owner review): a free prop moving into a contact needs the
@@ -99,6 +102,12 @@ def validate(plan, packet):
                 findings.append(_finding("BEAT_CONTACT", "Contact side b is not declared", bid, b))
             elif b["part"] is not None and b["part"] not in known[b["kind"]][b["id"]].get("parts", []):
                 findings.append(_finding("BEAT_CONTACT", "Contact side b part is not declared", bid, b))
+            verb = contact.get("verb")
+            if verb is not None and verb not in packet["combat_verbs"].get(contact["contact_type"], []):
+                findings.append(_finding("CONTACT_VERB", f"A {contact['contact_type']} contact does not take the verb "
+                                         f"{verb}", bid, contact))
+            elif verb in ("catch", "throw", "disarm") and b["kind"] != "prop":
+                findings.append(_finding("CONTACT_VERB", f"A {verb} names a prop", bid, contact))
         for cause in beat["causes"]:
             target = by_id.get(cause["to"])
             if target is None or cause["to"] == bid:
@@ -115,7 +124,26 @@ def validate(plan, packet):
             if entity in last_mode and last_mode[entity] != mode and not incoming.get(bid):
                 findings.append(_finding("MODE_TRANSITION", "A mode change needs a beat that causes it", bid, [entity, mode]))
             last_mode[entity] = mode
-    return findings + _teleports(beats) + _vanished(beats) + _prop_kinematics(beats, props, packet["scene"]["genre"])
+    return (findings + _teleports(beats) + _vanished(beats) + _prop_kinematics(beats, props, packet["scene"]["genre"])
+            + _thrown(beats))
+
+
+def _thrown(beats):
+    """CONTACT_VERB: a throw leaves its prop moving, so the prop has a sample with velocity at the throw (the post one
+    of a pair)."""
+    findings = []
+    samples = [s for b in beats for s in b.get("prop_samples", [])]
+    for beat in beats:
+        for contact in beat["contacts"]:
+            if contact.get("verb") != "throw" or contact["b"]["kind"] != "prop":
+                continue
+            t = _at(beat, contact)
+            at = [s for s in samples if s["prop"] == contact["b"]["id"] and abs(s["t"] - t) <= EPSILON
+                  and s.get("phase") != "pre"]
+            if not any(s["v"] is not None and any(abs(x) > EPSILON for x in s["v"]) for s in at):
+                findings.append(_finding("CONTACT_VERB", f"A throw leaves {contact['b']['id']} moving: give it a sample "
+                                         f"with velocity at {t}", beat["id"], contact))
+    return findings
 
 
 def _teleports(beats):

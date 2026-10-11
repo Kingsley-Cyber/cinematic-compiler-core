@@ -2,7 +2,7 @@
 # and a docs-log entry (python -m kernel.schema_log --log docs record docs/rules.yaml ...). Every rule cites accepted
 # decisions (docs/decisions/) and names what enforces it: a code or test the gate runs, or `protocol` (the agent
 # follows it; AGENTS.md). Validated by schemas/rules.schema.json.
-version: "2.0"
+version: "2.1"
 rules:
   # ---- agent: how every session works
   - {id: R-01, scope: agent, source: [ADR-S6, ADR-O64],
@@ -93,7 +93,7 @@ rules:
      enforced_by: [COUNT_CONTRADICTION]}
   - {id: R-27, scope: prompt, source: [ADR-O22],
      rule: "Effort actions stay Laban (punch = thrust); combat verbs go on contacts.",
-     enforced_by: [EFFORT_VOCABULARY, "planned: backlog M9-07"]}
+     enforced_by: [EFFORT_VOCABULARY, CONTACT_VERB, "planned: backlog M9-07b"]}
   # ---- owner: what only the owner does
   - {id: R-28, scope: owner, source: [ADR-O64, ADR-O67],
      rule: "Only the owner accepts a decision; an agent proposal not objected to is recorded as owner_default.",

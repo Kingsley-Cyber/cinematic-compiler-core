@@ -98,9 +98,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 2.0; backlog 2.
-- Last session: S-012 (2026-10-11, not started): M9-06 parked: the root position and the contact tolerance are the owner's.
-- Next slice: M9-07 F4.1/F4.2 combat verbs on contacts and Laban wording (step temporal).
+- Layer order 1.7; rules 2.1; backlog 3.
+- Last session: S-013 (2026-10-11, applied): M9-07a: combat verbs on contacts (F4.1, O22).
+- Next slice: M9-07b F4.2 Laban actions printed as qualities (O22; split from M9-07) (step render).
 - Open findings: 39; decisions: 99 (1 proposed).
 <!-- END GENERATED: state -->
 

@@ -34,7 +34,9 @@ the WHERE line is printed in the prose only (LBN-2.4's prop rows unchanged), and
 in force at its start or first set inside it, ignoring one set before the prop's last hold. Added in S-011 (M9-05,
 solver/euler_solver.py): a flip or cartwheel's inversion is read on linear Euler interpolation between its keys; O38's
 landing key for the wizard's dodge_flip is a new hold beat b14 at 9.80 (land_guard shortened to 9.40-9.80 and
-continuing the flip), not the 9.40 apex key turned into a landing.
+continuing the flip), not the 9.40 apex key turned into a landing. Added in S-013 (M9-07a, library/combat_verbs.yaml
+and planner/dynamic_beat_validator.py): strike joins O22's nine verbs; which contact type takes which verb; a throw
+leaves its prop moving (so a touch may throw); which of the reference fight's contacts carry a verb.
 
 ## Impact
 Waits on the owner.

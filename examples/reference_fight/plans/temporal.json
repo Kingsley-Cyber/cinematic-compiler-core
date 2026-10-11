@@ -1,7 +1,7 @@
 {
  "step_id": "S04",
  "band": "L1",
- "packet_sha256": "sha256:91e12c7ee89769f71e05ede29d2d309b7309c53bf2b17bcba162fa0eb0ddc006",
+ "packet_sha256": "sha256:9e1e091f0baa0ef194764d02f2b8a066dabb2a79ee9d7ea97856d4efe44ef3e8",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -510,7 +510,8 @@
       "id": "kunai",
       "part": "handle"
      },
-     "at": "start"
+     "at": "start",
+     "verb": "throw"
     }
    ],
    "causes": [
@@ -664,7 +665,8 @@
       "id": "kunai",
       "part": "blade"
      },
-     "at": "start"
+     "at": "start",
+     "verb": "deflect"
     },
     {
      "contact_type": "support",
@@ -1076,7 +1078,8 @@
       "id": "substitution_log",
       "part": "log"
      },
-     "at": "start"
+     "at": "start",
+     "verb": "strike"
     }
    ],
    "causes": [
@@ -1274,7 +1277,8 @@
       "id": "ninja_broad",
       "part": "torso"
      },
-     "at": "start"
+     "at": "start",
+     "verb": "strike"
     }
    ],
    "causes": [
@@ -1455,7 +1459,8 @@
       "id": "shuriken_volley",
       "part": "star_1"
      },
-     "at": "start"
+     "at": "start",
+     "verb": "throw"
     },
     {
      "contact_type": "support",

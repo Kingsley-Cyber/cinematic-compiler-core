@@ -35,7 +35,8 @@ def events_of(beats):
         for index, contact in enumerate(beat["contacts"], 1):
             events.append({"id": f"{beat['id']}_c{index}", "t": contact_time(beat, contact), "beat": beat["id"],
                            "contact_type": contact["contact_type"], "body_part": contact["a"]["part"],
-                           "a": {"kind": "entity", "id": contact["a"]["id"]}, "b": dict(contact["b"])})
+                           "a": {"kind": "entity", "id": contact["a"]["id"]}, "b": dict(contact["b"]),
+                           **({"verb": contact["verb"]} if contact.get("verb") else {})})  # owner O22
     return events
 
 

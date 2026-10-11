@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:contact:1.0",
+  "$id": "urn:cinematic-compiler:schema:contact:1.1",
   "title": "Contact (shared definition)",
   "description": "A touch, hold (possess), support or release between an entity's body part and an entity, prop or surface, at its beat's end unless `at: start` (owner O23). Shared by the S04 beat plan and the temporal graph (owner O65); embedded where used by kernel/shared_schemas.py.",
   "$defs": {
@@ -78,6 +78,21 @@
             "end"
           ],
           "description": "When the contact happens in its beat: at the beat's end (default) or its start (e.g. a prop already in hand at t=0, M8.12)."
+        },
+        "verb": {
+          "enum": [
+            "strike",
+            "deflect",
+            "parry",
+            "catch",
+            "redirect",
+            "trap",
+            "bind",
+            "disarm",
+            "throw",
+            "grapple"
+          ],
+          "description": "Owner O22 (plan F4.1): the combat action the contact performs; which contact type takes which verb is library/combat_verbs.yaml."
         }
       }
     }

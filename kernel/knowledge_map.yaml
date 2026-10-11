@@ -817,7 +817,13 @@ rows:
          test: tests/test_contact_pass.py::test_prop_change_without_any_contact_is_refused}
       - {file: compiler/passes/mandatory/p05_causal.py, check: edges_and_findings, code: CAUSE_TIMING,
          test: tests/test_causal_pass.py::test_each_causal_rule_rejects_its_violation}
-    note: "M9-02 (owner O23): one time per hit; strike, throw and release contacts happen at their key pose, every
+      - {file: planner/dynamic_beat_validator.py, check: validate, code: CONTACT_VERB,
+         test: tests/test_dynamic_beat_validator.py::test_each_rule_rejects_its_violation}
+      - {file: planner/dynamic_beat_validator.py, check: _thrown, code: CONTACT_VERB,
+         test: tests/test_dynamic_beat_validator.py::test_a_throw_leaves_its_prop_moving}
+    note: "M9-07a (owner O22, plan F4.1): a contact may carry a combat verb its contact type takes
+      (library/combat_verbs.yaml, draft); catch, throw and disarm name a prop and a thrown prop leaves moving (S04
+      CONTACT_VERB); the staff prints the verb in capitals before the bow. M9-02 (owner O23): one time per hit; strike, throw and release contacts happen at their key pose, every
       impact frame has a touch or support onset on it and every strike lands on an impact frame (IMPACT_CONTACT_SYNC,
       S17 and the prompt). Contact before effect holds for prop changes (S07) and hard causes (S05). At-contact and post-contact
       phases (intersection; compress, accelerate, follow-through) are not modelled."

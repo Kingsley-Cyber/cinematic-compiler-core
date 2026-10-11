@@ -333,15 +333,16 @@ def staff_lines(envelope, frame_parts, labels):
                         key=lambda c: (c["t"], c["id"])):
             at = "" if abs(c["t"] - slot["t"]) < EPSILON else f" at {_time(c['t'])}"
             part, target = _part(c["body_part"]), _target(c["b"], labels, names)
+            verb = f"{c['verb'].upper()} " if c.get("verb") else ""  # owner O22, plan F4.1: the combat verb
             if c["id"] in strikes:
                 strike = True
-                relationship.append(f"[DOUBLE BOW + accent: {part} > {target}{at}]")
+                relationship.append(f"{verb}[DOUBLE BOW + accent: {part} > {target}{at}]")
             elif c["contact_type"] == "touch":
-                relationship.append(f"contact bow: {part} > {target}{at}")
+                relationship.append(f"{verb}contact bow: {part} > {target}{at}")
             elif c["contact_type"] == "possess":
-                relationship.append(f"[contact: {part}-{target} retained{at}]")
+                relationship.append(f"{verb}[contact: {part}-{target} retained{at}]")
             elif c["contact_type"] == "release" and c["b"]["kind"] != "surface":
-                relationship.append(f"[contact: {target} ENDS – released{at}]")
+                relationship.append(f"{verb}[contact: {target} ENDS – released{at}]")
                 if c["id"] in empty:
                     relationship.append(empty[c["id"]])
             elif c["contact_type"] == "support" and c["b"]["kind"] != "surface":
@@ -387,7 +388,7 @@ def _euler(line, mode):
     return ""
 
 
-def _movement_language(mode, rows):
+def _movement_language(mode, rows, verbs=False):
     lines = [
         f"Labanotation written as words. Mode: {MODES[mode][1]}.",
         "Each line = one measure for one performer; time in seconds; a symbol lasts until the next line.",
@@ -409,6 +410,9 @@ def _movement_language(mode, rows):
         lines.append("Root [x, y, z] is the scene position in metres; EulerXYZ and joints are degrees.")
     if mode in ("upgraded_mixed", "euler_heavy"):
         lines.append("Skeleton key: " + " ".join(t for s, t, _, _ in rows if s == "key"))
+    if verbs:  # owner O22: only prompts whose contacts carry a combat verb
+        lines.append("A word in capitals before a bow or contact (THROW, DEFLECT, STRIKE ...) names the combat action it "
+                     "performs; the Effort below stays Laban.")
     lines.append("FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship | path/notes")
     return "[MOVEMENT LANGUAGE]\n" + "\n".join(lines)
 
@@ -843,7 +847,8 @@ def render_all(envelope, frame_parts, labels):
     result = {}
     for mode, (title, _) in MODES.items():
         staff = "\n".join(line["text"] + _euler(line, mode) for line in lines)
-        blocks = [shared["scene"], _movement_language(mode, rows), f"[LABAN STAFF – {title}]\n{staff}", shared["implied"],
+        verbs = any(c.get("verb") for c in _items(envelope, "nodes", "contacts"))
+        blocks = [shared["scene"], _movement_language(mode, rows, verbs), f"[LABAN STAFF – {title}]\n{staff}", shared["implied"],
                   shared["motion"], shared["spatial"], *shared["props"], shared["causal"], shared["camera"],
                   shared["genre"], _rules(envelope, mode, rows, lines, labels), shared["negatives"]]
         text = "\n\n".join(blocks) + "\n"

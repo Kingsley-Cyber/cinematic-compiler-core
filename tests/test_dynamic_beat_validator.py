@@ -35,6 +35,10 @@ def test_courtyard_plan_passes():
     ("BEAT_ID", lambda p: beat(p, "b02").update(id="b01")),
     ("BEAT_TIME", lambda p: beat(p, "b13").update(dur=2.0)),
     ("BEAT_TIME", lambda p: beat(p, "b14").update(dur=0)),  # the wizard's hold (b14 since O38, S-011)
+    # owner O22, plan F4.1: a verb its contact type does not take; a throw that names no prop
+    ("CONTACT_VERB", lambda p: beat(p, "b13")["contacts"][0].update(verb="strike")),    # a support takes no verb
+    ("CONTACT_VERB", lambda p: beat(p, "b12")["contacts"][0].update(verb="catch")),     # a release takes only throw
+    ("CONTACT_VERB", lambda p: beat(p, "b12")["contacts"][0].update(verb="throw")),     # the ground is no prop
     ("BEAT_ACTOR", lambda p: beat(p, "b01").update(actor="dragon")),
     ("BEAT_PARTICIPANT", lambda p: beat(p, "b01")["participants"].append({"kind": "prop", "id": "staff"})),
     ("BEAT_PARTICIPANT", lambda p: beat(p, "b03")["participants"].append({"kind": "entity", "id": "acrobat"})),
@@ -167,3 +171,16 @@ def test_the_rows_print_the_pair_pre_before_post():
     at = [text for text in rows if text.startswith("2.50")]
     assert at == ["2.50 pre-contact p[0.5, 1, 4.6] v[-1.4, -3.46, 0.2] moving down along -X",
                   "2.50 post-contact p[0.5, 1, 4.6] v[-0.5, -0.54, 1.75] moving down along +Z"]
+
+
+def test_a_throw_leaves_its_prop_moving():
+    """CONTACT_VERB (owner O22; interpretation: a throw sends the prop off moving, so a touch may throw)."""
+    from planner.dynamic_beat_validator import _thrown
+    throw = {"contact_type": "release", "verb": "throw", "a": {"kind": "entity", "id": "a", "part": "right_hand"},
+             "b": {"kind": "prop", "id": "k", "part": None}, "at": "start"}
+    beat = {"id": "b01", "t": 0.0, "dur": 0.5, "contacts": [throw],
+            "prop_samples": [{"prop": "k", "t": 0.0, "p": [0.0, 1.0, 0.0], "v": [0.0, 2.0, 1.0], "float": False}]}
+    assert _thrown([beat]) == []
+    beat["prop_samples"][0]["v"] = None                                            # still in the hand: no throw
+    assert [f["code"] for f in _thrown([beat])] == ["CONTACT_VERB"]
+

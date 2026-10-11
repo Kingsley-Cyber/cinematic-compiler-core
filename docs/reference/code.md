@@ -78,7 +78,7 @@ flowchart LR
 | `kernel.version` | — | — |
 | `kernel_extraction.control_inventory` | `kernel.canonical`, `planner.dependency_graph` | hashlib, json, re, sys, yaml |
 | `planner.archetype_resolver` | — | — |
-| `planner.beat_planner` | `compiler.authoring`, `kernel.kernel_files`, `planner.dependency_graph`, `planner.modality`, `planner.vocabulary` | — |
+| `planner.beat_planner` | `compiler.authoring`, `kernel.kernel_files`, `planner.dependency_graph`, `planner.library_vocab`, `planner.modality`, `planner.vocabulary` | — |
 | `planner.camera_library` | `planner.dependency_graph`, `validators.schema_validator` | functools, json, yaml |
 | `planner.card_loader` | `kernel.canonical`, `planner.dependency_graph`, `validators.schema_validator` | json, re, yaml |
 | `planner.chaining` | `compiler.passes.mandatory.p07_contact`, `kernel.canonical`, `kernel.kernel_files` | — |

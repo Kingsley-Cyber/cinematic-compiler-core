@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:beat_plan:1.4",
+  "$id": "urn:cinematic-compiler:schema:beat_plan:1.5",
   "title": "S04 beat plan (authored in-session from a hash-bound packet)",
   "description": "LLM call #1 of the owner plan, written by Claude in-session (no paid API). Times in seconds; requires are read at t, effects commit at t + dur, contacts happen at t + dur unless marked at: start (then at t). pos/facing are the root anchors at the beat start t (the key-pose time) and are authoritative for S06 and S13.",
   "type": "object",
@@ -181,6 +181,21 @@
             "end"
           ],
           "description": "When the contact happens in its beat: at the beat's end (default) or its start (e.g. a prop already in hand at t=0, M8.12)."
+        },
+        "verb": {
+          "enum": [
+            "strike",
+            "deflect",
+            "parry",
+            "catch",
+            "redirect",
+            "trap",
+            "bind",
+            "disarm",
+            "throw",
+            "grapple"
+          ],
+          "description": "Owner O22 (plan F4.1): the combat action the contact performs; which contact type takes which verb is library/combat_verbs.yaml."
         }
       }
     },

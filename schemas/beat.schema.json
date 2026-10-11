@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:beat:1.1",
+  "$id": "urn:cinematic-compiler:schema:beat:1.2",
   "title": "Beat (shared definition)",
   "description": "One timed event of a scene with its actor, participants, positions, facings, requirements, effects, contacts, causes and prop samples (S04). Shared by the beat plan and the temporal graph (owner O65); Contact is embedded from contact.schema.json by kernel/shared_schemas.py.",
   "$defs": {
@@ -129,6 +129,21 @@
             "end"
           ],
           "description": "When the contact happens in its beat: at the beat's end (default) or its start (e.g. a prop already in hand at t=0, M8.12)."
+        },
+        "verb": {
+          "enum": [
+            "strike",
+            "deflect",
+            "parry",
+            "catch",
+            "redirect",
+            "trap",
+            "bind",
+            "disarm",
+            "throw",
+            "grapple"
+          ],
+          "description": "Owner O22 (plan F4.1): the combat action the contact performs; which contact type takes which verb is library/combat_verbs.yaml."
         }
       }
     },

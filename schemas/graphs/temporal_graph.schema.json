@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:temporal_graph:1.4",
+  "$id": "urn:cinematic-compiler:schema:temporal_graph:1.5",
   "title": "S04 temporal graph: beats, temporal edges, beat-constraint edges",
   "description": "Beats are copied from the beat plan; temporal and beat_constraint edges are computed, never authored.",
   "type": "object",
@@ -213,6 +213,21 @@
             "end"
           ],
           "description": "When the contact happens in its beat: at the beat's end (default) or its start (e.g. a prop already in hand at t=0, M8.12)."
+        },
+        "verb": {
+          "enum": [
+            "strike",
+            "deflect",
+            "parry",
+            "catch",
+            "redirect",
+            "trap",
+            "bind",
+            "disarm",
+            "throw",
+            "grapple"
+          ],
+          "description": "Owner O22 (plan F4.1): the combat action the contact performs; which contact type takes which verb is library/combat_verbs.yaml."
         }
       }
     },

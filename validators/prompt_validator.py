@@ -401,6 +401,7 @@ def _pickup_checks(envelope, parts, labels, mode, add):
 
 
 BOW_TIME = re.compile(r" at (\d+\.\d\d)\]?$")
+VERB_MARK = re.compile(r"^[A-Z]{3,} (?=\[|contact bow)")  # owner O22: 'DEFLECT [DOUBLE BOW + accent: ...]'
 
 
 def _impact_checks(envelope, parts, mode, add):
@@ -415,7 +416,7 @@ def _impact_checks(envelope, parts, mode, add):
     for row in _staff(parts, mode):
         if len(row["columns"]) != 5:
             continue
-        for item in row["columns"][3].split("; "):
+        for item in (VERB_MARK.sub("", x) for x in row["columns"][3].split("; ")):
             if item.startswith(("[DOUBLE BOW + accent:", "contact bow:")):
                 match = BOW_TIME.search(item)
                 t = float(match.group(1)) if match else row["t"]

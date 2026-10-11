@@ -167,5 +167,14 @@ def test_the_kunai_deflect_is_a_pre_and_post_pair():
     assert [row for row in SPEC["kunai"] if "-contact " in row] == DEFLECT_PAIR
 
 
+# Owner O22 (plan F4.1, backlog M9-07a; ADR-O71 rule 1): the contacts the golden's own words name carry their combat
+# verb ('B THROWS KUNAI', 'FOOT DEFLECT', 'palm hits log', 'knee strike', 'throw shuriken volley').
+CONTACT_VERBS = {"b05_c1": "throw", "b06_c1": "deflect", "b10_c1": "strike", "b12_c1": "strike", "b14_c1": "throw"}
+
+
+def test_the_named_contacts_carry_their_combat_verbs():
+    assert {c["id"]: c["verb"] for c in ENVELOPE["nodes"]["contacts"]["items"] if c.get("verb")} == CONTACT_VERBS
+
+
 def test_render_txt_is_the_render_node():
     assert (FOLDER / "render.txt").read_text(encoding="utf-8") == TEXT + "\n"

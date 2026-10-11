@@ -1,0 +1,12 @@
+# Combat verbs on contacts (owner O22, plan F4.1). Draft vocabulary by Claude for owner review: the action word the
+# model reads goes on the contact, and the Laban effort keeps its own words (punch = thrust). Each field is a contact
+# type; its values are the verbs a contact of that type may carry (S04 CONTACT_VERB); support takes none. The closed list is the plan's
+# F4.1 list (strike added to O22's nine, interpretation); which type takes which verb is Claude's interpretation.
+vocabulary_id: combat_verbs
+version: 1
+status: draft
+basis: Owner O22 (deconfliction Q-A) and plan F4.1 (verbs on contacts; catch with a possess, throw with a release); a thrown prop leaves moving, so a touch can throw (the fight's shuriken volley).
+fields:
+  touch: {kind: values, values: [strike, deflect, parry, redirect, trap, bind, disarm, grapple, throw], description: "A momentary contact: a hit, a deflection or parry, a redirect, a trap or bind, a disarm, a grapple, or a throw that sends a prop off moving."}
+  possess: {kind: values, values: [catch, trap, bind, disarm, grapple], description: "Taking hold: a catch of a moving prop, a trap or bind, a disarm that takes the prop, a grapple."}
+  release: {kind: values, values: [throw], description: "Letting go: a throw sends the released prop off moving."}

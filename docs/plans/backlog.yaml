@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 2
+version: 3
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -32,8 +32,10 @@ items:
   - {id: M9-06, title: "F5.1/F5.2 world contact points by forward kinematics", status: blocked,
      blocked_by: "ADR-O72 (proposed): what a key's root position is, and the contact tolerance (F-066)", step: motion,
      plan: PLAN-003, depends_on: [M9-02], findings: [F-025, F-028, F-062], codes: [CONTACT_WORLD]}
-  - {id: M9-07, title: "F4.1/F4.2 combat verbs on contacts and Laban wording", status: next, step: temporal,
-     plan: PLAN-003, depends_on: [M9-02], findings: [F-025], codes: []}
+  - {id: M9-07a, title: "F4.1 combat verbs on contacts (O22; split from M9-07)", status: done, step: temporal,
+     plan: PLAN-003, depends_on: [M9-02], findings: [], codes: [CONTACT_VERB]}
+  - {id: M9-07b, title: "F4.2 Laban actions printed as qualities (O22; split from M9-07)", status: next, step: render,
+     plan: PLAN-003, depends_on: [M9-07a], findings: [], codes: []}
   - {id: M9-08, title: "O21 opening from above in V6's wording", status: ready, step: temporal, plan: PLAN-003,
      depends_on: [M9-02], findings: [F-010, F-016], codes: [SURFACE_HEIGHT]}
   - {id: M9-09a, title: "F9.1 Laban direction against path and form", status: ready, step: effort, plan: PLAN-003,

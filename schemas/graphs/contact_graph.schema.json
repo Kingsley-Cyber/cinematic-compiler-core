@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:contact_graph:1.0",
+  "$id": "urn:cinematic-compiler:schema:contact_graph:1.1",
   "title": "S07 contact graph: contact events and their sequencing",
   "description": "One node per contact event (at its beat end). touch is instant; possess and support stay active until a release of the same pair. Edges: precedes (consecutive events of one pair) and releases (a release to the contact it ends).",
   "type": "object",
@@ -93,6 +93,21 @@
                 ]
               }
             }
+          },
+          "verb": {
+            "enum": [
+              "strike",
+              "deflect",
+              "parry",
+              "catch",
+              "redirect",
+              "trap",
+              "bind",
+              "disarm",
+              "throw",
+              "grapple"
+            ],
+            "description": "Owner O22 (plan F4.1): the combat verb its S04 contact carries."
           }
         }
       }
