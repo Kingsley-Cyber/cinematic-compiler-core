@@ -6,6 +6,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Added
+- The bootstrap directory (owner O69, S-007): `docs/bootstrap/` with the resume steps, a generated `state.md`,
+  the environment, the working agreements and the lessons learned; AGENTS.md (1.2) and CLAUDE.md point to it;
+  `/bootstrap` opens it.
 - The self-audit (owner O68, S-005): `docs/prompts/self_audit.md` and the `/self-audit` command check the agent's
   own work against the repo, read-only, before a commit or push; AGENTS.md step 9 and rule R-31.
 - AIRBORNE_PICKUP (S11 and the prompt): a prop resting on a surface is taken only by a body with support, within

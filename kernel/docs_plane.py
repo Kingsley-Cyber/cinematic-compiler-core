@@ -6,6 +6,7 @@ that field, and the first paragraph is the field's value (later paragraphs are d
 
 Generated here, never edited by hand (`python -m kernel.docs_plane --write`):
 - docs/index/{plans,findings,decisions,sessions,renders}.md, one row per artifact file;
+- docs/bootstrap/state.md, where the work stands (owner O69);
 - docs/layer_order.md from kernel/layer_order.yaml; docs/rules.md from docs/rules.yaml; docs/plan.md from
   docs/plans/backlog.yaml and the codes in the repo;
 - the blocks between `<!-- BEGIN GENERATED: <name> -->` and `<!-- END GENERATED: <name> -->` in AGENTS.md
@@ -339,12 +340,56 @@ def fill_blocks(text, values):
     return BLOCK.sub(lambda m: m.group(1) + values[m.group(2)] + m.group(4) if m.group(2) in values else m.group(0), text)
 
 
+def _next_id(identifiers, prefix, width=0):
+    numbers = [int(m.group(1)) for m in (re.fullmatch(rf"{re.escape(prefix)}(\d+)", i) for i in identifiers) if m]
+    return f"{prefix}{str(max(numbers, default=0) + 1).zfill(width)}"
+
+
+def bootstrap_state_text(root=ROOT):
+    """docs/bootstrap/state.md: where the work stands, from the repo only (git state is read with the README's commands)."""
+    data, every = backlog(root), {kind: items(kind, root) for kind in KINDS}
+    order = yaml.safe_load((root / "kernel" / "layer_order.yaml").read_text(encoding="utf-8"))
+    sessions = sorted(every["sessions"], key=lambda x: x["id"])
+    by_status = {}
+    for item in data["items"]:
+        by_status.setdefault(item["status"], []).append(item)
+    m9 = [i for i in data["items"] if i["id"].startswith("M9")]
+    left = [i for i in m9 if i["status"] != "done"]
+    upcoming = (by_status.get("next", []) + by_status.get("ready", []))[:4]
+    open_findings = [f for f in every["findings"] if value(f, "Status") not in CLOSED]
+    serious = [f for f in open_findings if value(f, "Severity") in ("critical", "high")]
+    lines = ["# Bootstrap state", "", GENERATED.format(source="the backlog, the indexes and the layer order"), "",
+             "Where the work stands, from the repo's files only. For git state (unpushed commits, uncommitted work) run "
+             "the commands in [README.md](README.md).", "",
+             "## Versions", "",
+             f"Layer order {order['version']}; rules {rules_data(root)['version']}; backlog {data['version']}.", "",
+             "## Last sessions", ""]
+    lines += [f"- {x['id']} ({value(x, 'Status')}): {x['title']}" for x in sessions[-3:]] or ["- none"]
+    lines += ["", "## Next slices", ""]
+    lines += [f"- {i['id']} ({i['status']}, step {i['step']}): {i['title']}" for i in upcoming] or ["- none"]
+    held = ", ".join(i["id"] + " " + i["status"] for i in left if i["status"] in ("blocked", "deferred")) or "none blocked"
+    lines += ["", f"M9: {len(m9) - len(left)} of {len(m9)} slices done, {len(left)} left ({held}; "
+              f"{sum(i['step'] == 'owner' for i in left)} the owner's own).", "",
+              "## Waiting on the owner", "", blocks(root)["rulings"].rstrip("\n"), "",
+              f"## Open findings: {len(open_findings)}", ""]
+    lines += [f"- {f['id']} ({value(f, 'Severity')}, {value(f, 'Layer')}): {f['title']}"
+              for f in serious] or ["- none critical or high"]
+    lines += ["", "## Next free IDs", "",
+              f"Decision {_next_id([d['id'] for d in every['decisions']], 'ADR-O')}, "
+              f"finding {_next_id([f['id'] for f in every['findings']], 'F-', 3)}, "
+              f"session {_next_id([x['id'] for x in sessions], 'S-', 3)}, "
+              f"render {_next_id([r['id'] for r in every['renders']], 'R')}.", ""]
+    return "\n".join(lines)
+
+
 def generated(root=ROOT):
     """{path: expected text} for every generated file and every file with generated blocks."""
     out = dict(index_texts(root))
     out[root / "docs" / "layer_order.md"] = layer_order_text(root)
     out[root / "docs" / "rules.md"] = rules_text(root)
     out[root / "docs" / "plan.md"] = plan_text(root)
+    if (root / "docs" / "bootstrap").is_dir():
+        out[root / "docs" / "bootstrap" / "state.md"] = bootstrap_state_text(root)
     values = blocks(root)
     for name in ("AGENTS.md", "docs/for_the_owner.md"):
         path = root / name

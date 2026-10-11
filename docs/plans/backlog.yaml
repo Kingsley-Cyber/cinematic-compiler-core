@@ -80,3 +80,5 @@ items:
      status: done, step: docs, plan: PLAN-005, depends_on: [D-02], findings: [], codes: []}
   - {id: D-06, title: "Self-audit prompt (docs/prompts/self_audit.md, /self-audit) before every commit or push (O68)",
      status: done, step: docs, plan: PLAN-005, depends_on: [D-02], findings: [], codes: []}
+  - {id: D-07, title: "Bootstrap directory docs/bootstrap/ for resuming after a compaction (O69)", status: done,
+     step: docs, plan: PLAN-005, depends_on: [D-06], findings: [], codes: []}

@@ -1,6 +1,6 @@
 # AGENTS.md — The Agent Operating Manual
 
-<!-- docs-version: 1.1 -->
+<!-- docs-version: 1.2 -->
 
 > Before every session, read `AGENTS.md` fully — it is the map of this repo, not a suggestion — and follow its
 > nine-step session protocol exactly: read the five indexes, run `scripts/verify.sh`, pick one gap, confirm its layer
@@ -31,6 +31,7 @@ not adherence, and a PASS a render contradicts is NOT CHECKED. The repo is model
 
 | Read | What it is |
 |---|---|
+| [docs/bootstrap/README.md](docs/bootstrap/README.md) | start here after a compaction or in a new session: resume steps, generated state, environment, working agreements, lessons (`/bootstrap`) |
 | [docs/index/plans.md](docs/index/plans.md) | every plan, its status, its open findings |
 | [docs/index/findings.md](docs/index/findings.md) | every bug, gap, contradiction, drift, question, risk, opportunity |
 | [docs/index/decisions.md](docs/index/decisions.md) | every owner ruling (ADR); IDs as the code cites them (O48, Q6) |
@@ -96,9 +97,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 1.1; backlog 1.
-- Last session: S-006 (2026-10-11, applied): M9-03b: each prop records who carries it (carried_by, O63).
+- Last session: S-007 (2026-10-11, applied): The bootstrap directory (docs/bootstrap/, /bootstrap).
 - Next slice: M9-04 F2.1/F2.2 prop physics contract, F6.1/F6.2 positions and rest (step render).
-- Open findings: 35; decisions: 95 (0 proposed).
+- Open findings: 35; decisions: 96 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
@@ -123,7 +124,8 @@ The owner updates this section by ruling: in chat (the agent writes the ADR) or 
 
 ## 8. Session protocol (nine steps)
 
-1. **Read the state.** This file, the five indexes, `docs/plan.md`. Refresh the graphs (`make graphs`) and navigate
+1. **Read the state.** `docs/bootstrap/` (after a compaction or in a new session), this file, the five indexes,
+   `docs/plan.md`. Refresh the graphs (`make graphs`) and navigate
    with graft and graphify before reading source (R-01).
 2. **Verify.** Run `scripts/verify.sh`. If it fails before you change anything, the failure is your first gap: record
    it as a finding and fix it, or stop and report.

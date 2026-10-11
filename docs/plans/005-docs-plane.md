@@ -29,6 +29,7 @@ code and data so they cannot drift, docs/for_the_owner.md explains everything in
 | D-04 | docs | medium | done | pinned pyproject and uv.lock, Dockerfile (the gate passes inside the image) |
 | D-05 | docs | medium | done | six GitHub workflows, each running its part inside the pinned image; the nightly regeneration PR (all six proven locally in Docker; they run on GitHub after the owner pushes) |
 | D-06 | docs | medium | done | the self-audit prompt and `/self-audit` command, run before every commit or push (O68, R-31) |
+| D-07 | docs | medium | done | docs/bootstrap/ (README, generated state, environment, working agreements, lessons) and `/bootstrap` (O69) |
 
 ## Dependencies
 - None: it documents and gates what exists.
@@ -49,4 +50,5 @@ code and data so they cannot drift, docs/for_the_owner.md explains everything in
 ## Changelog
 - 2026-10-11 — created (O64-O67).
 - 2026-10-11 — D-06 added (O68): the self-audit.
+- 2026-10-11 — D-07 added (O69): the bootstrap directory.
 - 2026-10-11 — applied: D-01 a370f6f, D-02 8312845, D-03 245f874, D-04 bdeab49, D-05 (this commit).
