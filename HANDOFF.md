@@ -16,8 +16,8 @@ Remote: github.com/Kingsley-Cyber/cinematic-compiler-core (public, MIT); push on
   (`validators/prompt_validator.py`), `tests/test_dag_conformance.py`, JOINT_LIMIT (S13), TELEPORT (S04),
   PROP_KINEMATICS (S04). Owner decisions O1–O12 in MASTER_PLAN; the golden's recorded deviations in
   `tests/test_reference_fight_golden.py`. Examples: `wizard_vs_acrobat`, `reference_fight` (golden),
-  `ugc_glasses_demo`, `live_action_standoff`. GitHub `main` = `cda5ffe`; later commits are local until the owner
-  says push.
+  `ugc_glasses_demo`, `live_action_standoff`. GitHub `main` = `16ff68c` (tag `checkpoint-2026-10-11-m8.9`); push only when the
+  owner says so.
 - **Read order:** this file → `docs/plans/MASTER_PLAN.md` (decisions Q/A/B/F, every milestone) →
   `docs/reference/README.md` (generated DAG, schemas, data files, code) → `kernel/layer_order.yaml`.
 - **Commit rule (O5: one local commit per slice):** commit only when `scripts/check.sh` exits 0. Don't pipe it into `tail` (that hides the exit

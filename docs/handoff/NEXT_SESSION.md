@@ -46,7 +46,7 @@ model and seed, and each result goes into the render log.
 
 | | |
 |---|---|
-| Repo | HEAD is local; GitHub `main` at `cda5ffe` (M8.4). Everything after is unpushed until the owner says push |
+| Repo | Pushed: GitHub `main` = `16ff68c`, tag `checkpoint-2026-10-11-m8.9`. Push again only when the owner says so |
 | Built | S01–S17 (layer DAG); K1 knowledge map (109 rows); M8.1–M8.9: four structured-prose modes beside LBN-2.4, 37 prompt codes, conformance test, joint limits, teleport ban, prop p/v under gravity |
 | Truth about adherence | 38/84 checklist rows verified per prompt; 46 unverified (findings §8). The conformance test is green but covers only those 38 |
 | Renders | R1–R5 of the reference fight, all poor; LBN `render.txt` (R2) the most cohesive. See `docs/render_log.md` |
