@@ -453,8 +453,9 @@ def _camera(envelope, labels):
         f, a, lens, mv, pb = s["framing"], s["angle"], s["lens"], s["movement"], s["playback"]
         cross = " across the axis" if s["editing"]["axis"] == "cross" else ""
         shows = ", ".join(f"{labels.get(beats[b]['actor'], beats[b]['actor'])} {_words(beats[b]['label'])}" for b in s["beats"])
+        detail = ((" of " if f["scale"] == "insert" else " with an insert of ") + _words(f["detail"])) if f["detail"] else ""
         out.append(f"{_time(s['t'])}–{_time(s['t'] + s['dur'])} {s['editing']['transition_in']}{cross} to {f['scale']}"
-                   f"{' insert on ' + f['detail'] if f['detail'] else ''} on {', '.join(name(x) for x in f['subjects'])}: "
+                   f"{detail} on {', '.join(name(x) for x in f['subjects'])}: "
                    f"{f['visible_action'].rstrip('.')}; elevation {_num(a['elevation_deg'])}, azimuth "
                    f"{_num(a['azimuth_deg'])}, roll {_num(a['roll_deg'])}; {_num(lens['focal_length_mm'])} mm "
                    f"{lens['perspective']}; {mv['kind']}: {mv['path'].rstrip('.')}; {pb['treatment']} x{_num(pb['speed'])}; "

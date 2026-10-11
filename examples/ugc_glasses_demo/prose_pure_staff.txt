@@ -57,7 +57,7 @@ A lift glasses → A unfold glasses → A put on glasses ⇢ A show result
 
 [CAMERA]
 0.00–1.50 open to medium_close on A, glasses: Talking to camera, the creator picks the folded glasses up off the desk; elevation 3, azimuth 0, roll 0; 28 mm wide; tracking: phone drifts with the hand down to the desk; normal x1; shows A lift glasses; motivated by genre convention ugc hook first.
-1.50–3.50 cut to insert insert on right_hand on A, glasses: Right hand holds the frame; the left fingers swing the temples open; elevation 10, azimuth 0, roll 0; 50 mm normal; static: close on the hands and the glasses; normal x1; shows A unfold glasses; motivated by contact event b01 c1.
+1.50–3.50 cut to insert of right hand on A, glasses: Right hand holds the frame; the left fingers swing the temples open; elevation 10, azimuth 0, roll 0; 50 mm normal; static: close on the hands and the glasses; normal x1; shows A unfold glasses; motivated by contact event b01 c1.
 3.50–5.50 cut to medium_close on A, glasses: Both hands lift the open glasses to the face and slide the temples over the ears; elevation 3, azimuth 0, roll 0; 28 mm wide; tracking: rises with the hands to the face; normal x1; shows A put on glasses; motivated by contact event b02 c1.
 5.50–8.00 jump_cut to medium_close on A, glasses: Wearing the glasses, the creator smiles to camera and taps the frame; elevation 3, azimuth 0, roll 0; 35 mm normal; static: held on the face; normal x1; shows A show result; motivated by entity focus A.
 Camera rules: The first shot carries the hook or the product. Every product use shows the hand on the object. Talking-to-camera shots keep the eyeline in the lens. Shots last 0.4-4 s. Crossing the action axis is never allowed.

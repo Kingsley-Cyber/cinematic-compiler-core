@@ -345,7 +345,8 @@ def _camera_rows(envelope, labels, cover):
         d, name = s["derived"], (lambda x: labels.get(x, x))
         framing, angle, position, lens, focus = s["framing"], s["angle"], s["position"], s["lens"], s["focus"]
         quality, relation, composition = s["movement_quality"], s["relation_to_action"], s["composition"]
-        detail = f" insert on {framing['detail']}" if framing["detail"] else ""
+        detail = (f" on {framing['detail']}" if framing["scale"] == "insert" else f" insert on {framing['detail']}") \
+            if framing["detail"] else ""
         cross = " across the axis" if s["editing"]["axis"] == "cross" else ""
         placement = ",".join(f"{name(k)} {v}" for k, v in sorted(composition["placement"].items()))
         parts = [
