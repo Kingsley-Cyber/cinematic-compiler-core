@@ -1,0 +1,1213 @@
+# Knowledge-DAG map (owner request 2026-10-11): every node of the frozen knowledge DAG
+# (docs/sources/knowledge_dag_v1.md, never edited) attached to the S01-S17 step that owns it.
+# Owner, 2026-10-11: the DAG is the compiler and workflow for writing the owner's prompts in structured prose;
+# it details the dependency chains and the graph QA/QC for the final outputs, in its final form.
+# kernel/layer_order.yaml stays the single source of steps; this file adds no step, rule or check.
+# Owner decisions already in the repo override the DAG: a clash is recorded here as clashes_with_repo
+# and goes to the owner as a question, never into code. tests/test_knowledge_map.py guards this file.
+#
+# class:
+#   mandatory  - true in every compile; a violation fails the gate (exit 4, replan)
+#   required   - must be present for the active genre; a missing authored step is exit 3
+#   style      - genre or mode choice; lives in library cards, checked as ranges
+#   projection - S17 render wording only
+#   evidence   - metrics, instances, failure modes, owner render results; never enforced
+#   excluded   - P3.2 / P4.2 items the DAG deliberately did not add
+# status:
+#   enforced          - a check function plus a test that fails when the rule is broken (enforced_by)
+#   partial           - part of it is checked or present (enforced_by lists what exists), or no failing test
+#   missing           - nothing in the repo yet
+#   clashes_with_repo - an owner decision in the repo says otherwise; the owner's call
+#   excluded          - left out by the DAG; the note says where the repo stands
+# Evidence rows are never enforced: partial means the repo holds or mitigates part of it.
+# A locator is {file, check (function in file), code (finding code), test (tests/file.py::function)}.
+# Anchors are line numbers in the frozen copy (§2.2 = Mermaid block, §2.3 = node catalogue).
+# X1-X41 (§3.5) are findings about specific prompts, not rules, and are not mapped.
+
+version: 1
+status: draft
+basis: "Mapped by Claude 2026-10-11 against the repo at 9c9fd98 (layer_order 1.7); owner review pending."
+source:
+  path: docs/sources/knowledge_dag_v1.md
+  original: "~/Downloads/untitled folder/video-prompt-framework-knowledge-graph.md"
+  sha256: 108d317b83e5033b3791ec9bb4377e65d35d1419f52023edfcf9575afdd6f208
+  bytes: 151274
+  nodes: 96
+  edges: 199
+  excluded_items: 13
+
+rows:
+  # ---- G0 meta-principles ----
+  - id: M1
+    name: Intent-first axiom
+    anchor: "§2.2 L836; §2.3 L1158; §1.1 L47"
+    class: mandatory
+    step: S01
+    status: enforced
+    enforced_by:
+      - {file: validators/layer_dependency_validator.py, check: check_layer_order, code: STEP_ORDER,
+         test: tests/test_layer_dependency.py::test_step_ids_must_be_well_formed_unique_and_rise_with_build_order}
+    note: "S01 intent has no inputs and every step depends on it; step ids must rise with build order, so nothing
+      (joint angles included, S13) can come before intent. The render opens with the query preface."
+
+  - id: M2
+    name: Hierarchy + downward cascade
+    anchor: "§2.2 L837; §2.3 L1162; §1.2 L53-L54"
+    class: mandatory
+    step: all
+    status: enforced
+    enforced_by:
+      - {file: compiler/authoring.py, check: bind, code: PACKET_MISMATCH,
+         test: tests/test_temporal_pass.py::test_wrong_packet_and_failed_gates_are_refused}
+    note: "An upstream change re-seals every downstream packet (sha256), so a plan bound to the old packet is refused
+      and must be re-authored: the cascade is forced. The DAG's worked example (an Effort change softens angles,
+      speed, contact and camera) cannot run in the repo, because Effort (S15) sits below motion (see M3)."
+
+  - id: M3
+    name: Higher layer wins (Laban over Euler)
+    anchor: "§2.2 L838; §2.3 L1166; §1.2 L55-L61; §2.4 L1332"
+    class: mandatory
+    step: all
+    status: clashes_with_repo
+    enforced_by:
+      - {file: solver/euler_solver.py, check: check, code: MOTION_POS,
+         test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
+      - {file: compiler/passes/derived/p11_kinematic.py, check: check, code: KINEMATIC_SUPPORT,
+         test: tests/test_kinematic_solver.py::test_each_rule_rejects_its_violation}
+    note: "Lower never contradicts higher holds for position, facing and posture (S13 vs S04/S06) and support
+      (S11 vs S07/S06). Clash: the DAG lets Laban Effort veto a contradicting joint Euler; the repo builds S15 effort
+      after S13 motion (owner order 2026-10-10, layer_order.yaml) and its packet reads the finished keys, so nothing
+      checks Euler against Effort. Owner's call."
+
+  - id: M4
+    name: Model-as-reader contradiction check
+    anchor: "§2.2 L839; §2.3 L1170; §1.2 L62; §2.5 L210"
+    class: mandatory
+    step: all
+    status: partial
+    enforced_by:
+      - {file: compiler/passes/derived/p17_render.py, check: check, code: RENDER_COVERAGE,
+         test: tests/test_render.py::test_a_dropped_item_fails_coverage}
+    note: "Every step re-checks its plan against upstream facts and S17 checks the projection is complete, but nothing
+      reads the final render text top to bottom for contradictions (e.g. a kernel rule sentence against scene data)."
+
+  # ---- G1 primitives ----
+  - id: LMA
+    name: "[LMA] Body / Effort / Shape / Space / Phrasing"
+    anchor: "§2.2 L842; §2.3 L1176; §1.3 L64"
+    class: required
+    step: S15
+    status: partial
+    enforced_by:
+      - {file: compiler/passes/derived/p15_effort.py, check: check, code: EFFORT_VOCABULARY,
+         test: tests/test_effort_solver.py::test_each_rule_rejects_its_violation}
+      - {file: compiler/passes/derived/p15_effort.py, check: check, code: EFFORT_COVERAGE,
+         test: tests/test_effort_solver.py::test_each_rule_rejects_its_violation}
+      - {file: compiler/passes/derived/p12_bartenieff.py, check: check, code: BARTENIEFF_VOCABULARY,
+         test: tests/test_bartenieff_solver.py::test_each_rule_rejects_its_violation}
+    note: "Effort is four fields (weight, time, space, flow) as in the merged F4 format; the action is derived from
+      weight x time x space without flow (EFFORT_ACTION), matching the DAG's rejection of the 'Punch drive' label.
+      Body is S12 Bartenieff. Phrasing (preparation, action, recuperation) and recuperation after high-Effort actions
+      are not modelled."
+
+  - id: LBN
+    name: "[LBN] Staff / SUPPORT / gestures / bows / accent / signs"
+    anchor: "§2.2 L843; §2.3 L1184; §1.4 L82"
+    class: required
+    step: S11
+    status: partial
+    enforced_by:
+      - {file: compiler/passes/derived/p11_kinematic.py, check: check, code: KINEMATIC_SUPPORT,
+         test: tests/test_kinematic_solver.py::test_each_rule_rejects_its_violation}
+      - {file: compiler/passes/mandatory/p07_contact.py, check: lifecycle, code: CONTACT_RELEASE,
+         test: tests/test_contact_pass.py::test_each_contact_rule_rejects_its_violation}
+      - {file: solver/euler_solver.py, check: _turn_findings, code: MOTION_AXIS,
+         test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
+    note: "The staff's meaning is in the data: SUPPORT column (S11; airborne means no support), contact bows as
+      touch / possess / release (S07; a release needs an active contact), turn signs naming the axis (S13). Gesture
+      direction + level words and the accent sign have no field. No staff is rendered (that is C14)."
+
+  - id: BIO
+    name: "[EXT] Natural body mechanics"
+    anchor: "§2.2 L844; §2.3 L1192; §1.5 L100"
+    class: mandatory
+    step: S11
+    status: partial
+    enforced_by:
+      - {file: compiler/passes/derived/p11_kinematic.py, check: check, code: KINEMATIC_SUPPORT,
+         test: tests/test_kinematic_solver.py::test_each_rule_rejects_its_violation}
+      - {file: solver/euler_solver.py, check: check, code: MOTION_POSTURE,
+         test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
+    note: "B-2 support-change logic holds through S11 support vs S07/S06, and posture through S13. Not checked:
+      B-1 weight travel, B-3 joint limits, B-4 opposition, B-5 secondary lag, B-6 breath (S11 records breathing and
+      weight_transfer as authored cues only), B-8 takeoff/landing bookends. Exception gates B-X1..3 not modelled."
+
+  - id: KC
+    name: Kinetic chain
+    anchor: "§2.2 L845; P3.1 L1616"
+    class: required
+    step: S12
+    status: partial
+    enforced_by:
+      - {file: compiler/passes/derived/p12_bartenieff.py, check: check, code: BARTENIEFF_VOCABULARY,
+         test: tests/test_bartenieff_solver.py::test_each_rule_rejects_its_violation}
+    note: "S12 authors initiation and follow_through ('the order in which the rest of the body follows') per slot,
+      with parts checked as the entity's own; no check that force runs proximal to distal."
+
+  - id: KF
+    name: "[EXT] Key pose + interpolation"
+    anchor: "§2.2 L846; §2.3 L1201; §1.6 L118"
+    class: required
+    step: S13
+    status: partial
+    enforced_by:
+      - {file: compiler/passes/derived/p13_motion.py, check: _keys, code: MOTION_SLOT,
+         test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
+      - {file: solver/trajectory.py}
+    note: "One key pose per entity per beat is enforced; the root trajectory between keys is derived (never authored)
+      and the kernel rule 'slerp <label> joints' is rendered. Anticipation, follow-through and airborne arcs
+      (K-Ant, K-FT, K-Air) are not checked."
+
+  - id: EXT1
+    name: "[EXT] Root pos + root Euler"
+    anchor: "§2.2 L847; §2.3 L1205"
+    class: required
+    step: S13
+    status: enforced
+    enforced_by:
+      - {file: solver/euler_solver.py, check: check, code: MOTION_POS,
+         test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
+      - {file: solver/euler_solver.py, check: check, code: MOTION_FACING,
+         test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
+    note: "Every key carries root pos and root Euler; pos must equal the S04 anchor and heading the S04 facing within
+      1 degree (owner Q2)."
+
+  - id: EXT2
+    name: "[EXT] Joint Euler dict (skeleton_key)"
+    anchor: "§2.2 L848; §2.3 L1206"
+    class: required
+    step: S13
+    status: enforced
+    enforced_by:
+      - {file: solver/euler_solver.py, check: check, code: MOTION_JOINTS,
+         test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
+    note: "Bones are exactly the 11 kernel joints (skeleton key from the kernel 'key' items), on every key."
+
+  - id: GR
+    name: Graph types
+    anchor: "§2.2 L849; §2.3 L1208; §1.7 L136"
+    class: required
+    step: all
+    status: enforced
+    enforced_by:
+      - {file: validators/layer_dependency_validator.py, check: check_envelope, code: MISSING_GROUP,
+         test: tests/test_layer_dependency.py::test_wrong_layer_tag_inactive_data_missing_and_unknown_groups}
+    note: "The envelope carries the dependency graph (layer DAG), causal (S05), attachment (S06 holder + S07
+      possess/release), motion (S13 follows edges) and constraint (S03) graphs; a missing group is refused."
+
+  - id: CAM
+    name: Camera primitives
+    anchor: "§2.2 L850; §2.3 L1209; §1.8 L149"
+    class: required
+    step: S16
+    status: enforced
+    enforced_by:
+      - {file: validators/camera_validator.py, check: _references, code: CAMERA_VOCABULARY,
+         test: tests/test_camera_solver.py::test_each_rule_rejects_its_violation}
+    note: "Closed 13-subdivision vocabulary (library/camera_subdivisions.yaml): angle, movement, lens, focus,
+      playback (slow motion), composition and more. Aspect ratio has no field."
+
+  - id: STY
+    name: Stylization primitives
+    anchor: "§2.2 L851; §2.3 L1210; §1.8 L157"
+    class: style
+    step: S17
+    status: enforced
+    enforced_by:
+      - {file: compiler/passes/derived/p17_render.py, check: check, code: FRAME_SMEAR,
+         test: tests/test_render.py::test_each_frame_rule_rejects_its_violation}
+      - {file: compiler/passes/derived/p17_render.py, check: check, code: FRAME_IMPACT,
+         test: tests/test_render.py::test_each_frame_rule_rejects_its_violation}
+    note: "The six channels (impact, smear, speedlines, holds, fx, ink) are authored frame parts with placement
+      checks. Lighting, colour keys and foreshortening have no channel."
+
+  - id: NEG
+    name: Negatives
+    anchor: "§2.2 L852; §2.3 L1211"
+    class: mandatory
+    step: S03
+    status: partial
+    enforced_by:
+      - {file: compiler/passes/mandatory/p03_constraint.py}
+      - {file: compiler/passes/derived/p17_render.py, check: check, code: RENDER_COVERAGE,
+         test: tests/test_render.py::test_a_dropped_item_fails_coverage}
+    note: "Kernel negatives (per scene, actor and prop) and card negatives become 'negative' constraints at S03, and
+      render coverage marks every constraint item by item. No test drops a negative: the coverage test drops an
+      effort item."
+
+  # ---- G1b model failure modes (evidence; mitigations named) ----
+  - id: FM1
+    name: Flat 2D street fight
+    anchor: "§2.2 L855; §2.3 L1217; §3.6 L1570"
+    class: evidence
+    step: S16
+    status: partial
+    note: "Mitigations present: C9 anchors, C10 camera layer (partial). Absent: V3 levers, V6 quotas, C10's
+      height/depth cadence."
+
+  - id: FM2
+    name: Pose snapping / floaty
+    anchor: "§2.2 L856; §2.3 L1218; §3.6 L1571"
+    class: evidence
+    step: S13
+    status: partial
+    note: "Mitigations present: S15 Effort, S11 support, derived interpolation. Absent: C4 implied guidance, C14 staff."
+
+  - id: FM3
+    name: Prop duplication / teleport
+    anchor: "§2.2 L857; §2.3 L1219; §3.6 L1572"
+    class: evidence
+    step: S06
+    status: partial
+    note: "Mitigations present: C5 prop state machine (partial), kernel 'no duplicated <prop>' negatives and the
+      'tracked separately, never merged' rule. Absent: C31 prop position + velocity."
+
+  - id: FM4
+    name: Causality break
+    anchor: "§2.2 L858; §2.3 L1220; §3.6 L1573"
+    class: evidence
+    step: S05
+    status: partial
+    note: "Mitigations present: C6 causal checks, C27 timing, S06 replay (a later beat's requirement must hold, so a
+      slammed body that stands needs a beat that stands it). Absent: C21 post-contact phases."
+
+  - id: FM5
+    name: Anatomy artifacts
+    anchor: "§2.2 L859; §2.3 L1221; §3.6 L1574"
+    class: evidence
+    step: S03
+    status: partial
+    note: "Mitigations present: kernel anatomy negatives (missing limbs/arms/hands, headless, faceless, extra
+      fighters, cloned actors, full circle, ring, halo) in every render. T7 gate partial (no joint limits)."
+
+  - id: FM6
+    name: Prompt bloat / parse confusion
+    anchor: "§2.2 L860; §2.3 L1222; §3.6 L1575"
+    class: evidence
+    step: S17
+    status: partial
+    note: "Renders run 11-69 KB (examples) against documented caps of 2,000-3,500 characters; no_render_compression
+      forbids trimming and per-model compression waits for M7. Explicit keys sit at beats, not every frame (C1)."
+
+  - id: FM7
+    name: Spatial drift
+    anchor: "§2.2 L861; §2.3 L1223; §3.6 L1576"
+    class: evidence
+    step: S13
+    status: partial
+    note: "Mitigations present: EXT1 root pins (enforced), C29 convention, C9 anchors per beat. Absent: C22 momentum."
+
+  - id: FM8
+    name: Model invents key moments
+    anchor: "§2.2 L862; §2.3 L1224; §3.6 L1577"
+    class: evidence
+    step: S04
+    status: partial
+    note: "Mitigations present: every beat gets an explicit key per participant (C1). Absent: C2 gap ceiling,
+      C20 attention tags."
+
+  - id: FM9
+    name: Merged or swapped events
+    anchor: "§2.2 L863; P4.1 L1681"
+    class: evidence
+    step: S17
+    status: missing
+    note: "Contacts are separate events with their own ids and beats, but no C32 rule line reaches the prompt."
+
+  # ---- G2 frameworks ----
+  - id: T1
+    name: Roles v1 (4)
+    anchor: "§2.2 L866; §2.3 L1228; §1.1 L45"
+    class: mandatory
+    step: all
+    status: partial
+    enforced_by:
+      - {file: validators/layer_dependency_validator.py, check: check_layer_order, code: STEP_ORDER,
+         test: tests/test_layer_dependency.py::test_step_ids_must_be_well_formed_unique_and_rise_with_build_order}
+    note: "The cascade order is the step order: Director S01-S02, Choreographer S04, Biomechanist S11-S13,
+      Technician S17. Roles are not named and 'encode so the model cannot misinterpret' has no check (M4)."
+
+  - id: T2
+    name: Roles v2 (6)
+    anchor: "§2.2 L867; §2.3 L1230; §1.1 L46"
+    class: mandatory
+    step: all
+    status: partial
+    note: "Spatial Architect = S02 world grounding + S04 pos/facing; Adversary = S03 negatives and rules from the
+      kernel and cards. No scene-specific negatives are authored."
+
+  - id: T3
+    name: Layers v1 (10)
+    anchor: "§2.2 L868; §2.3 L1232; §2.1 L163"
+    class: mandatory
+    step: all
+    status: partial
+    enforced_by:
+      - {file: kernel/layer_order.yaml}
+    note: "Superseded in the DAG by T4 and T5 (improves_upon) and in the repo by kernel/layer_order.yaml. Its
+      Effort-above-key-poses order is the M3/T5 clash."
+
+  - id: T4
+    name: Layers v2 (11, DAG)
+    anchor: "§2.2 L869; §2.3 L1234; §2.2 L178"
+    class: mandatory
+    step: all
+    status: partial
+    enforced_by:
+      - {file: kernel/layer_order.yaml}
+    note: "Superseded by T5 and by kernel/layer_order.yaml. Its parallel Spatial/Support/Timing children of L2 have
+      no repo counterpart; Effort placement is the M3/T5 clash."
+
+  - id: T5
+    name: Chain v3 (12)
+    anchor: "§2.2 L870; §2.3 L1236; §2.4 L190"
+    class: mandatory
+    step: all
+    status: clashes_with_repo
+    enforced_by:
+      - {file: kernel/layer_order.yaml}
+    note: "Clash: v3 is linear with Laban Effort the highest movement authority above key poses, and Support above
+      Spatial. The repo authors S04 pos/facing (authoritative, owner Q2) before S11 support, and S15 effort after
+      S13 motion (owner order 2026-10-10). Owner's call."
+
+  - id: T6
+    name: Laban checklist
+    anchor: "§2.2 L871; §2.3 L1238"
+    class: mandatory
+    step: S15
+    status: partial
+    enforced_by:
+      - {file: compiler/passes/derived/p15_effort.py, check: check, code: EFFORT_VOCABULARY,
+         test: tests/test_effort_solver.py::test_each_rule_rejects_its_violation}
+    note: "Body (S12) and Effort/Shape/Space (S15) are checked for vocabulary and coverage; Phrasing is absent.
+      'Verify before locking keyframes' is inverted by S15 running after S13 (M3 clash)."
+
+  - id: T7
+    name: Biomechanical gate
+    anchor: "§2.2 L872; §2.3 L1240; §1.5 L104-L116"
+    class: mandatory
+    step: S11
+    status: partial
+    enforced_by:
+      - {file: compiler/passes/derived/p11_kinematic.py, check: check, code: KINEMATIC_SUPPORT,
+         test: tests/test_kinematic_solver.py::test_each_rule_rejects_its_violation}
+      - {file: solver/euler_solver.py, check: check, code: MOTION_POSTURE,
+         test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
+    note: "Support agreement and posture are gated. Weight travel, joint limits, opposition and airborne
+      takeoff/landing are not; the smear/beat exception gates (B-X1..3) are not modelled."
+
+  - id: T8
+    name: 12-step process
+    anchor: "§2.2 L873; §2.3 L1242; §2.5 L198"
+    class: mandatory
+    step: all
+    status: partial
+    note: "Steps map to S01, S04, S15, S04, S07/S11, S04 beats, S13, S06, S16, S17, S03; step 12 is M4 (partial).
+      Step 3 (Effort) before step 6 (key poses) is reversed in the repo (M3 clash)."
+
+  - id: T9
+    name: 9-step graph-aware
+    anchor: "§2.2 L874; §2.3 L1244; §2.5 L212"
+    class: mandatory
+    step: all
+    status: partial
+    enforced_by:
+      - {file: solver/prop_state_machine.py, check: replay, code: REPLAY_REQUIRES,
+         test: tests/test_state_pass.py::test_unmet_requirement_and_same_time_conflict_are_refused}
+    note: "Causal graph (S05) before key poses (S13); prop timelines from the attachment graph (S06/S07);
+      constraints that enforce causal edges = S06 replay refuses a requirement no effect meets ('B stays down'
+      holds as state). Step 2 (Laban before the causal sketch) is reversed; step 9 (embed the graph) is V7."
+
+  - id: C1
+    name: Explicit / Implied
+    anchor: "§2.2 L875; §2.3 L1246; §2.7 L240"
+    class: required
+    step: S13
+    status: partial
+    enforced_by:
+      - {file: compiler/passes/derived/p13_motion.py, check: _keys, code: MOTION_SLOT,
+         test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
+    note: "Every beat has an explicit key per participant, and contacts and support changes sit on beat ends, so
+      they are always explicit. The implied half (guidance between keys, C4) is not authored, and 'anything the
+      model previously got wrong' has no channel."
+
+  - id: C2
+    name: Adaptive density
+    anchor: "§2.2 L876; §2.3 L1248; §2.7 L251-L257; §4.4 L624"
+    class: mandatory
+    step: S04
+    status: missing
+    note: "No key-gap ceiling. Example gaps between one entity's keys reach 2.5 s (live_action_standoff,
+      ugc_glasses_demo), 2.4 s (wizard, wizard_vs_acrobat) and 1.6 s (ninja_broad, reference_fight). The 1.5 s
+      rule needs denser beats or implied guidance (C4). The dense/medium/sparse bands are style ranges (E1)."
+
+  - id: T10
+    name: Conservation laws
+    anchor: "§2.2 L877; P3.1 L1617"
+    class: mandatory
+    step: all
+    status: partial
+    enforced_by:
+      - {file: validators/continuity_validator.py, check: check, code: CONTINUITY_PRESENCE,
+         test: tests/test_state_pass.py::test_continuity_catches_missing_subjects_and_possession_mismatch}
+      - {file: compiler/passes/mandatory/p07_contact.py, check: cross_check, code: PROP_CHANGE_CONTACT,
+         test: tests/test_contact_pass.py::test_prop_change_without_any_contact_is_refused}
+      - {file: solver/euler_solver.py, check: _turn_findings, code: MOTION_AXIS,
+         test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
+    note: "Identity (no clone or disappearance), contact before effect (props) and rotation continuity (Euler never
+      wrapped; a change of 90 degrees or more is declared) hold. Teleport ban, momentum and support-for-ground-force
+      are not checked. PRESERVE_AXIS stays out per the DAG (P3.2-6)."
+
+  - id: T11
+    name: Dual encoding
+    anchor: "§2.2 L878; P3.1 L1618"
+    class: projection
+    step: S17
+    status: partial
+    note: "Each slot is rendered as numbers (root, Euler, joints) and words (KIN, BODY, EFFORT, SHAPE, SPACE; faces
+      in words), projected from one envelope. Nothing checks the authored key description against the numbers."
+
+  # ---- G3 modules + movement languages ----
+  - id: C3
+    name: motion_control block
+    anchor: "§2.2 L881; §2.3 L1252; §3.1 L350"
+    class: projection
+    step: S17
+    status: partial
+    note: "The render carries every explicit key and the kernel interpolation rule 'slerp <label> joints'; there is
+      no motion_control block with interpolation, density, implied_guidance or density_rules fields."
+
+  - id: C4
+    name: Implied guidance
+    anchor: "§2.2 L882; §2.3 L1254; §3.1 L357-L360"
+    class: projection
+    step: S17
+    status: missing
+    note: "No guidance text between keys (keep Effort, weight transfer, secondary lag, recovery after accents,
+      airborne arcs)."
+
+  - id: C5
+    name: Prop state machine
+    anchor: "§2.2 L883; §2.3 L1256; §1.7 L145"
+    class: mandatory
+    step: S06
+    status: partial
+    enforced_by:
+      - {file: validators/continuity_validator.py, check: check, code: POSSESSION_MISMATCH,
+         test: tests/test_state_pass.py::test_continuity_catches_missing_subjects_and_possession_mismatch}
+      - {file: solver/prop_state_machine.py, check: replay, code: STATE_CONFLICT,
+         test: tests/test_state_pass.py::test_unmet_requirement_and_same_time_conflict_are_refused}
+      - {file: compiler/passes/mandatory/p07_contact.py, check: lifecycle, code: CONTACT_HAND,
+         test: tests/test_contact_pass.py::test_each_contact_rule_rejects_its_violation}
+    note: "Ordered states per prop (S06 replay), never lost or cloned, possession agrees with contacts, a hand holds
+      one thing at a time; each prop's history is a render track. Gap: nothing refuses two entities holding active
+      possess contacts on one prop at once (holder is single-valued; HOLDER_CONTACT only checks it is among them)."
+
+  - id: C6
+    name: Causal graph / links
+    anchor: "§2.2 L884; §2.3 L1258; §3.3 L380"
+    class: mandatory
+    step: S05
+    status: enforced
+    enforced_by:
+      - {file: compiler/passes/mandatory/p05_causal.py, check: edges_and_findings, code: CAUSE_EFFECT,
+         test: tests/test_causal_pass.py::test_each_causal_rule_rejects_its_violation}
+      - {file: compiler/passes/mandatory/p05_causal.py, check: edges_and_findings, code: CAUSE_TIMING,
+         test: tests/test_causal_pass.py::test_each_causal_rule_rejects_its_violation}
+    note: "Linear chains, timing, a hard cause's effect meeting a target requirement, no cycles. The list is not
+      rendered (V7)."
+
+  - id: C7
+    name: Attachment graph
+    anchor: "§2.2 L885; §2.3 L1260"
+    class: mandatory
+    step: S07
+    status: enforced
+    enforced_by:
+      - {file: compiler/passes/mandatory/p07_contact.py, check: cross_check, code: HOLDER_CONTACT,
+         test: tests/test_contact_pass.py::test_each_contact_rule_rejects_its_violation}
+    note: "Ownership history = S06 holder per beat + S07 possess/release contacts; a holder without an active
+      possess contact is refused. The render prints each prop's history (e.g. the kunai track)."
+
+  - id: C8
+    name: Layer 1.5 / 3.5
+    anchor: "§2.2 L886; §2.3 L1262; §2.3 L186"
+    class: style
+    step: S05
+    status: partial
+    note: "Causal (S05) and attachment (S06/S07) graphs are built before key poses (S13), as the DAG places them;
+      'after Laban' does not hold (S15 comes later). Embedding them in the prompt is V7."
+
+  - id: C9
+    name: Spatial anchors / axis
+    anchor: "§2.2 L887; §2.3 L1264; §4.2 L593"
+    class: required
+    step: S04
+    status: partial
+    enforced_by:
+      - {file: planner/dynamic_beat_validator.py, check: validate, code: BEAT_POSE_ANCHOR,
+         test: tests/test_dynamic_beat_validator.py::test_each_rule_rejects_its_violation}
+      - {file: kernel/conventions.yaml}
+    note: "Every entity has pos + facing in every beat; scene ax (Y up, ground y=0) comes from kernel/conventions.yaml
+      and world cards ground the surfaces. 'Y/Z over X' and 'must use vertical space' are not checked (V3)."
+
+  - id: C10
+    name: Camera layer (dynamic)
+    anchor: "§2.2 L888; §2.3 L1266; §3.2 L377; §4.5 L636"
+    class: style
+    step: S16
+    status: partial
+    enforced_by:
+      - {file: validators/camera_validator.py, check: _genre, code: CAMERA_GENRE,
+         test: tests/test_camera_solver.py::test_genre_card_rules_apply_scene_wide}
+      - {file: validators/camera_validator.py, check: _motivation, code: CAMERA_MOTIVATION,
+         test: tests/test_camera_solver.py::test_each_rule_rejects_its_violation}
+    note: "Genre cards set shot length (anime 0.25-6.0 s), crossing and roll; every shot is motivated. Not encoded:
+      the six rules (eye-level medium at most 1.2 s, height change every 2 s, low angles in aerial dominance,
+      parallax, orbit on spins, push through Z) and three forbidden shots; F4's relational speed (match_subject)."
+
+  - id: C11
+    name: UGC camera
+    anchor: "§2.2 L889; §2.3 L1268; §3.2 L378"
+    class: style
+    step: S16
+    status: partial
+    enforced_by:
+      - {file: library/camera_conventions/ugc_ad.yaml}
+    note: "Draft ugc_ad card: handheld/gimbal/tripod rigs, jump cuts, roll at most 10, shots 0.4-4.0 s, axis never
+      crossed. No 9:16 aspect, shake, over-tilt, focus hunts or clipped limbs, and the card allows the tripod that
+      C11 forbids (draft, open to change)."
+
+  - id: C12
+    name: Stylization layer
+    anchor: "§2.2 L890; §2.3 L1270; P3.1 L1634"
+    class: style
+    step: S17
+    status: enforced
+    enforced_by:
+      - {file: compiler/passes/derived/p17_render.py, check: check, code: FRAME_SMEAR,
+         test: tests/test_render.py::test_each_frame_rule_rejects_its_violation}
+    note: "A smear names one subject and, for a body, one part, and sits on a sudden effort of that body or an event
+      of that prop; the ink line renders 'smear follows ONLY the declared limb, body does NOT smear' (F1). The
+      physics-break exception has nothing to relax (no physics check exists)."
+
+  - id: C13
+    name: Rules + Negatives
+    anchor: "§2.2 L891; §2.3 L1272; §2.4 L1330"
+    class: mandatory
+    step: S03
+    status: partial
+    enforced_by:
+      - {file: compiler/passes/mandatory/p03_constraint.py}
+      - {file: compiler/passes/derived/p17_render.py, check: check, code: RENDER_COVERAGE,
+         test: tests/test_render.py::test_a_dropped_item_fails_coverage}
+    note: "Kernel and card rules and negatives are built at S03 and all rendered. The veto is not mechanical: rules
+      are copied verbatim and not checked against the plan, except where a step check covers one. Rules render
+      last; the negative block sits after the key legend, as in D5 and LBN-2.4."
+
+  - id: C14
+    name: Pure staff
+    anchor: "§2.2 L892; §2.3 L1274; §2.15 L340"
+    class: style
+    step: S17
+    status: missing
+    note: "No staff projection. As a replacement mode it would drop Euler data that no_render_compression requires
+      (V9 clash); staff lines added beside the full data would not."
+
+  - id: C15
+    name: Mixed Mode
+    anchor: "§2.2 L893; §2.3 L1276; §2.14 L332"
+    class: style
+    step: S17
+    status: missing
+    note: "Not rendered. Root Euler on a few keys only would drop data no_render_compression requires (V9 clash)."
+
+  - id: C16
+    name: Upgraded Mixed
+    anchor: "§2.2 L894; §2.3 L1278; §2.14 L335"
+    class: style
+    step: S17
+    status: missing
+    note: "Not rendered. Full joints on impact keys only would drop data no_render_compression requires (V9 clash)."
+
+  - id: C17
+    name: Euler-heavy keypose
+    anchor: "§2.2 L895; §2.3 L1280; §2.14 L333"
+    class: style
+    step: S17
+    status: enforced
+    enforced_by:
+      - {file: solver/euler_solver.py, check: check, code: MOTION_JOINTS,
+         test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
+      - {file: compiler/passes/derived/p17_render.py, check: check, code: RENDER_COVERAGE,
+         test: tests/test_render.py::test_a_dropped_item_fails_coverage}
+    note: "The repo's only mode: LBN-2.4-ADV-LMA layout, every key with root, root Euler and all 11 joints (owner
+      kernel decision + no_render_compression)."
+
+  - id: C18
+    name: Precision tags
+    anchor: "§2.2 L896; §2.3 L1282; §3.6 L520"
+    class: projection
+    step: S17
+    status: partial
+    note: "Keys carry 'support=...' and 'CONTACT:touch right_foot->kunai.blade at 3' style entries; no [f:]/[h:]
+      tags and no 'DOUBLE BOW + accent' strike tag."
+
+  - id: C19
+    name: Master Template
+    anchor: "§2.2 L897; §2.3 L1284; §3.5 L501"
+    class: style
+    step: S17
+    status: missing
+    note: "The render uses the kernel layout (LBN-2.4-ADV-LMA), not the [SCENE]...[RULES] template; one variant only."
+
+  - id: C20
+    name: Attention tags
+    anchor: "§2.2 L898; P3.1 L1619"
+    class: projection
+    step: S17
+    status: missing
+    note: "No per-beat priority tags."
+
+  - id: C21
+    name: Contact contract
+    anchor: "§2.2 L899; P3.1 L1620"
+    class: mandatory
+    step: S07
+    status: partial
+    enforced_by:
+      - {file: compiler/passes/mandatory/p07_contact.py, check: cross_check, code: PROP_CHANGE_CONTACT,
+         test: tests/test_contact_pass.py::test_prop_change_without_any_contact_is_refused}
+      - {file: compiler/passes/mandatory/p05_causal.py, check: edges_and_findings, code: CAUSE_TIMING,
+         test: tests/test_causal_pass.py::test_each_causal_rule_rejects_its_violation}
+    note: "Contact before effect holds for prop changes (S07) and hard causes (S05). At-contact and post-contact
+      phases (intersection; compress, accelerate, follow-through) are not modelled."
+
+  - id: C22
+    name: End state per entity
+    anchor: "§2.2 L900; P3.1 L1621"
+    class: required
+    step: S06
+    status: partial
+    enforced_by:
+      - {file: planner/chaining.py, check: summary, code: CHAIN_INCOMPLETE,
+         test: tests/test_chaining.py::test_bad_chains_are_refused}
+    note: "S06 writes every subject's end state (pos, posture, conditions) and S07's active contacts give support;
+      clip chaining carries both. Momentum is not tracked."
+
+  - id: C23
+    name: Anchor phrase
+    anchor: "§2.2 L901; P3.1 L1622"
+    class: required
+    step: S02
+    status: partial
+    enforced_by:
+      - {file: schemas/cards/archetype_card.schema.json}
+    note: "Archetype cards must have description, silhouette and costume, and the envelope carries them on every
+      entity, but the render drops them. An appearance phrase reaches the prompt only when the query or kernel
+      preface carries one (reference_fight, ugc_glasses_demo); wizard_vs_acrobat and live_action_standoff have none.
+      Render coverage counts the entity row, not its fields, so this passes the gate."
+
+  - id: C24
+    name: CUSTODY invariant
+    anchor: "§2.2 L902; P3.1 L1623"
+    class: mandatory
+    step: S07
+    status: partial
+    enforced_by:
+      - {file: compiler/passes/mandatory/p07_contact.py, check: cross_check, code: HOLDER_CONTACT,
+         test: tests/test_contact_pass.py::test_each_contact_rule_rejects_its_violation}
+    note: "Possession must agree with contacts at every beat; there is no single named CUSTODY rule for a prop that
+      never changes hands."
+
+  - id: C25
+    name: Shot program
+    anchor: "§2.2 L903; P3.1 L1624"
+    class: required
+    step: S16
+    status: partial
+    enforced_by:
+      - {file: validators/camera_validator.py, check: _coupling, code: CAMERA_COUPLING,
+         test: tests/test_camera_solver.py::test_each_rule_rejects_its_violation}
+      - {file: validators/camera_validator.py, check: _motivation, code: CAMERA_MOTIVATION,
+         test: tests/test_camera_solver.py::test_each_rule_rejects_its_violation}
+    note: "Every beat is covered, every contact onset in a shot's window is shown, and a motivation may cite a causal
+      edge. No per-shot execute list, graph_transition or forbidden list."
+
+  - id: C26
+    name: Named invalid states
+    anchor: "§2.2 L904; P3.1 L1625"
+    class: mandatory
+    step: all
+    status: partial
+    note: "Finding codes are named invalid states (about 140). reaction_without_cause ~ CAUSE_EFFECT / CAUSE_TIMING /
+      PROP_CHANGE_CONTACT; disconnected_camera_motion ~ CAMERA_MOTIVATION / CAMERA_COHERENCE. The other 14 F2
+      names are unknown (the write-up does not list them)."
+
+  - id: C27
+    name: Response while approaching
+    anchor: "§2.2 L905; P3.1 L1626"
+    class: mandatory
+    step: S05
+    status: enforced
+    enforced_by:
+      - {file: compiler/passes/mandatory/p05_causal.py, check: edges_and_findings, code: CAUSE_TIMING,
+         test: tests/test_causal_pass.py::test_each_causal_rule_rejects_its_violation}
+    note: "A soft cause's target may start once the source starts (brace or dodge while the attack approaches); a
+      hard cause's target only after the source ends, so no reaction precedes contact."
+
+  - id: C28
+    name: Render intent
+    anchor: "§2.2 L906; P3.1 L1627"
+    class: required
+    step: S01
+    status: missing
+    note: "S01 parses genre, duration, fps, setting, style_reference and hinted cast/props; no motion (speed,
+      readability, weight, acceleration), animation (style, spacing, smear, impact) or choreography intent fields."
+
+  - id: C29
+    name: Coordinate + rotation convention
+    anchor: "§2.2 L907; P4.1 L1677; §4.2 L603; §3.8 L1593"
+    class: mandatory
+    step: S02
+    status: partial
+    enforced_by:
+      - {file: solver/quaternion.py, check: require, code: ROTATION_CONVENTION,
+         test: tests/test_motion_solver.py::test_other_conventions_are_refused}
+      - {file: kernel/conventions.yaml}
+    note: "kernel/conventions.yaml declares +Y up, +Z forward, ground y=0, intrinsic XYZ in degrees, right-handed,
+      +X = performer's left, what each positive axis means and the turn axes, copied into every scene.ax; this
+      settles the DAG's open handedness/sign question (§3.8 #2). Joints are treated as local (head heading = root
+      + NK + HD) but no parent list is declared."
+
+  - id: C30
+    name: Span constraint
+    anchor: "§2.2 L908; P4.1 L1678"
+    class: mandatory
+    step: S07
+    status: partial
+    enforced_by:
+      - {file: compiler/passes/mandatory/p07_contact.py, check: lifecycle, code: CONTACT_RELEASE,
+         test: tests/test_contact_pass.py::test_each_contact_rule_rejects_its_violation}
+      - {file: compiler/passes/derived/p11_kinematic.py, check: check, code: KINEMATIC_SUPPORT,
+         test: tests/test_kinematic_solver.py::test_each_rule_rejects_its_violation}
+    note: "A support contact stays active until its release and S11 support must match active supports, so a held
+      wall contact across beats is checked. No authored span-rule type ('NO double jump, NO mid-air relaunch')."
+
+  - id: C31
+    name: Prop position + velocity
+    anchor: "§2.2 L909; P4.1 L1679"
+    class: required
+    step: S06
+    status: missing
+    note: "Props carry holder/location words per beat; no p[x,y,z], no v[x,y,z], no ballistic agreement check."
+
+  - id: C32
+    name: Event-separation rule
+    anchor: "§2.2 L910; P4.1 L1680"
+    class: projection
+    step: S17
+    status: missing
+    note: "Strikes are separate contact events (own ids and beats), but no rule line keeps similar events apart."
+
+  # ---- G4 variation + decision rules ----
+  - id: V1
+    name: Genre guide
+    anchor: "§2.2 L913; §2.3 L1290; §2.8 L263"
+    class: style
+    step: S01
+    status: partial
+    enforced_by:
+      - {file: validators/layer_dependency_validator.py, check: check_envelope, code: INACTIVE_LAYER_DATA,
+         test: tests/test_layer_dependency.py::test_wrong_layer_tag_inactive_data_missing_and_unknown_groups}
+      - {file: validators/camera_validator.py, check: _genre, code: CAMERA_GENRE,
+         test: tests/test_camera_solver.py::test_genre_card_rules_apply_scene_wide}
+    note: "Repo genres are media (live_action, anime, ugc_ad) that switch steps (S08-S10, S14) and camera cards. The
+      DAG's six content genres with dominant layers and default Effort are not encoded (effort modes calm,
+      desperate, trained are per archetype)."
+
+  - id: V2
+    name: 7 levers
+    anchor: "§2.2 L914; §2.3 L1291; §2.9 L274"
+    class: style
+    step: all
+    status: partial
+    enforced_by:
+      - {file: compiler/passes/derived/p15_effort.py, check: check, code: EFFORT_MODE,
+         test: tests/test_effort_solver.py::test_each_rule_rejects_its_violation}
+      - {file: validators/camera_validator.py, check: _intent, code: CAMERA_INTENT,
+         test: tests/test_camera_solver.py::test_each_rule_rejects_its_violation}
+    note: "Effort intensity (effort-mode ranges) and camera tempo (shot-length range) exist. Support frequency, key
+      density, prop complexity, stylization intensity and negative strictness have no lever."
+
+  - id: V3
+    name: Anti-street-fight levers
+    anchor: "§2.2 L915; §2.3 L1292; §2.10 L286"
+    class: style
+    step: S16
+    status: missing
+    note: "No Y/Z-over-X priority, height-level count, camera height/depth cadence or airborne share."
+
+  - id: V4
+    name: Alteration table
+    anchor: "§2.2 L916; §2.3 L1293; §2.11 L295"
+    class: style
+    step: all
+    status: missing
+    note: "Not encoded."
+
+  - id: V5
+    name: Style templates
+    anchor: "§2.2 L917; §2.3 L1294; §2.12 L308"
+    class: style
+    step: all
+    status: partial
+    enforced_by:
+      - {file: library/camera_conventions/ugc_ad.yaml}
+      - {file: library/camera_conventions/anime.yaml}
+    note: "Genre camera cards cover part of UGC Raw (handheld, imperfect) and Premium Anime (holds, motivated camera).
+      Music-Video Hyper and Grounded Technical have no card."
+
+  - id: V6
+    name: Advanced tricks
+    anchor: "§2.2 L918; §2.3 L1295; §2.13 L317"
+    class: style
+    step: S16
+    status: missing
+    note: "No depth budget, verticality quota, camera personality, contrast switching or anti-pattern negatives."
+
+  - id: V7
+    name: Graph-embed rule
+    anchor: "§2.2 L919; §2.3 L1296; §2.6 L223"
+    class: style
+    step: S17
+    status: missing
+    note: "The render embeds no causal list; 10 s scenes with ownership changes (reference_fight) meet the DAG's
+      embed conditions."
+
+  - id: V8
+    name: Stack-only-2 rule
+    anchor: "§2.2 L920; §2.3 L1297; §1.7 L147"
+    class: style
+    step: S17
+    status: partial
+    note: "The render stacks one of the two graphs (each prop's state/attachment history as a track); the causal
+      graph is not rendered and no other graph is."
+
+  - id: V9
+    name: Mode preference
+    anchor: "§2.2 L921; §2.3 L1298; §2.14 L338"
+    class: style
+    step: S17
+    status: clashes_with_repo
+    enforced_by:
+      - {file: kernel/owner_invariants.yaml}
+    note: "Clash: the DAG picks the movement language by need (pure staff for movement quality, hybrid only for
+      precise roots or multi-prop choreography); the repo always renders Euler-heavy LBN-2.4-ADV-LMA and
+      no_render_compression forbids dropping the Euler data a staff or mixed mode leaves out. Owner's call."
+
+  - id: V10
+    name: Motion-density budget
+    anchor: "§2.2 L922; P3.1 L1628"
+    class: style
+    step: S04
+    status: missing
+    note: "No per-beat budget (2.0 = one action + one camera move; 1.5 = one contact event)."
+
+  - id: V11
+    name: Delivery arc
+    anchor: "§2.2 L923; P3.1 L1629"
+    class: style
+    step: S04
+    status: missing
+    note: "No arc field; the S05 quadrant and strata are scores, not an arc."
+
+  - id: V12
+    name: Reference spirit
+    anchor: "§2.2 L924; P3.1 L1630"
+    class: style
+    step: S02
+    status: partial
+    note: "scene.style_reference exists (parsed from the query, feeds the S05 quadrant); null in all four examples
+      and rendered only through the query preface."
+
+  - id: V13
+    name: Multi-syntax output
+    anchor: "§2.2 L925; P3.1 L1631"
+    class: projection
+    step: S17
+    status: missing
+    note: "One syntax: the LBN-2.4 preface + JSON text. The envelope is not a prompt."
+
+  # ---- G5 instances (evidence) ----
+  - id: I1
+    name: D5 LBN-2.3-ADV-FINAL
+    anchor: "§2.2 L928; §2.3 L1304; §3.4 L388"
+    class: evidence
+    step: S17
+    status: partial
+    enforced_by:
+      - {file: kernel/sources/lbn-2.3-adv.txt}
+    note: "FINAL itself is not in the repo and is not a kernel source. Its 936 A numbers equal
+      kernel/sources/lbn-2.3-adv.txt (24 keys, 0 mismatches, checked 2026-10-11); its B, camera, props and rules text
+      differ (§3.8 #3). examples/reference_fight compiles from the 2.3 preface."
+
+  - id: I2
+    name: D2 causal_graph
+    anchor: "§2.2 L929; §2.3 L1305; §3.3 L380"
+    class: evidence
+    step: S05
+    status: missing
+    note: "Not in the repo; reference_fight has its own authored causal edges."
+
+  - id: I3
+    name: D6 Mixed fight
+    anchor: "§2.2 L930; §2.3 L1306"
+    class: evidence
+    step: S17
+    status: missing
+    note: "Not in the repo."
+
+  - id: I4
+    name: D9 Refined staff fight
+    anchor: "§2.2 L931; §2.3 L1307"
+    class: evidence
+    step: S17
+    status: missing
+    note: "Not in the repo."
+
+  - id: I5
+    name: D10 Upgraded fight
+    anchor: "§2.2 L932; §2.3 L1308"
+    class: evidence
+    step: S17
+    status: missing
+    note: "Not in the repo."
+
+  - id: I6
+    name: D4 deflect example
+    anchor: "§2.2 L933; §2.3 L1309; §3.1 L363"
+    class: evidence
+    step: S13
+    status: missing
+    note: "Not in the repo."
+
+  # ---- G6 metrics + evidence ----
+  - id: E1
+    name: Density bands
+    anchor: "§2.2 L936; §2.3 L1315; §4.4 L624"
+    class: evidence
+    step: S04
+    status: missing
+    note: "Not encoded (see C2)."
+
+  - id: E2
+    name: Camera thresholds
+    anchor: "§2.2 L937; §2.3 L1316; §4.5 L636"
+    class: evidence
+    step: S16
+    status: missing
+    note: "The DAG's thresholds (1, 1.2, 1.5-2, 2 s) disagree with each other (X39); none is encoded. Genre cards
+      carry shot-length ranges only."
+
+  - id: E3
+    name: Quotas
+    anchor: "§2.2 L938; §2.3 L1317; §4.6 L652"
+    class: evidence
+    step: S16
+    status: missing
+    note: "No height-level count, verticality share or depth score."
+
+  - id: E4
+    name: Time base 24fps x 10s
+    anchor: "§2.2 L939; §2.3 L1318; §4.1 L578"
+    class: evidence
+    step: S04
+    status: partial
+    note: "Every scene records fps (24 anime and live action, 30 UGC) and duration_s; holds in frames are not
+      modelled."
+
+  - id: E5
+    name: D7 pros/cons
+    anchor: "§2.2 L940; §2.3 L1319"
+    class: evidence
+    step: S17
+    status: missing
+    note: "Not in the repo."
+
+  - id: E6
+    name: D8 layer mapping
+    anchor: "§2.2 L941; §2.3 L1320"
+    class: evidence
+    step: S17
+    status: missing
+    note: "Not in the repo."
+
+  - id: E7
+    name: D2/D10 graph ratings
+    anchor: "§2.2 L942; §2.3 L1321; §1.7 L136"
+    class: evidence
+    step: S17
+    status: missing
+    note: "Not in the repo."
+
+  - id: E8
+    name: Numeric payload
+    anchor: "§2.2 L943; §2.3 L1322; §4.8 L681"
+    class: evidence
+    step: S17
+    status: missing
+    note: "The repo does not count pose numbers per render."
+
+  - id: E9
+    name: Contradiction audit
+    anchor: "§2.2 L944; §2.3 L1323; §3.5 L1506"
+    class: evidence
+    step: all
+    status: missing
+    note: "X1-X41 are findings about the DAG's own prompts, not rules; not mapped. HANDOFF records the reference
+      fight's own deviations."
+
+  - id: E10
+    name: Owner render evidence
+    anchor: "§2.2 L945; §2.3 L1324; §5.3 L771"
+    class: evidence
+    step: S17
+    status: missing
+    note: "No owner render result is recorded in the repo (HANDOFF and MASTER_PLAN say only that the owner renders)."
+
+  # ---- P3.2 / P4.2: deliberately not added by the DAG ----
+  - id: P3.2-1
+    name: "23-node causal graph in the prompt; 'causality is a validator, not a prompt'"
+    anchor: "P3.2 L1644"
+    class: excluded
+    step: S05
+    status: excluded
+    note: "DAG: a short causal list goes in the prompt (C8, V7, V8). The repo validates causality (S05) and renders
+      no causal list, by omission rather than by an owner decision; V7 is missing, not refused."
+
+  - id: P3.2-2
+    name: "Static camera; 3 motivated moves; 'camera motivation > camera timeline'"
+    anchor: "P3.2 L1645"
+    class: excluded
+    step: S16
+    status: excluded
+    note: "The repo requires a motivation per shot (CAMERA_MOTIVATION), which can coexist with a height/depth cadence;
+      no static-camera or three-move rule."
+
+  - id: P3.2-3
+    name: "7 s beats with optional keyframes; beat-only movement spec"
+    anchor: "P3.2 L1646"
+    class: excluded
+    step: S04
+    status: excluded
+    note: "Example beats run 0.3-2.5 s with a key per participant; but key gaps reach 2.5 s (C2 missing)."
+
+  - id: P3.2-4
+    name: "Support/contact carried only as attention tags"
+    anchor: "P3.2 L1647"
+    class: excluded
+    step: S11
+    status: excluded
+    note: "Agrees with the DAG: support is explicit per slot (S11) and checked against S07/S06."
+
+  - id: P3.2-5
+    name: "'Root positions are exact' as a rule"
+    anchor: "P3.2 L1648"
+    class: excluded
+    step: S13
+    status: clashes_with_repo
+    enforced_by:
+      - {file: solver/euler_solver.py, check: check, code: MOTION_POS,
+         test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
+      - {file: kernel/kernel_scope.yaml}
+    note: "Clash: every render carries the kernel rule '<label> root exact' (kernel_actor scope, from the
+      LBN-2.3/2.4 intersection) and S13 must reproduce the S04 root exactly (owner Q2). Inside the repo S04 is
+      primary and S13 derived, which agrees with M3; the clash is the rule sentence sent to the model. Owner's call."
+
+  - id: P3.2-6
+    name: "screen_geometry: PRESERVE_AXIS"
+    anchor: "P3.2 L1649"
+    class: excluded
+    step: S16
+    status: clashes_with_repo
+    enforced_by:
+      - {file: validators/camera_validator.py, check: _cut, code: CAMERA_AXIS,
+         test: tests/test_camera_solver.py::test_each_rule_rejects_its_violation}
+    note: "Clash: S16 keeps the 180-degree line across cuts unless the shot declares 'cross' and the genre card allows
+      it (anime and live_action allow, ugc_ad forbids). Orbits inside one shot and Dutch roll (anime up to 30
+      degrees) are not blocked. Owner's call: keep the axis rule or drop it."
+
+  - id: P3.2-7
+    name: "Laws placed first in the prompt"
+    anchor: "P3.2 L1650"
+    class: excluded
+    step: S17
+    status: excluded
+    note: "The render opens with the query preface and ends with rules; the negative block sits after the key legend,
+      before the keys, as in D5."
+
+  - id: P3.2-8
+    name: "Negatives near the thing they forbid; a lean 7-negative set for a fight"
+    anchor: "P3.2 L1651"
+    class: excluded
+    step: S03
+    status: excluded
+    note: "Agrees with the DAG: negatives are one block, no per-key NOT clauses; fight renders carry 12-20 negatives."
+
+  - id: P3.2-9
+    name: "Blanket pre_contact: A_reaction: NONE"
+    anchor: "P3.2 L1652"
+    class: excluded
+    step: S05
+    status: excluded
+    note: "Agrees with the DAG: soft causes let the partner brace while the attack approaches (C27)."
+
+  - id: P3.2-10
+    name: "Prose-first always"
+    anchor: "P3.2 L1653"
+    class: excluded
+    step: S17
+    status: excluded
+    note: "Agrees with the DAG: movement renders Euler-heavy. Faces are words-only by owner F4 (faces, not movement)."
+
+  - id: P4.2-1
+    name: "'A root exact' in the rules"
+    anchor: "P4.2 L1693"
+    class: excluded
+    step: S13
+    status: clashes_with_repo
+    enforced_by:
+      - {file: kernel/kernel_scope.yaml}
+    note: "Same clash as P3.2-5: the rule '<label> root exact' is rendered for every actor."
+
+  - id: P4.2-2
+    name: "'>' does two jobs as a design principle"
+    anchor: "P4.2 L1694"
+    class: excluded
+    step: S17
+    status: excluded
+    note: "Agrees with the DAG: the render uses '>' only for sequence (laban, follow-through) and '->' for contact
+      targets and value changes, each in its own fields."
+
+  - id: P4.2-3
+    name: "Sparse joint dicts (only moving bones listed)"
+    anchor: "P4.2 L1695"
+    class: excluded
+    step: S13
+    status: excluded
+    enforced_by:
+      - {file: solver/euler_solver.py, check: check, code: MOTION_JOINTS,
+         test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
+      - {file: kernel/owner_invariants.yaml}
+    note: "Agrees with the DAG and the owner's no-compression rule: every key lists all 11 kernel joints."

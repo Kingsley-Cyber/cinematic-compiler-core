@@ -13,7 +13,7 @@ One commit per step.
 ## Schema control (owner rule 2026-10-10)
 - Every `schemas/**/*.schema.json` change is logged: `python -m kernel.schema_log record <file> --change ... --reason ... --decided-by ...`.
 - Library cards (`library/**/*.yaml`): `--log library`; drafts stay `status: draft` until the owner approves.
-- Kernel files (`kernel/sources/*.txt`, `kernel/kernel_scope.yaml`, `kernel/invariants.yaml`): `--log kernel`;
+- Kernel files (`kernel/sources/*.txt`, `kernel/kernel_scope.yaml`, `kernel/invariants.yaml`, `kernel/knowledge_map.yaml`): `--log kernel`;
   regenerate the kernel with `python -m kernel_extraction.control_inventory`.
 - Logs are append-only and hash-chained; a file whose bytes differ from its latest entry fails the gate.
 - `kernel/layer_order.yaml` is the single source for steps, edges and write ownership. A pass writes only its paths.
