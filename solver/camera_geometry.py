@@ -79,3 +79,8 @@ def screen_x(camera, aim_point, point, focal_mm, sensor_mm):
 
 def azimuth_change(a, b):
     return round(abs((a - b + 180) % 360 - 180), 6)
+
+
+def heading_to(origin, target):
+    """World heading (degrees from +Z toward +X) from one point to another, on the ground plane."""
+    return math.degrees(math.atan2(target[0] - origin[0], target[2] - origin[2]))

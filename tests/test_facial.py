@@ -126,3 +126,32 @@ def test_the_render_describes_faces_in_words_only():
     text = (ROOT / "examples" / "ugc_glasses_demo" / "render.txt").read_text()
     assert "FACE (carries the beat): cheeks raised" in text and "no smile" in text
     assert not re.search(r"\bAU\s?\d", text) and "valence" not in text
+
+
+CAMERA_PLAN = ugc_plans()["camera"]
+
+
+def camera_codes(change):
+    from compiler.passes.derived import p16_camera
+    packet = p16_camera.prepare(glasses("effort"))
+    plan = copy.deepcopy(CAMERA_PLAN)
+    change(next(s for s in plan["shots"] if s["id"] == "c04"))
+    return {f["code"] for f in p16_camera.check(plan, packet)}
+
+
+@pytest.mark.parametrize("code, change", [
+    ("FACE_FRAMING", lambda s: s["angle"].update(azimuth_deg=180)),           # camera behind the creator
+    ("FACE_ASYMMETRY_VISIBLE", lambda s: s["angle"].update(azimuth_deg=-60)),  # sees only the weaker (right) side
+    (None, lambda s: s["angle"].update(azimuth_deg=15)),                      # frontal: both sides
+    (None, lambda s: s["angle"].update(azimuth_deg=60)),                      # the stronger (left) side faces the lens
+])
+def test_the_camera_shows_the_face_that_carries_the_beat(code, change):
+    found = camera_codes(change) & {"FACE_FRAMING", "FACE_ASYMMETRY_VISIBLE"}
+    assert found == ({code} if code else set())
+
+
+def test_anime_camera_packets_carry_no_faces():
+    from scenes import courtyard
+
+    from compiler.passes.derived import p16_camera
+    assert "faces" not in p16_camera.prepare(courtyard("effort"))

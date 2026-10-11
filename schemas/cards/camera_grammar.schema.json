@@ -19,7 +19,8 @@
     "lens_perspective_mm",
     "rig_movements",
     "rig_stability",
-    "intents"
+    "intents",
+    "frontal_deg"
   ],
   "properties": {
     "grammar_id": {
@@ -171,6 +172,12 @@
         }
       },
       "additionalProperties": false
+    },
+    "frontal_deg": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 90,
+      "description": "S16 face checks: a camera within this angle of the face sees both sides."
     }
   }
 }

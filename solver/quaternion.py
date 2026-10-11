@@ -108,3 +108,9 @@ def require(convention):
     if wrong:
         raise ContractError("ROTATION_CONVENTION", "solver/quaternion.py implements intrinsic XYZ, right-handed, degrees",
                             wrong)
+
+
+def head_heading(key):
+    """Approximate heading of the face: root heading plus the neck and head yaw (S13 key pose)."""
+    heading = root_heading(key["rot"]) + key["bones"]["NK"][1] + key["bones"]["HD"][1]
+    return round((heading + 180) % 360 - 180, 3) + 0.0

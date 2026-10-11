@@ -389,12 +389,15 @@ F.9 (examples) → F.10 (docs). One commit per block; the gate passes after each
   Derived: each node's words from the libraries; transition edges between an entity's consecutive slots.
 
 ### Camera and render read the face
-- [ ] F.7 Camera (S16) checks, only when the packet carries faces (anime packets unchanged):
+- [x] F.7 Camera (S16) checks, only when the packet carries faces (anime packets unchanged):
   - FACE_FRAMING — a face with salience `carries_beat` is shown by a shot covering its beat at a scale that shows the
     head (not an insert on another part), and the face turns toward the camera: the angle between the head heading
     (root heading + NK/HD yaw) and the direction to the camera is under 90°.
   - FACE_ASYMMETRY_VISIBLE — a one-sided unit's dominant hemiface faces the camera, unless the shot is frontal
     (within `frontal_deg` of the face, new draft value in camera_grammar, logged).
+  (Built: the camera packet carries the faces only for scenes that have them (anime packets unchanged except the new
+  grammar value); head heading = root heading + neck and head yaw (shared helper); every camera plan re-bound, the
+  anime render.txt files byte-identical.)
 - [x] F.8 Render (S17), words only (F4): each actor row gains `FACE:` (unit words with intensity words and which side
   is stronger), `NOT:` (inactive-unit words), the feeling (label + valence/arousal word bands), display rule and gaze
   in words. No AU codes and no valence/arousal numbers in the text (test: no `\bAU\d+` in any render).

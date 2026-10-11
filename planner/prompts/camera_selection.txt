@@ -12,3 +12,6 @@ beats it shows. Every shot fills all 13 subdivisions plus motivation; nothing is
 - Respect the grammar (rig movements and stability, lens perspective bands, 30-degree cut rule), the genre card
   (transitions, playback, rigs, roll, shot length) and the intent rules and tempo. Read the motion keys, efforts
   and idioms for what each moment needs. Copy packet_sha256.
+- Faces (live action and UGC): a face whose salience is carries_beat must be shown in a shot listing its beat, at a
+  scale that shows the head, turned toward the camera; if one side of it is stronger, that side faces the camera
+  unless the shot is frontal.

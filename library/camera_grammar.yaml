@@ -8,6 +8,7 @@ aim_height_m: 1.0
 sensor_mm: [36, 24]
 on_axis_m: 0.3
 min_cut_angle_deg: 30
+frontal_deg: 20
 scale_frame_height_m:
   insert: [0.0, 0.35]
   extreme_close: [0.0, 0.35]

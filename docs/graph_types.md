@@ -19,7 +19,7 @@ is presented), **project, verify** (output). Build status and deltas: [MASTER_PL
 | S11 | Kinematic | Describe what the audience sees in the body (support, balance, loading, tension…) | kinematic | kinematic_transition | S06, S07 (+UGC) | S12–S17 | expression | built |
 | S12 | Bartenieff | Describe the body's internal coordination (pattern, initiation, follow-through) | bartenieff | bartenieff_transition | S11 | S13, S17 | expression | built |
 | S13 | Motion | Provide the explicit key poses the renderer interpolates | motion | motion | S11, S12 | S15–S17 | expression | built |
-| S14 | Facial (live action, UGC) | FACS action units, valence and arousal per entity per beat; the face the camera must show | facial | facial_transition | S02, S05, S11, S13, FACS library | S16, S17 | expression | built (camera checks: M3.5 F.7) |
+| S14 | Facial (live action, UGC) | FACS action units, valence and arousal per entity per beat; the face the camera must show | facial | facial_transition | S02, S05, S11, S13, FACS library | S16, S17 | expression | built |
 | S15 | Effort | Describe the qualitative feel of motion (LMA) | efforts | effort | S13 | S16, S17 | expression | built |
 | S16 | Camera | Present the scene deliberately; every move motivated | camera | camera | S11, S13, S15 | S17 | expression | built |
 | S17 | Render | Project the envelope into the target model's format | render | — | all | video model, S18 | project | built |

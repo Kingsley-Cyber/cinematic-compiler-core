@@ -10,6 +10,7 @@ from compiler.authoring import run_authored, seal
 from planner import camera_library, library_vocab
 from planner.dependency_graph import ROOT, load
 from solver.camera_geometry import azimuth_change
+from solver.quaternion import head_heading
 from validators import camera_validator
 
 NODE, STEP = "camera", "S16"
@@ -54,7 +55,17 @@ def prepare(envelope):
         "grammar": camera_library.grammar(), "tempo": camera_library.tempo(),
         "convention": camera_library.convention(scene["genre"]),
         "idioms": camera_library.idioms(sorted({e["archetype"] for e in entities.values()})),
-        **({"chained_last_shot": scene["chained_from"]["last_shot"]} if scene.get("chained_from") else {})})
+        **({"chained_last_shot": scene["chained_from"]["last_shot"]} if scene.get("chained_from") else {}),
+        **({"faces": _faces(envelope)} if "facial" in envelope["nodes"] else {})})
+
+
+def _faces(envelope):
+    """S14 faces the camera must answer to: salience, head heading and the dominant side of one-sided units."""
+    motion = {n["id"]: n for n in envelope["nodes"]["motion"]["items"]}
+    return [{"slot": f["id"], "entity": f["entity"], "beat": f["beat"], "salience": f["salience"],
+             "head_heading_deg": head_heading(motion[f["id"]]),
+             "dominant_sides": sorted({u["asymmetry"]["dominant_side"] for u in f["aus"] if not u["bilateral"]})}
+            for f in envelope["nodes"]["facial"]["items"]]
 
 
 def check(document, packet):

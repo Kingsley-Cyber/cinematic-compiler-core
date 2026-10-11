@@ -17,7 +17,10 @@
 - coherence: scale vs frame height, lens perspective vs focal length, rig vs movement and stability, playback speed
   vs treatment, camera blur needs movement, insert needs a detail, focus/relation subjects are framed, a following
   relation needs movement;
-- intent: the grammar's intent requirements and the tempo's shot-length range.
+- intent: the grammar's intent requirements and the tempo's shot-length range;
+- faces (S14 scenes only): a face that carries its beat is shown by a shot listing that beat which frames the entity
+  at a scale showing the head, with the face turned toward the camera (under 90 degrees); its stronger side faces the
+  camera unless the shot is frontal (within the grammar's frontal_deg).
 """
 
 from planner import library_vocab
@@ -100,6 +103,8 @@ def check(shots, packet):
                    "angle": {"azimuth_deg": last["azimuth_deg"]}}
         for code, message in _cut(carried, ordered[0], {**derived, last["id"]: {"side": last["side"]}}, packet):
             add(code, f"Across the clip cut: {message}", ordered[0])
+    for code, message, slot in _faces(ordered, derived, packet):
+        add(code, message, {"id": slot})
     present = {s["intent"] for s in shots}
     for intent in packet["convention"]["required_intents"]:
         if intent not in present:
@@ -300,4 +305,39 @@ def _cut(previous, shot, derived, packet):
     change = geometry.azimuth_change(previous["angle"]["azimuth_deg"], shot["angle"]["azimuth_deg"])
     if same and change < packet["grammar"]["min_cut_angle_deg"] and shot["editing"]["transition_in"] != "jump_cut":
         rows.append(("CAMERA_CONTINUITY", f"Jump cut: same target and scale with only {change} degrees between shots"))
+    return rows
+
+
+def _faces(shots, derived, packet):
+    """Faces that carry their beat must be seen, and their stronger side must face the camera."""
+    rows = []
+    grammar = packet["grammar"]
+    for face in packet.get("faces", []):
+        if face["salience"] != "carries_beat":
+            continue
+        seen, sides_shown = False, set()
+        for shot in shots:
+            geo = derived.get(shot["id"])
+            scale = shot["framing"]["scale"]
+            head = (scale != "insert" and "head" in grammar["visible_parts"][scale]) or shot["framing"]["detail"] == "head"
+            if geo is None or face["beat"] not in shot["beats"] or face["entity"] not in shot["framing"]["subjects"] or not head:
+                continue
+            first = min(shot["beats"], key=lambda b: packet["beat_index"][b])
+            spot = packet["positions"][first][face["entity"]]
+            to_camera = geometry.heading_to(spot, geo["camera_pos"])
+            off = geometry.azimuth_change(face["head_heading_deg"], to_camera)
+            if off >= 90:
+                continue
+            seen = True
+            if off <= grammar["frontal_deg"]:
+                sides_shown |= {"left", "right"}
+            else:
+                left_heading = face["head_heading_deg"] + 90  # the performer's left (+X when facing +Z)
+                sides_shown.add("left" if geometry.azimuth_change(left_heading, to_camera) < 90 else "right")
+        if not seen:
+            rows.append(("FACE_FRAMING", f"{face['entity']}'s face carries {face['beat']} but no shot shows it turned "
+                         "toward the camera", face["slot"]))
+        elif face["dominant_sides"] and not set(face["dominant_sides"]) <= sides_shown:
+            rows.append(("FACE_ASYMMETRY_VISIBLE", f"{face['entity']}'s stronger side ({', '.join(face['dominant_sides'])}) "
+                         f"is turned away from every shot of {face['beat']}", face["slot"]))
     return rows

@@ -14,7 +14,7 @@ import yaml
 from compiler.authoring import run_authored, seal
 from planner.dependency_graph import ROOT, load
 from planner.scene_view import slots
-from solver.quaternion import root_heading
+from solver.quaternion import head_heading
 from validators import facial_validator
 from validators.schema_validator import validate_schema
 
@@ -39,12 +39,11 @@ def prepare(envelope):
     view = []
     for s in slots(envelope):
         key = motion[s["slot"]]
-        heading = root_heading(key["rot"]) + key["bones"]["NK"][1] + key["bones"]["HD"][1]
         view.append({**{k: s[k] for k in ("slot", "entity", "beat", "t", "dur", "role", "label", "action", "event_type")},
                      "kinematic": {k: kinematic[s["slot"]][k]
                                    for k in ("tension", "breathing", "strain", "release", "restraint")},
                      "head": {"root_rot": key["rot"], "NK": key["bones"]["NK"], "HD": key["bones"]["HD"],
-                              "heading_deg": round((heading + 180) % 360 - 180, 3) + 0.0},
+                              "heading_deg": head_heading(key)},
                      "reacts_to": [{k: e[k] for k in ("id", "from", "causal_strength", "why")}
                                    for e in causes if e["to"] == s["beat"]]})
     return seal({

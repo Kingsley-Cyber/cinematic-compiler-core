@@ -85,7 +85,7 @@ linear causality only; closed kernel state vocabulary. Full log: `docs/layer_dep
 M1–M5.5 are built (see **Done** in [docs/plans/MASTER_PLAN.md](docs/plans/MASTER_PLAN.md)).
 - **Next: M3.5 face layer** (owner decisions F1–F4, 2026-10-11). Renumbering is done (facial = S14; effort S15,
   camera S16, render S17, post-generation S18; all three render.txt files byte-identical). S14 facial is built and the
-  glasses demo has faces. Next: F.7 camera face checks, F.8b + F.9b live-action standoff example. Plan: MASTER_PLAN "M3.5".
+  glasses demo has faces. Camera face checks are built. Next: F.8b + F.9b live-action standoff example. Plan: MASTER_PLAN "M3.5".
 - **M6 needs your definitions before it can be built.** The plan names five tools (`synergy_matrix`,
   `bridge_detector`, `layer_analyzer`, `kernel_compressor`, `ablation_runner`) but never says what each computes, and
   compression/ablation touch B3 (no compression before a target model) and the no-render rule.
