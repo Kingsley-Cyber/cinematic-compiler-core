@@ -88,7 +88,7 @@ def test_rows_use_known_fields_classes_statuses_and_steps():
     order = yaml.safe_load((ROOT / "kernel" / "layer_order.yaml").read_text(encoding="utf-8"))
     steps = {node["step_id"] for node in order["nodes"]} | {"all"}
     for row in MAP["rows"]:
-        assert FIELDS <= set(row) <= FIELDS | {"enforced_by"}, row["id"]
+        assert FIELDS <= set(row) <= FIELDS | {"enforced_by", "codes", "gaps"}, row["id"]
         assert row["class"] in CLASSES and row["status"] in STATUSES, row["id"]
         assert row["step"] in steps, row["id"]
         if row["class"] == "excluded":
@@ -107,8 +107,22 @@ def test_locators_name_real_files_functions_and_tests():
 
 
 def test_an_enforced_row_names_a_check_and_a_test_that_fails_when_it_is_broken():
+    """A full locator, or semantic codes (each proven to fire by tests/test_dag_conformance.py) and no open gap."""
     for row in (r for r in MAP["rows"] if r["status"] == "enforced"):
-        assert any({"file", "check", "code", "test"} <= set(loc) for loc in row.get("enforced_by", [])), row["id"]
+        located = any({"file", "check", "code", "test"} <= set(loc) for loc in row.get("enforced_by", []))
+        assert located or (row.get("codes") and not row.get("gaps")), row["id"]
+
+
+def test_mandatory_and_required_rows_name_their_codes_or_gaps():
+    source = (ROOT / "validators" / "prompt_validator.py").read_text(encoding="utf-8")
+    proofs = (ROOT / "tests" / "test_dag_conformance.py").read_text(encoding="utf-8")
+    for row in MAP["rows"]:
+        if row["class"] in ("mandatory", "required"):
+            assert row.get("codes") or row.get("gaps"), row["id"]
+        if row.get("gaps"):
+            assert row["status"] != "enforced", row["id"]
+        for code in row.get("codes", []):
+            assert f'"{code}"' in source and f'"{code}"' in proofs, (row["id"], code)
 
 
 def test_a_broken_locator_is_caught():

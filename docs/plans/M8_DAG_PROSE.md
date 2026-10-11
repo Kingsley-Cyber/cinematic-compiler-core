@@ -126,7 +126,13 @@ compare against) and returns findings by code. Each mandatory and required map r
 | `END_STATE_MISSING` | an entity's end position or support is absent | C22 |
 | `STACKED_GRAPHS` | other than the two allowed graphs is embedded | GR, V8 |
 
-Codes for atoms the repo does not have yet stay listed against their rows as gaps until a slice adds the atom:
+M8.4 built all 37 (validators/prompt_validator.py; each fires on its break in tests/test_dag_conformance.py).
+One KNOWN finding is accounted for, not hidden: reference_fight's fx 'pillar-top landing dust ring' and 'crash dust
+ring' come verbatim from the owner's LBN-2.3/2.4 sources next to the kernel negative 'no ring' (audit X29); the
+owner decides whether to reword them.
+
+Codes for atoms the repo does not have yet stay listed against their rows as gaps until a slice adds the atom
+(M8.4 added CHAIN_ORDER for KC, ANTICIPATION_MISSING for KF, PROP_TWO_HOLDERS for C5, SHOT_TRANSITION_MISSING for C25):
 `JOINT_LIMIT` (B-3; the DAG gives no ranges, so it needs sourced numbers from the owner), `PHRASING_MISSING`
 (L-Ph preparation → action → recuperation), `MOMENTUM_MISSING` (C22, T10), `PROP_KINEMATICS` (C31 position and
 velocity agree with gravity), `POST_CONTACT_MISSING` (C21 compress / accelerate / follow-through), `TELEPORT`

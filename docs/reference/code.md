@@ -34,9 +34,11 @@ flowchart LR
   renderers -->|3| planner
   renderers -->|1| solver
   solver -->|1| kernel
+  validators -->|1| compiler
   validators -->|4| kernel
-  validators -->|5| planner
-  validators -->|2| solver
+  validators -->|6| planner
+  validators -->|2| renderers
+  validators -->|3| solver
 ```
 
 ## Modules
@@ -103,4 +105,5 @@ flowchart LR
 | `validators.envelope_validator` | `kernel.kernel_files`, `planner.dependency_graph`, `planner.modality`, `validators.layer_dependency_validator`, `validators.schema_validator` | json |
 | `validators.facial_validator` | — | json, re |
 | `validators.layer_dependency_validator` | `kernel.canonical`, `kernel.version`, `planner.dependency_graph`, `planner.topological_sort` | re |
+| `validators.prompt_validator` | `compiler.passes.mandatory.p07_contact`, `planner.scene_view`, `renderers.anime_renderer`, `renderers.prose_renderer`, `solver.staff_geometry` | re |
 | `validators.schema_validator` | `kernel.canonical` | re |

@@ -443,8 +443,14 @@ Spec and codes: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
   carry `prose_<mode>.txt` (render.txt byte-identical); render schema 1.1 logged
 - [x] M8.3 remaining sections (implied guidance, motion control, spatial anchors, props, causal links, camera, genre)
   + render intent and time-bounded rules (lasting effects, end states, spans, strike separation, six T10 laws)
-- [ ] M8.4 prompt validator + semantic codes + conformance test
-- [ ] M8.5+ close the listed gaps, one per slice
+- [x] M8.4 prompt validator (37 semantic codes) + map `codes`/`gaps` + conformance test: the four examples build
+  S01-S17, all 16 prose prompts pass except one KNOWN owner-source contradiction (reference_fight 'dust ring' vs
+  'no ring', audit X29); every code fires on its break. Mandatory 17/27 enforced, required 9/15.
+- [ ] M8.5+ close the gaps, one per slice. Derivable: PROP_TWO_HOLDERS (C5, S07), POST_CONTACT_MISSING (C21),
+  PHRASING_MISSING (LMA, T6), MOMENTUM_MISSING (C22, T10), CHAIN_ORDER (KC), ANTICIPATION_MISSING (KF),
+  SHOT_TRANSITION_MISSING (C25), PROP_KINEMATICS (C31). Need the owner: JOINT_LIMIT ranges (BIO, T7; the DAG gives
+  none), TELEPORT speed bound and the substitution exemption (T10). By design partial: T3/T4 (superseded orders),
+  T5 (O4), C26 (14 unnamed F2 states).
 
 ## M6 — deferred tooling
 - [ ] `kernel_extraction/` synergy_matrix, bridge_detector, layer_analyzer, kernel_compressor, ablation_runner
