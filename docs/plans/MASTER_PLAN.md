@@ -140,6 +140,7 @@ outputs. Spec: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
 | O42 | Curve, secondary-motion and world-motion numbers stay in the graph; the prompt prints words (the DAG's implied-guidance format) (deconfliction Q-V) | M9 |
 | O43 | Phrasing uses impulsive, impactive, swing and sustained; drives derive from the latent Effort factor; 'remote' (a Laban state) is dropped (deconfliction Q-W) | M9 |
 | O44 | Character state adds wounds, costume damage and exhaustion as states; first use: B's shoulder wound at 9.00 (deconfliction Q-X) | M9 |
+| O45 | Render budget for M9: at most eight fight renders, one after each of these slices: F5.3 strike timing, F6.3 grounded pickups, F2/F6.1 prop physics and visibility, FR.1/FR.3 rotation path, F5.1/F5.2 world contact, O19 D9 lines, C10 camera, part 3 words. Fixed model, seed and length; each judged against its scorecard (docs/render_tests/m9_render_plan.md). Other slices ride along unisolated in the next render; no baseline render, no axis re-runs | M9 |
 
 Still open: P3.2-6 PRESERVE_AXIS (S16's 180-degree rule) — the owner's call.
 
