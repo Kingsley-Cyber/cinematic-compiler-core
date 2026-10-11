@@ -14,6 +14,8 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 - Seven schemas (O65): `layer_order` and `rules` validate kernel/layer_order.yaml and docs/rules.yaml; `beat`,
   `contact` and `rotation` hold the shared definitions, embedded where used by `kernel/shared_schemas.py` (checked by
   the gate); `genre_profile` and `motif` are drafts.
+- Repeatability: exact dependency pins in pyproject.toml (pyyaml 6.0.3; pytest 9.1.1, ruff 0.17.0) and uv.lock; a
+  Dockerfile (Python 3.12.14, uv 0.11.12) whose default command is the gate.
 - Prompt codes BODY_HOLD_FRAMES, EMPTY_HAND_UNSTATED, ROTATION_ANGLES_PRINTED, HIDDEN_PHRASING (M9 step 1, S-001).
 
 ### Changed

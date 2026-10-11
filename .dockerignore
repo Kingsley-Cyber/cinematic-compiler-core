@@ -1,0 +1,7 @@
+.git
+.graphs
+.venv
+**/__pycache__
+*.egg-info
+gate.log
+graphify-out

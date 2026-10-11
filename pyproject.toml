@@ -3,13 +3,13 @@ name = "cinematic-compiler"
 version = "0.1.0"
 description = "Layer-DAG compiler from a scene request to a validated movement-graph envelope and video-model prompts."
 requires-python = ">=3.11"
-dependencies = ["pyyaml>=6.0"]
+dependencies = ["pyyaml==6.0.3"]  # pinned (docs/versioning.md); pyyaml is the only runtime dependency (O30)
 
 [project.scripts]
 cinematic = "cli.main:main"
 
 [dependency-groups]
-dev = ["pytest>=8", "ruff>=0.6"]
+dev = ["pytest==9.1.1", "ruff==0.17.0"]
 
 [build-system]
 requires = ["setuptools>=68"]

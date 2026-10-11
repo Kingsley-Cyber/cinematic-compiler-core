@@ -95,7 +95,7 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 1.0; backlog 1.
 - Last session: S-002 (2026-10-11, in progress): The docs plane: AGENTS.md, five indexes, canonical docs, verify.sh, schemas, control and CI.
-- Next slice: M9-02 F5.3 strike, throw and release contacts at their pose (V1b's deflect wording) (step temporal); D-04 Docs plane: pinned pyproject and uv.lock, Dockerfile (step docs).
+- Next slice: M9-02 F5.3 strike, throw and release contacts at their pose (V1b's deflect wording) (step temporal); D-05 Docs plane: six GitHub workflows (verify, golden, schemas, tests, docs, nightly) (step docs).
 - Open findings: 37; decisions: 94 (0 proposed).
 <!-- END GENERATED: state -->
 
