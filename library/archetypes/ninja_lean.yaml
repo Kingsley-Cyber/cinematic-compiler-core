@@ -15,6 +15,11 @@ invariants:
     rule: "A substitution leaves the substitution log where the body was; the body reappears somewhere else."
 negatives: [no scarf covering head]
 equipment: [rope_dart, smoke_pellet, substitution_log]
+face_profile:  # reference: face fully visible
+  visible_regions: [brows, eyes, cheeks, nose, mouth, jaw]
+  dominant_side: none
+  emotional_range: [neutral, interest, anger, surprise, fear]
+  resting: {valence: 0.0, arousal: 0.1}
 provenance:
   authored_by: claude-code
   date: "2026-10-10"

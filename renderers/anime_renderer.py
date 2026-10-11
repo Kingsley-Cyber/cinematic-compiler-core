@@ -224,6 +224,7 @@ def _actor_rows(envelope, entity, labels, cover):
     states = {s["id"]: s for s in _items(envelope, "nodes", "states")}
     efforts = _items(envelope, "nodes", "efforts")
     contacts = _items(envelope, "nodes", "contacts")
+    facial = {n["id"]: n for n in _items(envelope, "nodes", "facial")}
     rows = []
     keys = [k for k in _items(envelope, "nodes", "motion") if k["entity"] == entity]
     for key in sorted(keys, key=lambda k: (k["t"], k["id"])):
@@ -252,9 +253,24 @@ def _actor_rows(envelope, entity, labels, cover):
                                                for c in touching))
         if key["turn"] != "none":
             parts.append(f"TURN:{key['turn']} about {key['axis_declaration']}")
+        face = facial.get(slot)
+        if face is not None:  # S14, live_action and ugc_ad: words only (owner F4)
+            cover.mark("facial", slot)
+            parts.append(_face_words(face, labels))
         rows.append([_num(key["t"]), key["name"], key["pos"], key["rot"], key["bones"],
                      "; ".join(parts) + "; " + key["description"]])
     return rows
+
+
+def _face_words(face, labels):
+    words = face["words"]
+    target = face["gaze_target"]
+    gaze = words["gaze"] if target in ("camera", "none") else f"eyes on {labels.get(target, target)}"
+    lead = "FACE (carries the beat)" if face["salience"] == "carries_beat" else "FACE"
+    text = f"{lead}: " + (", ".join(words["face"]) or "relaxed, no visible expression")
+    if words["not"]:
+        text += "; NOT: " + ", ".join(words["not"])
+    return text + f"; feeling {words['feeling']}, {words['display']}; {gaze}; {face['description']}"
 
 
 def _subject_rows(envelope, kind, identity, states, labels, cover):

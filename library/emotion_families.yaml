@@ -1,0 +1,48 @@
+# Emotion labels, families and valence/arousal ranges (S14 facial, L4d). Draft by Claude for owner review.
+# Valence and arousal both run -1..1 (owner F3; Russell's circumplex, 1980). Ranges are Claude's draft placements.
+# typical_aus are informational prototypes (EMFACS-style: anger 4+5+7+23, fear 1+2+4+5+7+20+26, sadness 1+4+15,
+# disgust 9+15+16, surprise 1+2+5+26, happiness 6+12, contempt one-sided 12+14), never enforced.
+library_id: emotion_families
+version: 1
+status: draft
+basis: "Russell circumplex (1980) for the valence/arousal axes; basic-emotion AU prototypes (Ekman & Friesen) as information; all ranges drafted by Claude."
+families: [neutral, joy, interest, surprise, anger, fear, sadness, disgust, contempt]
+labels:
+  - {id: calm, family: neutral, valence: [-0.2, 0.3], arousal: [-1.0, -0.2], typical_aus: []}
+  - {id: neutral, family: neutral, valence: [-0.2, 0.2], arousal: [-0.5, 0.2], typical_aus: []}
+  - {id: content, family: joy, valence: [0.3, 0.8], arousal: [-0.6, 0.1], typical_aus: [AU6, AU12]}
+  - {id: pleased, family: joy, valence: [0.4, 0.9], arousal: [-0.2, 0.5], typical_aus: [AU6, AU12]}
+  - {id: delighted, family: joy, valence: [0.6, 1.0], arousal: [0.3, 1.0], typical_aus: [AU6, AU12, AU25]}
+  - {id: amused, family: joy, valence: [0.4, 0.9], arousal: [0.1, 0.7], typical_aus: [AU6, AU12, AU25]}
+  - {id: focused, family: interest, valence: [-0.2, 0.4], arousal: [0.0, 0.6], typical_aus: [AU4, AU7]}
+  - {id: determined, family: interest, valence: [-0.3, 0.4], arousal: [0.3, 0.9], typical_aus: [AU4, AU7, AU24]}
+  - {id: curious, family: interest, valence: [0.0, 0.6], arousal: [0.0, 0.6], typical_aus: [AU1, AU2]}
+  - {id: startled, family: surprise, valence: [-0.3, 0.3], arousal: [0.6, 1.0], typical_aus: [AU1, AU2, AU5, AU26]}
+  - {id: surprised, family: surprise, valence: [-0.2, 0.6], arousal: [0.3, 0.9], typical_aus: [AU1, AU2, AU5, AU26]}
+  - {id: irritated, family: anger, valence: [-0.6, -0.1], arousal: [0.0, 0.6], typical_aus: [AU4, AU7]}
+  - {id: angry, family: anger, valence: [-0.9, -0.4], arousal: [0.4, 1.0], typical_aus: [AU4, AU5, AU7, AU23]}
+  - {id: determined_anger, family: anger, valence: [-0.8, -0.3], arousal: [0.4, 0.9], typical_aus: [AU4, AU7, AU23, AU31]}
+  - {id: afraid, family: fear, valence: [-0.9, -0.4], arousal: [0.4, 1.0], typical_aus: [AU1, AU2, AU4, AU5, AU20]}
+  - {id: wary, family: fear, valence: [-0.6, -0.1], arousal: [0.0, 0.6], typical_aus: [AU1, AU4, AU7]}
+  - {id: sad, family: sadness, valence: [-0.9, -0.3], arousal: [-0.8, 0.0], typical_aus: [AU1, AU4, AU15]}
+  - {id: pained, family: sadness, valence: [-1.0, -0.4], arousal: [0.0, 0.8], typical_aus: [AU4, AU6, AU7, AU9, AU43]}
+  - {id: disgusted, family: disgust, valence: [-0.9, -0.3], arousal: [0.0, 0.7], typical_aus: [AU9, AU15, AU16]}
+  - {id: contemptuous, family: contempt, valence: [-0.7, -0.1], arousal: [-0.3, 0.4], typical_aus: [AU12, AU14]}
+bands:
+  valence:
+    - {max: -0.6, words: strongly unpleasant}
+    - {max: -0.2, words: unpleasant}
+    - {max: 0.2, words: neutral}
+    - {max: 0.6, words: pleasant}
+    - {max: 1.0, words: strongly pleasant}
+  arousal:
+    - {max: -0.6, words: very calm}
+    - {max: -0.2, words: calm}
+    - {max: 0.2, words: steady}
+    - {max: 0.6, words: activated}
+    - {max: 1.0, words: highly activated}
+display_rules:
+  genuine: "a genuine expression"
+  masked: "masking it behind another expression"
+  suppressed: "holding it back"
+  posed: "putting it on"

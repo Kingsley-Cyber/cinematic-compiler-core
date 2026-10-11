@@ -27,6 +27,7 @@ from .passes.derived import (
     p11_kinematic,
     p12_bartenieff,
     p13_motion,
+    p14_facial,
     p15_effort,
     p16_camera,
     p17_render,
@@ -34,8 +35,8 @@ from .passes.derived import (
 from .passes.mandatory import p01_intent, p02_brief, p03_constraint, p04_temporal, p05_causal, p06_state, p07_contact
 
 AUTHORED = {"temporal": p04_temporal, "hand_role": p08_hand_role, "kinematic": p11_kinematic,
-            "bartenieff": p12_bartenieff, "motion": p13_motion, "effort": p15_effort, "camera": p16_camera,
-            "render": p17_render}
+            "bartenieff": p12_bartenieff, "motion": p13_motion, "facial": p14_facial, "effort": p15_effort,
+            "camera": p16_camera, "render": p17_render}
 
 VALIDATION_KEYS = ("schema", "invariants", "layer_dependency", "camera_kinematic_coupling", "post_generation")
 UNSTAMPED = "unstamped"

@@ -14,6 +14,11 @@ invariants:
   - id: thrown_weapon_leaves_hand
     rule: "A thrown weapon leaves the hand and does not return without a declared catch."
 equipment: [kunai, shuriken_volley]
+face_profile:
+  visible_regions: [brows, eyes, cheeks, nose, mouth, jaw]
+  dominant_side: none
+  emotional_range: [neutral, interest, anger, surprise, fear, sadness]
+  resting: {valence: -0.1, arousal: 0.0}
 provenance:
   authored_by: claude-code
   date: "2026-10-10"

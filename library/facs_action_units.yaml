@@ -1,0 +1,49 @@
+# FACS action units (S14 facial, L4d). Draft by Claude for owner review.
+# Unit numbers and names: FACS (Ekman, Friesen & Hager 2002) as listed in the Wikipedia "Facial Action Coding System"
+# tables; intensity letters A-E with the manual's words (trace, slight, marked/pronounced, severe/extreme, maximum).
+# FACS scores sides with R/L (one side), U (one side, unspecified) and A (both sides, one stronger); here a unit is
+# written either even on both sides or with a left and a right intensity (absent = null). `laterality` and the words
+# are Claude's drafting: words describe the visible change, `absent` is the render phrase for a unit that must not
+# appear. Intensity is relative to the individual (FACS).
+library_id: facs_action_units
+version: 1
+status: draft
+basis: "FACS unit names and A-E intensity scale (Ekman, Friesen & Hager 2002; Wikipedia FACS tables; UCSD FACS visual reference); regions, laterality and words drafted by Claude."
+intensity_scale:
+  A: trace
+  B: slight
+  C: marked
+  D: severe
+  E: maximum
+regions: [brows, eyes, cheeks, nose, mouth, jaw]
+units:
+  - {au: AU1, name: Inner brow raiser, region: brows, laterality: either, words: "inner ends of the brows lifted", absent: "inner brows not lifted"}
+  - {au: AU2, name: Outer brow raiser, region: brows, laterality: either, words: "outer brows lifted", absent: "outer brows not lifted"}
+  - {au: AU4, name: Brow lowerer, region: brows, laterality: either, words: "brows lowered and drawn together", absent: "no frown"}
+  - {au: AU5, name: Upper lid raiser, region: eyes, laterality: either, words: "upper lids raised, eyes widened", absent: "eyes not widened"}
+  - {au: AU6, name: Cheek raiser, region: cheeks, laterality: either, words: "cheeks raised, crow's feet at the eyes", absent: "cheeks not raised"}
+  - {au: AU7, name: Lid tightener, region: eyes, laterality: either, words: "lids tightened, eyes narrowed", absent: "eyes not narrowed"}
+  - {au: AU9, name: Nose wrinkler, region: nose, laterality: either, words: "nose wrinkled", absent: "nose not wrinkled"}
+  - {au: AU10, name: Upper lip raiser, region: mouth, laterality: either, words: "upper lip raised", absent: "upper lip not raised"}
+  - {au: AU11, name: Nasolabial deepener, region: cheeks, laterality: either, words: "nasolabial folds deepened", absent: "nasolabial folds smooth"}
+  - {au: AU12, name: Lip corner puller, region: mouth, laterality: either, words: "lip corners pulled up", absent: "no smile"}
+  - {au: AU13, name: Sharp lip puller, region: mouth, laterality: either, words: "lip corners pulled up sharply, cheeks puffed", absent: "no sharp lip pull"}
+  - {au: AU14, name: Dimpler, region: mouth, laterality: either, words: "lip corners tightened into dimples", absent: "no dimpling"}
+  - {au: AU15, name: Lip corner depressor, region: mouth, laterality: either, words: "lip corners pulled down", absent: "lip corners not turned down"}
+  - {au: AU16, name: Lower lip depressor, region: mouth, laterality: either, words: "lower lip pulled down", absent: "lower lip not pulled down"}
+  - {au: AU17, name: Chin raiser, region: jaw, laterality: either, words: "chin pushed up, lower lip pouting", absent: "chin relaxed"}
+  - {au: AU18, name: Lip pucker, region: mouth, laterality: bilateral_only, words: "lips puckered", absent: "lips not puckered"}
+  - {au: AU20, name: Lip stretcher, region: mouth, laterality: either, words: "lips stretched sideways", absent: "lips not stretched"}
+  - {au: AU22, name: Lip funneler, region: mouth, laterality: bilateral_only, words: "lips funnelled outward", absent: "lips not funnelled"}
+  - {au: AU23, name: Lip tightener, region: mouth, laterality: either, words: "lips tightened and narrowed", absent: "lips not tightened"}
+  - {au: AU24, name: Lip pressor, region: mouth, laterality: either, words: "lips pressed together", absent: "lips not pressed"}
+  - {au: AU25, name: Lips part, region: mouth, laterality: bilateral_only, words: "lips parted", absent: "lips closed"}
+  - {au: AU26, name: Jaw drop, region: jaw, laterality: bilateral_only, words: "jaw dropped open", absent: "jaw not dropped"}
+  - {au: AU27, name: Mouth stretch, region: jaw, laterality: bilateral_only, words: "mouth stretched wide open", absent: "mouth not stretched open"}
+  - {au: AU28, name: Lip suck, region: mouth, laterality: either, words: "lips sucked in", absent: "lips not sucked in"}
+  - {au: AU31, name: Jaw clencher, region: jaw, laterality: bilateral_only, words: "jaw clenched", absent: "jaw not clenched"}
+  - {au: AU41, name: Lid droop, region: eyes, laterality: either, words: "upper lids drooping", absent: "lids not drooping"}
+  - {au: AU43, name: Eyes closed, region: eyes, laterality: either, words: "eyes closed", absent: "eyes open"}
+  - {au: AU44, name: Squint, region: eyes, laterality: either, words: "eyes squinting", absent: "no squint"}
+  - {au: AU45, name: Blink, region: eyes, laterality: bilateral_only, words: "a blink", absent: "no blink"}
+  - {au: AU46, name: Wink, region: eyes, laterality: unilateral_only, words: "a wink", absent: "no wink"}

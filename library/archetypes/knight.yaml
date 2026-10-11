@@ -13,6 +13,11 @@ genres: [anime, live_action]
 invariants:
   - id: armor_limits_aerials
     rule: In full armor the knight does not flip or cartwheel unless a scene grants it.
+face_profile:  # draft: open-faced helmet
+  visible_regions: [brows, eyes, cheeks, nose, mouth, jaw]
+  dominant_side: none
+  emotional_range: [neutral, interest, anger, fear, contempt, surprise]
+  resting: {valence: 0.0, arousal: -0.3}
 provenance:
   authored_by: claude-code
   date: "2026-10-10"

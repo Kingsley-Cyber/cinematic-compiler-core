@@ -18,6 +18,8 @@
 #     The most specific owner wins; an inner owner always runs after the outer one.
 #   - S04 also writes edges.beat_constraint (beats -> constraints).
 #   - nodes.render is a projection group (no edges); L6.5 writes validation.post_generation.
+# Owner decisions 2026-10-11 (face layer F1-F4): facial (S14, L4d) runs for live_action and ugc_ad only,
+#   after motion (it reads head pose); camera and render read it; effort does not (LMA stays distinct).
 #
 # `depends_on` lists data inputs. `validated_by: constraint` also orders the
 # node after the constraint graph, because that check reads it.
@@ -26,7 +28,7 @@
 # `edge_endpoints` names the node groups each edge group connects; `scene` stands for
 # the scene itself. Endpoints must be written at or before the edge group's step.
 
-version: "1.6"
+version: "1.7"
 kernel: LBN-2.4
 envelope: MGRAPH-1.1
 modalities: [live_action, anime, ugc_ad]
@@ -48,6 +50,7 @@ edge_endpoints:
   kinematic_transition: {from: [kinematic], to: [kinematic]}
   bartenieff_transition: {from: [bartenieff], to: [bartenieff]}
   motion: {from: [motion], to: [motion]}
+  facial_transition: {from: [facial], to: [facial]}
   effort: {from: [efforts], to: [efforts]}
   camera: {from: [camera], to: [camera]}
 
@@ -164,6 +167,16 @@ nodes:
     validated_by: [schema, invariants, constraint]
     writes: [/nodes/motion, /edges/motion]
 
+  - id: facial
+    step_id: S14
+    band: L4d
+    builds: Facial graph (FACS action units, valence/arousal, salience per entity per beat)
+    when: [live_action, ugc_ad]
+    depends_on: [brief, causal, kinematic, motion]
+    external_inputs: [library/facs_action_units, library/facs_asymmetry_bounds, library/emotion_families]
+    validated_by: [schema, invariants, constraint]
+    writes: [/nodes/facial, /edges/facial_transition]
+
   - id: effort
     step_id: S15
     band: L5
@@ -176,7 +189,7 @@ nodes:
     step_id: S16
     band: L5.5
     builds: Camera graph (13 subdivisions + motivation)
-    depends_on: [motion, effort]
+    depends_on: [motion, effort, facial]
     validated_by: [schema, invariants, constraint, camera_rules]
     writes: [/nodes/camera, /edges/camera]
 
@@ -186,7 +199,7 @@ nodes:
     builds: Prose / render projection (full LBN layout, uncompressed)
     projection: true
     depends_on: [intent, brief, temporal, causal, state, contact, hand_role, object_state,
-                 affordance, constraint, kinematic, bartenieff, motion, effort, camera]
+                 affordance, constraint, kinematic, bartenieff, motion, facial, effort, camera]
     validated_by: [schema, invariants, constraint]
     writes: [/nodes/render]
 

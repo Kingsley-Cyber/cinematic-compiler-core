@@ -18,10 +18,10 @@ flowchart LR
   cli -->|1| kernel
   cli -->|1| validators
   compiler -->|18| kernel
-  compiler -->|39| planner
+  compiler -->|41| planner
   compiler -->|2| renderers
-  compiler -->|5| solver
-  compiler -->|25| validators
+  compiler -->|6| solver
+  compiler -->|27| validators
   kernel -->|1| compiler
   kernel -->|3| planner
   kernel -->|1| validators
@@ -50,6 +50,7 @@ flowchart LR
 | `compiler.passes.derived.p11_kinematic` | `compiler.authoring`, `planner.dependency_graph`, `planner.library_vocab`, `planner.scene_view` | — |
 | `compiler.passes.derived.p12_bartenieff` | `compiler.authoring`, `planner.dependency_graph`, `planner.library_vocab`, `planner.scene_view`, `validators.schema_validator` | json, yaml |
 | `compiler.passes.derived.p13_motion` | `compiler.authoring`, `kernel.kernel_files`, `planner.dependency_graph`, `planner.scene_view`, `solver.euler_solver`, `solver.quaternion`, `solver.trajectory` | — |
+| `compiler.passes.derived.p14_facial` | `compiler.authoring`, `planner.dependency_graph`, `planner.scene_view`, `solver.quaternion`, `validators.facial_validator`, `validators.schema_validator` | functools, json, yaml |
 | `compiler.passes.derived.p15_effort` | `compiler.authoring`, `planner.dependency_graph`, `planner.library_vocab`, `planner.scene_view`, `validators.schema_validator` | json, yaml |
 | `compiler.passes.derived.p16_camera` | `compiler.authoring`, `planner.camera_library`, `planner.dependency_graph`, `planner.library_vocab`, `solver.camera_geometry`, `validators.camera_validator` | — |
 | `compiler.passes.derived.p17_render` | `compiler.authoring`, `planner.dependency_graph`, `renderers.anime_renderer`, `renderers.ugc_renderer` | — |
@@ -60,7 +61,7 @@ flowchart LR
 | `compiler.passes.mandatory.p05_causal` | `compiler.authoring`, `kernel.canonical`, `planner.dependency_graph`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
 | `compiler.passes.mandatory.p06_state` | `compiler.authoring`, `kernel.canonical`, `kernel.kernel_files`, `planner.dependency_graph`, `planner.vocabulary`, `solver.prop_state_machine`, `validators.continuity_validator`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
 | `compiler.passes.mandatory.p07_contact` | `compiler.authoring`, `kernel.canonical`, `planner.dependency_graph`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
-| `compiler.pipeline` | `compiler.authoring`, `compiler.passes.derived.p08_hand_role`, `compiler.passes.derived.p09_object_state`, `compiler.passes.derived.p10_affordance`, `compiler.passes.derived.p11_kinematic`, `compiler.passes.derived.p12_bartenieff`, `compiler.passes.derived.p13_motion`, `compiler.passes.derived.p15_effort`, `compiler.passes.derived.p16_camera`, `compiler.passes.derived.p17_render`, `compiler.passes.mandatory.p01_intent`, `compiler.passes.mandatory.p02_brief`, `compiler.passes.mandatory.p03_constraint`, `compiler.passes.mandatory.p04_temporal`, `compiler.passes.mandatory.p05_causal`, `compiler.passes.mandatory.p06_state`, `compiler.passes.mandatory.p07_contact`, `kernel.canonical`, `kernel.kernel_files`, `kernel.version`, `planner.dependency_graph`, `planner.intent_parser`, `planner.topological_sort` | argparse, importlib, json, pathlib, subprocess, sys, time |
+| `compiler.pipeline` | `compiler.authoring`, `compiler.passes.derived.p08_hand_role`, `compiler.passes.derived.p09_object_state`, `compiler.passes.derived.p10_affordance`, `compiler.passes.derived.p11_kinematic`, `compiler.passes.derived.p12_bartenieff`, `compiler.passes.derived.p13_motion`, `compiler.passes.derived.p14_facial`, `compiler.passes.derived.p15_effort`, `compiler.passes.derived.p16_camera`, `compiler.passes.derived.p17_render`, `compiler.passes.mandatory.p01_intent`, `compiler.passes.mandatory.p02_brief`, `compiler.passes.mandatory.p03_constraint`, `compiler.passes.mandatory.p04_temporal`, `compiler.passes.mandatory.p05_causal`, `compiler.passes.mandatory.p06_state`, `compiler.passes.mandatory.p07_contact`, `kernel.canonical`, `kernel.kernel_files`, `kernel.version`, `planner.dependency_graph`, `planner.intent_parser`, `planner.topological_sort` | argparse, importlib, json, pathlib, subprocess, sys, time |
 | `compiler.replan_trigger` | `compiler.authoring`, `kernel.canonical`, `planner.dependency_graph`, `planner.topological_sort` | — |
 | `kernel.build_docs` | `compiler.pipeline`, `planner.dependency_graph`, `planner.topological_sort` | ast, json, re, sys, tomllib, yaml |
 | `kernel.build_ir_schema` | `kernel.version`, `planner.dependency_graph` | json, sys |
@@ -95,5 +96,6 @@ flowchart LR
 | `validators.camera_validator` | `planner.library_vocab`, `solver.camera_geometry` | — |
 | `validators.continuity_validator` | `solver.prop_state_machine` | — |
 | `validators.envelope_validator` | `kernel.kernel_files`, `planner.dependency_graph`, `planner.modality`, `validators.layer_dependency_validator`, `validators.schema_validator` | json |
+| `validators.facial_validator` | — | json, re |
 | `validators.layer_dependency_validator` | `kernel.canonical`, `kernel.version`, `planner.dependency_graph`, `planner.topological_sort` | re |
 | `validators.schema_validator` | `kernel.canonical` | re |

@@ -72,6 +72,9 @@
         "motion": {
           "$ref": "#/$defs/Group_S13"
         },
+        "facial": {
+          "$ref": "#/$defs/Group_S14"
+        },
         "efforts": {
           "$ref": "#/$defs/Group_S15"
         },
@@ -137,6 +140,9 @@
         },
         "motion": {
           "$ref": "#/$defs/Group_S13"
+        },
+        "facial_transition": {
+          "$ref": "#/$defs/Group_S14"
         },
         "effort": {
           "$ref": "#/$defs/Group_S15"
@@ -629,6 +635,42 @@
               },
               "band": {
                 "const": "L4c"
+              }
+            },
+            "description": "Per-graph item fields are fixed by that layer's schema when its slice lands."
+          }
+        }
+      },
+      "required": [
+        "band",
+        "step_id",
+        "items"
+      ]
+    },
+    "Group_S14": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "band": {
+          "const": "L4d"
+        },
+        "step_id": {
+          "const": "S14"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "band": {
+                "const": "L4d"
               }
             },
             "description": "Per-graph item fields are fixed by that layer's schema when its slice lands."
@@ -2066,6 +2108,7 @@
             "L4a",
             "L4b",
             "L4c",
+            "L4d",
             "L5",
             "L5.5",
             "L6",
@@ -2154,7 +2197,7 @@
           "const": "LBN-2.4"
         },
         "layer_order_version": {
-          "const": "1.6"
+          "const": "1.7"
         },
         "kernel_hash": {
           "type": "string",
@@ -2229,6 +2272,7 @@
                   "S11",
                   "S12",
                   "S13",
+                  "S14",
                   "S15",
                   "S16",
                   "S17",
@@ -2288,6 +2332,7 @@
               "L4a",
               "L4b",
               "L4c",
+              "L4d",
               "L5",
               "L5.5",
               "L6",
@@ -2305,6 +2350,7 @@
               "S11",
               "S12",
               "S13",
+              "S14",
               "S15",
               "S16",
               "S17",

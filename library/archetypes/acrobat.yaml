@@ -13,6 +13,11 @@ genres: [anime, live_action]
 invariants:
   - id: airborne_needs_takeoff
     rule: Every airborne phase starts from a declared support contact and ends in a landing or a new contact.
+face_profile:
+  visible_regions: [brows, eyes, cheeks, nose, mouth, jaw]
+  dominant_side: none
+  emotional_range: [joy, interest, surprise, fear, anger]
+  resting: {valence: 0.3, arousal: 0.2}
 provenance:
   authored_by: claude-code
   date: "2026-10-10"

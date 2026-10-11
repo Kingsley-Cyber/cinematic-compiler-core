@@ -1,0 +1,336 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:facial_graph:1.0",
+  "title": "S14 facial graph",
+  "description": "facial = one face per entity per beat with derived words (/nodes/facial); facial_transition = how each face arrives from the entity's previous one, triggered by the beat's incoming causal edge (/edges/facial_transition).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "facial",
+    "facial_transition"
+  ],
+  "properties": {
+    "facial": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "entity",
+          "beat",
+          "t",
+          "aus",
+          "inactive_aus",
+          "valence",
+          "arousal",
+          "emotion_label",
+          "display_rule",
+          "gaze_target",
+          "salience",
+          "onset",
+          "onset_frames",
+          "description",
+          "family",
+          "words"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*@b[0-9]{2,3}$"
+          },
+          "entity": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "beat": {
+            "type": "string",
+            "pattern": "^b[0-9]{2,3}$"
+          },
+          "t": {
+            "type": "number",
+            "minimum": 0
+          },
+          "aus": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "au",
+                    "intensity",
+                    "bilateral"
+                  ],
+                  "properties": {
+                    "au": {
+                      "type": "string",
+                      "pattern": "^AU[0-9]{1,2}$"
+                    },
+                    "intensity": {
+                      "enum": [
+                        "A",
+                        "B",
+                        "C",
+                        "D",
+                        "E"
+                      ]
+                    },
+                    "bilateral": {
+                      "const": true
+                    }
+                  },
+                  "description": "Even on both sides (FACS bilateral)."
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "au",
+                    "left_intensity",
+                    "right_intensity",
+                    "bilateral",
+                    "asymmetry"
+                  ],
+                  "properties": {
+                    "au": {
+                      "type": "string",
+                      "pattern": "^AU[0-9]{1,2}$"
+                    },
+                    "left_intensity": {
+                      "anyOf": [
+                        {
+                          "enum": [
+                            "A",
+                            "B",
+                            "C",
+                            "D",
+                            "E"
+                          ]
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "right_intensity": {
+                      "anyOf": [
+                        {
+                          "enum": [
+                            "A",
+                            "B",
+                            "C",
+                            "D",
+                            "E"
+                          ]
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "bilateral": {
+                      "const": false
+                    },
+                    "asymmetry": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "dominant_side",
+                        "magnitude",
+                        "pattern"
+                      ],
+                      "properties": {
+                        "dominant_side": {
+                          "enum": [
+                            "left",
+                            "right"
+                          ]
+                        },
+                        "magnitude": {
+                          "type": "integer",
+                          "minimum": 1,
+                          "maximum": 5
+                        },
+                        "pattern": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "pattern": "^[a-z][a-z0-9_]*$"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "description": "Sides differ: both present at different intensities (FACS A) or one side only (FACS R/L, the other null). Left and right are the performer's own sides; magnitude counts intensity steps between the sides (absent = 0, A = 1 ... E = 5)."
+                }
+              ]
+            }
+          },
+          "inactive_aus": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^AU[0-9]{1,2}$"
+            }
+          },
+          "valence": {
+            "type": "number",
+            "minimum": -1,
+            "maximum": 1
+          },
+          "arousal": {
+            "type": "number",
+            "minimum": -1,
+            "maximum": 1
+          },
+          "emotion_label": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "display_rule": {
+            "enum": [
+              "genuine",
+              "masked",
+              "suppressed",
+              "posed"
+            ]
+          },
+          "gaze_target": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "salience": {
+            "enum": [
+              "carries_beat",
+              "supporting",
+              "background"
+            ]
+          },
+          "onset": {
+            "enum": [
+              "rapid",
+              "slow",
+              "hold",
+              "micro"
+            ]
+          },
+          "onset_frames": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "family": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "words": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "face",
+              "not",
+              "feeling",
+              "display",
+              "gaze"
+            ],
+            "properties": {
+              "face": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "not": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "feeling": {
+                "type": "string",
+                "minLength": 1
+              },
+              "display": {
+                "type": "string",
+                "minLength": 1
+              },
+              "gaze": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "description": "Derived from the libraries; what the render prints (no unit codes, no numbers)."
+          }
+        }
+      }
+    },
+    "facial_transition": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "from",
+          "to",
+          "relation",
+          "onset",
+          "onset_frames",
+          "trigger"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "from": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*@b[0-9]{2,3}$"
+          },
+          "to": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*@b[0-9]{2,3}$"
+          },
+          "relation": {
+            "const": "transitions_to"
+          },
+          "onset": {
+            "enum": [
+              "rapid",
+              "slow",
+              "hold",
+              "micro"
+            ]
+          },
+          "onset_frames": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "trigger": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+S14 facial (L4d). For every slot write one face: the action units that show, each either even on both sides
+(intensity A trace, B slight, C marked, D severe, E maximum) or per side (left/right intensity, the absent side null,
+with the dominant side, the step difference and, when it is one, the named pattern). Left and right are the
+performer's own sides. List the units that must NOT show (e.g. AU12 when there is no smile).
+- Respect the costume: only units in the face profile's visible regions.
+- Valence and arousal run -1..1; pick an emotion label whose family the archetype shows; a genuine face sits inside
+  the label's ranges and agrees with the body's tension (masked, suppressed and posed faces may disagree).
+- Deliberate expressions tend to be more asymmetric than spontaneous ones; contempt is one lip corner raised and
+  tightened on one side (AU12 + AU14); a genuine smile raises the cheeks (AU6 + AU12).
+- Salience: carries_beat when the face is what the beat is about (the camera must show it), supporting or background
+  otherwise. Gaze target: an entity or prop id, camera, or none.
+- Onset: rapid (peak within 0.5 s), slow (longer), hold (same units, 0 frames), micro (peak within 0.26 s, only as a
+  leak from a masked or suppressed face). Onset frames fit in the beat.
+- Read each slot's kinematic tension, breathing and strain, the head pose, and what the beat reacts to.
+- The description is words only, no unit codes. Copy packet_sha256.

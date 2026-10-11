@@ -1,0 +1,199 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:emotion_families:1.0",
+  "title": "Emotion labels and families (S14 facial)",
+  "description": "Emotion labels with their family and valence/arousal ranges on -1..1, informational prototype units, the word bands the render uses for valence and arousal, and the words for each display rule.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "library_id",
+    "version",
+    "status",
+    "basis",
+    "families",
+    "labels",
+    "bands",
+    "display_rules"
+  ],
+  "properties": {
+    "library_id": {
+      "const": "emotion_families"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "approved"
+      ]
+    },
+    "basis": {
+      "type": "string",
+      "minLength": 1
+    },
+    "families": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "neutral",
+          "joy",
+          "interest",
+          "surprise",
+          "anger",
+          "fear",
+          "sadness",
+          "disgust",
+          "contempt"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "labels": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "family",
+          "valence",
+          "arousal",
+          "typical_aus"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "family": {
+            "enum": [
+              "neutral",
+              "joy",
+              "interest",
+              "surprise",
+              "anger",
+              "fear",
+              "sadness",
+              "disgust",
+              "contempt"
+            ]
+          },
+          "valence": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "number",
+              "minimum": -1,
+              "maximum": 1
+            }
+          },
+          "arousal": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "number",
+              "minimum": -1,
+              "maximum": 1
+            }
+          },
+          "typical_aus": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^AU[0-9]{1,2}$"
+            }
+          }
+        }
+      }
+    },
+    "bands": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "valence",
+        "arousal"
+      ],
+      "properties": {
+        "valence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "max",
+              "words"
+            ],
+            "properties": {
+              "max": {
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              "words": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "arousal": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "max",
+              "words"
+            ],
+            "properties": {
+              "max": {
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              "words": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "display_rules": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "genuine",
+        "masked",
+        "suppressed",
+        "posed"
+      ],
+      "properties": {
+        "genuine": {
+          "type": "string",
+          "minLength": 1
+        },
+        "masked": {
+          "type": "string",
+          "minLength": 1
+        },
+        "suppressed": {
+          "type": "string",
+          "minLength": 1
+        },
+        "posed": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

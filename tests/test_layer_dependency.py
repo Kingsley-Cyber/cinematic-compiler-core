@@ -114,13 +114,14 @@ def test_a_pass_may_change_only_its_own_paths(order):
 
 def test_owner_decisions_2026_10_10_fix_the_exact_order(order):
     anime, ugc = build_order(order, "anime"), build_order(order, "ugc_ad")
-    # F2 (2026-10-11): S14 is the face (added in M3.5 F.1); effort, camera, render, post-generation are S15-S18.
-    steps = [f"S{n:02d}" for n in range(1, 19) if n != 14]
+    # F1/F2 (2026-10-11): S14 is the face (live_action and ugc_ad); effort, camera, render, post-generation S15-S18.
+    steps = [f"S{n:02d}" for n in range(1, 19)]
     assert [node(order, n)["step_id"] for n in ugc] == steps
-    assert [node(order, n)["step_id"] for n in anime] == steps[:7] + steps[10:]
+    assert [node(order, n)["step_id"] for n in anime] == steps[:7] + steps[10:13] + steps[14:]
+    assert [node(order, n)["step_id"] for n in build_order(order, "live_action")] == steps[:7] + steps[10:]
     assert [node(order, n)["band"] for n in ugc] == [
         "L0", "L0.5", "constraint", "L1", "L1", "L2", "L2", "L2.5", "L2.6", "L2.7",
-        "L4a", "L4b", "L4c", "L5", "L5.5", "L6", "L6.5"]
+        "L4a", "L4b", "L4c", "L4d", "L5", "L5.5", "L6", "L6.5"]
     assert node(order, "brief")["writes"] == ["/scene", "/nodes/entities", "/nodes/props", "/nodes/surfaces"]
     assert node(order, "temporal")["writes"] == ["/nodes/beats", "/edges/temporal", "/edges/beat_constraint",
                                                  "/scene/duration_s", "/scene/duration_source"]

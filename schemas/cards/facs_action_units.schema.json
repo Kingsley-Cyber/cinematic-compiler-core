@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:facs_action_units:1.0",
+  "title": "FACS action units (S14 facial)",
+  "description": "The action units a face may use: name, face region, laterality (either side, both sides only, one side only), words for the render and words for its absence; the A-E intensity scale and its words.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "library_id",
+    "version",
+    "status",
+    "basis",
+    "intensity_scale",
+    "regions",
+    "units"
+  ],
+  "properties": {
+    "library_id": {
+      "const": "facs_action_units"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "approved"
+      ]
+    },
+    "basis": {
+      "type": "string",
+      "minLength": 1
+    },
+    "intensity_scale": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "properties": {
+        "A": {
+          "type": "string",
+          "minLength": 1
+        },
+        "B": {
+          "type": "string",
+          "minLength": 1
+        },
+        "C": {
+          "type": "string",
+          "minLength": 1
+        },
+        "D": {
+          "type": "string",
+          "minLength": 1
+        },
+        "E": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "regions": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "brows",
+          "eyes",
+          "cheeks",
+          "nose",
+          "mouth",
+          "jaw"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "units": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "au",
+          "name",
+          "region",
+          "laterality",
+          "words",
+          "absent"
+        ],
+        "properties": {
+          "au": {
+            "type": "string",
+            "pattern": "^AU[0-9]{1,2}$"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "region": {
+            "enum": [
+              "brows",
+              "eyes",
+              "cheeks",
+              "nose",
+              "mouth",
+              "jaw"
+            ]
+          },
+          "laterality": {
+            "enum": [
+              "either",
+              "bilateral_only",
+              "unilateral_only"
+            ]
+          },
+          "words": {
+            "type": "string",
+            "minLength": 1
+          },
+          "absent": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

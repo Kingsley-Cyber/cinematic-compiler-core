@@ -339,11 +339,11 @@ F.9 (examples) → F.10 (docs). One commit per block; the gate passes after each
   moved: S04 for the owner rule text, S15–S17 for the step ID); all three render.txt byte-identical.)
 
 ### S14 facial (L4d, authored; ugc_ad + live_action)
-- [ ] F.1 DAG 1.7: node `facial` {step_id S14, band L4d, when [ugc_ad, live_action], depends_on [brief, causal,
+- [x] F.1 DAG 1.7: node `facial` {step_id S14, band L4d, when [ugc_ad, live_action], depends_on [brief, causal,
   kinematic, motion], writes [/nodes/facial, /edges/facial_transition]}; edge endpoints facial → facial; camera
   and render gain `facial` as a dependency (skipped where inactive, like S08–S10); effort does not.
   Tests: anime order unchanged; ugc_ad and live_action place S14 between S13 and S15.
-- [ ] F.2 Libraries (draft, library log, each with a schema):
+- [x] F.2 Libraries (draft, library log, each with a schema):
   - `library/facs_action_units.yaml`: the FACS action units (number, name, face region, may be one-sided,
     render words for the action and for its absence, e.g. AU12 "lip corners pulled up" / "no smile"); intensity scale
     A–E with words (trace, slight, marked, severe, maximum). Basis: FACS (Ekman, Friesen & Hager 2002) unit names;
@@ -352,23 +352,27 @@ F.9 (examples) → F.10 (docs). One commit per block; the gate passes after each
     (AUs, rule, valence and arousal ranges on −1…1) — draft until F.2b.
   - `library/emotion_families.yaml`: emotion labels → family, valence and arousal ranges, typical AUs
     (informational), and the word bands the render uses for valence and arousal (F4).
-- [ ] F.2b Verify the asymmetry and micro-expression claims against published sources (no paid API); record each
+- [x] F.2b Verify the asymmetry and micro-expression claims against published sources (no paid API); record each
   source in the library file's basis; anything unsupported stays a labelled draft value.
-- [ ] F.3 `face_profile` on archetype cards (schema change, logged): visible regions (brows, eyes, cheeks, nose,
+  (Done 2026-10-11: deliberate expressions are more asymmetric than spontaneous ones (Ekman, Hager & Friesen 1981;
+  Hager & Ekman 1985, via summaries); contempt = one-sided AU12 + AU14 on the same side (Ekman & Friesen 1986;
+  Matsumoto & Ekman 2004); micro-expressions < 500 ms with onset < ~260 ms (Yan et al. 2013); FACS 2002 A-E words and
+  R/L/U/A side notation. No source gives per-unit maximum asymmetry: `max_step_difference` stays the concept's draft.)
+- [x] F.3 `face_profile` on archetype cards (schema change, logged): visible regions (brows, eyes, cheeks, nose,
   mouth, jaw), dominant side (left | right | none), emotional range (families), resting valence/arousal. Draft
   profiles for every archetype card; S02 copies it onto the entity (brief schema). A ugc/live-action entity with no
   profile is refused at S14 (FACE_PROFILE_MISSING).
-- [ ] F.4 `schemas/graphs/facial_plan.schema.json` (authored, one node per slot): `slot, aus[], inactive_aus[],
+- [x] F.4 `schemas/graphs/facial_plan.schema.json` (authored, one node per slot): `slot, aus[], inactive_aus[],
   valence, arousal, emotion_label, display_rule (genuine | masked | suppressed | posed), gaze_target, salience,
   onset (rapid | slow | hold | micro), onset_frames, description`. An AU is either symmetric `{au, intensity,
   bilateral: true}` or one-sided `{au, left_intensity, right_intensity, bilateral: false, asymmetry: {dominant_side,
   magnitude, pattern | null}}`. `facial_graph.schema.json`: nodes plus derived words; edges `facial_transition`
   `{from, to, onset, onset_frames, trigger}` (trigger = the beat's incoming causal edge, or null). Logged.
-- [ ] F.5 `compiler/passes/derived/p14_facial.py` + `planner/prompts/facial_acting.txt`: packet = slots (beat, role,
+- [x] F.5 `compiler/passes/derived/p14_facial.py` + `planner/prompts/facial_acting.txt`: packet = slots (beat, role,
   label, action), the kinematic cues the face reads (tension, breathing, strain, release), head pose (root rot, HD
   and NK bones, heading), what each beat reacts to (incoming causal edges), face profiles and the three libraries.
   Registered as authored (pipeline + replan trigger).
-- [ ] F.6 `validators/facial_validator.py` (one test per rule):
+- [x] F.6 `validators/facial_validator.py` (one test per rule):
   - FACS_AU — unit in the library; intensities A–E; exactly one of the symmetric or one-sided forms; bilateral flag
     agrees with the form.
   - FACS_ASYMMETRY — magnitude = the left/right step difference; dominant side = the stronger side; within the
@@ -391,10 +395,13 @@ F.9 (examples) → F.10 (docs). One commit per block; the gate passes after each
     (root heading + NK/HD yaw) and the direction to the camera is under 90°.
   - FACE_ASYMMETRY_VISIBLE — a one-sided unit's dominant hemiface faces the camera, unless the shot is frontal
     (within `frontal_deg` of the face, new draft value in camera_grammar, logged).
-- [ ] F.8 Render (S17), words only (F4): each actor row gains `FACE:` (unit words with intensity words and which side
+- [x] F.8 Render (S17), words only (F4): each actor row gains `FACE:` (unit words with intensity words and which side
   is stronger), `NOT:` (inactive-unit words), the feeling (label + valence/arousal word bands), display rule and gaze
   in words. No AU codes and no valence/arousal numbers in the text (test: no `\bAU\d+` in any render).
   F.8b live_action gets its own genre block (frame parts under `frames`, not `anime`) via the shared projection.
+  (Built with S14: rows gain `FACE` / `FACE (carries the beat)`, `NOT`, the feeling in word bands, display rule,
+  gaze by render label, and the authored description, which the validator keeps free of unit codes. F.8b waits for
+  the live-action example.)
 
 ### Examples and docs
 - [ ] F.9 `examples/ugc_glasses_demo/`: facial plan for its four slots (the reveal carries the beat with a genuine,

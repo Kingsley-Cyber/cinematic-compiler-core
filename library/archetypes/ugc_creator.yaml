@@ -13,6 +13,11 @@ genres: [ugc_ad]
 invariants:
   - id: hands_in_frame
     rule: "Hands stay in frame whenever they touch the product."
+face_profile:
+  visible_regions: [brows, eyes, cheeks, nose, mouth, jaw]
+  dominant_side: none
+  emotional_range: [neutral, joy, interest, surprise, disgust]
+  resting: {valence: 0.4, arousal: 0.1}
 provenance:
   authored_by: claude-code
   date: "2026-10-10"

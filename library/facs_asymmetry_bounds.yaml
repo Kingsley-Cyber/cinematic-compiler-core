@@ -1,0 +1,57 @@
+# Facial asymmetry bounds and named patterns (S14 facial, L4d). Draft by Claude for owner review.
+# Research checked 2026-10-11 (F.2b):
+# - Deliberate (posed) expressions are more asymmetric than spontaneous ones (Ekman, Hager & Friesen 1981,
+#   Psychophysiology 18(2):101-106; Hager & Ekman 1985), with the left side often stronger in voluntary smiles
+#   (secondary summaries; full text not read). So a perfectly even genuine smile is normal, not "acting".
+# - Contempt is a one-sided lip-corner raise and tightening: unilateral AU12 + AU14 on the same side
+#   (Ekman & Friesen 1986, Motivation and Emotion; Matsumoto & Ekman 2004). Recognition is debated (Russell 1991).
+# - The Duchenne smile is AU6 + AU12 (cheek raiser with lip corner puller).
+# - No published per-unit table of maximum left/right difference was found: `max_step_difference` (for a unit
+#   present on both sides at different intensities) is the owner concept's draft, unsourced. A unit present on one
+#   side only is allowed when the unit's laterality allows it (FACS scores R/L/U).
+library_id: facs_asymmetry_bounds
+version: 1
+status: draft
+basis: "Sources above for the named patterns; max_step_difference values from the owner's facial concept (2026-10-11), unsourced draft."
+max_step_difference: {AU1: 1, AU2: 1, AU4: 2, AU5: 1, AU6: 2, AU7: 1, AU9: 2, AU10: 1, AU11: 1, AU12: 2, AU13: 2, AU14: 3, AU15: 2, AU16: 1, AU17: 2, AU20: 1, AU23: 1, AU24: 1, AU28: 1, AU41: 1, AU43: 0, AU44: 1}
+patterns:
+  - id: duchenne_smile
+    description: "Genuine smile: cheeks raised with the lip corners; spontaneous ones tend to be fairly even."
+    units: {AU6: any, AU12: any}
+    forbidden: []
+    same_side: false
+    valence: [0.4, 1.0]
+    arousal: [-0.2, 0.8]
+    source: "Duchenne marker AU6 + AU12 (Ekman, Davidson & Friesen 1990)"
+  - id: posed_smile
+    description: "Deliberate smile without the cheek raise; often one side stronger."
+    units: {AU12: asymmetric}
+    forbidden: [AU6]
+    same_side: false
+    valence: [0.0, 0.6]
+    arousal: [-0.3, 0.5]
+    source: "Deliberate actions more asymmetric (Ekman, Hager & Friesen 1981)"
+  - id: contempt
+    description: "One lip corner raised and tightened on the same side."
+    units: {AU12: unilateral, AU14: unilateral}
+    forbidden: []
+    same_side: true
+    valence: [-0.7, -0.1]
+    arousal: [-0.3, 0.4]
+    source: "Ekman & Friesen 1986; Matsumoto & Ekman 2004"
+  - id: masked_anger
+    description: "Anger held back: frown and tight lips, one side of the frown stronger."
+    units: {AU4: asymmetric, AU7: symmetric, AU23: any}
+    forbidden: [AU12]
+    same_side: false
+    valence: [-0.8, -0.3]
+    arousal: [0.0, 0.7]
+    source: "Owner concept 2026-10-11 (unsourced draft)"
+  - id: skeptical_doubt
+    description: "One brow raised while the opposite lip corner pulls."
+    units: {AU2: unilateral, AU12: unilateral}
+    forbidden: []
+    same_side: false
+    valence: [-0.4, 0.1]
+    arousal: [-0.4, 0.3]
+    source: "Owner concept 2026-10-11 (unsourced draft)"

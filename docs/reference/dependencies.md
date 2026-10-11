@@ -21,6 +21,7 @@ flowchart TD
   kinematic["S11 kinematic<br/>L4a"]
   bartenieff["S12 bartenieff<br/>L4b"]
   motion["S13 motion<br/>L4c"]
+  facial["S14 facial<br/>L4d"]
   effort["S15 effort<br/>L5"]
   camera["S16 camera<br/>L5.5"]
   render["S17 render<br/>L6"]
@@ -47,9 +48,14 @@ flowchart TD
   kinematic --> bartenieff
   kinematic --> motion
   bartenieff --> motion
+  brief --> facial
+  causal --> facial
+  kinematic --> facial
+  motion --> facial
   motion --> effort
   motion --> camera
   effort --> camera
+  facial --> camera
   intent --> render
   brief --> render
   temporal --> render
@@ -63,6 +69,7 @@ flowchart TD
   kinematic --> render
   bartenieff --> render
   motion --> render
+  facial --> render
   effort --> render
   camera --> render
   render --> post_generation
@@ -70,10 +77,10 @@ flowchart TD
   classDef derived fill:#eef7ee,stroke:#3c8a3c
   classDef notbuilt fill:#f4f4f4,stroke:#999,stroke-dasharray:4 3
   classDef ugc stroke-width:3px
-  class temporal,hand_role,kinematic,bartenieff,motion,effort,camera,render authored
+  class temporal,hand_role,kinematic,bartenieff,motion,facial,effort,camera,render authored
   class intent,brief,constraint,causal,state,contact,object_state,affordance derived
   class post_generation notbuilt
-  class hand_role,object_state,affordance ugc
+  class hand_role,object_state,affordance,facial ugc
 ```
 
 ## Steps
@@ -93,16 +100,17 @@ flowchart TD
 | S11 | kinematic | L4a | Kinematic graph (visible bodily organization) | authored | all | state, contact, hand_role, object_state, affordance, constraint | `/nodes/kinematic`<br>`/edges/kinematic_transition` | schema, invariants, constraint | [compiler/passes/derived/p11_kinematic.py](../../compiler/passes/derived/p11_kinematic.py) | [schemas/graphs/kinematic_plan.schema.json](../../schemas/graphs/kinematic_plan.schema.json) | [planner/prompts/kinematic_organization.txt](../../planner/prompts/kinematic_organization.txt) | [library/kinematic_cues.yaml](../../library/kinematic_cues.yaml) |
 | S12 | bartenieff | L4b | Bartenieff graph (body coordination patterns) | authored | all | kinematic | `/nodes/bartenieff`<br>`/edges/bartenieff_transition` | schema, invariants, constraint | [compiler/passes/derived/p12_bartenieff.py](../../compiler/passes/derived/p12_bartenieff.py) | [schemas/graphs/bartenieff_plan.schema.json](../../schemas/graphs/bartenieff_plan.schema.json) | [planner/prompts/body_coordination.txt](../../planner/prompts/body_coordination.txt) | [library/bartenieff_vocabulary.yaml](../../library/bartenieff_vocabulary.yaml)<br>[library/body_modes](../../library/body_modes) |
 | S13 | motion | L4c | Motion graph (Euler key poses, axes, slerp, root trajectories) | authored | all | kinematic, bartenieff | `/nodes/motion`<br>`/edges/motion` | schema, invariants, constraint | [compiler/passes/derived/p13_motion.py](../../compiler/passes/derived/p13_motion.py) | [schemas/graphs/motion_plan.schema.json](../../schemas/graphs/motion_plan.schema.json) | [planner/prompts/euler_solving.txt](../../planner/prompts/euler_solving.txt) | [kernel/invariants.yaml](../../kernel/invariants.yaml) |
+| S14 | facial | L4d | Facial graph (FACS action units, valence/arousal, salience per entity per beat) | authored | live_action, ugc_ad | brief, causal, kinematic, motion | `/nodes/facial`<br>`/edges/facial_transition` | schema, invariants, constraint | [compiler/passes/derived/p14_facial.py](../../compiler/passes/derived/p14_facial.py) | [schemas/graphs/facial_plan.schema.json](../../schemas/graphs/facial_plan.schema.json) | [planner/prompts/facial_acting.txt](../../planner/prompts/facial_acting.txt) | — |
 | S15 | effort | L5 | Effort graph (LMA Effort factors plus Shape and Space) | authored | all | motion | `/nodes/efforts`<br>`/edges/effort` | schema, invariants, constraint | [compiler/passes/derived/p15_effort.py](../../compiler/passes/derived/p15_effort.py) | [schemas/graphs/effort_plan.schema.json](../../schemas/graphs/effort_plan.schema.json) | [planner/prompts/laban_synthesis.txt](../../planner/prompts/laban_synthesis.txt) | [library/effort_modes](../../library/effort_modes)<br>[library/laban_vocabulary.yaml](../../library/laban_vocabulary.yaml) |
-| S16 | camera | L5.5 | Camera graph (13 subdivisions + motivation) | authored | all | motion, effort | `/nodes/camera`<br>`/edges/camera` | schema, invariants, constraint, camera_rules | [compiler/passes/derived/p16_camera.py](../../compiler/passes/derived/p16_camera.py) | [schemas/graphs/camera_plan.schema.json](../../schemas/graphs/camera_plan.schema.json) | [planner/prompts/camera_selection.txt](../../planner/prompts/camera_selection.txt) | [library/camera_conventions](../../library/camera_conventions)<br>[library/camera_grammar.yaml](../../library/camera_grammar.yaml)<br>[library/camera_idioms](../../library/camera_idioms)<br>[library/camera_subdivisions.yaml](../../library/camera_subdivisions.yaml)<br>[library/camera_tempo.yaml](../../library/camera_tempo.yaml) |
-| S17 | render | L6 | Prose / render projection (full LBN layout, uncompressed) | authored · projection | all | intent, brief, temporal, causal, state, contact, hand_role, object_state, affordance, constraint, kinematic, bartenieff, motion, effort, camera | `/nodes/render` | schema, invariants, constraint | [compiler/passes/derived/p17_render.py](../../compiler/passes/derived/p17_render.py) | [schemas/graphs/frame_parts_plan.schema.json](../../schemas/graphs/frame_parts_plan.schema.json) | [planner/prompts/frame_parts.txt](../../planner/prompts/frame_parts.txt) | [library/bartenieff_vocabulary.yaml](../../library/bartenieff_vocabulary.yaml)<br>[library/laban_vocabulary.yaml](../../library/laban_vocabulary.yaml) |
+| S16 | camera | L5.5 | Camera graph (13 subdivisions + motivation) | authored | all | motion, effort, facial | `/nodes/camera`<br>`/edges/camera` | schema, invariants, constraint, camera_rules | [compiler/passes/derived/p16_camera.py](../../compiler/passes/derived/p16_camera.py) | [schemas/graphs/camera_plan.schema.json](../../schemas/graphs/camera_plan.schema.json) | [planner/prompts/camera_selection.txt](../../planner/prompts/camera_selection.txt) | [library/camera_conventions](../../library/camera_conventions)<br>[library/camera_grammar.yaml](../../library/camera_grammar.yaml)<br>[library/camera_idioms](../../library/camera_idioms)<br>[library/camera_subdivisions.yaml](../../library/camera_subdivisions.yaml)<br>[library/camera_tempo.yaml](../../library/camera_tempo.yaml) |
+| S17 | render | L6 | Prose / render projection (full LBN layout, uncompressed) | authored · projection | all | intent, brief, temporal, causal, state, contact, hand_role, object_state, affordance, constraint, kinematic, bartenieff, motion, facial, effort, camera | `/nodes/render` | schema, invariants, constraint | [compiler/passes/derived/p17_render.py](../../compiler/passes/derived/p17_render.py) | [schemas/graphs/frame_parts_plan.schema.json](../../schemas/graphs/frame_parts_plan.schema.json) | [planner/prompts/frame_parts.txt](../../planner/prompts/frame_parts.txt) | [library/bartenieff_vocabulary.yaml](../../library/bartenieff_vocabulary.yaml)<br>[library/laban_vocabulary.yaml](../../library/laban_vocabulary.yaml) |
 | S18 | post_generation | L6.5 | Post-generation report (only when a video model is available) | not built (M7) | all | render | `/validation/post_generation` | pose, object, state, affordance | — | — | — | — |
 
 ## Build order per genre
 
-- **live_action** (14 steps): S01 intent → S02 brief → S03 constraint → S04 temporal → S05 causal → S06 state → S07 contact → S11 kinematic → S12 bartenieff → S13 motion → S15 effort → S16 camera → S17 render → S18 post_generation
+- **live_action** (15 steps): S01 intent → S02 brief → S03 constraint → S04 temporal → S05 causal → S06 state → S07 contact → S11 kinematic → S12 bartenieff → S13 motion → S14 facial → S15 effort → S16 camera → S17 render → S18 post_generation
 - **anime** (14 steps): S01 intent → S02 brief → S03 constraint → S04 temporal → S05 causal → S06 state → S07 contact → S11 kinematic → S12 bartenieff → S13 motion → S15 effort → S16 camera → S17 render → S18 post_generation
-- **ugc_ad** (17 steps): S01 intent → S02 brief → S03 constraint → S04 temporal → S05 causal → S06 state → S07 contact → S08 hand_role → S09 object_state → S10 affordance → S11 kinematic → S12 bartenieff → S13 motion → S15 effort → S16 camera → S17 render → S18 post_generation
+- **ugc_ad** (18 steps): S01 intent → S02 brief → S03 constraint → S04 temporal → S05 causal → S06 state → S07 contact → S08 hand_role → S09 object_state → S10 affordance → S11 kinematic → S12 bartenieff → S13 motion → S14 facial → S15 effort → S16 camera → S17 render → S18 post_generation
 
 ## Write ownership
 
@@ -119,6 +127,7 @@ Every envelope path has exactly one owner; an inner path (carve-out) is owned by
 | `/edges/constraint_application` | S03 constraint |
 | `/edges/contact` | S07 contact |
 | `/edges/effort` | S15 effort |
+| `/edges/facial_transition` | S14 facial |
 | `/edges/hand_role_transition` | S08 hand_role |
 | `/edges/kinematic_transition` | S11 kinematic |
 | `/edges/motion` | S13 motion |
@@ -136,6 +145,7 @@ Every envelope path has exactly one owner; an inner path (carve-out) is owned by
 | `/nodes/contacts` | S07 contact |
 | `/nodes/efforts` | S15 effort |
 | `/nodes/entities` | S02 brief |
+| `/nodes/facial` | S14 facial |
 | `/nodes/hand_role` | S08 hand_role |
 | `/nodes/kinematic` | S11 kinematic |
 | `/nodes/motion` | S13 motion |
@@ -184,13 +194,15 @@ Every envelope path has exactly one owner; an inner path (carve-out) is owned by
 | `bartenieff_transition` | edge | S12 bartenieff | bartenieff → bartenieff |
 | `motion` | node | S13 motion |  |
 | `motion` | edge | S13 motion | motion → motion |
+| `facial` | node | S14 facial |  |
+| `facial_transition` | edge | S14 facial | facial → facial |
 | `efforts` | node | S15 effort |  |
 | `effort` | edge | S15 effort | efforts → efforts |
 | `camera` | node | S16 camera |  |
 | `camera` | edge | S16 camera | camera → camera |
 | `render` | node | S17 render |  |
 
-16 node groups, 14 edge groups.
+17 node groups, 15 edge groups.
 
 ## Steps active per genre
 
@@ -209,6 +221,7 @@ Every envelope path has exactly one owner; an inner path (carve-out) is owned by
 | S11 kinematic | yes | yes | yes |
 | S12 bartenieff | yes | yes | yes |
 | S13 motion | yes | yes | yes |
+| S14 facial | yes | — | yes |
 | S15 effort | yes | yes | yes |
 | S16 camera | yes | yes | yes |
 | S17 render | yes | yes | yes |

@@ -1,0 +1,129 @@
+{
+ "step_id": "S14",
+ "band": "L4d",
+ "packet_sha256": "sha256:fc77ad2d5ef16e5c3ef108fd3f0bf5a8f2e03a9a889f0701f3c9dc6b9c40dd32",
+ "author": {
+  "host": "Claude Code desktop, in-session",
+  "model": "claude-opus-5-5"
+ },
+ "attempt": 1,
+ "faces": [
+  {
+   "slot": "ugc_creator@b01",
+   "aus": [
+    {
+     "au": "AU6",
+     "intensity": "A",
+     "bilateral": true
+    },
+    {
+     "au": "AU12",
+     "intensity": "B",
+     "bilateral": true
+    }
+   ],
+   "inactive_aus": [],
+   "valence": 0.5,
+   "arousal": 0.1,
+   "emotion_label": "pleased",
+   "display_rule": "genuine",
+   "gaze_target": "camera",
+   "salience": "supporting",
+   "onset": "slow",
+   "onset_frames": 20,
+   "description": "An easy, friendly smile while chatting to the lens."
+  },
+  {
+   "slot": "ugc_creator@b02",
+   "aus": [
+    {
+     "au": "AU4",
+     "intensity": "A",
+     "bilateral": true
+    },
+    {
+     "au": "AU7",
+     "intensity": "A",
+     "bilateral": true
+    }
+   ],
+   "inactive_aus": [
+    "AU12"
+   ],
+   "valence": 0.1,
+   "arousal": 0.2,
+   "emotion_label": "focused",
+   "display_rule": "genuine",
+   "gaze_target": "glasses",
+   "salience": "background",
+   "onset": "rapid",
+   "onset_frames": 9,
+   "description": "Eyes down on the glasses, a small concentrating frown, no smile."
+  },
+  {
+   "slot": "ugc_creator@b03",
+   "aus": [
+    {
+     "au": "AU1",
+     "intensity": "A",
+     "bilateral": true
+    },
+    {
+     "au": "AU2",
+     "intensity": "A",
+     "bilateral": true
+    }
+   ],
+   "inactive_aus": [
+    "AU4"
+   ],
+   "valence": 0.3,
+   "arousal": 0.3,
+   "emotion_label": "curious",
+   "display_rule": "genuine",
+   "gaze_target": "camera",
+   "salience": "supporting",
+   "onset": "slow",
+   "onset_frames": 18,
+   "description": "Brows lift a little as the glasses settle on the face, eyes back to the lens."
+  },
+  {
+   "slot": "ugc_creator@b04",
+   "aus": [
+    {
+     "au": "AU6",
+     "intensity": "B",
+     "bilateral": true
+    },
+    {
+     "au": "AU12",
+     "left_intensity": "C",
+     "right_intensity": "B",
+     "bilateral": false,
+     "asymmetry": {
+      "dominant_side": "left",
+      "magnitude": 1,
+      "pattern": "duchenne_smile"
+     }
+    },
+    {
+     "au": "AU25",
+     "intensity": "B",
+     "bilateral": true
+    }
+   ],
+   "inactive_aus": [
+    "AU4"
+   ],
+   "valence": 0.8,
+   "arousal": 0.4,
+   "emotion_label": "delighted",
+   "display_rule": "genuine",
+   "gaze_target": "camera",
+   "salience": "carries_beat",
+   "onset": "rapid",
+   "onset_frames": 8,
+   "description": "A wide, genuine smile at the result, eyes creased, the smile a touch stronger on the left."
+  }
+ ]
+}

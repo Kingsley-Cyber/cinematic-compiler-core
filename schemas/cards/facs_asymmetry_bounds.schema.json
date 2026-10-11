@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:facs_asymmetry_bounds:1.0",
+  "title": "Facial asymmetry bounds and named patterns (S14 facial)",
+  "description": "max_step_difference caps how far apart the two sides of a unit present on both sides may be; patterns name known asymmetric expressions with the form each unit must take, forbidden units, same-side rule and valence/arousal ranges.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "library_id",
+    "version",
+    "status",
+    "basis",
+    "max_step_difference",
+    "patterns"
+  ],
+  "properties": {
+    "library_id": {
+      "const": "facs_asymmetry_bounds"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "approved"
+      ]
+    },
+    "basis": {
+      "type": "string",
+      "minLength": 1
+    },
+    "max_step_difference": {
+      "type": "object",
+      "patternProperties": {
+        "^AU[0-9]{1,2}$": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4
+        }
+      },
+      "additionalProperties": false
+    },
+    "patterns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "description",
+          "units",
+          "forbidden",
+          "same_side",
+          "valence",
+          "arousal",
+          "source"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "units": {
+            "type": "object",
+            "patternProperties": {
+              "^AU[0-9]{1,2}$": {
+                "enum": [
+                  "any",
+                  "symmetric",
+                  "asymmetric",
+                  "unilateral"
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "forbidden": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^AU[0-9]{1,2}$"
+            }
+          },
+          "same_side": {
+            "type": "boolean"
+          },
+          "valence": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "number",
+              "minimum": -1,
+              "maximum": 1
+            }
+          },
+          "arousal": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "number",
+              "minimum": -1,
+              "maximum": 1
+            }
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}
