@@ -10,6 +10,7 @@ detection > 0.3). n is per entry; no seeds were recorded, so nothing here is a c
 | R2 | 2026-10-11 | `examples/reference_fight/render.txt` (LBN-2.4) @ 2e08217, sha256 20051754… | not stated (same output format as R1) | `CuwwcRGpWmGqJSf7YaVQn_video.mp4` | "more cohesive story, the hits coulve been better same with the knife kick being a key fraame but the evade of the attacks and the rope swings and dance was legit" |
 | R3 | 2026-10-11 | `examples/reference_fight/prose_pure_staff.txt` @ 2e08217, sha256 02d2d208… | not stated (same output format) | `1huuOJHSn0-UZ9zc_myu4_video.mp4` | "to many inchoherent scenes in this fight, and the rope was used in both hands but only 1 target. like in two directions like in 6-7sec" |
 | R4 | 2026-10-11 | `examples/reference_fight/prose_euler_heavy.txt` @ e500831, sha256 c6b45bf5… | not stated (same output format) | `-rqKOdMfebgEVfQ-ZFO2h_video.mp4` | "he substituted but nothing warranted this , and the last attachment scene with ropes didnt make much sense, im starting to see a theme? is their a causal graph?" |
+| R5 | 2026-10-11 | `examples/reference_fight/prose_upgraded_mixed.txt` @ e500831, sha256 6930500f… | not stated (same output format) | `fFaqcNFufnR0qg90a9q6h_video.mp4` | "the last render is about the same its more cohesive story, but the choreography sucks. upgraded." |
 
 ## Claude's frame notes
 
@@ -44,7 +45,13 @@ thrown into the pillar (6.5) read. At 7.5–8.0 A stands on the ground far from 
 sideways against the pillar: the pull has no visible purpose (owner: "didn't make much sense"). Kunai drive flash
 (8.5) and the end tableau read.
 
-**The causal graph behind R1-R4.** The reference fight's 22 causal links are placeholders written when it was built
+**R5 (prose, Upgraded Mixed).** 1 hard cut; one continuous camera. The set drifts: a wooden deck and a gate-like
+crossbeam replace the courtyard and its single pillar. The foot deflect reads (2.0, sole and blade). Readable: B's
+charge (3.0), smoke at the log (4.0), A's kick landing on B with sparks (4.5), the shuriken throw over sliding A (6.0),
+A on the pillar with the rope line to B (8.0), the end tableau. The middle (5.0-7.5) is a muddle of close-ups and
+grappling at the pillar; the end appears to show four shuriken in the pillar (exactly three asked).
+
+**The causal graph behind R1-R5.** The reference fight's 22 causal links are placeholders written when it was built
 from the golden (2026-10-10, which has no causal graph): every reason reads "<beat> leads straight into the next
 exchange"; 19 soft, 3 hard: a timeline, not causes. live_action_standoff's reasons are also placeholders ("The
 stand-off answers itself"). And neither prompt prints the reasons: the prose CAUSAL LINKS line lists names and arrows

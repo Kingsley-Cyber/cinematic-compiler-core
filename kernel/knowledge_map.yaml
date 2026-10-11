@@ -1209,8 +1209,8 @@ rows:
     note: "docs/render_log.md records owner renders bound to prompt bytes: R1 prose_mixed 'hard to even tell whats
       happening' (13 cuts); R2 LBN-2.4 render.txt 'more cohesive story', weak hits, evades and rope swings 'legit'
       (2 cuts); R3 prose_pure_staff 'to many inchoherent scenes', rope in both hands in two directions; R4
-      prose_euler_heavy: substitution 'nothing warranted', rope scene 'didn't make sense'. Model, seed and n not
-      recorded, so no controlled comparison yet."
+      prose_euler_heavy: substitution 'nothing warranted', rope scene 'didn't make sense'; R5 prose_upgraded_mixed:
+      'more cohesive story, but the choreography sucks'. Model, seed and n not recorded."
 
   # ---- P3.2 / P4.2: deliberately not added by the DAG ----
   - id: P3.2-1
