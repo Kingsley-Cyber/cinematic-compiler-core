@@ -342,3 +342,18 @@ never stands after 9.0, nothing visible appears from nowhere. Known model drift 
 6. **Next actions (critical path):** W wording rules → F5.3 strike timing (GAP-06) → F6.3 pickups (GAP-07) → F2/F6
    props → FR.1/FR.3 → F5.1/F5.2 FK and world contact (GAP-10, 13) → the rest; GAP-04/05 (checkable constraints) can run
    in parallel after F5.3 once the owner approves them.
+
+## Owner rulings (2026-10-11, O57-O62)
+
+1. L4d facial stays (S14), live action and UGC only; the corrected list includes it (O57; GAP-18 closed).
+2. Rule 10 restated: every layer that produces state has nodes and edges; L0, L0.5, L6 and L6.5 have nodes only (O58;
+   GAP-19 closed). L1.2 causal writes its edges on S04's beat nodes.
+3. O26 wins over rule 9: a golden that contradicts its own words or the DAG is fixed; a new check that fails on golden
+   content that is internally consistent is fixed instead (O59).
+4. GAP-02 by design; GAP-17 deferred to M7 (O60).
+5. Critical path: W wording rules, F5.3, F6.3; GAP-04/05 in parallel after F5.3 once the checkable constraint schema is
+   approved (O61). GAP-03 (L0.5 equipment edges), GAP-04 (L1.5 checkable constraints) and GAP-05 (declared validators
+   after every layer that declares them) are plan items (O62).
+
+O58 vs O62 (L0.5 nodes-only vs equipment edges) is ruled by O63: GAP-03 is a `carried_by` field on prop nodes.
+

@@ -152,6 +152,17 @@ outputs. Spec: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
 | O54 | Q7: add FINAL's four negatives to the reference fight through its cards ('no floating limbs', 'no inverted gravity errors', 'no scarf physics errors', 'no scarf covering head or face'); FINAL saved verbatim as docs/sources/lbn-2.3-adv-final.json (evidence, not a golden) | M9 |
 | O55 | Q3: no causal reasons in LBN-2.4 render.txt; reasons stay in the prose (O1 keeps LBN's layout) | M9 |
 | O56 | Render-log verdicts for R6-R18 read 'owner asked for analysis'; Claude's frame notes are the reading, labelled as Claude's. Q8 closed: Seedance 2.0 Mini (from the file names), no fixed seed, 864x496, 24 fps, 5 s probes, 10 s fight renders | M9 |
+| O57 | Layer-order ruling 1: keep L4d facial (S14); it runs for live action and UGC only, anime skips it; the corrected list includes it | M9 |
+| O58 | Layer-order ruling 2: every layer that produces state has nodes and edges; terminal or pure-input layers (L0, L0.5, L6, L6.5) have nodes only (rule 10 restated; GAP-19 closed) | M9 |
+| O59 | Layer-order ruling 3: O26 wins over rule 9. When the golden contradicts its own words or the DAG, fix the golden; when a new check fails on golden content that is internally consistent, fix the check | M9 |
+| O60 | GAP-02: intent is a document with no edges, by design. GAP-17 (post-generation) stays deferred to M7. GAP-18 closed by O57, GAP-19 by O58 | M9 |
+| O61 | Critical path approved: W wording rules, then F5.3 strike timing, then F6.3 pickups; GAP-04/05 may run in parallel after F5.3 once the owner approves the checkable constraint schema | M9 |
+| O62 | New plan items approved: GAP-03 equipment edges at L0.5; GAP-04 checkable constraint form at L1.5; GAP-05 the declared validators run after every layer that declares them | M9 |
+| O63 | GAP-03 ruling: each prop node carries `carried_by` (from the archetype card's equipment) written at L0.5; no edge group at L0.5, so O58 holds | M9 |
+| O64 | Docs plane: AGENTS.md operating manual, five indexes (plans, findings, decisions, sessions, renders), one file per artifact with a template; the combined files are split (decisions O1-O67, renders R1-R19, findings F1-F15 and GAP-01-19), multi-item audits stay as reports | Docs plane |
+| O65 | Docs-plane schemas: layer_order and rules new; beat, contact and rotation extracted as shared files the graph schemas reference (no duplicate contracts); genre_profile and motif as logged drafts | Docs plane |
+| O66 | The W wording slice (W1-W4, O48's post, O54's negatives) is approved and committed before the docs plane | M9 |
+| O67 | Docs-plane defaults proposed by Claude and not objected to: scripts/verify.sh is the single gate (scripts/check.sh calls it); the indexes are generated from the artifact files' headers; workflows are built locally and pushed only on the owner's word | Docs plane |
 
 Still open: P3.2-6 PRESERVE_AXIS (S16's 180-degree rule) — the owner's call.
 
