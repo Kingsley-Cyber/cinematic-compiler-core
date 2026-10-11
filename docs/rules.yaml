@@ -2,7 +2,7 @@
 # and a docs-log entry (python -m kernel.schema_log --log docs record docs/rules.yaml ...). Every rule cites accepted
 # decisions (docs/decisions/) and names what enforces it: a code or test the gate runs, or `protocol` (the agent
 # follows it; AGENTS.md). Validated by schemas/rules.schema.json.
-version: "1.0"
+version: "1.1"
 rules:
   # ---- agent: how every session works
   - {id: R-01, scope: agent, source: [ADR-S6, ADR-O64],
@@ -38,6 +38,9 @@ rules:
   - {id: R-11, scope: agent, source: [ADR-O46],
      rule: "Test the uncertain, build the certain: a change gets a render probe only if it is uncertain, visual and not verifiable without a render.",
      enforced_by: [protocol]}
+  - {id: R-31, scope: agent, source: [ADR-O68],
+     rule: "Before asking the owner to commit or push, run the self-audit (docs/prompts/self_audit.md) and report its verdict, evidence table and wrong claims.",
+     enforced_by: [protocol, .claude/commands/self-audit.md]}
   - {id: R-12, scope: agent, source: [ADR-O64],
      rule: "Never paper over a failure: when the verifier fails, fix or revert, and record what went wrong in the plan or a finding.",
      enforced_by: [protocol]}

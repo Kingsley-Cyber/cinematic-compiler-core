@@ -6,6 +6,8 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Added
+- The self-audit (owner O68, S-005): `docs/prompts/self_audit.md` and the `/self-audit` command check the agent's
+  own work against the repo, read-only, before a commit or push; AGENTS.md step 9 and rule R-31.
 - AIRBORNE_PICKUP (S11 and the prompt): a prop resting on a surface is taken only by a body with support, within
   reach; F7 is caught.
 - IMPACT_CONTACT_SYNC (S17 and the prompt): every impact frame has a touch or support onset on it, every strike

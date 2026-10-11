@@ -93,6 +93,7 @@ Every owner decision. ADR IDs keep the names the code and tests cite (Q, A, B: 2
 | ADR-O65 | Docs-plane schemas | accepted | Docs plane | 2026-10-11 | [ADR-O65-docs-plane-schemas.md](../decisions/ADR-O65-docs-plane-schemas.md) |
 | ADR-O66 | The W slice is committed before the docs plane | accepted | M9 | 2026-10-11 | [ADR-O66-the-w-slice-is-committed-before-the-docs-plane.md](../decisions/ADR-O66-the-w-slice-is-committed-before-the-docs-plane.md) |
 | ADR-O67 | Docs-plane defaults | accepted | Docs plane | 2026-10-11 | [ADR-O67-docs-plane-defaults.md](../decisions/ADR-O67-docs-plane-defaults.md) |
+| ADR-O68 | Self-audit before a commit or push | accepted | all | 2026-10-11 | [ADR-O68-self-audit-before-commit-or-push.md](../decisions/ADR-O68-self-audit-before-commit-or-push.md) |
 | ADR-S1 | Log every schema, library and kernel change | accepted | Schema control | 2026-10-10 | [ADR-S1-log-every-schema-library-and-kernel-change.md](../decisions/ADR-S1-log-every-schema-library-and-kernel-change.md) |
 | ADR-S2 | The owner renders; no paid model API | accepted | all | 2026-10-11 | [ADR-S2-the-owner-renders-no-paid-model-api.md](../decisions/ADR-S2-the-owner-renders-no-paid-model-api.md) |
 | ADR-S3 | Every prompt adheres to the knowledge DAG as a checklist | accepted | L6 | 2026-10-11 | [ADR-S3-every-prompt-adheres-to-the-knowledge-dag-as.md](../decisions/ADR-S3-every-prompt-adheres-to-the-knowledge-dag-as.md) |

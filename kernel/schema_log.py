@@ -162,10 +162,11 @@ def _docs_digest(path):
     return "sha256:" + hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
-# Frozen docs (owner O64): the operating manual, the rulebook, the owner's and refactor guides, the ownership and
-# versioning rules, the artifact templates and CODEOWNERS.
+# Frozen docs (owner O64, O68): the operating manual, the rulebook, the owner's and refactor guides, the ownership and
+# versioning rules, the self-audit prompt and its command, the artifact templates and CODEOWNERS.
 DOCS = HashLog("docs/docs_log.jsonl", ".", ("AGENTS.md", "docs/rules.yaml", "docs/for_the_owner.md",
                                             "docs/how_to_refactor.md", "docs/ownership.md", "docs/versioning.md",
+                                            "docs/prompts/*.md", ".claude/commands/*.md",
                                             "docs/*/_template.md", ".github/CODEOWNERS"),
                "file", "docs_version", _docs_version, digest=_docs_digest)
 LOGS = {"schemas": SCHEMAS, "library": LIBRARY, "kernel": KERNEL, "docs": DOCS}

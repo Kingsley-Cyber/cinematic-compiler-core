@@ -1,6 +1,6 @@
 # AGENTS.md — The Agent Operating Manual
 
-<!-- docs-version: 1.0 -->
+<!-- docs-version: 1.1 -->
 
 > Before every session, read `AGENTS.md` fully — it is the map of this repo, not a suggestion — and follow its
 > nine-step session protocol exactly: read the five indexes, run `scripts/verify.sh`, pick one gap, confirm its layer
@@ -40,6 +40,7 @@ not adherence, and a PASS a render contradicts is NOT CHECKED. The repo is model
 | [docs/layer_order.md](docs/layer_order.md), [docs/rules.md](docs/rules.md) | the layer table; the rulebook |
 | [docs/ownership.md](docs/ownership.md), [docs/versioning.md](docs/versioning.md) | who changes what; version bumps |
 | [docs/how_to_refactor.md](docs/how_to_refactor.md) | steps, checks and rollback for any refactor |
+| [docs/prompts/self_audit.md](docs/prompts/self_audit.md) | the self-audit run before every commit or push (`/self-audit`) |
 | [docs/reference/](docs/reference/README.md) | generated: every step's inputs and outputs, every schema field, every data file, code imports |
 | `kernel/layer_order.yaml` | the machine source of the layer DAG and write ownership |
 
@@ -67,6 +68,7 @@ Full table: [docs/layer_order.md](docs/layer_order.md).
 - **R-09** Never edit kernel/layer_order.yaml or the golden by hand: a change needs an accepted ADR, its log entry and a version bump; examples are rewritten only by python -m compiler.examples --write.
 - **R-10** Place every check at the first step that can see its data (docs/layer_order.md); a fix lives in the layer that owns the data.
 - **R-11** Test the uncertain, build the certain: a change gets a render probe only if it is uncertain, visual and not verifiable without a render.
+- **R-31** Before asking the owner to commit or push, run the self-audit (docs/prompts/self_audit.md) and report its verdict, evidence table and wrong claims.
 - **R-12** Never paper over a failure: when the verifier fails, fix or revert, and record what went wrong in the plan or a finding.
 - **R-13** The step IDs carry the build order: a step reads only what earlier steps wrote and writes only its own paths.
 - **R-14** Every layer that produces state has nodes and edges; L0, L0.5, L6 and L6.5 have nodes only; L4d facial runs for live action and UGC only.
@@ -93,10 +95,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 1.0; backlog 1.
-- Last session: S-004 (2026-10-11, applied): M9-03: grounded pickups at 7.5 and 8.0 (AIRBORNE_PICKUP).
+- Layer order 1.7; rules 1.1; backlog 1.
+- Last session: S-005 (2026-10-11, applied): The self-audit prompt (/self-audit).
 - Next slice: M9-03b GAP-03 carried_by on prop nodes from the archetype card (O63) (step brief).
-- Open findings: 36; decisions: 94 (0 proposed).
+- Open findings: 36; decisions: 95 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
@@ -136,8 +138,9 @@ The owner updates this section by ruling: in chat (the agent writes the ADR) or 
    section 11.
 8. **Update.** The backlog status, the findings (resolved, with the code that catches them), `CHANGELOG.md`, the
    session file (commit, verification, next), then `make docs`.
-9. **Commit.** One gap per commit, with `[S-NNN]` in the message and only after `scripts/verify.sh` exits 0. No push
-   without the owner (R-03).
+9. **Audit, then commit.** Run the self-audit (`docs/prompts/self_audit.md`; `/self-audit` in Claude Code, rule
+   R-31) and give the owner its verdict, evidence table and any wrong claims. One gap per commit, with `[S-NNN]` in
+   the message and only after `scripts/verify.sh` exits 0. No push without the owner (R-03).
 
 ## 9. Commit protocol
 
@@ -229,4 +232,5 @@ When `scripts/verify.sh` fails:
 - [ ] Fix at the owning layer; schema and data changes logged; break tests added
 - [ ] `scripts/verify.sh` and `make golden` pass; predictions reported
 - [ ] Backlog, findings, CHANGELOG and session file updated; `make docs` run
+- [ ] Self-audit run (`/self-audit`); its verdict, evidence and wrong claims reported to the owner
 - [ ] One commit, `[S-NNN]` in the message; nothing pushed without the owner

@@ -78,3 +78,5 @@ items:
      step: docs, plan: PLAN-005, depends_on: [D-02], findings: [], codes: []}
   - {id: D-05, title: "Docs plane: six GitHub workflows (verify, golden, schemas, tests, docs, nightly)",
      status: done, step: docs, plan: PLAN-005, depends_on: [D-02], findings: [], codes: []}
+  - {id: D-06, title: "Self-audit prompt (docs/prompts/self_audit.md, /self-audit) before every commit or push (O68)",
+     status: done, step: docs, plan: PLAN-005, depends_on: [D-02], findings: [], codes: []}
