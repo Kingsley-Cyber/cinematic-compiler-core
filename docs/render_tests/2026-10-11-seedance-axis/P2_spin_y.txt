@@ -1,0 +1,5 @@
+5s anime, 24fps. A lone ninja stands on flat ground.
+At 0.5s he jumps straight up and performs a single
+360° spin — body rotates around the vertical Y axis.
+He lands at 3.0s facing the same direction.
+Camera: static front view. No camera rotation.

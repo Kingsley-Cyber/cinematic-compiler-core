@@ -1,0 +1,6 @@
+5s anime, 24fps. A lone ninja stands on flat ground.
+At 0.5s he jumps straight up and performs a single
+backflip — body rotates backward in the sagittal plane,
+about the side-to-side X axis. He lands on both feet
+at 3.0s and holds still.
+Camera: static side view. No camera rotation.

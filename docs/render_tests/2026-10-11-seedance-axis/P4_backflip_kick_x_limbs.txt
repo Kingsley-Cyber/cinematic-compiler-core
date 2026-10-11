@@ -1,0 +1,5 @@
+5s anime, 24fps. A ninja jumps backward into a backflip
+(rotation about X). During the rotation, his LEFT leg
+extends in a wide crescent arc, his RIGHT leg tucks.
+He lands on both feet at 3.0s.
+Camera: static side view.

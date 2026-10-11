@@ -1,0 +1,6 @@
+5s anime, 24fps. A lone ninja stands on flat ground.
+At 0.5s he plants his left hand and performs a single
+cartwheel — body rotates sideways in the frontal plane,
+about the front-to-back Z axis. He lands on both feet
+at 3.0s.
+Camera: static front view. No camera rotation.

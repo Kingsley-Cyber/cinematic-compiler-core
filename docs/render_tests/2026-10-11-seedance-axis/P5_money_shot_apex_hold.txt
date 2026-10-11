@@ -1,0 +1,8 @@
+10s anime, 24fps. A ninja approaches over 0-1s, launches
+at 1.0s, and performs a single backflip (rotation about X)
+over 1.0-2.0s. At the apex of the flip — body fully
+inverted, head below hips at 1.5s — time slows to 0.25×
+and the inverted pose is held for 3 frames. The rotation
+completes at 2.0s. He lands at 2.5s and holds the landing
+pose to 10s.
+Camera: side view, arcs 180° with the rotation.
