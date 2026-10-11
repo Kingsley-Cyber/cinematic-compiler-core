@@ -7,7 +7,7 @@ from planner.dependency_graph import ROOT
 from planner.vocabulary import resolve
 
 PROMPT = ROOT / "planner" / "prompts" / "beat_planning.txt"
-SCHEMA_ID = "urn:cinematic-compiler:schema:beat_plan:1.0"
+SCHEMA_ID = "urn:cinematic-compiler:schema:beat_plan:1.1"
 
 
 def given_duration(intent):
@@ -37,7 +37,8 @@ def prepare(envelope):
         "constraints": [{"id": c["id"], "rule": c["rule"], "applies_to": targets.get(c["id"], [])}
                         for c in nodes["constraints"]["items"]],
         "vocabulary": resolve(entities, props, surfaces, kernel_files.load("state_vocabulary")),
-        "contact_types": ["touch", "possess", "support", "release"], "event_types": ["action", "hold", "transition"]}
+        "contact_types": ["touch", "possess", "support", "release"],
+        "event_types": ["action", "hold", "transition", "substitution"]}
     if scene.get("chained_from"):  # M5.5: what this clip continues (end states, open contacts, unresolved causes)
         packet["chained_from"] = scene["chained_from"]
     return seal(packet)

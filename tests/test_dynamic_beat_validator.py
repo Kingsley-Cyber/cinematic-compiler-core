@@ -58,3 +58,23 @@ def test_courtyard_plan_passes():
 ])
 def test_each_rule_rejects_its_violation(code, change):
     assert code in codes_after(change)
+
+
+def _two_beats(distance, dt, event_type="action", prop_effect=True):
+    first = {"id": "b01", "t": 0.0, "dur": dt, "actor": "a", "event_type": event_type, "pos": {"a": [0, 0, 0]},
+             "effects": [{"subject": {"kind": "prop", "id": "log"}, "property": "x", "value": "y"}] if prop_effect else []}
+    second = {"id": "b02", "t": dt, "dur": 0.5, "actor": "a", "event_type": "action", "pos": {"a": [distance, 0, 0]},
+              "effects": []}
+    return [first, second]
+
+
+@pytest.mark.parametrize("distance, dt, event_type, prop_effect, fires", [
+    (12.0, 0.5, "action", True, False),          # 24 m/s: fast, not a teleport
+    (13.0, 0.5, "action", True, True),           # 26 m/s without a substitution: TELEPORT
+    (13.0, 0.5, "substitution", True, False),    # a declared substitution that reveals a decoy may jump
+    (13.0, 0.5, "substitution", False, True),    # a substitution that reveals nothing is refused
+    (1.0, 0.0, "action", True, True),            # any jump in zero time
+])
+def test_teleport_threshold_and_the_substitution_exemption(distance, dt, event_type, prop_effect, fires):
+    from planner.dynamic_beat_validator import _teleports
+    assert any(f["code"] == "TELEPORT" for f in _teleports(_two_beats(distance, dt, event_type, prop_effect))) == fires

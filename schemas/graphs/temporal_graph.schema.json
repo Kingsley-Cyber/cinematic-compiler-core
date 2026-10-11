@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:temporal_graph:1.0",
+  "$id": "urn:cinematic-compiler:schema:temporal_graph:1.1",
   "title": "S04 temporal graph: beats, temporal edges, beat-constraint edges",
   "description": "Beats are copied from the beat plan; temporal and beat_constraint edges are computed, never authored.",
   "type": "object",
@@ -271,7 +271,8 @@
           "enum": [
             "action",
             "hold",
-            "transition"
+            "transition",
+            "substitution"
           ]
         },
         "actor": {

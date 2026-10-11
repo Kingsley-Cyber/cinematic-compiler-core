@@ -87,7 +87,7 @@ Ink: photographic live-action footage; no ink, no smears, no speedlines.
 - The wizard stays grounded unless a scene grants flight or levitation.
 - In full armor the knight does not flip or cartwheel unless a scene grants it.
 - Identity is immutable: every performer and prop stays itself for the whole scene.
-- Spatial continuity: a body travels through space between lines; no teleporting unless a rule declares a substitution.
+- Spatial continuity: a body travels through space between lines, never faster than 25 m/s; only a declared substitution may jump (the decoy is revealed and the body reappears at its next line).
 - Momentum is conserved: a body keeps moving the way the last force sent it until something stops it.
 - Ground force needs support: pushing, bracing and striking from the ground need a supporting part.
 - Contact before effect: nothing reacts to a hit before the contact.

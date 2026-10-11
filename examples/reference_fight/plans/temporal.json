@@ -1,7 +1,7 @@
 {
  "step_id": "S04",
  "band": "L1",
- "packet_sha256": "sha256:10a9ccf8523ad6d79a2e4476fd37c34bf2ab4594fe2bfe1d0bebd2283190bbcc",
+ "packet_sha256": "sha256:1faf78527a97bd09cc84870f78e714677d0b442d34c12bd87c529ac6eeb65408",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -682,7 +682,7 @@
    "id": "b09",
    "t": 3.7,
    "dur": 0.3,
-   "event_type": "action",
+   "event_type": "substitution",
    "actor": "ninja_lean",
    "label": "kawarimi_substitution",
    "participants": [

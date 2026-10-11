@@ -1,7 +1,7 @@
 {
  "step_id": "S04",
  "band": "L1",
- "packet_sha256": "sha256:8f333b663f3b84870f7472f8a8f5a1ecdd48b542fab3784c5630a9c6e6884e80",
+ "packet_sha256": "sha256:ce8f73c801708abcd810ce6d2f01cb42d99cfd5176d004357457a8bd397de69e",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"

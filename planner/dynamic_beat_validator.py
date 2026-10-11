@@ -4,11 +4,17 @@ Rules: unique ids; times inside the duration (or budget); actor/participants/par
 pos + facing for every entity in a beat; requires/effects use the closed vocabulary; contacts use declared
 types and parts; causes point at real later-or-same-time beats; no filler beats; modes come from the archetype
 card (mode_coherence) and a mode change needs a beat that causes it (mode_transition).
+Teleport (owner O12): a body faster than 25 m/s between the anchors of two of its consecutive beats is refused
+(TELEPORT), unless the earlier beat is a substitution with that body as actor and the substitution changes a prop's
+state (the decoy revealed; the owner's rule also names the smoke pellet and the log, generalised here to any prop).
 """
+
+import math
 
 from planner.vocabulary import allowed
 
 EPSILON = 1e-9
+TELEPORT_MPS = 25.0  # owner O12: anything faster between keys is a teleport (human sprint ~12, anime ~15, strikes ~20)
 
 
 def _finding(code, message, beat=None, detail=None):
@@ -92,4 +98,27 @@ def validate(plan, packet):
             if entity in last_mode and last_mode[entity] != mode and not incoming.get(bid):
                 findings.append(_finding("MODE_TRANSITION", "A mode change needs a beat that causes it", bid, [entity, mode]))
             last_mode[entity] = mode
+    return findings + _teleports(beats)
+
+
+def _teleports(beats):
+    findings, last = [], {}
+    for beat in sorted(beats, key=lambda b: (b["t"], b["id"])):
+        for entity, pos in sorted(beat["pos"].items()):
+            if entity in last and pos is not None:
+                before, t0, p0 = last[entity]
+                dt = beat["t"] - t0
+                distance = math.dist(p0, pos)
+                speed = math.inf if dt <= EPSILON and distance > EPSILON else (distance / dt if dt > EPSILON else 0.0)
+                if speed > TELEPORT_MPS + EPSILON:
+                    exempt = before["event_type"] == "substitution" and before["actor"] == entity
+                    if exempt and not any(e["subject"]["kind"] == "prop" for e in before["effects"]):
+                        findings.append(_finding("TELEPORT", "A substitution must reveal a decoy (change a prop's state)",
+                                                 before["id"], entity))
+                    elif not exempt:
+                        findings.append(_finding("TELEPORT", f"{entity} moves {distance:.2f} m in {dt:.2f} s "
+                                                 f"({speed:.1f} m/s > {TELEPORT_MPS:g}) without a declared substitution",
+                                                 beat["id"], [before["id"], beat["id"]]))
+            if pos is not None:
+                last[entity] = (beat, beat["t"], pos)
     return findings

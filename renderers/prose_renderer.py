@@ -49,7 +49,8 @@ LOOSE = ("scarf", "coat", "robe", "robes", "sleeves", "hem", "cape", "cloak", "h
          "sash", "tassel", "trousers")
 CONSERVATION = (  # T10, six of seven laws (PRESERVE_AXIS left out, P3.2-6); in the rules layer, not first (P3.2-7)
     "Identity is immutable: every performer and prop stays itself for the whole scene.",
-    "Spatial continuity: a body travels through space between lines; no teleporting unless a rule declares a substitution.",
+    "Spatial continuity: a body travels through space between lines, never faster than 25 m/s; only a declared "
+    "substitution may jump (the decoy is revealed and the body reappears at its next line).",
     "Momentum is conserved: a body keeps moving the way the last force sent it until something stops it.",
     "Ground force needs support: pushing, bracing and striking from the ground need a supporting part.",
     "Contact before effect: nothing reacts to a hit before the contact.",
@@ -182,6 +183,9 @@ def staff_lines(envelope, frame_parts, labels):
             notes.append(f"chain {_words(b['initiation'])} > {' > '.join(_words(p) for p in b['follow_through'])}")
         if slot["role"] == "actor":
             notes.append(slot["action"].rstrip("."))
+        if slot["role"] == "actor" and slot["event_type"] == "substitution":
+            notes.append("SUBSTITUTION: the decoy takes this place and the body reappears at its next line (teleport "
+                         "allowed here only)")
         if slot["slot"] in facial:
             notes.append(_face_words(facial[slot["slot"]], labels))
         if following is None:
