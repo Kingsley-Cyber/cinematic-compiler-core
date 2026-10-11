@@ -21,6 +21,9 @@ detection > 0.3). n is per entry; no seeds were recorded, so nothing here is a c
 | R13 | 2026-10-11 | `docs/render_tests/2026-10-11-m9-probes/V3_backflip_one_rotation.txt` (M9 probe), sha256 26439dd5… | Seedance 2.0 Mini (from the file name), no fixed seed; 864x496, 24 fps, 5.09 s, with audio | `Ninja_jumping_backflip_80206_Seedance_20_Mini.mp4` | none given yet (the owner asked for the analysis) |
 | R14 | 2026-10-11 | `docs/render_tests/2026-10-11-m9-probes/V4_apex_hold.txt` (M9 probe), sha256 2a012a57… | Seedance 2.0 Mini (from the file name), no fixed seed; 864x496, 24 fps, 5.09 s, with audio | `Ninja_jumping_backflip_02134_Seedance_20_Mini.mp4` | none given yet (the owner asked for the analysis) |
 | R15 | 2026-10-11 | `docs/render_tests/2026-10-11-m9-probes/V5_hit_held_both_bodies.txt` (M9 probe), sha256 2a500607… | Seedance 2.0 Mini (from the file name), no fixed seed; 864x496, 24 fps, 5.09 s, with audio | `Ninja_jumping_backflip_52436_Seedance_20_Mini.mp4` | none given yet (the owner asked for the analysis) |
+| R16 | 2026-10-11 | `docs/render_tests/2026-10-11-m9-probes/V1b_deflect_empty_hand.txt` (M9 follow-up probe), sha256 c1f85e46… | Seedance 2.0 Mini (from the file name), no fixed seed; 864x496, 24 fps, 5.09 s, with audio | `Ninja_jumping_backflip_54953_Seedance_20_Mini.mp4` | none given yet |
+| R17 | 2026-10-11 | `docs/render_tests/2026-10-11-m9-probes/V2b_log_unmentioned.txt` (M9 follow-up probe), sha256 c0b09df4… | Seedance 2.0 Mini (from the file name), no fixed seed; 864x496, 24 fps, 5.09 s, with audio | `Ninja_jumping_backflip_53299_Seedance_20_Mini.mp4` | none given yet |
+| R18 | 2026-10-11 | `docs/render_tests/2026-10-11-m9-probes/V3b_backflip_plain.txt` (M9 follow-up probe), sha256 7c07df8f… | Seedance 2.0 Mini (from the file name), no fixed seed; 864x496, 24 fps, 5.09 s, with audio | `Ninja_jumping_backflip_99728_Seedance_20_Mini.mp4` | none given yet |
 
 ## Claude's frame notes
 
@@ -89,6 +92,13 @@ the inverted pose freezes from about 1.0 to 1.85, about 21 frames (asked 3), the
 shoulder clipped at the edge at times), no close-up of the knee, a short pause on the hit; the camera rises from about
 2.0 to a high view looking down; B stays on hands and knees: as asked.
 
+**R16-R18 (follow-up probes V1b, V2b, V3b).** R16 V1b: B releases near 0.5 (asked 1.00) and keeps empty hands; the
+sole taps the blade with a spark near 1.67 (asked 1.50); the kunai flies down toward B, lands near 2.0 and lies still
+to the end; one kunai throughout; A's knee stays up about 1 s after the tap. R17 V2b: with the log never named before
+2.50, it still stands as a post beside A from 0.00; the punch lands near 0.75 and the smoke near 1.0 (asked 1.50 and
+2.50); the log falls near 3.0-3.25; A crouches by it, in front of B. R18 V3b: a long crouch, takeoff near 2.62 (asked
+1.00), one backward somersault about the lateral axis, landing near 3.45 (asked 1.80).
+
 ## What the renders suggest (hypotheses, not proven)
 
 - H1 — Prose camera lines read as hard cuts. Both prompts carry the same 21-shot camera plan; the prose writes each
@@ -112,5 +122,9 @@ shoulder clipped at the edge at times), no close-up of the knee, a short pause o
 - P1-P3 (probes R11-R15): a hold or freeze given in frames is stretched every time (R10, R11, R14: about 1-1.75 s);
   a prop named as hidden is drawn from the start (R12; R1-R5 drew the log early too); "exactly one rotation" with
   quarter-turn angles still gave two flips (R13); the hit-with-both-bodies-then-crane wording worked (R15).
+
+- Follow-ups (R16-R18): stating the empty hand and dropping the hold line gave one kunai and a tap (R16); a later
+  object is drawn from the start whether or not it is named (R17); plain "one backflip" gave one flip where the angle
+  list gave two (R18 vs R13); aerial takeoffs come 0.75-1.6 s late in every render, strikes within about 0.2 s.
 
 Next tests change one of these at a time, same model and seed.

@@ -58,3 +58,24 @@ What this settles (hypotheses, n = 1, no seed; they decide the printed wording, 
 | V1b | `V1b_deflect_empty_hand.txt` | `c1f85e4600998f2960db92c2a2dcae71b6bc20242de91289e66ea1e0dfd62654` | V1: the hold line removed, B's empty hand stated | one kunai, and a tap instead of a press? |
 | V2b | `V2b_log_unmentioned.txt` | `c0b09df4c9ffd967ae3b81bcea5a74b97470e32ad7e82f2b291fc28412a386db` | V2: the log is not named anywhere before 2.50 | does silence keep it hidden? |
 | V3b | `V3b_backflip_plain.txt` | `7c07df8f54b6b8f843ed40e4906bb3e17bc83721a1d3cf4abfbaaaca0effbe45` | V3: the angle list and turn speed removed | does a plain "one backflip" give one flip? |
+
+## Follow-up results (R16-R18)
+
+| Probe | Render | Result | What the frames show |
+|---|---|---|---|
+| V1b | R16 `…_54953_…` | PASS | one kunai; B's hands empty after the throw (released near 0.5); the sole taps the blade with a spark near 1.67 (4 frames late); the kunai drops near 2.0 and lies still; A's knee stays up about 1 s |
+| V2b | R17 `…_53299_…` | FAIL | the log stands beside A from 0.00 although it is never named before 2.50; punch near 0.75, smoke near 1.0 (both early); the log falls near 3.0 |
+| V3b | R18 `…_99728_…` | PASS | one backward somersault about the lateral axis; takeoff near 2.62 and landing near 3.45 (1.6 s late) |
+
+What the follow-ups settle (n = 1 each, no seed):
+- **Deflect wording (F5.3, F4.1, F2):** V1b's wording is the target: the empty hand stated after a release, "one
+  instant contact, the foot does not stay on it", no hold line, the arc and the resting place stated.
+- **Rotation wording (FR.1):** print "ONE <turn> about the <axis> axis (<plane>)" with takeoff and landing; keep the
+  quarter-turn angles and degrees per second in the graph, not the prose (the angle list gave two flips, plain wording
+  one). This narrows O33 to "derived and checked", per O46.
+- **Holds (FR.6, F8):** body holds or freezes are not printed in frames (stretched in R10, R11, R14; gone in R16);
+  camera holds on a hit keep V5's wording.
+- **Hidden props (F6.1):** neither "NOT visible before t" nor silence keeps a later object off screen (R12, R17; R1-R5).
+  Staging the substitution another way is the owner's call.
+- **Timing:** aerial takeoffs land 0.75-1.6 s late in every render; strikes within about 0.2 s. Times stay in the
+  prompt; renders are judged with that drift in mind.
