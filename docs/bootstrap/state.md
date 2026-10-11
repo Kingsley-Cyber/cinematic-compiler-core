@@ -10,18 +10,18 @@ Layer order 1.7; rules 2.0; backlog 2.
 
 ## Last sessions
 
-- S-008 (applied): The autopilot prompt (/autopilot) and the decision log
 - S-009 (applied): M9-04a: pre- and post-contact prop samples (F2.2)
 - S-010 (applied): M9-04b: where each prop is, its physics while free and its rest (F2.1, F6.1, F6.2)
+- S-011 (applied): M9-05: rotation runs checked at S13 and named in the prompt (FR.1, FR.3)
 
 ## Next slices
 
-- M9-05 (next, step motion): FR.1/FR.3 derived rotation path and rotation checks
-- M9-06 (ready, step motion): F5.1/F5.2 world contact points by forward kinematics
+- M9-06 (next, step motion): F5.1/F5.2 world contact points by forward kinematics
 - M9-07 (ready, step temporal): F4.1/F4.2 combat verbs on contacts and Laban wording
 - M9-08 (ready, step temporal): O21 opening from above in V6's wording
+- M9-09a (ready, step effort): F9.1 Laban direction against path and form
 
-M9: 6 of 28 slices done, 22 left (M9-03a blocked; 1 the owner's own).
+M9: 7 of 28 slices done, 21 left (M9-03a blocked; 1 the owner's own).
 
 ## Waiting on the owner
 
@@ -55,4 +55,4 @@ M9: 6 of 28 slices done, 22 left (M9-03a blocked; 1 the owner's own).
 
 ## Next free IDs
 
-Decision ADR-O72, finding F-066, session S-011, render R20.
+Decision ADR-O72, finding F-066, session S-012, render R20.

@@ -29,6 +29,10 @@ examples/wizard_vs_acrobat (B 1.20-2.60; prose 'takeoff 1.60' after the turn sta
 ## Description
 B's run of flip keys starts on the ground at 1.20 (support both feet), so the turn begins before the takeoff at 1.60, and the 2.00 key, whose action says B lands in a deep crouch, is at 180 degrees (inverted).
 
+The wizard's dodge_flip shows the same pattern (S-011): its foot releases sit at b12's end (9.40), so the run turns
+on the ground from 8.60 and the prompt now prints "takeoff 9.40" at the apex, where the plan's own 8.60 key and
+kinematic cue say "both feet drive off the stone"; moving the releases to the start of b12 is FR.4's fix (M9-09c).
+
 ## Impact
 See the description.
 

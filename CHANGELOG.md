@@ -6,6 +6,11 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Added
+- Rotation runs (M9-05, plan FR.1 as amended by W3 and FR.3, owner O38, S-011): S13 refuses a run of keys that turns
+  both ways (ROTATION_NOT_MONOTONIC), a named flip or cartwheel that ends off a whole turn or after the clip
+  (ROTATION_INCOMPLETE), and one that is not upside down where it passes 180 degrees (INVERSION_MISSING); the prompt's
+  ROTATION_PATH_UNSTATED reads every turn run, spins too. The wizard's dodge_flip completes: land_guard continues the
+  flip to a landing key on a new hold beat b14 at 9.80 (O38).
 - PROP_PHYSICS_UNSTATED and PROP_VISIBILITY (M9-04b, plan F2.1, F6.1 as amended by W4, F6.2, S-010): each prose prop
   block gains a WHERE line that tiles the scene with where the prop is (held by a hand, carried by its owner,
   ballistic under gravity from p and v, at rest at a place until the next event), derived in

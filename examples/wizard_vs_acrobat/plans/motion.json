@@ -1,7 +1,7 @@
 {
  "step_id": "S13",
  "band": "L4c",
- "packet_sha256": "sha256:c6d4a48c0e781ac4b390ad07b0a770458e866a29bfb585826bebde998c3d5272",
+ "packet_sha256": "sha256:6b2e4a6e76cfc3ede1abd31ce29437d3f29702558bb73f50ab297fc4848842e7",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -892,9 +892,83 @@
      0
     ]
    },
+   "turn": "flip",
+   "axis_declaration": "X",
+   "description": "Apex of the backflip, fully inverted in a tight tuck, hands at the shins, already turned toward the wizard."
+  },
+  {
+   "slot": "acrobat@b14",
+   "name": "crouched_guard_landing",
+   "pos": [
+    -1.1,
+    0,
+    5.3
+   ],
+   "rot": [
+    0,
+    -330.945,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     20,
+     0,
+     0
+    ],
+    "LUL": [
+     -80,
+     0,
+     8
+    ],
+    "RUL": [
+     -80,
+     0,
+     -8
+    ],
+    "LL": [
+     100,
+     0,
+     0
+    ],
+    "RL": [
+     100,
+     0,
+     0
+    ],
+    "LA": [
+     -40,
+     0,
+     20
+    ],
+    "RA": [
+     -40,
+     0,
+     -20
+    ],
+    "LFA": [
+     -70,
+     0,
+     0
+    ],
+    "RFA": [
+     -70,
+     0,
+     0
+    ],
+    "HD": [
+     -15,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
    "turn": "none",
    "axis_declaration": "none",
-   "description": "Apex of the backflip, fully inverted in a tight tuck, hands at the shins, already turned toward the wizard."
+   "description": "Landed out of the backflip in a crouched guard, both feet down, turned toward the wizard."
   },
   {
    "slot": "wizard@b03",

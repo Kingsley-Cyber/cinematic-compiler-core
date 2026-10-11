@@ -28,7 +28,7 @@ from planner import camera_library, dynamic_beat_validator
 from planner.scene_view import slots
 from renderers import prop_samples, ugc_renderer
 from renderers.anime_renderer import NUMBERS, _face_words, _items, _num, constraint_rows
-from solver import staff_geometry
+from solver import euler_solver, staff_geometry
 
 TARGET = "structured-prose"
 MODES = {
@@ -58,7 +58,7 @@ TURN_TEXT = {
                    "toward the performer's left": ("cartwheel", " toward the performer's left",
                                                    "tilts toward the performer's left")}),
 }
-FULL_TURN_SLACK = 30  # degrees off a whole number of turns that still count as whole (interpretation)
+FULL_TURN_SLACK = euler_solver.FULL_TURN_SLACK  # one number with S13's ROTATION_INCOMPLETE (interpretation)
 GAP_S = 1.5  # C2: never more than 1.5 s without an explicit key or strong implied guidance
 EPSILON = 1e-6
 GENRE_BLOCKS = {"anime": "ANIME", "ugc_ad": "UGC", "live_action": "LIVE ACTION"}

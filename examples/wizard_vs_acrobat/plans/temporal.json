@@ -1047,8 +1047,8 @@
   {
    "id": "b13",
    "t": 9.4,
-   "dur": 0.6,
-   "event_type": "hold",
+   "dur": 0.4,
+   "event_type": "action",
    "actor": "acrobat",
    "label": "land_guard",
    "participants": [
@@ -1074,7 +1074,7 @@
      0.9
     ]
    },
-   "action": "Acrobat lands in a crouched guard facing the wizard; the scorch, the crack and the cut bamboo remain.",
+   "action": "Acrobat comes down out of the backflip and lands in a crouched guard facing the wizard.",
    "requires": [
     {
      "subject": {
@@ -1131,6 +1131,57 @@
      }
     }
    ],
+   "causes": [
+    {
+     "to": "b14",
+     "causal_strength": "hard",
+     "why": "The acrobat lands on both feet out of the flip, so it can hold the crouched guard."
+    }
+   ]
+  },
+  {
+   "id": "b14",
+   "t": 9.8,
+   "dur": 0.2,
+   "event_type": "hold",
+   "actor": "acrobat",
+   "label": "hold_guard",
+   "participants": [
+    {
+     "kind": "surface",
+     "id": "ground"
+    }
+   ],
+   "modes": {
+    "acrobat": "focused"
+   },
+   "pos": {
+    "acrobat": [
+     -1.1,
+     0,
+     5.3
+    ]
+   },
+   "facing": {
+    "acrobat": [
+     0.5,
+     0,
+     0.9
+    ]
+   },
+   "action": "Acrobat holds the crouched guard facing the wizard; the scorch, the crack and the cut bamboo remain.",
+   "requires": [
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "support",
+     "value": "grounded"
+    }
+   ],
+   "effects": [],
+   "contacts": [],
    "causes": []
   }
  ]

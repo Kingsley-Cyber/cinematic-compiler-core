@@ -17,6 +17,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-008 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog D-08 (PLAN-005); rulings ADR-O7… | applied | the commit whose message names [S-008] | about 40 minutes | The owner replied "commit it, Run the autopilot in docs/pro… | [S-008-autopilot-prompt.md](../sessions/S-008-autopilot-prompt.md) |
 | S-009 | 2026-10-11 | Claude Code (Opus 5.5), autopilot run 1 (docs/reports/2026-10-11-autopilot-1.md) | Backlog M9-04a (split from M9-04; PLAN-… | applied | the commit whose message names [S-009] | about 50 minutes (with a pause while the harness's permission check was down) | M9-04b (F2.1/F6.1/F6.2 at the render step). | [S-009-m9-04a-pre-post-contact-samples.md](../sessions/S-009-m9-04a-pre-post-contact-samples.md) |
 | S-010 | 2026-10-11 | Claude Code (Opus 5.5), autopilot run 1 (docs/reports/2026-10-11-autopilot-1.md) | Backlog M9-04b (split from M9-04; PLAN-… | applied | the commit whose message names [S-010] | about 45 minutes | M9-05 (FR.1/FR.3 rotation path and checks). | [S-010-m9-04b-prop-physics-positions-rest.md](../sessions/S-010-m9-04b-prop-physics-positions-rest.md) |
+| S-011 | 2026-10-11 | Claude Code (Opus 5.5), autopilot run 1 (docs/reports/2026-10-11-autopilot-1.md) | Backlog M9-05 (PLAN-003 FR.1 as amended… | applied | the commit whose message names [S-011] | about 75 minutes | M9-06 (F5.1/F5.2 world contact points by forward kinematics… | [S-011-m9-05-rotation-path-and-checks.md](../sessions/S-011-m9-05-rotation-path-and-checks.md) |
 
 ## Status values
 

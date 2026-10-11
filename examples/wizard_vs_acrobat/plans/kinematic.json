@@ -1,7 +1,7 @@
 {
  "step_id": "S11",
  "band": "L4a",
- "packet_sha256": "sha256:92cdba3b9ac817c7d61105a9fcb75bcb385a66d14b97bbe930353ea617689500",
+ "packet_sha256": "sha256:48fcbe73e2c9adf7838efd8188617a4ca695af22b70a803aff13ebf0ca858ec2",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -317,6 +317,24 @@
    "restraint": "none",
    "breathing": "exhale",
    "reads": "Coming down out of the flip, knees bending to land in the guard."
+  },
+  {
+   "slot": "acrobat@b14",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "loaded",
+   "bracing": "light",
+   "yielding": "none",
+   "weight_transfer": "none",
+   "tension": "moderate",
+   "release": "none",
+   "strain": "none",
+   "restraint": "held_back",
+   "breathing": "steady",
+   "reads": "Settled low on both feet in the guard, weight centred, ready to move."
   }
  ]
 }

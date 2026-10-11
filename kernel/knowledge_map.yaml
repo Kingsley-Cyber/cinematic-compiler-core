@@ -98,10 +98,12 @@ rows:
     status: enforced
     codes: [PROMPT_CONTRADICTION, SECTION_MISSING, SECTION_ORDER,
             DOUBLED_WORD, COUNT_CONTRADICTION, VANISHED_BODY, TURN_LABEL,
-            BODY_HOLD_FRAMES, EMPTY_HAND_UNSTATED, ROTATION_ANGLES_PRINTED, HIDDEN_PHRASING]
+            BODY_HOLD_FRAMES, EMPTY_HAND_UNSTATED, ROTATION_ANGLES_PRINTED, HIDDEN_PHRASING, ROTATION_PATH_UNSTATED]
     enforced_by:
       - {file: solver/euler_solver.py, check: named_turn_findings, code: TURN_LABEL,
          test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
+      - {file: validators/prompt_validator.py, check: _turn_checks, code: ROTATION_PATH_UNSTATED,
+         test: tests/test_motion_solver.py::test_a_spin_is_written_once_like_a_named_flip}
       - {file: compiler/passes/derived/p17_render.py, check: check, code: RENDER_COVERAGE,
          test: tests/test_render.py::test_a_dropped_item_fails_coverage}
     note: "M9 W1-W4 (owner O47-O49; probes R10-R18): the wording the model followed is the rule. No hold or freeze is written in frames; a hit gets a camera hold with the bodies in frame, no close-up (BODY_HOLD_FRAMES). A hand that releases and then holds nothing is said to be empty (EMPTY_HAND_UNSTATED). A turn is named once, by axis, plane and count, with takeoff and landing; no angles at times, no rate, no angles on the lines inside it (ROTATION_ANGLES_PRINTED). No prop is called hidden or not visible; a later object stands in the scene from the start (HIDDEN_PHRASING, O48). M8.12 (owner O18, audit X5/X6): a beat that names a flip or a cartwheel has its actor declare that turn, and the staff writes it (TURN_LABEL; S13 named_turn_findings). M8.12 (owner O18, audit X9): a substituted body has no line, pose or support until it reappears, and RULES say so (VANISHED_BODY; S04 refuses a beat that lists it). Two counts that disagree are a reader contradiction (COUNT_CONTRADICTION, M8.12). M8.12: a word written twice in a row is a reading defect (DOUBLED_WORD; F8's 'rope dart dart'). M8.4: validators/prompt_validator.py reads each prose prompt whole and compares every section with the
@@ -213,7 +215,16 @@ rows:
          test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
       - {file: solver/euler_solver.py, check: check, code: MOTION_FACING,
          test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
-    note: "Every key carries root pos and root Euler; pos must equal the S04 anchor and heading the S04 facing within
+      - {file: solver/euler_solver.py, check: run_findings, code: ROTATION_NOT_MONOTONIC,
+         test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
+      - {file: solver/euler_solver.py, check: run_findings, code: ROTATION_INCOMPLETE,
+         test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
+      - {file: solver/euler_solver.py, check: _inversion_findings, code: INVERSION_MISSING,
+         test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
+    note: "M9-05 (plan FR.3, owner O38): S13 checks each run of keys declaring one turn: one direction about its axis
+      (ROTATION_NOT_MONOTONIC), a run its beat names as a flip or cartwheel ends inside the clip on a whole number of
+      turns (ROTATION_INCOMPLETE; 30 degrees slack, interpretation), and a flip or cartwheel is upside down where it
+      passes 180 + 360k on linear interpolation (INVERSION_MISSING, derived, not printed per W3). Every key carries root pos and root Euler; pos must equal the S04 anchor and heading the S04 facing within
       1 degree (owner Q2)."
 
   - id: EXT2

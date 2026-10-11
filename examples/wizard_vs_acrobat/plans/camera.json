@@ -1,7 +1,7 @@
 {
  "step_id": "S16",
  "band": "L5.5",
- "packet_sha256": "sha256:f1bcd7fa8f2ac219a7714fc0eea11356014081c71c5a7d0be1a0c2cf786fc72c",
+ "packet_sha256": "sha256:68495907a6be83c1afbbf9e4e531022674d879a1467c4eba25d8735948f7e072",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -813,7 +813,8 @@
    "dur": 1.0,
    "beats": [
     "b12",
-    "b13"
+    "b13",
+    "b14"
    ],
    "intent": "spatial",
    "motivation": {

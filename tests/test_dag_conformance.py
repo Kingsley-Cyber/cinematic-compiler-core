@@ -174,6 +174,8 @@ BREAKS = [
                                                              "7.50 A: SUPPORT NO SUPPORT |")),
     ("HIDDEN_PHRASING", "reference_fight", "mixed", _replace("substitution log (on the ground, deployment standing until 4.00)",
                                                              "substitution log (hidden in A's coat until 3.70)")),
+    ("ROTATION_PATH_UNSTATED", "reference_fight", "mixed", _replace(
+        "turns to the left 90 degrees about the vertical axis (transverse plane), 1.60", "turns left, 1.60")),
     ("PROP_PHYSICS_UNSTATED", "reference_fight", "mixed", _replace("2.00-2.50 ballistic under gravity from",
                                                                    "2.00-2.50 moving from")),
     ("PROP_VISIBILITY", "reference_fight", "mixed", _replace(" · 2.90-8.00 at rest on the ground at [0.3, 0, 5.3]", "")),

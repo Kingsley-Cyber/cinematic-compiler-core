@@ -99,8 +99,8 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 2.0; backlog 2.
-- Last session: S-010 (2026-10-11, applied): M9-04b: where each prop is, its physics while free and its rest (F2.1, F6.1, F6.2).
-- Next slice: M9-05 FR.1/FR.3 derived rotation path and rotation checks (step motion).
+- Last session: S-011 (2026-10-11, applied): M9-05: rotation runs checked at S13 and named in the prompt (FR.1, FR.3).
+- Next slice: M9-06 F5.1/F5.2 world contact points by forward kinematics (step motion).
 - Open findings: 38; decisions: 98 (0 proposed).
 <!-- END GENERATED: state -->
 

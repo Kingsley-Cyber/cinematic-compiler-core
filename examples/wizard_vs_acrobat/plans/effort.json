@@ -1,7 +1,7 @@
 {
  "step_id": "S15",
  "band": "L5",
- "packet_sha256": "sha256:dd3ae8e61331837ad8c0139394c81be34be2bd77ed6c36305603ba74180cb99d",
+ "packet_sha256": "sha256:716d770c566f4deafe073214693c2a3c5b329fdfb043ea5e9ff0e06e65e12394",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -202,6 +202,30 @@
     "plane": "sagittal"
    },
    "intensity": 0.8,
+   "effort_mode": "trained"
+  },
+  {
+   "actor": "acrobat",
+   "beats": [
+    "b14"
+   ],
+   "effort": {
+    "weight": "strong",
+    "time": "sustained",
+    "space": "direct",
+    "flow": "bound"
+   },
+   "effort_action": "press",
+   "shape": {
+    "quality": "sinking",
+    "mode": "shape_flow"
+   },
+   "space": {
+    "kinesphere": "near",
+    "pathway": "central",
+    "plane": "vertical"
+   },
+   "intensity": 0.5,
    "effort_mode": "trained"
   },
   {

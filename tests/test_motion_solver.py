@@ -88,6 +88,10 @@ def test_courtyard_keys_pass_and_the_joints_come_from_the_kernel():
     ("MOTION_AXIS", lambda p: key(p, "wizard@b11").update(turn="spin", axis_declaration="Y")),
     ("MOTION_POSTURE", lambda p: key(p, "acrobat@b12").update(rot=[460, -389.055, 0])),
     ("TURN_LABEL", lambda p: key(p, "acrobat@b12").update(turn="spin", axis_declaration="Y")),  # dodge_flip as a spin
+    # FR.3: the dodge_flip stopped at its 180-degree apex (the plan before O38), turning back, upright at the apex
+    ("ROTATION_INCOMPLETE", lambda p: key(p, "acrobat@b13").update(turn="none", axis_declaration="none")),
+    ("ROTATION_NOT_MONOTONIC", lambda p: key(p, "acrobat@b13").update(rot=[420, -389.055, 0])),
+    ("INVERSION_MISSING", lambda p: key(p, "acrobat@b13").update(rot=[180, -389.055, 180])),
     ("JOINT_LIMIT", lambda p: key(p, "wizard@b03")["bones"].update(LL=[-30, 0, 0])),   # knee hyperextension (O7)
     ("JOINT_LIMIT", lambda p: key(p, "wizard@b03")["bones"].update(LFA=[-170, 0, 0])),  # elbow past 150, no anime allowance
     ("JOINT_LIMIT", lambda p: key(p, "wizard@b03")["bones"].update(NK=[40, 0, 0], HD=[40, 0, 0])),  # neck 80 > 45 + 30
@@ -129,3 +133,15 @@ def test_joint_limits_follow_the_owner_table_and_widen_for_anime():
     pose["bones"]["LL"] = [150, 0, 0]
     assert [f["code"] for f in limit_findings(pose, "s", human)] == ["JOINT_LIMIT"]
     assert limit_findings(pose, "s", anime) == []
+
+
+def test_a_spin_is_written_once_like_a_named_flip():
+    """FR.1 as amended by W3: ROTATION_PATH_UNSTATED reads every turn run, a spin that no beat names as much as a flip."""
+    from validators import prompt_validator
+    envelope = json.loads((ROOT / "examples" / "reference_fight" / "envelope.json").read_text(encoding="utf-8"))
+    text = envelope["nodes"]["render"]["items"][0]["prose"]["mixed"]["text"]
+    words = "turns to the left 90 degrees about the vertical axis (transverse plane), 1.60–2.00"
+    assert words in text
+    found = {f["code"] for f in prompt_validator.check(text.replace(words, "turns left, 1.60–2.00"), envelope, "mixed")}
+    assert "ROTATION_PATH_UNSTATED" in found and "TURN_LABEL" not in found       # no beat names this spin
+

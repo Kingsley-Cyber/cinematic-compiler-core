@@ -34,7 +34,7 @@ def test_courtyard_plan_passes():
 @pytest.mark.parametrize("code, change", [
     ("BEAT_ID", lambda p: beat(p, "b02").update(id="b01")),
     ("BEAT_TIME", lambda p: beat(p, "b13").update(dur=2.0)),
-    ("BEAT_TIME", lambda p: beat(p, "b13").update(dur=0)),
+    ("BEAT_TIME", lambda p: beat(p, "b14").update(dur=0)),  # the wizard's hold (b14 since O38, S-011)
     ("BEAT_ACTOR", lambda p: beat(p, "b01").update(actor="dragon")),
     ("BEAT_PARTICIPANT", lambda p: beat(p, "b01")["participants"].append({"kind": "prop", "id": "staff"})),
     ("BEAT_PARTICIPANT", lambda p: beat(p, "b03")["participants"].append({"kind": "entity", "id": "acrobat"})),

@@ -15,6 +15,12 @@
   upright, inverted has the up axis at y <= -0.5, prone/supine have it level with the chest down/up (agent addition).
 - every joint's local Euler components lie inside library/joint_limits.yaml for the scene's genre (owner O11; knee
   flexion +X per O7; NK and HD summed as the neck; anime widens the listed joints by 30 degrees): JOINT_LIMIT.
+- runs (plan FR.3): the consecutive keys of one performer that declare one turn are a run, ending at the first key that
+  does not. The angle about the turn's axis moves one way through it (ROTATION_NOT_MONOTONIC); a run whose beat names a
+  flip or a cartwheel ends inside the clip on a whole number of turns (ROTATION_INCOMPLETE, owner O38); where a flip or
+  a cartwheel passes 180 + 360k degrees, the root interpolated linearly between its keys is upside down
+  (INVERSION_MISSING; derived and checked, not printed, W3). Interpretation (Claude's, for owner review): a whole turn
+  is within 30 degrees of a multiple of 360, and the inversion is read on linear Euler interpolation (FR.1's spacing).
 A mismatch is a finding (the step fails and is re-authored); nothing is corrected silently.
 """
 
@@ -25,6 +31,8 @@ HEADING_TOLERANCE = 1.0
 TURN_MINIMUM = 90
 AXIS_INDEX = {"X": 0, "Y": 1, "Z": 2}
 INVARIANT_BASIS = {"X": "lateral", "Z": "forward"}
+FULL_TURN_SLACK = 30  # interpretation (Claude's, for owner review): degrees off a whole number of turns still whole
+EPSILON = 1e-9
 
 
 def effective_limits(card, genre):
@@ -125,7 +133,68 @@ def check(keys, slots, joints, turns, limits=None):
             if not (slot["event_type"] == "substitution" and slot["role"] == "actor" and key["turn"] == "none"):
                 findings.extend(_turn_findings(slot_id, key, following, turns))
             findings.extend(named_turn_findings(slot_id, slot, key, following))
+    findings.extend(run_findings(keys, slots, turns))
     return findings, bases
+
+
+def turn_runs(keys, slots):
+    """[{entity, turn, slots, rots, end}]: consecutive keys of one performer declaring one turn; `rots` adds the key
+    that ends the run (`end`, None when the clip ends first)."""
+    runs = []
+    for entity_keys in sequences(keys, slots).values():
+        current = None
+        for position, slot_id in enumerate(entity_keys):
+            key = keys[slot_id]
+            after = entity_keys[position + 1] if position + 1 < len(entity_keys) else None
+            if key["turn"] == "none":
+                current = None
+                continue
+            if current is None or current["turn"] != key["turn"]:
+                current = {"entity": slots[slot_id]["entity"], "turn": key["turn"], "slots": [], "rots": [key["rot"]]}
+                runs.append(current)
+            current["slots"].append(slot_id)
+            current["end"] = after
+            if after is not None:
+                current["rots"].append(keys[after]["rot"])
+    return runs
+
+
+def run_findings(keys, slots, turns):
+    """FR.3: ROTATION_NOT_MONOTONIC, ROTATION_INCOMPLETE (owner O38), INVERSION_MISSING over each turn run."""
+    findings = []
+    for run in turn_runs(keys, slots):
+        index, first = AXIS_INDEX[turns[run["turn"]]], run["slots"][0]
+        angles = [rot[index] for rot in run["rots"]]
+        deltas = [b - a for a, b in zip(angles, angles[1:], strict=False)]
+        if len({delta > 0 for delta in deltas if abs(delta) > EPSILON}) > 1:
+            findings.append({"code": "ROTATION_NOT_MONOTONIC", "message": f"The {run['turn']} turns both ways across its "
+                             "keys", "slot": first, "detail": angles})
+        total = abs(sum(deltas))
+        count = round(total / 360)
+        named = any(slots[s]["role"] == "actor" and named_turn(slots[s]["label"]) == run["turn"] for s in run["slots"])
+        if named and (run["end"] is None or count < 1 or abs(total - 360 * count) > FULL_TURN_SLACK):
+            findings.append({"code": "ROTATION_INCOMPLETE", "message": f"The named {run['turn']} turns {round(total)} "
+                             "degrees" + (" and the clip ends first" if run["end"] is None else ", not a whole turn"),
+                             "slot": first, "detail": angles})
+        if run["turn"] in ("flip", "cartwheel"):
+            findings.extend(_inversion_findings(run, first, deltas))
+    return findings
+
+
+def _inversion_findings(run, first, deltas):
+    """At each crossing of 180 + 360k the root, interpolated linearly between the bracketing keys, is upside down."""
+    findings, done, target = [], 0.0, 180.0
+    for (a, b), delta in zip(zip(run["rots"], run["rots"][1:], strict=False), deltas, strict=True):
+        while abs(delta) > EPSILON and done + abs(delta) >= target - EPSILON:
+            share = (target - done) / abs(delta)
+            rot = [x + (y - x) * share for x, y in zip(a, b, strict=True)]
+            if uprightness(rot) > -UPRIGHT:
+                findings.append({"code": "INVERSION_MISSING", "message": f"The {run['turn']} passes {round(target)} "
+                                 "degrees with the root not upside down", "slot": first,
+                                 "detail": [round(x, 3) for x in rot]})
+            target += 360.0
+        done += abs(delta)
+    return findings
 
 
 FLIP_WORDS, CARTWHEEL_WORDS = {"flip", "backflip", "frontflip", "somersault"}, {"cartwheel"}

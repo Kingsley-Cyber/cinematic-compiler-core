@@ -31,7 +31,10 @@ Limb levels (mid within 45 degrees), what counts as a strike, 'steps alternating
 planner/dynamic_beat_validator.py): a free prop moving into a contact must carry a pre/post sample pair there, and the
 velocity into a pre sample is held to gravity within 0.25 m/s. Added in S-010 (M9-04b, renderers/prop_samples.py):
 the WHERE line is printed in the prose only (LBN-2.4's prop rows unchanged), and a resting span names the S06 location
-in force at its start or first set inside it, ignoring one set before the prop's last hold.
+in force at its start or first set inside it, ignoring one set before the prop's last hold. Added in S-011 (M9-05,
+solver/euler_solver.py): a flip or cartwheel's inversion is read on linear Euler interpolation between its keys; O38's
+landing key for the wizard's dodge_flip is a new hold beat b14 at 9.80 (land_guard shortened to 9.40-9.80 and
+continuing the flip), not the 9.40 apex key turned into a landing.
 
 ## Impact
 Waits on the owner.

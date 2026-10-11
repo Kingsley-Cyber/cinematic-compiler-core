@@ -58,6 +58,9 @@ CODES = {
     "IMPACT_CONTACT_SYNC": "a strike bow sits off every printed impact frame, or an impact frame has no contact on it "
                            "(one time per hit, O23; F-021)",
     "AIRBORNE_PICKUP": "a body takes a prop resting on a surface on a NO SUPPORT line (O18; renders R3, R4: F7)",
+    "ROTATION_PATH_UNSTATED": "a turn run, named or not (a spin too), is not written once on its first line by axis, "
+                              "plane and count with its takeoff and landing, or not continued on its later lines (FR.1 "
+                              "as amended by W3)",
     "PROP_PHYSICS_UNSTATED": "a free prop's flight is not written as ballistic under gravity (or a declared float) from its "
                              "p and v (plan F2.1: the model skips between samples)",
     "PROP_VISIBILITY": "a prop's WHERE line is missing, leaves a gap, disagrees with the derived track, or a span has no "
@@ -95,7 +98,7 @@ READS = {
     "VANISHED_BODY": (STAFF, RULES), "TURN_LABEL": (STAFF,),
     "BODY_HOLD_FRAMES": (), "EMPTY_HAND_UNSTATED": (STAFF,), "ROTATION_ANGLES_PRINTED": (), "HIDDEN_PHRASING": (),
     "IMPACT_CONTACT_SYNC": (STAFF, "[ANIME]", "[UGC]", "[LIVE ACTION]"), "AIRBORNE_PICKUP": (STAFF,),
-    "PROP_PHYSICS_UNSTATED": (PROPS,), "PROP_VISIBILITY": (PROPS,),
+    "PROP_PHYSICS_UNSTATED": (PROPS,), "PROP_VISIBILITY": (PROPS,), "ROTATION_PATH_UNSTATED": (STAFF,),
     "CAUSAL_LIST_MISSING": ("[CAUSAL LINKS]",), "CAUSE_REASON": ("[CAUSAL LINKS]",),
     "REACTION_WITHOUT_CAUSE": (),
     "CAUSAL_RULE_MISSING": (RULES,), "CONSERVATION_RULE_MISSING": (RULES,), "SPAN_RULE_MISSING": (STAFF, RULES),
@@ -489,6 +492,13 @@ def _turn_checks(envelope, parts, labels, mode, add):
         run = next((r for r in runs if slot["slot"] in r["slots"]), None)
         if run is None or run["turn"] != turn or (run["head"] if run["slots"][0] == slot["slot"] else run["more"]) not in line:
             add("TURN_LABEL", f"{labels.get(slot['entity'])} {slot['t']:.2f} ({slot['label']}) does not write its {turn}")
+    at = {slot["slot"]: slot for slot in slots(envelope)}
+    for run in runs:  # ROTATION_PATH_UNSTATED (FR.1 as amended by W3): every run, named by a beat or not
+        for position, slot_id in enumerate(run["slots"]):
+            slot, words = at[slot_id], run["head"] if position == 0 else run["more"]
+            if words not in rows.get((labels.get(slot["entity"]), round(slot["t"], 6)), ""):
+                add("ROTATION_PATH_UNSTATED", f"{labels.get(slot['entity'])} {slot['t']:.2f}: the {run['turn']} is not "
+                                              f"written as '{words}'")
 
 
 def _count_checks(envelope, text, add):

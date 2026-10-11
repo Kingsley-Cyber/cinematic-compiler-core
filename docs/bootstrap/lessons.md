@@ -23,3 +23,5 @@ one that supersedes it).
 | L-16 | A commit message needs a blank line after its first line; without it git folds the whole body into the subject. Write the message file with the blank line, check `git log -1 --format=%s`. | S-008 |
 | L-17 | `python -m compiler.rebind` takes bare example names (`reference_fight`), not paths; with no names it reports every example, and silence means no packet moved. | S-009 |
 | L-18 | A knowledge-map `enforced_by` test must name its code in quotes (`tests/test_knowledge_map.py` locators); the generic BREAKS test in test_dag_conformance does not, so point at a test that asserts the code. | S-010 |
+| L-19 | `pipeline.run` stops at `until='constraint'` by default: a script that compiles an example to see whether it passes must pass `until='render'` (or use `compiler.examples`), or it never reaches the authored steps. | S-011 |
+| L-20 | A `kernel/knowledge_map.yaml` edit changes every checklist's evidence text: run `python -m validators.checklist --write` after it, or test_checklist fails on a stale checklist. | S-011 |

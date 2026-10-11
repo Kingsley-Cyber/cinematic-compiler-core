@@ -26,10 +26,10 @@ items:
   - {id: M9-04b, title: "F2.1/F6.1/F6.2 prop physics contract, positions and rest, as amended by W4 (split from M9-04)",
      status: done, step: render, plan: PLAN-003, depends_on: [M9-04a], findings: [],
      codes: [PROP_PHYSICS_UNSTATED, PROP_VISIBILITY]}
-  - {id: M9-05, title: "FR.1/FR.3 derived rotation path and rotation checks", status: next, step: motion,
+  - {id: M9-05, title: "FR.1/FR.3 derived rotation path and rotation checks", status: done, step: motion,
      plan: PLAN-003, depends_on: [M9-01], findings: [F-028, F-058],
      codes: [ROTATION_PATH_UNSTATED, ROTATION_INCOMPLETE, ROTATION_NOT_MONOTONIC, INVERSION_MISSING]}
-  - {id: M9-06, title: "F5.1/F5.2 world contact points by forward kinematics", status: ready, step: motion,
+  - {id: M9-06, title: "F5.1/F5.2 world contact points by forward kinematics", status: next, step: motion,
      plan: PLAN-003, depends_on: [M9-02], findings: [F-025, F-028, F-062], codes: [CONTACT_WORLD]}
   - {id: M9-07, title: "F4.1/F4.2 combat verbs on contacts and Laban wording", status: ready, step: temporal,
      plan: PLAN-003, depends_on: [M9-02], findings: [F-025], codes: []}
