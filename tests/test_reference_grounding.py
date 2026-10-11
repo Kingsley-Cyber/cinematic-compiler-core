@@ -45,3 +45,21 @@ def test_card_negatives_and_object_invariants_become_constraints():
                          "no scarf covering head or face", "no scarf physics errors", "no floating limbs",
                          "no inverted gravity errors"}
     assert "substitution log is a WOODEN BLOCK NOT a fighter" in {c["rule"] for c in constraints if c["origin"] == "object"}
+
+
+def test_each_prop_records_the_fighter_whose_card_carries_it():
+    """Owner O63 (M9-03b): carried_by is the one entity whose archetype card lists the prop as equipment; shared gear
+    (two cards list it) and gear nobody lists stay null (interpretation)."""
+    import copy
+
+    from planner.card_loader import load_cards
+    from planner.query_expander import expand
+
+    props = pipeline.run(QUERY, until="brief")["nodes"]["props"]["items"]
+    assert {p["id"]: p["carried_by"] for p in props} == {
+        "kunai": "ninja_broad", "rope_dart": "ninja_lean", "smoke_pellet": "ninja_lean", "shuriken_volley": "ninja_broad",
+        "substitution_log": "ninja_lean"}
+    cards = copy.deepcopy(load_cards())
+    cards["ninja_broad"]["equipment"] = [*cards["ninja_broad"]["equipment"], "rope_dart"]
+    shared = expand(parse_intent(QUERY), cards)["props"]
+    assert {p["id"]: p["carried_by"] for p in shared}["rope_dart"] is None

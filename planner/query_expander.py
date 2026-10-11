@@ -6,6 +6,8 @@
 - world and surfaces come only from the matched world card; ax = kernel conventions (+ the card's unit).
 - each entity/prop hint becomes an entity (archetype card) or a prop (object card); the card's kind decides.
 - an archetype card's equipment adds props after the query's own (source card:<id>), never twice.
+- every prop records `carried_by` (owner O63): the one entity whose archetype card lists the prop's card as equipment;
+  null when none does, or when several do (interpretation: shared gear has no single carrier).
 - a chained clip (previous envelope given) keeps the previous world and records planner/chaining.summary.
 Every value names its source; everything unresolved is listed in missing, ambiguous or unresolved_hints.
 """
@@ -88,6 +90,9 @@ def expand(intent, cards=None, previous=None):
                 card = cards[card_id]
                 props.append(prop_from_card(card_id, card, card["names"][0],
                                             {"source": "card", "card_id": entity["card_id"], "field": "equipment"}))
+    for prop in props:
+        carriers = [e["id"] for e in entities if prop["card_id"] in cards[e["card_id"]].get("equipment", [])]
+        prop["carried_by"] = carriers[0] if len(carriers) == 1 else None
     missing = [field for field in RESOLVABLE if scene[field] is None] + list(NEVER_RESOLVED)
     scene.update(missing=missing, ambiguous=ambiguous, unresolved_hints=unresolved)
     return {"scene": scene, "entities": entities, "props": props, "surfaces": surfaces}

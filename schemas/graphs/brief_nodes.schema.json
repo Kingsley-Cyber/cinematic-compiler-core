@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:brief_nodes:1.0",
+  "$id": "urn:cinematic-compiler:schema:brief_nodes:1.1",
   "title": "S02 brief node items (band L0.5): entities, props, surfaces",
   "description": "Item schemas for the groups S02 writes. Every field is copied from a library card; hints carry their S01 query evidence.",
   "type": "object",
@@ -327,6 +327,18 @@
         "group_name": {
           "type": "string",
           "minLength": 1
+        },
+        "carried_by": {
+          "description": "The entity whose archetype card lists this prop as equipment (owner O63), or null.",
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*$"
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
       },
       "required": [
@@ -342,7 +354,8 @@
         "materials",
         "affordances",
         "grips",
-        "states"
+        "states",
+        "carried_by"
       ]
     },
     "Surface": {

@@ -12,7 +12,7 @@ medium
 L0.5
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -43,4 +43,4 @@ ADR-O63
 - backlog M9-03b
 
 ## Resolution
-Open.
+Resolved in backlog M9-03b (session S-006) as O63 ruled: each prop node records `carried_by` at S02 (brief_nodes 1.1); no edge group at L0.5. The prose SCENE line says "carried by <label>" for gear on the body.

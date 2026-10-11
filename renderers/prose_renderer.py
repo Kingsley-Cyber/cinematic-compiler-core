@@ -458,7 +458,8 @@ def _render_intent(envelope, frame_parts, lines, labels):
 
 def first_states(envelope, labels):
     """{prop id: [phrase]}: each prop at the first beat, from S06 and S07 (M8.12, PROP_FIRST_STATE): who holds it with
-    which part, where it rests, and each card state with the time it first changes ('deployment hidden until 4.00')."""
+    which part, where it rests, or who carries it (S02 carried_by, O63) when it is neither held nor anywhere known, and
+    each card state with the time it first changes ('line coiled until 8.00')."""
     states = _items(envelope, "nodes", "states")
     ends = {b["id"]: round(b["t"] + b["dur"], 6) for b in _items(envelope, "nodes", "beats")}
     caused = {e["to_state"]: max(ends[b] for b in e["trigger_event"])
@@ -476,6 +477,10 @@ def first_states(envelope, labels):
         location = start["conditions"].get("location", "unknown")
         if location != "unknown" and not holders:
             phrases.append(f"on the {_words(location)}")
+        elif location == "unknown" and not holders and prop.get("carried_by") in labels:
+            # Interpretation (Claude's, for owner review): a prop with no holder and no known place at the start is gear on
+            # its carrier's body (S02 carried_by, O63), so the prompt says where it is (W4).
+            phrases.append(f"carried by {labels[prop['carried_by']]}")
         for key, value in sorted(start["conditions"].items()):
             if key in ("holder", "location") or value == "unknown":
                 continue

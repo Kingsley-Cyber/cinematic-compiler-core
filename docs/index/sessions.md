@@ -12,6 +12,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-003 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog M9-02; findings F-021 (GAP-06),… | applied | the commit whose message names [S-003]… | about 1.5 hours | M9-03 (F6.3 grounded pickups). | [S-003-m9-02-strike-timing.md](../sessions/S-003-m9-02-strike-timing.md) |
 | S-004 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog M9-03; findings F-022 (GAP-07),… | applied | the commit whose message names [S-004] | about 1.5 hours | M9-03b (carried_by on prop nodes). | [S-004-m9-03-grounded-pickups.md](../sessions/S-004-m9-03-grounded-pickups.md) |
 | S-005 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog D-06 (PLAN-005); ruling ADR-O68 | applied | the commit whose message names [S-005] | about 20 minutes | M9-03b (carried_by on prop nodes). | [S-005-self-audit-prompt.md](../sessions/S-005-self-audit-prompt.md) |
+| S-006 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog M9-03b; finding F-018 (GAP-03);… | applied | the commit whose message names [S-006] | about 30 minutes | M9-04 (prop physics and positions). | [S-006-m9-03b-carried-by.md](../sessions/S-006-m9-03b-carried-by.md) |
 
 ## Status values
 

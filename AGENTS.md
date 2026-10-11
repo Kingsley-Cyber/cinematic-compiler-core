@@ -96,9 +96,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 1.1; backlog 1.
-- Last session: S-005 (2026-10-11, applied): The self-audit prompt (/self-audit).
-- Next slice: M9-03b GAP-03 carried_by on prop nodes from the archetype card (O63) (step brief).
-- Open findings: 36; decisions: 95 (0 proposed).
+- Last session: S-006 (2026-10-11, applied): M9-03b: each prop records who carries it (carried_by, O63).
+- Next slice: M9-04 F2.1/F2.2 prop physics contract, F6.1/F6.2 positions and rest (step render).
+- Open findings: 35; decisions: 95 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

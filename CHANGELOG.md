@@ -27,6 +27,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 - Prompt codes BODY_HOLD_FRAMES, EMPTY_HAND_UNSTATED, ROTATION_ANGLES_PRINTED, HIDDEN_PHRASING (M9 step 1, S-001).
 
 ### Changed
+- Each prop records who carries it (M9-03b, owner O63, S-006): `carried_by` on prop nodes at S02 (brief_nodes 1.1),
+  from the archetype cards' equipment; the prose says "carried by A" for the rope dart and smoke pellet and "carried
+  by B" for the shuriken volley.
 - Grounded pickups (M9-03, owner O18, S-004): A pushes off the pillar at 7.0, lands crouched by the rope dart and
   takes it at 7.5, runs to the kunai and takes it crouched at 8.0, then leaps at 8.5; c18 and c19 re-aimed (azimuth
   28 and 10) so both bodies stay framed on their sides; two golden rules reworded (k_rules_18, k_rules_27).
