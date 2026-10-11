@@ -12,6 +12,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
   quality)" for punch and "(press quality)" and so on; S15's data and LBN-2.4 keep the Laban vocabulary.
 
 ### Added
+- ENTRANCE_UNSTATED (M9-08b, probe V6, owner O51, S-016): a performer who starts in the air above a raised top gets
+  V6's rule (its feet touch the top at the landing, not earlier) and negative (not standing on it at the start); F10
+  is caught.
 - SURFACE_HEIGHT (M9-08a, owner O21, S-015): at a foot support's onset on a surface with a known top (the world
   card's geometry text, or the ground), S04 refuses a root below the top or over 1.2 m above it; S04's packet carries
   each surface's geometry. F-067 found (the query's "falling from y=8").

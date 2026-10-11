@@ -99,9 +99,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 2.2; backlog 4.
-- Last session: S-015 (2026-10-11, applied): M9-08a: the opening from y 10 onto the 8 m top, and SURFACE_HEIGHT (O21).
-- Next slice: M9-08b The opening from above in V6's wording (split from M9-08) (step render).
-- Open findings: 40; decisions: 99 (1 proposed).
+- Last session: S-016 (2026-10-11, applied): M9-08b: the opening from above in V6's wording (F-010).
+- Next slice: M9-09a F9.1 Laban direction against path and form (step effort).
+- Open findings: 39; decisions: 99 (1 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

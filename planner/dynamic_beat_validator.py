@@ -137,10 +137,15 @@ def validate(plan, packet):
 
 
 def _tops(packet):
-    """{surface: top y} from each surface's geometry text, a floor without one at the convention's ground."""
-    ground = GROUND.search(str(packet["scene"].get("ax", {}).get("ground", "")))
+    return surface_tops(packet["surfaces"], packet["scene"].get("ax", {}).get("ground", ""))
+
+
+def surface_tops(surfaces, ground_text):
+    """{surface: top y} from each surface's geometry text, a floor without one at the convention's ground (S04 and
+    the prose's entrances share it)."""
+    ground = GROUND.search(str(ground_text))
     tops = {}
-    for surface in packet["surfaces"]:
+    for surface in surfaces:
         found = TOP.search(surface.get("ax") or "")
         if found:
             tops[surface["id"]] = float(found.group(1))

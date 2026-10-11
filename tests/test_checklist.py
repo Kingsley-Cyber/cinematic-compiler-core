@@ -118,7 +118,7 @@ def test_no_pass_is_contradicted_by_an_uncaught_render_finding(tables):
                 uncaught = [f for f, caught in checklist.findings_for(name, row) if not caught]
                 assert not (result == checklist.PASS and uncaught), (name, column["label"], row["id"])
     fight = _results(tables["reference_fight"], "Pure")
-    assert fight["M1"][0] == checklist.OPEN and "F10" in fight["M1"][1]
+    assert fight["M1"][0] == checklist.PASS and "ENTRANCE_UNSTATED" in fight["M1"][1]  # F10 caught (M9-08b, S-016)
     assert fight["C6"][0] == checklist.PASS  # F1, F2 are caught by CAUSE_REASON
     assert fight["C24"][0] == checklist.PASS  # F11 is caught by PROP_FIRST_STATE
     assert fight["C7"][0] == fight["C31"][0] == checklist.PASS  # F8 is caught by PROP_LINE_MISSING

@@ -22,6 +22,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-013 | 2026-10-11 | Claude Code (Opus 5.5), autopilot run 1 (docs/reports/2026-10-11-autopilot-1.md) | Backlog M9-07a (split from M9-07; PLAN-… | applied | the commit whose message names [S-013] | about 60 minutes | M9-07b (F4.2 Laban actions printed as qualities). | [S-013-m9-07a-combat-verbs-on-contacts.md](../sessions/S-013-m9-07a-combat-verbs-on-contacts.md) |
 | S-014 | 2026-10-11 | Claude Code (Opus 5.5), autopilot run 1 (docs/reports/2026-10-11-autopilot-1.md) | Backlog M9-07b (split from M9-07; PLAN-… | applied | the commit whose message names [S-014] | about 15 minutes | M9-08 (O21 opening from above in V6's wording). | [S-014-m9-07b-laban-actions-as-qualities.md](../sessions/S-014-m9-07b-laban-actions-as-qualities.md) |
 | S-015 | 2026-10-11 | Claude Code (Opus 5.5), autopilot run 1 (docs/reports/2026-10-11-autopilot-1.md) | Backlog M9-08a (split from M9-08; PLAN-… | applied | the commit whose message names [S-015] | about 50 minutes | M9-08b (the opening in V6's wording). | [S-015-m9-08a-opening-and-surface-height.md](../sessions/S-015-m9-08a-opening-and-surface-height.md) |
+| S-016 | 2026-10-11 | Claude Code (Opus 5.5), autopilot run 1 (docs/reports/2026-10-11-autopilot-1.md) | Backlog M9-08b (split from M9-08); find… | applied | the commit whose message names [S-016] | about 30 minutes | M9-09a (F9.1 Laban direction against path and form). | [S-016-m9-08b-opening-in-v6-wording.md](../sessions/S-016-m9-08b-opening-in-v6-wording.md) |
 
 ## Status values
 

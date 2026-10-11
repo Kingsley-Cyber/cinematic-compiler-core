@@ -823,16 +823,40 @@ def _rules(envelope, mode, rows, lines, labels):
         if section == "rules" and ref != ROOT_EXACT and text not in kept:
             kept.append(text)
     rules = ([lead] + kept + list(CONSERVATION) + _lasting(envelope, labels) + _end_states(envelope, lines, labels)
-             + _spans(envelope, lines, labels) + _separations(lines, labels) + vanish_rules(envelope, labels))
+             + _spans(envelope, lines, labels) + _separations(lines, labels) + vanish_rules(envelope, labels)
+             + [entrance["rule"] for entrance in entrances(envelope, labels)])
     return "[RULES]\n" + "\n".join(f"- {r}" for r in rules)
 
 
-def _negatives(rows):
+def _negatives(rows, envelope=None, labels=None):
     kept = []
     for section, text, _, _ in rows:
         if section == "negative" and text not in kept:
             kept.append(text)
+    kept += [entrance["negative"] for entrance in (entrances(envelope, labels) if envelope else [])]
     return "[NEGATIVES]\n" + "; ".join(kept)
+
+
+def entrances(envelope, labels):
+    """Probe V6 (owner O51; R19 kept A off the pillar at the start): a performer whose first line is airborne and whose
+    first support is its feet on a raised top drops in onto it. Interpretation (Claude's, for owner review): a raised
+    top is a surface whose top (its world card's geometry) lies above the ground. [{label, rule, negative}]."""
+    tops = dynamic_beat_validator.surface_tops(_items(envelope, "nodes", "surfaces"), envelope["scene"]["ax"].get("ground"))
+    ground = tops.get("ground", 0.0)
+    support = {k["id"]: k["support"] for k in _items(envelope, "nodes", "kinematic")}
+    contacts = sorted(_items(envelope, "nodes", "contacts"), key=lambda c: (c["t"], c["id"]))
+    out = []
+    for entity in _items(envelope, "nodes", "entities"):
+        own = sorted((s for s in slots(envelope) if s["entity"] == entity["id"]), key=lambda s: s["t"])
+        first = next((c for c in contacts if c["contact_type"] == "support" and c["a"]["id"] == entity["id"]), None)
+        if not own or support.get(own[0]["slot"]) or first is None or not first["body_part"].endswith("_foot") \
+                or first["b"]["kind"] != "surface" or tops.get(first["b"]["id"], ground) <= ground:
+            continue
+        label, surface = labels[entity["id"]], _words(first["b"]["id"])
+        out.append({"label": label, "negative": f"no {label} standing on the {surface} at the start",
+                    "rule": f"{label} starts in the air above the {surface}, drops in feet first, and {label}'s feet "
+                            f"touch the {surface} top at {_time(first['t'])}, not earlier."})
+    return out
 
 
 def render_all(envelope, frame_parts, labels):
@@ -844,7 +868,7 @@ def render_all(envelope, frame_parts, labels):
               "motion": _motion_control(lines, labels), "spatial": _spatial(envelope, lines, labels, rows),
               "props": _props(envelope, labels), "causal": _causal(envelope, labels),
               "camera": _camera(envelope, frame_parts, labels),
-              "genre": _genre_block(envelope, frame_parts, labels), "negatives": _negatives(rows)}
+              "genre": _genre_block(envelope, frame_parts, labels), "negatives": _negatives(rows, envelope, labels)}
     result = {}
     for mode, (title, _) in MODES.items():
         staff = "\n".join(line["text"] + _euler(line, mode) for line in lines)

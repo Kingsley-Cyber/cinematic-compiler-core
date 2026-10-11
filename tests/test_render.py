@@ -112,3 +112,16 @@ def test_laban_actions_print_as_qualities_and_punch_as_thrust():
     from conftest import ROOT
     text = (ROOT / "examples" / "reference_fight" / "prose_mixed.txt").read_text(encoding="utf-8")
     assert "(thrust quality)" in text and "(punch)" not in text and "(press quality)" in text
+
+
+def test_an_entrance_from_above_says_when_the_feet_first_touch():
+    """Probe V6 (owner O51, R19): A's feet touch the pillar top at 0.60, not earlier, and A does not stand on it at 0."""
+    from conftest import ROOT
+
+    from validators import prompt_validator
+    envelope = json.loads((ROOT / "examples" / "reference_fight" / "envelope.json").read_text(encoding="utf-8"))
+    text = envelope["nodes"]["render"]["items"][0]["prose"]["mixed"]["text"]
+    assert "A's feet touch the wooden pillar top at 0.60, not earlier." in text
+    broken = text.replace(", and A's feet touch the wooden pillar top at 0.60, not earlier.", ".")
+    assert "ENTRANCE_UNSTATED" in {f["code"] for f in prompt_validator.check(broken, envelope, "mixed")}
+

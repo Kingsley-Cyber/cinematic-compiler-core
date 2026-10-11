@@ -61,6 +61,9 @@ CODES = {
     "ROTATION_PATH_UNSTATED": "a turn run, named or not (a spin too), is not written once on its first line by axis, "
                               "plane and count with its takeoff and landing, or not continued on its later lines (FR.1 "
                               "as amended by W3)",
+    "ENTRANCE_UNSTATED": "a performer who starts in the air above a raised top lacks the rule that its feet touch the "
+                         "top at the landing, not earlier, or the negative against standing on it at the start "
+                         "(probe V6, R19; F10)",
     "PROP_PHYSICS_UNSTATED": "a free prop's flight is not written as ballistic under gravity (or a declared float) from its "
                              "p and v (plan F2.1: the model skips between samples)",
     "PROP_VISIBILITY": "a prop's WHERE line is missing, leaves a gap, disagrees with the derived track, or a span has no "
@@ -99,6 +102,7 @@ READS = {
     "BODY_HOLD_FRAMES": (), "EMPTY_HAND_UNSTATED": (STAFF,), "ROTATION_ANGLES_PRINTED": (), "HIDDEN_PHRASING": (),
     "IMPACT_CONTACT_SYNC": (STAFF, "[ANIME]", "[UGC]", "[LIVE ACTION]"), "AIRBORNE_PICKUP": (STAFF,),
     "PROP_PHYSICS_UNSTATED": (PROPS,), "PROP_VISIBILITY": (PROPS,), "ROTATION_PATH_UNSTATED": (STAFF,),
+    "ENTRANCE_UNSTATED": (RULES, NEGATIVES),
     "CAUSAL_LIST_MISSING": ("[CAUSAL LINKS]",), "CAUSE_REASON": ("[CAUSAL LINKS]",),
     "REACTION_WITHOUT_CAUSE": (),
     "CAUSAL_RULE_MISSING": (RULES,), "CONSERVATION_RULE_MISSING": (RULES,), "SPAN_RULE_MISSING": (STAFF, RULES),
@@ -199,6 +203,7 @@ def check(text, envelope, mode):
     _scene_and_space(envelope, parts, labels, add)
     _props_and_causes(envelope, parts, labels, mode, add)
     _where_checks(envelope, parts, labels, add)
+    _entrance_checks(envelope, parts, labels, add)
     _first_state_checks(envelope, parts, labels, add)
     _line_and_word_checks(envelope, text, parts, labels, add)
     _count_checks(envelope, text, add)
@@ -623,6 +628,16 @@ def _props_and_causes(envelope, parts, labels, mode, add):
     for word in ("ring", "halo", "full circle"):
         if f"no {word}" in negatives and re.search(rf"\b{word}\b", fx):
             add("PROMPT_CONTRADICTION", f"FX draws a {word} while NEGATIVES forbid it (audit X29)")
+
+
+def _entrance_checks(envelope, parts, labels, add):
+    """ENTRANCE_UNSTATED (probe V6, owner O51, R19): each entrance from above has its rule and its negative."""
+    rules, negatives = _body(parts, RULES), _body(parts, NEGATIVES)
+    for entrance in prose_renderer.entrances(envelope, labels):
+        if entrance["rule"] not in rules:
+            add("ENTRANCE_UNSTATED", f"RULES do not say when {entrance['label']}'s feet first touch the top")
+        if entrance["negative"] not in negatives:
+            add("ENTRANCE_UNSTATED", f"NEGATIVES do not forbid {entrance['label']} standing on the top at the start")
 
 
 def _where_checks(envelope, parts, labels, add):

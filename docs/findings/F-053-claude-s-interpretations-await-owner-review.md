@@ -38,7 +38,9 @@ continuing the flip), not the 9.40 apex key turned into a landing. Added in S-01
 and planner/dynamic_beat_validator.py): strike joins O22's nine verbs; which contact type takes which verb; a throw
 leaves its prop moving (so a touch may throw); which of the reference fight's contacts carry a verb. Added in S-015
 (M9-08a, planner/dynamic_beat_validator.py): SURFACE_HEIGHT puts the root between a supporting top (less 0.05 m) and
-1.2 m above it, and reads a surface's top from its world card's geometry text.
+1.2 m above it, and reads a surface's top from its world card's geometry text. Added in S-016 (M9-08b,
+renderers/prose_renderer.py): an entrance is a first line in the air and a first foot support on a raised top; V6's
+"not visible before 0.20" and "never stands on the ground" are left out.
 
 ## Impact
 Waits on the owner.

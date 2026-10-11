@@ -10,18 +10,18 @@ Layer order 1.7; rules 2.2; backlog 4.
 
 ## Last sessions
 
-- S-013 (applied): M9-07a: combat verbs on contacts (F4.1, O22)
 - S-014 (applied): M9-07b: Laban actions printed as qualities (F4.2, O22)
 - S-015 (applied): M9-08a: the opening from y 10 onto the 8 m top, and SURFACE_HEIGHT (O21)
+- S-016 (applied): M9-08b: the opening from above in V6's wording (F-010)
 
 ## Next slices
 
-- M9-08b (next, step render): The opening from above in V6's wording (split from M9-08)
-- M9-09a (ready, step effort): F9.1 Laban direction against path and form
+- M9-09a (next, step effort): F9.1 Laban direction against path and form
 - M9-09b (ready, step kinematic): F9.2 airborne momentum under gravity
 - M9-09c (ready, step motion): FR.4 launch before an aerial turn
+- M9-10 (ready, step effort): F4.3/F4.4 B's active keys and the idle-fighter check
 
-M9: 10 of 30 slices done, 20 left (M9-03a blocked, M9-06 blocked; 1 the owner's own).
+M9: 11 of 30 slices done, 19 left (M9-03a blocked, M9-06 blocked; 1 the owner's own).
 
 ## Waiting on the owner
 
@@ -38,12 +38,11 @@ M9: 10 of 30 slices done, 20 left (M9-03a blocked, M9-06 blocked; 1 the owner's 
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog M9-06 blocked: F5.1/F5.2 world contact points by forward kinematics — ADR-O72 (proposed): what a key's root position is, and the contact tolerance (F-066)
 
-## Open findings: 40
+## Open findings: 39
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
 - F-005 (high, L5.5): Every hit is a limb close-up
-- F-010 (high, L1.1): The opening is not followed
 - F-014 (high, L6): Timing slips
 - F-016 (high, L0): Intent drops the query's literal starts, counts and anchors
 - F-019 (high, L1.5): Beats are not checked against the constraint rules
@@ -59,4 +58,4 @@ M9: 10 of 30 slices done, 20 left (M9-03a blocked, M9-06 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O73, finding F-068, session S-016, render R20.
+Decision ADR-O73, finding F-068, session S-017, render R20.

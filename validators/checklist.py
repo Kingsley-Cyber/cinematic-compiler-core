@@ -58,7 +58,7 @@ FINDINGS = {
     "F7": (RENDERED, ("BIO", "T7", "C5"), ("AIRBORNE_PICKUP",)),
     "F8": (RENDERED, ("C5", "C7", "C31"), ("PROP_LINE_MISSING", "DOUBLED_WORD")),
     "F9": (RENDERED, ("C5", "C23"), ("PROP_FIRST_STATE",)),
-    "F10": (RENDERED, ("M1", "C9"), ()),
+    "F10": (RENDERED, ("M1", "C9"), ("ENTRANCE_UNSTATED",)),
     "F11": (RENDERED, ("C5", "C24"), ("PROP_FIRST_STATE",)),
     "F12": (RENDERED, ("C5", "NEG"), ("COUNT_CONTRADICTION",)),
     "F13": (RENDERED, ("C9", "C23"), ()),
