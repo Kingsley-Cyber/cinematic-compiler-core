@@ -1633,8 +1633,8 @@
     ]
    },
    "description": "L:arm fwd mid bent3 holding rope dart, leg fwd mid bent3, lLeg bent3; R:arm fwd mid bent3, leg fwd mid bent3, lLeg bent3; support=none airborne; AERIAL BACKFLIP KICK, A rotates backward in a full backflip, LEFT LEG extended downward-back in a wide crescent arc, backflip plane is the vertical screen plane, LEFT foot arcs from front to back through the peak of the rotation, A body inverted at apex, right leg tucked, left hand still holding rope dart, this is a BACKFLIP KICK NOT a cartwheel, NOT a wheel, NOT a horizontal arc, arc is VERTICAL crescent on one side",
-   "turn": "spin",
-   "axis_declaration": "Y"
+   "turn": "flip",
+   "axis_declaration": "X"
   },
   {
    "slot": "ninja_broad@b13",
@@ -1793,7 +1793,7 @@
     4.3
    ],
    "rot": [
-    0,
+    -360,
     -270,
     0
    ],
@@ -1867,7 +1867,7 @@
     3.8
    ],
    "rot": [
-    80,
+    -280,
     -270,
     0
    ],
@@ -2015,7 +2015,7 @@
     3.5
    ],
    "rot": [
-    20,
+    -340,
     -180,
     0
    ],
@@ -2077,8 +2077,8 @@
     ]
    },
    "description": "L:arm fwd high bent4 elbow-driving-up, leg fwd mid bent5, lLeg bent5; R:arm fwd high bent4 elbow-driving-up, leg fwd mid bent5, lLeg bent5; support=none airborne; CARTWHEEL TO RISING ELBOW, A rises from slide into a cartwheel, A body rotates sideways in screen plane one quarter turn, then A DRIVES LEFT ELBOW UPWARD, left elbow cocked and driving up toward B chest, right arm extended back for counter, left hand no longer holding rope dart, rope dart has been released during the slide, head facing B, this is a CARTWHEEL TO RISING ELBOW combo, left elbow leads",
-   "turn": "spin",
-   "axis_declaration": "Y"
+   "turn": "cartwheel",
+   "axis_declaration": "Z"
   },
   {
    "slot": "ninja_broad@b16",
@@ -2237,9 +2237,9 @@
     4.5
    ],
    "rot": [
-    20,
+    -340,
     -90,
-    0
+    -360
    ],
    "bones": {
     "Sp": [
@@ -2311,9 +2311,9 @@
     5.9
    ],
    "rot": [
-    60,
+    -300,
     -30,
-    0
+    -360
    ],
    "bones": {
     "Sp": [
@@ -2385,9 +2385,9 @@
     4.8
    ],
    "rot": [
+    -330,
     30,
-    30,
-    0
+    -360
    ],
    "bones": {
     "Sp": [
@@ -2533,9 +2533,9 @@
     4.5
    ],
    "rot": [
-    30,
+    -330,
     90,
-    0
+    -360
    ],
    "bones": {
     "Sp": [
@@ -2681,9 +2681,9 @@
     4.9
    ],
    "rot": [
-    20,
+    -340,
     90,
-    0
+    -360
    ],
    "bones": {
     "Sp": [
@@ -2829,9 +2829,9 @@
     5.3
    ],
    "rot": [
-    20,
+    -340,
     90,
-    0
+    -360
    ],
    "bones": {
     "Sp": [
@@ -2977,9 +2977,9 @@
     5.3
    ],
    "rot": [
-    20,
+    -340,
     90,
-    0
+    -360
    ],
    "bones": {
     "Sp": [

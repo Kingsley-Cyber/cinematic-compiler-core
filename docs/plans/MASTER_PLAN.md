@@ -481,7 +481,8 @@ Spec and codes: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
   (PROP_LINE_MISSING: '8.00 one line from A L hand to B torso'; DOUBLED_WORD: 'rope dart (dart end)'; C7, C31 PASS) ·
   [x] counts F12 (O17: query says FIVE props; COUNT_CONTRADICTION on NEG, C5, M4; NEG PASS again) · [ ] the golden's
   numbers to its words (O18): [x] X9 (A gone 3.70-4.40: no A at 4.00, VANISHED_BODY at S04 and in RULES; S13 performs
-  no rotation across a substitution) · [ ] X5/X6 · [ ] X2/X3 · [ ] X7 (O21: A starts at root y=10) · [ ] D9 lines + density (O19, F6) · F13/F14 stay
+  no rotation across a substitution) · [x] X5/X6 (the 5.1 backflip pitches -360 about X, the 6.3 cartwheel rolls -360 about
+  Z, later roots carry the turns; TURN_LABEL at S13 and in the staff) · [ ] X2/X3 · [ ] X7 (O21: A starts at root y=10) · [ ] D9 lines + density (O19, F6) · F13/F14 stay
   open (O20).
 - [ ] M8.13+ the applicability stage (O16), then camera, body and props, density and format, the rest. Derivable: PROP_TWO_HOLDERS (C5, S07), POST_CONTACT_MISSING (C21),
   PHRASING_MISSING (LMA, T6), MOMENTUM_MISSING (C22, T10), CHAIN_ORDER (KC), ANTICIPATION_MISSING (KF),

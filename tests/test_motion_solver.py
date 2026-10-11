@@ -87,6 +87,7 @@ def test_courtyard_keys_pass_and_the_joints_come_from_the_kernel():
     ("MOTION_AXIS", lambda p: key(p, "acrobat@b05").update(turn="cartwheel", axis_declaration="Z")),
     ("MOTION_AXIS", lambda p: key(p, "wizard@b11").update(turn="spin", axis_declaration="Y")),
     ("MOTION_POSTURE", lambda p: key(p, "acrobat@b12").update(rot=[460, -389.055, 0])),
+    ("TURN_LABEL", lambda p: key(p, "acrobat@b12").update(turn="spin", axis_declaration="Y")),  # dodge_flip as a spin
     ("JOINT_LIMIT", lambda p: key(p, "wizard@b03")["bones"].update(LL=[-30, 0, 0])),   # knee hyperextension (O7)
     ("JOINT_LIMIT", lambda p: key(p, "wizard@b03")["bones"].update(LFA=[-170, 0, 0])),  # elbow past 150, no anime allowance
     ("JOINT_LIMIT", lambda p: key(p, "wizard@b03")["bones"].update(NK=[40, 0, 0], HD=[40, 0, 0])),  # neck 80 > 45 + 30

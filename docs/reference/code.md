@@ -38,7 +38,7 @@ flowchart LR
   validators -->|4| kernel
   validators -->|8| planner
   validators -->|3| renderers
-  validators -->|3| solver
+  validators -->|4| solver
 ```
 
 ## Modules
@@ -109,5 +109,5 @@ flowchart LR
 | `validators.envelope_validator` | `kernel.kernel_files`, `planner.dependency_graph`, `planner.modality`, `validators.layer_dependency_validator`, `validators.schema_validator` | json |
 | `validators.facial_validator` | — | json, re |
 | `validators.layer_dependency_validator` | `kernel.canonical`, `kernel.version`, `planner.dependency_graph`, `planner.topological_sort` | re |
-| `validators.prompt_validator` | `compiler.passes.mandatory.p07_contact`, `planner.dynamic_beat_validator`, `planner.scene_view`, `renderers.anime_renderer`, `renderers.prop_samples`, `renderers.prose_renderer`, `solver.staff_geometry`, `validators.cause_reason` | re |
+| `validators.prompt_validator` | `compiler.passes.mandatory.p07_contact`, `planner.dynamic_beat_validator`, `planner.scene_view`, `renderers.anime_renderer`, `renderers.prop_samples`, `renderers.prose_renderer`, `solver.euler_solver`, `solver.staff_geometry`, `validators.cause_reason` | re |
 | `validators.schema_validator` | `kernel.canonical` | re |

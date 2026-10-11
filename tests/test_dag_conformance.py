@@ -162,6 +162,7 @@ BREAKS = [
     ("DOUBLED_WORD", "wizard_vs_acrobat", "mixed", _replace("Props at the start:", "Props at the the start:")),
     ("COUNT_CONTRADICTION", "reference_fight", "mixed", _replace("TWO fighters, FIVE props", "TWO fighters, FOUR props")),
     ("VANISHED_BODY", "reference_fight", "mixed", _line(r"- A is gone from")),
+    ("TURN_LABEL", "reference_fight", "mixed", _replace("flip sign (lateral axis, backward, 360)", "turn sign (90)")),
     ("CAUSAL_LIST_MISSING", "wizard_vs_acrobat", "mixed", _drop_causal_threads),
     ("CAUSE_REASON", "wizard_vs_acrobat", "mixed", _replace(": The crouch loads the legs for the vault.", ": It goes on.")),
     ("REACTION_WITHOUT_CAUSE", "ugc_glasses_demo", "mixed", _react_early),

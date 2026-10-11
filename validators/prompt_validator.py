@@ -14,7 +14,7 @@ from planner import dynamic_beat_validator
 from planner.scene_view import slots
 from renderers import prop_samples, prose_renderer
 from renderers.anime_renderer import constraint_rows
-from solver import staff_geometry
+from solver import euler_solver, staff_geometry
 from validators import cause_reason
 
 CODES = {
@@ -47,6 +47,7 @@ CODES = {
     "DOUBLED_WORD": "a word is written twice in a row ('rope dart dart'): the reader cannot tell what is meant",
     "COUNT_CONTRADICTION": "a stated count (fighters, props, a prop's units) disagrees with the scene",
     "VANISHED_BODY": "a substituted body has a staff line before it reappears, or RULES do not say it is gone",
+    "TURN_LABEL": "a line whose beat names a flip or a cartwheel does not write that turn",
     "CAUSAL_LIST_MISSING": "a causal edge is absent from CAUSAL LINKS",
     "CAUSE_REASON": "a causal link's reason is not printed in CAUSAL LINKS, or does not state a cause",
     "REACTION_WITHOUT_CAUSE": "a hard effect's line comes before its cause's contact",
@@ -77,7 +78,7 @@ READS = {
     "PROP_TRACK_MISSING": (PROPS,), "PROP_STATE_ORDER": (PROPS,), "PROP_INVARIANT_MISSING": (PROPS,),
     "CUSTODY_RULE_MISSING": (PROPS,), "PROP_FIRST_STATE": ("[SCENE]", PROPS), "PROP_LINE_MISSING": (PROPS,),
     "DOUBLED_WORD": (), "COUNT_CONTRADICTION": (),
-    "VANISHED_BODY": (STAFF, RULES),
+    "VANISHED_BODY": (STAFF, RULES), "TURN_LABEL": (STAFF,),
     "CAUSAL_LIST_MISSING": ("[CAUSAL LINKS]",), "CAUSE_REASON": ("[CAUSAL LINKS]",),
     "REACTION_WITHOUT_CAUSE": (),
     "CAUSAL_RULE_MISSING": (RULES,), "CONSERVATION_RULE_MISSING": (RULES,), "SPAN_RULE_MISSING": (STAFF, RULES),
@@ -181,6 +182,7 @@ def check(text, envelope, mode):
     _line_and_word_checks(envelope, text, parts, labels, add)
     _count_checks(envelope, text, add)
     _vanish_checks(envelope, parts, labels, mode, add)
+    _turn_checks(envelope, parts, labels, mode, add)
     _rules_checks(envelope, parts, labels, mode, add)
     _camera_checks(envelope, parts, labels, add)
     return findings
@@ -362,6 +364,18 @@ def _vanish_checks(envelope, parts, labels, mode, add):
         for row in _staff(parts, mode):
             if row["label"] == labels.get(actor) and start + EPSILON < row["t"] and (back is None or row["t"] < back - EPSILON):
                 add("VANISHED_BODY", f"{row['label']} has a staff line at {row['t']:.2f} while gone")
+
+
+def _turn_checks(envelope, parts, labels, mode, add):
+    """TURN_LABEL (owner O18, audit X5/X6: the golden's 'full backflip' had pitch 0, its 'cartwheel' no roll)."""
+    rows = {(row["label"], round(row["t"], 6)): row["line"] for row in _staff(parts, mode)}
+    for slot in slots(envelope):
+        turn = euler_solver.named_turn(slot["label"]) if slot["role"] == "actor" else None
+        if turn is None:
+            continue
+        line = rows.get((labels.get(slot["entity"]), round(slot["t"], 6)), "")
+        if f"{turn} sign (" not in line:
+            add("TURN_LABEL", f"{labels.get(slot['entity'])} {slot['t']:.2f} ({slot['label']}) does not write its {turn}")
 
 
 def _count_checks(envelope, text, add):

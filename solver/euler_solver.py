@@ -10,6 +10,7 @@
   performed. A change of 90 degrees or more on any axis must be declared; a declared turn uses the convention axis
   (flip X, spin Y, cartwheel Z) and that axis changes most, by at least 90 degrees, before the entity's next key.
   A substitution's actor is gone until its next key (owner O12, O18), so no rotation is performed across that gap.
+  A beat whose label names a flip or a cartwheel has its actor declare that turn (TURN_LABEL, owner O18, audit X5/X6).
 - the root agrees with the S06 posture when no posture change is in progress: standing/crouching/kneeling are
   upright, inverted has the up axis at y <= -0.5, prone/supine have it level with the chest down/up (agent addition).
 - every joint's local Euler components lie inside library/joint_limits.yaml for the scene's genre (owner O11; knee
@@ -123,7 +124,27 @@ def check(keys, slots, joints, turns, limits=None):
                                  f"{postures[0]}", "slot": slot_id})
             if not (slot["event_type"] == "substitution" and slot["role"] == "actor" and key["turn"] == "none"):
                 findings.extend(_turn_findings(slot_id, key, following, turns))
+            findings.extend(named_turn_findings(slot_id, slot, key, following))
     return findings, bases
+
+
+FLIP_WORDS, CARTWHEEL_WORDS = {"flip", "backflip", "frontflip", "somersault"}, {"cartwheel"}
+
+
+def named_turn(label):
+    """'flip' or 'cartwheel' when a beat label names one, else None."""
+    words = set(label.split("_"))
+    return "flip" if words & FLIP_WORDS else "cartwheel" if words & CARTWHEEL_WORDS else None
+
+
+def named_turn_findings(slot_id, slot, key, following):
+    """TURN_LABEL (owner O18, audit X5/X6): a beat that names a flip or a cartwheel has its actor's root declare that
+    turn (flip about X, cartwheel about Z); _turn_findings then makes that axis rotate most, by 90 degrees or more."""
+    turn = named_turn(slot["label"]) if slot["role"] == "actor" else None
+    if turn is not None and key["turn"] != turn:
+        return [{"code": "TURN_LABEL", "message": f"The beat names a {turn} but the root declares {key['turn']}",
+                 "slot": slot_id, "detail": [key["rot"], following["rot"] if following else None]}]
+    return []
 
 
 def _turn_findings(slot_id, key, following, turns):

@@ -43,6 +43,9 @@ HIP_CLAMPS = {1.1: 60, 3.0: 60}
 # Owner O18 (2026-10-11, audit X9): A vanishes at 3.7 (the substitution) and reappears at 4.4, so the reference's A row
 # at 4.0 (a full pose with both feet down while 'A already gone') is not drawn.
 VANISHED = {4.0}
+# Owner O18 (audit X5, X6): the backflip at 5.1 pitches A backward through 360 and the cartwheel at 6.3 rolls A to the
+# left through 360; angles are continuous, so every later root carries the turn (X -360 after 5.1, Z -360 after 6.3).
+ROOT_TURNS = ((5.1, 0, -360), (6.3, 2, -360))
 # Prop positions and velocities are authored on the beats and solved under gravity (owner O8, O10); the source's
 # literal p/v (e.g. kunai thrown at 0.5 toward -Z, yet at +Z 5.0 at 2.0) are not copied, as they disagree with gravity.
 
@@ -53,7 +56,11 @@ def normalised(row):
         joints[knee][0] = abs(joints[knee][0])
     if row[0] in HIP_CLAMPS:
         joints["RUL"][0] = HIP_CLAMPS[row[0]]
-    return [row[0], row[1].lower(), row[2], row[3], joints]
+    rot = list(row[3])
+    for after, axis, degrees in ROOT_TURNS:
+        if row[0] > after:
+            rot[axis] += degrees
+    return [row[0], row[1].lower(), row[2], rot, joints]
 
 
 def test_a_roots_and_joints_are_the_reference_rows_with_the_recorded_deviations():
