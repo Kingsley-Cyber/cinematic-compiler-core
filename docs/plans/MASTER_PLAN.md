@@ -116,6 +116,7 @@ outputs. Spec: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
 | O18 | Fix the golden's numbers to match its words (recorded deviations): A falls from above and lands with the feet on the pillar top (X7), the backflip pitches through 360 (X5), the cartwheel rolls (X6), A has no body or support while vanished 3.7-4.4 (X9), A lands beside the rope dart and the kunai before picking them up (X2/X3; answers Q5); a check for each | M8.12e+ |
 | O19 | Prose staff lines in the DAG's D9 style: only the limbs that matter (~120-200 characters), density adaptive (C2); LBN-2.4 keeps every number (answers Q4) | M8.12+ |
 | O20 | Render findings with no cause found in the prompt (F13 set drift, F14 late beats) keep their rows NOT CHECKED until a fixed-seed render repeats or clears them | M8.12 |
+| O21 | X7: the pillar keeps its 8 m top; A starts above the frame at root y=10 ('falling from y=10') and lands with the feet on the top at y=8 (root about 8.5) | M8.12h |
 
 Still open: P3.2-6 PRESERVE_AXIS (S16's 180-degree rule) — the owner's call.
 
@@ -479,7 +480,8 @@ Spec and codes: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
   smoke sealed, shuriken holstered, log hidden until 4.00; SCENE prints them; C24 PASS again) · [x] the rope line F8
   (PROP_LINE_MISSING: '8.00 one line from A L hand to B torso'; DOUBLED_WORD: 'rope dart (dart end)'; C7, C31 PASS) ·
   [x] counts F12 (O17: query says FIVE props; COUNT_CONTRADICTION on NEG, C5, M4; NEG PASS again) · [ ] the golden's
-  numbers to its words (O18: X7 opening, X5, X6, X9, X2/X3) with checks · [ ] D9 lines + density (O19, F6) · F13/F14 stay
+  numbers to its words (O18): [x] X9 (A gone 3.70-4.40: no A at 4.00, VANISHED_BODY at S04 and in RULES; S13 performs
+  no rotation across a substitution) · [ ] X5/X6 · [ ] X2/X3 · [ ] X7 (O21: A starts at root y=10) · [ ] D9 lines + density (O19, F6) · F13/F14 stay
   open (O20).
 - [ ] M8.13+ the applicability stage (O16), then camera, body and props, density and format, the rest. Derivable: PROP_TWO_HOLDERS (C5, S07), POST_CONTACT_MISSING (C21),
   PHRASING_MISSING (LMA, T6), MOMENTUM_MISSING (C22, T10), CHAIN_ORDER (KC), ANTICIPATION_MISSING (KF),

@@ -8,6 +8,8 @@ a beat that causes it (mode_transition).
 Teleport (owner O12): a body faster than 25 m/s between the anchors of two of its consecutive beats is refused
 (TELEPORT), unless the earlier beat is a substitution with that body as actor and the substitution changes a prop's
 state (the decoy revealed; the owner's rule also names the smoke pellet and the log, generalised here to any prop).
+Vanished body (owner O18, audit X9, VANISHED_BODY): from a substitution's start until its actor's next beat as actor,
+no other beat lists, anchors or touches with that actor.
 Prop kinematics (owner O8, PROP_KINEMATICS): a beat's prop samples sit inside the beat and name declared props; a held
 prop stays within 2 m of its holder's anchor; between two samples of a free prop with no contact on it in between, a
 moving prop follows gravity from the first sample's velocity to the second position within 0.25 m, and a prop at rest
@@ -106,7 +108,7 @@ def validate(plan, packet):
             if entity in last_mode and last_mode[entity] != mode and not incoming.get(bid):
                 findings.append(_finding("MODE_TRANSITION", "A mode change needs a beat that causes it", bid, [entity, mode]))
             last_mode[entity] = mode
-    return findings + _teleports(beats) + _prop_kinematics(beats, props, packet["scene"]["genre"])
+    return findings + _teleports(beats) + _vanished(beats) + _prop_kinematics(beats, props, packet["scene"]["genre"])
 
 
 def _teleports(beats):
@@ -129,6 +131,30 @@ def _teleports(beats):
                                                  beat["id"], [before["id"], beat["id"]]))
             if pos is not None:
                 last[entity] = (beat, beat["t"], pos)
+    return findings
+
+
+def vanish_windows(beats):
+    """[(actor, substitution beat, start, reappearance t or None)]: a substitution's actor is gone from the
+    substitution's start until its next beat as actor (owner O12, O18; audit X9)."""
+    ordered = sorted(beats, key=lambda b: (b["t"], b["id"]))
+    out = []
+    for index, beat in enumerate(ordered):
+        if beat["event_type"] == "substitution":
+            back = next((b for b in ordered[index + 1:] if b["actor"] == beat["actor"]), None)
+            out.append((beat["actor"], beat["id"], beat["t"], back["t"] if back else None))
+    return out
+
+
+def _vanished(beats):
+    """VANISHED_BODY: no other beat lists, anchors or touches with a substituted body before it reappears."""
+    findings = []
+    for actor, sub, start, back in vanish_windows(beats):
+        for beat in beats:
+            inside = beat["id"] != sub and start - EPSILON <= beat["t"] and (back is None or beat["t"] < back - EPSILON)
+            if inside and beat["actor"] != actor and (actor in beat["pos"] or any(
+                    p["id"] == actor for p in beat["participants"]) or any(c["a"]["id"] == actor for c in beat["contacts"])):
+                findings.append(_finding("VANISHED_BODY", "A substituted body appears before it reappears", beat["id"], actor))
     return findings
 
 

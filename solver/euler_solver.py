@@ -9,6 +9,7 @@
 - Euler angles are continuous per entity (never wrapped), so the change between consecutive keys is the rotation
   performed. A change of 90 degrees or more on any axis must be declared; a declared turn uses the convention axis
   (flip X, spin Y, cartwheel Z) and that axis changes most, by at least 90 degrees, before the entity's next key.
+  A substitution's actor is gone until its next key (owner O12, O18), so no rotation is performed across that gap.
 - the root agrees with the S06 posture when no posture change is in progress: standing/crouching/kneeling are
   upright, inverted has the up axis at y <= -0.5, prone/supine have it level with the chest down/up (agent addition).
 - every joint's local Euler components lie inside library/joint_limits.yaml for the scene's genre (owner O11; knee
@@ -120,7 +121,8 @@ def check(keys, slots, joints, turns, limits=None):
             if len(postures) == 1 and posture_problem(key["rot"], postures[0]):
                 findings.append({"code": "MOTION_POSTURE", "message": f"Root rotation disagrees with the S06 posture "
                                  f"{postures[0]}", "slot": slot_id})
-            findings.extend(_turn_findings(slot_id, key, following, turns))
+            if not (slot["event_type"] == "substitution" and slot["role"] == "actor" and key["turn"] == "none"):
+                findings.extend(_turn_findings(slot_id, key, following, turns))
     return findings, bases
 
 

@@ -1,7 +1,7 @@
 {
  "step_id": "S13",
  "band": "L4c",
- "packet_sha256": "sha256:27b487058f1017ea10adbce0c4312263f212bfbe88038e45c99452e49127d912",
+ "packet_sha256": "sha256:7367ed80d45afe2571565d8708105f1c367587587171faabf6f586802795e30a",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -1265,80 +1265,6 @@
    "description": "Palm smacks the wooden log; B stumbles forward off balance.",
    "turn": "none",
    "axis_declaration": "none"
-  },
-  {
-   "slot": "ninja_lean@b10",
-   "name": "b_palm_hits_substitution_log",
-   "pos": [
-    0.4,
-    0.9,
-    4.7
-   ],
-   "rot": [
-    20,
-    90,
-    0
-   ],
-   "bones": {
-    "Sp": [
-     30,
-     0,
-     0
-    ],
-    "LUL": [
-     -60,
-     0,
-     0
-    ],
-    "RUL": [
-     -60,
-     0,
-     0
-    ],
-    "LL": [
-     30,
-     0,
-     0
-    ],
-    "RL": [
-     30,
-     0,
-     0
-    ],
-    "LA": [
-     -45,
-     0,
-     0
-    ],
-    "RA": [
-     -45,
-     0,
-     0
-    ],
-    "LFA": [
-     -60,
-     0,
-     0
-    ],
-    "RFA": [
-     -60,
-     0,
-     0
-    ],
-    "HD": [
-     -5,
-     0,
-     0
-    ],
-    "NK": [
-     0,
-     0,
-     0
-    ]
-   },
-   "description": "L:arm fwd mid bent3 holding rope dart, leg fwd mid bent4, lLeg bent4; R:arm fwd mid bent3, leg fwd mid bent4, lLeg bent4; support=both feet; B RISING PALM STRIKES THE SUBSTITUTION LOG, B hand passes through where A was, B contacts the wooden substitution log, B realizes the substitution, B off balance, this is B HITTING THE LOG NOT A, A is gone, smoke still visible",
-   "turn": "spin",
-   "axis_declaration": "Y"
   },
   {
    "slot": "ninja_lean@b11",

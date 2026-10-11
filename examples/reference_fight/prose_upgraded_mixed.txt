@@ -3,7 +3,7 @@
 10 s anime scene, 24 fps, setting: moonlit bamboo courtyard.
 Cast: A = lean ninja: Lean figure in a dark coat; red scarf wrapped small at the neck; face fully visible; Dark coat, red scarf wrapped SMALL at the neck, face fully visible. B = broad ninja: Broad figure in grey armor with one shoulder pauldron; Grey armor, one shoulder pauldron.
 Props at the start: kunai (held by B R hand, embedded loose until 9.00); rope dart (line coiled until 8.00); smoke pellet (smoke sealed until 4.00); shuriken volley (3 shuriken, flight holstered until 5.90); substitution log (deployment hidden until 4.00).
-Render intent. Motion: fast, strong, heavy, sudden accelerations into the accents; readable at one shot every 0.5 s on average. Animation: anime; spacing: 38 dense, 1 medium and 2 sparse gaps between lines; 7 smears on declared limbs or props, 6 impact frames. Choreography: every effect follows its cause along the causal links; final instruction: end on A hold crouch over b, B remains down.
+Render intent. Motion: fast, strong, heavy, sudden accelerations into the accents; readable at one shot every 0.5 s on average. Animation: anime; spacing: 36 dense, 2 medium and 2 sparse gaps between lines; 7 smears on declared limbs or props, 6 impact frames. Choreography: every effect follows its cause along the causal links; final instruction: end on A hold crouch over b, B remains down.
 
 [MOVEMENT LANGUAGE]
 Labanotation written as words. Mode: Upgraded Mixed: staff lines primary; Root, EulerXYZ and the full Joints dictionary on strike lines and on each performer's last line, as precision override.
@@ -33,9 +33,8 @@ FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship |
 3.00 B: SUPPORT steps right-forward alternating [f:alt] | L arm left-forward-low, lower arm folded 75, L leg forward-mid, lower leg folded 60, body forward-high (20 lean), head back-high | R arm right-forward-low, lower arm folded 75, R leg forward-mid, lower leg folded 60 | - | path: right-forward 0.2 m
 3.40 A: SUPPORT both feet place-mid [f:both] | L arm forward-low, lower arm folded 60, L leg forward-mid, lower leg folded 30, body right-forward-high (35 lean) | R arm forward-low, lower arm folded 60, R leg forward-mid, lower leg folded 30 | - | -
 3.40 B: SUPPORT steps forward alternating [f:alt] | L arm left-forward-low, lower arm folded 30, L leg forward-mid, lower leg folded 45, body forward-high (25 lean), head back-high | R arm forward-mid, lower arm straight, R leg right-back-low, lower leg folded 15 | - | path: forward 0.4 m; B RISING PALM STRIKE toward A chest,B charges forward
-3.70 A: SUPPORT both feet place-mid [f:both] | L arm back-mid, lower arm folded 90, L leg forward-mid, lower leg folded 60, body forward-mid (60 lean), head back-high | R arm back-mid, lower arm folded 90, R leg forward-mid, lower leg folded 60 | contact bow: R hand > smoke pellet shell at 4.00; contact bow: R hand > substitution log (log end) at 4.00 | path: dropping 0.2 m; KAWARIMI SUBSTITUTION at 3.7,A body REPLACED BY SMOKE BURST,A vanishes,substitution log reveals,B palm hits LOG NOT A at 4.0,this is a SUBSTITUTION NOT a strike; SUBSTITUTION: the decoy takes this place and the body reappears at its next line (teleport allowed here only)
+3.70 A: SUPPORT steps left alternating [f:alt] | L arm back-mid, lower arm folded 90, L leg forward-mid, lower leg folded 60, body forward-mid (60 lean), head back-high | R arm back-mid, lower arm folded 90, R leg forward-mid, lower leg folded 60 | contact bow: R hand > smoke pellet shell; contact bow: R hand > substitution log (log end) | path: left 0.3 m; KAWARIMI SUBSTITUTION at 3.7,A body REPLACED BY SMOKE BURST,A vanishes,substitution log reveals,B palm hits LOG NOT A at 4.0,this is a SUBSTITUTION NOT a strike; SUBSTITUTION: the decoy takes this place and the body reappears at its next line (teleport allowed here only)
 3.70 B: SUPPORT both feet place-mid [f:both] | L arm left-forward-low, lower arm folded 30, L leg forward-mid, lower leg folded 45, body forward-high (25 lean), head back-high | R arm forward-mid, lower arm straight, R leg right-back-low, lower leg folded 15 | - | -
-4.00 A: SUPPORT both feet place-mid [f:both] | L arm forward-low, lower arm folded 60, L leg forward-mid, lower leg folded 30, body right-forward-high (35 lean) | R arm forward-low, lower arm folded 60, R leg forward-mid, lower leg folded 30 | - | path: left 0.3 m, rising 0.2 m; turn sign (vertical axis, to the right, 180)
 4.00 B: SUPPORT steps forward alternating [f:alt] | L arm left-forward-mid, lower arm folded 15, L leg forward-low, lower leg folded 45, body forward-high (35 lean), head back-high | R arm right-forward-mid, lower arm folded 15, R leg right-back-low, lower leg folded 30 | contact bow: R hand > substitution log (log end) at 4.40 | path: forward 1.2 m; B palm strikes the substitution log,B realizes the substitution,B off balance,the log falls to the ground
 4.40 A: SUPPORT both feet place-mid [f:both] | L arm forward-low, lower arm folded 45, L leg forward-mid, lower leg folded 30, body left-forward-high (35 lean) | R arm forward-mid, lower arm folded 90, R leg forward-mid, lower leg folded 30 | - | path: rising 0.3 m; A REAPPEARS BEHIND B at 4.4,teleport via substitution,this is the REAPPEARANCE
 4.40 B: SUPPORT both feet place-mid [f:both] | L arm left-forward-mid, lower arm folded 15, L leg forward-low, lower leg folded 45, body forward-high (35 lean), head back-high | R arm right-forward-mid, lower arm folded 15, R leg right-back-low, lower leg folded 30 | - | -
@@ -69,7 +68,7 @@ FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship |
 - A 1.10–2.00: maintain strong weight, sudden time, direct space, free flow (punch); shape advancing, directional spoke; mid reach.
 - A 2.00–3.00: maintain strong weight, sudden time, direct space, bound flow (punch); shape sinking, directional spoke; far reach.
 - A 3.00–3.70: maintain sustained time, direct space, bound flow; shape sinking, shape flow; near reach.
-- A 3.70–4.40: maintain light weight, sudden time, indirect space, free flow (flick); shape enclosing, shape flow; near reach.
+- A 3.70–4.00: maintain light weight, sudden time, indirect space, free flow (flick); shape enclosing, shape flow; near reach.
 - A 4.40–5.10: maintain strong weight, sudden time, direct space, bound flow (punch); shape rising, directional spoke; near reach.
 - A 5.10–5.90: maintain strong weight, sudden time, indirect space, free flow (slash); shape retreating, carving; far reach.
 - A 5.90–6.30: maintain light weight, sustained time, direct space, free flow (glide); shape sinking, directional spoke; near reach.
@@ -107,7 +106,7 @@ FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship |
 
 [MOTION CONTROL]
 Interpolation: slerp joint rotations between lines; the root follows its derived path between positions; support and the declared Effort hold at all times.
-Density (measured): 38 dense gaps under 0.6 s, 1 medium from 0.6 to 0.9 s, 2 sparse over 0.9 s; the longest is 1.60 s (B 0.00–1.60).
+Density (measured): 36 dense gaps under 0.6 s, 2 medium from 0.6 to 0.9 s, 2 sparse over 0.9 s; the longest is 1.60 s (B 0.00–1.60).
 Explicit = the staff lines; implied = everything between them (IMPLIED GUIDANCE).
 
 [SPATIAL ANCHORS]
@@ -129,7 +128,7 @@ ONE kunai only: never duplicated, never in two hands at once, never lost.
 ONE rope dart only: never duplicated, never in two hands at once, never lost.
 
 [PROP STATE MACHINE – smoke pellet]
-0.00 holder none, smoke sealed · 3.70 p[0.4, 1.1, 4.7] at rest · 4.00 smoke sealed -> burst · 4.00 touched by A R hand
+0.00 holder none, smoke sealed · 3.70 touched by A R hand · 3.70 p[0.4, 1.1, 4.7] at rest · 4.00 smoke sealed -> burst
 ONE smoke pellet only: never duplicated, never in two hands at once, never lost.
 
 [PROP STATE MACHINE – shuriken volley]
@@ -137,7 +136,7 @@ ONE smoke pellet only: never duplicated, never in two hands at once, never lost.
 Exactly 3 shuriken in the volley: never duplicated, never in two hands at once, never lost.
 
 [PROP STATE MACHINE – substitution log]
-0.00 deployment hidden, holder none · 4.00 deployment hidden -> deployed · 4.00 touched by A R hand · 4.00 p[0.4, 1, 4.7] at rest · 4.40 deployment deployed -> fallen, location unknown -> ground · 4.40 touched by B R hand · 4.40 p[0.4, 0.1, 4.7] at rest
+0.00 deployment hidden, holder none · 3.70 touched by A R hand · 4.00 deployment hidden -> deployed · 4.00 p[0.4, 1, 4.7] at rest · 4.40 deployment deployed -> fallen, location unknown -> ground · 4.40 touched by B R hand · 4.40 p[0.4, 0.1, 4.7] at rest
 ONE substitution log only: never duplicated, never in two hands at once, never lost.
 
 [CAUSAL LINKS]
@@ -176,7 +175,7 @@ A crash to ground ⇢ A hold crouch over opponent: Slammed down with the kunai i
 3.00–3.40 cut to full on A, B: A lands squared up facing B, rope dart low in the left hand; the kunai skitters on the ground; elevation -2, azimuth 0, roll 0; 18 mm wide; dolly_in: low dolly in at ground level as A lands; normal x1; shows A land facing opponent; motivated by contact event b06 c2.
 3.40–3.70 cut to medium on B: B charges with a rising palm strike toward A's chest; elevation 0, azimuth 0, roll 0; 35 mm normal; tracking: tracks B's charge; normal x1; shows B rising palm charge; motivated by beat type b08.
 3.70–4.00 smash_cut to medium on A, B: KAWARIMI: A's body is replaced by a smoke burst; the wooden substitution log is revealed; elevation 0, azimuth 0, roll 0; 35 mm normal; static: held on the vanishing body; ramp x0.5; shows A kawarimi substitution; motivated by beat type b09.
-4.00–4.40 cut to medium on A, B: B's palm strikes the substitution log; B realizes the substitution and stumbles; elevation 0, azimuth 0, roll 0; 35 mm normal; tracking: tracks B's palm into the log; normal x1; shows B palm hits log; motivated by contact event b09 c2.
+4.00–4.40 cut to medium on B: B's palm strikes the substitution log; B realizes the substitution and stumbles; elevation 0, azimuth 0, roll 0; 35 mm normal; tracking: tracks B's palm into the log; normal x1; shows B palm hits log; motivated by beat type b10.
 4.40–4.70 cut to medium on A, B: A reappears behind B, right elbow cocked; elevation 0, azimuth -171.9, roll 0; 35 mm normal; dolly_in: pushes in as A reappears behind B; normal x1; shows A reappear behind opponent; motivated by contact event b10 c1.
 4.70–5.10 smash_cut to insert of right leg on A, B: A's RIGHT KNEE drives up into B's spine from behind, NOT a kick; elevation -5, azimuth 90, roll 0; 85 mm telephoto; static: locked on the knee and spine; slow x0.25; shows A knee strike spine; motivated by beat type b12.
 5.10–5.50 cut to full on A, B: A backflips, the left leg sweeping a vertical crescent; B flies forward off the knee; elevation 5, azimuth -166.8, roll 0; 18 mm wide; orbit: arcs with A's backflip; normal x1; shows A aerial backflip kick; motivated by contact event b12 c1.
@@ -238,6 +237,7 @@ Ink: heavy on A,broken in smears,clean on holds,smear follows ONLY the declared 
 - TWO SEPARATE STRIKES: A R foot > kunai blade at 3.00 and R leg > B torso at 5.10; do not merge them or swap the limbs.
 - TWO SEPARATE STRIKES: B R hand > shuriken volley star 1 at 5.90 and L hand > A left arm at 7.00; do not merge them or swap the limbs.
 - TWO SEPARATE STRIKES: B L hand > A left arm at 7.00 and torso > kunai blade at 9.00; do not merge them or swap the limbs.
+- A is gone from 3.70 until A reappears at 4.40 (substitution): no A body, pose or support in between.
 
 [NEGATIVES]
 no missing limbs; no missing arms; no missing hands; no headless body; no faceless head; no extra fighters beyond A and B; no cloned A; no cloned B; no duplicated kunai; no duplicated rope dart; no duplicated smoke pellet; no duplicated shuriken beyond the declared volley of 3; no duplicated substitution log; no extra weapons; no full circle; no ring; no halo; no scarf covering head; no substitution log as a separate fighter; substitution log is a wooden block NOT a fighter

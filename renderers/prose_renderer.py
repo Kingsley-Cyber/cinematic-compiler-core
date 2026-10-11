@@ -21,7 +21,7 @@ root + EulerXYZ + joints on strike lines and each performer's last line; Euler-h
 import hashlib
 
 from compiler.passes.mandatory.p07_contact import events_for, lifecycle
-from planner import camera_library
+from planner import camera_library, dynamic_beat_validator
 from planner.scene_view import slots
 from renderers import prop_samples, ugc_renderer
 from renderers.anime_renderer import _face_words, _items, _num, constraint_rows
@@ -641,6 +641,17 @@ def _separations(lines, labels):
     return rules
 
 
+def vanish_rules(envelope, labels):
+    """One rule per substitution (owner O18, audit X9): the actor is gone until it reappears, with nothing in between."""
+    out = []
+    for actor, _, start, back in dynamic_beat_validator.vanish_windows(_items(envelope, "nodes", "beats")):
+        who = labels.get(actor, actor)
+        out.append(f"{who} is gone from {_time(start)} " + (f"until {who} reappears at {_time(back)}" if back is not None
+                                                             else "to the end") + f" (substitution): no {who} body, pose or "
+                   "support in between.")
+    return out
+
+
 def _rules(envelope, mode, rows, lines, labels):
     lead = ("Follow the SUPPORT column and the contact bows strictly; they are the movement authority."
             if mode == "pure_staff" else "Laban support and contacts are primary; Euler numbers are precision override only.")
@@ -649,7 +660,7 @@ def _rules(envelope, mode, rows, lines, labels):
         if section == "rules" and ref != ROOT_EXACT and text not in kept:
             kept.append(text)
     rules = ([lead] + kept + list(CONSERVATION) + _lasting(envelope, labels) + _end_states(envelope, lines, labels)
-             + _spans(envelope, lines, labels) + _separations(lines, labels))
+             + _spans(envelope, lines, labels) + _separations(lines, labels) + vanish_rules(envelope, labels))
     return "[RULES]\n" + "\n".join(f"- {r}" for r in rules)
 
 

@@ -31,12 +31,12 @@ flowchart LR
   planner -->|11| kernel
   planner -->|4| validators
   renderers -->|1| compiler
-  renderers -->|4| planner
+  renderers -->|5| planner
   renderers -->|1| solver
   solver -->|1| kernel
   validators -->|2| compiler
   validators -->|4| kernel
-  validators -->|7| planner
+  validators -->|8| planner
   validators -->|3| renderers
   validators -->|3| solver
 ```
@@ -94,7 +94,7 @@ flowchart LR
 | `renderers.anime_renderer` | `planner.library_vocab`, `renderers.prop_samples` | hashlib, json, math |
 | `renderers.live_renderer` | `renderers.anime_renderer` | — |
 | `renderers.prop_samples` | `planner.dynamic_beat_validator` | math |
-| `renderers.prose_renderer` | `compiler.passes.mandatory.p07_contact`, `planner.camera_library`, `planner.scene_view`, `renderers.anime_renderer`, `renderers.prop_samples`, `renderers.ugc_renderer`, `solver.staff_geometry` | hashlib |
+| `renderers.prose_renderer` | `compiler.passes.mandatory.p07_contact`, `planner.camera_library`, `planner.dynamic_beat_validator`, `planner.scene_view`, `renderers.anime_renderer`, `renderers.prop_samples`, `renderers.ugc_renderer`, `solver.staff_geometry` | hashlib |
 | `renderers.ugc_renderer` | `renderers.anime_renderer` | — |
 | `solver.camera_geometry` | — | math |
 | `solver.euler_solver` | `solver.quaternion` | — |
@@ -109,5 +109,5 @@ flowchart LR
 | `validators.envelope_validator` | `kernel.kernel_files`, `planner.dependency_graph`, `planner.modality`, `validators.layer_dependency_validator`, `validators.schema_validator` | json |
 | `validators.facial_validator` | — | json, re |
 | `validators.layer_dependency_validator` | `kernel.canonical`, `kernel.version`, `planner.dependency_graph`, `planner.topological_sort` | re |
-| `validators.prompt_validator` | `compiler.passes.mandatory.p07_contact`, `planner.scene_view`, `renderers.anime_renderer`, `renderers.prop_samples`, `renderers.prose_renderer`, `solver.staff_geometry`, `validators.cause_reason` | re |
+| `validators.prompt_validator` | `compiler.passes.mandatory.p07_contact`, `planner.dynamic_beat_validator`, `planner.scene_view`, `renderers.anime_renderer`, `renderers.prop_samples`, `renderers.prose_renderer`, `solver.staff_geometry`, `validators.cause_reason` | re |
 | `validators.schema_validator` | `kernel.canonical` | re |

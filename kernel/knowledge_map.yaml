@@ -96,11 +96,12 @@ rows:
     class: mandatory
     step: all
     status: enforced
-    codes: [PROMPT_CONTRADICTION, SECTION_MISSING, SECTION_ORDER, DOUBLED_WORD, COUNT_CONTRADICTION]
+    codes: [PROMPT_CONTRADICTION, SECTION_MISSING, SECTION_ORDER,
+            DOUBLED_WORD, COUNT_CONTRADICTION, VANISHED_BODY]
     enforced_by:
       - {file: compiler/passes/derived/p17_render.py, check: check, code: RENDER_COVERAGE,
          test: tests/test_render.py::test_a_dropped_item_fails_coverage}
-    note: "Two counts that disagree are a reader contradiction (COUNT_CONTRADICTION, M8.12). M8.12: a word written twice in a row is a reading defect (DOUBLED_WORD; F8's 'rope dart dart'). M8.4: validators/prompt_validator.py reads each prose prompt whole and compares every section with the
+    note: "M8.12 (owner O18, audit X9): a substituted body has no line, pose or support until it reappears, and RULES say so (VANISHED_BODY; S04 refuses a beat that lists it). Two counts that disagree are a reader contradiction (COUNT_CONTRADICTION, M8.12). M8.12: a word written twice in a row is a reading defect (DOUBLED_WORD; F8's 'rope dart dart'). M8.4: validators/prompt_validator.py reads each prose prompt whole and compares every section with the
       envelope and with each other (staff contacts vs prop state machines, causal order vs times, FX vs negatives).
       All four examples pass with nothing set aside (owner O10: reference_fight's 'dust ring' fx now read 'dust
       burst', audit X29)."

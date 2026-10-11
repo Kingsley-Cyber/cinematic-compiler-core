@@ -10,6 +10,7 @@ Codes whose atoms the repo does not have yet are listed in the map as `gaps`, ne
 import re
 
 from compiler.passes.mandatory.p07_contact import events_for, lifecycle
+from planner import dynamic_beat_validator
 from planner.scene_view import slots
 from renderers import prop_samples, prose_renderer
 from renderers.anime_renderer import constraint_rows
@@ -45,6 +46,7 @@ CODES = {
     "PROP_LINE_MISSING": "a line prop held by one body and fastened to another is not written as one line between them",
     "DOUBLED_WORD": "a word is written twice in a row ('rope dart dart'): the reader cannot tell what is meant",
     "COUNT_CONTRADICTION": "a stated count (fighters, props, a prop's units) disagrees with the scene",
+    "VANISHED_BODY": "a substituted body has a staff line before it reappears, or RULES do not say it is gone",
     "CAUSAL_LIST_MISSING": "a causal edge is absent from CAUSAL LINKS",
     "CAUSE_REASON": "a causal link's reason is not printed in CAUSAL LINKS, or does not state a cause",
     "REACTION_WITHOUT_CAUSE": "a hard effect's line comes before its cause's contact",
@@ -75,6 +77,7 @@ READS = {
     "PROP_TRACK_MISSING": (PROPS,), "PROP_STATE_ORDER": (PROPS,), "PROP_INVARIANT_MISSING": (PROPS,),
     "CUSTODY_RULE_MISSING": (PROPS,), "PROP_FIRST_STATE": ("[SCENE]", PROPS), "PROP_LINE_MISSING": (PROPS,),
     "DOUBLED_WORD": (), "COUNT_CONTRADICTION": (),
+    "VANISHED_BODY": (STAFF, RULES),
     "CAUSAL_LIST_MISSING": ("[CAUSAL LINKS]",), "CAUSE_REASON": ("[CAUSAL LINKS]",),
     "REACTION_WITHOUT_CAUSE": (),
     "CAUSAL_RULE_MISSING": (RULES,), "CONSERVATION_RULE_MISSING": (RULES,), "SPAN_RULE_MISSING": (STAFF, RULES),
@@ -177,6 +180,7 @@ def check(text, envelope, mode):
     _first_state_checks(envelope, parts, labels, add)
     _line_and_word_checks(envelope, text, parts, labels, add)
     _count_checks(envelope, text, add)
+    _vanish_checks(envelope, parts, labels, mode, add)
     _rules_checks(envelope, parts, labels, mode, add)
     _camera_checks(envelope, parts, labels, add)
     return findings
@@ -346,6 +350,18 @@ def _scene_and_space(envelope, parts, labels, add):
 
 
 NUMBER_WORDS = {w: i for i, w in enumerate(("zero one two three four five six seven eight nine ten eleven twelve").split())}
+
+
+def _vanish_checks(envelope, parts, labels, mode, add):
+    """VANISHED_BODY (owner O18, audit X9: the golden showed A standing at 4.00 after vanishing at 3.70)."""
+    rules = _body(parts, "[RULES]")
+    for rule in prose_renderer.vanish_rules(envelope, labels):
+        if f"- {rule}" not in rules:
+            add("VANISHED_BODY", f"RULES lack '{rule[:50]}'")
+    for actor, _, start, back in dynamic_beat_validator.vanish_windows(envelope["nodes"]["beats"]["items"]):
+        for row in _staff(parts, mode):
+            if row["label"] == labels.get(actor) and start + EPSILON < row["t"] and (back is None or row["t"] < back - EPSILON):
+                add("VANISHED_BODY", f"{row['label']} has a staff line at {row['t']:.2f} while gone")
 
 
 def _count_checks(envelope, text, add):

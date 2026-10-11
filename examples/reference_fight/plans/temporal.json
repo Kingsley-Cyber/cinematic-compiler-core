@@ -906,7 +906,8 @@
       "kind": "prop",
       "id": "smoke_pellet",
       "part": "shell"
-     }
+     },
+     "at": "start"
     },
     {
      "contact_type": "touch",
@@ -919,7 +920,8 @@
       "kind": "prop",
       "id": "substitution_log",
       "part": "log"
-     }
+     },
+     "at": "start"
     }
    ],
    "causes": [
@@ -956,10 +958,6 @@
    "label": "palm_hits_log",
    "participants": [
     {
-     "kind": "entity",
-     "id": "ninja_lean"
-    },
-    {
      "kind": "prop",
      "id": "substitution_log"
     }
@@ -968,11 +966,6 @@
     "ninja_broad": "assault"
    },
    "pos": {
-    "ninja_lean": [
-     0.4,
-     0.9,
-     4.7
-    ],
     "ninja_broad": [
      0.9,
      0,
@@ -980,11 +973,6 @@
     ]
    },
    "facing": {
-    "ninja_lean": [
-     1.0,
-     0,
-     0.0
-    ],
     "ninja_broad": [
      -1,
      0,

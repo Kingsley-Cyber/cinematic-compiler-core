@@ -1,7 +1,7 @@
 {
  "step_id": "S12",
  "band": "L4b",
- "packet_sha256": "sha256:74a5184c6f555cefb3d90219dc03abc06244594ab6d2bdac998e255c4f7535da",
+ "packet_sha256": "sha256:c252350975bc747b9309ddaf6505694f1e42ee163f4a9b0494d72447b0fa393c",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -231,17 +231,6 @@
     "right_leg"
    ],
    "body_mode": "same_side"
-  },
-  {
-   "slot": "ninja_lean@b10",
-   "connectivity": "breath",
-   "developmental_pattern": "yield",
-   "intent": "stay hidden and coiled",
-   "initiation": "core",
-   "follow_through": [
-    "torso"
-   ],
-   "body_mode": "core_distal"
   },
   {
    "slot": "ninja_lean@b11",

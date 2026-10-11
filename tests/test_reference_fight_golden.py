@@ -40,6 +40,9 @@ def test_every_kernel_and_reference_item_is_in_the_render():
 # - knee flexion is +X under Q6, so the reference's negative knee angles (a hyperextended knee) read as +|x|;
 # - the right hip at 1.1 and 3.0 (+90 = 90 degrees back) is clamped to the anime extension limit, +60.
 HIP_CLAMPS = {1.1: 60, 3.0: 60}
+# Owner O18 (2026-10-11, audit X9): A vanishes at 3.7 (the substitution) and reappears at 4.4, so the reference's A row
+# at 4.0 (a full pose with both feet down while 'A already gone') is not drawn.
+VANISHED = {4.0}
 # Prop positions and velocities are authored on the beats and solved under gravity (owner O8, O10); the source's
 # literal p/v (e.g. kunai thrown at 0.5 toward -Z, yet at +Z 5.0 at 2.0) are not copied, as they disagree with gravity.
 
@@ -55,7 +58,7 @@ def normalised(row):
 
 def test_a_roots_and_joints_are_the_reference_rows_with_the_recorded_deviations():
     assert RENDER["labels"] == {"ninja_lean": "A", "ninja_broad": "B"}
-    reference = [row for row in REFERENCE["A"] if row[0] < 10]  # the 10.0 hold row has no beat (beats end at 10)
+    reference = [row for row in REFERENCE["A"] if row[0] < 10 and row[0] not in VANISHED]  # 10.0 hold: no beat
     assert [[row["t"], row["label"], row["pos"], row["rot"], row["joints"]] for row in SPEC["A"]] == \
         [normalised(row) for row in reference]
     assert all(row["desc"].endswith(ref[5]) for row, ref in zip(SPEC["A"], reference, strict=True))
