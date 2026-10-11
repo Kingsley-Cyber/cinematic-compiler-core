@@ -102,6 +102,13 @@ outputs. Spec: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
 | O5 | One local commit per slice when the gate passes; no push without the owner | all |
 | O6 | A conformance test checks the final prompts against every mandatory and required map row by semantic codes | M8.4 |
 
+| O7 | Knee sign follows Q6 geometry: knee flexion = +X (0..135), elbow flexion = -X; the reference fight's golden negative knees are normalised to +|X| (recorded deviation) | M8.6 |
+| O8 | Prop positions and velocities are authored on S04 beats (like body positions); S06 carries them; PROP_KINEMATICS holds v to positions and gravity unless the genre block declares a float | M8.8 |
+| O9 | LBN-2.4 actor rows become named fields {t, label, pos, rot, joints, desc} (all values kept) | M8.5 |
+| O10 | The golden (reference fight) passes conformance with nothing set aside: its fx 'dust ring' become 'dust burst' (the kernel negative 'no ring' stays), knees as O7, prop p/v consistent with gravity | M8.6-M8.9 |
+| O11 | Joint limits: the owner's human ROM table (cited AAOS / Kendall / Norkin & Levangie) mapped onto the kernel joints; anime may exceed by up to +30 degrees for shoulder, hip, knee, spine and neck | M8.6 |
+| O12 | Teleport: a body faster than 25 m/s between keys is a teleport, refused unless its beat is a declared substitution (decoy revealed, the body reappears at a declared position) | M8.7 |
+
 Still open: P3.2-6 PRESERVE_AXIS (S16's 180-degree rule) — the owner's call.
 
 ---
@@ -446,7 +453,9 @@ Spec and codes: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
 - [x] M8.4 prompt validator (37 semantic codes) + map `codes`/`gaps` + conformance test: the four examples build
   S01-S17, all 16 prose prompts pass except one KNOWN owner-source contradiction (reference_fight 'dust ring' vs
   'no ring', audit X29); every code fires on its break. Mandatory 17/27 enforced, required 9/15.
-- [ ] M8.5+ close the gaps, one per slice. Derivable: PROP_TWO_HOLDERS (C5, S07), POST_CONTACT_MISSING (C21),
+- [x] M8.5 named fields in LBN-2.4 actor rows (O9)
+- [ ] M8.6 joint limits (O11, O7) · [ ] M8.7 teleport + substitution (O12) · [ ] M8.8 prop p/v + gravity (O8) · [ ] M8.9 golden passes conformance, KNOWN emptied (O10)
+- [ ] M8.10+ close the remaining gaps, one per slice. Derivable: PROP_TWO_HOLDERS (C5, S07), POST_CONTACT_MISSING (C21),
   PHRASING_MISSING (LMA, T6), MOMENTUM_MISSING (C22, T10), CHAIN_ORDER (KC), ANTICIPATION_MISSING (KF),
   SHOT_TRANSITION_MISSING (C25), PROP_KINEMATICS (C31). Need the owner: JOINT_LIMIT ranges (BIO, T7; the DAG gives
   none), TELEPORT speed bound and the substitution exemption (T10). By design partial: T3/T4 (superseded orders),

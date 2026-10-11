@@ -5,7 +5,8 @@ applied constraint is rendered (owner invariant no_render_compression) and `cove
 Kernel controls written for the reference actors and props are regenerated from this scene's data (labels,
 facings, props); scene-wide kernel controls are printed as written; card invariants and beat actions go to rules.
 Layout: preface text, then one JSON object: variant, fps, dur, ax, key, lma_legend, negative, laban, one track per
-actor label, one track per prop, set (surfaces), cam, the genre block (here: anime frame-part directives), rules.
+actor label (rows with named fields {t, label, pos, rot, joints, desc}, owner O9), one track per prop, set (surfaces),
+cam, the genre block (here: anime frame-part directives), rules.
 `project` is shared with renderers/ugc_renderer.py.
 """
 
@@ -274,8 +275,8 @@ def _actor_rows(envelope, entity, labels, cover):
         if face is not None:  # S14, live_action and ugc_ad: words only (owner F4)
             cover.mark("facial", slot)
             parts.append(_face_words(face, labels))
-        rows.append([_num(key["t"]), key["name"], key["pos"], key["rot"], key["bones"],
-                     "; ".join(parts) + "; " + key["description"]])
+        rows.append({"t": _num(key["t"]), "label": key["name"], "pos": key["pos"], "rot": key["rot"],
+                     "joints": key["bones"], "desc": "; ".join(parts) + "; " + key["description"]})
     return rows
 
 

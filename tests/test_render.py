@@ -32,7 +32,9 @@ def test_layout_carries_every_graph():
     keys = BEFORE["nodes"]["motion"]["items"]
     assert len(SPEC["A"]) == sum(k["entity"] == "wizard" for k in keys)
     assert len(SPEC["B"]) == sum(k["entity"] == "acrobat" for k in keys)
-    assert SPEC["A"][0][:4] == [1.6, "bolt_cast_extend", [0, 0, 6], [0, 180, 0]]
+    assert {k: SPEC["A"][0][k] for k in ("t", "label", "pos", "rot")} == {
+        "t": 1.6, "label": "bolt_cast_extend", "pos": [0, 0, 6], "rot": [0, 180, 0]}
+    assert list(SPEC["A"][0]) == ["t", "label", "pos", "rot", "joints", "desc"]  # named fields (owner O9)
     assert len(SPEC["cam"]) == len(BEFORE["nodes"]["camera"]["items"])
     assert set(SPEC["set"]) == {"ground", "bamboo_wall", "stone_pillar"}
     assert "2.4 damage unknown->scorched" in SPEC["set"]["ground"]

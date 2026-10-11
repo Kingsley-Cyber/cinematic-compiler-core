@@ -31,8 +31,9 @@ def test_every_kernel_and_reference_item_is_in_the_render():
 def test_a_roots_and_joints_are_the_reference_rows_exactly():
     assert RENDER["labels"] == {"ninja_lean": "A", "ninja_broad": "B"}
     reference = [row for row in REFERENCE["A"] if row[0] < 10]  # the 10.0 hold row has no beat (beats end at 10)
-    assert [row[:5] for row in SPEC["A"]] == [[row[0], row[1].lower(), row[2], row[3], row[4]] for row in reference]
-    assert all(row[5].endswith(ref[5]) for row, ref in zip(SPEC["A"], reference, strict=True))
+    assert [[row["t"], row["label"], row["pos"], row["rot"], row["joints"]] for row in SPEC["A"]] == \
+        [[row[0], row[1].lower(), row[2], row[3], row[4]] for row in reference]
+    assert all(row["desc"].endswith(ref[5]) for row, ref in zip(SPEC["A"], reference, strict=True))
 
 
 def fx(text):
