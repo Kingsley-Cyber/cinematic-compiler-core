@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:layer_order:1.0",
+  "title": "Layer order (kernel/layer_order.yaml)",
+  "description": "The layer DAG: steps in build order, what each builds, depends on, is validated by and may write, and which node groups each edge group connects (owner O65). Changing the file needs an accepted ADR, a kernel-log entry and a version bump (R-09).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "kernel",
+    "envelope",
+    "modalities",
+    "pipeline_owned",
+    "edge_endpoints",
+    "nodes"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+$"
+    },
+    "kernel": {
+      "type": "string",
+      "minLength": 1
+    },
+    "envelope": {
+      "type": "string",
+      "pattern": "^MGRAPH-[0-9]+\\.[0-9]+$"
+    },
+    "modalities": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]*$"
+      }
+    },
+    "pipeline_owned": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^/"
+      }
+    },
+    "edge_endpoints": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-z][a-z0-9_]*$": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "from",
+            "to"
+          ],
+          "properties": {
+            "from": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]*$"
+              }
+            },
+            "to": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]*$"
+              }
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "nodes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/Node"
+      }
+    }
+  },
+  "$defs": {
+    "Node": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "step_id",
+        "band",
+        "builds",
+        "depends_on",
+        "validated_by",
+        "writes"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "step_id": {
+          "type": "string",
+          "pattern": "^S[0-9]{2}$"
+        },
+        "band": {
+          "type": "string",
+          "minLength": 1
+        },
+        "builds": {
+          "type": "string",
+          "minLength": 1
+        },
+        "when": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          }
+        },
+        "projection": {
+          "type": "boolean"
+        },
+        "external_inputs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_./]*$"
+          }
+        },
+        "depends_on": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          }
+        },
+        "validated_by": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          }
+        },
+        "writes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^/"
+          }
+        }
+      }
+    }
+  }
+}

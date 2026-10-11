@@ -52,6 +52,9 @@ BREAKS = [
     ("must start with its ID", _add_file("docs/sessions/S-099.md", "# S-098 — x\n")),
     ("is also used by", lambda root: shutil.copy(next((root / "docs/renders").glob("R1-*.md")),
                                                  root / "docs/renders/R1-copy.md")),
+    ("does not match schemas/rules.schema.json", _edit("docs/rules.yaml", "id: R-01,", "id: R-1,")),
+    ("differs from its source", _edit("schemas/graphs/temporal_graph.schema.json", '"enum": [\n            "touch",',
+                                      '"enum": [\n            "tap",')),
     ("depends on unknown", _edit("docs/plans/backlog.yaml", "depends_on: [M9-02], findings: [F-022",
                                  "depends_on: [M9-99], findings: [F-022")),
 ]

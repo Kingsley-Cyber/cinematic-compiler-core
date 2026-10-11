@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:genre_profile:0.1",
+  "title": "Genre profile (DRAFT)",
+  "$comment": "DRAFT (owner O65): the contract for FR.7's per-genre values (O36, O37), backlog M9-11; no data file uses it yet. Fields and ranges are Claude's draft for owner review.",
+  "description": "Per-genre rendering values the checks read from the scene's genre: camera arc ratio with a rotation, apex slow motion, inverted and impact holds, smear and speedline policy, landing dust and impact shake.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "card_id",
+    "kind",
+    "card_version",
+    "status",
+    "genre"
+  ],
+  "properties": {
+    "card_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "kind": {
+      "const": "genre_profile"
+    },
+    "card_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "approved"
+      ]
+    },
+    "genre": {
+      "enum": [
+        "anime",
+        "live_action",
+        "ugc_ad"
+      ]
+    },
+    "camera_arc_ratio": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Camera arc as a share of a body rotation (O36: anime 0.5, live action 0.1)."
+    },
+    "arc_tolerance_deg": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 90
+    },
+    "apex_slow_motion": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 1,
+      "description": "Playback speed at a rotation's apex."
+    },
+    "inverted_hold_frames": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 12,
+      "description": "Graph and LBN only; the prose never prints holds in frames (W1)."
+    },
+    "impact_hold_frames": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 12
+    },
+    "smear": {
+      "enum": [
+        "none",
+        "declared_limb_only",
+        "declared_limb_or_prop"
+      ]
+    },
+    "speedlines": {
+      "enum": [
+        "none",
+        "declared_limb_only",
+        "scene"
+      ]
+    },
+    "landing_dust": {
+      "type": "boolean"
+    },
+    "impact_shake": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 3
+    },
+    "float_allowed": {
+      "type": "boolean",
+      "description": "Anime may declare floats and hangs (O8, O34)."
+    }
+  }
+}

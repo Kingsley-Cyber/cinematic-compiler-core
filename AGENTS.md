@@ -95,8 +95,8 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 1.0; backlog 1.
 - Last session: S-002 (2026-10-11, in progress): The docs plane: AGENTS.md, five indexes, canonical docs, verify.sh, schemas, control and CI.
-- Next slice: M9-02 F5.3 strike, throw and release contacts at their pose (V1b's deflect wording) (step temporal); D-03 Docs plane: seven schemas (O65) (step docs).
-- Open findings: 36; decisions: 94 (0 proposed).
+- Next slice: M9-02 F5.3 strike, throw and release contacts at their pose (V1b's deflect wording) (step temporal); D-04 Docs plane: pinned pyproject and uv.lock, Dockerfile (step docs).
+- Open findings: 37; decisions: 94 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
@@ -112,6 +112,7 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - F-055 (low): M6 tools are undefined
 - F-057 (low): The kernel rule 'substitution log reveals' reads against O48's staging
 - F-059 (low): Reference-fight deviations from its own data await review
+- F-060 (low): What is a motif?
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 <!-- END GENERATED: rulings -->
 

@@ -81,15 +81,7 @@
             }
           },
           "rot": {
-            "type": "array",
-            "minItems": 3,
-            "maxItems": 3,
-            "items": {
-              "type": "number",
-              "minimum": -1080,
-              "maximum": 1080
-            },
-            "description": "Root Euler degrees [X, Y, Z], intrinsic XYZ, right-handed; continuous per entity (never wrapped)."
+            "$ref": "#/$defs/EulerXYZ"
           },
           "bones": {
             "type": "object",
@@ -109,20 +101,10 @@
             "additionalProperties": false
           },
           "turn": {
-            "enum": [
-              "none",
-              "flip",
-              "spin",
-              "cartwheel"
-            ]
+            "$ref": "#/$defs/Turn"
           },
           "axis_declaration": {
-            "enum": [
-              "none",
-              "X",
-              "Y",
-              "Z"
-            ]
+            "$ref": "#/$defs/AxisDeclaration"
           },
           "description": {
             "type": "string",
@@ -130,6 +112,35 @@
           }
         }
       }
+    }
+  },
+  "$defs": {
+    "EulerXYZ": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "number",
+        "minimum": -1080,
+        "maximum": 1080
+      },
+      "description": "Root Euler degrees [X, Y, Z], intrinsic XYZ, right-handed; continuous per entity (never wrapped)."
+    },
+    "Turn": {
+      "enum": [
+        "none",
+        "flip",
+        "spin",
+        "cartwheel"
+      ]
+    },
+    "AxisDeclaration": {
+      "enum": [
+        "none",
+        "X",
+        "Y",
+        "Z"
+      ]
     }
   }
 }

@@ -65,6 +65,7 @@ Every finding: a bug, gap, contradiction, drift, question, risk or opportunity f
 | F-057 | The kernel rule 'substitution log reveals' reads against O48's staging | question | low | L6 | open | — | kernel/sources/lbn-2.3-adv.txt rules; examples/re… | 2026-10-11 | [F-057-the-kernel-rule-substitution-log-reveals-rea.md](../findings/F-057-the-kernel-rule-substitution-log-reveals-rea.md) |
 | F-058 | Wizard example: the front flip turns before its takeoff and is invert… | bug | medium | L4c | open | — | examples/wizard_vs_acrobat (B 1.20-2.60; prose 't… | 2026-10-11 | [F-058-wizard-example-the-front-flip-turns-before-i.md](../findings/F-058-wizard-example-the-front-flip-turns-before-i.md) |
 | F-059 | Reference-fight deviations from its own data await review | question | low | L1.1 | open | — | HANDOFF.md 'Waiting for owner review'; docs/plans… | 2026-10-11 | [F-059-reference-fight-deviations-from-its-own-data.md](../findings/F-059-reference-fight-deviations-from-its-own-data.md) |
+| F-060 | What is a motif? | question | low | L1.1 | open | — | schemas/motif.schema.json (DRAFT); the owner's do… | 2026-10-11 | [F-060-what-is-a-motif.md](../findings/F-060-what-is-a-motif.md) |
 
 ## Type values
 

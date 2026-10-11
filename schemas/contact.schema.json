@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:contact:1.0",
+  "title": "Contact (shared definition)",
+  "description": "A touch, hold (possess), support or release between an entity's body part and an entity, prop or surface, at its beat's end unless `at: start` (owner O23). Shared by the S04 beat plan and the temporal graph (owner O65); embedded where used by kernel/shared_schemas.py.",
+  "$defs": {
+    "Contact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contact_type",
+        "a",
+        "b"
+      ],
+      "properties": {
+        "contact_type": {
+          "enum": [
+            "touch",
+            "possess",
+            "support",
+            "release"
+          ]
+        },
+        "a": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "id",
+            "part"
+          ],
+          "properties": {
+            "kind": {
+              "const": "entity"
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*$"
+            },
+            "part": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*$"
+            }
+          }
+        },
+        "b": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "id",
+            "part"
+          ],
+          "properties": {
+            "kind": {
+              "enum": [
+                "entity",
+                "prop",
+                "surface"
+              ]
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*$"
+            },
+            "part": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^[a-z][a-z0-9_]*$"
+            }
+          }
+        },
+        "at": {
+          "enum": [
+            "start",
+            "end"
+          ],
+          "description": "When the contact happens in its beat: at the beat's end (default) or its start (e.g. a prop already in hand at t=0, M8.12)."
+        }
+      }
+    }
+  },
+  "$ref": "#/$defs/Contact"
+}

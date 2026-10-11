@@ -385,6 +385,7 @@ def problems(root=ROOT):
     found += _backlog_problems(root, every)
     found += _finding_problems(every["findings"])
     found += _freeze_problems(root)
+    found += _schema_problems(root)
     from kernel.build_docs import step_modules  # noqa: F401  (layer labels cover every node)
 
     order = yaml.safe_load((root / "kernel" / "layer_order.yaml").read_text(encoding="utf-8"))
@@ -479,6 +480,25 @@ def _finding_problems(findings):
                 found.append(f"{f['id']} ({legacy}): status {value(f, 'Status')} but the checklist's caught_by is "
                              f"{list(FINDINGS[legacy][2]) or 'empty'}")
     return found
+
+
+def _schema_problems(root):
+    """docs/rules.yaml and kernel/layer_order.yaml against their schemas (owner O65); the shared definitions' copies."""
+    import json
+
+    from kernel.canonical import ContractError
+    from kernel.shared_schemas import problems as shared_problems
+    from validators.schema_validator import validate_schema
+
+    found = []
+    for data, schema in (("docs/rules.yaml", "schemas/rules.schema.json"),
+                         ("kernel/layer_order.yaml", "schemas/layer_order.schema.json")):
+        try:
+            validate_schema(yaml.safe_load((root / data).read_text(encoding="utf-8")),
+                            json.loads((root / schema).read_text(encoding="utf-8")))
+        except ContractError as error:
+            found.append(f"{data} does not match {schema}: {error}")
+    return found + shared_problems(root)
 
 
 def _freeze_problems(root):

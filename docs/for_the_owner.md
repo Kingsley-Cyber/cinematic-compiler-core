@@ -37,6 +37,7 @@ done only when every row that applies passes. Claude never renders; you render, 
 - F-055 (low): M6 tools are undefined
 - F-057 (low): The kernel rule 'substitution log reveals' reads against O48's staging
 - F-059 (low): Reference-fight deviations from its own data await review
+- F-060 (low): What is a motif?
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 <!-- END GENERATED: owner_rulings -->
 

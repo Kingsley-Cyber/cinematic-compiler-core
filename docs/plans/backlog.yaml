@@ -72,9 +72,9 @@ items:
      plan: PLAN-005, depends_on: [], findings: [], codes: []}
   - {id: D-02, title: "Docs plane: canonical and control docs, AGENTS.md, verify.sh, Makefile, hook, freeze", status: done, step: docs,
      plan: PLAN-005, depends_on: [D-01], findings: [], codes: []}
-  - {id: D-03, title: "Docs plane: seven schemas (O65)", status: next, step: docs, plan: PLAN-005,
-     depends_on: [D-02], findings: [], codes: []}
-  - {id: D-04, title: "Docs plane: pinned pyproject and uv.lock, Dockerfile", status: ready,
+  - {id: D-03, title: "Docs plane: seven schemas (O65)", status: done, step: docs, plan: PLAN-005,
+     depends_on: [D-02], findings: [F-060], codes: []}
+  - {id: D-04, title: "Docs plane: pinned pyproject and uv.lock, Dockerfile", status: next,
      step: docs, plan: PLAN-005, depends_on: [D-02], findings: [], codes: []}
   - {id: D-05, title: "Docs plane: six GitHub workflows (verify, golden, schemas, tests, docs, nightly)",
      status: ready, step: docs, plan: PLAN-005, depends_on: [D-02], findings: [], codes: []}

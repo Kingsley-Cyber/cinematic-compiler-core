@@ -60,15 +60,7 @@
             }
           },
           "rot": {
-            "type": "array",
-            "minItems": 3,
-            "maxItems": 3,
-            "items": {
-              "type": "number",
-              "minimum": -1080,
-              "maximum": 1080
-            },
-            "description": "Root Euler degrees [X, Y, Z], intrinsic XYZ, right-handed; continuous per entity (never wrapped)."
+            "$ref": "#/$defs/EulerXYZ"
           },
           "quat": {
             "type": "array",
@@ -99,20 +91,10 @@
             "additionalProperties": false
           },
           "turn": {
-            "enum": [
-              "none",
-              "flip",
-              "spin",
-              "cartwheel"
-            ]
+            "$ref": "#/$defs/Turn"
           },
           "axis_declaration": {
-            "enum": [
-              "none",
-              "X",
-              "Y",
-              "Z"
-            ]
+            "$ref": "#/$defs/AxisDeclaration"
           },
           "heading_basis": {
             "enum": [
@@ -162,20 +144,10 @@
             "const": "follows"
           },
           "turn": {
-            "enum": [
-              "none",
-              "flip",
-              "spin",
-              "cartwheel"
-            ]
+            "$ref": "#/$defs/Turn"
           },
           "axis_declaration": {
-            "enum": [
-              "none",
-              "X",
-              "Y",
-              "Z"
-            ]
+            "$ref": "#/$defs/AxisDeclaration"
           },
           "euler_delta": {
             "type": "array",
@@ -237,6 +209,35 @@
           }
         }
       }
+    }
+  },
+  "$defs": {
+    "EulerXYZ": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "number",
+        "minimum": -1080,
+        "maximum": 1080
+      },
+      "description": "Root Euler degrees [X, Y, Z], intrinsic XYZ, right-handed; continuous per entity (never wrapped)."
+    },
+    "Turn": {
+      "enum": [
+        "none",
+        "flip",
+        "spin",
+        "cartwheel"
+      ]
+    },
+    "AxisDeclaration": {
+      "enum": [
+        "none",
+        "X",
+        "Y",
+        "Z"
+      ]
     }
   }
 }

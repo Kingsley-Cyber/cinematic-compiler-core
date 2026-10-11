@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:rotation:1.0",
+  "title": "Rotation (shared definitions)",
+  "description": "The root rotation of a key pose: Euler degrees intrinsic XYZ, right-handed (Q6), the declared turn and its axis (flip about X, spin about Y, cartwheel about Z: Q5, O32). Shared by the S13 motion plan and the motion graph (owner O65); embedded where used by kernel/shared_schemas.py.",
+  "$defs": {
+    "EulerXYZ": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "number",
+        "minimum": -1080,
+        "maximum": 1080
+      },
+      "description": "Root Euler degrees [X, Y, Z], intrinsic XYZ, right-handed; continuous per entity (never wrapped)."
+    },
+    "Turn": {
+      "enum": [
+        "none",
+        "flip",
+        "spin",
+        "cartwheel"
+      ]
+    },
+    "AxisDeclaration": {
+      "enum": [
+        "none",
+        "X",
+        "Y",
+        "Z"
+      ]
+    },
+    "Rotation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rot",
+        "turn",
+        "axis_declaration"
+      ],
+      "properties": {
+        "rot": {
+          "$ref": "#/$defs/EulerXYZ"
+        },
+        "turn": {
+          "$ref": "#/$defs/Turn"
+        },
+        "axis_declaration": {
+          "$ref": "#/$defs/AxisDeclaration"
+        }
+      }
+    }
+  },
+  "$ref": "#/$defs/Rotation"
+}

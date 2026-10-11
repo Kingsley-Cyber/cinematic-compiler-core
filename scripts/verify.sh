@@ -11,6 +11,7 @@ for log in schemas library kernel docs; do
   $RUN python -m kernel.schema_log --log "$log" verify > /dev/null
 done
 $RUN python -m kernel.build_ir_schema --check
+$RUN python -m kernel.shared_schemas --check
 $RUN python -m kernel_extraction.control_inventory --check
 $RUN python -m compiler.examples
 $RUN python -m kernel.build_docs --check
