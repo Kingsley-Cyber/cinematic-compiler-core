@@ -96,11 +96,11 @@ rows:
     class: mandatory
     step: all
     status: enforced
-    codes: [PROMPT_CONTRADICTION, SECTION_MISSING, SECTION_ORDER]
+    codes: [PROMPT_CONTRADICTION, SECTION_MISSING, SECTION_ORDER, DOUBLED_WORD]
     enforced_by:
       - {file: compiler/passes/derived/p17_render.py, check: check, code: RENDER_COVERAGE,
          test: tests/test_render.py::test_a_dropped_item_fails_coverage}
-    note: "M8.4: validators/prompt_validator.py reads each prose prompt whole and compares every section with the
+    note: "M8.12: a word written twice in a row is a reading defect (DOUBLED_WORD; F8's 'rope dart dart'). M8.4: validators/prompt_validator.py reads each prose prompt whole and compares every section with the
       envelope and with each other (staff contacts vs prop state machines, causal order vs times, FX vs negatives).
       All four examples pass with nothing set aside (owner O10: reference_fight's 'dust ring' fx now read 'dust
       burst', audit X29)."
@@ -608,11 +608,11 @@ rows:
     class: mandatory
     step: S07
     status: enforced
-    codes: [PROP_STATE_ORDER, PROMPT_CONTRADICTION]
+    codes: [PROP_STATE_ORDER, PROMPT_CONTRADICTION, PROP_LINE_MISSING]
     enforced_by:
       - {file: compiler/passes/mandatory/p07_contact.py, check: cross_check, code: HOLDER_CONTACT,
          test: tests/test_contact_pass.py::test_each_contact_rule_rejects_its_violation}
-    note: "Ownership history = S06 holder per beat + S07 possess/release contacts; a holder without an active
+    note: "M8.12: a line prop held by one body and fastened to another is written as one line between them ('8.00 one line from A L hand to B torso'; render finding F8, R3's rope pulled two ways). Ownership history = S06 holder per beat + S07 possess/release contacts; a holder without an active
       possess contact is refused. The render prints each prop's history (e.g. the kunai track)."
 
   - id: C8
@@ -931,11 +931,11 @@ rows:
     class: required
     step: S04
     status: enforced
-    codes: [PROP_TRACK_MISSING]
+    codes: [PROP_TRACK_MISSING, PROP_LINE_MISSING]
     enforced_by:
       - {file: planner/dynamic_beat_validator.py, check: _prop_kinematics, code: PROP_KINEMATICS,
          test: tests/test_dynamic_beat_validator.py::test_prop_kinematics_holds_free_flight_to_gravity}
-    note: "Owner O8: beats carry prop samples (p[x,y,z], v at throws, releases and deflects) like body positions. S04
+    note: "M8.12: where a sample sits on a line prop fastened to two bodies, the track says which body holds which end (PROP_LINE_MISSING, F8). Owner O8: beats carry prop samples (p[x,y,z], v at throws, releases and deflects) like body positions. S04
       refuses a held prop over 2 m from its holder, a free prop that leaves gravity between two samples by over
       0.25 m (anime may declare a float), and a resting prop that moves with no contact (reach and tolerance are
       Claude's interpretation). Both prompts print each sample ('2.50 p[...] v[...] moving up toward A');

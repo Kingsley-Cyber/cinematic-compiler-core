@@ -69,7 +69,33 @@ def _part(part):
 
 def _target(end, labels, names):
     who = labels.get(end["id"]) or names.get(end["id"]) or _words(end["id"])
-    return f"{who} {_words(end['part'])}" if end.get("part") else who
+    if not end.get("part"):
+        return who
+    part = _words(end["part"])
+    return f"{who} ({part} end)" if part in who.split() else f"{who} {part}"  # never "rope dart dart" (F8)
+
+
+def line_links(envelope, labels):
+    """{prop id: [(t, text)]}: a line prop (its card has a 'line' state) held by one body and touched or taken by another
+    is one line between them (M8.12, PROP_LINE_MISSING; owner render R3 pulled the rope two ways, audit X4)."""
+    out = {}
+    for prop in _items(envelope, "nodes", "props"):
+        if not any(s.get("property") == "line" for s in prop.get("states", [])):
+            continue
+        held, rows = {}, []
+        for c in sorted((c for c in _items(envelope, "nodes", "contacts") if c["b"]["kind"] == "prop"
+                         and c["b"]["id"] == prop["id"]), key=lambda c: (c["t"], c["id"])):
+            other = c["a"]["id"]
+            for holder, part in held.items():
+                if holder != other and c["contact_type"] in ("touch", "possess"):
+                    rows.append((c["t"], f"{_time(c['t'])} one line from {labels.get(holder, holder)} {_part(part)} to "
+                                         f"{labels.get(other, other)} {_part(c['body_part'])}"))
+            if c["contact_type"] == "possess":
+                held[other] = c["body_part"]
+            elif c["contact_type"] == "release":
+                held.pop(other, None)
+        out[prop["id"]] = rows
+    return out
 
 
 def _time(t):
@@ -422,6 +448,7 @@ def _props(envelope, labels):
     def who(value):
         return labels.get(value, _words(str(value)))
 
+    lines_of = line_links(envelope, labels)
     for prop in _items(envelope, "nodes", "props"):
         own = sorted((s for s in states if s["subject"] == {"kind": "prop", "id": prop["id"]}), key=lambda s: (s["t"], s["id"]))
         rows, previous = [], None
@@ -441,6 +468,7 @@ def _props(envelope, labels):
                 verb = {"possess": "held by", "release": "released by", "touch": "touched by", "support": "supports"}
                 rows.append((c["t"], f"{_time(c['t'])} {verb[c['contact_type']]} {who(c['a']['id'])} {_part(c['body_part'])}"))
         rows += prop_samples.rows(envelope, labels, prop["id"], compact=False)  # owner O8: p and v
+        rows += lines_of.get(prop["id"], [])
         count = prop.get("count", 1)
         lines = [" · ".join(text for _, text in sorted(rows, key=lambda r: r[0]))]
         lines.append((f"ONE {prop['name']} only" if count == 1 else f"Exactly {count} {prop['unit_name']} in the "

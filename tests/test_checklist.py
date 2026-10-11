@@ -121,4 +121,5 @@ def test_no_pass_is_contradicted_by_an_uncaught_render_finding(tables):
     assert fight["M1"][0] == checklist.OPEN and "F10" in fight["M1"][1]
     assert fight["C6"][0] == checklist.PASS  # F1, F2 are caught by CAUSE_REASON
     assert fight["C24"][0] == checklist.PASS  # F11 is caught by PROP_FIRST_STATE
+    assert fight["C7"][0] == fight["C31"][0] == checklist.PASS  # F8 is caught by PROP_LINE_MISSING
     assert fight["C23"][0] == checklist.OPEN and "F13" in fight["C23"][1]  # F9 caught, F13 (set drift) still open

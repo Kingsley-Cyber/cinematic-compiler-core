@@ -472,7 +472,8 @@ Spec and codes: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
   PASS into NOT CHECKED (done: reference fight prose 38 -> 26 PASS; F1, F2 caught by CAUSE_REASON); then one check per
   finding: [x] prop first states F11/F9 (PROP_FIRST_STATE at S06 and in the prompt; contacts may happen at a beat's
   start, beat_plan/temporal_graph 1.3; the reference fight's props start known: kunai held by B R hand, line coiled,
-  smoke sealed, shuriken holstered, log hidden until 4.00; SCENE prints them; C24 PASS again) · [ ] the rope line F8 ·
+  smoke sealed, shuriken holstered, log hidden until 4.00; SCENE prints them; C24 PASS again) · [x] the rope line F8
+  (PROP_LINE_MISSING: '8.00 one line from A L hand to B torso'; DOUBLED_WORD: 'rope dart (dart end)'; C7, C31 PASS) ·
   [ ] counts/start/set F12/F10/F13 · [ ] the DAG's X-audit F3 · [ ] density F6/F14.
 - [ ] M8.13+ the applicability stage (O16), then camera, body and props, density and format, the rest. Derivable: PROP_TWO_HOLDERS (C5, S07), POST_CONTACT_MISSING (C21),
   PHRASING_MISSING (LMA, T6), MOMENTUM_MISSING (C22, T10), CHAIN_ORDER (KC), ANTICIPATION_MISSING (KF),

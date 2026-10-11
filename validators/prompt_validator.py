@@ -42,6 +42,8 @@ CODES = {
     "PROP_INVARIANT_MISSING": "a prop lacks its never-duplicated / never-two-hands / never-lost line",
     "CUSTODY_RULE_MISSING": "a prop that never changes holder lacks its CUSTODY rule",
     "PROP_FIRST_STATE": "a prop's state at the start is unknown, or SCENE or its state machine does not say it",
+    "PROP_LINE_MISSING": "a line prop held by one body and fastened to another is not written as one line between them",
+    "DOUBLED_WORD": "a word is written twice in a row ('rope dart dart'): the reader cannot tell what is meant",
     "CAUSAL_LIST_MISSING": "a causal edge is absent from CAUSAL LINKS",
     "CAUSE_REASON": "a causal link's reason is not printed in CAUSAL LINKS, or does not state a cause",
     "REACTION_WITHOUT_CAUSE": "a hard effect's line comes before its cause's contact",
@@ -70,7 +72,8 @@ READS = {
     "IMPLIED_GUIDANCE_MISSING": (STAFF, "[IMPLIED GUIDANCE]"), "INTERPOLATION_UNDECLARED": ("[MOTION CONTROL]",),
     "CONVENTION_MISSING": ("[SPATIAL ANCHORS]",), "SPATIAL_ANCHOR_MISSING": ("[SPATIAL ANCHORS]",),
     "PROP_TRACK_MISSING": (PROPS,), "PROP_STATE_ORDER": (PROPS,), "PROP_INVARIANT_MISSING": (PROPS,),
-    "CUSTODY_RULE_MISSING": (PROPS,), "PROP_FIRST_STATE": ("[SCENE]", PROPS),
+    "CUSTODY_RULE_MISSING": (PROPS,), "PROP_FIRST_STATE": ("[SCENE]", PROPS), "PROP_LINE_MISSING": (PROPS,),
+    "DOUBLED_WORD": (),
     "CAUSAL_LIST_MISSING": ("[CAUSAL LINKS]",), "CAUSE_REASON": ("[CAUSAL LINKS]",),
     "REACTION_WITHOUT_CAUSE": (),
     "CAUSAL_RULE_MISSING": (RULES,), "CONSERVATION_RULE_MISSING": (RULES,), "SPAN_RULE_MISSING": (STAFF, RULES),
@@ -171,6 +174,7 @@ def check(text, envelope, mode):
     _scene_and_space(envelope, parts, labels, add)
     _props_and_causes(envelope, parts, labels, mode, add)
     _first_state_checks(envelope, parts, labels, add)
+    _line_and_word_checks(envelope, text, parts, labels, add)
     _rules_checks(envelope, parts, labels, mode, add)
     _camera_checks(envelope, parts, labels, add)
     return findings
@@ -337,6 +341,19 @@ def _scene_and_space(envelope, parts, labels, add):
     for label in sorted({labels[s["entity"]] for s in slots(envelope)}):
         if f"{label} starts at [" not in spatial:
             add("SPATIAL_ANCHOR_MISSING", f"{label}'s start position is missing")
+
+
+def _line_and_word_checks(envelope, text, parts, labels, add):
+    """PROP_LINE_MISSING and DOUBLED_WORD (M8.12; render finding F8: the wrapped rope dart never one line, 'rope dart
+    dart')."""
+    names = {p["id"]: p["name"] for p in envelope["nodes"]["props"]["items"]}
+    for prop_id, rows in prose_renderer.line_links(envelope, labels).items():
+        track = _body(parts, f"[PROP STATE MACHINE – {names[prop_id]}]")
+        for _, row in rows:
+            if row not in track:
+                add("PROP_LINE_MISSING", f"{names[prop_id]}: '{row}' is not in its state machine")
+    for match in re.finditer(r"\b([A-Za-z]{2,})\s+\1\b", text, re.I):
+        add("DOUBLED_WORD", f"'{match.group(0)}' near '{text[max(0, match.start() - 30):match.start()].strip()}'")
 
 
 def _first_state_checks(envelope, parts, labels, add):
