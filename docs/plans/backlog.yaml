@@ -1,0 +1,80 @@
+# The work queue across every plan, in build order (docs/plan.md is generated from this file and the code).
+# One item = one slice = one commit. `step` is the layer_order node that owns the fix (docs/layer_order.md), or
+# all, docs or owner. `codes` are the NEW prompt or step codes the slice adds; `make docs` marks each one found in the
+# compiler's Python with a check mark, and scripts/verify.sh refuses a `done` item whose codes are missing and a
+# not-done item whose codes are all present. Status: done | next (do this now) | ready (approved, waiting its turn) |
+# blocked (waiting on an owner ruling: `blocked_by`) | deferred.
+# Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
+# step that can see its data (plan v1.2); multi-step slices are split per step.
+version: 1
+items:
+  - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
+     plan: PLAN-003, commit: 7cc69f8, depends_on: [],
+     findings: [F-031, F-037, F-038, F-041, F-042, F-043, F-044, F-045],
+     codes: [BODY_HOLD_FRAMES, EMPTY_HAND_UNSTATED, ROTATION_ANGLES_PRINTED, HIDDEN_PHRASING]}
+  - {id: M9-02, title: "F5.3 strike, throw and release contacts at their pose (V1b's deflect wording)", status: next,
+     step: temporal, plan: PLAN-003, depends_on: [M9-01], findings: [F-021, F-031], codes: [IMPACT_CONTACT_SYNC]}
+  - {id: M9-03, title: "F6.3 grounded pickups at 7.5 and 8.0", status: ready, step: contact, plan: PLAN-003,
+     depends_on: [M9-02], findings: [F-022, F-007], codes: [AIRBORNE_PICKUP]}
+  - {id: M9-03a, title: "GAP-04/05 checkable constraint form and the per-layer constraint run", status: blocked,
+     blocked_by: "owner approval of the checkable constraint schema (O61)", step: constraint, plan: PLAN-004,
+     depends_on: [M9-02], findings: [F-019, F-020], codes: [CONSTRAINT_BEAT]}
+  - {id: M9-03b, title: "GAP-03 carried_by on prop nodes from the archetype card (O63)", status: ready, step: brief,
+     plan: PLAN-004, depends_on: [], findings: [F-018], codes: []}
+  - {id: M9-04, title: "F2.1/F2.2 prop physics contract, F6.1/F6.2 positions and rest", status: ready, step: render,
+     plan: PLAN-003, depends_on: [M9-02], findings: [], codes: [PROP_PHYSICS_UNSTATED, PROP_VISIBILITY]}
+  - {id: M9-05, title: "FR.1/FR.3 derived rotation path and rotation checks", status: ready, step: motion,
+     plan: PLAN-003, depends_on: [M9-01], findings: [F-028, F-058],
+     codes: [ROTATION_PATH_UNSTATED, ROTATION_INCOMPLETE, ROTATION_NOT_MONOTONIC, INVERSION_MISSING]}
+  - {id: M9-06, title: "F5.1/F5.2 world contact points by forward kinematics", status: ready, step: motion,
+     plan: PLAN-003, depends_on: [M9-02], findings: [F-025, F-028], codes: [CONTACT_WORLD]}
+  - {id: M9-07, title: "F4.1/F4.2 combat verbs on contacts and Laban wording", status: ready, step: temporal,
+     plan: PLAN-003, depends_on: [M9-02], findings: [F-025], codes: []}
+  - {id: M9-08, title: "O21 opening from above in V6's wording", status: ready, step: temporal, plan: PLAN-003,
+     depends_on: [M9-02], findings: [F-010, F-016], codes: [SURFACE_HEIGHT]}
+  - {id: M9-09a, title: "F9.1 Laban direction against path and form", status: ready, step: effort, plan: PLAN-003,
+     depends_on: [M9-05], findings: [F-029], codes: [SHAPE_DIRECTION]}
+  - {id: M9-09b, title: "F9.2 airborne momentum under gravity", status: ready, step: kinematic, plan: PLAN-003,
+     depends_on: [M9-05], findings: [F-026], codes: [MOMENTUM_MISSING]}
+  - {id: M9-09c, title: "FR.4 launch before an aerial turn", status: ready, step: motion, plan: PLAN-003,
+     depends_on: [M9-05], findings: [F-028, F-058], codes: [AIRBORNE_WITHOUT_LAUNCH]}
+  - {id: M9-10, title: "F4.3/F4.4 B's active keys and the idle-fighter check", status: ready, step: effort,
+     plan: PLAN-003, depends_on: [M9-09a], findings: [F-029], codes: [IDLE_FIGHTER]}
+  - {id: M9-11, title: "FR.7 genre cards; FR.6 money-shot frame parts; FR.2 limb paths", status: ready, step: render,
+     plan: PLAN-003, depends_on: [M9-05], findings: [], codes: [MONEY_SHOT]}
+  - {id: M9-12, title: "O19 D9-style staff lines", status: ready, step: render, plan: PLAN-003, depends_on: [M9-02],
+     findings: [F-006, F-031], codes: [LINE_DENSITY]}
+  - {id: M9-13, title: "C10 camera in V5's wording, FR.5 arc, F8.1-F8.3", status: ready, step: camera, plan: PLAN-003,
+     depends_on: [M9-02, M9-05], findings: [F-004, F-005, F-030, F-039], codes: [SHOT_TRANSITION_MISSING]}
+  - {id: M9-14a, title: "F4.5 timed kinetic chain", status: ready, step: motion, plan: PLAN-003, depends_on: [M9-06],
+     findings: [], codes: [CHAIN_ORDER]}
+  - {id: M9-14b, title: "F9.3 anticipation and F9.4 reaction", status: ready, step: effort, plan: PLAN-003,
+     depends_on: [M9-02], findings: [], codes: [ANTICIPATION_MISSING, POST_CONTACT_MISSING]}
+  - {id: M9-14c, title: "F4.6 the five callbacks (O50)", status: ready, step: temporal, plan: PLAN-003,
+     depends_on: [M9-03], findings: [], codes: []}
+  - {id: M9-15a, title: "F6.4 world state and character state (O28, O44)", status: ready, step: state,
+     plan: PLAN-003, depends_on: [M9-02], findings: [F-024], codes: []}
+  - {id: M9-15b, title: "FP.1 Bartenieff agrees with the pose", status: ready, step: motion, plan: PLAN-003,
+     depends_on: [M9-06], findings: [F-027], codes: [BARTENIEFF_POSE]}
+  - {id: M9-15c, title: "FP.4 causal delay printed", status: ready, step: causal, plan: PLAN-003,
+     depends_on: [M9-02], findings: [F-023], codes: []}
+  - {id: M9-15d, title: "FP.6 phrasing and drives (O43)", status: ready, step: effort, plan: PLAN-003,
+     depends_on: [M9-09a], findings: [F-029], codes: [PHRASING_MISSING]}
+  - {id: M9-15e, title: "Part 3 remainder: FP.2, FP.3, FP.5, FP.7-FP.12", status: ready, step: render,
+     plan: PLAN-003, depends_on: [M9-15b], findings: [], codes: []}
+  - {id: M9-16, title: "The applicability stage with the 16-layer coverage report (O16)", status: ready, step: all,
+     plan: PLAN-003, depends_on: [M9-15e], findings: [], codes: []}
+  - {id: M9-17, title: "One full-fight render by the owner, logged", status: ready, step: owner, plan: PLAN-003,
+     depends_on: [M9-16], findings: [], codes: []}
+  - {id: M7-01, title: "Post-generation validation (S18) after a model is chosen", status: deferred,
+     step: post_generation, plan: PLAN-001, depends_on: [], findings: [F-032], codes: []}
+  - {id: D-01, title: "Docs plane: five indexes, templates, one file per artifact", status: done, step: docs,
+     plan: PLAN-005, depends_on: [], findings: [], codes: []}
+  - {id: D-02, title: "Docs plane: canonical docs, AGENTS.md, scripts/verify.sh, freeze", status: next, step: docs,
+     plan: PLAN-005, depends_on: [D-01], findings: [], codes: []}
+  - {id: D-03, title: "Docs plane: seven schemas (O65)", status: ready, step: docs, plan: PLAN-005,
+     depends_on: [D-02], findings: [], codes: []}
+  - {id: D-04, title: "Docs plane: CODEOWNERS, CHANGELOG, ownership map, version bump rules", status: ready,
+     step: docs, plan: PLAN-005, depends_on: [D-02], findings: [], codes: []}
+  - {id: D-05, title: "Docs plane: pinned pyproject, uv.lock, Makefile, Dockerfile, pre-commit hook, workflows",
+     status: ready, step: docs, plan: PLAN-005, depends_on: [D-02], findings: [], codes: []}

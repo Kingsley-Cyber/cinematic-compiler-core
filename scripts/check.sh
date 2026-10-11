@@ -11,4 +11,5 @@ mise exec -- uv run --locked python -m kernel.build_ir_schema --check
 mise exec -- uv run --locked python -m kernel_extraction.control_inventory --check
 mise exec -- uv run --locked python -m compiler.examples
 mise exec -- uv run --locked python -m kernel.build_docs --check
+mise exec -- uv run --locked python -m kernel.docs_plane
 echo "check: PASS"

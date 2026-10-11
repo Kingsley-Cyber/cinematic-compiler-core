@@ -1,0 +1,100 @@
+# The canonical rulebook (docs/rules.md is generated from this file; owner O64). Frozen: a change needs a version bump
+# and a docs-log entry (python -m kernel.schema_log --log docs record docs/rules.yaml ...). Every rule cites accepted
+# decisions (docs/decisions/) and names what enforces it: a code or test the gate runs, or `protocol` (the agent
+# follows it; AGENTS.md). Validated by schemas/rules.schema.json.
+version: "1.0"
+rules:
+  # ---- agent: how every session works
+  - {id: R-01, scope: agent, source: [ADR-S6, ADR-O64],
+     rule: "Read AGENTS.md, the five indexes and docs/plan.md before touching anything; refresh and query graft and graphify before reading files.",
+     enforced_by: [protocol]}
+  - {id: R-02, scope: agent, source: [ADR-O5, ADR-O67],
+     rule: "One slice per commit, committed only when scripts/verify.sh exits 0.",
+     enforced_by: [.githooks/pre-commit, .github/workflows/verify.yml]}
+  - {id: R-03, scope: agent, source: [ADR-O5],
+     rule: "Nothing is pushed without the owner's word.",
+     enforced_by: [protocol]}
+  - {id: R-04, scope: agent, source: [ADR-S2, ADR-O40],
+     rule: "Claude never renders and never calls a paid model API; authored steps are written in-session from a sealed packet.",
+     enforced_by: [protocol, compiler/authoring.py packet hash check]}
+  - {id: R-05, scope: agent, source: [ADR-S4],
+     rule: "Predict the outcome before each check and report whether it held.",
+     enforced_by: [protocol]}
+  - {id: R-06, scope: agent, source: [ADR-S4, ADR-O64],
+     rule: "Ask the owner only where the DAG, these rules or the decisions are silent or contradict; write the question as a finding (type question) and wait instead of guessing.",
+     enforced_by: [protocol]}
+  - {id: R-07, scope: agent, source: [ADR-S1, ADR-O64],
+     rule: "Log every schema, library card, kernel file and frozen doc change in its hash log; a frozen doc change also bumps its docs-version.",
+     enforced_by: [kernel.schema_log verify (schemas, library, kernel, docs)]}
+  - {id: R-08, scope: agent, source: [ADR-O39, ADR-O26],
+     rule: "Never edit authored data silently: scripts derive and refuse; a content change is an owner-decided, recorded deviation.",
+     enforced_by: [compiler/rebind.py packet hashes, tests/test_reference_fight_golden.py]}
+  - {id: R-09, scope: agent, source: [ADR-O4, ADR-O59, ADR-S1],
+     rule: "Never edit kernel/layer_order.yaml or the golden by hand: a change needs an accepted ADR, its log entry and a version bump; examples are rewritten only by python -m compiler.examples --write.",
+     enforced_by: [kernel.schema_log verify (kernel), python -m compiler.examples (byte check)]}
+  - {id: R-10, scope: agent, source: [ADR-O61, ADR-O4],
+     rule: "Place every check at the first step that can see its data (docs/layer_order.md); a fix lives in the layer that owns the data.",
+     enforced_by: [protocol, validators/layer_dependency_validator.py WRITE_SCOPE]}
+  - {id: R-11, scope: agent, source: [ADR-O46],
+     rule: "Test the uncertain, build the certain: a change gets a render probe only if it is uncertain, visual and not verifiable without a render.",
+     enforced_by: [protocol]}
+  - {id: R-12, scope: agent, source: [ADR-O64],
+     rule: "Never paper over a failure: when the verifier fails, fix or revert, and record what went wrong in the plan or a finding.",
+     enforced_by: [protocol]}
+  # ---- compiler: what the code guarantees
+  - {id: R-13, scope: compiler, source: [ADR-O4, ADR-F2],
+     rule: "The step IDs carry the build order: a step reads only what earlier steps wrote and writes only its own paths.",
+     enforced_by: [validators/layer_dependency_validator.py check_layer_order, WRITE_SCOPE]}
+  - {id: R-14, scope: compiler, source: [ADR-O58, ADR-O57],
+     rule: "Every layer that produces state has nodes and edges; L0, L0.5, L6 and L6.5 have nodes only; L4d facial runs for live action and UGC only.",
+     enforced_by: [kernel/layer_order.yaml (reviewed; no code check yet)]}
+  - {id: R-15, scope: compiler, source: [ADR-O30],
+     rule: "Contracts are JSON Schemas checked by the in-repo validator; no Pydantic; pyyaml is the only runtime dependency.",
+     enforced_by: [tests/test_schemas.py, uv.lock]}
+  - {id: R-16, scope: compiler, source: [ADR-O49, ADR-B3],
+     rule: "The repo is model-agnostic and built for Seedance: no model cards; models arrive later as adapters (M7).",
+     enforced_by: [protocol]}
+  - {id: R-17, scope: compiler, source: [ADR-O59, ADR-O26],
+     rule: "Where the golden contradicts its own words or the DAG, fix the golden as a recorded deviation; where a new check fails on internally consistent golden content, fix the check.",
+     enforced_by: [tests/test_reference_fight_golden.py]}
+  - {id: R-18, scope: compiler, source: [ADR-O8, ADR-O12],
+     rule: "Bodies and props obey the scene's physics: no teleport above 25 m/s except a declared substitution; props follow gravity unless a float is declared (anime only).",
+     enforced_by: [TELEPORT, PROP_KINEMATICS]}
+  # ---- prompt: what every emitted prompt must say
+  - {id: R-19, scope: prompt, source: [ADR-S3, ADR-O13],
+     rule: "A prompt is a deliverable only when every applicable DAG-map row passes on it, shown per prompt; NOT CHECKED is not a pass.",
+     enforced_by: [validators/checklist.py, examples/*/checklist.md]}
+  - {id: R-20, scope: prompt, source: [ADR-S7, ADR-O19],
+     rule: "The format comes from the DAG's own instances (D6, D9, D10).",
+     enforced_by: [validators/prompt_validator.py SECTION_ORDER, STAFF_FORMAT]}
+  - {id: R-21, scope: prompt, source: [ADR-O47],
+     rule: "No hold, freeze or pause is written in frames; a hit gets a camera hold with the bodies in frame and no close-up.",
+     enforced_by: [BODY_HOLD_FRAMES]}
+  - {id: R-22, scope: prompt, source: [ADR-O47],
+     rule: "A hand that releases a prop and then holds nothing is said to be empty.",
+     enforced_by: [EMPTY_HAND_UNSTATED]}
+  - {id: R-23, scope: prompt, source: [ADR-O47, ADR-O33],
+     rule: "A turn is named once by axis, plane and count, with takeoff and landing; no angles at times, no rates, no angles on the lines inside it.",
+     enforced_by: [ROTATION_ANGLES_PRINTED, TURN_LABEL]}
+  - {id: R-24, scope: prompt, source: [ADR-O48],
+     rule: "No prop is called hidden or not visible; an object the scene needs later stands in the scene from the start and the prompt says where.",
+     enforced_by: [HIDDEN_PHRASING]}
+  - {id: R-25, scope: prompt, source: [ADR-O15],
+     rule: "Every causal link prints a reason that states a cause.",
+     enforced_by: [CAUSE_REASON]}
+  - {id: R-26, scope: prompt, source: [ADR-O17],
+     rule: "Every stated count agrees with the scene.",
+     enforced_by: [COUNT_CONTRADICTION]}
+  - {id: R-27, scope: prompt, source: [ADR-O22],
+     rule: "Effort actions stay Laban (punch = thrust); combat verbs go on contacts.",
+     enforced_by: [EFFORT_VOCABULARY, "planned: backlog M9-07"]}
+  # ---- owner: what only the owner does
+  - {id: R-28, scope: owner, source: [ADR-O64, ADR-O67],
+     rule: "Only the owner accepts a decision; an agent proposal not objected to is recorded as owner_default.",
+     enforced_by: [docs/decisions/ Decided By field]}
+  - {id: R-29, scope: owner, source: [ADR-S5, ADR-O56],
+     rule: "Only the owner renders and gives render verdicts; verdicts are logged word for word, Claude's frame notes apart.",
+     enforced_by: [docs/renders/ Owner Verdict field]}
+  - {id: R-30, scope: owner, source: [ADR-O5, ADR-S1],
+     rule: "Only the owner approves a push, a card leaving draft and a change to the layer order or the golden.",
+     enforced_by: [protocol, .github/CODEOWNERS]}

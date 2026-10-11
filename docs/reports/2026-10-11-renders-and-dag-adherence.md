@@ -1,5 +1,7 @@
 # Findings — 2026-10-11: five renders, DAG adherence, and what to fix
 
+> Report of 2026-10-11, moved from docs/findings/ (owner O64). Its findings F1-F15 are now docs/findings/F-001 to F-015 ([index](../index/findings.md)); this report keeps the method and the evidence.
+
 Repo HEAD `ebb0cd3` (local). GitHub `main` is at `cda5ffe` (M8.4); everything from M8.5 on is local and unpushed.
 Owner renders are the only render evidence; Claude never renders. Details of each render:
 [docs/render_log.md](../render_log.md). The DAG: [docs/sources/knowledge_dag_v1.md](../sources/knowledge_dag_v1.md);

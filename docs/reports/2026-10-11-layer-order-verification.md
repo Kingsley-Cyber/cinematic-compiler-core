@@ -1,5 +1,7 @@
 # Layer order: verification, gaps, impact, cascade, plan map, simulation (2026-10-11)
 
+> Report of 2026-10-11, moved from docs/findings/ (owner O64). GAP-01 to GAP-19 are now docs/findings/F-016 to F-034 ([index](../index/findings.md)); this report keeps the impact, cascade and simulation.
+
 The owner gave a corrected layer order (L0 → L6.5) and asked whether it was ingested as a trickle-down dependency.
 Everything below was checked against `kernel/layer_order.yaml` (version 1.7), the passes and the validators on disk at
 `8125483` (pushed). Rule: verify, then gap, then impact; never paper over.

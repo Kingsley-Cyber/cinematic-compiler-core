@@ -1,7 +1,31 @@
+# PLAN-003 — M9: the owner's cinematic_beat_v2 plan, deconflicted
+
+<!-- docs-version: 1.0 -->
+
+## Status
+in progress
+
+## Owner
+Kingsley (owner); Claude executes
+
+## Created
+2026-10-11
+
+## Updated
+2026-10-11
+
+## Intent
+Every fix from the owner's three-part plan, mapped onto the repo's layers with files, gaps, checks and a build order (section 9); the probe results set the printed wording (O46-O49).
+
+## Critical Path
+The slices of this plan in [docs/plan.md](../plan.md) (from docs/plans/backlog.yaml).
+
+---
+
 # Deconfliction: the owner's cinematic_beat_v2 plan (parts 1-3) against the repo (2026-10-11)
 
 Status: **FINAL, v1.2 (2026-10-11).** v1.2: each check placed at the first step that can see its data (layer-order
-verification, `docs/findings/2026-10-11-layer-order-verification.md`): FP.1, FR.4 and F4.5's check at S13, F4.4, F9.3
+verification, `docs/reports/2026-10-11-layer-order-verification.md`): FP.1, FR.4 and F4.5's check at S13, F4.4, F9.3
 and F9.4 at S15, FP.12 at S16; V6 rendered (R19), its wording is the opening's target. v1.1: Every recommendation accepted (O22-O44); the probe results amend the printed
 wording (O47, O48); the repo stays model-agnostic, built for Seedance with no model cards, adapters later (O49). Open:
 nothing. Q-G is answered (O50: five callbacks), probe V6 was rendered by the owner before the opening slice (O51; R19), and

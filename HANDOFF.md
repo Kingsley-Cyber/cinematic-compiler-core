@@ -7,7 +7,7 @@ Remote: github.com/Kingsley-Cyber/cinematic-compiler-core (public, MIT); push on
 ## Bootstrap after compaction (read this first)
 - **Start with [docs/handoff/NEXT_SESSION.md](docs/handoff/NEXT_SESSION.md)**: the steering prompt for the next phase
   (the owner's own plan, deconflicted against this repo), the exact state, the incomplete work with its resume steps,
-  and the deconfliction protocol. Evidence: [docs/findings/2026-10-11-renders-and-dag-adherence.md](docs/findings/2026-10-11-renders-and-dag-adherence.md).
+  and the deconfliction protocol. Evidence: [docs/reports/2026-10-11-renders-and-dag-adherence.md](docs/reports/2026-10-11-renders-and-dag-adherence.md).
 - **Mission:** every prompt the compiler emits must provably adhere to the owner's knowledge DAG
   (`docs/sources/knowledge_dag_v1.md`, mapped in `kernel/knowledge_map.yaml`), row by row, as a checklist
   (`python -m validators.checklist`, `examples/<name>/checklist.md`). A green test is not adherence; a PASS a render

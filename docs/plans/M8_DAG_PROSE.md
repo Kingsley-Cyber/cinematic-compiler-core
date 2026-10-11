@@ -1,3 +1,27 @@
+# PLAN-002 — M8: structured-prose prompts and DAG conformance
+
+<!-- docs-version: 1.0 -->
+
+## Status
+applied
+
+## Owner
+Kingsley (owner); Claude executes
+
+## Created
+2026-10-11
+
+## Updated
+2026-10-11
+
+## Intent
+Compile the owner's knowledge DAG's Master Template as structured prose in four movement modes beside LBN-2.4, and check every prompt against the DAG map row by row (M8.0-M8.12).
+
+## Critical Path
+The slices of this plan in [docs/plan.md](../plan.md) (from docs/plans/backlog.yaml).
+
+---
+
 # M8 — structured-prose prompts from the knowledge DAG, and DAG conformance
 
 Spec for milestone M8 in [MASTER_PLAN.md](MASTER_PLAN.md). Source of the rules: the frozen DAG

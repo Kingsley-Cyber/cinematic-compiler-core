@@ -1,7 +1,7 @@
 # Next session — start here
 
 Written 2026-10-11 (end of session), before a compaction. Read after the bootstrap block in
-[HANDOFF.md](../../HANDOFF.md). Evidence: [the findings](../findings/2026-10-11-renders-and-dag-adherence.md),
+[HANDOFF.md](../../HANDOFF.md). Evidence: [the findings](../reports/2026-10-11-renders-and-dag-adherence.md),
 [the render log](../render_log.md). Decisions: [MASTER_PLAN](../plans/MASTER_PLAN.md) (O1-O21).
 
 ## The steering prompt (the owner pastes this)
@@ -22,7 +22,7 @@ with two or three breaks plus a should-not-fire run over every prompt, fix conte
 O22-O44 say so, re-bind, rewrite the examples, keep render.txt byte-identical unless the slice is meant to change it,
 rewrite the checklists, report the rows that went from NOT CHECKED to PASS. Never edit authored data silently (O39).
 F4.6 uses O50's five callbacks; the opening slice uses V6's wording (R19, O51). Place every check at the first step
-that can see its data (`docs/findings/2026-10-11-layer-order-verification.md`; plan v1.2). Log the owner's probe renders against the probe sha256 values. No
+that can see its data (`docs/reports/2026-10-11-layer-order-verification.md`; plan v1.2). Log the owner's probe renders against the probe sha256 values. No
 renders by Claude, no paid API, no push without the owner.
 ```
 

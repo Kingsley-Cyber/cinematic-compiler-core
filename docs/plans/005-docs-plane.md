@@ -1,0 +1,49 @@
+# PLAN-005 — The docs plane
+
+<!-- docs-version: 1.0 -->
+
+## Status
+in progress
+
+## Owner
+Kingsley (owner); Claude executes
+
+## Created
+2026-10-11
+
+## Updated
+2026-10-11
+
+## Intent
+Make the repo carry its own memory: AGENTS.md is the operating manual, five indexes map every plan, finding,
+decision, session and render (one file each), the canonical docs (layer order, rules, plan) are generated from the
+code and data so they cannot drift, docs/for_the_owner.md explains everything in plain English, and one gate
+(scripts/verify.sh) refuses drift on every commit, in CI and nightly (owner O64-O67).
+
+## Gaps
+| Gap | Layer | Severity | Status | Fix |
+|-----|-------|----------|--------|-----|
+| D-01 | docs | high | done | five indexes, templates, one file per artifact (migration) |
+| D-02 | docs | high | open | layer_order.md, rules, plan.md, for_the_owner.md, how_to_refactor.md, AGENTS.md, verify.sh, freeze |
+| D-03 | docs | medium | open | seven schemas (O65) |
+| D-04 | docs | medium | open | CODEOWNERS, CHANGELOG, ownership map, version bump rules |
+| D-05 | docs | medium | open | pinned pyproject, uv.lock, Makefile, Dockerfile, pre-commit hook, six workflows |
+
+## Dependencies
+- None: it documents and gates what exists.
+
+## Owner Rulings Needed
+- None open (O64-O67).
+
+## Critical Path
+1. D-01 indexes and migration.
+2. D-02 canonical docs, AGENTS.md and the gate.
+3. D-03 schemas.
+4. D-04 control.
+5. D-05 repeatability and CI.
+
+## Verification
+- `scripts/verify.sh` (docs plane check included) before every commit.
+
+## Changelog
+- 2026-10-11 — created (O64-O67).

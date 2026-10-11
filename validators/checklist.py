@@ -40,7 +40,7 @@ PROMPTS = (("LBN", "render.txt", "euler_heavy"), ("Pure", "prose_pure_staff.txt"
            ("Euler", "prose_euler_heavy.txt", "euler_heavy"))
 LBN_EXEMPT = {"ROOT_EXACT_PRESENT": "owner O3 keeps 'root exact' in LBN-2.4"}
 MESSAGE_CHARS = 120
-FINDINGS_DOC = "docs/findings/2026-10-11-renders-and-dag-adherence.md"
+FINDINGS_DOC = "docs/reports/2026-10-11-renders-and-dag-adherence.md"
 RENDERED = ("reference_fight",)
 EVERY = ("reference_fight", "live_action_standoff", "wizard_vs_acrobat", "ugc_glasses_demo")
 # The findings doc, section 3: per finding, the examples it holds for (renders R1-R5 were all of the reference fight; F1

@@ -1,3 +1,27 @@
+# PLAN-001 — Master plan: milestones M1-M9
+
+<!-- docs-version: 1.0 -->
+
+## Status
+in progress
+
+## Owner
+Kingsley (owner); Claude executes
+
+## Created
+2026-10-10
+
+## Updated
+2026-10-11
+
+## Intent
+One plan for the compiler: every step S01-S18 and milestone from the skeleton to M9, ticked as its tests pass. Decisions are in docs/decisions/ (moved from this file's tables, O64); the build order across plans is docs/plan.md.
+
+## Critical Path
+The slices of this plan in [docs/plan.md](../plan.md) (from docs/plans/backlog.yaml).
+
+---
+
 # cinematic-compiler — micro plan (remaining work)
 
 One plan. Tick a task when its test passes; when a whole step is done, move it to **Done** and strike it.
@@ -29,24 +53,7 @@ gates → the pass writes only its paths. A failed gate allows 2 re-authoring at
 
 ## Decided this round (owner, 2026-10-10)
 
-| # | Decision | Lands in |
-|---|---|---|
-| Q1 | `beat_constraint` is a registered edge group at S04 (beats → constraints) | M1.0.1, S04.6 |
-| Q2 | S04 root `pos` + `facing` are authoritative; S13 must reproduce them exactly or fail and replan | S04.1, S06.2, S13.3 |
-| Q3 | Contact type `possess` (catalog wording); `body_part` says how it is held | S07.1 |
-| Q4 | One `actor` per beat plus `participants` (catalog: "a timestamped event with an actor") | S04.1 |
-| Q6 | Euler **intrinsic XYZ, right-handed**: +X pitch forward (nose down), +Y yaw left, +Z roll clockwise (right shoulder down); rest = upright, facing +Z, up +Y; carried in `scene.ax.rotation_convention` | M1.0.4, S13 |
-| Q5 | Follows from Q6: flip about X (pitch), spin about Y (yaw), cartwheel about Z (roll) | S13.4 |
-| A1 | Quadrant is scene metadata: `scene.quadrant`, written by S05 (most-specific owner wins inside `/scene`) | M1.0.1–3, S05.3 |
-| A2 | Causal schema stays general; `scene.quadrant.linear: true` makes the validator reject out-degree > 1 | S05.2 |
-| A3 | Kernel split: `invariants.yaml` + `state_vocabulary.yaml`, each with a schema and kernel-log entries | M1.0.4 |
-| A6 | `nodes.render` is a projection group (`projection: true`); endpoint checks skip it | M1.0.1–3, S16.2 |
-| A7 | `provenance.kernel_hash` in every envelope; a stale example fails the gate | M1.0.5 |
-| A9 | M5 gets its own example (`examples/ugc_glasses_demo/`) | M5.E |
-| A10 | CLI and replan trigger move to M1.5; modality schemas move to M1.0 (S04 needs them) | M1.0.6, M1.5 |
-| B1 | **Genre** comes only from the query or `--genre`; missing → stop at S02 with "add --genre". **fps** = query/flag, else the genre schema's `default_fps`. **duration** = query/flag, else the beat plan's last beat end (S04 plans inside the genre's duration budget). Every scene value names its source; `default` marks a filled default | M1.0.3, M1.0.6, M1.0.7, S04 |
-| B2 | One compile = one clip. Envelope carries `scene.chained_from: null` and `provenance.chained_from_envelope_hash: null` now; chaining is built at M5.5 | M1.0.3, M5.5 |
-| B3 | S16 outputs the full LBN-2.x prompt, uncompressed, model-agnostic; owner invariant `no_render_compression` (coverage 100%). Compression and model-specific renderers only after a target model is chosen. No vector database: every lookup is by exact id | M1.0.8, S16 |
+Decisions Q1-Q6, A1-A10 and B1-B3 are one file each: [docs/decisions/](../decisions/) ([index](../index/decisions.md)), moved from this table on 2026-10-11 (owner O64).
 
 Notes on the decisions:
 - Q6 as written is right-handed with +X = the performer's left, which matches the earlier notation work and
@@ -68,12 +75,7 @@ Notes on the decisions:
 
 ### Face layer (owner, 2026-10-11)
 
-| # | Decision | Lands in |
-|---|---|---|
-| F1 | A facial step (FACS action units + valence/arousal) runs for `ugc_ad` and `live_action` only; anime waits for its own stylized expression vocabulary | M3.5 F.1 |
-| F2 | Renumber so the face is S14: effort S14→S15, camera S15→S16, render S16→S17, post-generation S17→S18 (step IDs carry order; no fractions) | M3.5 R |
-| F3 | Valence and arousal both on −1…1 (circumplex) | M3.5 F.4, F.6 |
-| F4 | The render describes faces in words only; AU codes and numbers stay in the envelope | M3.5 F.8 |
+Decisions F1-F4 are one file each in [docs/decisions/](../decisions/) ([index](../index/decisions.md)).
 
 Design calls from the concept review (agent, recorded for owner review):
 - The face reads head pose and gaze from motion, so it sits after S13 at band L4d (not a sibling of L4c).
@@ -93,78 +95,9 @@ The owner's DAG (`docs/sources/knowledge_dag_v1.md`, mapped in `kernel/knowledge
 workflow for writing the owner's prompts in structured prose: dependency chains plus graph QA/QC for the final
 outputs. Spec: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
 
-| # | Decision | Lands in |
-|---|---|---|
-| O1 | Keep LBN-2.4 unchanged and compile structured prose alongside it, composed as the DAG says | M8.2-M8.3 |
-| O2 | Compile all four movement modes (pure staff, Mixed, Upgraded Mixed, Euler-heavy); no per-scene choice | M8.2 |
-| O3 | Prose leaves out "root exact" and states "Laban support and contacts primary; Euler precision override"; LBN-2.4 keeps the kernel rule | M8.2 |
-| O4 | The repo layer order stands (effort after motion); the prose is built from the atoms the graphs hold | M8.0 map |
-| O5 | One local commit per slice when the gate passes; no push without the owner | all |
-| O6 | A conformance test checks the final prompts against every mandatory and required map row by semantic codes | M8.4 |
+Decisions O1-O67 are one file each in [docs/decisions/](../decisions/) ([index](../index/decisions.md)), moved from this table on 2026-10-11 (owner O64).
 
-| O7 | Knee sign follows Q6 geometry: knee flexion = +X (0..135), elbow flexion = -X; the reference fight's golden negative knees are normalised to +|X| (recorded deviation) | M8.6 |
-| O8 | Prop positions and velocities are authored on S04 beats (like body positions); S06 carries them; PROP_KINEMATICS holds v to positions and gravity unless the genre block declares a float | M8.8 |
-| O9 | LBN-2.4 actor rows become named fields {t, label, pos, rot, joints, desc} (all values kept) | M8.5 |
-| O10 | The golden (reference fight) passes conformance with nothing set aside: its fx 'dust ring' become 'dust burst' (the kernel negative 'no ring' stays), knees as O7, prop p/v consistent with gravity | M8.6-M8.9 |
-| O11 | Joint limits: the owner's human ROM table (cited AAOS / Kendall / Norkin & Levangie) mapped onto the kernel joints; anime may exceed by up to +30 degrees for shoulder, hip, knee, spine and neck | M8.6 |
-| O12 | Teleport: a body faster than 25 m/s between keys is a teleport, refused unless its beat is a declared substitution (decoy revealed, the body reappears at a declared position) | M8.7 |
-| O13 | The five prompts per example (LBN-2.4 and the four prose modes) are fragments of one complete prompt: one content set in the DAG's template (C19), the mode as a setting (Euler blocks filled or left empty, DAG §2.14), detail adaptive (C2). The checklist judges all five and their union (Any) | M8.10 |
-| O14 | Not applicable only for T3 and T4 (superseded by T5 in the DAG) and C26's 14 unnamed states; T5 is checked on the prompt (section order, precedence; build order per O4); menus count only where selected: V4/V5 by the request, C14-C17 by mode, C11 by genre | M8.10 |
-| O15 | Keep the printed reasons: one 'Why each link holds:' line per causal link under the DAG's chain (CAUSE_REASON) | M8.11 |
-| O16 | Build an applicability stage (planned, after the hardening): from what S01/S02 parse (genre, performers, props, abilities), decide which DAG rows apply and what each demands, make the V4/V5 menu choice, and list the questions the prompt leaves open before anything is authored. It never rewrites the owner's words | M8.13+ |
-| O17 | The reference fight's query counts five props (adds the substitution log): 'TWO fighters, FIVE props (...)'; every stated count must agree with the scene (COUNT_CONTRADICTION). Recorded deviation of reference item k_preface_03 | M8.12d |
-| O18 | Fix the golden's numbers to match its words (recorded deviations): A falls from above and lands with the feet on the pillar top (X7), the backflip pitches through 360 (X5), the cartwheel rolls (X6), A has no body or support while vanished 3.7-4.4 (X9), A lands beside the rope dart and the kunai before picking them up (X2/X3; answers Q5); a check for each | M8.12e+ |
-| O19 | Prose staff lines in the DAG's D9 style: only the limbs that matter (~120-200 characters), density adaptive (C2); LBN-2.4 keeps every number (answers Q4) | M8.12+ |
-| O20 | Render findings with no cause found in the prompt (F13 set drift, F14 late beats) keep their rows NOT CHECKED until a fixed-seed render repeats or clears them | M8.12 |
-| O21 | X7: the pillar keeps its 8 m top; A starts above the frame at root y=10 ('falling from y=10') and lands with the feet on the top at y=8 (root about 8.5) | M8.12h |
-| O22 | Effort action stays Laban (punch = thrust: strong, sudden, direct); combat verbs (deflect, parry, catch, redirect, trap, bind, disarm, throw, grapple) go on contacts as `verb`; the prose prints Laban actions as qualities (deconfliction Q-A) | M9 |
-| O23 | Strike, throw and release contacts happen at their key pose (`at: start`), so bow, impact frame and pose share one time (the deflect at 2.5); the golden's contact times become recorded deviations (deconfliction Q-B) | M9 |
-| O24 | World contact points are computed from the pose by forward kinematics (a segment-length card) and checked against the target, never authored (deconfliction Q-C) | M9 |
-| O25 | All 16 plan layers live in the graph; the prompt prints them selectively (strike and support-change lines), per DAG C2 and O19 (deconfliction Q-D) | M9 |
-| O26 | O7, O10, O17, O18 and O21 stand: where the golden contradicts its own words or the DAG it is fixed as a recorded deviation (deconfliction Q-E) | M9 |
-| O27 | B gets active keys in the reference fight (recorded deviations); IDLE_FIGHTER allows 0.8 s without an active key while the other fighter acts (deconfliction Q-F) | M9 |
-| O28 | World state uses the existing damage values first (pillar marked by shuriken and kunai, ground cracked at the crash); debris and embers later (deconfliction Q-H) | M9 |
-| O29 | Causes show only through existing FX and the printed reasons, never drawn arrows or markers (deconfliction Q-I) | M9 |
-| O30 | No Pydantic (JSON Schema contracts stay); the per-frame retry loop waits for M7 (deconfliction Q-J) | M9 |
-| O31 | Laban direction is checked against both the root's path and the body's form change (deconfliction Q-K) | M9 |
-| O32 | Axes stay the repo's: flip (somersault) about the lateral X axis, spin about Y, cartwheel about the sagittal Z axis (deconfliction Q-L) | M9 |
-| O33 | Rotation keyframes (quarter turns, inversion time, angular speed) are derived from the declared turn and printed, not authored (deconfliction Q-M) | M9 |
-| O34 | Anime bodies escape the airborne gravity check only where a hang or float is declared, as props do (O8) (deconfliction Q-N) | M9 |
-| O35 | Limb extension keeps O11 (anime +30 degrees per joint over the human table) (deconfliction Q-O) | M9 |
-| O36 | Camera arc = 0.5 × the rotation in anime, 0.1 × in live action (within 10 degrees), as camera-card values (deconfliction Q-P) | M9 |
-| O37 | Genre values go in the existing per-genre cards plus a new FX card per genre; realism = live_action (deconfliction Q-Q) | M9 |
-| O38 | A named flip completes its full turn inside the clip (the wizard's dodge_flip gets its landing key) (deconfliction Q-R) | M9 |
-| O39 | Scripts derive and refuse, never edit authored beats (resolve, integrate, apply become derivations and checks) (deconfliction Q-S) | M9 |
-| O40 | Rendering, render validation, retry and per-model hints wait for M7, after the owner picks the model and authorises API use (deconfliction Q-T) | M9 |
-| O41 | Sound waits until the model is chosen (deconfliction Q-U) | M9 |
-| O42 | Curve, secondary-motion and world-motion numbers stay in the graph; the prompt prints words (the DAG's implied-guidance format) (deconfliction Q-V) | M9 |
-| O43 | Phrasing uses impulsive, impactive, swing and sustained; drives derive from the latent Effort factor; 'remote' (a Laban state) is dropped (deconfliction Q-W) | M9 |
-| O44 | Character state adds wounds, costume damage and exhaustion as states; first use: B's shoulder wound at 9.00 (deconfliction Q-X) | M9 |
-| O45 | Render budget for M9: at most eight fight renders, one after each of these slices: F5.3 strike timing, F6.3 grounded pickups, F2/F6.1 prop physics and visibility, FR.1/FR.3 rotation path, F5.1/F5.2 world contact, O19 D9 lines, C10 camera, part 3 words. Fixed model, seed and length; each judged against its scorecard (docs/render_tests/m9_render_plan.md). Other slices ride along unisolated in the next render; no baseline render, no axis re-runs | M9 |
-| O46 | Test the uncertain, build the certain: a change gets a render only if it is uncertain, visual and not verifiable without a render; everything else is built and moved past. M9 gets six 5 s probes now (docs/render_tests/2026-10-11-m9-probes: V1 deflect on time, V2 hidden log and substitution, V3 one backflip, V4 apex hold, V5 hit held with both bodies, V6 opening from above) and one full-fight render after the build; no fixed seed (supersedes O45's eight) | M9 |
-| O47 | Probe results set the printed wording (per O46): the deflect follows V1b (empty hand after a release, one instant contact, no hold line); rotations print "ONE <turn> about the <axis> axis (<plane>)" with takeoff and landing, the quarter-turn angles staying in the graph (narrows O33); body holds are never printed in frames, camera holds on hits follow V5; hidden-prop staging waits for the owner (R12, R17 drew the log from the start) | M9 |
-| O48 | The substitution is staged with a wooden post already standing beside A from 0.00; A swaps places with it in the smoke (the model draws a later object from the start whatever the prompt says: R12, R17, R1-R5). The golden's 'log hidden until 3.7' becomes a recorded deviation; general rule: an object the scene needs later is placed in the scene from the start and the prompt says where | M9 |
-| O49 | The repo stays model-agnostic, built for Seedance: the probe wording rules (W1-W4) are renderer defaults with prompt checks, no model cards; other models come later as adapters (M7) | M9 |
-| O50 | Q-G callbacks in the reference fight (F4.6): 5.5 shuriken volley echoes the 2.0 kunai throw (escalation: three instead of one); 7.0 push off the pillar echoes the 1.6 kick off the pillar (variant: the pillar used again, now to attack); 7.5 rope dart thrown echoes the 3.0 rope dart taken in hand (variant; 'regrapple' = retaking the rope dart, fixing audit X4); 8.5 kunai drive echoes 2.0-2.5 (escalation: B's own kunai turned on B); 9.5 crouch over B echoes the 0.6 crouch on the pillar top (mirror) | M9 |
-| O51 | Probe V6 (the opening from above) is rendered by the owner before the opening slice; its result sets the opening's wording | M9 |
-| O52 | The other session's uncommitted work in the main folder (knowledge_dag.json builder, its check and test, one check.sh line) stays untouched; building continues in the worktree | M9 |
-| O53 | Q6: keep S16's 180-degree rule (PRESERVE_AXIS) across cuts; declared crossings and orbits inside a shot still allowed (the DAG's exclusion P3.2-6 is overridden by this decision) | M9 |
-| O54 | Q7: add FINAL's four negatives to the reference fight through its cards ('no floating limbs', 'no inverted gravity errors', 'no scarf physics errors', 'no scarf covering head or face'); FINAL saved verbatim as docs/sources/lbn-2.3-adv-final.json (evidence, not a golden) | M9 |
-| O55 | Q3: no causal reasons in LBN-2.4 render.txt; reasons stay in the prose (O1 keeps LBN's layout) | M9 |
-| O56 | Render-log verdicts for R6-R18 read 'owner asked for analysis'; Claude's frame notes are the reading, labelled as Claude's. Q8 closed: Seedance 2.0 Mini (from the file names), no fixed seed, 864x496, 24 fps, 5 s probes, 10 s fight renders | M9 |
-| O57 | Layer-order ruling 1: keep L4d facial (S14); it runs for live action and UGC only, anime skips it; the corrected list includes it | M9 |
-| O58 | Layer-order ruling 2: every layer that produces state has nodes and edges; terminal or pure-input layers (L0, L0.5, L6, L6.5) have nodes only (rule 10 restated; GAP-19 closed) | M9 |
-| O59 | Layer-order ruling 3: O26 wins over rule 9. When the golden contradicts its own words or the DAG, fix the golden; when a new check fails on golden content that is internally consistent, fix the check | M9 |
-| O60 | GAP-02: intent is a document with no edges, by design. GAP-17 (post-generation) stays deferred to M7. GAP-18 closed by O57, GAP-19 by O58 | M9 |
-| O61 | Critical path approved: W wording rules, then F5.3 strike timing, then F6.3 pickups; GAP-04/05 may run in parallel after F5.3 once the owner approves the checkable constraint schema | M9 |
-| O62 | New plan items approved: GAP-03 equipment edges at L0.5; GAP-04 checkable constraint form at L1.5; GAP-05 the declared validators run after every layer that declares them | M9 |
-| O63 | GAP-03 ruling: each prop node carries `carried_by` (from the archetype card's equipment) written at L0.5; no edge group at L0.5, so O58 holds | M9 |
-| O64 | Docs plane: AGENTS.md operating manual, five indexes (plans, findings, decisions, sessions, renders), one file per artifact with a template; the combined files are split (decisions O1-O67, renders R1-R19, findings F1-F15 and GAP-01-19), multi-item audits stay as reports | Docs plane |
-| O65 | Docs-plane schemas: layer_order and rules new; beat, contact and rotation extracted as shared files the graph schemas reference (no duplicate contracts); genre_profile and motif as logged drafts | Docs plane |
-| O66 | The W wording slice (W1-W4, O48's post, O54's negatives) is approved and committed before the docs plane | M9 |
-| O67 | Docs-plane defaults proposed by Claude and not objected to: scripts/verify.sh is the single gate (scripts/check.sh calls it); the indexes are generated from the artifact files' headers; workflows are built locally and pushed only on the owner's word | Docs plane |
-
-Still open: P3.2-6 PRESERVE_AXIS (S16's 180-degree rule) — the owner's call.
+P3.2-6 PRESERVE_AXIS (S16's 180-degree rule) is settled: the rule stays (ADR-O53).
 
 ---
 
