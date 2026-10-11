@@ -64,30 +64,30 @@ FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship |
 
 [IMPLIED GUIDANCE]
 - Between lines every performer keeps the declared Effort below, preserves momentum and a clear weight transfer, and travels through space between positions.
-- A 0.00–1.10: maintain light weight, sudden time, indirect space, free flow (flick); shape sinking, shape flow; near reach.
-- A 1.10–2.00: maintain strong weight, sudden time, direct space, free flow (punch); shape advancing, directional spoke; mid reach.
-- A 2.00–3.00: maintain strong weight, sudden time, direct space, bound flow (punch); shape sinking, directional spoke; far reach.
+- A 0.00–1.10: maintain light weight, sudden time, indirect space, free flow (flick quality); shape sinking, shape flow; near reach.
+- A 1.10–2.00: maintain strong weight, sudden time, direct space, free flow (thrust quality); shape advancing, directional spoke; mid reach.
+- A 2.00–3.00: maintain strong weight, sudden time, direct space, bound flow (thrust quality); shape sinking, directional spoke; far reach.
 - A 3.00–3.70: maintain sustained time, direct space, bound flow; shape sinking, shape flow; near reach.
-- A 3.70–4.00: maintain light weight, sudden time, indirect space, free flow (flick); shape enclosing, shape flow; near reach.
-- A 4.40–5.10: maintain strong weight, sudden time, direct space, bound flow (punch); shape rising, directional spoke; near reach.
-- A 5.10–5.90: maintain strong weight, sudden time, indirect space, free flow (slash); shape retreating, carving; far reach.
-- A 5.90–6.30: maintain light weight, sustained time, direct space, free flow (glide); shape sinking, directional spoke; near reach.
-- A 6.30–6.60: maintain strong weight, sudden time, direct space, bound flow (punch); shape rising, directional arc; mid reach.
+- A 3.70–4.00: maintain light weight, sudden time, indirect space, free flow (flick quality); shape enclosing, shape flow; near reach.
+- A 4.40–5.10: maintain strong weight, sudden time, direct space, bound flow (thrust quality); shape rising, directional spoke; near reach.
+- A 5.10–5.90: maintain strong weight, sudden time, indirect space, free flow (slash quality); shape retreating, carving; far reach.
+- A 5.90–6.30: maintain light weight, sustained time, direct space, free flow (glide quality); shape sinking, directional spoke; near reach.
+- A 6.30–6.60: maintain strong weight, sudden time, direct space, bound flow (thrust quality); shape rising, directional arc; mid reach.
 - A 6.60–7.00: maintain sudden time, free flow; shape retreating, shape flow; far reach.
-- A 7.00–7.50: maintain strong weight, sudden time, direct space, free flow (punch); shape advancing, directional spoke; mid reach.
-- A 7.50–8.00: maintain light weight, sudden time, indirect space, free flow (flick); shape spreading, carving; far reach.
-- A 8.00–8.50: maintain strong weight, sustained time, direct space, bound flow (press); shape enclosing, directional spoke; far reach.
-- A 8.50–9.50: maintain strong weight, sudden time, direct space, bound flow (punch); shape sinking, directional spoke; near reach.
+- A 7.00–7.50: maintain strong weight, sudden time, direct space, free flow (thrust quality); shape advancing, directional spoke; mid reach.
+- A 7.50–8.00: maintain light weight, sudden time, indirect space, free flow (flick quality); shape spreading, carving; far reach.
+- A 8.00–8.50: maintain strong weight, sustained time, direct space, bound flow (press quality); shape enclosing, directional spoke; far reach.
+- A 8.50–9.50: maintain strong weight, sudden time, direct space, bound flow (thrust quality); shape sinking, directional spoke; near reach.
 - A 9.50–10.00: maintain sustained time, bound flow; shape sinking, shape flow; near reach.
-- B 0.00–2.00: maintain strong weight, sustained time, direct space, bound flow (press); shape advancing, shape flow; near reach.
-- B 2.00–2.50: maintain strong weight, sudden time, direct space, bound flow (punch); shape advancing, directional spoke; far reach.
+- B 0.00–2.00: maintain strong weight, sustained time, direct space, bound flow (press quality); shape advancing, shape flow; near reach.
+- B 2.00–2.50: maintain strong weight, sudden time, direct space, bound flow (thrust quality); shape advancing, directional spoke; far reach.
 - B 2.50–3.40: maintain strong weight, sustained time, bound flow; shape sinking, shape flow; near reach.
-- B 3.40–4.00: maintain strong weight, sudden time, direct space, bound flow (punch); shape rising, directional spoke; mid reach.
+- B 3.40–4.00: maintain strong weight, sudden time, direct space, bound flow (thrust quality); shape rising, directional spoke; mid reach.
 - B 4.00–4.70: maintain sudden time, indirect space, free flow; shape advancing, shape flow; mid reach.
 - B 4.70–5.50: maintain sudden time, free flow; shape advancing, shape flow; far reach.
-- B 5.50–5.90: maintain strong weight, sudden time, indirect space, bound flow (slash); shape spreading, carving; far reach.
-- B 5.90–6.60: maintain strong weight, sustained time, direct space, bound flow (press); shape sinking, shape flow; near reach.
-- B 6.60–7.00: maintain strong weight, sudden time, indirect space, bound flow (slash); shape enclosing, carving; mid reach.
+- B 5.50–5.90: maintain strong weight, sudden time, indirect space, bound flow (slash quality); shape spreading, carving; far reach.
+- B 5.90–6.60: maintain strong weight, sustained time, direct space, bound flow (press quality); shape sinking, shape flow; near reach.
+- B 6.60–7.00: maintain strong weight, sudden time, indirect space, bound flow (slash quality); shape enclosing, carving; mid reach.
 - B 7.50–9.00: maintain sudden time, bound flow; shape retreating, shape flow; mid reach.
 - B 9.00–10.00: maintain sustained time, free flow; shape sinking, shape flow; near reach.
 - A: secondary motion of the scarf and coat lags the body slightly.

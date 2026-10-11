@@ -98,9 +98,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 2.1; backlog 3.
-- Last session: S-013 (2026-10-11, applied): M9-07a: combat verbs on contacts (F4.1, O22).
-- Next slice: M9-07b F4.2 Laban actions printed as qualities (O22; split from M9-07) (step render).
+- Layer order 1.7; rules 2.2; backlog 3.
+- Last session: S-014 (2026-10-11, applied): M9-07b: Laban actions printed as qualities (F4.2, O22).
+- Next slice: M9-08 O21 opening from above in V6's wording (step temporal).
 - Open findings: 39; decisions: 99 (1 proposed).
 <!-- END GENERATED: state -->
 

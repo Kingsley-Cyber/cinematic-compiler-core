@@ -5,6 +5,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 
 ## Unreleased
 
+### Changed
+- Laban actions print as qualities (M9-07b, plan F4.2, owner O22, S-014): the implied guidance writes "(thrust
+  quality)" for punch and "(press quality)" and so on; S15's data and LBN-2.4 keep the Laban vocabulary.
+
 ### Added
 - Combat verbs on contacts (M9-07a, plan F4.1, owner O22, S-013): Contact gains `verb` (contact 1.1, beat 1.2,
   beat_plan and temporal_graph 1.5, contact_graph 1.1); a draft card `library/combat_verbs.yaml` says which contact

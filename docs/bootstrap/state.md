@@ -6,22 +6,22 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 2.1; backlog 3.
+Layer order 1.7; rules 2.2; backlog 3.
 
 ## Last sessions
 
-- S-011 (applied): M9-05: rotation runs checked at S13 and named in the prompt (FR.1, FR.3)
 - S-012 (not started): M9-06 parked: the root position and the contact tolerance are the owner's
 - S-013 (applied): M9-07a: combat verbs on contacts (F4.1, O22)
+- S-014 (applied): M9-07b: Laban actions printed as qualities (F4.2, O22)
 
 ## Next slices
 
-- M9-07b (next, step render): F4.2 Laban actions printed as qualities (O22; split from M9-07)
-- M9-08 (ready, step temporal): O21 opening from above in V6's wording
+- M9-08 (next, step temporal): O21 opening from above in V6's wording
 - M9-09a (ready, step effort): F9.1 Laban direction against path and form
 - M9-09b (ready, step kinematic): F9.2 airborne momentum under gravity
+- M9-09c (ready, step motion): FR.4 launch before an aerial turn
 
-M9: 8 of 29 slices done, 21 left (M9-03a blocked, M9-06 blocked; 1 the owner's own).
+M9: 9 of 29 slices done, 20 left (M9-03a blocked, M9-06 blocked; 1 the owner's own).
 
 ## Waiting on the owner
 
@@ -59,4 +59,4 @@ M9: 8 of 29 slices done, 21 left (M9-03a blocked, M9-06 blocked; 1 the owner's o
 
 ## Next free IDs
 
-Decision ADR-O73, finding F-067, session S-014, render R20.
+Decision ADR-O73, finding F-067, session S-015, render R20.

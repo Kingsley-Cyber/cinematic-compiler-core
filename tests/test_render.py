@@ -105,3 +105,10 @@ def test_impact_contact_sync_wants_one_time_per_hit():
     assert {f["message"] for f in p17_render.impact_sync(moved, impacts)} == {
         "Impact at 2.5 has no touch or support onset on that frame", "Strike b06_c1 at 3.0 lands on no impact frame"}
     assert [f["code"] for f in p17_render.impact_sync(envelope, impacts + [3.2])] == ["IMPACT_CONTACT_SYNC"]
+
+
+def test_laban_actions_print_as_qualities_and_punch_as_thrust():
+    """Owner O22, plan F4.2: the model reads 'punch' as a fist, so the prose prints Laban actions as qualities."""
+    from conftest import ROOT
+    text = (ROOT / "examples" / "reference_fight" / "prose_mixed.txt").read_text(encoding="utf-8")
+    assert "(thrust quality)" in text and "(punch)" not in text and "(press quality)" in text

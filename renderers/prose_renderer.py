@@ -59,6 +59,7 @@ TURN_TEXT = {
                                                    "tilts toward the performer's left")}),
 }
 FULL_TURN_SLACK = euler_solver.FULL_TURN_SLACK  # one number with S13's ROTATION_INCOMPLETE (interpretation)
+LABAN_WORDS = {"punch": "thrust"}  # owner O22, plan F4.2: an action prints as a quality; 'punch' reads as a fist
 GAP_S = 1.5  # C2: never more than 1.5 s without an explicit key or strong implied guidance
 EPSILON = 1e-6
 GENRE_BLOCKS = {"anime": "ANIME", "ugc_ad": "UGC", "live_action": "LIVE ACTION"}
@@ -525,7 +526,7 @@ def _implied(envelope, lines, labels):
     out = ["Between lines every performer keeps the declared Effort below, preserves momentum and a clear weight "
            "transfer, and travels through space between positions."]
     for e in sorted(_items(envelope, "nodes", "efforts"), key=lambda e: (labels[e["actor"]], e["t"])):
-        action = "" if e["effort_action"] == "none" else f" ({e['effort_action']})"
+        action = "" if e["effort_action"] == "none" else f" ({LABAN_WORDS.get(e['effort_action'], e['effort_action'])} quality)"
         out.append(f"{labels[e['actor']]} {_time(e['t'])}–{_time(e['end'])}: maintain {_active(e)}{action}; shape "
                    f"{e['shape']['quality']}, {_words(e['shape']['mode'])}; {e['space']['kinesphere']} reach.")
     for entity in _items(envelope, "nodes", "entities"):
