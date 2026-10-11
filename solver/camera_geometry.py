@@ -1,4 +1,4 @@
-"""Camera geometry for S15 (derived, never authored): aim point, camera position, axis side, frame size, screen x.
+"""Camera geometry for S16 (derived, never authored): aim point, camera position, axis side, frame size, screen x.
 
 Kernel frame: +Y up; +X is the performer's left when facing +Z. Azimuth is the world heading from the aim point to
 the camera (degrees from +Z toward +X); elevation lifts the camera above the aim point; roll (dutch) is ignored for

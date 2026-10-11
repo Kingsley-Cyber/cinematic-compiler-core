@@ -1,4 +1,4 @@
-"""S15 pass (band L5.5, authored): the shot list — 13 subdivisions + motivation per shot, checked and placed.
+"""S16 pass (band L5.5, authored): the shot list — 13 subdivisions + motivation per shot, checked and placed.
 
 The packet carries the scene facts a camera answers to (beats, positions, contact onsets, effort intervals, causal
 edges, surfaces) and the camera library (subdivision vocabulary, grammar, tempo, the genre's conventions, the
@@ -12,7 +12,7 @@ from planner.dependency_graph import ROOT, load
 from solver.camera_geometry import azimuth_change
 from validators import camera_validator
 
-NODE, STEP = "camera", "S15"
+NODE, STEP = "camera", "S16"
 PLAN_SCHEMA = ROOT / "schemas" / "graphs" / "camera_plan.schema.json"
 PROMPT = ROOT / "planner" / "prompts" / "camera_selection.txt"
 ONSETS = ("touch", "possess", "support")

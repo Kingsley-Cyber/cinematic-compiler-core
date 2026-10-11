@@ -1,4 +1,4 @@
-"""Camera library (S15): grammar, tempo, per-genre conventions and per-archetype idioms, each schema-checked."""
+"""Camera library (S16): grammar, tempo, per-genre conventions and per-archetype idioms, each schema-checked."""
 
 import json
 from functools import cache

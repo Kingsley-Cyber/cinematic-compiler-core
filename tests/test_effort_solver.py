@@ -1,4 +1,4 @@
-"""S14: coverage, consecutive intervals, closed LMA values, effort actions, effort-mode intensity, overlaps."""
+"""S15: coverage, consecutive intervals, closed LMA values, effort actions, effort-mode intensity, overlaps."""
 
 import copy
 import itertools
@@ -8,14 +8,14 @@ import pytest
 from conftest import ROOT
 from scenes import courtyard, courtyard_plans
 
-from compiler.passes.derived import p14_effort
+from compiler.passes.derived import p15_effort
 from kernel.canonical import canonical_json
 from validators.layer_dependency_validator import check_pass_writes
 from validators.schema_validator import validate_schema
 
 pytestmark = pytest.mark.unit
 PLAN = courtyard_plans()["effort"]
-PACKET = p14_effort.prepare(courtyard("motion"))
+PACKET = p15_effort.prepare(courtyard("motion"))
 GRAPH = json.loads((ROOT / "schemas" / "graphs" / "effort_graph.schema.json").read_text())
 
 
@@ -26,17 +26,17 @@ def interval(plan, actor, first):
 def codes(change):
     plan = copy.deepcopy(PLAN)
     change(plan)
-    return {f["code"] for f in p14_effort.check(plan, PACKET)}
+    return {f["code"] for f in p15_effort.check(plan, PACKET)}
 
 
 def test_courtyard_plan_passes():
-    assert p14_effort.check(PLAN, PACKET) == [] and PACKET["packet_sha256"] == PLAN["packet_sha256"]
+    assert p15_effort.check(PLAN, PACKET) == [] and PACKET["packet_sha256"] == PLAN["packet_sha256"]
 
 
 def test_eight_basic_effort_actions_cover_every_weight_time_space_combination():
     combos = set(itertools.product(("light", "strong"), ("sustained", "sudden"), ("indirect", "direct")))
-    assert set(p14_effort.ACTIONS) == combos and len(set(p14_effort.ACTIONS.values())) == 8
-    assert set(p14_effort.ACTIONS.values()) | {"none"} == set(PACKET["vocabulary"]["effort_action"]["values"])
+    assert set(p15_effort.ACTIONS) == combos and len(set(p15_effort.ACTIONS.values())) == 8
+    assert set(p15_effort.ACTIONS.values()) | {"none"} == set(PACKET["vocabulary"]["effort_action"]["values"])
 
 
 @pytest.mark.parametrize("code, change", [
@@ -59,7 +59,7 @@ def test_each_rule_rejects_its_violation(code, change):
 def test_derived_spans_overlaps_scope_and_determinism(order):
     before = courtyard("motion")
     snapshot = copy.deepcopy(before)
-    after, _ = p14_effort.run(before, PLAN, order=order)
+    after, _ = p15_effort.run(before, PLAN, order=order)
     assert before == snapshot and check_pass_writes(order, "effort", before, after) == []
     nodes, edges = after["nodes"]["efforts"]["items"], after["edges"]["effort"]["items"]
     validate_schema({"efforts": nodes, "effort": edges}, GRAPH)
@@ -70,4 +70,4 @@ def test_derived_spans_overlaps_scope_and_determinism(order):
         assert left["actor"] != right["actor"] and edge["start"] < edge["end"]
         assert (edge["start"], edge["end"]) == (max(left["t"], right["t"]), min(left["end"], right["end"]))
     assert ("acrobat@b06-b07", "wizard@b06") in {(e["from"], e["to"]) for e in edges}
-    assert canonical_json(after) == canonical_json(p14_effort.run(courtyard("motion"), PLAN, order=order)[0])
+    assert canonical_json(after) == canonical_json(p15_effort.run(courtyard("motion"), PLAN, order=order)[0])

@@ -1,7 +1,7 @@
 """Committed examples must recompile byte-for-byte and carry the current kernel hash (stale = gate failure).
 
 Layout: examples/<name>/request.json {"query", "genre", "duration_s", "until"}, optional plans/<node>.json
-(authored inputs), envelope.json (expected canonical output) and, once S16 has run, render.txt (the rendered prompt,
+(authored inputs), envelope.json (expected canonical output) and, once S17 has run, render.txt (the rendered prompt,
 exactly the render node's text, ready to paste into a video model).
 """
 

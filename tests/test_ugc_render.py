@@ -1,11 +1,11 @@
-"""M5.E: the UGC glasses demo compiles through S16; the ugc renderer carries every UGC graph item."""
+"""M5.E: the UGC glasses demo compiles through S17; the ugc renderer carries every UGC graph item."""
 
 import json
 
 import pytest
 from conftest import ROOT
 
-from compiler.passes.derived import p16_render
+from compiler.passes.derived import p17_render
 from renderers import anime_renderer, ugc_renderer
 from validators.envelope_validator import validate_envelope
 
@@ -25,7 +25,7 @@ def test_complete_valid_envelope_with_every_ugc_group():
 
 
 def test_ugc_block_replaces_the_anime_block():
-    assert p16_render.renderer(ENVELOPE) is ugc_renderer and "anime" not in SPEC and list(SPEC)[-2:] == ["ugc", "rules"]
+    assert p17_render.renderer(ENVELOPE) is ugc_renderer and "anime" not in SPEC and list(SPEC)[-2:] == ["ugc", "rules"]
     ugc = SPEC["ugc"]
     assert [row.split(" ")[2] for row in ugc["hand_roles"]] == ["unfold", "put_on"] and "no swap" in ugc["hand_roles"][0]
     assert ugc["affordances"][1].startswith("i02 put_on glasses: before temples:open|worn:no -> after temples:open|worn:yes")
@@ -40,4 +40,4 @@ def test_product_shot_and_jump_cut_follow_the_ugc_card():
 
 def test_anime_scenes_keep_the_anime_renderer():
     courtyard = json.loads((ROOT / "examples" / "wizard_vs_acrobat" / "envelope.json").read_text(encoding="utf-8"))
-    assert p16_render.renderer(courtyard) is anime_renderer
+    assert p17_render.renderer(courtyard) is anime_renderer

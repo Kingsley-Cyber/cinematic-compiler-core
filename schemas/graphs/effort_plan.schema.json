@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "urn:cinematic-compiler:schema:effort_plan:1.0",
-  "title": "S14 effort plan (authored in-session): LMA Effort, Shape and Space per interval",
+  "title": "S15 effort plan (authored in-session): LMA Effort, Shape and Space per interval",
   "description": "Intervals of consecutive slots of one entity; every slot is covered once. Values from library/laban_vocabulary.yaml; effort_mode is a library/effort_modes card.",
   "type": "object",
   "additionalProperties": false,
@@ -15,7 +15,7 @@
   ],
   "properties": {
     "step_id": {
-      "const": "S14"
+      "const": "S15"
     },
     "band": {
       "const": "L5"

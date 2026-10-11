@@ -1,4 +1,4 @@
-"""S16 pass (band L6, projection, authored frame parts): render the envelope into the full LBN-2.x layout.
+"""S17 pass (band L6, projection, authored frame parts): render the envelope into the full LBN-2.x layout.
 
 Authored: frame-part directives (impact, smear, speedlines, holds, fx, ink). Checks: impacts sit on contact onsets or
 impact shots; a smear names one subject and, for a body, one part (smear only on the declared limb or prop) and sits
@@ -12,7 +12,7 @@ from compiler.authoring import run_authored, seal
 from planner.dependency_graph import ROOT, load
 from renderers import anime_renderer, ugc_renderer
 
-NODE, STEP = "render", "S16"
+NODE, STEP = "render", "S17"
 RENDERERS = {"ugc_ad": ugc_renderer}  # every other genre uses the anime LBN layout
 PLAN_SCHEMA = ROOT / "schemas" / "graphs" / "frame_parts_plan.schema.json"
 PROMPT = ROOT / "planner" / "prompts" / "frame_parts.txt"

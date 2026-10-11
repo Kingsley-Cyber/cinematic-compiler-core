@@ -8,7 +8,7 @@ from conftest import ROOT
 from scenes import courtyard, courtyard_plans
 
 from compiler import pipeline
-from compiler.passes.derived import p15_camera
+from compiler.passes.derived import p16_camera
 from kernel.canonical import ContractError, content_hash
 from planner.beat_planner import prepare
 
@@ -97,12 +97,12 @@ def test_props_and_contacts_carry_so_a_carried_hold_can_be_released():
     ({"id": "c11", "side": "left", "azimuth_deg": 10.0, "scale": "wide", "target": "midpoint"}, None),
 ])
 def test_the_first_shot_cuts_from_the_previous_clip(last, code):
-    packet = {**p15_camera.prepare(courtyard("effort")), "chained_last_shot": last}
+    packet = {**p16_camera.prepare(courtyard("effort")), "chained_last_shot": last}
     plan = copy.deepcopy(courtyard_plans()["camera"])
-    found = {f["code"] for f in p15_camera.check(plan, packet)}
+    found = {f["code"] for f in p16_camera.check(plan, packet)}
     assert "CAMERA_TILING" in found  # a chained clip's first shot cannot open
     plan["shots"][0]["editing"]["transition_in"] = "cut"
-    found = {f["code"] for f in p15_camera.check(plan, packet)}
+    found = {f["code"] for f in p16_camera.check(plan, packet)}
     assert found == ({code} if code else set())
 
 

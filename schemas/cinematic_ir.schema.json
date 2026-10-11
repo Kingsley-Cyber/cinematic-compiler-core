@@ -73,13 +73,13 @@
           "$ref": "#/$defs/Group_S13"
         },
         "efforts": {
-          "$ref": "#/$defs/Group_S14"
-        },
-        "camera": {
           "$ref": "#/$defs/Group_S15"
         },
-        "render": {
+        "camera": {
           "$ref": "#/$defs/Group_S16"
+        },
+        "render": {
+          "$ref": "#/$defs/Group_S17"
         }
       },
       "required": [
@@ -139,10 +139,10 @@
           "$ref": "#/$defs/Group_S13"
         },
         "effort": {
-          "$ref": "#/$defs/Group_S14"
+          "$ref": "#/$defs/Group_S15"
         },
         "camera": {
-          "$ref": "#/$defs/Group_S15"
+          "$ref": "#/$defs/Group_S16"
         }
       },
       "required": [
@@ -641,7 +641,7 @@
         "items"
       ]
     },
-    "Group_S14": {
+    "Group_S15": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -649,7 +649,7 @@
           "const": "L5"
         },
         "step_id": {
-          "const": "S14"
+          "const": "S15"
         },
         "items": {
           "type": "array",
@@ -677,7 +677,7 @@
         "items"
       ]
     },
-    "Group_S15": {
+    "Group_S16": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -685,7 +685,7 @@
           "const": "L5.5"
         },
         "step_id": {
-          "const": "S15"
+          "const": "S16"
         },
         "items": {
           "type": "array",
@@ -713,7 +713,7 @@
         "items"
       ]
     },
-    "Group_S16": {
+    "Group_S17": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -721,7 +721,7 @@
           "const": "L6"
         },
         "step_id": {
-          "const": "S16"
+          "const": "S17"
         },
         "projection": {
           "const": true
@@ -753,7 +753,7 @@
         "items"
       ]
     },
-    "Group_S17": {
+    "Group_S18": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -761,7 +761,7 @@
           "const": "L6.5"
         },
         "step_id": {
-          "const": "S17"
+          "const": "S18"
         },
         "items": {
           "type": "array",
@@ -2154,7 +2154,7 @@
           "const": "LBN-2.4"
         },
         "layer_order_version": {
-          "const": "1.5"
+          "const": "1.6"
         },
         "kernel_hash": {
           "type": "string",
@@ -2229,10 +2229,10 @@
                   "S11",
                   "S12",
                   "S13",
-                  "S14",
                   "S15",
                   "S16",
-                  "S17"
+                  "S17",
+                  "S18"
                 ]
               },
               "packet_sha256": {
@@ -2305,10 +2305,10 @@
               "S11",
               "S12",
               "S13",
-              "S14",
               "S15",
               "S16",
-              "S17"
+              "S17",
+              "S18"
             ]
           }
         }

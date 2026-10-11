@@ -1,4 +1,4 @@
-# Camera subdivisions (S15, L5.5). Draft vocabulary by Claude for owner review.
+# Camera subdivisions (S16, L5.5). Draft vocabulary by Claude for owner review.
 # Closed value sets for the 13 subdivisions + motivation + intent. Numeric fields (angles, distance, focal length,
 # playback speed) and free-text fields are defined in schemas/camera.schema.json.
 vocabulary_id: camera_subdivisions

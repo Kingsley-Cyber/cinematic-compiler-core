@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "urn:cinematic-compiler:schema:render:1.0",
-  "title": "S16 render (projection group, no edges)",
+  "title": "S17 render (projection group, no edges)",
   "description": "The projected prompt: target layout, variant, the full uncompressed text and its sha256, item-level coverage (complete by owner invariant no_render_compression), actor labels and the frame-part directives.",
   "type": "object",
   "additionalProperties": false,

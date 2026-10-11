@@ -224,6 +224,9 @@ Design calls from the concept review (agent, recorded for owner review):
 
 ## M3 — feel and framing (S14–S15)
 
+_Renumbered by F2 (2026-10-11): effort is now S15, camera S16, render S17, post-generation S18. The task labels below keep the numbers they were built under._
+
+
 ### S14 effort (L5, authored)
 - [x] S14.1 `library/laban_vocabulary.yaml` (draft): Effort weight light|strong, time sustained|sudden, space
   indirect|direct, flow free|bound; 8 effort actions; Shape and Space qualities kept separate.
@@ -249,6 +252,9 @@ Design calls from the concept review (agent, recorded for owner review):
 ---
 
 ## M4 — render (S16) → done when the reference courtyard fight round-trips
+
+_Renumbered by F2 (2026-10-11): effort is now S15, camera S16, render S17, post-generation S18. The task labels below keep the numbers they were built under._
+
 
 - [x] S16.1 Draft cards for the reference fight: ninja A/B variants, kunai, rope_dart, smoke_pellet,
   shuriken_volley, substitution_log, wooden pillar world.
@@ -317,17 +323,20 @@ Order of work: R (renumber, no content change) → F.1–F.6 (the facial step) �
 F.9 (examples) → F.10 (docs). One commit per block; the gate passes after each.
 
 ### R — renumber (F2), one commit, zero content change
-- [ ] R.1 `kernel/layer_order.yaml` 1.6: effort S15, camera S16, render S17, post_generation S18;
+- [x] R.1 `kernel/layer_order.yaml` 1.6: effort S15, camera S16, render S17, post_generation S18;
   `kernel/version.py` LAYER_ORDER_VERSION; regenerate `schemas/cinematic_ir.schema.json` (group defs follow).
-- [ ] R.2 Rename modules `p14_effort`→`p15_effort`, `p15_camera`→`p16_camera`, `p16_render`→`p17_render`
+- [x] R.2 Rename modules `p14_effort`→`p15_effort`, `p15_camera`→`p16_camera`, `p16_render`→`p17_render`
   (pass-history names follow the step ID); update STEP constants, pipeline imports, tests.
-- [ ] R.3 Plan schemas: `effort_plan` step const S15, `camera_plan` S16, `frame_parts_plan` S17; step numbers in
+- [x] R.3 Plan schemas: `effort_plan` step const S15, `camera_plan` S16, `frame_parts_plan` S17; step numbers in
   schema titles/descriptions; log every changed schema (reason "F2 renumber").
-- [ ] R.4 Step numbers in prompts, code docstrings, library header comments (library log entries); provenance
+- [x] R.4 Step numbers in prompts, code docstrings, library header comments (library log entries); provenance
   `basis` texts and log reasons stay as written (historical records).
-- [ ] R.5 Examples: re-seal the S15–S17 packets of all three examples (the packet carries `step_id`), regenerate
+- [x] R.5 Examples: re-seal the S15–S17 packets of all three examples (the packet carries `step_id`), regenerate
   envelopes. **Proof of no content change: all three `render.txt` files are byte-identical before and after.**
-- [ ] R.6 `docs/layer_dependency.md` decision rows F1–F4; graph_types, HANDOFF, AGENTS, docs/reference regenerated.
+- [x] R.6 `docs/layer_dependency.md` decision rows F1–F4; graph_types, HANDOFF, AGENTS, docs/reference regenerated.
+  (Done: 37 files shifted S14–S17 → S15–S18 (task labels like S16.6 untouched), modules renamed p15_effort,
+  p16_camera, p17_render, layer order 1.6, owner invariant names S17, plans re-bound (only packet_sha256 and step_id
+  moved: S04 for the owner rule text, S15–S17 for the step ID); all three render.txt byte-identical.)
 
 ### S14 facial (L4d, authored; ugc_ad + live_action)
 - [ ] F.1 DAG 1.7: node `facial` {step_id S14, band L4d, when [ugc_ad, live_action], depends_on [brief, causal,

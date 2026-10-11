@@ -26,7 +26,7 @@
 # `edge_endpoints` names the node groups each edge group connects; `scene` stands for
 # the scene itself. Endpoints must be written at or before the edge group's step.
 
-version: "1.5"
+version: "1.6"
 kernel: LBN-2.4
 envelope: MGRAPH-1.1
 modalities: [live_action, anime, ugc_ad]
@@ -165,7 +165,7 @@ nodes:
     writes: [/nodes/motion, /edges/motion]
 
   - id: effort
-    step_id: S14
+    step_id: S15
     band: L5
     builds: Effort graph (LMA Effort factors plus Shape and Space)
     depends_on: [motion]
@@ -173,7 +173,7 @@ nodes:
     writes: [/nodes/efforts, /edges/effort]
 
   - id: camera
-    step_id: S15
+    step_id: S16
     band: L5.5
     builds: Camera graph (13 subdivisions + motivation)
     depends_on: [motion, effort]
@@ -181,7 +181,7 @@ nodes:
     writes: [/nodes/camera, /edges/camera]
 
   - id: render
-    step_id: S16
+    step_id: S17
     band: L6
     builds: Prose / render projection (full LBN layout, uncompressed)
     projection: true
@@ -191,7 +191,7 @@ nodes:
     writes: [/nodes/render]
 
   - id: post_generation
-    step_id: S17
+    step_id: S18
     band: L6.5
     builds: Post-generation report (only when a video model is available)
     depends_on: [render]

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "urn:cinematic-compiler:schema:frame_parts_plan:1.0",
-  "title": "S16 frame-part directives (authored in-session)",
+  "title": "S17 frame-part directives (authored in-session)",
   "description": "Anime frame parts the renderer projects next to the graphs: impact, smear (only on the declared limb or prop), speedlines, holds, fx, ink.",
   "type": "object",
   "additionalProperties": false,
@@ -15,7 +15,7 @@
   ],
   "properties": {
     "step_id": {
-      "const": "S16"
+      "const": "S17"
     },
     "band": {
       "const": "L6"

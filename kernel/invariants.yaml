@@ -1121,7 +1121,7 @@ items:
     - 31058
 - id: k_owner_00
   field: owner
-  text: S16 output is uncompressed. The full envelope is projected; nothing is summarized, truncated, or dropped.
+  text: S17 output is uncompressed. The full envelope is projected; nothing is summarized, truncated, or dropped.
   scope: kernel
   reason: Compression removes signal. A compressed prompt loses the constraints that make the output correct.
   reference_labels: []

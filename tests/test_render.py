@@ -1,4 +1,4 @@
-"""S16: the LBN-2.x projection is complete, deterministic and generated from the graphs; frame-part checks."""
+"""S17: the LBN-2.x projection is complete, deterministic and generated from the graphs; frame-part checks."""
 
 import copy
 import json
@@ -6,14 +6,14 @@ import json
 import pytest
 from scenes import courtyard, courtyard_plans
 
-from compiler.passes.derived import p16_render
+from compiler.passes.derived import p17_render
 from validators.envelope_validator import validate_envelope
 from validators.layer_dependency_validator import check_pass_writes
 
 pytestmark = pytest.mark.unit
 PLAN = courtyard_plans()["render"]
 BEFORE = courtyard("camera")
-PACKET = p16_render.prepare(BEFORE)
+PACKET = p17_render.prepare(BEFORE)
 RENDER = courtyard("render")["nodes"]["render"]["items"][0]
 SPEC = json.loads(RENDER["text"][RENDER["text"].index("{"):])
 
@@ -50,13 +50,13 @@ def test_kernel_controls_are_printed_or_regenerated_for_this_cast():
 
 
 def test_courtyard_frame_parts_pass():
-    assert p16_render.check(PLAN, PACKET, BEFORE) == [] and PACKET["packet_sha256"] == PLAN["packet_sha256"]
+    assert p17_render.check(PLAN, PACKET, BEFORE) == [] and PACKET["packet_sha256"] == PLAN["packet_sha256"]
 
 
 def codes(change, envelope=BEFORE):
     plan = copy.deepcopy(PLAN)
     change(plan["frame_parts"])
-    return {f["code"] for f in p16_render.check(plan, PACKET, envelope)}
+    return {f["code"] for f in p17_render.check(plan, PACKET, envelope)}
 
 
 @pytest.mark.parametrize("code, change", [
@@ -80,9 +80,9 @@ def test_a_dropped_item_fails_coverage():
 
 @pytest.mark.integration
 def test_render_scope_and_complete_envelope(order):
-    after, _ = p16_render.run(copy.deepcopy(BEFORE), PLAN, order=order)
+    after, _ = p17_render.run(copy.deepcopy(BEFORE), PLAN, order=order)
     assert check_pass_writes(order, "render", BEFORE, after) == []
     assert after["nodes"]["render"]["projection"] is True and "render" not in after["edges"]
     assert validate_envelope(after) == {"ok": True, "complete": True, "findings": []}
-    assert after["nodes"]["render"]["items"][0]["text"] == p16_render.run(copy.deepcopy(BEFORE), PLAN, order=order)[0][
+    assert after["nodes"]["render"]["items"][0]["text"] == p17_render.run(copy.deepcopy(BEFORE), PLAN, order=order)[0][
         "nodes"]["render"]["items"][0]["text"]

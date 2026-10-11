@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "urn:cinematic-compiler:schema:camera_graph:1.0",
-  "title": "S15 camera graph",
+  "title": "S16 camera graph",
   "description": "camera = shots with derived geometry (/nodes/camera); camera_edges = shot-to-shot cuts with axis and angle change (/edges/camera).",
   "type": "object",
   "additionalProperties": false,

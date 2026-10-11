@@ -4,7 +4,7 @@
 - end_states: each subject's conditions at the previous end (S06 starts from them);
 - active_contacts: possess/support contacts still open at the previous end (S07 starts with them);
 - open_beats: the previous clip's unresolved causes, non-hold beats that cause nothing (S05 records them);
-- last_shot: the previous clip's last camera shot, side and axis (S15 checks its first cut against it).
+- last_shot: the previous clip's last camera shot, side and axis (S16 checks its first cut against it).
 The previous envelope must be built with the current kernel and carry states and contacts.
 """
 

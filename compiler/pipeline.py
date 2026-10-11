@@ -27,15 +27,15 @@ from .passes.derived import (
     p11_kinematic,
     p12_bartenieff,
     p13_motion,
-    p14_effort,
-    p15_camera,
-    p16_render,
+    p15_effort,
+    p16_camera,
+    p17_render,
 )
 from .passes.mandatory import p01_intent, p02_brief, p03_constraint, p04_temporal, p05_causal, p06_state, p07_contact
 
 AUTHORED = {"temporal": p04_temporal, "hand_role": p08_hand_role, "kinematic": p11_kinematic,
-            "bartenieff": p12_bartenieff, "motion": p13_motion, "effort": p14_effort, "camera": p15_camera,
-            "render": p16_render}
+            "bartenieff": p12_bartenieff, "motion": p13_motion, "effort": p15_effort, "camera": p16_camera,
+            "render": p17_render}
 
 VALIDATION_KEYS = ("schema", "invariants", "layer_dependency", "camera_kinematic_coupling", "post_generation")
 UNSTAMPED = "unstamped"
@@ -121,7 +121,7 @@ def run(query, *, genre=None, duration_s=None, until="constraint", cards=None, p
         if node == "brief" and envelope["scene"]["chained_from"]:
             envelope["provenance"]["chained_from_envelope_hash"] = envelope["scene"]["chained_from"]["envelope_sha256"]
         if node == "camera":
-            envelope["validation"]["camera_kinematic_coupling"] = "pass"  # S15 refuses any coupling failure
+            envelope["validation"]["camera_kinematic_coupling"] = "pass"  # S16 refuses any coupling failure
         envelope["provenance"]["pass_history"].append({
             "pass": f"p{index[node]['step_id'][1:]}_{node}", "commit": commit,
             "duration_ms": round((time.perf_counter() - started) * 1000, 3) if stamp else 0})

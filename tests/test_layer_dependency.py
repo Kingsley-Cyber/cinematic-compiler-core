@@ -114,7 +114,8 @@ def test_a_pass_may_change_only_its_own_paths(order):
 
 def test_owner_decisions_2026_10_10_fix_the_exact_order(order):
     anime, ugc = build_order(order, "anime"), build_order(order, "ugc_ad")
-    steps = [f"S{n:02d}" for n in range(1, 18)]
+    # F2 (2026-10-11): S14 is the face (added in M3.5 F.1); effort, camera, render, post-generation are S15-S18.
+    steps = [f"S{n:02d}" for n in range(1, 19) if n != 14]
     assert [node(order, n)["step_id"] for n in ugc] == steps
     assert [node(order, n)["step_id"] for n in anime] == steps[:7] + steps[10:]
     assert [node(order, n)["band"] for n in ugc] == [

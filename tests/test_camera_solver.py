@@ -1,4 +1,4 @@
-"""S15: camera geometry, the shot-list checks (one violation per rule family), derived edges, scope."""
+"""S16: camera geometry, the shot-list checks (one violation per rule family), derived edges, scope."""
 
 import copy
 import json
@@ -7,7 +7,7 @@ import pytest
 from conftest import ROOT
 from scenes import courtyard, courtyard_plans
 
-from compiler.passes.derived import p15_camera
+from compiler.passes.derived import p16_camera
 from kernel.canonical import canonical_json
 from solver import camera_geometry as geometry
 from validators import camera_validator
@@ -16,7 +16,7 @@ from validators.schema_validator import validate_schema
 
 pytestmark = pytest.mark.unit
 PLAN = courtyard_plans()["camera"]
-PACKET = p15_camera.prepare(courtyard("effort"))
+PACKET = p16_camera.prepare(courtyard("effort"))
 GRAPH = json.loads((ROOT / "schemas" / "graphs" / "camera_graph.schema.json").read_text())
 
 
@@ -39,7 +39,7 @@ def test_plan_schema_embeds_the_camera_node_schema():
 
 
 def test_courtyard_shot_list_passes():
-    assert p15_camera.check(PLAN, PACKET) == [] and PACKET["packet_sha256"] == PLAN["packet_sha256"]
+    assert p16_camera.check(PLAN, PACKET) == [] and PACKET["packet_sha256"] == PLAN["packet_sha256"]
 
 
 def shot(plan, sid):
@@ -49,7 +49,7 @@ def shot(plan, sid):
 def codes(change, packet=PACKET):
     plan = copy.deepcopy(PLAN)
     change(plan)
-    return {f["code"] for f in p15_camera.check(plan, packet)}
+    return {f["code"] for f in p16_camera.check(plan, packet)}
 
 
 def unframe_acrobat(plan):
@@ -101,13 +101,13 @@ def test_genre_card_rules_apply_scene_wide():
 def test_derived_geometry_edges_scope_and_determinism(order):
     before = courtyard("effort")
     snapshot = copy.deepcopy(before)
-    after, _ = p15_camera.run(before, PLAN, order=order)
+    after, _ = p16_camera.run(before, PLAN, order=order)
     assert before == snapshot and check_pass_writes(order, "camera", before, after) == []
     nodes, edges = after["nodes"]["camera"]["items"], after["edges"]["camera"]["items"]
     validate_schema({"camera": nodes, "camera_edges": edges}, GRAPH)
     assert [n["id"] for n in nodes] == [f"c{i:02d}" for i in range(1, 12)] and len(edges) == len(nodes) - 1
     assert all(n["derived"]["side"] == n["position"]["side"] for n in nodes)
     assert {e["side_to"] for e in edges} == {"left", "on_axis"}
-    assert camera_validator.derive(nodes[0], p15_camera.prepare(before)) == nodes[0]["derived"]
+    assert camera_validator.derive(nodes[0], p16_camera.prepare(before)) == nodes[0]["derived"]
     assert courtyard("camera")["validation"]["camera_kinematic_coupling"] == "pass"
-    assert canonical_json(after) == canonical_json(p15_camera.run(courtyard("effort"), PLAN, order=order)[0])
+    assert canonical_json(after) == canonical_json(p16_camera.run(courtyard("effort"), PLAN, order=order)[0])

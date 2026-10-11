@@ -1,4 +1,4 @@
-S14 effort (L5). Group each entity's slots into intervals of consecutive slots that share one movement quality;
+S15 effort (L5). Group each entity's slots into intervals of consecutive slots that share one movement quality;
 every slot belongs to exactly one interval of its entity. For each interval write:
 - effort: the four LMA Effort factors, each one of its two elements or latent when the factor is not active
   (weight light/strong, time sustained/sudden, space indirect/direct, flow free/bound);

@@ -1,4 +1,4 @@
-"""S16 renderer: deterministic projection of a built envelope into the full LBN-2.x layout (anime target).
+"""S17 renderer: deterministic projection of a built envelope into the full LBN-2.x layout (anime target).
 
 Uncompressed and model-agnostic: no length budget, no model-specific formatting. Every node group item and every
 applied constraint is rendered (owner invariant no_render_compression) and `coverage` proves it item by item.

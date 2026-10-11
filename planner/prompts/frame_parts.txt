@@ -1,4 +1,4 @@
-S16 frame parts (L6). Write the anime frame-part directives the renderer projects next to the graphs:
+S17 frame parts (L6). Write the anime frame-part directives the renderer projects next to the graphs:
 - impact: times of hits; each is a contact onset time or the start of an impact shot.
 - smear: windows where a moving limb or prop smears; name the subject and, for a body, exactly one part (smear
   ONLY on the declared limb or prop, the body does not smear). A body smear needs a sudden effort interval of that

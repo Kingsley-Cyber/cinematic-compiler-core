@@ -1,4 +1,4 @@
-# Camera grammar (S15, L5.5). Draft rules by Claude for owner review: geometry constants, scale bands, what a
+# Camera grammar (S16, L5.5). Draft rules by Claude for owner review: geometry constants, scale bands, what a
 # scale shows, rig limits, the 30-degree cut rule and the owner's intent weighting as checkable requirements.
 grammar_id: camera_grammar
 version: 1

@@ -1,4 +1,4 @@
-S15 camera (L5.5). Write the shot list: shots in time order from 0 to the scene end, no gaps, each listing the
+S16 camera (L5.5). Write the shot list: shots in time order from 0 to the scene end, no gaps, each listing the
 beats it shows. Every shot fills all 13 subdivisions plus motivation; nothing is implicit.
 - Motivation: one of beat_type (a shown beat id), entity_focus (a framed entity), contact_event (a contact id in
   the shot), effort_quality (an effort interval overlapping the shot), spatial_geometry (a surface or prop),

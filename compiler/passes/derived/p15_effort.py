@@ -1,4 +1,4 @@
-"""S14 pass (band L5, authored): LMA Effort, Shape and Space per interval of one entity's consecutive slots.
+"""S15 pass (band L5, authored): LMA Effort, Shape and Space per interval of one entity's consecutive slots.
 
 Checks: an interval names slots its actor has, consecutive in time; every slot is covered exactly once; values come
 from library/laban_vocabulary.yaml; the effort action matches weight x time x space (Laban's eight basic effort
@@ -16,7 +16,7 @@ from planner.dependency_graph import ROOT, load
 from planner.scene_view import slots
 from validators.schema_validator import validate_schema
 
-NODE, STEP = "effort", "S14"
+NODE, STEP = "effort", "S15"
 PLAN_SCHEMA = ROOT / "schemas" / "graphs" / "effort_plan.schema.json"
 PROMPT = ROOT / "planner" / "prompts" / "laban_synthesis.txt"
 EPSILON = 1e-9

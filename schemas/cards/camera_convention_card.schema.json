@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "urn:cinematic-compiler:schema:camera_convention_card:1.0",
-  "title": "Camera convention card (S15, per genre)",
+  "title": "Camera convention card (S16, per genre)",
   "description": "What a genre's coverage allows; conventions are the ids a genre_convention motivation names.",
   "type": "object",
   "additionalProperties": false,

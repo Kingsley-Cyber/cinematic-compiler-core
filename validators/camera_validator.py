@@ -1,4 +1,4 @@
-"""S15 camera checks. Every rule reads the sealed packet (scene facts + library), never the envelope.
+"""S16 camera checks. Every rule reads the sealed packet (scene facts + library), never the envelope.
 
 - tiling: shots run in time order from 0 to the scene end with no gap or overlap; ids unique; the first shot opens,
   except in a chained clip (M5.5), where it cuts from the previous clip's last shot under the axis and jump-cut rules;
