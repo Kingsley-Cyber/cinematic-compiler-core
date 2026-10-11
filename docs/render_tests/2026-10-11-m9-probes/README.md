@@ -28,3 +28,33 @@ it is built. No fixed seed exists, so one render per probe; a borderline result 
 | O19 D9 lines, C10 camera as a whole, part 3 words (curves, materials, line of action) | visual and uncertain, but only judgeable on the whole fight: the one full-fight render after the build |
 
 Total: six 5 s probes now, one 10 s full-fight render at the end.
+
+## Results (R11-R15, 2026-10-11; Claude's frame notes, owner verdicts in the render log)
+
+| Probe | Render | Result | What the frames show |
+|---|---|---|---|
+| V1 deflect on time | R11 `…_12469_…` | FAIL | sole meets the kunai near 1.25 (6 frames early) and stays pressed against B's hand about 1 s; a kunai falls near 1.8-2.2 while B still holds another (two kunai) |
+| V2 hidden log, substitution | R12 `…_03930_…` | FAIL on the question | the log stands as a post from 0.00; smoke near 1.5 (asked 2.50); B's palm splinters the log; the log falls near 4.0-4.5; A reappears near 4.5 in front of B |
+| V3 one backflip | R13 `…_80206_…` | FAIL | two turns about the lateral axis (2.0-2.55, 2.55-3.1); launch 1 s late; landing near 3.1 (asked 1.80) |
+| V4 apex hold | R14 `…_02134_…` | FAIL | the inverted pose freezes about 0.85 s (≈21 frames, asked 3); landing near 2.5 (asked 1.93) |
+| V5 hit held with both bodies, crane | R15 `…_52436_…` | PASS | knee on B's lower back near 0.85; both bodies in frame (B's shoulder clipped at times); no knee close-up; brief pause on the hit; camera rises from about 2.0 to a high view; B stays down |
+| V6 opening from above | — | not rendered | — |
+
+What this settles (hypotheses, n = 1, no seed; they decide the printed wording, not the checks):
+- **P1 Holds in frames are stretched:** every frame-count hold so far became 0.85-1.75 s (R10, R11, R14).
+- **P2 Naming a hidden prop draws it:** "exists but is NOT visible before 2.50" put the log on screen from 0.00 (R12),
+  as R1-R5 drew the log early.
+- **P3 Words do not cap the rotation count:** quarter-turn angles and "exactly ONE" still gave two flips (R13; R8 and
+  R6 also over-rotated).
+- **P4 The camera wording works:** "hold with BOTH bodies in frame, no close-up, then crane up" rendered as written
+  (R15). C10's wording can follow V5.
+- **P5 A released prop needs an empty hand stated:** B was never told the hand is empty after the throw and held a
+  second kunai (R11).
+
+## Follow-up probes (one variable each where possible)
+
+| Probe | File | sha256 | Changes from | Question |
+|---|---|---|---|---|
+| V1b | `V1b_deflect_empty_hand.txt` | `c1f85e4600998f2960db92c2a2dcae71b6bc20242de91289e66ea1e0dfd62654` | V1: the hold line removed, B's empty hand stated | one kunai, and a tap instead of a press? |
+| V2b | `V2b_log_unmentioned.txt` | `c0b09df4c9ffd967ae3b81bcea5a74b97470e32ad7e82f2b291fc28412a386db` | V2: the log is not named anywhere before 2.50 | does silence keep it hidden? |
+| V3b | `V3b_backflip_plain.txt` | `7c07df8f54b6b8f843ed40e4906bb3e17bc83721a1d3cf4abfbaaaca0effbe45` | V3: the angle list and turn speed removed | does a plain "one backflip" give one flip? |

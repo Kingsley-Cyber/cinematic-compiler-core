@@ -1,0 +1,11 @@
+5s anime, 24fps. A lone ninja (dark coat, red scarf wrapped small at the neck) on flat stone ground.
+
+0.00-1.00 A stands, then crouches, loading the legs.
+1.00 TAKEOFF: both feet push off the ground.
+1.00-1.80 ONE backflip: a single somersault backward, about the side-to-side axis.
+1.80 LANDING: both feet touch down, knees bend to absorb.
+1.80-5.00 A holds the landing crouch, still.
+
+CAMERA: static side view, whole body in frame; no camera movement, no cut.
+RULES: one backflip only, then stand still.
+NEGATIVES: no second flip, no twist, no hanging in the air, no slow motion.
