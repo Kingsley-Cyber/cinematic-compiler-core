@@ -577,15 +577,19 @@ rows:
     anchor: "§2.2 L884; §2.3 L1258; §3.3 L380"
     class: mandatory
     step: S05
-    status: enforced
+    status: partial
     codes: [CAUSAL_LIST_MISSING]
+    gaps: [CAUSE_REASON]
     enforced_by:
       - {file: compiler/passes/mandatory/p05_causal.py, check: edges_and_findings, code: CAUSE_EFFECT,
          test: tests/test_causal_pass.py::test_each_causal_rule_rejects_its_violation}
       - {file: compiler/passes/mandatory/p05_causal.py, check: edges_and_findings, code: CAUSE_TIMING,
          test: tests/test_causal_pass.py::test_each_causal_rule_rejects_its_violation}
-    note: "Linear chains, timing, a hard cause's effect meeting a target requirement, no cycles. The list is not
-      rendered (V7)."
+    note: "S05 checks the structure (linear chains, timing, a hard cause's effect meeting a target requirement, no cycles)
+      and the prose lists every link, but nothing checks that a link gives a cause: reference_fight's 22 reasons are
+      placeholders ('<beat> leads straight into the next exchange', 19 soft) and live_action_standoff's too ('The
+      stand-off answers itself'), and neither prompt prints the reasons (audit X40). Owner renders R1-R4 show actions
+      without motivation (docs/render_log.md H5). Gap CAUSE_REASON."
 
   - id: C7
     name: Attachment graph
@@ -1204,8 +1208,9 @@ rows:
       - {file: docs/render_log.md}
     note: "docs/render_log.md records owner renders bound to prompt bytes: R1 prose_mixed 'hard to even tell whats
       happening' (13 cuts); R2 LBN-2.4 render.txt 'more cohesive story', weak hits, evades and rope swings 'legit'
-      (2 cuts); R3 prose_pure_staff 'to many inchoherent scenes', rope in both hands in two directions. Model, seed
-      and n not recorded, so no controlled comparison yet."
+      (2 cuts); R3 prose_pure_staff 'to many inchoherent scenes', rope in both hands in two directions; R4
+      prose_euler_heavy: substitution 'nothing warranted', rope scene 'didn't make sense'. Model, seed and n not
+      recorded, so no controlled comparison yet."
 
   # ---- P3.2 / P4.2: deliberately not added by the DAG ----
   - id: P3.2-1

@@ -9,6 +9,7 @@ detection > 0.3). n is per entry; no seeds were recorded, so nothing here is a c
 | R1 | 2026-10-11 | `examples/reference_fight/prose_mixed.txt` @ 2e08217, sha256 93d68469… | not stated (output 864x496, 24 fps, 10.08 s, with audio) | `R9rRYFe9JaUOvFF2P-SI6_video.mp4` | "hard to even tell whats happening" |
 | R2 | 2026-10-11 | `examples/reference_fight/render.txt` (LBN-2.4) @ 2e08217, sha256 20051754… | not stated (same output format as R1) | `CuwwcRGpWmGqJSf7YaVQn_video.mp4` | "more cohesive story, the hits coulve been better same with the knife kick being a key fraame but the evade of the attacks and the rope swings and dance was legit" |
 | R3 | 2026-10-11 | `examples/reference_fight/prose_pure_staff.txt` @ 2e08217, sha256 02d2d208… | not stated (same output format) | `1huuOJHSn0-UZ9zc_myu4_video.mp4` | "to many inchoherent scenes in this fight, and the rope was used in both hands but only 1 target. like in two directions like in 6-7sec" |
+| R4 | 2026-10-11 | `examples/reference_fight/prose_euler_heavy.txt` @ e500831, sha256 c6b45bf5… | not stated (same output format) | `-rqKOdMfebgEVfQ-ZFO2h_video.mp4` | "he substituted but nothing warranted this , and the last attachment scene with ropes didnt make much sense, im starting to see a theme? is their a causal graph?" |
 
 ## Claude's frame notes
 
@@ -35,6 +36,21 @@ from the ground with the right hand and pull B toward the pillar (audit X2/X3: g
 rope-dart track says "8.00 p[0.4, 1.3, 4] held by A" with the dart on B: nothing says it is one line from A's left
 hand to B.
 
+**R4 (prose, Euler-heavy).** 2 hard cuts. The foot deflect reads at last (1.5–2.0: A's sole meets the kunai with
+sparks, a close-up of foot and blade). A appears holding a kunai at 0.0 (the kunai is B's) and holds the rope dart in
+both hands at 2.5. The smoke burst comes as B charges (3.0) but nothing on screen threatens A first; the substitution
+looks unmotivated (owner). Knee impact (4.0), A going under and over B (4.5–5.0), shuriken passing over A (6.0), A
+thrown into the pillar (6.5) read. At 7.5–8.0 A stands on the ground far from the pillar pulling the rope while B flies
+sideways against the pillar: the pull has no visible purpose (owner: "didn't make much sense"). Kunai drive flash
+(8.5) and the end tableau read.
+
+**The causal graph behind R1-R4.** The reference fight's 22 causal links are placeholders written when it was built
+from the golden (2026-10-10, which has no causal graph): every reason reads "<beat> leads straight into the next
+exchange"; 19 soft, 3 hard: a timeline, not causes. live_action_standoff's reasons are also placeholders ("The
+stand-off answers itself"). And neither prompt prints the reasons: the prose CAUSAL LINKS line lists names and arrows
+only, LBN-2.4 has no causal list. The conformance check passed because CAUSAL_LIST_MISSING only asks that each link
+is listed, not that it gives a cause (the DAG's audit X40: temporal edges labelled causal).
+
 ## What the renders suggest (hypotheses, not proven)
 
 - H1 — Prose camera lines read as hard cuts. Both prompts carry the same 21-shot camera plan; the prose writes each
@@ -48,5 +64,7 @@ hand to B.
   airborne (rope to B, kunai from the ground), and a rope dart wrapped on B while "held by A" is never written as one
   line between them.
 - R1 and R2 start A on the pillar top; R3 starts A falling from above the frame, as asked.
+- H5 — No reasons reach the model (R4, and the theme across R1-R4). Substitution without a threat, a rope pull without
+  a purpose, a log present before it is needed: the prompts say what happens, never why.
 
 Next tests change one of these at a time, same model and seed.
