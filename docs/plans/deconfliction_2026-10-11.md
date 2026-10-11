@@ -1,8 +1,10 @@
 # Deconfliction: the owner's cinematic_beat_v2 plan (parts 1-3) against the repo (2026-10-11)
 
-Status: **FINAL, v1.1 (2026-10-11).** Every recommendation accepted (O22-O44); the probe results amend the printed
+Status: **FINAL, v1.2 (2026-10-11).** v1.2: each check placed at the first step that can see its data (layer-order
+verification, `docs/findings/2026-10-11-layer-order-verification.md`): FP.1, FR.4 and F4.5's check at S13, F4.4, F9.3
+and F9.4 at S15, FP.12 at S16; V6 rendered (R19), its wording is the opening's target. v1.1: Every recommendation accepted (O22-O44); the probe results amend the printed
 wording (O47, O48); the repo stays model-agnostic, built for Seedance with no model cards, adapters later (O49). Open:
-nothing. Q-G is answered (O50: five callbacks), probe V6 is rendered by the owner before the opening slice (O51), and
+nothing. Q-G is answered (O50: five callbacks), probe V6 was rendered by the owner before the opening slice (O51; R19), and
 Q3, Q6, Q7, Q8 are closed (O53-O56). The build order is in section 9. Repo at local `main` `7e962cc` (553 tests, 44 prompt
 codes, gate green). Every repo claim below was checked against the code on disk; `file:line` points at it.
 
@@ -372,14 +374,15 @@ prompt code with its break, or plan content recorded as a golden deviation. "Row
 - Why: content inside existing plans; no code.
 
 **F4.4 Idle-fighter check** · P2 · Depends on: Q-F
-- File/Module: `planner/dynamic_beat_validator.py` or S15 `p15_effort.check` (:68); prompt code.
+- File/Module: S15 `p15_effort.check` (:68), the first step that has effort actions (v1.2); prompt code.
 - Gap: nothing flags a fighter left without an active key while the other fights.
 - Enhancement: IDLE_FIGHTER: a fighter whose effort action is `none` and whose root and joints barely change for longer
   than an owner-set span while another fighter acts. Threshold is the owner's (Q-F).
 
 **F4.5 Timed kinetic chain** · P3 · Depends on: —
 - File/Module: S12 `p12_bartenieff.py` (:21 `follow_through`), schema `bartenieff_plan`; gap CHAIN_ORDER.
-- Enhancement: optional offsets per follow-through link (fractions of the beat); CHAIN_ORDER checks proximal to distal;
+- Enhancement: optional offsets per follow-through link (fractions of the beat), authored at S12; CHAIN_ORDER at S13
+  (it compares the offsets with the keys, which exist from S13; v1.2) checks proximal to distal;
   the staff prints "chain R foot 0.0 > R leg 0.1 > torso 0.2".
 
 **F4.6 Choreographic callbacks** · P3 · Depends on: Q-G
@@ -489,7 +492,7 @@ prompt code with its break, or plan content recorded as a golden deviation. "Row
   INVERSION_MISSING (a flip or cartwheel run that passes 180 has its inversion printed). AIRBORNE_WITHOUT_LAUNCH is FR.4.
 
 **FR.4 Launch before an aerial turn** · P2 · Depends on: —
-- File/Module: S11 `p11_kinematic.check` (:29) or S13.
+- File/Module: S13 `p13_motion.check`: turns are declared at S13, so S11 cannot see them (v1.2).
 - Enhancement: the graph twin of AIRBORNE_UNBOOKENDED: a flip or cartwheel key without support lies inside an airborne
   span that has a takeoff (support to none) and a landing or the clip's end state. The fight passes (takeoff after
   4.4, landing 5.9).
@@ -519,7 +522,7 @@ prompt code with its break, or plan content recorded as a golden deviation. "Row
 
 | Fix | File/Module | Current | Gap | Enhancement | Why | Priority | Depends on |
 |---|---|---|---|---|---|---|---|
-| FP.1 Bartenieff agrees with the pose | S12 check (`p12_bartenieff.py`) reading S13 keys | vocabulary + body-mode coherence | a claimed pattern the pose does not show | BARTENIEFF_POSE: body-half → one side leads the change, cross-lateral → a diagonal arm-leg pair moves together, head-tail → spine, neck and head engaged, upper-lower → arms and legs move together, breath → torso change with little limb change (interpretation, labelled) | uses existing S12 and S13 data | P2 | — |
+| FP.1 Bartenieff agrees with the pose | S13 check (`p13_motion.py`) reading S12 patterns (v1.2: S12 runs before the keys exist) | vocabulary + body-mode coherence | a claimed pattern the pose does not show | BARTENIEFF_POSE: body-half → one side leads the change, cross-lateral → a diagonal arm-leg pair moves together, head-tail → spine, neck and head engaged, upper-lower → arms and legs move together, breath → torso change with little limb change (interpretation, labelled) | uses existing S12 and S13 data | P2 | — |
 | FP.2 World motion as states | reference plans (smoke `dissipating`/`gone` times), world card ambient line in SCENE, impact fx on surfaces | smoke bursts, never shown dissipating | curves for smoke, sway, shake | print each persistent state's span ("smoke dissipating 4.50-6.00, gone from 6.00"); ambient words from the world card; reactive shake as an S17 fx at a surface impact | existing card states and fx channel | P3 | Q-V |
 | FP.3 Line tension | prose `line_links` (F8), rope states | wrapped/taut states | tension curve, anchor | "taut from 8.50, anchored at B torso, pulled by A L hand" from the line states and contacts; friction and restitution only as card values if asked | extends M8.12c | P3 | — |
 | FP.4 Causal delay | prose `_causal` | reasons printed | delay between cause and effect | "→ (+0.40 s)" from the beats and contact times; REACTION_WITHOUT_CAUSE already refuses a negative delay | derived | P2 | F5.3 |
@@ -530,7 +533,7 @@ prompt code with its break, or plan content recorded as a golden deviation. "Row
 | FP.9 Character state | `kernel/state_vocabulary.yaml` (logged), reference plans | condition only | wounds, costume damage, exhaustion | new actor properties set by effects (B's shoulder wound at 9.00), printed as lasting rules | existing state machine | P3 | Q-X |
 | FP.10 Scale and perspective | S16 shot text from `camera_geometry` | lens, position | scale anchors | print camera height and the frame's scale anchor (pillar 8 m) per shot; consistency checked with C10 | derived | P4 | camera slice |
 | FP.11 Line of action | S13-derived, strike lines | none | curve of the body | C, S, straight or spiral from the spine and lead limb angles | derived | P3 | — |
-| FP.12 Silhouette | FK (F5.1) + camera projection | none | readability | flag a strike whose striking limb overlaps the torso from the shot's view | derived | P4 | F5.1, camera slice |
+| FP.12 Silhouette | S16 check: FK (F5.1) + camera projection | none | readability | flag a strike whose striking limb overlaps the torso from the shot's view | derived | P4 | F5.1, camera slice |
 
 ### Cross-cutting validators (the plan's E2, E4)
 
@@ -549,10 +552,12 @@ prompt code with its break, or plan content recorded as a golden deviation. "Row
   lines.
 
 **F9.3 Anticipation (L3)** · P3 · Depends on: Q-H
+- File/Module: S15 `p15_effort.check` (reads S13 keys and S15 efforts; v1.2).
 - Enhancement: ANTICIPATION_MISSING: every strike has a preceding key or implied-guidance line with loading/coiled
   intent within a span (DAG K-Ant: "strong actions have clear preparation").
 
 **F9.4 Reaction (L13)** · P3 · Depends on: F5.3
+- File/Module: S15 `p15_effort.check` (reads S07 contacts, S11 cues, S13 keys; v1.2).
 - Enhancement: POST_CONTACT_MISSING: every strike's target has a key at or just after the contact with yielding /
   off-balance cues and a pose change; optional `reaction` words (deformation, head snap) printed from S11.
 
@@ -662,9 +667,10 @@ camera arc were not followed).
 5. FR.1/FR.3 rotation path and checks (as amended by W3).
 6. F5.1/F5.2 world contact points (CONTACT_WORLD).
 7. F4.1/F4.2 verbs and Laban wording.
-8. O21 opening (wording from the owner's V6 render, O51; SURFACE_HEIGHT).
-9. F9.1 Laban direction, F9.2 momentum, FR.4 launch.
-10. F4.3/F4.4 B's active keys (IDLE_FIGHTER).
+8. O21 opening (SURFACE_HEIGHT; wording from V6, which R19 kept A off the pillar at the start with; the arrival came
+   about 2.7 s late, like every aerial event).
+9. F9.1 Laban direction (S15), F9.2 momentum (S11), FR.4 launch (S13).
+10. F4.3/F4.4 B's active keys (IDLE_FIGHTER at S15).
 11. FR.7 genre cards; FR.6/FR.2 money-shot frame parts and limb paths (as amended by W1).
 12. O19 D9 lines (LINE_DENSITY).
 13. C10 camera in V5's wording, FR.5, F8.1-F8.3 (as amended by W1).

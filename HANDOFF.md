@@ -44,7 +44,9 @@ Remote: github.com/Kingsley-Cyber/cinematic-compiler-core (public, MIT); push on
   append-only and hash-chained. After DAG, schema, library or import changes run `python -m kernel.build_docs`.
 - **Never:** paid model API, renders (the owner renders), pushing without the owner, editing logged files without a
   log entry, a format the DAG does not show, a PASS a render contradicts.
-- **Waiting on the owner:** the V6 probe render (before the opening slice, O51) and the push. Q1-Q8 and Q-A-Q-X are all
+- **Waiting on the owner:** the push (local commits after `8125483`), and rulings on the layer-order verification's
+  two contradictions (rule 10 vs render/post-gen with no edges; rule 9 vs O26) and GAP-03/04/05 (new items). V6 is
+  rendered (R19). Q1-Q8 and Q-A-Q-X are all
   answered (O13-O56). Still open for review whenever convenient: `library/joint_limits.yaml`'s axis mapping, the 2 m reach
   and 0.25 m prop tolerance, the draft cards and the agent additions (below).
 

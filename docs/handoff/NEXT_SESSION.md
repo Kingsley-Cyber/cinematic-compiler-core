@@ -21,7 +21,8 @@ follows the probe's wording, and changes if the owner's render of that probe fai
 with two or three breaks plus a should-not-fire run over every prompt, fix content as a recorded golden deviation where
 O22-O44 say so, re-bind, rewrite the examples, keep render.txt byte-identical unless the slice is meant to change it,
 rewrite the checklists, report the rows that went from NOT CHECKED to PASS. Never edit authored data silently (O39).
-F4.6 uses O50's five callbacks; the opening slice waits for the owner's V6 render (O51). Log the owner's probe renders against the probe sha256 values. No
+F4.6 uses O50's five callbacks; the opening slice uses V6's wording (R19, O51). Place every check at the first step
+that can see its data (`docs/findings/2026-10-11-layer-order-verification.md`; plan v1.2). Log the owner's probe renders against the probe sha256 values. No
 renders by Claude, no paid API, no push without the owner.
 ```
 
