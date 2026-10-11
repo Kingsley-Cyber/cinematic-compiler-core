@@ -3,7 +3,7 @@
 8 s live-action scene, 24 fps, setting: castle.
 Cast: A = wizard: Tall robed figure; long sleeves and hem hide the legs; often carries a staff; Layered robe with wide sleeves; hood or hat optional. B = knight: Broad armored figure; helmet and shield change the outline; Plate or mail armor over padding; helmet; shield on one arm.
 Props: none.
-Frame: Y_up, A faces -Z, B faces +Z, ground y=0, Euler XYZ intrinsic right-handed degrees, +X performer's left.
+Render intent. Motion: measured, strong, heavy, sudden accelerations into the accents; readable at one shot every 2.0 s on average. Animation: live-action; spacing: 0 dense, 0 medium and 6 sparse gaps between lines; 0 smears on declared limbs or props, 0 impact frames. Choreography: every effect follows its cause along the causal links; final instruction: end on A wizard hand up, B knight brace.
 Euler degrees XYZ.
 Render spec exactly.
 
@@ -29,6 +29,54 @@ FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship |
 6.50 A: SUPPORT both feet place-mid [f:both] | L arm left-forward-low, lower arm folded 30, L leg place-low, lower leg straight | R arm forward-mid, lower arm folded 60, R leg place-low, lower leg straight | - | They hold the stand-off, neither moving; FACE: relaxed, no visible expression; NOT: no frown; feeling calm, neutral and calm, a genuine expression; eyes on B; Calm, unmoved.; hold sign to the end · Root [0, 0, 4] EulerXYZ [0, 180, 0]
 6.50 B: SUPPORT both feet place-mid [f:both] | L arm left-forward-low, lower arm folded 45, L leg left-forward-low, lower leg folded 30 | R arm right-forward-low, lower arm folded 30, R leg right-forward-low, lower leg folded 15 | - | FACE: brows lowered and drawn together (slight), lips pressed together (slight), jaw clenched (marked); NOT: eyes not widened; feeling determined, unpleasant and activated, a genuine expression; eyes on A; The jaw sets hard, lips pressed, brows down: resolve over fear.; hold sign to the end · Root [0, 0, 1.2] EulerXYZ [0, 0, 0]
 
+[IMPLIED GUIDANCE]
+- Between lines every performer keeps the declared Effort below, preserves momentum and a clear weight transfer, and travels through space between positions.
+- A 0.00–8.00: maintain light weight, sustained time, indirect space, free flow (float); shape rising, shape flow; near reach.
+- B 0.00–2.50: maintain strong weight, sustained time, direct space, bound flow (press); shape advancing, directional spoke; mid reach.
+- B 2.50–6.50: maintain strong weight, sudden time, direct space, bound flow (punch); shape retreating, shape flow; near reach.
+- B 6.50–8.00: maintain strong weight, sustained time, direct space, bound flow (press); shape enclosing, shape flow; near reach.
+- A: secondary motion of the robe and sleeves and hem and hood lags the body slightly.
+- B: secondary motion of the hair and clothing lags the body slightly.
+- A 0.00–2.50 (2.5 s without a line): carry 'wizard still' through; weight transfer none, breathing steady, tension relaxed.
+- A 2.50–4.50 (2.0 s without a line): carry 'wizard hand up' through; weight transfer none, breathing steady, tension moderate.
+- A 4.50–6.50 (2.0 s without a line): carry 'wizard hand up' through; weight transfer none, breathing steady, tension relaxed.
+- B 0.00–2.50 (2.5 s without a line): carry 'knight step' through; weight transfer forward, breathing held, tension high.
+- B 2.50–4.50 (2.0 s without a line): carry 'knight brace' through; weight transfer none, breathing held, tension high.
+- B 4.50–6.50 (2.0 s without a line): carry 'knight check' through; weight transfer backward, breathing gasp, tension high.
+
+[MOTION CONTROL]
+Interpolation: slerp joint rotations between lines; the root follows its derived path between positions; support and the declared Effort hold at all times.
+Density (measured): 0 dense gaps under 0.6 s, 0 medium from 0.6 to 0.9 s, 6 sparse over 0.9 s; the longest is 2.50 s (B 0.00–2.50).
+Explicit = the staff lines; implied = everything between them (IMPLIED GUIDANCE).
+
+[SPATIAL ANCHORS]
+Frame: up +Y, forward +Z, ground y=0, units m; Euler XYZ intrinsic, right-handed, degrees; +X = the performer's left; joints local to their parent (root -> Sp -> arms, NK -> HD; root -> legs), root in the scene frame.
+Axes: Y_up, A faces -Z, B faces +Z, ground y=0.
+ground (floor): Packed earth or stone flooring at y=0; solid.
+stone wall (wall): Heavy stone wall bounding the space; solid.
+A starts at [0, 0, 4].
+B starts at [0, 0, 0].
+Height used: y 0 to 0 m; depth used: z 0 to 4 m.
+
+[CAUSAL LINKS]
+→ hard cause (the effect starts after the cause ends); ⇢ soft cause (it may start while the cause runs).
+B advance and glare ⇢ A raise hand smirk ⇢ B halt and steel ⇢ A face off
+
+[CAMERA]
+0.00–2.50 open to medium_close on B: The knight steps in, glaring; elevation 3, azimuth -40, roll 0; 50 mm normal; static: held on the advancing knight; normal x1; shows B advance and glare; motivated by entity focus B.
+2.50–4.50 cut to medium_close on A: The wizard raises a hand with a one-sided smirk; elevation 3, azimuth -140, roll 0; 50 mm normal; static: held on the wizard's smirk; normal x1; shows A raise hand smirk; motivated by narrative intent b01 causes b02.
+4.50–6.50 cut to close on B: Fear flickers on the knight's face, then the jaw sets; elevation 0, azimuth -30, roll 0; 85 mm telephoto; static: tight on the knight's face; normal x1; shows B halt and steel; motivated by narrative intent b02 causes b03.
+6.50–8.00 cut to wide on B, A: The two hold the stand-off across the hall; elevation 5, azimuth -90, roll 0; 24 mm wide; static: side-on two-shot of the stand-off; normal x1; shows A face off; motivated by spatial geometry stone wall.
+Camera rules: Establish the space before the action needs it. Cut during the movement and match it across the cut. Slow motion only around the peak of an action. Shots last 0.4-10 s. Crossing the action axis is allowed when a cut declares it.
+
+[LIVE ACTION]
+Impact frames: none.
+Smears, only on the declared limb or prop (the body does not smear): none.
+Speedlines: none.
+Holds: 6.50 for 12 frames.
+FX: 0.00–8.00 torchlight flicker on the stone walls.
+Ink: photographic live-action footage; no ink, no smears, no speedlines.
+
 [RULES]
 - Laban support and contacts are primary; Euler numbers are precision override only.
 - slerp A joints
@@ -38,6 +86,14 @@ FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship |
 - A spell effect starts at a hand, staff tip or declared focus, never from empty space.
 - The wizard stays grounded unless a scene grants flight or levitation.
 - In full armor the knight does not flip or cartwheel unless a scene grants it.
+- Identity is immutable: every performer and prop stays itself for the whole scene.
+- Spatial continuity: a body travels through space between lines; no teleporting unless a rule declares a substitution.
+- Momentum is conserved: a body keeps moving the way the last force sent it until something stops it.
+- Ground force needs support: pushing, bracing and striking from the ground need a supporting part.
+- Contact before effect: nothing reacts to a hit before the contact.
+- Rotation is continuous: turns, flips and cartwheels sweep through every angle in between.
+- End state: A at [0, 0, 4], support both feet place-mid.
+- End state: B at [0, 0, 1.2], support both feet place-mid.
 
 [NEGATIVES]
 no missing limbs; no missing arms; no missing hands; no headless body; no faceless head; no extra fighters beyond A and B; no cloned A; no cloned B; no extra weapons; no full circle; no ring; no halo

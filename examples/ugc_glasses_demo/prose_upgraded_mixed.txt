@@ -3,7 +3,7 @@
 8 s UGC ad scene, 30 fps, setting: bright bedroom.
 Cast: A = creator: Casual figure framed from the waist up, hands near the product; Casual everyday clothes.
 Props: glasses.
-Frame: Y_up, A faces +Z, ground y=0, Euler XYZ intrinsic right-handed degrees, +X performer's left.
+Render intent. Motion: measured, light, smooth, sustained acceleration; readable at one shot every 2.0 s on average. Animation: UGC ad; spacing: 0 dense, 0 medium and 3 sparse gaps between lines; 0 smears on declared limbs or props, 0 impact frames. Choreography: every effect follows its cause along the causal links; final instruction: end on A present result.
 Euler degrees XYZ.
 Render spec exactly.
 
@@ -26,6 +26,56 @@ FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship |
 3.50 A: SUPPORT both feet place-mid [f:both] | L arm left-forward-mid, lower arm folded 120, L leg place-low, lower leg straight | R arm right-forward-mid, lower arm folded 120, R leg place-low, lower leg straight | contact bow: L hand > glasses right temple at 5.50; contact bow: head > glasses frame at 5.50; [contact: glasses frame ENDS – released at 5.50] | Both hands lift the open glasses to the face and slide the temples over the ears; the right hand lets go; FACE: inner ends of the brows lifted (trace), outer brows lifted (trace); NOT: no frown; feeling curious, pleasant and activated, a genuine expression; looking into the lens; Brows lift a little as the glasses settle on the face, eyes back to the lens.
 5.50 A: SUPPORT both feet place-mid [f:both] | L arm left-forward-low, lower arm folded 45, L leg place-low, lower leg straight | R arm forward-mid, lower arm folded 105, R leg place-low, lower leg straight | - | Wearing the glasses, the creator smiles to camera and taps the frame; FACE (carries the beat): cheeks raised, crow's feet at the eyes (slight), lip corners pulled up (marked on their left, slight on their right), lips parted (slight); NOT: no frown; feeling delighted, strongly pleasant and activated, a genuine expression; looking into the lens; A wide, genuine smile at the result, eyes creased, the smile a touch stronger on the left.; hold sign to the end · Root [0, 0, 0] EulerXYZ [0, 0, 0] · Joints {Sp: [-3, 0, 0], LUL: [-5, 0, 6], RUL: [-5, 0, -6], LL: [5, 0, 0], RL: [5, 0, 0], LA: [-15, 0, 10], RA: [-60, 0, -5], LFA: [-40, 0, 0], RFA: [-110, 0, 0], HD: [0, 0, 0], NK: [0, 0, 0]}
 
+[IMPLIED GUIDANCE]
+- Between lines every performer keeps the declared Effort below, preserves momentum and a clear weight transfer, and travels through space between positions.
+- A 0.00–1.50: maintain light weight, sustained time, direct space, free flow (glide); shape advancing, directional spoke; mid reach.
+- A 1.50–5.50: maintain light weight, sustained time, direct space, bound flow (glide); shape enclosing, directional arc; near reach.
+- A 5.50–8.00: maintain light weight, sustained time, indirect space, free flow (float); shape spreading, shape flow; near reach.
+- A: secondary motion of the hair and clothing lags the body slightly.
+- A 1.50–3.50 (2.0 s without a line): carry 'unfold at chest' through; weight transfer none, breathing steady, tension moderate.
+- A 3.50–5.50 (2.0 s without a line): carry 'lift to face' through; weight transfer up, breathing held, tension moderate.
+- A 5.50–8.00 (2.5 s without a line): hold the final pose with micro-motion; weight transfer none, breathing exhale, tension relaxed.
+
+[MOTION CONTROL]
+Interpolation: slerp joint rotations between lines; the root follows its derived path between positions; support and the declared Effort hold at all times.
+Density (measured): 0 dense gaps under 0.6 s, 0 medium from 0.6 to 0.9 s, 3 sparse over 0.9 s; the longest is 2.00 s (A 1.50–3.50).
+Explicit = the staff lines; implied = everything between them (IMPLIED GUIDANCE).
+
+[SPATIAL ANCHORS]
+Frame: up +Y, forward +Z, ground y=0, units m; Euler XYZ intrinsic, right-handed, degrees; +X = the performer's left; joints local to their parent (root -> Sp -> arms, NK -> HD; root -> legs), root in the scene frame.
+Axes: Y_up, A faces +Z, ground y=0.
+tabletop (tabletop): Flat surface where the product rests between interactions; solid.
+backdrop (backdrop): Plain background behind the hands and product; solid.
+A starts at [0, 0, 0].
+Height used: y 0 to 0 m; depth used: z 0 to 0 m.
+
+[PROP STATE MACHINE – glasses]
+0.00 holder none, location tabletop, temples folded, worn no · 1.50 holder none -> A · 1.50 held by A R hand · 3.50 temples folded -> open · 3.50 touched by A L hand · 5.50 holder A -> none, worn no -> yes · 5.50 touched by A L hand · 5.50 touched by A head · 5.50 released by A R hand
+ONE glasses only: never duplicated, never in two hands at once, never lost.
+
+[CAUSAL LINKS]
+→ hard cause (the effect starts after the cause ends); ⇢ soft cause (it may start while the cause runs).
+A lift glasses → A unfold glasses → A put on glasses ⇢ A show result
+
+[CAMERA]
+0.00–1.50 open to medium_close on A, glasses: Talking to camera, the creator picks the folded glasses up off the desk; elevation 3, azimuth 0, roll 0; 28 mm wide; tracking: phone drifts with the hand down to the desk; normal x1; shows A lift glasses; motivated by genre convention ugc hook first.
+1.50–3.50 cut to insert insert on right_hand on A, glasses: Right hand holds the frame; the left fingers swing the temples open; elevation 10, azimuth 0, roll 0; 50 mm normal; static: close on the hands and the glasses; normal x1; shows A unfold glasses; motivated by contact event b01 c1.
+3.50–5.50 cut to medium_close on A, glasses: Both hands lift the open glasses to the face and slide the temples over the ears; elevation 3, azimuth 0, roll 0; 28 mm wide; tracking: rises with the hands to the face; normal x1; shows A put on glasses; motivated by contact event b02 c1.
+5.50–8.00 jump_cut to medium_close on A, glasses: Wearing the glasses, the creator smiles to camera and taps the frame; elevation 3, azimuth 0, roll 0; 35 mm normal; static: held on the face; normal x1; shows A show result; motivated by entity focus A.
+Camera rules: The first shot carries the hook or the product. Every product use shows the hand on the object. Talking-to-camera shots keep the eyeline in the lens. Shots last 0.4-4 s. Crossing the action axis is never allowed.
+
+[UGC]
+Impact frames: none.
+Smears, only on the declared limb or prop (the body does not smear): none.
+Speedlines: none.
+Holds: 5.50 for 12 frames.
+FX: 5.50 soft window light glints on the new lenses.
+Ink: clean photographic phone footage; no ink, no smear, no speedlines.
+Hand roles: 1.5-3.5 i01 unfold glasses: agent A left_hand pinch, support right_hand pinch, stabilize_and_operate; left_hand does unfold (pinch) and right_hand supports (pinch) on glasses from 1.5 to 3.5; no swap; 3.5-5.5 i02 put_on glasses: agent A right_hand two_hand_temple, support left_hand two_hand_temple, two_hand_symmetric; right_hand does put_on (two_hand_temple) and left_hand supports (two_hand_temple) on glasses from 3.5 to 5.5; no swap.
+Object states: glasses: 0 temples:folded|worn:no, 1.5 temples:folded|worn:no during i01, 3.5 temples:open|worn:no during i02, 5.5 temples:open|worn:yes, 8 temples:open|worn:yes, change temples folded->open in b02 by b02_c1 (i01), change worn no->yes in b03 by b03_c1 (i02).
+Affordances: i01 unfold glasses: before temples:folded|worn:no -> after temples:open|worn:no; pre temples in folded; post temples in open; grip pinch; 2s in 0.5-3.0s; proven; i02 put_on glasses: before temples:open|worn:no -> after temples:open|worn:yes; pre temples in open,worn in no; post worn in yes; grip two_hand_temple; 2s in 0.8-3.0s; proven.
+Enables: i01 enables i02 via temples.
+
 [RULES]
 - Laban support and contacts are primary; Euler numbers are precision override only.
 - slerp A joints
@@ -33,6 +83,16 @@ FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship |
 - ONE props tracked separately,never merged:glasses
 - The product keeps one shape, colour and label for the whole scene.
 - Hands stay in frame whenever they touch the product.
+- Identity is immutable: every performer and prop stays itself for the whole scene.
+- Spatial continuity: a body travels through space between lines; no teleporting unless a rule declares a substitution.
+- Momentum is conserved: a body keeps moving the way the last force sent it until something stops it.
+- Ground force needs support: pushing, bracing and striking from the ground need a supporting part.
+- Contact before effect: nothing reacts to a hit before the contact.
+- Rotation is continuous: turns, flips and cartwheels sweep through every angle in between.
+- From 3.50 to the end, glasses keeps temples open.
+- From 5.50 to the end, glasses keeps holder none.
+- From 5.50 to the end, glasses keeps worn yes.
+- End state: A at [0, 0, 0], support both feet place-mid.
 
 [NEGATIVES]
 no missing limbs; no missing arms; no missing hands; no headless body; no faceless head; no extra fighters beyond A; no cloned A; no duplicated glasses; no extra weapons; no full circle; no ring; no halo

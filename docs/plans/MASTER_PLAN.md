@@ -441,7 +441,8 @@ Spec and codes: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
   laban-notation lookup (mid inside +-45 degrees, place within 10 of vertical)
 - [x] M8.2 prose renderer: SCENE, MOVEMENT LANGUAGE, FORMAT, staff in four modes, RULES, NEGATIVES; four examples
   carry `prose_<mode>.txt` (render.txt byte-identical); render schema 1.1 logged
-- [ ] M8.3 remaining sections (implied guidance, motion control, spatial anchors, props, causal links, camera, genre)
+- [x] M8.3 remaining sections (implied guidance, motion control, spatial anchors, props, causal links, camera, genre)
+  + render intent and time-bounded rules (lasting effects, end states, spans, strike separation, six T10 laws)
 - [ ] M8.4 prompt validator + semantic codes + conformance test
 - [ ] M8.5+ close the listed gaps, one per slice
 

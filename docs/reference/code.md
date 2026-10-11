@@ -31,7 +31,7 @@ flowchart LR
   planner -->|11| kernel
   planner -->|4| validators
   renderers -->|1| compiler
-  renderers -->|2| planner
+  renderers -->|3| planner
   renderers -->|1| solver
   solver -->|1| kernel
   validators -->|4| kernel
@@ -90,7 +90,7 @@ flowchart LR
 | `planner.world_grounder` | `planner.card_loader` | — |
 | `renderers.anime_renderer` | `planner.library_vocab` | hashlib, json, math |
 | `renderers.live_renderer` | `renderers.anime_renderer` | — |
-| `renderers.prose_renderer` | `compiler.passes.mandatory.p07_contact`, `planner.scene_view`, `renderers.anime_renderer`, `solver.staff_geometry` | hashlib |
+| `renderers.prose_renderer` | `compiler.passes.mandatory.p07_contact`, `planner.camera_library`, `planner.scene_view`, `renderers.anime_renderer`, `renderers.ugc_renderer`, `solver.staff_geometry` | hashlib |
 | `renderers.ugc_renderer` | `renderers.anime_renderer` | — |
 | `solver.camera_geometry` | — | math |
 | `solver.euler_solver` | `solver.quaternion` | — |

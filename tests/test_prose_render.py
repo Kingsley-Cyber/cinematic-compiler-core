@@ -102,3 +102,68 @@ def test_the_prose_is_a_pure_function_of_the_envelope():
     assert again == render["prose"]
     assert "FACE:" in render["prose"]["pure_staff"]["text"]
     assert not re.search(r"\bAU\s?\d", render["prose"]["pure_staff"]["text"])  # faces in words only (owner F4)
+
+
+GENRE_TITLES = {"anime": "[ANIME]", "ugc_ad": "[UGC]", "live_action": "[LIVE ACTION]"}
+
+
+@pytest.mark.parametrize("folder", EXAMPLES, ids=lambda p: p.name)
+def test_every_master_template_section_in_order(folder):
+    envelope, render = load(folder)
+    order = ["[SCENE]", "[MOVEMENT LANGUAGE]", "[LABAN STAFF – ", "[IMPLIED GUIDANCE]", "[MOTION CONTROL]",
+             "[SPATIAL ANCHORS]"] + [f"[PROP STATE MACHINE – {p['name']}]" for p in envelope["nodes"]["props"]["items"]] + [
+             "[CAUSAL LINKS]", "[CAMERA]", GENRE_TITLES[envelope["scene"]["genre"]], "[RULES]", "[NEGATIVES]"]
+    for row in render["prose"].values():
+        heads = [line for line in row["text"].splitlines() if line.startswith("[") and line.endswith("]")
+                 and not line.startswith("[DOUBLE")]
+        assert [h if not h.startswith("[LABAN STAFF – ") else "[LABAN STAFF – " for h in heads] == order
+        assert "Render intent. Motion:" in row["text"].split("[MOVEMENT LANGUAGE]")[0]
+
+
+@pytest.mark.parametrize("folder", EXAMPLES, ids=lambda p: p.name)
+def test_every_gap_over_one_and_a_half_seconds_has_implied_guidance(folder):
+    envelope, render = load(folder)
+    text = render["prose"]["pure_staff"]["text"]
+    guidance = text.split("[IMPLIED GUIDANCE]")[1].split("[MOTION CONTROL]")[0]
+    times = {}
+    for line in staff(text):
+        stamp, label = line.split(":")[0].split(" ")
+        times.setdefault(label, []).append(float(stamp))
+    for label, ts in times.items():
+        for a, b in zip(ts, ts[1:] + [envelope["scene"]["duration_s"]], strict=True):
+            if b - a > 1.5 + 1e-6:
+                assert f"- {label} {a:.2f}–{b:.2f} (" in guidance, (label, a, b)
+
+
+@pytest.mark.parametrize("folder", EXAMPLES, ids=lambda p: p.name)
+def test_props_causal_links_and_shots_are_all_carried(folder):
+    envelope, render = load(folder)
+    text = render["prose"]["mixed"]["text"]
+    for prop in envelope["nodes"]["props"]["items"]:
+        block = text.split(f"[PROP STATE MACHINE – {prop['name']}]")[1].split("\n\n")[0]
+        assert "never duplicated, never in two hands at once, never lost" in block
+    causal = text.split("[CAUSAL LINKS]")[1].split("\n\n")[0]
+    beats = {b["id"]: b for b in envelope["nodes"]["beats"]["items"]}
+    labels = render["labels"]
+
+    def name(beat_id):
+        return f"{labels[beats[beat_id]['actor']]} {beats[beat_id]['label'].replace('_', ' ')}"
+
+    for edge in envelope["edges"]["causal"]["items"]:
+        arrow = "→" if edge["causal_strength"] == "hard" else "⇢"
+        assert f"{name(edge['from'])} {arrow} {name(edge['to'])}" in causal, edge["id"]
+    camera = text.split("[CAMERA]")[1].split("\n\n")[0].splitlines()
+    shots = [line for line in camera if line and not line.startswith("Camera rules:")]
+    assert len(shots) == len(envelope["nodes"]["camera"]["items"])
+
+
+def test_reference_rules_bound_lasting_effects_spans_and_separate_strikes():
+    _, render = load(ROOT / "examples" / "reference_fight")
+    rules = render["prose"]["pure_staff"]["text"].split("[RULES]")[1].split("[NEGATIVES]")[0]
+    assert "- From 9.00 to the end, B keeps condition down." in rules
+    assert "- From 9.00 to the end, kunai stays embedded." in rules
+    assert "- A L foot stays on the wooden pillar from 0.60 to 1.60: one continuous contact" in rules
+    assert "- TWO SEPARATE STRIKES: A R foot > kunai blade at 3.00 and R leg > B torso at 5.10" in rules
+    assert "End state: B at [1, 0, 5.3], condition down, support lying." in rules
+    assert "Contact before effect: nothing reacts to a hit before the contact." in rules
+    assert rules.index("Identity is immutable") > rules.index("Follow the SUPPORT column")  # laws in the rules layer

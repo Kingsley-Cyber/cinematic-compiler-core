@@ -447,10 +447,12 @@ rows:
     anchor: "§2.2 L876; §2.3 L1248; §2.7 L251-L257; §4.4 L624"
     class: mandatory
     step: S04
-    status: missing
-    note: "No key-gap ceiling. Example gaps between one entity's keys reach 2.5 s (live_action_standoff,
-      ugc_glasses_demo), 2.4 s (wizard, wizard_vs_acrobat) and 1.6 s (ninja_broad, reference_fight). The 1.5 s
-      rule needs denser beats or implied guidance (C4). The dense/medium/sparse bands are style ranges (E1)."
+    status: partial
+    enforced_by:
+      - {file: renderers/prose_renderer.py, check: render_all, test: tests/test_prose_render.py::test_every_gap_over_one_and_a_half_seconds_has_implied_guidance}
+    note: "No key-gap ceiling in S04: example gaps reach 2.5 s (live_action_standoff, ugc_glasses_demo), 2.4 s
+      (wizard) and 1.6 s (ninja_broad). The prose (M8.3) meets the DAG's alternative instead: every gap over 1.5 s gets
+      its own implied-guidance line. KEY_GAP_UNGUIDED lands in M8.4. Density bands are style ranges (E1)."
 
   - id: T10
     name: Conservation laws
@@ -465,9 +467,9 @@ rows:
          test: tests/test_contact_pass.py::test_prop_change_without_any_contact_is_refused}
       - {file: solver/euler_solver.py, check: _turn_findings, code: MOTION_AXIS,
          test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
-    note: "Identity (no clone or disappearance), contact before effect (props) and rotation continuity (Euler never
-      wrapped; a change of 90 degrees or more is declared) hold. Teleport ban, momentum and support-for-ground-force
-      are not checked. PRESERVE_AXIS stays out per the DAG (P3.2-6)."
+    note: "Identity, contact before effect (props) and rotation continuity are checked in the pipeline. The prose
+      RULES (M8.3) state the six laws in the rules layer (PRESERVE_AXIS left out, P3.2-6; not first, P3.2-7). Teleport
+      ban, momentum and support-for-ground-force have no pipeline check."
 
   - id: T11
     name: Dual encoding
@@ -485,17 +487,23 @@ rows:
     class: projection
     step: S17
     status: partial
-    note: "The render carries every explicit key and the kernel interpolation rule 'slerp <label> joints'; there is
-      no motion_control block with interpolation, density, implied_guidance or density_rules fields."
+    enforced_by:
+      - {file: renderers/prose_renderer.py, check: render_all, test: tests/test_prose_render.py::test_every_master_template_section_in_order}
+    note: "LBN-2.4 carries every explicit key and the kernel rule 'slerp <label> joints'. The prose [MOTION CONTROL]
+      (M8.3) states the interpolation, the measured density (dense/medium/sparse gaps, the longest) and explicit vs
+      implied."
 
   - id: C4
     name: Implied guidance
     anchor: "§2.2 L882; §2.3 L1254; §3.1 L357-L360"
     class: projection
     step: S17
-    status: missing
-    note: "No guidance text between keys (keep Effort, weight transfer, secondary lag, recovery after accents,
-      airborne arcs)."
+    status: partial
+    enforced_by:
+      - {file: renderers/prose_renderer.py, check: render_all, test: tests/test_prose_render.py::test_every_gap_over_one_and_a_half_seconds_has_implied_guidance}
+    note: "The prose [IMPLIED GUIDANCE] (M8.3) states each Effort interval (S15), secondary-motion lag on the
+      costume's loose parts (S02), recovery after each strike, airborne arcs with takeoff and landing, and guidance for
+      every gap over 1.5 s; LBN-2.4 has none."
 
   - id: C5
     name: Prop state machine
@@ -711,10 +719,12 @@ rows:
     step: S06
     status: partial
     enforced_by:
+      - {file: renderers/prose_renderer.py, check: render_all, test: tests/test_prose_render.py::test_reference_rules_bound_lasting_effects_spans_and_separate_strikes}
       - {file: planner/chaining.py, check: summary, code: CHAIN_INCOMPLETE,
          test: tests/test_chaining.py::test_bad_chains_are_refused}
-    note: "S06 writes every subject's end state (pos, posture, conditions) and S07's active contacts give support;
-      clip chaining carries both. Momentum is not tracked."
+    note: "S06 writes every subject's end state and chaining carries it. The prose RULES (M8.3) write each performer's
+      end state (position, support, posture, location, held props; support falls back to the last staff line when S06
+      does not know it). Momentum is not tracked."
 
   - id: C23
     name: Anchor phrase
@@ -737,8 +747,8 @@ rows:
     enforced_by:
       - {file: compiler/passes/mandatory/p07_contact.py, check: cross_check, code: HOLDER_CONTACT,
          test: tests/test_contact_pass.py::test_each_contact_rule_rejects_its_violation}
-    note: "Possession must agree with contacts at every beat; there is no single named CUSTODY rule for a prop that
-      never changes hands."
+    note: "Possession must agree with contacts at every beat (HOLDER_CONTACT). The prose prop state machine (M8.3)
+      writes 'CUSTODY: <label>.<prop>' for a prop whose holder never changes; none of the four examples has one."
 
   - id: C25
     name: Shot program
@@ -781,9 +791,12 @@ rows:
     anchor: "§2.2 L906; P3.1 L1627"
     class: required
     step: S01
-    status: missing
-    note: "S01 parses genre, duration, fps, setting, style_reference and hinted cast/props; no motion (speed,
-      readability, weight, acceleration), animation (style, spacing, smear, impact) or choreography intent fields."
+    status: partial
+    enforced_by:
+      - {file: renderers/prose_renderer.py, check: render_all, test: tests/test_prose_render.py::test_every_master_template_section_in_order}
+    note: "Derived in the prose [SCENE] (M8.3): motion (speed, weight, acceleration from S15; readability from the
+      shot rate), animation (genre, style_reference, spacing, smear and impact counts), choreography (cause before
+      effect; final instruction from each performer's last key). S01 still parses no intent fields of its own."
 
   - id: C29
     name: Coordinate + rotation convention
@@ -796,9 +809,9 @@ rows:
          test: tests/test_motion_solver.py::test_other_conventions_are_refused}
       - {file: kernel/conventions.yaml}
     note: "kernel/conventions.yaml declares +Y up, +Z forward, ground y=0, intrinsic XYZ in degrees, right-handed,
-      +X = performer's left, what each positive axis means and the turn axes, copied into every scene.ax; this
-      settles the DAG's open handedness/sign question (§3.8 #2). Joints are treated as local (head heading = root
-      + NK + HD) but no parent list is declared."
+      +X = performer's left and the turn axes, copied into every scene.ax (settles the DAG's open handedness, §3.8 #2).
+      The prose [SPATIAL ANCHORS] (M8.3) also declares the joint parenting (root -> Sp -> arms, NK -> HD; root -> legs),
+      which the solver uses and LBN-2.4 does not state."
 
   - id: C30
     name: Span constraint
@@ -807,12 +820,14 @@ rows:
     step: S07
     status: partial
     enforced_by:
+      - {file: renderers/prose_renderer.py, check: render_all, test: tests/test_prose_render.py::test_reference_rules_bound_lasting_effects_spans_and_separate_strikes}
       - {file: compiler/passes/mandatory/p07_contact.py, check: lifecycle, code: CONTACT_RELEASE,
          test: tests/test_contact_pass.py::test_each_contact_rule_rejects_its_violation}
       - {file: compiler/passes/derived/p11_kinematic.py, check: check, code: KINEMATIC_SUPPORT,
          test: tests/test_kinematic_solver.py::test_each_rule_rejects_its_violation}
-    note: "A support contact stays active until its release and S11 support must match active supports, so a held
-      wall contact across beats is checked. No authored span-rule type ('NO double jump, NO mid-air relaunch')."
+    note: "A support contact stays active until its release and S11 support must match active supports. The prose
+      RULES (M8.3) state each support on anything but the ground held across two or more lines as one continuous
+      contact (reference_fight: A's feet on the pillar 0.60-1.60)."
 
   - id: C31
     name: Prop position + velocity
@@ -827,8 +842,11 @@ rows:
     anchor: "§2.2 L910; P4.1 L1680"
     class: projection
     step: S17
-    status: missing
-    note: "Strikes are separate contact events (own ids and beats), but no rule line keeps similar events apart."
+    status: partial
+    enforced_by:
+      - {file: renderers/prose_renderer.py, check: render_all, test: tests/test_prose_render.py::test_reference_rules_bound_lasting_effects_spans_and_separate_strikes}
+    note: "The prose RULES (M8.3) write 'TWO SEPARATE STRIKES: ...; do not merge them or swap the limbs' for each pair
+      of consecutive strikes by one performer; EVENT_SEPARATION_MISSING lands in M8.4."
 
   # ---- G4 variation + decision rules ----
   - id: V1
@@ -901,9 +919,12 @@ rows:
     anchor: "§2.2 L919; §2.3 L1296; §2.6 L223"
     class: style
     step: S17
-    status: missing
-    note: "The render embeds no causal list; 10 s scenes with ownership changes (reference_fight) meet the DAG's
-      embed conditions."
+    status: partial
+    enforced_by:
+      - {file: renderers/prose_renderer.py, check: render_all, test: tests/test_prose_render.py::test_props_causal_links_and_shots_are_all_carried}
+    note: "The prose (M8.3) always embeds the causal list as [CAUSAL LINKS] (one line per thread, hard and soft
+      arrows); the DAG's embed conditions (over 6-8 s, several chains, ownership changes) are not evaluated. LBN-2.4
+      embeds none."
 
   - id: V8
     name: Stack-only-2 rule
@@ -911,8 +932,10 @@ rows:
     class: style
     step: S17
     status: partial
-    note: "The render stacks one of the two graphs (each prop's state/attachment history as a track); the causal
-      graph is not rendered and no other graph is."
+    enforced_by:
+      - {file: renderers/prose_renderer.py, check: render_all, test: tests/test_prose_render.py::test_props_causal_links_and_shots_are_all_carried}
+    note: "The prose stacks exactly the two graphs the DAG allows: per-prop state machines and the causal links
+      (M8.3). LBN-2.4 carries prop histories as tracks and no causal list."
 
   - id: V9
     name: Mode preference

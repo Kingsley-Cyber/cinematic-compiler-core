@@ -3,7 +3,7 @@
 10 s anime scene, 24 fps, setting: moonlit bamboo courtyard.
 Cast: A = lean ninja: Lean figure in a dark coat; red scarf wrapped small at the neck; face fully visible; Dark coat, red scarf wrapped SMALL at the neck, face fully visible. B = broad ninja: Broad figure in grey armor with one shoulder pauldron; Grey armor, one shoulder pauldron.
 Props: kunai, rope dart, smoke pellet, shuriken volley (3 shuriken), substitution log.
-Frame: Y_up, A faces +Z, B faces -Z, ground y=0, Euler XYZ intrinsic right-handed degrees, +X performer's left.
+Render intent. Motion: fast, strong, heavy, sudden accelerations into the accents; readable at one shot every 0.5 s on average. Animation: anime; spacing: 38 dense, 1 medium and 2 sparse gaps between lines; 7 smears on declared limbs or props, 6 impact frames. Choreography: every effect follows its cause along the causal links; final instruction: end on A hold crouch over b, B remains down.
 
 [MOVEMENT LANGUAGE]
 Labanotation written as words. Mode: Mixed: staff lines primary; Root [x, y, z] + EulerXYZ [x, y, z] on strike lines and on each performer's first and last line, as precision override.
@@ -62,6 +62,119 @@ FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship |
 9.50 A: SUPPORT both feet place-low [f:both] | L arm forward-low, lower arm folded 90, L leg forward-high, lower leg folded 90, body forward-mid (55 lean), head back-high | R arm forward-mid, lower arm folded 90, R leg forward-high, lower leg folded 90 | - | B remains down; end with A in crouch over B,kunai in B shoulder,rope dart in A left hand,shurikens embedded in pillar,substitution log on ground,smoke dissipating; hold sign to the end · Root [0.3, 0.7, 5.3] EulerXYZ [20, 90, 0]
 9.50 B: SUPPORT torso place-low [torso] | L arm left-mid, lower arm folded 15, L leg left-forward-low, lower leg folded 15, body back-mid (90 lean), head forward-high | R arm right-mid, lower arm straight, R leg right-forward-low, lower leg folded 15 | - | hold sign to the end · Root [1, 0, 5.3] EulerXYZ [-90, 0, -90]
 
+[IMPLIED GUIDANCE]
+- Between lines every performer keeps the declared Effort below, preserves momentum and a clear weight transfer, and travels through space between positions.
+- A 0.00–1.10: maintain light weight, sudden time, indirect space, free flow (flick); shape sinking, shape flow; near reach.
+- A 1.10–2.00: maintain strong weight, sudden time, direct space, free flow (punch); shape advancing, directional spoke; mid reach.
+- A 2.00–3.00: maintain strong weight, sudden time, direct space, bound flow (punch); shape sinking, directional spoke; far reach.
+- A 3.00–3.70: maintain sustained time, direct space, bound flow; shape sinking, shape flow; near reach.
+- A 3.70–4.40: maintain light weight, sudden time, indirect space, free flow (flick); shape enclosing, shape flow; near reach.
+- A 4.40–5.10: maintain strong weight, sudden time, direct space, bound flow (punch); shape rising, directional spoke; near reach.
+- A 5.10–5.90: maintain strong weight, sudden time, indirect space, free flow (slash); shape retreating, carving; far reach.
+- A 5.90–6.30: maintain light weight, sustained time, direct space, free flow (glide); shape sinking, directional spoke; near reach.
+- A 6.30–6.60: maintain strong weight, sudden time, direct space, bound flow (punch); shape rising, directional arc; mid reach.
+- A 6.60–7.00: maintain sudden time, free flow; shape retreating, shape flow; far reach.
+- A 7.00–7.50: maintain strong weight, sudden time, direct space, free flow (punch); shape advancing, directional spoke; mid reach.
+- A 7.50–8.00: maintain light weight, sudden time, indirect space, free flow (flick); shape spreading, carving; far reach.
+- A 8.00–8.50: maintain strong weight, sustained time, direct space, bound flow (press); shape enclosing, directional spoke; far reach.
+- A 8.50–9.50: maintain strong weight, sudden time, direct space, bound flow (punch); shape sinking, directional spoke; near reach.
+- A 9.50–10.00: maintain sustained time, bound flow; shape sinking, shape flow; near reach.
+- B 0.00–2.00: maintain strong weight, sustained time, direct space, bound flow (press); shape advancing, shape flow; near reach.
+- B 2.00–2.50: maintain strong weight, sudden time, direct space, bound flow (punch); shape advancing, directional spoke; far reach.
+- B 2.50–3.40: maintain strong weight, sustained time, bound flow; shape sinking, shape flow; near reach.
+- B 3.40–4.00: maintain strong weight, sudden time, direct space, bound flow (punch); shape rising, directional spoke; mid reach.
+- B 4.00–4.70: maintain sudden time, indirect space, free flow; shape advancing, shape flow; mid reach.
+- B 4.70–5.50: maintain sudden time, free flow; shape advancing, shape flow; far reach.
+- B 5.50–5.90: maintain strong weight, sudden time, indirect space, bound flow (slash); shape spreading, carving; far reach.
+- B 5.90–6.60: maintain strong weight, sustained time, direct space, bound flow (press); shape sinking, shape flow; near reach.
+- B 6.60–7.00: maintain strong weight, sudden time, indirect space, bound flow (slash); shape enclosing, carving; mid reach.
+- B 7.50–9.00: maintain sudden time, bound flow; shape retreating, shape flow; mid reach.
+- B 9.00–10.00: maintain sustained time, free flow; shape sinking, shape flow; near reach.
+- A: secondary motion of the scarf and coat lags the body slightly.
+- B: secondary motion of the hair and clothing lags the body slightly.
+- A after the 2.50 strike: a short natural recovery before the next phrase.
+- A after the 4.70 strike: a short natural recovery before the next phrase.
+- A airborne 0.00–0.60: a realistic trajectory and rotation from airborne from 0.00 to the landing at 0.60.
+- A airborne 1.60–3.00: a realistic trajectory and rotation from the takeoff at 1.60 to the landing at 3.00.
+- A airborne 4.70–5.90: a realistic trajectory and rotation from the takeoff at 4.70 to the landing at 5.90.
+- A airborne 6.30–9.00: a realistic trajectory and rotation from the takeoff at 6.30 to the landing at 9.00.
+- B after the 5.50 strike: a short natural recovery before the next phrase.
+- B after the 6.60 strike: a short natural recovery before the next phrase.
+- B after the 8.50 strike: a short natural recovery before the next phrase.
+- B airborne 5.10–6.30: a realistic trajectory and rotation from the takeoff at 5.10 to the landing at 6.30.
+- B 0.00–1.60 (1.6 s without a line): carry 'wait with kunai' through; weight transfer none, breathing steady, tension moderate.
+
+[MOTION CONTROL]
+Interpolation: slerp joint rotations between lines; the root follows its derived path between positions; support and the declared Effort hold at all times.
+Density (measured): 38 dense gaps under 0.6 s, 1 medium from 0.6 to 0.9 s, 2 sparse over 0.9 s; the longest is 1.60 s (B 0.00–1.60).
+Explicit = the staff lines; implied = everything between them (IMPLIED GUIDANCE).
+
+[SPATIAL ANCHORS]
+Frame: up +Y, forward +Z, ground y=0, units m; Euler XYZ intrinsic, right-handed, degrees; +X = the performer's left; joints local to their parent (root -> Sp -> arms, NK -> HD; root -> legs), root in the scene frame.
+Axes: Y_up, A faces +Z, B faces -Z, ground y=0.
+ground (floor): Flat courtyard ground at y=0; solid.
+wooden pillar (obstacle): Tall wooden pillar at the back of the courtyard; pillar at z=6 from y=0 to y=8; solid.
+bamboo canopy (backdrop): Dark under-canopy of bamboo on the left; bamboo canopy left side; solid.
+A starts at [0, 7.5, 3.5].
+B starts at [0, 0, 4.5].
+Height used: y 0 to 7.5 m; depth used: z 3.5 to 5.9 m.
+
+[PROP STATE MACHINE – kunai]
+0.00 state unknown · 0.60 holder unknown -> B · 0.60 held by B R hand · 2.50 holder B -> none · 2.50 released by B R hand · 3.00 location unknown -> ground · 3.00 touched by A R foot · 8.00 holder none -> A · 8.00 held by A R hand · 9.00 embedded unknown -> embedded · 9.00 touched by B torso
+ONE kunai only: never duplicated, never in two hands at once, never lost.
+
+[PROP STATE MACHINE – rope dart]
+0.00 state unknown · 3.00 holder unknown -> A · 3.00 held by A L hand · 5.90 holder A -> none, location unknown -> ground · 5.90 released by A L hand · 7.50 holder none -> A · 7.50 held by A L hand · 8.00 line unknown -> wrapped · 8.00 touched by B torso · 8.50 line wrapped -> taut
+ONE rope dart only: never duplicated, never in two hands at once, never lost.
+
+[PROP STATE MACHINE – smoke pellet]
+0.00 state unknown · 4.00 smoke unknown -> burst · 4.00 touched by A R hand
+ONE smoke pellet only: never duplicated, never in two hands at once, never lost.
+
+[PROP STATE MACHINE – shuriken volley]
+0.00 state unknown · 5.90 flight unknown -> embedded, location unknown -> wooden pillar · 5.90 touched by B R hand
+Exactly 3 shuriken in the volley: never duplicated, never in two hands at once, never lost.
+
+[PROP STATE MACHINE – substitution log]
+0.00 state unknown · 4.00 deployment unknown -> deployed · 4.00 touched by A R hand · 4.40 deployment deployed -> fallen, location unknown -> ground · 4.40 touched by B R hand
+ONE substitution log only: never duplicated, never in two hands at once, never lost.
+
+[CAUSAL LINKS]
+→ hard cause (the effect starts after the cause ends); ⇢ soft cause (it may start while the cause runs).
+A fall from above ⇢ A land pillar top ⇢ A sprint down pillar ⇢ A kick off pillar ⇢ B throw kunai → A foot deflect kunai ⇢ A land facing opponent ⇢ B rising palm charge ⇢ A kawarimi substitution → B palm hits log ⇢ A reappear behind opponent ⇢ A knee strike spine ⇢ A aerial backflip kick ⇢ B throw shuriken volley ⇢ A slide under volley ⇢ A cartwheel rising elbow ⇢ B catch elbow throw ⇢ A wall push off pillar → A aerial rope dart regrapple ⇢ A pull toward pillar ⇢ A aerial kunai drive ⇢ A crash to ground ⇢ A hold crouch over opponent
+
+[CAMERA]
+0.00–0.60 open to wide on A: A falls from above the frame toward the pillar top, body tucked, head pointing down; elevation 35, azimuth -90, roll 0; 35 mm normal; tilt: tilts down with A falling from above the frame; normal x1; shows A fall from above; motivated by beat type b01.
+0.60–1.60 cut to wide on A, B: A lands in a deep crouch on the pillar top, then sprints down the pillar face, body horizontal; B waits below with the kunai; elevation 5, azimuth 90, roll 0; 18 mm wide; static: side view of the whole pillar; normal x1; shows A land pillar top, A sprint down pillar; motivated by contact event b01 c1.
+1.60–2.00 cut to full on A: A kicks off the pillar, both feet pushing hard, arcing away toward B; elevation 0, azimuth 56.3, roll 0; 18 mm wide; tracking: tracks A arcing away from the pillar; normal x1; shows A kick off pillar; motivated by effort quality ninja lean@b03-b04.
+2.00–2.50 cut to wide on A, B: B throws the kunai upward at A mid-descent; elevation 10, azimuth 24, roll 0; 18 mm wide; tracking: tracks the kunai thrown upward from B toward A; normal x1; shows B throw kunai; motivated by beat type b05.
+2.50–3.00 smash_cut to insert insert on right_foot on A: A's right foot sole strikes the kunai and sends it back down, NOT a kick; elevation -5, azimuth -6.3, roll 0; 85 mm telephoto; static: locked on the right foot; slow x0.25; shows A foot deflect kunai; motivated by effort quality ninja lean@b05-b06.
+3.00–3.40 cut to full on A, B: A lands squared up facing B, rope dart low in the left hand; the kunai skitters on the ground; elevation -2, azimuth 0, roll 0; 18 mm wide; dolly_in: low dolly in at ground level as A lands; normal x1; shows A land facing opponent; motivated by contact event b06 c2.
+3.40–3.70 cut to medium on B: B charges with a rising palm strike toward A's chest; elevation 0, azimuth 0, roll 0; 35 mm normal; tracking: tracks B's charge; normal x1; shows B rising palm charge; motivated by beat type b08.
+3.70–4.00 smash_cut to medium on A, B: KAWARIMI: A's body is replaced by a smoke burst; the wooden substitution log is revealed; elevation 0, azimuth 0, roll 0; 35 mm normal; static: held on the vanishing body; ramp x0.5; shows A kawarimi substitution; motivated by beat type b09.
+4.00–4.40 cut to medium on A, B: B's palm strikes the substitution log; B realizes the substitution and stumbles; elevation 0, azimuth 0, roll 0; 35 mm normal; tracking: tracks B's palm into the log; normal x1; shows B palm hits log; motivated by contact event b09 c2.
+4.40–4.70 cut to medium on A, B: A reappears behind B, right elbow cocked; elevation 0, azimuth -171.9, roll 0; 35 mm normal; dolly_in: pushes in as A reappears behind B; normal x1; shows A reappear behind opponent; motivated by contact event b10 c1.
+4.70–5.10 smash_cut to insert insert on right_leg on A, B: A's RIGHT KNEE drives up into B's spine from behind, NOT a kick; elevation -5, azimuth 90, roll 0; 85 mm telephoto; static: locked on the knee and spine; slow x0.25; shows A knee strike spine; motivated by beat type b12.
+5.10–5.50 cut to full on A, B: A backflips, the left leg sweeping a vertical crescent; B flies forward off the knee; elevation 5, azimuth -166.8, roll 0; 18 mm wide; orbit: arcs with A's backflip; normal x1; shows A aerial backflip kick; motivated by contact event b12 c1.
+5.50–5.90 whip_pan to medium on B: B recovers mid-air and throws exactly three shuriken; elevation 0, azimuth -180, roll 0; 35 mm normal; whip_pan: whips with the throwing arm; ramp x0.5; shows B throw shuriken volley; motivated by beat type b14.
+5.90–6.30 cut to full on A, B: A slides under the volley; all three shuriken pass over A into the pillar; elevation -3, azimuth -169.2, roll 0; 18 mm wide; tracking: low tracking with the slide; normal x1; shows A slide under volley; motivated by contact event b14 c1.
+6.30–6.60 cut to medium_wide on A: A cartwheels up into a rising left elbow; elevation 0, azimuth -167.9, roll 0; 35 mm normal; tracking: tracks the cartwheel up; normal x1; shows A cartwheel rising elbow; motivated by beat type b16.
+6.60–7.00 cut to medium on A, B: B catches A's left elbow with both hands and throws A toward the pillar; elevation 0, azimuth -180, roll 0; 35 mm normal; static: held on the catch; ramp x0.5; shows B catch elbow throw; motivated by beat type b17.
+7.00–7.50 cut to wide on A, B: A hits the pillar and pushes off, snatching the rope dart; elevation 5, azimuth 122.7, roll 0; 18 mm wide; tracking: tracks A into the pillar and back out; normal x1; shows A wall push off pillar; motivated by contact event b17 c1.
+7.50–8.00 cut to wide on A, B: A whips the rope dart out; it wraps B's right shoulder; A's right hand takes the kunai; elevation 0, azimuth 64, roll 0; 18 mm wide; tracking: tracks the rope dart out to B; normal x1; shows A aerial rope dart regrapple; motivated by contact event b18 c3.
+8.00–8.50 cut to medium on A, B: A pulls B toward the pillar with the taut rope dart; the kunai is in A's right hand; elevation 0, azimuth -12.5, roll 0; 35 mm normal; tracking: tracks B dragged toward the pillar; normal x1; shows A pull toward pillar; motivated by contact event b19 c1.
+8.50–9.00 smash_cut to insert insert on right_hand on A, B: A drives the kunai down into B's right shoulder, NOT a punch; elevation 10, azimuth -99.5, roll 0; 85 mm telephoto; static: locked on the kunai and shoulder; slow x0.25; shows A aerial kunai drive; motivated by beat type b21.
+9.00–10.00 cut to wide on A, B: A and B crash to the ground; A holds a crouch over B; the shuriken stay in the pillar, the log on the ground, smoke thinning; elevation 3, azimuth 0, roll 0; 18 mm wide; dolly_in: slow push in on the crouch; normal x1; shows A crash to ground, A hold crouch over opponent; motivated by narrative intent b22 causes b23.
+Camera rules: Open on a wide that sets the arena geometry before the first exchange. Hold or freeze on the frame of impact so the hit reads in one frame. A fast body move is followed by a tracking or whip move with speedlines on the moving limb. Cut close on the receiver after a blow lands. Shots last 0.25-6 s. Crossing the action axis is allowed when a cut declares it.
+
+[ANIME]
+Impact frames: 2.50, 4.70, 5.50, 6.60, 8.50, 9.00.
+Smears, only on the declared limb or prop (the body does not smear): 0.30–0.60 A right leg, A fall only,the tucked legs lead; 1.10–1.60 A right leg, A sprint down pillar only; 2.00–2.50 kunai, kunai path only; 4.70–5.10 A left leg, A aerial backflip left leg crescent arc only,body does NOT smear; 5.50–5.90 shuriken volley, THREE shuriken arc only; 6.30–6.60 A left arm, A cartwheel-to-elbow arc only,left elbow leads; 7.50–8.50 rope dart, rope dart line and A descent path only.
+Speedlines: 0.00–0.60 A; 1.10–1.60 A; 2.00–2.50 kunai; 4.70–5.10 A; 5.50–5.90 shuriken volley; 6.30–6.60 A; 7.50–8.50 rope dart.
+Holds: 0.60 for 3 frames; 1.60 for 2 frames; 2.50 for 3 frames; 3.70 for 3 frames; 4.40 for 2 frames; 4.70 for 3 frames; 5.90 for 3 frames; 6.60 for 3 frames; 7.00 for 2 frames; 8.50 for 4 frames.
+FX: 0.60 pillar-top landing dust ring; 2.50 foot-deflect spark at kunai; 3.70 smoke burst expanding; 4.00 log impact spark; 4.70 knee-impact flash at B spine; 5.10 backflip trail; 5.50 shuriken throw flash; 6.60 throw release flash; 7.00 pillar push dust; 7.50 rope dart anchor wrap; 8.00 rope dart pull tension line; 8.50 kunai drive impact flash; 9.00 crash dust ring; 9.50–10.00 embers and moon rim.
+Ink: heavy on A,broken in smears,clean on holds,smear follows ONLY the declared limb or prop,body does NOT smear.
+
 [RULES]
 - Laban support and contacts are primary; Euler numbers are precision override only.
 - slerp A joints
@@ -73,6 +186,34 @@ FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship |
 - A thrown weapon leaves the hand and does not return without a declared catch.
 - The smoke cloud stays where the pellet burst; it does not follow anyone.
 - substitution log is a WOODEN BLOCK NOT a fighter
+- Identity is immutable: every performer and prop stays itself for the whole scene.
+- Spatial continuity: a body travels through space between lines; no teleporting unless a rule declares a substitution.
+- Momentum is conserved: a body keeps moving the way the last force sent it until something stops it.
+- Ground force needs support: pushing, bracing and striking from the ground need a supporting part.
+- Contact before effect: nothing reacts to a hit before the contact.
+- Rotation is continuous: turns, flips and cartwheels sweep through every angle in between.
+- From 3.00 to the end, A keeps location ground.
+- From 3.00 to the end, kunai keeps location ground.
+- From 4.00 to the end, smoke pellet keeps smoke burst.
+- From 4.40 to the end, substitution log keeps deployment fallen.
+- From 4.40 to the end, substitution log keeps location ground.
+- From 5.90 to the end, rope dart keeps location ground.
+- From 5.90 to the end, shuriken volley keeps flight embedded.
+- From 5.90 to the end, shuriken volley keeps location wooden pillar.
+- From 7.50 to the end, rope dart keeps holder A.
+- From 8.00 to the end, kunai keeps holder A.
+- From 8.50 to the end, rope dart keeps line taut.
+- From 9.00 to the end, B keeps condition down.
+- From 9.00 to the end, B keeps support lying.
+- From 9.00 to the end, A keeps support grounded.
+- From 9.00 to the end, kunai stays embedded.
+- End state: A at [0.3, 0.7, 5.3], location ground, support grounded, holding kunai, rope dart.
+- End state: B at [1, 0, 5.3], condition down, support lying.
+- A L foot stays on the wooden pillar from 0.60 to 1.60: one continuous contact, no relaunch in between.
+- A R foot stays on the wooden pillar from 0.60 to 1.60: one continuous contact, no relaunch in between.
+- TWO SEPARATE STRIKES: A R foot > kunai blade at 3.00 and R leg > B torso at 5.10; do not merge them or swap the limbs.
+- TWO SEPARATE STRIKES: B R hand > shuriken volley star 1 at 5.90 and L hand > A left arm at 7.00; do not merge them or swap the limbs.
+- TWO SEPARATE STRIKES: B L hand > A left arm at 7.00 and torso > kunai blade at 9.00; do not merge them or swap the limbs.
 
 [NEGATIVES]
 no missing limbs; no missing arms; no missing hands; no headless body; no faceless head; no extra fighters beyond A and B; no cloned A; no cloned B; no duplicated kunai; no duplicated rope dart; no duplicated smoke pellet; no duplicated shuriken beyond the declared volley of 3; no duplicated substitution log; no extra weapons; no full circle; no ring; no halo; no scarf covering head; no substitution log as a separate fighter; substitution log is a wooden block NOT a fighter
