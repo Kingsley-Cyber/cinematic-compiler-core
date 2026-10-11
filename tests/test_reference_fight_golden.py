@@ -1,5 +1,6 @@
 """S16.6 golden: the LBN reference fight compiles from its preface + cards + in-session plans, and the render
-contains every kernel and reference-fight item, carries A's reference roots exactly, and keeps its anime directives."""
+contains every kernel and reference-fight item, carries A's reference roots exactly and its joints with the recorded
+deviations (owner O7/O10/O11), and keeps its anime directives."""
 
 import json
 
@@ -28,11 +29,26 @@ def test_every_kernel_and_reference_item_is_in_the_render():
     assert RENDER["coverage"]["complete"] and RENDER["coverage"]["constraints"]["enforced_by_renderer"] == ["c_k_owner_00"]
 
 
-def test_a_roots_and_joints_are_the_reference_rows_exactly():
+# Recorded deviations from the reference numbers, both owner decisions of 2026-10-11 (O7, O10 + O11):
+# - knee flexion is +X under Q6, so the reference's negative knee angles (a hyperextended knee) read as +|x|;
+# - the right hip at 1.1 and 3.0 (+90 = 90 degrees back) is clamped to the anime extension limit, +60.
+HIP_CLAMPS = {1.1: 60, 3.0: 60}
+
+
+def normalised(row):
+    joints = {j: list(v) for j, v in row[4].items()}
+    for knee in ("LL", "RL"):
+        joints[knee][0] = abs(joints[knee][0])
+    if row[0] in HIP_CLAMPS:
+        joints["RUL"][0] = HIP_CLAMPS[row[0]]
+    return [row[0], row[1].lower(), row[2], row[3], joints]
+
+
+def test_a_roots_and_joints_are_the_reference_rows_with_the_recorded_deviations():
     assert RENDER["labels"] == {"ninja_lean": "A", "ninja_broad": "B"}
     reference = [row for row in REFERENCE["A"] if row[0] < 10]  # the 10.0 hold row has no beat (beats end at 10)
     assert [[row["t"], row["label"], row["pos"], row["rot"], row["joints"]] for row in SPEC["A"]] == \
-        [[row[0], row[1].lower(), row[2], row[3], row[4]] for row in reference]
+        [normalised(row) for row in reference]
     assert all(row["desc"].endswith(ref[5]) for row, ref in zip(SPEC["A"], reference, strict=True))
 
 

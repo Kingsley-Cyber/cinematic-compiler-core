@@ -1,7 +1,7 @@
 {
  "step_id": "S13",
  "band": "L4c",
- "packet_sha256": "sha256:3509e3b07e2495ffa36bf805f4f428fb73967c8294324513f477ec54177609ed",
+ "packet_sha256": "sha256:c6d4a48c0e781ac4b390ad07b0a770458e866a29bfb585826bebde998c3d5272",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -1313,7 +1313,7 @@
     "RA": [
      -80,
      0,
-     30
+     0
     ],
     "LFA": [
      -20,

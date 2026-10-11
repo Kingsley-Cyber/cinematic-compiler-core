@@ -87,6 +87,9 @@ def test_courtyard_keys_pass_and_the_joints_come_from_the_kernel():
     ("MOTION_AXIS", lambda p: key(p, "acrobat@b05").update(turn="cartwheel", axis_declaration="Z")),
     ("MOTION_AXIS", lambda p: key(p, "wizard@b11").update(turn="spin", axis_declaration="Y")),
     ("MOTION_POSTURE", lambda p: key(p, "acrobat@b12").update(rot=[460, -389.055, 0])),
+    ("JOINT_LIMIT", lambda p: key(p, "wizard@b03")["bones"].update(LL=[-30, 0, 0])),   # knee hyperextension (O7)
+    ("JOINT_LIMIT", lambda p: key(p, "wizard@b03")["bones"].update(LFA=[-170, 0, 0])),  # elbow past 150, no anime allowance
+    ("JOINT_LIMIT", lambda p: key(p, "wizard@b03")["bones"].update(NK=[40, 0, 0], HD=[40, 0, 0])),  # neck 80 > 45 + 30
 ])
 def test_each_rule_rejects_its_violation(code, change):
     assert code in codes(change)
@@ -112,3 +115,16 @@ def test_derived_graph_scope_and_determinism(order):
     spin = next(e for e in edges if e["turn"] == "spin")
     assert spin["euler_delta"][1] == -367.26 and spin["slerp_angle"] == 7.26  # slerp alone would lose the full turn
     assert canonical_json(after) == canonical_json(p13_motion.run(courtyard("bartenieff"), PLAN, order=order)[0])
+
+
+def test_joint_limits_follow_the_owner_table_and_widen_for_anime():
+    from compiler.passes.derived.p13_motion import joint_limits
+    from solver.euler_solver import limit_findings
+    human, anime = joint_limits("live_action"), joint_limits("anime")
+    assert human["LL"]["x"] == [0, 135] and anime["LL"]["x"] == [0, 165]       # a hinge stop stays at 0
+    assert human["LA"]["x"] == [-180, 60] and anime["LA"]["x"] == [-210, 90]
+    assert human["LFA"]["x"] == anime["LFA"]["x"] == [-150, 0]                 # the elbow gets no anime allowance
+    pose = {"bones": {j: [0, 0, 0] for j in ("Sp", "LUL", "RUL", "LL", "RL", "LA", "RA", "LFA", "RFA", "HD", "NK")}}
+    pose["bones"]["LL"] = [150, 0, 0]
+    assert [f["code"] for f in limit_findings(pose, "s", human)] == ["JOINT_LIMIT"]
+    assert limit_findings(pose, "s", anime) == []

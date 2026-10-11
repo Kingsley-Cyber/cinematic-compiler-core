@@ -5,17 +5,29 @@ Derived: root quaternion per key (solver/quaternion.py) and per-entity follows e
 interpolation and root trajectory (solver/trajectory.py).
 """
 
+import json
+
+import yaml
+
 from compiler.authoring import run_authored, seal
 from kernel.kernel_files import load as load_kernel
 from planner.dependency_graph import ROOT, load
 from planner.scene_view import slots, values_in_progress
 from solver import euler_solver, quaternion, trajectory
+from validators.schema_validator import validate_schema
 
 NODE, STEP = "motion", "S13"
 PLAN_SCHEMA = ROOT / "schemas" / "graphs" / "motion_plan.schema.json"
 PROMPT = ROOT / "planner" / "prompts" / "euler_solving.txt"
 SLOT_FIELDS = ("slot", "entity", "beat", "t", "dur", "role", "label", "action", "event_type", "pos", "facing", "state",
                "active_supports")
+
+
+def joint_limits(genre):
+    """library/joint_limits.yaml validated, then widened for the genre (owner O11)."""
+    card = yaml.safe_load((ROOT / "library" / "joint_limits.yaml").read_text(encoding="utf-8"))
+    validate_schema(card, json.loads((ROOT / "schemas" / "cards" / "joint_limits.schema.json").read_text(encoding="utf-8")))
+    return euler_solver.effective_limits(card, genre)
 
 
 def _body(node):
@@ -32,7 +44,8 @@ def prepare(envelope):
              "bartenieff": _body(bartenieff[s["slot"]])} for s in slots(envelope)]
     return seal({"step_id": STEP, "band": "L4c", "kind": "motion_plan", "schema": "urn:cinematic-compiler:schema:motion_plan:1.0",
                  "instructions": PROMPT.read_text(encoding="utf-8"), "rotation_convention": convention,
-                 "joints": euler_solver.kernel_joints(load_kernel("invariants")), "slots": view})
+                 "joints": euler_solver.kernel_joints(load_kernel("invariants")),
+                 "joint_limits": joint_limits(envelope["scene"]["genre"]), "slots": view})
 
 
 def _keys(document, packet):
@@ -52,12 +65,14 @@ def check(document, packet):
     findings, keys, by_id = _keys(document, packet)
     if findings:
         return findings
-    return euler_solver.check(keys, by_id, packet["joints"], packet["rotation_convention"]["turns"])[0]
+    return euler_solver.check(keys, by_id, packet["joints"], packet["rotation_convention"]["turns"],
+                              packet["joint_limits"])[0]
 
 
 def build(envelope, document, packet):
     _, keys, by_id = _keys(document, packet)
-    bases = euler_solver.check(keys, by_id, packet["joints"], packet["rotation_convention"]["turns"])[1]
+    bases = euler_solver.check(keys, by_id, packet["joints"], packet["rotation_convention"]["turns"],
+                               packet["joint_limits"])[1]
     nodes = []
     for slot_id in sorted(keys, key=lambda s: (by_id[s]["t"], s)):
         key, slot = keys[slot_id], by_id[slot_id]

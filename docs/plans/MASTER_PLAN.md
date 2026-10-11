@@ -454,7 +454,7 @@ Spec and codes: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
   S01-S17, all 16 prose prompts pass except one KNOWN owner-source contradiction (reference_fight 'dust ring' vs
   'no ring', audit X29); every code fires on its break. Mandatory 17/27 enforced, required 9/15.
 - [x] M8.5 named fields in LBN-2.4 actor rows (O9)
-- [ ] M8.6 joint limits (O11, O7) · [ ] M8.7 teleport + substitution (O12) · [ ] M8.8 prop p/v + gravity (O8) · [ ] M8.9 golden passes conformance, KNOWN emptied (O10)
+- [x] M8.6 joint limits (O11, O7): library/joint_limits.yaml + S13 JOINT_LIMIT; 47 example values normalised · [ ] M8.7 teleport + substitution (O12) · [ ] M8.8 prop p/v + gravity (O8) · [ ] M8.9 golden passes conformance, KNOWN emptied (O10)
 - [ ] M8.10+ close the remaining gaps, one per slice. Derivable: PROP_TWO_HOLDERS (C5, S07), POST_CONTACT_MISSING (C21),
   PHRASING_MISSING (LMA, T6), MOMENTUM_MISSING (C22, T10), CHAIN_ORDER (KC), ANTICIPATION_MISSING (KF),
   SHOT_TRANSITION_MISSING (C25), PROP_KINEMATICS (C31). Need the owner: JOINT_LIMIT ranges (BIO, T7; the DAG gives

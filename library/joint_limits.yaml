@@ -1,0 +1,33 @@
+# Joint limits for S13 key poses (owner O11, 2026-10-11). Values: the owner's human range-of-motion table (the owner
+# cites AAOS / Kendall / Norkin & Levangie; not re-checked by Claude) and the anime allowance (anime may exceed by up
+# to +30 degrees for shoulder, hip, knee, spine and neck). Mapping onto the kernel joints and the Q6 axes is Claude's
+# reading, for owner review:
+# - Limits apply to each local Euler component (intrinsic XYZ, degrees): x = pitch (flex/extend), y = yaw (rotation),
+#   z = roll (side bend, abduction). Exact for one-axis poses, approximate when several components combine.
+# - +X swings a hanging segment backward (Q6), so hip and shoulder flexion are negative x; knee flexion is positive x
+#   (owner O7); elbow flexion is negative x. +Z swings a hanging segment toward the performer's left, so abduction is
+#   +z for the left limbs and -z for the right ones.
+# - The table's neck rows bound the head on the chest: NK and HD are summed per axis (two kernel joints, one neck).
+# - Wrist, ankle and foot have no kernel joint and are not used.
+library_id: joint_limits
+version: 1
+status: draft
+basis: "Owner's ROM table + anime flag (2026-10-11); axis and sign mapping by Claude (O7, Q6), for owner review."
+degrees: true
+anime:
+  extra_deg: 30
+  joints: [Sp, NK+HD, LA, RA, LUL, RUL, LL, RL]
+  rule: "Each nonzero bound moves 30 degrees further from neutral; a zero bound (a hinge stop) stays."
+  genres: [anime]
+joints:
+  Sp:    {x: [-30, 80],   y: [-45, 45], z: [-35, 35], reads: "spine: flex 80 (+x forward), extend 30, side bend 35, twist 45"}
+  NK+HD: {x: [-45, 45],   y: [-80, 80], z: [-45, 45], reads: "neck: flex/extend 45, rotate 80, tilt 45 (NK and HD summed)"}
+  LA:    {x: [-180, 60],  y: [-90, 90], z: [0, 180],  reads: "left shoulder: flex 180 (-x), extend 60, abduct 180 (+z), rotate 90"}
+  RA:    {x: [-180, 60],  y: [-90, 90], z: [-180, 0], reads: "right shoulder: flex 180 (-x), extend 60, abduct 180 (-z), rotate 90"}
+  LFA:   {x: [-150, 0],   y: [-80, 80], z: [0, 0],    reads: "left elbow: flex 150 (-x), bend only; forearm pronate/supinate 80"}
+  RFA:   {x: [-150, 0],   y: [-80, 80], z: [0, 0],    reads: "right elbow: flex 150 (-x), bend only; forearm pronate/supinate 80"}
+  LUL:   {x: [-120, 30],  y: [-45, 45], z: [-30, 45], reads: "left hip: flex 120 (-x), extend 30, abduct 45 (+z), adduct 30, rotate 45"}
+  RUL:   {x: [-120, 30],  y: [-45, 45], z: [-45, 30], reads: "right hip: flex 120 (-x), extend 30, abduct 45 (-z), adduct 30, rotate 45"}
+  LL:    {x: [0, 135],    y: [0, 0],    z: [0, 0],    reads: "left knee: flex 135 (+x, owner O7), bend only"}
+  RL:    {x: [0, 135],    y: [0, 0],    z: [0, 0],    reads: "right knee: flex 135 (+x, owner O7), bend only"}
+unused: [wrist, ankle, foot]

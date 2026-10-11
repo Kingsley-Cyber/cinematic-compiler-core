@@ -16,5 +16,7 @@ S13 motion (L4c). For every slot write one key pose: the body at the slot's beat
   (LUL/RUL, LL/RL, LA/RA, LFA/RFA): +X swings them backward, -X forward (hip and shoulder flexion are -X, knee
   flexion is +X, elbow flexion is -X); +Z raises a left limb out to the left, -Z raises a right limb to the right.
   Segments that point up (Sp, NK, HD): +X tips forward, +Y turns left, +Z tilts to the right.
+- Every joint's local Euler components stay inside packet.joint_limits (degrees per axis; "NK+HD" bounds the
+  sum of the neck and head). Outside them the key is refused (JOINT_LIMIT).
 - Read each slot's kinematic and Bartenieff nodes: the pose shows that support, loading and initiation.
 - name: a short snake_case pose name; description: one sentence. Copy packet_sha256.

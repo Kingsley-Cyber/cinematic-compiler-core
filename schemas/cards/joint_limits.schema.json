@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:joint_limits:1.0",
+  "title": "Joint limits (S13)",
+  "description": "Per kernel joint (NK+HD summed), the allowed range of each local Euler component in degrees, plus the anime allowance (owner O11).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["library_id", "version", "status", "basis", "degrees", "anime", "joints", "unused"],
+  "properties": {
+    "library_id": {"const": "joint_limits"},
+    "version": {"type": "integer", "minimum": 1},
+    "status": {"enum": ["draft", "approved"]},
+    "basis": {"type": "string", "minLength": 1},
+    "degrees": {"const": true},
+    "anime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["extra_deg", "joints", "rule", "genres"],
+      "properties": {
+        "extra_deg": {"type": "number", "minimum": 0},
+        "joints": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "rule": {"type": "string", "minLength": 1},
+        "genres": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "joints": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-Za-z]+(\\+[A-Za-z]+)?$": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["x", "y", "z", "reads"],
+          "properties": {
+            "x": {"$ref": "#/$defs/range"},
+            "y": {"$ref": "#/$defs/range"},
+            "z": {"$ref": "#/$defs/range"},
+            "reads": {"type": "string", "minLength": 1}
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "unused": {"type": "array", "items": {"type": "string", "minLength": 1}}
+  },
+  "$defs": {
+    "range": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "number"}}
+  }
+}

@@ -146,15 +146,18 @@ rows:
     step: S11
     status: partial
     codes: [SUPPORT_MISMATCH, AIRBORNE_UNBOOKENDED]
-    gaps: [JOINT_LIMIT]
+    gaps: [WEIGHT_TRAVEL, OPPOSITION]
     enforced_by:
+      - {file: solver/euler_solver.py, check: limit_findings, code: JOINT_LIMIT,
+         test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
       - {file: compiler/passes/derived/p11_kinematic.py, check: check, code: KINEMATIC_SUPPORT,
          test: tests/test_kinematic_solver.py::test_each_rule_rejects_its_violation}
       - {file: solver/euler_solver.py, check: check, code: MOTION_POSTURE,
          test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
-    note: "B-2 support-change logic holds through S11 support vs S07/S06, and posture through S13. Not checked:
-      B-1 weight travel, B-3 joint limits, B-4 opposition, B-5 secondary lag, B-6 breath (S11 records breathing and
-      weight_transfer as authored cues only), B-8 takeoff/landing bookends. Exception gates B-X1..3 not modelled."
+    note: "B-2 support-change logic (S11 vs S07/S06), posture (S13), joint limits (S13 JOINT_LIMIT, owner O11:
+      the ROM table on the kernel joints, anime +30) and airborne bookends (AIRBORNE_UNBOOKENDED) hold. Not checked:
+      B-1 weight travel and B-4 opposition (gaps); B-5 lag and B-6 breath are carried by the prose implied guidance.
+      Exception gates B-X1..3 not modelled."
 
   - id: KC
     name: Kinetic chain
@@ -429,14 +432,16 @@ rows:
     step: S11
     status: partial
     codes: [SUPPORT_MISMATCH, AIRBORNE_UNBOOKENDED]
-    gaps: [JOINT_LIMIT]
+    gaps: [WEIGHT_TRAVEL, OPPOSITION]
     enforced_by:
+      - {file: solver/euler_solver.py, check: limit_findings, code: JOINT_LIMIT,
+         test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
       - {file: compiler/passes/derived/p11_kinematic.py, check: check, code: KINEMATIC_SUPPORT,
          test: tests/test_kinematic_solver.py::test_each_rule_rejects_its_violation}
       - {file: solver/euler_solver.py, check: check, code: MOTION_POSTURE,
          test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
-    note: "Support agreement and posture are gated. Weight travel, joint limits, opposition and airborne
-      takeoff/landing are not; the smear/beat exception gates (B-X1..3) are not modelled."
+    note: "Support agreement, posture, joint limits (JOINT_LIMIT, owner O11) and airborne takeoff/landing are gated.
+      Weight travel and opposition are not (gaps); the smear/beat exception gates (B-X1..3) are not modelled."
 
   - id: T8
     name: 12-step process

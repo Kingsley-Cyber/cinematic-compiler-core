@@ -11,6 +11,8 @@
   (flip X, spin Y, cartwheel Z) and that axis changes most, by at least 90 degrees, before the entity's next key.
 - the root agrees with the S06 posture when no posture change is in progress: standing/crouching/kneeling are
   upright, inverted has the up axis at y <= -0.5, prone/supine have it level with the chest down/up (agent addition).
+- every joint's local Euler components lie inside library/joint_limits.yaml for the scene's genre (owner O11; knee
+  flexion +X per O7; NK and HD summed as the neck; anime widens the listed joints by 30 degrees): JOINT_LIMIT.
 A mismatch is a finding (the step fails and is re-authored); nothing is corrected silently.
 """
 
@@ -21,6 +23,32 @@ HEADING_TOLERANCE = 1.0
 TURN_MINIMUM = 90
 AXIS_INDEX = {"X": 0, "Y": 1, "Z": 2}
 INVARIANT_BASIS = {"X": "lateral", "Z": "forward"}
+
+
+def effective_limits(card, genre):
+    """{joint: {axis: [low, high]}} for the genre: anime moves each nonzero bound of the listed joints further out."""
+    extra = card["anime"]["extra_deg"] if genre in card["anime"]["genres"] else 0
+    limits = {}
+    for joint, row in card["joints"].items():
+        wide = extra if joint in card["anime"]["joints"] else 0
+        limits[joint] = {axis: [row[axis][0] - wide if row[axis][0] < 0 else row[axis][0],
+                                row[axis][1] + wide if row[axis][1] > 0 else row[axis][1]] for axis in ("x", "y", "z")}
+    return limits
+
+
+def limit_findings(key, slot_id, limits):
+    findings = []
+    for joint, bounds in sorted(limits.items()):
+        parts = joint.split("+")
+        if not all(p in key["bones"] for p in parts):
+            continue
+        values = [sum(key["bones"][p][i] for p in parts) for i in range(3)]
+        for i, axis in enumerate(("x", "y", "z")):
+            low, high = bounds[axis]
+            if not low - 1e-9 <= values[i] <= high + 1e-9:
+                findings.append({"code": "JOINT_LIMIT", "message": f"{joint} {axis} = {values[i]} is outside [{low}, {high}]",
+                                 "slot": slot_id})
+    return findings
 
 
 def posture_problem(rot, posture):
@@ -64,8 +92,8 @@ def basis_for(key, previous, turns):
     return "lateral" if horizontal(lateral) > horizontal(forward) else "forward"
 
 
-def check(keys, slots, joints, turns):
-    """keys/slots keyed by slot id. Returns (findings, heading basis per slot)."""
+def check(keys, slots, joints, turns, limits=None):
+    """keys/slots keyed by slot id; `limits` from effective_limits. Returns (findings, heading basis per slot)."""
     findings, bases = [], {}
     for entity_keys in sequences(keys, slots).values():
         for position, slot_id in enumerate(entity_keys):
@@ -86,6 +114,8 @@ def check(keys, slots, joints, turns):
                 if off > HEADING_TOLERANCE:
                     findings.append({"code": "MOTION_FACING", "message": f"Root heading ({basis} axis) disagrees with the "
                                      "S04 facing", "slot": slot_id, "detail": round(off, 3)})
+            if limits:
+                findings += limit_findings(key, slot_id, limits)
             postures = slot["allowed_postures"]
             if len(postures) == 1 and posture_problem(key["rot"], postures[0]):
                 findings.append({"code": "MOTION_POSTURE", "message": f"Root rotation disagrees with the S06 posture "
