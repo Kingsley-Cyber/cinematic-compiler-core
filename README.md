@@ -20,3 +20,6 @@ mise exec -- uv run --locked python -m planner.intent_parser "10s anime fight, 2
 mise exec -- uv run --locked python -m planner.query_expander "wizard vs superman variant, castle"
 mise exec -- uv run --locked python -m compiler.pipeline "wizard vs acrobat fight scene in a courtyard" --until constraint
 ```
+
+## License
+MIT. See `LICENSE`.
