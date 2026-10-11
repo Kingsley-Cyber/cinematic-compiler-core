@@ -14,6 +14,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-005 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog D-06 (PLAN-005); ruling ADR-O68 | applied | the commit whose message names [S-005] | about 20 minutes | M9-03b (carried_by on prop nodes). | [S-005-self-audit-prompt.md](../sessions/S-005-self-audit-prompt.md) |
 | S-006 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog M9-03b; finding F-018 (GAP-03);… | applied | the commit whose message names [S-006] | about 30 minutes | M9-04 (prop physics and positions). | [S-006-m9-03b-carried-by.md](../sessions/S-006-m9-03b-carried-by.md) |
 | S-007 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog D-07 (PLAN-005); ruling ADR-O69 | applied | the commit whose message names [S-007] | about 30 minutes | M9-04 (prop physics and positions). | [S-007-bootstrap-directory.md](../sessions/S-007-bootstrap-directory.md) |
+| S-008 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog D-08 (PLAN-005); rulings ADR-O7… | applied | the commit whose message names [S-008] | about 40 minutes | The owner replied "commit it, Run the autopilot in docs/pro… | [S-008-autopilot-prompt.md](../sessions/S-008-autopilot-prompt.md) |
 
 ## Status values
 

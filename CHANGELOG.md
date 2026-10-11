@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Added
+- The autopilot (owner O70, S-008): `docs/prompts/autopilot.md` and `/autopilot` build slice after slice without
+  stopping until no slice is ready, committing each locally after the gate and the self-audit (never pushing); every
+  decision goes in the session's new Decisions section (rule R-32, rules 2.0, session template 2.0); golden changes
+  follow ADR-O71 (owner_default); the bootstrap README (2.0) resumes a running run; F-063 (version-bump drift).
 - The bootstrap directory (owner O69, S-007): `docs/bootstrap/` with the resume steps, a generated `state.md`,
   the environment, the working agreements and the lessons learned; AGENTS.md (1.2) and CLAUDE.md point to it;
   `/bootstrap` opens it.

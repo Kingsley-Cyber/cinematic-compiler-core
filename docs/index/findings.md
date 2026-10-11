@@ -68,6 +68,7 @@ Every finding: a bug, gap, contradiction, drift, question, risk or opportunity f
 | F-060 | What is a motif? | question | low | L1.1 | open | — | schemas/motif.schema.json (DRAFT); the owner's do… | 2026-10-11 | [F-060-what-is-a-motif.md](../findings/F-060-what-is-a-motif.md) |
 | F-061 | A start-of-beat release prints its holder change at the beat's end | drift | low | L2.1 | open | — | examples/reference_fight/prose_mixed.txt, kunai s… | 2026-10-11 | [F-061-holder-changes-commit-at-the-beat-end.md](../findings/F-061-holder-changes-commit-at-the-beat-end.md) |
 | F-062 | A held prop is only checked to within 2 m of its holder | gap | medium | L1.1 | open | — | Self-audit of M9-03 (session S-004): the rope dar… | 2026-10-11 | [F-062-held-props-only-checked-to-2-m.md](../findings/F-062-held-props-only-checked-to-2-m.md) |
+| F-063 | Earlier protocol changes took a +0.1 bump, versioning.md says +1.0 | drift | low | docs | open | — | - docs/versioning.md (Frozen docs row: "+0.1 for… | 2026-10-11 | [F-063-version-bumps-disagree-with-versioning.md](../findings/F-063-version-bumps-disagree-with-versioning.md) |
 
 ## Type values
 

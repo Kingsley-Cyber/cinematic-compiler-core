@@ -18,8 +18,12 @@ How the owner (Kingsley) wants the work done, from the owner's own words in the 
 3. Build at the layer that owns the data; add the check, its break tests and a should-not-fire run.
 4. Gate, `make docs`, then the self-audit (`/self-audit`). Report which predictions held and which failed, plainly.
 5. Show the diff. Commit only on "commit it"; push only on "push it". "Commit it, then start X" approves that one
-   commit and the start of X, not a push.
+   commit and the start of X, not a push. An autopilot run (`/autopilot`, ADR-O70) is the exception for commits:
+   the owner's invocation is the "commit it" for each slice that clears the gate and the self-audit, for that run
+   only. It never covers a push.
 6. One slice per commit; never mix two sessions' work in one commit.
+7. Log every decision with its reason in the session file's Decisions section (R-32): covered (cite the rule or
+   ruling), interpretation (labelled in the code, added to F-053) or the owner's call (a proposed ADR).
 
 ## Always
 

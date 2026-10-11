@@ -1,6 +1,6 @@
 # AGENTS.md — The Agent Operating Manual
 
-<!-- docs-version: 1.2 -->
+<!-- docs-version: 1.3 -->
 
 > Before every session, read `AGENTS.md` fully — it is the map of this repo, not a suggestion — and follow its
 > nine-step session protocol exactly: read the five indexes, run `scripts/verify.sh`, pick one gap, confirm its layer
@@ -42,6 +42,7 @@ not adherence, and a PASS a render contradicts is NOT CHECKED. The repo is model
 | [docs/ownership.md](docs/ownership.md), [docs/versioning.md](docs/versioning.md) | who changes what; version bumps |
 | [docs/how_to_refactor.md](docs/how_to_refactor.md) | steps, checks and rollback for any refactor |
 | [docs/prompts/self_audit.md](docs/prompts/self_audit.md) | the self-audit run before every commit or push (`/self-audit`) |
+| [docs/prompts/autopilot.md](docs/prompts/autopilot.md) | the owner-started run that builds slice after slice, every decision logged (`/autopilot`) |
 | [docs/reference/](docs/reference/README.md) | generated: every step's inputs and outputs, every schema field, every data file, code imports |
 | `kernel/layer_order.yaml` | the machine source of the layer DAG and write ownership |
 
@@ -70,6 +71,7 @@ Full table: [docs/layer_order.md](docs/layer_order.md).
 - **R-10** Place every check at the first step that can see its data (docs/layer_order.md); a fix lives in the layer that owns the data.
 - **R-11** Test the uncertain, build the certain: a change gets a render probe only if it is uncertain, visual and not verifiable without a render.
 - **R-31** Before asking the owner to commit or push, run the self-audit (docs/prompts/self_audit.md) and report its verdict, evidence table and wrong claims.
+- **R-32** Log every decision the plan did not spell out in the session file's Decisions section, with the rule, ruling or DAG row behind it, the alternatives and what it affects; a choice no rule or ruling makes is labelled as an interpretation or proposed as an ADR.
 - **R-12** Never paper over a failure: when the verifier fails, fix or revert, and record what went wrong in the plan or a finding.
 - **R-13** The step IDs carry the build order: a step reads only what earlier steps wrote and writes only its own paths.
 - **R-14** Every layer that produces state has nodes and edges; L0, L0.5, L6 and L6.5 have nodes only; L4d facial runs for live action and UGC only.
@@ -96,10 +98,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 1.1; backlog 1.
-- Last session: S-007 (2026-10-11, applied): The bootstrap directory (docs/bootstrap/, /bootstrap).
+- Layer order 1.7; rules 2.0; backlog 1.
+- Last session: S-008 (2026-10-11, applied): The autopilot prompt (/autopilot) and the decision log.
 - Next slice: M9-04 F2.1/F2.2 prop physics contract, F6.1/F6.2 positions and rest (step render).
-- Open findings: 35; decisions: 96 (0 proposed).
+- Open findings: 36; decisions: 98 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

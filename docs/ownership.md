@@ -1,6 +1,6 @@
 # Ownership map
 
-<!-- docs-version: 1.1 -->
+<!-- docs-version: 1.2 -->
 
 Who decides, who edits and what checks each part of the repo. "Owner" is Kingsley; "agent" is any coding agent
 following AGENTS.md; "generator" means a command writes the file and nobody edits it by hand.
@@ -19,6 +19,7 @@ following AGENTS.md; "generator" means a command writes the file and nobody edit
 | `docs/*/_template.md`, `docs/how_to_refactor.md`, `docs/ownership.md`, `docs/versioning.md`, `docs/for_the_owner.md` | owner | agent, with a docs-version bump | docs log |
 | `docs/sources/` | owner (verbatim sources) | nobody | review |
 | `docs/render_tests/` | owner (probe prompts bound by sha256) | agent writes before the render; nobody after | sha256 in each render file |
+| `docs/prompts/`, `.claude/commands/` | owner | agent, with a docs-version bump | docs log |
 | `docs/bootstrap/README.md` | owner | agent, with a docs-version bump | docs log |
 | `docs/bootstrap/state.md` | — | generator (`make docs`) | docs plane (staleness) |
 | `docs/bootstrap/environment.md`, `working_agreements.md`, `lessons.md` | owner (agreements) | agent; lessons append-only | docs plane (links) |

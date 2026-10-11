@@ -6,13 +6,13 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 1.1; backlog 1.
+Layer order 1.7; rules 2.0; backlog 1.
 
 ## Last sessions
 
-- S-005 (applied): The self-audit prompt (/self-audit)
 - S-006 (applied): M9-03b: each prop records who carries it (carried_by, O63)
 - S-007 (applied): The bootstrap directory (docs/bootstrap/, /bootstrap)
+- S-008 (applied): The autopilot prompt (/autopilot) and the decision log
 
 ## Next slices
 
@@ -35,7 +35,7 @@ M9: 4 of 27 slices done, 23 left (M9-03a blocked; 1 the owner's own).
 - F-060 (low): What is a motif?
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 
-## Open findings: 35
+## Open findings: 36
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -55,4 +55,4 @@ M9: 4 of 27 slices done, 23 left (M9-03a blocked; 1 the owner's own).
 
 ## Next free IDs
 
-Decision ADR-O70, finding F-063, session S-008, render R20.
+Decision ADR-O72, finding F-064, session S-009, render R20.

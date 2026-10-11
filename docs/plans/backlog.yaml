@@ -82,3 +82,5 @@ items:
      status: done, step: docs, plan: PLAN-005, depends_on: [D-02], findings: [], codes: []}
   - {id: D-07, title: "Bootstrap directory docs/bootstrap/ for resuming after a compaction (O69)", status: done,
      step: docs, plan: PLAN-005, depends_on: [D-06], findings: [], codes: []}
+  - {id: D-08, title: "Autopilot prompt (docs/prompts/autopilot.md, /autopilot) and the decision log R-32 (O70, O71)",
+     status: done, step: docs, plan: PLAN-005, depends_on: [D-07], findings: [F-063], codes: []}
