@@ -17,6 +17,8 @@ Remote: github.com/Kingsley-Cyber/cinematic-compiler-core (public, MIT); push on
   substitution exempt), PROP_KINEMATICS (S04, prop p/v under gravity). Owner decisions O1-O12 in MASTER_PLAN.
   The golden's recorded deviations (knees, two hip clamps, fx wording, solved prop p/v) live in
   tests/test_reference_fight_golden.py. Next: the gap slices in MASTER_PLAN M8.10+.
+- **Latest findings (2026-10-11):** [docs/findings/2026-10-11-renders-and-dag-adherence.md](docs/findings/2026-10-11-renders-and-dag-adherence.md)
+  — five owner renders, root causes, 38/84 map rows verified, open decisions Q1-Q8, the checklist plan.
 - **Read order:** this file → `docs/plans/MASTER_PLAN.md` (decisions Q/A/B/F, every milestone) →
   `docs/reference/README.md` (generated DAG, schemas, data files, code) → `kernel/layer_order.yaml`.
 - **Commit rule (O5: one local commit per slice):** commit only when `scripts/check.sh` exits 0. Don't pipe it into `tail` (that hides the exit
