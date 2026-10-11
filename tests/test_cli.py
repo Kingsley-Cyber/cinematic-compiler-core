@@ -66,3 +66,11 @@ def test_validate_and_graph(tmp_path):
     shown = json.loads(cli("graph", str(COURTYARD / "envelope.json"), "causal").stdout)
     assert shown["kind"] == "edges" and shown["step_id"] == "S05"
     assert cli("graph", str(COURTYARD / "envelope.json"), "lighting").returncode == 1
+
+
+def test_every_dag_group_has_a_graph_schema_in_the_envelope_validator():
+    from planner.dependency_graph import load
+    from validators.envelope_validator import GROUP_SCHEMAS
+    covered = {(kind, group) for parts in GROUP_SCHEMAS.values() for kind, group in parts.values() if kind != "top"}
+    written = {tuple(p.split("/")[1:3]) for n in load()["nodes"] for p in n["writes"] if p.startswith(("/nodes/", "/edges/"))}
+    assert written - covered == set()

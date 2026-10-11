@@ -1,5 +1,5 @@
 #!/bin/sh
-# One gate for every slice: lint, tests, the three hash logs, and the two generated files.
+# One gate for every slice: lint, tests, the three hash logs, the generated files and the reference docs.
 set -e
 cd "$(dirname "$0")/.."
 mise exec -- uv run --locked ruff check .
@@ -10,4 +10,5 @@ done
 mise exec -- uv run --locked python -m kernel.build_ir_schema --check
 mise exec -- uv run --locked python -m kernel_extraction.control_inventory --check
 mise exec -- uv run --locked python -m compiler.examples
+mise exec -- uv run --locked python -m kernel.build_docs --check
 echo "check: PASS"

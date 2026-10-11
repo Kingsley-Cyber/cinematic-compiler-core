@@ -49,9 +49,16 @@ Examples (each recompiles byte-for-byte in the gate and has a `render.txt` ready
 **The three render.txt files are ready for you to render; Claude never renders.**
 Kernel = the 68 controls both LBN-2.3-ADV and LBN-2.4-ADV-LMA state (`kernel/sources/`), scoped per item.
 
+## Reference docs (generated)
+[docs/reference/](docs/reference/README.md): the step DAG as a diagram plus every step's inputs, outputs, code, plan
+schema, prompt and data files ([dependencies.md](docs/reference/dependencies.md)); every schema field by field
+([schemas.md](docs/reference/schemas.md)); every library/kernel data file ([library.md](docs/reference/library.md));
+code imports and external packages ([code.md](docs/reference/code.md)). `python -m kernel.build_docs` rewrites them;
+the gate fails when they are stale.
+
 ## Controls
 Three append-only, hash-chained logs (`schemas/schema_log.jsonl`, `library/library_log.jsonl`,
-`kernel/kernel_log.jsonl`); generated files checked against regeneration; examples recompile byte-for-byte; 378 tests; all in `scripts/check.sh`.
+`kernel/kernel_log.jsonl`); generated files checked against regeneration; examples recompile byte-for-byte; reference docs current; 378 tests; all in `scripts/check.sh`.
 
 ## Owner decisions so far
 Step IDs S01–S17 carry order (L labels are names); keys `step_id`/`band`; constraint built after S02 and before

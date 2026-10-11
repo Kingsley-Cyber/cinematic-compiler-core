@@ -1,11 +1,14 @@
 # AGENTS.md — cinematic-compiler
 
 Start with `HANDOFF.md` (state, decisions, open questions), then `docs/plans/MASTER_PLAN.md`,
-`docs/graph_types.md` and `kernel/layer_order.yaml` (the layer DAG and write ownership).
+`docs/graph_types.md`, `docs/reference/` (generated: DAG and dependencies, every schema field by field, data files,
+code imports) and `kernel/layer_order.yaml` (the layer DAG and write ownership).
 
 ## Gate
-`scripts/check.sh` must pass before every commit: ruff, pytest, the three hash logs, and the two generated
-files (`schemas/cinematic_ir.schema.json`, `kernel/invariants.yaml`). One commit per step.
+`scripts/check.sh` must pass before every commit: ruff, pytest, the three hash logs, the two generated files
+(`schemas/cinematic_ir.schema.json`, `kernel/invariants.yaml`), the examples (byte-for-byte) and the reference docs.
+After changing the DAG, a schema, a library file or imports, regenerate the docs: `python -m kernel.build_docs`.
+One commit per step.
 
 ## Schema control (owner rule 2026-10-10)
 - Every `schemas/**/*.schema.json` change is logged: `python -m kernel.schema_log record <file> --change ... --reason ... --decided-by ...`.
