@@ -10,21 +10,22 @@ Layer order 1.7; rules 2.0; backlog 2.
 
 ## Last sessions
 
-- S-009 (applied): M9-04a: pre- and post-contact prop samples (F2.2)
 - S-010 (applied): M9-04b: where each prop is, its physics while free and its rest (F2.1, F6.1, F6.2)
 - S-011 (applied): M9-05: rotation runs checked at S13 and named in the prompt (FR.1, FR.3)
+- S-012 (not started): M9-06 parked: the root position and the contact tolerance are the owner's
 
 ## Next slices
 
-- M9-06 (next, step motion): F5.1/F5.2 world contact points by forward kinematics
-- M9-07 (ready, step temporal): F4.1/F4.2 combat verbs on contacts and Laban wording
+- M9-07 (next, step temporal): F4.1/F4.2 combat verbs on contacts and Laban wording
 - M9-08 (ready, step temporal): O21 opening from above in V6's wording
 - M9-09a (ready, step effort): F9.1 Laban direction against path and form
+- M9-09b (ready, step kinematic): F9.2 airborne momentum under gravity
 
-M9: 7 of 28 slices done, 21 left (M9-03a blocked; 1 the owner's own).
+M9: 7 of 28 slices done, 21 left (M9-03a blocked, M9-06 blocked; 1 the owner's own).
 
 ## Waiting on the owner
 
+- ADR-O72 (proposed): A key's root is the pelvis, and a touch's two points meet within 0.15 m
 - F-051 (low): Draft library cards await owner review
 - F-052 (low): Kernel scope numbers await owner review
 - F-053 (medium): Claude's interpretations await owner review
@@ -33,9 +34,11 @@ M9: 7 of 28 slices done, 21 left (M9-03a blocked; 1 the owner's own).
 - F-057 (low): The kernel rule 'substitution log reveals' reads against O48's staging
 - F-059 (low): Reference-fight deviations from its own data await review
 - F-060 (low): What is a motif?
+- F-066 (high): What is a key's root position: the pelvis or the ground point?
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
+- Backlog M9-06 blocked: F5.1/F5.2 world contact points by forward kinematics — ADR-O72 (proposed): what a key's root position is, and the contact tolerance (F-066)
 
-## Open findings: 38
+## Open findings: 39
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -52,7 +55,8 @@ M9: 7 of 28 slices done, 21 left (M9-03a blocked; 1 the owner's own).
 - F-030 (high, L5.5): Camera lacks C10's rules and the arc with the rotation
 - F-031 (critical, L6): Render wording the model does not follow
 - F-036 (high, L6): Aerial timing is not followed: takeoffs come late
+- F-066 (high, L4c): What is a key's root position: the pelvis or the ground point?
 
 ## Next free IDs
 
-Decision ADR-O72, finding F-066, session S-012, render R20.
+Decision ADR-O73, finding F-067, session S-013, render R20.

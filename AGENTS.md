@@ -99,9 +99,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 2.0; backlog 2.
-- Last session: S-011 (2026-10-11, applied): M9-05: rotation runs checked at S13 and named in the prompt (FR.1, FR.3).
-- Next slice: M9-06 F5.1/F5.2 world contact points by forward kinematics (step motion).
-- Open findings: 38; decisions: 98 (0 proposed).
+- Last session: S-012 (2026-10-11, not started): M9-06 parked: the root position and the contact tolerance are the owner's.
+- Next slice: M9-07 F4.1/F4.2 combat verbs on contacts and Laban wording (step temporal).
+- Open findings: 39; decisions: 99 (1 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
@@ -110,6 +110,7 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 ## 7. Open rulings
 
 <!-- BEGIN GENERATED: rulings -->
+- ADR-O72 (proposed): A key's root is the pelvis, and a touch's two points meet within 0.15 m
 - F-051 (low): Draft library cards await owner review
 - F-052 (low): Kernel scope numbers await owner review
 - F-053 (medium): Claude's interpretations await owner review
@@ -118,7 +119,9 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - F-057 (low): The kernel rule 'substitution log reveals' reads against O48's staging
 - F-059 (low): Reference-fight deviations from its own data await review
 - F-060 (low): What is a motif?
+- F-066 (high): What is a key's root position: the pelvis or the ground point?
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
+- Backlog M9-06 blocked: F5.1/F5.2 world contact points by forward kinematics — ADR-O72 (proposed): what a key's root position is, and the contact tolerance (F-066)
 <!-- END GENERATED: rulings -->
 
 The owner updates this section by ruling: in chat (the agent writes the ADR) or by writing an ADR from

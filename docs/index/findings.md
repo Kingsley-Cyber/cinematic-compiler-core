@@ -71,6 +71,7 @@ Every finding: a bug, gap, contradiction, drift, question, risk or opportunity f
 | F-063 | Earlier protocol changes took a +0.1 bump, versioning.md says +1.0 | drift | low | docs | open | — | - docs/versioning.md (Frozen docs row: "+0.1 for… | 2026-10-11 | [F-063-version-bumps-disagree-with-versioning.md](../findings/F-063-version-bumps-disagree-with-versioning.md) |
 | F-064 | The kunai deflect keeps +Z against the golden's own "+Z to -Z" | contradiction | medium | L1.1 | open | — | - kernel/sources/lbn-2.3-adv.txt, kunai row at 2.… | 2026-10-11 | [F-064-kunai-deflect-direction.md](../findings/F-064-kunai-deflect-direction.md) |
 | F-065 | The smoke pellet rests in mid-air from 3.70 to the end | contradiction | low | L1.1 | open | — | - examples/reference_fight/plans/temporal.json: t… | 2026-10-11 | [F-065-smoke-pellet-rests-in-mid-air.md](../findings/F-065-smoke-pellet-rests-in-mid-air.md) |
+| F-066 | What is a key's root position: the pelvis or the ground point? | question | high | L4c | open | — | - kernel/conventions.yaml (Q6): axes, Euler order… | 2026-10-11 | [F-066-root-position-is-undefined.md](../findings/F-066-root-position-is-undefined.md) |
 
 ## Type values
 

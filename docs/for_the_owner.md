@@ -30,6 +30,7 @@ done only when every row that applies passes. Claude never renders; you render, 
 ## What waits for you
 
 <!-- BEGIN GENERATED: owner_rulings -->
+- ADR-O72 (proposed): A key's root is the pelvis, and a touch's two points meet within 0.15 m
 - F-051 (low): Draft library cards await owner review
 - F-052 (low): Kernel scope numbers await owner review
 - F-053 (medium): Claude's interpretations await owner review
@@ -38,7 +39,9 @@ done only when every row that applies passes. Claude never renders; you render, 
 - F-057 (low): The kernel rule 'substitution log reveals' reads against O48's staging
 - F-059 (low): Reference-fight deviations from its own data await review
 - F-060 (low): What is a motif?
+- F-066 (high): What is a key's root position: the pelvis or the ground point?
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
+- Backlog M9-06 blocked: F5.1/F5.2 world contact points by forward kinematics — ADR-O72 (proposed): what a key's root position is, and the contact tolerance (F-066)
 <!-- END GENERATED: owner_rulings -->
 
 To rule, tell the agent in chat. The agent writes it up as a decision file (an ADR), cites it in the rules if it
