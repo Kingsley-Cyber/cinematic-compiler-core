@@ -24,10 +24,10 @@ code and data so they cannot drift, docs/for_the_owner.md explains everything in
 | Gap | Layer | Severity | Status | Fix |
 |-----|-------|----------|--------|-----|
 | D-01 | docs | high | done | five indexes, templates, one file per artifact (migration) |
-| D-02 | docs | high | open | layer_order.md, rules, plan.md, for_the_owner.md, how_to_refactor.md, AGENTS.md, verify.sh, freeze |
+| D-02 | docs | high | done | layer_order.md, rules, plan.md, for_the_owner.md, how_to_refactor.md, ownership, versioning, CHANGELOG, CODEOWNERS, AGENTS.md, verify.sh, Makefile, pre-commit hook, docs freeze log |
 | D-03 | docs | medium | open | seven schemas (O65) |
-| D-04 | docs | medium | open | CODEOWNERS, CHANGELOG, ownership map, version bump rules |
-| D-05 | docs | medium | open | pinned pyproject, uv.lock, Makefile, Dockerfile, pre-commit hook, six workflows |
+| D-04 | docs | medium | open | pinned pyproject and uv.lock, Dockerfile |
+| D-05 | docs | medium | open | six GitHub workflows, the nightly regeneration PR |
 
 ## Dependencies
 - None: it documents and gates what exists.
@@ -37,10 +37,10 @@ code and data so they cannot drift, docs/for_the_owner.md explains everything in
 
 ## Critical Path
 1. D-01 indexes and migration.
-2. D-02 canonical docs, AGENTS.md and the gate.
+2. D-02 canonical and control docs, AGENTS.md and the gate.
 3. D-03 schemas.
-4. D-04 control.
-5. D-05 repeatability and CI.
+4. D-04 repeatability.
+5. D-05 CI.
 
 ## Verification
 - `scripts/verify.sh` (docs plane check included) before every commit.

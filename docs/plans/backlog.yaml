@@ -70,11 +70,11 @@ items:
      step: post_generation, plan: PLAN-001, depends_on: [], findings: [F-032], codes: []}
   - {id: D-01, title: "Docs plane: five indexes, templates, one file per artifact", status: done, step: docs,
      plan: PLAN-005, depends_on: [], findings: [], codes: []}
-  - {id: D-02, title: "Docs plane: canonical docs, AGENTS.md, scripts/verify.sh, freeze", status: next, step: docs,
+  - {id: D-02, title: "Docs plane: canonical and control docs, AGENTS.md, verify.sh, Makefile, hook, freeze", status: done, step: docs,
      plan: PLAN-005, depends_on: [D-01], findings: [], codes: []}
-  - {id: D-03, title: "Docs plane: seven schemas (O65)", status: ready, step: docs, plan: PLAN-005,
+  - {id: D-03, title: "Docs plane: seven schemas (O65)", status: next, step: docs, plan: PLAN-005,
      depends_on: [D-02], findings: [], codes: []}
-  - {id: D-04, title: "Docs plane: CODEOWNERS, CHANGELOG, ownership map, version bump rules", status: ready,
+  - {id: D-04, title: "Docs plane: pinned pyproject and uv.lock, Dockerfile", status: ready,
      step: docs, plan: PLAN-005, depends_on: [D-02], findings: [], codes: []}
-  - {id: D-05, title: "Docs plane: pinned pyproject, uv.lock, Makefile, Dockerfile, pre-commit hook, workflows",
+  - {id: D-05, title: "Docs plane: six GitHub workflows (verify, golden, schemas, tests, docs, nightly)",
      status: ready, step: docs, plan: PLAN-005, depends_on: [D-02], findings: [], codes: []}

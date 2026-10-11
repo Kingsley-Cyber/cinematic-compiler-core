@@ -384,6 +384,7 @@ def problems(root=ROOT):
     found += _rule_problems(root, every["decisions"])
     found += _backlog_problems(root, every)
     found += _finding_problems(every["findings"])
+    found += _freeze_problems(root)
     from kernel.build_docs import step_modules  # noqa: F401  (layer labels cover every node)
 
     order = yaml.safe_load((root / "kernel" / "layer_order.yaml").read_text(encoding="utf-8"))
@@ -477,6 +478,20 @@ def _finding_problems(findings):
             if caught != (value(f, "Status") == "resolved"):
                 found.append(f"{f['id']} ({legacy}): status {value(f, 'Status')} but the checklist's caught_by is "
                              f"{list(FINDINGS[legacy][2]) or 'empty'}")
+    return found
+
+
+def _freeze_problems(root):
+    """Frozen docs (owner O64): a docs-log entry that changes a file must also change its version."""
+    from kernel.schema_log import DOCS
+
+    found, last = [], {}
+    for row in DOCS.entries(root):
+        previous = last.get(row["file"])
+        if row["change"] == "changed" and previous is not None and previous == row["docs_version"]:
+            found.append(f"docs/docs_log.jsonl seq {row['seq']}: {row['file']} changed without a version bump "
+                         f"(still {row['docs_version']})")
+        last[row["file"]] = row["docs_version"]
     return found
 
 

@@ -1,0 +1,12 @@
+# docs-version: 1.0
+# Who must approve changes on GitHub (docs/ownership.md). One owner today; every path is the owner's.
+*                       @Kingsley-Cyber
+/kernel/                @Kingsley-Cyber
+/schemas/               @Kingsley-Cyber
+/library/               @Kingsley-Cyber
+/docs/decisions/        @Kingsley-Cyber
+/docs/rules.yaml        @Kingsley-Cyber
+/AGENTS.md              @Kingsley-Cyber
+/scripts/               @Kingsley-Cyber
+/.github/               @Kingsley-Cyber
+/tests/test_reference_fight_golden.py  @Kingsley-Cyber

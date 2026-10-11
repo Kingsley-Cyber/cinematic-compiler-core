@@ -71,9 +71,9 @@ flowchart LR
 | `kernel.build_docs` | `compiler.pipeline`, `planner.dependency_graph`, `planner.topological_sort` | ast, json, re, sys, tomllib, yaml |
 | `kernel.build_ir_schema` | `kernel.version`, `planner.dependency_graph` | json, sys |
 | `kernel.canonical` | — | hashlib, json, math |
-| `kernel.docs_plane` | `kernel.build_docs`, `validators.checklist` | os, pathlib, re, sys, yaml |
+| `kernel.docs_plane` | `kernel.build_docs`, `kernel.schema_log`, `validators.checklist` | os, pathlib, re, sys, yaml |
 | `kernel.kernel_files` | `validators.schema_validator` | hashlib, json, pathlib, yaml |
-| `kernel.schema_log` | `kernel.canonical`, `kernel.version` | argparse, datetime, hashlib, json, pathlib, yaml |
+| `kernel.schema_log` | `kernel.canonical`, `kernel.version` | argparse, datetime, hashlib, json, pathlib, re, yaml |
 | `kernel.version` | — | — |
 | `kernel_extraction.control_inventory` | `kernel.canonical`, `planner.dependency_graph` | hashlib, json, re, sys, yaml |
 | `planner.archetype_resolver` | — | — |

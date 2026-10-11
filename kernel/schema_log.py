@@ -11,6 +11,7 @@ import argparse
 import datetime
 import hashlib
 import json
+import re
 from pathlib import Path
 
 import yaml
@@ -40,9 +41,10 @@ def _kernel_version(path):
 
 
 class HashLog:
-    def __init__(self, log, folder, pattern, key, version_key, read_version):
+    def __init__(self, log, folder, pattern, key, version_key, read_version, digest=None):
         self.log, self.folder, self.pattern = log, folder, pattern
         self.key, self.version_key, self.read_version = key, version_key, read_version
+        self.digest = digest or (lambda path: "sha256:" + hashlib.sha256(path.read_bytes()).hexdigest())
         self.fields = {"seq", "date", key, "change", "sha256", "previous_sha256", version_key,
                        "layer_order_version", "reason", "decided_by"}
 
@@ -96,7 +98,7 @@ class HashLog:
             row = current.get(name)
             if row is None or row["change"] == "removed":
                 raise ContractError("SCHEMA_UNLOGGED", "File has no log entry", name)
-            if "sha256:" + hashlib.sha256((root / name).read_bytes()).hexdigest() != row["sha256"]:
+            if self.digest(root / name) != row["sha256"]:
                 raise ContractError("SCHEMA_DRIFT", "File bytes differ from their latest log entry", name)
         for name, row in current.items():
             if row["change"] != "removed" and name not in files:
@@ -120,7 +122,7 @@ class HashLog:
                 raise ContractError("SCHEMA_LOG", "Remove the file before recording its removal", name)
             sha, version = None, None
         else:
-            sha = "sha256:" + hashlib.sha256(path.read_bytes()).hexdigest()
+            sha = self.digest(path)
             if previous and previous["sha256"] == sha:
                 raise ContractError("SCHEMA_LOG", "File bytes are unchanged since the last entry", name)
             version = self.read_version(path)
@@ -141,7 +143,32 @@ KERNEL = HashLog("kernel/kernel_log.jsonl", "kernel", ("sources/*.txt", "kernel_
                                                        "state_vocabulary.yaml", "conventions.yaml", "owner_invariants.yaml",
                                                        "knowledge_map.yaml"),
                  "file", "file_version", _kernel_version)
-LOGS = {"schemas": SCHEMAS, "library": LIBRARY, "kernel": KERNEL}
+GENERATED_BLOCK = re.compile(r"<!-- BEGIN GENERATED: (\w+) -->\n.*?<!-- END GENERATED: \1 -->", re.S)
+DOCS_VERSION = re.compile(r"docs-version: (\S+?)(?: -->|$)", re.M)
+
+
+def _docs_version(path):
+    """A frozen doc's version: `version:` in YAML, else its `docs-version: X` marker (owner O64: no change without a bump)."""
+    text = path.read_text(encoding="utf-8")
+    if path.suffix == ".yaml":
+        return str(yaml.safe_load(text).get("version"))
+    match = DOCS_VERSION.search(text)
+    return match.group(1) if match else None
+
+
+def _docs_digest(path):
+    """The hand-written bytes only: generated blocks (kernel/docs_plane.py) change every session and are checked there."""
+    text = GENERATED_BLOCK.sub(lambda m: f"<!-- GENERATED: {m.group(1)} -->", path.read_text(encoding="utf-8"))
+    return "sha256:" + hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
+# Frozen docs (owner O64): the operating manual, the rulebook, the owner's and refactor guides, the ownership and
+# versioning rules, the artifact templates and CODEOWNERS.
+DOCS = HashLog("docs/docs_log.jsonl", ".", ("AGENTS.md", "docs/rules.yaml", "docs/for_the_owner.md",
+                                            "docs/how_to_refactor.md", "docs/ownership.md", "docs/versioning.md",
+                                            "docs/*/_template.md", ".github/CODEOWNERS"),
+               "file", "docs_version", _docs_version, digest=_docs_digest)
+LOGS = {"schemas": SCHEMAS, "library": LIBRARY, "kernel": KERNEL, "docs": DOCS}
 
 
 def schema_files(root=ROOT):

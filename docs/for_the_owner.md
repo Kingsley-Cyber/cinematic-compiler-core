@@ -1,0 +1,98 @@
+# For the owner: this repo in plain English
+
+<!-- docs-version: 1.0 -->
+
+You don't need to read code to audit this repo. This page explains what it does, where every answer lives, what each
+technical word means, and what is waiting for you.
+
+## What the repo does
+
+You write a scene request ("10 s anime fight, a lean ninja against a broad ninja, ..."). The compiler turns it into one
+data file (the *envelope*) built in 18 steps, from what you asked for, to who and what is in the scene, to every beat,
+cause, contact, pose, effort and camera shot. Then it writes the prompts you paste into a video model: one LBN-2.4 prompt
+and four structured-prose prompts. Each prompt is checked against your knowledge DAG, row by row. A prompt counts as
+done only when every row that applies passes. Claude never renders; you render, and your verdicts are logged.
+
+## Where the answers live (read these, in this order)
+
+| Question | Open |
+|---|---|
+| What is decided? | [index/decisions.md](index/decisions.md): every ruling you made, one file each |
+| What is wrong or open? | [index/findings.md](index/findings.md): bugs, gaps, contradictions, questions, risks |
+| What is being built, in what order? | [plan.md](plan.md) (the work queue) and [index/plans.md](index/plans.md) |
+| What did each session do? | [index/sessions.md](index/sessions.md) |
+| What did each render show? | [index/renders.md](index/renders.md): your words, Claude's notes kept apart |
+| What are the rules? | [rules.md](rules.md): 30 rules, each with the ruling it comes from |
+| In what order are the layers built? | [layer_order.md](layer_order.md) |
+| How do agents work here? | [AGENTS.md](../AGENTS.md) |
+| Who may change what? | [ownership.md](ownership.md) |
+
+## What waits for you
+
+<!-- BEGIN GENERATED: owner_rulings -->
+- F-051 (low): Draft library cards await owner review
+- F-052 (low): Kernel scope numbers await owner review
+- F-053 (medium): Claude's interpretations await owner review
+- F-054 (low): Agent additions await owner review
+- F-055 (low): M6 tools are undefined
+- F-057 (low): The kernel rule 'substitution log reveals' reads against O48's staging
+- F-059 (low): Reference-fight deviations from its own data await review
+- Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
+<!-- END GENERATED: owner_rulings -->
+
+To rule, tell the agent in chat. The agent writes it up as a decision file (an ADR), cites it in the rules if it
+changes one, and the lists above update. You can also write the ADR yourself from
+[decisions/_template.md](decisions/_template.md).
+
+## How to check a claim
+
+- **"Is X done?"** Find X in [plan.md](plan.md). A tick ✓ next to a code means that check exists in the code today.
+  `done` means every check the slice promised exists, and the gate has passed with it.
+- **"Why does the prompt say Y?"** Find the rule in [rules.md](rules.md), then open the ruling it cites.
+- **"Did the agent change something it shouldn't?"** Every change to a schema, library card, kernel file or frozen doc
+  is in a hash-chained log. The gate fails if a file's bytes differ from its last log entry. See [ownership.md](ownership.md).
+- **"Is the repo healthy?"** One command, `scripts/verify.sh`, ends with `check: PASS` or stops at the first failure.
+
+## Glossary
+
+| Word | Meaning here |
+|---|---|
+| ADR | Architecture Decision Record: one file per decision you made (docs/decisions/). IDs keep the old names: O48, Q6, F2. |
+| Agent | The AI coding assistant working in the repo (Claude). It follows AGENTS.md. |
+| Authored step | A step whose content is written by the agent in the session, from a sealed packet. Steps S04, S08 and S11-S17. |
+| Backlog / slice | One unit of work and one commit, listed in docs/plans/backlog.yaml and shown in plan.md. |
+| Bartenieff | How the body coordinates a move: which part starts it and how it flows through the body. Step S12. |
+| Beat | One timed event in the scene ("B throws the kunai, 2.0-2.5 s"). Step S04. |
+| Card | A small data file describing an archetype, world, object, camera convention and so on (library/). `draft` until you approve it. |
+| Causal link | "This happens because of that", with a printed reason. Step S05. |
+| Checklist | The table judging each prompt against every row of your DAG map (examples/*/checklist.md). |
+| CI | Continuous integration: GitHub runs the gate on every push (.github/workflows/). |
+| Code (prompt code) | The name of one check, for example HIDDEN_PHRASING. A prompt that breaks it is refused. |
+| CODEOWNERS | A GitHub file naming who must approve changes to which paths. |
+| Commit / push | A commit saves a step locally. A push sends it to GitHub, and only on your word. |
+| Contact | A touch, hold, support or release between a body part and something, at a time. Step S07. |
+| DAG | Your knowledge DAG (docs/sources/knowledge_dag_v1.md), mapped row by row in kernel/knowledge_map.yaml. |
+| Derived step | A step computed by code from earlier steps, with nothing written by hand. |
+| Edge / node | A node is a thing (a beat, a contact, a pose). An edge connects two of them ("causes", "follows"). |
+| Effort (Laban) | The quality of a move: weight, time, space, flow ("strong, sudden, direct"). Step S15. |
+| Envelope | The one data file the compiler builds for a scene, holding every step's output. |
+| Euler angles | A rotation written as three angles (X, Y, Z) in degrees. Flips turn about X, spins about Y, cartwheels about Z. |
+| Finding | Something discovered (a bug, gap, question...), one file each in docs/findings/. |
+| Forward kinematics | Working out where a hand or foot is in the world from the joint angles. Planned (backlog M9-06). |
+| Gate / verifier | `scripts/verify.sh`: lint, tests, logs, examples, docs. It runs before every commit and in CI. |
+| Golden | The reference fight that must compile exactly from your LBN reference prompt, apart from recorded deviations you approved. |
+| graft / graphify | Code-map tools the agent uses before reading files, to save time and tokens. |
+| Hash log | An append-only list of every change to a protected file, each entry tied to the file's exact bytes. |
+| Index | One generated table listing every file of a kind (docs/index/). |
+| Kernel | The 68 controls that both LBN-2.3 and LBN-2.4 state; the compiler prints them all. |
+| Labanotation (staff) | Movement written as symbols, here written as words on staff lines (support, limbs, contacts). |
+| Layer / step | One stage of the build (S01 intent ... S18 post-generation), with the owner labels L0 ... L6.5. |
+| LBN-2.4 | The repo's full, numeric prompt format (render.txt). |
+| Packet | The sealed input an authored step is written from. Its hash proves the step saw exactly that input. |
+| Probe | A short 5 s render testing one wording question (docs/render_tests/). |
+| Render | A video you made from a prompt, logged in docs/renders/ with its prompt hash. |
+| Schema | The contract a data file must satisfy (schemas/), checked by the repo's own validator. |
+| Seedance | The video model the repo is built for (O49), with no model cards. Other models come later as adapters. |
+| Session | One working stretch of the agent, logged in docs/sessions/. |
+| Structured prose | The four prose prompts (pure staff, Mixed, Upgraded Mixed, Euler-heavy) in your DAG's template. |
+| Worktree | A second checkout of the repo used to work without disturbing the main folder. |

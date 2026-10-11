@@ -64,3 +64,22 @@ def test_each_check_refuses_its_break(expected, edit, tmp_path):
     edit(root)
     found = docs_plane.problems(root)
     assert any(expected in problem for problem in found), found
+
+
+def test_a_frozen_doc_cannot_change_without_its_log_entry_and_version_bump(tmp_path):
+    from kernel.canonical import ContractError
+    from kernel.schema_log import DOCS
+
+    root = tmp_path / "repo"
+    shutil.copytree(ROOT, root, ignore=SKIP)
+    agents = root / "AGENTS.md"
+    agents.write_text(agents.read_text(encoding="utf-8").replace("## 1. The golden rule", "## 1. The golden rules"),
+                      encoding="utf-8")
+    with pytest.raises(ContractError, match="differ from their latest log entry"):
+        DOCS.verify(root)
+    DOCS.record("AGENTS.md", "changed", "test: no bump", "owner", root=root)
+    assert any("changed without a version bump" in p for p in docs_plane._freeze_problems(root))
+    text = agents.read_text(encoding="utf-8")
+    regenerated = docs_plane.fill_blocks(text, {"state": "- anything\n"})  # generated blocks are outside the digest
+    agents.write_text(regenerated, encoding="utf-8")
+    DOCS.verify(root)
