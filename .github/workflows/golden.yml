@@ -1,0 +1,18 @@
+# The golden: every example recompiles byte for byte and the golden tests pass (make golden).
+name: golden
+on:
+  push:
+    paths: ["compiler/**", "planner/**", "solver/**", "renderers/**", "validators/**", "kernel/**", "library/**", "schemas/**", "examples/**", "tests/**"]
+  pull_request:
+    paths: ["compiler/**", "planner/**", "solver/**", "renderers/**", "validators/**", "kernel/**", "library/**", "schemas/**", "examples/**", "tests/**"]
+permissions:
+  contents: read
+jobs:
+  golden:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t ccc .
+      - run: >-
+          docker run --rm ccc sh -c "uv run --locked python -m compiler.examples &&
+          uv run --locked pytest -q tests/test_reference_fight_golden.py tests/test_example_courtyard.py tests/test_checklist.py"

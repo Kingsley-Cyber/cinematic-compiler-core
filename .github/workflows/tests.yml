@@ -1,0 +1,14 @@
+# Lint and the test suite on every push and pull request.
+name: tests
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t ccc .
+      - run: docker run --rm ccc sh -c "uv run --locked ruff check . && uv run --locked pytest -q"

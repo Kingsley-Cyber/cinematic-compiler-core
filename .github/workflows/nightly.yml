@@ -1,0 +1,35 @@
+# Nightly: regenerate the reference docs, the indexes, the canonical docs and the checklists; if anything changed,
+# open a pull request for the owner (nothing is merged automatically). A PR opened with GITHUB_TOKEN does not trigger
+# the other workflows; re-run them from the PR, or give this job a token of the owner's.
+name: nightly
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t ccc .
+      - run: >-
+          docker run --rm -v "$PWD:/repo" -w /repo ccc sh -c "uv run --locked python -m kernel.build_docs &&
+          uv run --locked python -m kernel.docs_plane --write && uv run --locked python -m validators.checklist --write"
+      - name: open a pull request if anything is stale
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          sudo chown -R "$(id -u):$(id -g)" .
+          if [ -z "$(git status --porcelain)" ]; then echo "docs current"; exit 0; fi
+          branch="nightly/docs-$(date -u +%Y-%m-%d)"
+          git config user.name "nightly-docs"
+          git config user.email "nightly-docs@users.noreply.github.com"
+          git switch -c "$branch"
+          git add -A
+          git commit -m "Nightly: regenerated docs are stale on main"
+          git push origin "$branch"
+          gh pr create --title "Nightly: regenerated docs ($(date -u +%Y-%m-%d))" \
+            --body "The nightly regeneration changed generated files; review and merge, or fix the source. Nothing is merged automatically."

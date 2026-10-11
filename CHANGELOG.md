@@ -16,6 +16,8 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
   the gate); `genre_profile` and `motif` are drafts.
 - Repeatability: exact dependency pins in pyproject.toml (pyyaml 6.0.3; pytest 9.1.1, ruff 0.17.0) and uv.lock; a
   Dockerfile (Python 3.12.14, uv 0.11.12) whose default command is the gate.
+- CI: six workflows (verify, tests, golden, schemas, docs, nightly), each running inside the pinned image; the
+  nightly job regenerates the generated docs and opens a pull request when they are stale. Not active until pushed.
 - Prompt codes BODY_HOLD_FRAMES, EMPTY_HAND_UNSTATED, ROTATION_ANGLES_PRINTED, HIDDEN_PHRASING (M9 step 1, S-001).
 
 ### Changed

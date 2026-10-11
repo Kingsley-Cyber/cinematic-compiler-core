@@ -1,0 +1,21 @@
+# Contracts: the four hash logs, the generated IR schema, the shared definitions and the schema tests.
+name: schemas
+on:
+  push:
+    paths: ["schemas/**", "library/**", "kernel/**", "docs/**", "AGENTS.md", ".github/CODEOWNERS"]
+  pull_request:
+    paths: ["schemas/**", "library/**", "kernel/**", "docs/**", "AGENTS.md", ".github/CODEOWNERS"]
+permissions:
+  contents: read
+jobs:
+  schemas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t ccc .
+      - run: >-
+          docker run --rm ccc sh -c "for log in schemas library kernel docs; do
+          uv run --locked python -m kernel.schema_log --log \$log verify > /dev/null || exit 1; done &&
+          uv run --locked python -m kernel.build_ir_schema --check &&
+          uv run --locked python -m kernel.shared_schemas --check &&
+          uv run --locked pytest -q tests/test_schemas.py"

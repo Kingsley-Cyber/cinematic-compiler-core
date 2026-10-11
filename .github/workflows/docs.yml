@@ -1,0 +1,18 @@
+# The docs plane: indexes, canonical docs, generated blocks and the reference docs are current; links resolve.
+name: docs
+on:
+  push:
+    paths: ["docs/**", "AGENTS.md", "CHANGELOG.md", "kernel/**", "schemas/**", "library/**", "compiler/**", "validators/**"]
+  pull_request:
+    paths: ["docs/**", "AGENTS.md", "CHANGELOG.md", "kernel/**", "schemas/**", "library/**", "compiler/**", "validators/**"]
+permissions:
+  contents: read
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t ccc .
+      - run: >-
+          docker run --rm ccc sh -c "uv run --locked python -m kernel.build_docs --check &&
+          uv run --locked python -m kernel.docs_plane && uv run --locked pytest -q tests/test_docs_plane.py"

@@ -77,4 +77,4 @@ items:
   - {id: D-04, title: "Docs plane: pinned pyproject and uv.lock, Dockerfile", status: done,
      step: docs, plan: PLAN-005, depends_on: [D-02], findings: [], codes: []}
   - {id: D-05, title: "Docs plane: six GitHub workflows (verify, golden, schemas, tests, docs, nightly)",
-     status: next, step: docs, plan: PLAN-005, depends_on: [D-02], findings: [], codes: []}
+     status: done, step: docs, plan: PLAN-005, depends_on: [D-02], findings: [], codes: []}
