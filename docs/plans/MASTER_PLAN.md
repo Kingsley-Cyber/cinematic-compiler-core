@@ -112,6 +112,10 @@ outputs. Spec: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
 | O14 | Not applicable only for T3 and T4 (superseded by T5 in the DAG) and C26's 14 unnamed states; T5 is checked on the prompt (section order, precedence; build order per O4); menus count only where selected: V4/V5 by the request, C14-C17 by mode, C11 by genre | M8.10 |
 | O15 | Keep the printed reasons: one 'Why each link holds:' line per causal link under the DAG's chain (CAUSE_REASON) | M8.11 |
 | O16 | Build an applicability stage (planned, after the hardening): from what S01/S02 parse (genre, performers, props, abilities), decide which DAG rows apply and what each demands, make the V4/V5 menu choice, and list the questions the prompt leaves open before anything is authored. It never rewrites the owner's words | M8.13+ |
+| O17 | The reference fight's query counts five props (adds the substitution log): 'TWO fighters, FIVE props (...)'; every stated count must agree with the scene (COUNT_CONTRADICTION). Recorded deviation of reference item k_preface_03 | M8.12d |
+| O18 | Fix the golden's numbers to match its words (recorded deviations): A falls from above and lands with the feet on the pillar top (X7), the backflip pitches through 360 (X5), the cartwheel rolls (X6), A has no body or support while vanished 3.7-4.4 (X9), A lands beside the rope dart and the kunai before picking them up (X2/X3; answers Q5); a check for each | M8.12e+ |
+| O19 | Prose staff lines in the DAG's D9 style: only the limbs that matter (~120-200 characters), density adaptive (C2); LBN-2.4 keeps every number (answers Q4) | M8.12+ |
+| O20 | Render findings with no cause found in the prompt (F13 set drift, F14 late beats) keep their rows NOT CHECKED until a fixed-seed render repeats or clears them | M8.12 |
 
 Still open: P3.2-6 PRESERVE_AXIS (S16's 180-degree rule) — the owner's call.
 
@@ -474,7 +478,9 @@ Spec and codes: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
   start, beat_plan/temporal_graph 1.3; the reference fight's props start known: kunai held by B R hand, line coiled,
   smoke sealed, shuriken holstered, log hidden until 4.00; SCENE prints them; C24 PASS again) · [x] the rope line F8
   (PROP_LINE_MISSING: '8.00 one line from A L hand to B torso'; DOUBLED_WORD: 'rope dart (dart end)'; C7, C31 PASS) ·
-  [ ] counts/start/set F12/F10/F13 · [ ] the DAG's X-audit F3 · [ ] density F6/F14.
+  [x] counts F12 (O17: query says FIVE props; COUNT_CONTRADICTION on NEG, C5, M4; NEG PASS again) · [ ] the golden's
+  numbers to its words (O18: X7 opening, X5, X6, X9, X2/X3) with checks · [ ] D9 lines + density (O19, F6) · F13/F14 stay
+  open (O20).
 - [ ] M8.13+ the applicability stage (O16), then camera, body and props, density and format, the rest. Derivable: PROP_TWO_HOLDERS (C5, S07), POST_CONTACT_MISSING (C21),
   PHRASING_MISSING (LMA, T6), MOMENTUM_MISSING (C22, T10), CHAIN_ORDER (KC), ANTICIPATION_MISSING (KF),
   SHOT_TRANSITION_MISSING (C25), PROP_KINEMATICS (C31). Need the owner: JOINT_LIMIT ranges (BIO, T7; the DAG gives

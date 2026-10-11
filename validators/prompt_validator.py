@@ -44,6 +44,7 @@ CODES = {
     "PROP_FIRST_STATE": "a prop's state at the start is unknown, or SCENE or its state machine does not say it",
     "PROP_LINE_MISSING": "a line prop held by one body and fastened to another is not written as one line between them",
     "DOUBLED_WORD": "a word is written twice in a row ('rope dart dart'): the reader cannot tell what is meant",
+    "COUNT_CONTRADICTION": "a stated count (fighters, props, a prop's units) disagrees with the scene",
     "CAUSAL_LIST_MISSING": "a causal edge is absent from CAUSAL LINKS",
     "CAUSE_REASON": "a causal link's reason is not printed in CAUSAL LINKS, or does not state a cause",
     "REACTION_WITHOUT_CAUSE": "a hard effect's line comes before its cause's contact",
@@ -73,7 +74,7 @@ READS = {
     "CONVENTION_MISSING": ("[SPATIAL ANCHORS]",), "SPATIAL_ANCHOR_MISSING": ("[SPATIAL ANCHORS]",),
     "PROP_TRACK_MISSING": (PROPS,), "PROP_STATE_ORDER": (PROPS,), "PROP_INVARIANT_MISSING": (PROPS,),
     "CUSTODY_RULE_MISSING": (PROPS,), "PROP_FIRST_STATE": ("[SCENE]", PROPS), "PROP_LINE_MISSING": (PROPS,),
-    "DOUBLED_WORD": (),
+    "DOUBLED_WORD": (), "COUNT_CONTRADICTION": (),
     "CAUSAL_LIST_MISSING": ("[CAUSAL LINKS]",), "CAUSE_REASON": ("[CAUSAL LINKS]",),
     "REACTION_WITHOUT_CAUSE": (),
     "CAUSAL_RULE_MISSING": (RULES,), "CONSERVATION_RULE_MISSING": (RULES,), "SPAN_RULE_MISSING": (STAFF, RULES),
@@ -175,6 +176,7 @@ def check(text, envelope, mode):
     _props_and_causes(envelope, parts, labels, mode, add)
     _first_state_checks(envelope, parts, labels, add)
     _line_and_word_checks(envelope, text, parts, labels, add)
+    _count_checks(envelope, text, add)
     _rules_checks(envelope, parts, labels, mode, add)
     _camera_checks(envelope, parts, labels, add)
     return findings
@@ -341,6 +343,30 @@ def _scene_and_space(envelope, parts, labels, add):
     for label in sorted({labels[s["entity"]] for s in slots(envelope)}):
         if f"{label} starts at [" not in spatial:
             add("SPATIAL_ANCHOR_MISSING", f"{label}'s start position is missing")
+
+
+NUMBER_WORDS = {w: i for i, w in enumerate(("zero one two three four five six seven eight nine ten eleven twelve").split())}
+
+
+def _count_checks(envelope, text, add):
+    """COUNT_CONTRADICTION (M8.12, owner O17; render finding F12: R5 drew four shuriken while the prompt said both FOUR
+    props and FIVE props): every '<number> fighters|performers|characters|props' and '<number> <a prop's unit or name>'
+    agrees with the scene. A number inside a time (2.50) or opening a list item (LBN-2.4's ';8 rope dart pull') is a
+    time, not a count; '<n> shuriken volley' may count the units or the volleys."""
+    props, people = envelope["nodes"]["props"]["items"], len(envelope["nodes"]["entities"]["items"])
+    plural = {"fighters": {people}, "performers": {people}, "characters": {people}, "props": {len(props)}}
+    named = {}
+    for prop in props:
+        unit, count = prop.get("unit_name"), prop.get("count", 1)
+        named[prop["name"].lower()] = {1, count} if unit and prop["name"].lower().startswith(unit.lower()) else {1}
+        if unit:
+            named.setdefault(unit.lower(), {count})
+    nouns = "|".join(sorted((re.escape(n) for n in [*plural, *named]), key=len, reverse=True))
+    for match in re.finditer(rf"(?<![\d.;\"\[])\b(\d+|{'|'.join(NUMBER_WORDS)})\s+({nouns})\b(?!\.\d)", text, re.I):
+        stated = int(match.group(1)) if match.group(1).isdigit() else NUMBER_WORDS[match.group(1).lower()]
+        allowed = {**plural, **named}[match.group(2).lower()]
+        if stated not in allowed:
+            add("COUNT_CONTRADICTION", f"'{match.group(0)}' but the scene has {' or '.join(map(str, sorted(allowed)))}")
 
 
 def _line_and_word_checks(envelope, text, parts, labels, add):

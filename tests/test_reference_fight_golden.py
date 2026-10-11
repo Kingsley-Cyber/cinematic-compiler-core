@@ -19,13 +19,20 @@ SOURCE = (ROOT / "kernel" / "sources" / "lbn-2.3-adv.txt").read_text(encoding="u
 REFERENCE = json.loads(SOURCE[SOURCE.index("{"):])
 
 
+# Owner O17 (2026-10-11): the query counts the substitution log, the fight's fifth prop (render finding F12; the
+# prompt said FOUR props in SCENE and FIVE in RULES). The reference item k_preface_03 reads the corrected count.
+PREFACE_RECOUNTED = {"k_preface_03": "TWO fighters, FIVE props (kunai, rope dart, smoke pellet, shuriken volley, "
+                                     "substitution log)"}
+
+
 def test_every_kernel_and_reference_item_is_in_the_render():
     items = load_kernel("invariants")["items"]
     printed = [i for i in items if i["origin"] != "owner"]
     scopes = ("kernel", "kernel_actor", "kernel_prop", "scene_reference")
     counts = {scope: sum(i["scope"] == scope for i in printed) for scope in scopes}
     assert counts == {"kernel": 20, "kernel_actor": 6, "kernel_prop": 5, "scene_reference": 37}
-    assert [i["id"] for i in printed if i["text"] not in TEXT] == []
+    assert [i["id"] for i in printed if PREFACE_RECOUNTED.get(i["id"], i["text"]) not in TEXT] == []
+    assert next(i["text"] for i in printed if i["id"] == "k_preface_03") not in TEXT  # the recount replaced it
     assert RENDER["coverage"]["complete"] and RENDER["coverage"]["constraints"]["enforced_by_renderer"] == ["c_k_owner_00"]
 
 

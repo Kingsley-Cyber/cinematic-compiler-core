@@ -1,5 +1,5 @@
 {
- "query": "10s anime fight, 24fps, moonlit bamboo courtyard, tall wooden pillar at back z=6 extending from ground y=0 to y=8, dark under-canopy of bamboo on left. A: lean ninja, dark coat, red scarf wrapped SMALL at neck, face fully visible. B: broad ninja, grey armor, one shoulder pauldron. TWO fighters, FOUR props (kunai, rope dart, smoke pellet, shuriken volley). A starts ABOVE the frame, falling from y=8. B starts at z=4.5 facing -Z. Naruto-tier choreography with substitution and teleport-position counters. Euler degrees XYZ. Render spec exactly.",
+ "query": "10s anime fight, 24fps, moonlit bamboo courtyard, tall wooden pillar at back z=6 extending from ground y=0 to y=8, dark under-canopy of bamboo on left. A: lean ninja, dark coat, red scarf wrapped SMALL at neck, face fully visible. B: broad ninja, grey armor, one shoulder pauldron. TWO fighters, FIVE props (kunai, rope dart, smoke pellet, shuriken volley, substitution log). A starts ABOVE the frame, falling from y=8. B starts at z=4.5 facing -Z. Naruto-tier choreography with substitution and teleport-position counters. Euler degrees XYZ. Render spec exactly.",
  "genre": null,
  "duration_s": null,
  "until": "render"

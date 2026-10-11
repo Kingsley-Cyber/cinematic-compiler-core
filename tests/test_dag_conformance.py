@@ -160,6 +160,7 @@ BREAKS = [
     ("PROP_FIRST_STATE", "ugc_glasses_demo", "mixed", _replace("temples folded until", "temples until")),
     ("PROP_LINE_MISSING", "reference_fight", "mixed", _replace(" · 8.00 one line from A L hand to B torso", "")),
     ("DOUBLED_WORD", "wizard_vs_acrobat", "mixed", _replace("Props at the start:", "Props at the the start:")),
+    ("COUNT_CONTRADICTION", "reference_fight", "mixed", _replace("TWO fighters, FIVE props", "TWO fighters, FOUR props")),
     ("CAUSAL_LIST_MISSING", "wizard_vs_acrobat", "mixed", _drop_causal_threads),
     ("CAUSE_REASON", "wizard_vs_acrobat", "mixed", _replace(": The crouch loads the legs for the vault.", ": It goes on.")),
     ("REACTION_WITHOUT_CAUSE", "ugc_glasses_demo", "mixed", _react_early),

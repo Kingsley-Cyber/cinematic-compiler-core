@@ -96,11 +96,11 @@ rows:
     class: mandatory
     step: all
     status: enforced
-    codes: [PROMPT_CONTRADICTION, SECTION_MISSING, SECTION_ORDER, DOUBLED_WORD]
+    codes: [PROMPT_CONTRADICTION, SECTION_MISSING, SECTION_ORDER, DOUBLED_WORD, COUNT_CONTRADICTION]
     enforced_by:
       - {file: compiler/passes/derived/p17_render.py, check: check, code: RENDER_COVERAGE,
          test: tests/test_render.py::test_a_dropped_item_fails_coverage}
-    note: "M8.12: a word written twice in a row is a reading defect (DOUBLED_WORD; F8's 'rope dart dart'). M8.4: validators/prompt_validator.py reads each prose prompt whole and compares every section with the
+    note: "Two counts that disagree are a reader contradiction (COUNT_CONTRADICTION, M8.12). M8.12: a word written twice in a row is a reading defect (DOUBLED_WORD; F8's 'rope dart dart'). M8.4: validators/prompt_validator.py reads each prose prompt whole and compares every section with the
       envelope and with each other (staff contacts vs prop state machines, causal order vs times, FX vs negatives).
       All four examples pass with nothing set aside (owner O10: reference_fight's 'dust ring' fx now read 'dust
       burst', audit X29)."
@@ -267,12 +267,12 @@ rows:
     class: mandatory
     step: S03
     status: enforced
-    codes: [NEGATIVES_MISSING]
+    codes: [NEGATIVES_MISSING, COUNT_CONTRADICTION]
     enforced_by:
       - {file: compiler/passes/mandatory/p03_constraint.py}
       - {file: compiler/passes/derived/p17_render.py, check: check, code: RENDER_COVERAGE,
          test: tests/test_render.py::test_a_dropped_item_fails_coverage}
-    note: "Kernel negatives (per scene, actor and prop) and card negatives become 'negative' constraints at S03, and
+    note: "M8.12 (owner O17): every stated count of fighters, props and a prop's units agrees with the scene (COUNT_CONTRADICTION; render finding F12, R5's four shuriken under 'FOUR props' and 'FIVE props'). Kernel negatives (per scene, actor and prop) and card negatives become 'negative' constraints at S03, and
       render coverage marks every constraint item by item. No test drops a negative: the coverage test drops an
       effort item."
 
@@ -567,7 +567,7 @@ rows:
     class: mandatory
     step: S06
     status: partial
-    codes: [PROP_TRACK_MISSING, PROP_STATE_ORDER, PROP_INVARIANT_MISSING, PROP_FIRST_STATE]
+    codes: [PROP_TRACK_MISSING, PROP_STATE_ORDER, PROP_INVARIANT_MISSING, PROP_FIRST_STATE, COUNT_CONTRADICTION]
     gaps: [PROP_TWO_HOLDERS]
     enforced_by:
       - {file: validators/continuity_validator.py, check: first_states, code: PROP_FIRST_STATE,
@@ -578,7 +578,7 @@ rows:
          test: tests/test_state_pass.py::test_unmet_requirement_and_same_time_conflict_are_refused}
       - {file: compiler/passes/mandatory/p07_contact.py, check: lifecycle, code: CONTACT_HAND,
          test: tests/test_contact_pass.py::test_each_contact_rule_rejects_its_violation}
-    note: "M8.12: every prop's holder and card states are known from the first beat (S06 and the prompt, PROP_FIRST_STATE). Ordered states per prop (S06 replay), never lost or cloned, possession agrees with contacts, a hand holds
+    note: "Counts stated anywhere in the prompt agree with each prop's count (COUNT_CONTRADICTION, M8.12). M8.12: every prop's holder and card states are known from the first beat (S06 and the prompt, PROP_FIRST_STATE). Ordered states per prop (S06 replay), never lost or cloned, possession agrees with contacts, a hand holds
       one thing at a time; each prop's history is a render track. Gap: nothing refuses two entities holding active
       possess contacts on one prop at once (holder is single-valued; HOLDER_CONTACT only checks it is among them)."
 

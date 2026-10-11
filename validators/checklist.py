@@ -60,7 +60,7 @@ FINDINGS = {
     "F9": (RENDERED, ("C5", "C23"), ("PROP_FIRST_STATE",)),
     "F10": (RENDERED, ("M1", "C9"), ()),
     "F11": (RENDERED, ("C5", "C24"), ("PROP_FIRST_STATE",)),
-    "F12": (RENDERED, ("C5", "NEG"), ()),
+    "F12": (RENDERED, ("C5", "NEG"), ("COUNT_CONTRADICTION",)),
     "F13": (RENDERED, ("C9", "C23"), ()),
     "F14": (RENDERED, ("C1", "C2"), ()),
     "F15": (RENDERED, ("C12", "C25"), ()),
