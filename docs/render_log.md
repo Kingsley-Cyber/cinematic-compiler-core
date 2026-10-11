@@ -24,6 +24,7 @@ detection > 0.3). n is per entry; no seeds were recorded, so nothing here is a c
 | R16 | 2026-10-11 | `docs/render_tests/2026-10-11-m9-probes/V1b_deflect_empty_hand.txt` (M9 follow-up probe), sha256 c1f85e46… | Seedance 2.0 Mini (from the file name), no fixed seed; 864x496, 24 fps, 5.09 s, with audio | `Ninja_jumping_backflip_54953_Seedance_20_Mini.mp4` | owner asked for analysis (no verdict; frame notes are Claude's) |
 | R17 | 2026-10-11 | `docs/render_tests/2026-10-11-m9-probes/V2b_log_unmentioned.txt` (M9 follow-up probe), sha256 c0b09df4… | Seedance 2.0 Mini (from the file name), no fixed seed; 864x496, 24 fps, 5.09 s, with audio | `Ninja_jumping_backflip_53299_Seedance_20_Mini.mp4` | owner asked for analysis (no verdict; frame notes are Claude's) |
 | R18 | 2026-10-11 | `docs/render_tests/2026-10-11-m9-probes/V3b_backflip_plain.txt` (M9 follow-up probe), sha256 7c07df8f… | Seedance 2.0 Mini (from the file name), no fixed seed; 864x496, 24 fps, 5.09 s, with audio | `Ninja_jumping_backflip_99728_Seedance_20_Mini.mp4` | owner asked for analysis (no verdict; frame notes are Claude's) |
+| R19 | 2026-10-11 | `docs/render_tests/2026-10-11-m9-probes/V6_opening_from_above.txt` (M9 probe), sha256 707dacf8… | Seedance 2.0 Mini (from the file name), no fixed seed; 864x496, 24 fps, 5.09 s, with audio | `Ninja_jumping_backflip_48575_Seedance_20_Mini.mp4` (file sha256 48be6ab7…) | owner sent the render without a verdict (frame notes are Claude's) |
 
 ## Claude's frame notes
 
@@ -99,6 +100,12 @@ to the end; one kunai throughout; A's knee stays up about 1 s after the tap. R17
 2.50); the log falls near 3.0-3.25; A crouches by it, in front of B. R18 V3b: a long crouch, takeoff near 2.62 (asked
 1.00), one backward somersault about the lateral axis, landing near 3.45 (asked 1.80).
 
+**R19 (probe V6, opening from above).** A static low view of the pillar top against the moon, no cut; the pillar
+stands left of centre (asked centre). The frame holds only the pillar and the sky from 0.00 to about 2.9 s; A's feet
+enter from the top edge near 2.9-2.96 (asked 0.20), legs straight rather than tucked, coat trailing above; the feet
+touch the pillar top near 3.0 (asked 0.60) and A sinks into a deep crouch with dust puffs at 3.04; A holds the crouch
+to the end, coat flaring upward, never on the ground. A is never on the pillar before the drop.
+
 ## What the renders suggest (hypotheses, not proven)
 
 - H1 — Prose camera lines read as hard cuts. Both prompts carry the same 21-shot camera plan; the prose writes each
@@ -126,5 +133,10 @@ to the end; one kunai throughout; A's knee stays up about 1 s after the tap. R17
 - Follow-ups (R16-R18): stating the empty hand and dropping the hold line gave one kunai and a tap (R16); a later
   object is drawn from the start whether or not it is named (R17); plain "one backflip" gave one flip where the angle
   list gave two (R18 vs R13); aerial takeoffs come 0.75-1.6 s late in every render, strikes within about 0.2 s.
+
+- V6 (R19): "ABOVE the frame, not visible" plus "drops into the frame from the top edge" kept A off the pillar at
+  the start (R1 and R2 began with A standing there) and brought A in from above; the arrival came about 2.7 s late,
+  the largest drift so far. The empty-frame line at 0.00 may have read as a held establishing shot (P1: holds are
+  stretched); untested.
 
 Next tests change one of these at a time, same model and seed.

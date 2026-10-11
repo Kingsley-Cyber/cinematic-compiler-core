@@ -38,7 +38,7 @@ Total: six 5 s probes now, one 10 s full-fight render at the end.
 | V3 one backflip | R13 `…_80206_…` | FAIL | two turns about the lateral axis (2.0-2.55, 2.55-3.1); launch 1 s late; landing near 3.1 (asked 1.80) |
 | V4 apex hold | R14 `…_02134_…` | FAIL | the inverted pose freezes about 0.85 s (≈21 frames, asked 3); landing near 2.5 (asked 1.93) |
 | V5 hit held with both bodies, crane | R15 `…_52436_…` | PASS | knee on B's lower back near 0.85; both bodies in frame (B's shoulder clipped at times); no knee close-up; brief pause on the hit; camera rises from about 2.0 to a high view; B stays down |
-| V6 opening from above | — | not rendered | — |
+| V6 opening from above | R19 `…_48575_…` | PASS on the question, FAIL on timing | only the pillar top and the sky until about 2.9 s; A drops in feet first from the top edge near 2.9 (asked 0.20), lands in a crouch with dust near 3.0 (asked 0.60) and holds it; static low view, no cut; pillar left of centre |
 
 What this settles (hypotheses, n = 1, no seed; they decide the printed wording, not the checks):
 - **P1 Holds in frames are stretched:** every frame-count hold so far became 0.85-1.75 s (R10, R11, R14).
@@ -79,3 +79,8 @@ What the follow-ups settle (n = 1 each, no seed):
   Staging the substitution another way is the owner's call.
 - **Timing:** aerial takeoffs land 0.75-1.6 s late in every render; strikes within about 0.2 s. Times stay in the
   prompt; renders are judged with that drift in mind.
+- **Opening (O21, F10; R19):** V6's wording is the target: "A is ABOVE the frame, not visible", "drops into the
+  frame from the top edge, feet first", "lands … on the flat top of the pillar", with the rule "A is not visible
+  before <t>". It kept A off the pillar at the start, which R1 and R2 did not. The arrival was about 2.7 s late, like
+  every aerial event (above); whether the line describing the empty frame at 0.00 caused the long empty shot is
+  untested.
