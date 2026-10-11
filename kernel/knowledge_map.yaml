@@ -1290,11 +1290,11 @@ rows:
     anchor: "P3.2 L1649"
     class: excluded
     step: S16
-    status: clashes_with_repo
+    status: excluded
     enforced_by:
       - {file: validators/camera_validator.py, check: _cut, code: CAMERA_AXIS,
          test: tests/test_camera_solver.py::test_each_rule_rejects_its_violation}
-    note: "Clash: S16 keeps the 180-degree line across cuts unless the shot declares 'cross' and the genre card allows
+    note: "Owner O53 (2026-10-11): keep the repo rule; the clash is settled. Was a clash: S16 keeps the 180-degree line across cuts unless the shot declares 'cross' and the genre card allows
       it (anime and live_action allow, ugc_ad forbids). Orbits inside one shot and Dutch roll (anime up to 30
       degrees) are not blocked. Owner's call: keep the axis rule or drop it."
 

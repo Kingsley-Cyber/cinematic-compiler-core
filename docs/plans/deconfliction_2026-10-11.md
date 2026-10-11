@@ -1,9 +1,9 @@
 # Deconfliction: the owner's cinematic_beat_v2 plan (parts 1-3) against the repo (2026-10-11)
 
-Status: **FINAL, v1.0 (2026-10-11).** Every recommendation accepted (O22-O44); the probe results amend the printed
+Status: **FINAL, v1.1 (2026-10-11).** Every recommendation accepted (O22-O44); the probe results amend the printed
 wording (O47, O48); the repo stays model-agnostic, built for Seedance with no model cards, adapters later (O49). Open:
-Q-G (which beats are callbacks, needed only for F4.6) and probe V6 (optional; the opening is built with V6's wording).
-The build order is in section 9. Repo at local `main` `7e962cc` (553 tests, 44 prompt
+nothing. Q-G is answered (O50: five callbacks), probe V6 is rendered by the owner before the opening slice (O51), and
+Q3, Q6, Q7, Q8 are closed (O53-O56). The build order is in section 9. Repo at local `main` `7e962cc` (553 tests, 44 prompt
 codes, gate green). Every repo claim below was checked against the code on disk; `file:line` points at it.
 
 ## 1. Executive summary
@@ -655,23 +655,29 @@ camera arc were not followed).
 ## 9. Final build order (v1.0)
 
 1. **W wording rules** (W1-W4: BODY_HOLD_FRAMES, EMPTY_HAND_UNSTATED, ROTATION_ANGLES_PRINTED, HIDDEN_PHRASING; O48's
-   post).
+   post) and O54's four negatives in the reference fight's cards.
 2. F5.3 strike timing (IMPACT_CONTACT_SYNC) with V1b's deflect wording.
 3. F6.3 grounded pickups (AIRBORNE_PICKUP).
 4. F2.1/F2.2 prop physics, F6.1/F6.2 positions and rest (as amended by W4).
 5. FR.1/FR.3 rotation path and checks (as amended by W3).
 6. F5.1/F5.2 world contact points (CONTACT_WORLD).
 7. F4.1/F4.2 verbs and Laban wording.
-8. O21 opening (V6's wording; SURFACE_HEIGHT).
+8. O21 opening (wording from the owner's V6 render, O51; SURFACE_HEIGHT).
 9. F9.1 Laban direction, F9.2 momentum, FR.4 launch.
 10. F4.3/F4.4 B's active keys (IDLE_FIGHTER).
 11. FR.7 genre cards; FR.6/FR.2 money-shot frame parts and limb paths (as amended by W1).
 12. O19 D9 lines (LINE_DENSITY).
 13. C10 camera in V5's wording, FR.5, F8.1-F8.3 (as amended by W1).
-14. F4.5 chain timing, F4.6 callbacks (after Q-G), F9.3 anticipation, F9.4 reaction.
+14. F4.5 chain timing, F4.6 callbacks (O50's five), F9.3 anticipation, F9.4 reaction.
 15. F6.4 world state; part 3: FP.1, FP.4, FP.8, then FP.2, FP.3, FP.5-FP.7, FP.9, FP.11, then FP.10, FP.12.
 16. The applicability stage (O16) with the 16-layer coverage report.
 17. One full-fight render by the owner (D9 lines, camera, part 3 words), logged.
 
 Checks planned: 43 new codes (the 39 of the earlier count plus W1-W4). Deferred to M7: per-frame tracks, rendering,
 render validation, retry, model adapters (O49), sound (O41).
+
+## Closing answers (owner, 2026-10-11, before the push)
+
+Q-G → O50 (all five callbacks) · V6 → O51 (the owner renders it before the opening slice) · the other session's work →
+O52 (untouched) · Q6 → O53 (keep the 180-degree rule) · Q7 → O54 (four negatives added, FINAL saved) · Q3 → O55 (no
+reasons in LBN) · verdicts and Q8 → O56.

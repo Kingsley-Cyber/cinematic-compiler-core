@@ -17,8 +17,8 @@ Remote: github.com/Kingsley-Cyber/cinematic-compiler-core (public, MIT); push on
   is deconflicted (`docs/plans/deconfliction_2026-10-11.md`), decisions O22-O46 recorded, M9 is the build order
   (F5.3 strike timing first), six 5 s probes wait for the owner's renders (`docs/render_tests/2026-10-11-m9-probes/`),
   and the owner's Seedance axis tests are logged as R6-R10.
-- **Owner decisions:** O1-O46 in `docs/plans/MASTER_PLAN.md` (O13-O46 on 2026-10-11; O46: test only what is uncertain and
-  visual, build the rest). Golden deviations, each an
+- **Owner decisions:** O1-O56 in `docs/plans/MASTER_PLAN.md` (O13-O56 on 2026-10-11; O46: test only what is uncertain and
+  visual, build the rest; O49: no model cards). Golden deviations, each an
   owner decision, in `tests/test_reference_fight_golden.py` (HIP_CLAMPS, VANISHED, ROOT_TURNS, PREFACE_RECOUNTED,
   FX_REWORDED, knee signs).
 - **Parallel session warning:** another Claude session left uncommitted work in this folder (`scripts/check.sh` +1
@@ -44,9 +44,9 @@ Remote: github.com/Kingsley-Cyber/cinematic-compiler-core (public, MIT); push on
   append-only and hash-chained. After DAG, schema, library or import changes run `python -m kernel.build_docs`.
 - **Never:** paid model API, renders (the owner renders), pushing without the owner, editing logged files without a
   log entry, a format the DAG does not show, a PASS a render contradicts.
-- **Waiting on the owner:** the owner's plan (next session's subject); Q3 (reasons in LBN), Q6 (PRESERVE_AXIS), Q7
-  (FINAL's four negatives; save FINAL), Q8 (render model and settings); M6 tool definitions; review of
-  `library/joint_limits.yaml`, the 2 m reach / 0.25 m prop tolerance, draft cards and agent additions (below).
+- **Waiting on the owner:** the V6 probe render (before the opening slice, O51) and the push. Q1-Q8 and Q-A-Q-X are all
+  answered (O13-O56). Still open for review whenever convenient: `library/joint_limits.yaml`'s axis mapping, the 2 m reach
+  and 0.25 m prop tolerance, the draft cards and the agent additions (below).
 
 ## CLI
 `cinematic compile "<query>" [--genre G] [--until NODE] [--plans DIR] [--packet-out F] [--chain-from PREV.json]` (exit 3 = an authored step needs

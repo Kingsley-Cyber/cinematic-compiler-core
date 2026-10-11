@@ -1,0 +1,127 @@
+{
+  "variant": "LBN-2.3-ADV-FINAL",
+  "title": "A vs B - 10s Naruto-tier courtyard fight",
+  "fps": 24,
+  "duration": 10.0,
+  "axis": "Y_up, A faces +Z at start of grounded phases, pillar at z=6 from y=0 to y=8, ground y=0, bamboo canopy left side",
+  "skeleton_key": "Sp=Spine, LUL/RUL=UpLeg, LL/RL=LowLeg, LA/RA=UpArm, LFA/RFA=ForeArm, HD=Head, NK=Neck",
+  "negative": "no missing limbs, no missing arms, no missing hands, no headless body, no scarf covering head or face, no faceless head, no extra fighters beyond A and B, no cloned A, no duplicated kunai, no duplicated rope dart, no duplicated smoke pellet, no duplicated shuriken beyond the declared volley of exactly 3, no extra weapons, no full circle, no ring, no halo, no substitution log as a separate fighter, substitution log is a wooden block NOT a fighter, no floating limbs, no inverted gravity errors, no scarf physics errors",
+
+  "laban": {
+    "A": "fall from above > land pillar top > sprint down pillar face > kick off > aerial descent > foot deflect kunai > land > rising palm counter > KAWARIMI substitution with smoke pellet > reappear behind B > rising knee to B spine > aerial backflip kick > dodge shuriken volley with slide > cartwheel to rising elbow > caught by B > thrown into pillar > wall-push off pillar > aerial rope dart grapple > pull B toward pillar > aerial kunai drive into B shoulder > crash ground > hold crouch; Effort: strong, sudden, direct, free flow with bound at impacts",
+    "B": "wait with kunai > throw kunai > brace > charge rising palm > miss substitution > recover > throw shuriken volley > catch A elbow > throw A into pillar > grappled by rope dart > pulled toward pillar > hit shoulder by kunai drive > crash ground > remain down; Effort: heavy, sustained, bound"
+  },
+
+  "A_keyframes": [
+    [0.00, "fall_from_above", [0.0, 7.5, 3.5], [15, 0, 0], {"Sp":[30,0,0],"LUL":[-60,0,0],"RUL":[-60,0,0],"LL":[-60,0,0],"RL":[-60,0,0],"LA":[-30,0,0],"RA":[-30,0,0],"LFA":[-45,0,0],"RFA":[-45,0,0],"HD":[-20,0,0],"NK":[0,0,0]}, "contacts:none", "L:arm fwd high bent3, leg fwd mid bent5; R:same; support=none airborne; A FALLS FROM ABOVE FRAME, body tucked, both arms forward for balance, both legs tucked, head pointing down"],
+    [0.60, "land_pillar_top", [0.0, 7.2, 5.8], [45, 0, 0], {"Sp":[75,0,0],"LUL":[-135,0,0],"RUL":[-135,0,0],"LL":[-90,0,0],"RL":[-90,0,0],"LA":[-60,0,0],"RA":[-60,0,0],"LFA":[-90,0,0],"RFA":[-90,0,0],"HD":[-40,0,0],"NK":[0,0,0]}, "contacts:both_feet", "LANDING ON PILLAR TOP y=7.2, deep compressed crouch, both arms out for balance, head facing down"],
+    [1.10, "sprint_down_pillar", [0.3, 4.5, 5.9], [60, 0, 0], {"Sp":[60,0,0],"LUL":[-90,0,0],"RUL":[90,0,0],"LL":[0,0,0],"RL":[0,0,0],"LA":[60,0,0],"RA":[-60,0,0],"LFA":[-30,0,0],"RFA":[-30,0,0],"HD":[-15,0,0],"NK":[0,0,0]}, "contacts:both_feet", "SPRINTING DOWN PILLAR FACE, body horizontal facing pillar surface at z=6, running arm motion"],
+    [1.60, "kick_off_pillar", [0.6, 3.2, 5.5], [50, -30, 0], {"Sp":[45,-20,0],"LUL":[-45,0,0],"RUL":[45,0,0],"LL":[-45,0,0],"RL":[-45,0,0],"LA":[-60,0,0],"RA":[-60,0,0],"LFA":[-30,0,0],"RFA":[-30,0,0],"HD":[-15,0,0],"NK":[0,0,0]}, "contacts:none", "KICK OFF PILLAR, both feet push hard, body arcs backward away from pillar"],
+    [2.00, "B_throws_kunai", [0.5, 2.5, 5.0], [25, 60, 0], {"Sp":[30,0,0],"LUL":[-90,0,0],"RUL":[-90,0,0],"LL":[-30,0,0],"RL":[-30,0,0],"LA":[90,0,0],"RA":[90,0,0],"LFA":[-30,0,0],"RFA":[-30,0,0],"HD":[-20,0,0],"NK":[0,0,0]}, "contacts:none", "A DESCENDS, sees kunai approaching from below"],
+    [2.50, "foot_deflect_kunai", [0.5, 1.5, 4.5], [25, 90, 0], {"Sp":[20,0,0],"LUL":[-30,0,0],"RUL":[-135,0,0],"LL":[-30,0,0],"RL":[-90,0,0],"LA":[60,0,0],"RA":[-30,0,0],"LFA":[-45,0,0],"RFA":[-45,0,0],"HD":[20,0,0],"NK":[0,0,0]}, "contacts:none", "RIGHT FOOT sole strikes kunai → kunai DEFLECTED DOWNWARD and REVERSES from +Z to -Z"],
+    [3.00, "land_facing_B", [0.4, 0.9, 4.8], [20, 90, 0], {"Sp":[45,0,0],"LUL":[-90,0,0],"RUL":[90,0,0],"LL":[-45,0,0],"RL":[-45,0,0],"LA":[-30,0,0],"RA":[30,0,0],"LFA":[-45,0,0],"RFA":[-45,0,0],"HD":[-5,0,0],"NK":[0,0,0]}, "contacts:both_feet", "A LANDS squared up facing B, LEFT HAND HOLDING ROPE DART"],
+    [3.40, "B_rising_palm_charge", [0.4, 1.1, 4.7], [20, 90, 0], {"Sp":[30,0,0],"LUL":[-60,0,0],"RUL":[-60,0,0],"LL":[-30,0,0],"RL":[-30,0,0],"LA":[-45,0,0],"RA":[-45,0,0],"LFA":[-60,0,0],"RFA":[-60,0,0],"HD":[-5,0,0],"NK":[0,0,0]}, "contacts:both_feet", "A braces as B charges rising palm"],
+    [3.70, "KAWARIMI_substitution", [0.4, 1.1, 4.7], [20, 90, 0], {"Sp":[60,0,0],"LUL":[-90,0,0],"RUL":[-90,0,0],"LL":[-60,0,0],"RL":[-60,0,0],"LA":[60,0,0],"RA":[60,0,0],"LFA":[-90,0,0],"RFA":[-90,0,0],"HD":[-20,0,0],"NK":[0,0,0]}, "contacts:both_feet", "KAWARIMI: A body REPLACED BY SMOKE BURST + wooden substitution log, A vanishes"],
+    [4.00, "B_palm_hits_log", [0.4, 0.9, 4.7], [20, 90, 0], {"Sp":[30,0,0],"LUL":[-60,0,0],"RUL":[-60,0,0],"LL":[-30,0,0],"RL":[-30,0,0],"LA":[-45,0,0],"RA":[-45,0,0],"LFA":[-60,0,0],"RFA":[-60,0,0],"HD":[-5,0,0],"NK":[0,0,0]}, "contacts:both_feet", "B palm strikes the substitution log (A already gone)"],
+    [4.40, "reappear_behind_B", [0.4, 1.1, 4.4], [20, -90, 0], {"Sp":[30,0,0],"LUL":[-60,0,0],"RUL":[-60,0,0],"LL":[-30,0,0],"RL":[-30,0,0],"LA":[-45,0,0],"RA":[-90,0,0],"LFA":[-45,0,0],"RFA":[-90,0,0],"HD":[-5,0,0],"NK":[0,0,0]}, "contacts:both_feet", "A REAPPEARS BEHIND B, right elbow cocking, left hand still holding rope dart"],
+    [4.70, "RIGHT_KNEE_strike", [0.4, 1.4, 4.5], [10, -90, 0], {"Sp":[20,0,0],"LUL":[-30,0,0],"RUL":[-135,0,0],"LL":[-30,0,0],"RL":[-90,0,0],"LA":[60,0,0],"RA":[-30,0,0],"LFA":[-45,0,0],"RFA":[-45,0,0],"HD":[15,0,0],"NK":[0,0,0]}, "contacts:none", "RIGHT KNEE drives up into B spine from behind → B lifted and launched forward"],
+    [5.10, "aerial_backflip_kick", [0.5, 2.2, 4.0], [0, -180, 0], {"Sp":[10,0,0],"LUL":[-45,0,0],"RUL":[-90,0,0],"LL":[-30,0,0],"RL":[-30,0,0],"LA":[90,0,0],"RA":[90,0,0],"LFA":[-45,0,0],"RFA":[-45,0,0],"HD":[-10,0,0],"NK":[0,0,0]}, "contacts:none", "AERIAL BACKFLIP KICK, full backflip in vertical plane, LEFT LEG wide crescent arc"],
+    [5.50, "B_throws_shuriken", [0.5, 1.8, 4.3], [0, -270, 0], {"Sp":[20,0,0],"LUL":[-60,0,0],"RUL":[-60,0,0],"LL":[-30,0,0],"RL":[-30,0,0],"LA":[-45,0,0],"RA":[-90,0,0],"LFA":[-45,0,0],"RFA":[-90,0,0],"HD":[-5,0,0],"NK":[0,0,0]}, "contacts:none", "B recovers mid-air and throws exactly THREE shuriken"],
+    [5.90, "slide_dodge", [0.5, 0.6, 3.8], [80, -270, 0], {"Sp":[80,0,0],"LUL":[-135,0,0],"RUL":[-135,0,0],"LL":[-90,0,0],"RL":[-90,0,0],"LA":[-45,0,0],"RA":[-45,0,0],"LFA":[-45,0,0],"RFA":[-45,0,0],"HD":[-40,0,0],"NK":[0,0,0]}, "contacts:both_feet", "A SLIDES UNDER the three shuriken, all pass over A"],
+    [6.30, "cartwheel_rising_elbow", [0.4, 1.5, 3.5], [20, -180, 0], {"Sp":[20,0,0],"LUL":[-90,0,0],"RUL":[-90,0,0],"LL":[-60,0,0],"RL":[-60,0,0],"LA":[-90,0,0],"RA":[-90,0,0],"LFA":[-45,0,0],"RFA":[-90,0,0],"HD":[10,0,0],"NK":[0,0,0]}, "contacts:none", "CARTWHEEL into rising LEFT ELBOW drive"],
+    [6.60, "B_catches_throws_A", [0.3, 1.8, 4.5], [20, -90, 0], {"Sp":[30,0,0],"LUL":[-30,0,0],"RUL":[-30,0,0],"LL":[-30,0,0],"RL":[-30,0,0],"LA":[90,0,0],"RA":[-90,0,0],"LFA":[-60,0,0],"RFA":[-60,0,0],"HD":[10,0,0],"NK":[0,0,0]}, "contacts:none", "B catches A left elbow and throws A toward pillar"],
+    [7.00, "wall_push_off", [0.5, 2.8, 5.9], [60, -30, 0], {"Sp":[45,-20,0],"LUL":[-45,0,0],"RUL":[45,0,0],"LL":[-45,0,0],"RL":[-45,0,0],"LA":[-60,0,0],"RA":[-60,0,0],"LFA":[-30,0,0],"RFA":[-30,0,0],"HD":[-15,0,0],"NK":[0,0,0]}, "contacts:none", "A contacts pillar then pushes off hard back toward B"],
+    [7.50, "aerial_rope_dart_regrapple", [0.6, 2.2, 4.8], [30, 30, 0], {"Sp":[20,0,0],"LUL":[-60,0,0],"RUL":[-60,0,0],"LL":[-30,0,0],"RL":[-30,0,0],"LA":[-45,0,0],"RA":[-90,0,0],"LFA":[-30,0,0],"RFA":[-30,0,0],"HD":[-10,0,0],"NK":[0,0,0]}, "contacts:none", "A left hand throws rope dart → wraps B right shoulder"],
+    [8.00, "pull_B_toward_pillar", [0.5, 1.8, 4.5], [30, 90, 0], {"Sp":[20,0,0],"LUL":[-90,0,0],"RUL":[-90,0,0],"LL":[-45,0,0],"RL":[-45,0,0],"LA":[-45,0,0],"RA":[-45,0,0],"LFA":[-45,0,0],"RFA":[-45,0,0],"HD":[-10,0,0],"NK":[0,0,0]}, "contacts:none", "A pulls rope dart taut → drags B toward pillar"],
+    [8.50, "aerial_kunai_drive", [0.4, 1.5, 4.9], [20, 90, 0], {"Sp":[30,0,0],"LUL":[-30,0,0],"RUL":[-30,0,0],"LL":[-30,0,0],"RL":[-30,0,0],"LA":[-30,0,0],"RA":[-90,0,0],"LFA":[-45,0,0],"RFA":[-90,0,0],"HD":[10,0,0],"NK":[0,0,0]}, "contacts:none", "A right hand drives kunai downward into B right shoulder"],
+    [9.00, "crash_to_ground", [0.4, 0.7, 5.3], [20, 90, 0], {"Sp":[60,0,0],"LUL":[-135,0,0],"RUL":[-135,0,0],"LL":[-90,0,0],"RL":[-90,0,0],"LA":[-45,0,0],"RA":[-90,0,0],"LFA":[-45,0,0],"RFA":[-90,0,0],"HD":[-30,0,0],"NK":[0,0,0]}, "contacts:both_feet", "A and B crash to ground, A lands in low crouch over B"],
+    [9.50, "hold_crouch", [0.3, 0.7, 5.3], [20, 90, 0], {"Sp":[50,0,0],"LUL":[-135,0,0],"RUL":[-135,0,0],"LL":[-90,0,0],"RL":[-90,0,0],"LA":[-45,0,0],"RA":[-90,0,0],"LFA":[-90,0,0],"RFA":[-90,0,0],"HD":[-10,0,0],"NK":[0,0,0]}, "contacts:both_feet", "A holds crouch over B, right hand on kunai in shoulder, left hand holding rope dart"],
+    [10.0, "hold_crouch_end", [0.3, 0.7, 5.3], [20, 90, 0], {"Sp":[50,0,0],"LUL":[-135,0,0],"RUL":[-135,0,0],"LL":[-90,0,0],"RL":[-90,0,0],"LA":[-45,0,0],"RA":[-90,0,0],"LFA":[-90,0,0],"RFA":[-90,0,0],"HD":[-10,0,0],"NK":[0,0,0]}, "contacts:both_feet", "Final hold"]
+  ],
+
+  "B_timeline": [
+    "0.0 at z=4.5 facing -Z, holding kunai reverse grip",
+    "0.5 releases kunai toward A",
+    "2.0 throws kunai upward at descending A",
+    "2.5 kunai deflected downward by A right foot",
+    "3.0-3.4 braces then charges rising palm",
+    "3.7 A substitutes → B palm misses",
+    "4.0 B palm hits substitution log, off-balance",
+    "4.7 hit in spine by A right knee → launched forward",
+    "5.1-5.5 airborne, recovers, throws exactly THREE shuriken",
+    "5.9 shuriken miss over sliding A",
+    "6.6 catches A left elbow and throws A toward pillar",
+    "7.5 grappled again by rope dart on right shoulder",
+    "8.0 dragged toward pillar",
+    "8.5 kunai driven into right shoulder → driven down",
+    "9.0 slammed into ground",
+    "9.0-10.0 remains down, never stands, kunai embedded in shoulder"
+  ],
+
+  "props": {
+    "kunai": [
+      "0.0 in B right hand reverse grip",
+      "0.5-2.0 flies toward A",
+      "2.5 deflected downward by A right foot, direction reverses, stays in frame",
+      "4.0 hits ground near pillar",
+      "8.0 A picks up kunai",
+      "8.5 A drives kunai into B right shoulder (stays embedded)",
+      "10.0 remains embedded in B right shoulder"
+    ],
+    "rope_dart": [
+      "0.0 coiled at A left hip",
+      "3.0 A holding in left hand",
+      "5.9 released during slide, falls to ground",
+      "7.5 A picks up and throws → wraps B right shoulder",
+      "8.0-10.0 taut line from A left hand to B right shoulder"
+    ],
+    "smoke_pellet": [
+      "3.7 deployed at A position → large smoke burst",
+      "3.8-4.5 smoke cloud expands then dissipates",
+      "10.0 gone"
+    ],
+    "shuriken_volley": [
+      "5.5 B throws exactly THREE shuriken in fan pattern",
+      "5.9 all three pass over sliding A",
+      "6.3 all three embed in pillar at z=6",
+      "10.0 remain embedded in pillar"
+    ],
+    "substitution_log": [
+      "3.7 appears at A former position (wooden block)",
+      "4.0 struck by B palm",
+      "4.2 falls to ground",
+      "10.0 remains on ground"
+    ]
+  },
+
+  "camera": [
+    "0.0 high angle looking down at A falling",
+    "0.6 hold on pillar-top landing",
+    "1.1 side view sprinting down pillar",
+    "1.6 hold on kick-off",
+    "2.0-2.5 tracking kunai + foot deflect (hold on impact)",
+    "3.0 ground level A lands",
+    "3.7 hold on KAWARIMI smoke burst",
+    "4.4 hold on reappearance behind B",
+    "4.7 slow-motion 0.25x on knee strike",
+    "5.1 arc with backflip",
+    "5.5 medium on shuriken throw",
+    "5.9 hold on slide under shuriken",
+    "6.3-6.6 medium cartwheel to catch/throw",
+    "7.0 hold on wall-push",
+    "7.5-8.5 hold on rope-dart grapple + kunai drive (slow-mo on drive)",
+    "9.0 ground level crash",
+    "9.5-10.0 slow push-in on final crouch"
+  ],
+
+  "anime_style": {
+    "impact_frames": [2.5, 4.7, 5.5, 6.6, 8.5, 9.0],
+    "smear_frames": ["0.3-0.6", "1.1-1.6", "2.0-2.5", "4.7-5.1", "5.5-5.9", "6.3-6.6", "7.5-8.5"],
+    "speedlines": ["0-0.6", "1.1-1.6", "2.0-2.5", "4.7-5.1", "5.5-5.9", "6.3-6.6", "7.5-8.5"],
+    "holds": [0.6, 1.6, 2.5, 3.7, 4.4, 4.7, 5.9, 6.6, 7.0, 8.5],
+    "fx": "pillar dust, foot-deflect spark, smoke burst, log impact, knee flash, backflip trail, shuriken flash, throw flash, rope tension line, kunai drive flash, crash dust, final embers + moon rim light",
+    "ink": "heavy on A, broken only on declared smears, clean on holds"
+  },
+
+  "rules": "Use slerp on all joint rotations. Root positions are exact. A starts above frame. Substitution replaces A with smoke + wooden log only. Exactly three shuriken. Rope dart released at 5.9 and re-acquired at 7.5. Kunai picked up at 8.0 and stays in B shoulder after 8.5. B never stands after 9.0. Two fighters only. Five props tracked separately. End on A crouching over downed B."
+}
