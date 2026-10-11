@@ -97,8 +97,8 @@ rows:
          test: tests/test_render.py::test_a_dropped_item_fails_coverage}
     note: "M8.4: validators/prompt_validator.py reads each prose prompt whole and compares every section with the
       envelope and with each other (staff contacts vs prop state machines, causal order vs times, FX vs negatives).
-      Open: reference_fight's fx 'dust ring' vs 'no ring' comes from the owner's LBN-2.3/2.4 sources (audit X29);
-      the conformance test lists it as KNOWN for the owner."
+      All four examples pass with nothing set aside (owner O10: reference_fight's 'dust ring' fx now read 'dust
+      burst', audit X29)."
 
   # ---- G1 primitives ----
   - id: LMA

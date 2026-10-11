@@ -54,6 +54,11 @@ def test_a_roots_and_joints_are_the_reference_rows_with_the_recorded_deviations(
     assert all(row["desc"].endswith(ref[5]) for row, ref in zip(SPEC["A"], reference, strict=True))
 
 
+# Owner O10 (2026-10-11): the golden passes conformance, so the two fx the source draws as a 'ring' read as a 'burst'
+# (the kernel negative 'no ring' stays; audit X29).
+FX_REWORDED = {"pillar-top landing dust ring": "pillar-top landing dust burst", "crash dust ring": "crash dust burst"}
+
+
 def fx(text):
     rows = []
     for item in text.split(";"):
@@ -67,7 +72,8 @@ def test_props_cast_and_anime_directives_survive():
         ["kunai", "rope_dart", "smoke_pellet", "shuriken_volley", "substitution_log"]
     anime = SPEC["anime"]
     assert anime["impact"] == REFERENCE["anime"]["impact"] and [h[0] for h in anime["holds"]] == REFERENCE["anime"]["holds"]
-    assert anime["ink"] == REFERENCE["anime"]["ink"] and fx(anime["fx"]) == fx(REFERENCE["anime"]["fx"])
+    assert anime["ink"] == REFERENCE["anime"]["ink"] and fx(anime["fx"]) == [(when, FX_REWORDED.get(what, what))
+                                                                             for when, what in fx(REFERENCE["anime"]["fx"])]
     assert len(SPEC["cam"]) == 21 and (SPEC["fps"], SPEC["dur"]) == (24, 10.0)
 
 

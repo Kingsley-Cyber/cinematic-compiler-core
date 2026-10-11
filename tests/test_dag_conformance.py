@@ -3,8 +3,8 @@ DAG map's mandatory and required rows, each checked by its semantic codes (valid
 
 - Test prompts: every example (request.json + authored plans), compiled from its query, not read from envelope.json.
   Between them they build every step S01-S17 across anime, ugc_ad and live_action (S18 waits for M7).
-- Every structured-prose prompt returns no finding, except KNOWN: findings the owner's own sources cause, listed with
-  their reason and owner question (never silent; a KNOWN entry that stops occurring fails the test too).
+- Every structured-prose prompt returns no finding. KNOWN would list findings the owner chooses to keep, each with its
+  reason (never silent; an entry that stops occurring fails the test); owner O10 keeps it empty.
 - Every code fires on a prompt broken in that one way (BREAKS), so no code is decorative.
 """
 
@@ -23,11 +23,7 @@ from validators.envelope_validator import validate_envelope
 pytestmark = pytest.mark.integration
 NAMES = sorted(p.name for p in EXAMPLES.iterdir() if (p / "request.json").exists())
 MODES = ("pure_staff", "mixed", "upgraded_mixed", "euler_heavy")
-KNOWN = {
-    ("reference_fight", "PROMPT_CONTRADICTION"):
-        "The owner's sources LBN-2.3 and LBN-2.4 both draw 'pillar-top landing dust ring' and 'crash dust ring' fx and "
-        "forbid 'no ring' (audit X29). Owner rule: no repair unasked. Owner question: keep, or reword the fx.",
-}
+KNOWN = {}  # owner O10: the golden passes with nothing set aside (its 'dust ring' fx now read 'dust burst')
 
 
 @pytest.fixture(scope="module")
