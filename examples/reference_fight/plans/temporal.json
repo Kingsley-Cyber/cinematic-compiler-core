@@ -1,7 +1,7 @@
 {
  "step_id": "S04",
  "band": "L1",
- "packet_sha256": "sha256:ed1ec1c130fd30e251166fbea1de44752f5f28815fa97e908da2d058aad9b3e5",
+ "packet_sha256": "sha256:c338381ca2d9115e8f8b090c228284f901f2612a59cd4e21e31bb3ac2fcfc6bd",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -142,7 +142,7 @@
     {
      "to": "b02",
      "causal_strength": "soft",
-     "why": "fall_from_above leads straight into the next exchange."
+     "why": "Falling from above the frame, A lands on the pillar top, the only surface under the fall."
     }
    ],
    "prop_samples": [
@@ -206,7 +206,7 @@
     {
      "to": "b03",
      "causal_strength": "soft",
-     "why": "land_pillar_top leads straight into the next exchange."
+     "why": "From the crouch on the pillar top A tips over the edge and runs down the pillar face toward B."
     }
    ]
   },
@@ -284,7 +284,7 @@
     {
      "to": "b04",
      "causal_strength": "soft",
-     "why": "sprint_down_pillar leads straight into the next exchange."
+     "why": "Running down the pillar face, A kicks off it with both feet to arc toward B."
     }
    ]
   },
@@ -336,7 +336,7 @@
     {
      "to": "b05",
      "causal_strength": "soft",
-     "why": "kick_off_pillar leads straight into the next exchange."
+     "why": "The kick-off leaves A descending toward B with no footing, so B throws the kunai up at A mid-descent."
     }
    ]
   },
@@ -424,7 +424,7 @@
     {
      "to": "b06",
      "causal_strength": "hard",
-     "why": "throw_kunai leads straight into the next exchange."
+     "why": "B's kunai flies up at A, so A meets it with the right sole and stamps it back down to the ground."
     }
    ],
    "prop_samples": [
@@ -600,7 +600,7 @@
     {
      "to": "b07",
      "causal_strength": "soft",
-     "why": "foot_deflect_kunai leads straight into the next exchange."
+     "why": "The deflect drops A onto both feet, squared up to B, the rope dart in the left hand."
     }
    ]
   },
@@ -652,7 +652,7 @@
     {
      "to": "b08",
      "causal_strength": "soft",
-     "why": "land_facing_opponent leads straight into the next exchange."
+     "why": "A lands inside B's reach, so B charges with a rising palm at A's chest."
     }
    ],
    "prop_samples": [
@@ -732,7 +732,7 @@
     {
      "to": "b09",
      "causal_strength": "soft",
-     "why": "rising_palm_charge leads straight into the next exchange."
+     "why": "B's rising palm is about to hit A's chest, so A escapes by substitution: a smoke burst, and the log takes A's place."
     }
    ],
    "prop_samples": [
@@ -853,7 +853,7 @@
     {
      "to": "b10",
      "causal_strength": "hard",
-     "why": "kawarimi_substitution leads straight into the next exchange."
+     "why": "The log now stands where A was, so B's palm hits the log, not A, and B is thrown off balance."
     }
    ],
    "prop_samples": [
@@ -974,7 +974,7 @@
     {
      "to": "b11",
      "causal_strength": "soft",
-     "why": "palm_hits_log leads straight into the next exchange."
+     "why": "B is off balance against the log, so A reappears behind B, unseen."
     }
    ],
    "prop_samples": [
@@ -1079,7 +1079,7 @@
     {
      "to": "b12",
      "causal_strength": "soft",
-     "why": "reappear_behind_opponent leads straight into the next exchange."
+     "why": "Behind B, with B's back exposed, A drives the right knee into B's spine."
     }
    ],
    "prop_samples": [
@@ -1171,7 +1171,7 @@
     {
      "to": "b13",
      "causal_strength": "soft",
-     "why": "knee_strike_spine leads straight into the next exchange."
+     "why": "The knee launches B forward into the air, and A follows with an aerial backflip kick."
     }
    ]
   },
@@ -1223,7 +1223,7 @@
     {
      "to": "b14",
      "causal_strength": "soft",
-     "why": "aerial_backflip_kick leads straight into the next exchange."
+     "why": "Kicked away, B recovers mid-air and answers with exactly three shuriken at A."
     }
    ]
   },
@@ -1390,7 +1390,7 @@
     {
      "to": "b15",
      "causal_strength": "soft",
-     "why": "throw_shuriken_volley leads straight into the next exchange."
+     "why": "Three shuriken fly at A, so A slides under them; they pass over A into the pillar."
     }
    ],
    "prop_samples": [
@@ -1507,7 +1507,7 @@
     {
      "to": "b16",
      "causal_strength": "soft",
-     "why": "slide_under_volley leads straight into the next exchange."
+     "why": "The slide carries A under B's guard, and A rises out of it into a cartwheel, left elbow driving up at B's chest."
     }
    ],
    "prop_samples": [
@@ -1591,7 +1591,7 @@
     {
      "to": "b17",
      "causal_strength": "soft",
-     "why": "cartwheel_rising_elbow leads straight into the next exchange."
+     "why": "A's rising elbow comes at B, so B catches the left elbow and throws A toward the pillar."
     }
    ]
   },
@@ -1670,7 +1670,7 @@
     {
      "to": "b18",
      "causal_strength": "soft",
-     "why": "catch_elbow_throw leads straight into the next exchange."
+     "why": "Thrown at the pillar, A meets it with the feet and pushes off, snatching up the rope dart on the way down."
     }
    ]
   },
@@ -1765,7 +1765,7 @@
     {
      "to": "b19",
      "causal_strength": "hard",
-     "why": "wall_push_off_pillar leads straight into the next exchange."
+     "why": "Back in the air with the rope dart in the left hand, A throws it to wrap B's right shoulder."
     }
    ]
   },
@@ -1878,7 +1878,7 @@
     {
      "to": "b20",
      "causal_strength": "soft",
-     "why": "aerial_rope_dart_regrapple leads straight into the next exchange."
+     "why": "With the rope dart wrapped on B's shoulder, A pulls the line taut and drags B toward the pillar, into A's reach."
     }
    ],
    "prop_samples": [
@@ -1956,7 +1956,7 @@
     {
      "to": "b21",
      "causal_strength": "soft",
-     "why": "pull_toward_pillar leads straight into the next exchange."
+     "why": "B is dragged into reach on the taut line, so A drives the kunai into B's right shoulder."
     }
    ],
    "prop_samples": [
@@ -2135,7 +2135,7 @@
     {
      "to": "b22",
      "causal_strength": "soft",
-     "why": "aerial_kunai_drive leads straight into the next exchange."
+     "why": "The kunai drive carries B down, and A and B crash to the ground together."
     }
    ],
    "prop_samples": [
@@ -2200,7 +2200,7 @@
     {
      "to": "b23",
      "causal_strength": "soft",
-     "why": "crash_to_ground leads straight into the next exchange."
+     "why": "Slammed down with the kunai in the shoulder, B stays down, and A holds the crouch over B."
     }
    ],
    "prop_samples": [

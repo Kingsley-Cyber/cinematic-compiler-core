@@ -10,6 +10,7 @@ import pytest
 from conftest import ROOT
 
 from compiler import pipeline
+from compiler.authoring import StepFailed
 from compiler.passes.mandatory import p05_causal
 from kernel.canonical import ContractError, canonical_json
 from validators.layer_dependency_validator import check_pass_writes
@@ -46,6 +47,36 @@ def test_each_causal_rule_rejects_its_violation(code, change):
     beats = copy.deepcopy(BEATS)
     change(beats)
     assert code in codes(beats)
+
+
+ENVELOPE = pipeline.run(QUERY, until="temporal", plans=PLANS)
+
+
+def reason_codes(whys):
+    """CAUSE_REASON findings after replacing the reasons of the named beats' causes."""
+    beats = copy.deepcopy(BEATS)
+    for beat in beats:
+        for cause in beat["causes"]:
+            cause["why"] = whys.get(beat["id"], cause["why"])
+    edges, _ = p05_causal.edges_and_findings(beats)
+    return sorted({f["edge"] for f in p05_causal.reason_findings(edges, beats, ENVELOPE)})
+
+
+def test_a_reason_that_states_no_cause_is_refused():
+    assert reason_codes({}) == []  # the wizard's authored reasons state causes
+    assert reason_codes({"b01": "run_in leads straight into the next exchange."}) == ["b01__causes__b02"]  # identifier
+    assert reason_codes({"b01": "It happens."}) == ["b01__causes__b02"]  # too short
+    assert reason_codes({"b01": "A sudden gust makes everything go badly."}) == ["b01__causes__b02"]  # names nothing
+    template = {b: f"The {who} keeps the fight going on." for b, who in (("b01", "acrobat"), ("b04", "acrobat"),
+                                                                         ("b06", "wizard"))}
+    assert reason_codes(template) == ["b01__causes__b02", "b04__causes__b05", "b06__causes__b07"]
+    beats = copy.deepcopy(BEATS)
+    find(beats, "b01")["causes"][0]["why"] = "x"
+    envelope = copy.deepcopy(ENVELOPE)
+    envelope["nodes"]["beats"]["items"] = beats
+    with pytest.raises(StepFailed) as failed:
+        p05_causal.run(envelope)
+    assert "CAUSE_REASON" in {f["code"] for f in failed.value.findings}
 
 
 def test_same_time_cycle_is_rejected():

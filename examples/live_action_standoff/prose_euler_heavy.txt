@@ -62,6 +62,10 @@ Height used: y 0 to 0 m; depth used: z 0 to 4 m.
 [CAUSAL LINKS]
 → hard cause (the effect starts after the cause ends); ⇢ soft cause (it may start while the cause runs).
 B advance and glare ⇢ A raise hand smirk ⇢ B halt and steel ⇢ A face off
+Why each link holds:
+B advance and glare ⇢ A raise hand smirk: The knight's advance and glare are a challenge, so the wizard answers with a raised hand and a one-sided smirk.
+A raise hand smirk ⇢ B halt and steel: The wizard's unhurried raised hand threatens a spell the knight cannot block, so the knight halts mid-step.
+B halt and steel ⇢ A face off: The knight will not advance and the wizard will not lower the hand, so both hold the stand-off.
 
 [CAMERA]
 0.00–2.50 open to medium_close on B: The knight steps in, glaring; elevation 3, azimuth -40, roll 0; 50 mm normal; static: held on the advancing knight; normal x1; shows B advance and glare; motivated by entity focus B.

@@ -47,7 +47,7 @@ model and seed, and each result goes into the render log.
 | | |
 |---|---|
 | Repo | Pushed: GitHub `main` = `16ff68c`, tag `checkpoint-2026-10-11-m8.9`. Push again only when the owner says so |
-| Built | S01–S17 (layer DAG); K1 knowledge map (109 rows); M8.1–M8.9: four structured-prose modes beside LBN-2.4, 37 prompt codes, conformance test, joint limits, teleport ban, prop p/v under gravity |
+| Built | S01–S17 (layer DAG); K1 knowledge map (109 rows); M8.1–M8.9: four structured-prose modes beside LBN-2.4, 38 prompt codes (M8.11 adds CAUSE_REASON), conformance test, joint limits, teleport ban, prop p/v under gravity |
 | Truth about adherence | M8.10 checklist built (`examples/<name>/checklist.md`, `python -m validators.checklist`): 0 of 20 prompts are deliverables. Prose 37 PASS / 0 FAIL / 41 NOT CHECKED / 6 N/A per prompt; LBN 4-6 PASS / 44-47 FAIL (read against the DAG's template, O13); union 40 PASS. A finding (F1-F15) beside a PASS marks codes too weak for what the renders showed |
 | Renders | R1–R5 of the reference fight, all poor; LBN `render.txt` (R2) the most cohesive. See `docs/render_log.md` |
 | Map honesty | C6 (causal graph) was downgraded to partial after R4; mandatory 16/27, required 10/15 enforced |
@@ -75,7 +75,7 @@ Then read, in order: `HANDOFF.md` bootstrap → this file → the findings → `
 |---|---|---|
 | 0 | ~~Owner answers Q1 and Q2~~ done: O13 (the five are fragments of one complete prompt; checklist on all five + union), O14 (N/A only T3, T4, C26's 14 unnamed; menus when selected) | Recorded in MASTER_PLAN |
 | 1 | ~~M8.10 checklist per prompt~~ done: `validators/checklist.py`, `examples/<name>/checklist.md` (five prompts + Any), `--gate` refuses red; tests/test_checklist.py keeps the tables current | Shown to the owner 2026-10-11 |
-| 2 | Causes (F1, F2, F3) | reference_fight and live_action_standoff carry real reasons; prompts print them; CAUSE_REASON fires on a placeholder; C6 back to enforced |
+| 2 | ~~Causes (F1, F2, F3)~~ done (M8.11): 22 + 3 reasons rewritten from DAG D5/D2 and the golden; S05 and the prompt refuse placeholders (CAUSE_REASON); the prose prints every reason under the chain; C6 enforced. LBN prints none (Q3) | Checklist: prose 38 PASS |
 | 3 | Camera (F4, F5) | The reference camera plan follows C10 and D9 (about 11 shots, holds on hits with both bodies, no limb inserts); C10's rules are codes; C10, C25 green |
 | 4 | Body and props (F7–F12) | No airborne ground pickup without the owner's Q5 ruling; props hidden until used; rope dart as one line; counts held; C5 green |
 | 5 | Density and format (F6) | Staff lines follow D9 (owner's Q4); C2 bands checked as ranges; prompt sizes recorded |

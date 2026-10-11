@@ -1,7 +1,7 @@
 {
  "step_id": "S04",
  "band": "L1",
- "packet_sha256": "sha256:a732da5257d2034b66f39670af1d69b4bafc151d0b1c53193195e185298cffcb",
+ "packet_sha256": "sha256:89437322e4f733f6a639ede5bdf372f15433034c45fb0865dc7e66e6ad4d1e0e",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -56,7 +56,7 @@
     {
      "to": "b02",
      "causal_strength": "soft",
-     "why": "The stand-off answers itself."
+     "why": "The knight's advance and glare are a challenge, so the wizard answers with a raised hand and a one-sided smirk."
     }
    ]
   },
@@ -108,7 +108,7 @@
     {
      "to": "b03",
      "causal_strength": "soft",
-     "why": "The stand-off answers itself."
+     "why": "The wizard's unhurried raised hand threatens a spell the knight cannot block, so the knight halts mid-step."
     }
    ]
   },
@@ -160,7 +160,7 @@
     {
      "to": "b04",
      "causal_strength": "soft",
-     "why": "The stand-off answers itself."
+     "why": "The knight will not advance and the wizard will not lower the hand, so both hold the stand-off."
     }
    ]
   },

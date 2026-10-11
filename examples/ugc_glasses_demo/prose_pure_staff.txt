@@ -54,6 +54,10 @@ ONE glasses only: never duplicated, never in two hands at once, never lost.
 [CAUSAL LINKS]
 → hard cause (the effect starts after the cause ends); ⇢ soft cause (it may start while the cause runs).
 A lift glasses → A unfold glasses → A put on glasses ⇢ A show result
+Why each link holds:
+A lift glasses → A unfold glasses: Holding the frame lets the other hand open the temples.
+A unfold glasses → A put on glasses: Open temples let the glasses go on.
+A put on glasses ⇢ A show result: Wearing them, the creator shows the result.
 
 [CAMERA]
 0.00–1.50 open to medium_close on A, glasses: Talking to camera, the creator picks the folded glasses up off the desk; elevation 3, azimuth 0, roll 0; 28 mm wide; tracking: phone drifts with the hand down to the desk; normal x1; shows A lift glasses; motivated by genre convention ugc hook first.

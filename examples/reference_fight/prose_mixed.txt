@@ -142,6 +142,29 @@ ONE substitution log only: never duplicated, never in two hands at once, never l
 [CAUSAL LINKS]
 → hard cause (the effect starts after the cause ends); ⇢ soft cause (it may start while the cause runs).
 A fall from above ⇢ A land pillar top ⇢ A sprint down pillar ⇢ A kick off pillar ⇢ B throw kunai → A foot deflect kunai ⇢ A land facing opponent ⇢ B rising palm charge ⇢ A kawarimi substitution → B palm hits log ⇢ A reappear behind opponent ⇢ A knee strike spine ⇢ A aerial backflip kick ⇢ B throw shuriken volley ⇢ A slide under volley ⇢ A cartwheel rising elbow ⇢ B catch elbow throw ⇢ A wall push off pillar → A aerial rope dart regrapple ⇢ A pull toward pillar ⇢ A aerial kunai drive ⇢ A crash to ground ⇢ A hold crouch over opponent
+Why each link holds:
+A fall from above ⇢ A land pillar top: Falling from above the frame, A lands on the pillar top, the only surface under the fall.
+A land pillar top ⇢ A sprint down pillar: From the crouch on the pillar top A tips over the edge and runs down the pillar face toward B.
+A sprint down pillar ⇢ A kick off pillar: Running down the pillar face, A kicks off it with both feet to arc toward B.
+A kick off pillar ⇢ B throw kunai: The kick-off leaves A descending toward B with no footing, so B throws the kunai up at A mid-descent.
+B throw kunai → A foot deflect kunai: B's kunai flies up at A, so A meets it with the right sole and stamps it back down to the ground.
+A foot deflect kunai ⇢ A land facing opponent: The deflect drops A onto both feet, squared up to B, the rope dart in the left hand.
+A land facing opponent ⇢ B rising palm charge: A lands inside B's reach, so B charges with a rising palm at A's chest.
+B rising palm charge ⇢ A kawarimi substitution: B's rising palm is about to hit A's chest, so A escapes by substitution: a smoke burst, and the log takes A's place.
+A kawarimi substitution → B palm hits log: The log now stands where A was, so B's palm hits the log, not A, and B is thrown off balance.
+B palm hits log ⇢ A reappear behind opponent: B is off balance against the log, so A reappears behind B, unseen.
+A reappear behind opponent ⇢ A knee strike spine: Behind B, with B's back exposed, A drives the right knee into B's spine.
+A knee strike spine ⇢ A aerial backflip kick: The knee launches B forward into the air, and A follows with an aerial backflip kick.
+A aerial backflip kick ⇢ B throw shuriken volley: Kicked away, B recovers mid-air and answers with exactly three shuriken at A.
+B throw shuriken volley ⇢ A slide under volley: Three shuriken fly at A, so A slides under them; they pass over A into the pillar.
+A slide under volley ⇢ A cartwheel rising elbow: The slide carries A under B's guard, and A rises out of it into a cartwheel, left elbow driving up at B's chest.
+A cartwheel rising elbow ⇢ B catch elbow throw: A's rising elbow comes at B, so B catches the left elbow and throws A toward the pillar.
+B catch elbow throw ⇢ A wall push off pillar: Thrown at the pillar, A meets it with the feet and pushes off, snatching up the rope dart on the way down.
+A wall push off pillar → A aerial rope dart regrapple: Back in the air with the rope dart in the left hand, A throws it to wrap B's right shoulder.
+A aerial rope dart regrapple ⇢ A pull toward pillar: With the rope dart wrapped on B's shoulder, A pulls the line taut and drags B toward the pillar, into A's reach.
+A pull toward pillar ⇢ A aerial kunai drive: B is dragged into reach on the taut line, so A drives the kunai into B's right shoulder.
+A aerial kunai drive ⇢ A crash to ground: The kunai drive carries B down, and A and B crash to the ground together.
+A crash to ground ⇢ A hold crouch over opponent: Slammed down with the kunai in the shoulder, B stays down, and A holds the crouch over B.
 
 [CAMERA]
 0.00–0.60 open to wide on A: A falls from above the frame toward the pillar top, body tucked, head pointing down; elevation 35, azimuth -90, roll 0; 35 mm normal; tilt: tilts down with A falling from above the frame; normal x1; shows A fall from above; motivated by beat type b01.

@@ -158,6 +158,7 @@ BREAKS = [
     ("PROP_INVARIANT_MISSING", "ugc_glasses_demo", "mixed", _line("ONE glasses only")),
     ("CUSTODY_RULE_MISSING", "ugc_glasses_demo", "mixed", _custody),
     ("CAUSAL_LIST_MISSING", "wizard_vs_acrobat", "mixed", _drop_causal_threads),
+    ("CAUSE_REASON", "wizard_vs_acrobat", "mixed", _replace(": The crouch loads the legs for the vault.", ": It goes on.")),
     ("REACTION_WITHOUT_CAUSE", "ugc_glasses_demo", "mixed", _react_early),
     ("CAUSAL_RULE_MISSING", "wizard_vs_acrobat", "mixed", _line(r"- From \d+\.\d\d to the end, ")),
     ("CONSERVATION_RULE_MISSING", "wizard_vs_acrobat", "mixed", _line("- Momentum is conserved")),

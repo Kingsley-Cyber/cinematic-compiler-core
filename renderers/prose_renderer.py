@@ -439,7 +439,10 @@ def _causal(envelope, labels):
             current = edge["to"]
         threads.append(" ".join(parts))
     legend = "→ hard cause (the effect starts after the cause ends); ⇢ soft cause (it may start while the cause runs)."
-    return "[CAUSAL LINKS]\n" + "\n".join([legend] + (threads or ["none: the beats are independent."]))
+    reasons = [f"{name(e['from'])} {'→' if e['causal_strength'] == 'hard' else '⇢'} {name(e['to'])}: {e['why']}"
+               for e in sorted(edges, key=lambda e: (beats[e["from"]]["t"], e["from"]))]
+    return "[CAUSAL LINKS]\n" + "\n".join([legend] + (threads or ["none: the beats are independent."])
+                                          + (["Why each link holds:"] + reasons if reasons else []))
 
 
 def _camera(envelope, labels):

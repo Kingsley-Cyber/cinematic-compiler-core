@@ -2,7 +2,8 @@
 
 Checks: no cycles; while `linear` is true (owner: linear only) a beat has at most one outgoing cause;
 a hard cause's target starts at or after the source ends and one source effect satisfies a target requirement;
-a soft cause's target starts at or after the source starts.
+a soft cause's target starts at or after the source starts; every link's `why` states a cause (CAUSE_REASON,
+validators/cause_reason.py: not a timeline template, an identifier or a sentence about nobody).
 Quadrant (owner table): causal = branching + parallel effects + prerequisites (0–2 each); style 0–2;
 0–2 → D, 3–4 → B (C when style is 2), 5–6 → A; strata 1 always, 2 if style, 3 if any causal score, 4 if 3 and
 load-bearing.
@@ -14,6 +15,7 @@ import json
 from compiler.authoring import StepFailed
 from kernel.canonical import ContractError
 from planner.dependency_graph import ROOT, load, node_index
+from validators import cause_reason
 from validators.layer_dependency_validator import check_pass_writes
 from validators.schema_validator import validate_schema
 
@@ -69,6 +71,11 @@ def edges_and_findings(beats, *, linear=True):
     return edges, findings
 
 
+def reason_findings(edges, beats, envelope):
+    """CAUSE_REASON: each link's reason states why the effect follows, in words that name its beats."""
+    return [_finding("CAUSE_REASON", message, edge) for edge, message in cause_reason.problems(edges, beats, envelope)]
+
+
 def quadrant(beats, edges, scene, *, linear=True, load_bearing=False):
     parallel = _band(max((len(b["effects"]) + len(b["causes"]) for b in beats), default=0), ((1, 0), (2, 1), (10**9, 2)))
     hard = sum(e["causal_strength"] == "hard" for e in edges)
@@ -88,6 +95,7 @@ def run(envelope, *, order=None, load_bearing=False):
         raise ContractError("MISSING_INPUT", "S05 needs the S04 beats")
     beats = envelope["nodes"]["beats"]["items"]
     edges, findings = edges_and_findings(beats, linear=True)
+    findings += reason_findings(edges, beats, envelope)
     if findings:
         raise StepFailed("S05", findings)
     validate_schema({"causal": edges}, json.loads(GRAPH_SCHEMA.read_text(encoding="utf-8")))

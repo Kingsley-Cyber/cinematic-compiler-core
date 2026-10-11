@@ -467,7 +467,7 @@ rows:
     class: mandatory
     step: all
     status: enforced
-    codes: [CAUSAL_LIST_MISSING, PROP_TRACK_MISSING, CAUSAL_RULE_MISSING]
+    codes: [CAUSAL_LIST_MISSING, CAUSE_REASON, PROP_TRACK_MISSING, CAUSAL_RULE_MISSING]
     enforced_by:
       - {file: solver/prop_state_machine.py, check: replay, code: REPLAY_REQUIRES,
          test: tests/test_state_pass.py::test_unmet_requirement_and_same_time_conflict_are_refused}
@@ -585,20 +585,21 @@ rows:
     anchor: "§2.2 L884; §2.3 L1258; §3.3 L380"
     class: mandatory
     step: S05
-    status: partial
-    codes: [CAUSAL_LIST_MISSING]
-    gaps: [CAUSE_REASON]
+    status: enforced
+    codes: [CAUSAL_LIST_MISSING, CAUSE_REASON]
     enforced_by:
       - {file: compiler/passes/mandatory/p05_causal.py, check: edges_and_findings, code: CAUSE_EFFECT,
          test: tests/test_causal_pass.py::test_each_causal_rule_rejects_its_violation}
       - {file: compiler/passes/mandatory/p05_causal.py, check: edges_and_findings, code: CAUSE_TIMING,
          test: tests/test_causal_pass.py::test_each_causal_rule_rejects_its_violation}
-    note: "S05 checks the structure (linear chains, timing, a hard cause's effect meeting a target requirement, no cycles)
-      and the prose lists every link, but nothing checks that a link gives a cause: reference_fight's 22 reasons are
-      placeholders ('<beat> leads straight into the next exchange', 19 soft) and live_action_standoff's too ('The
-      stand-off answers itself'), and neither prompt prints the reasons (audit X40). Owner renders R1-R4 show actions
-      without motivation (docs/render_log.md H5). Gap CAUSE_REASON."
-
+      - {file: compiler/passes/mandatory/p05_causal.py, check: reason_findings, code: CAUSE_REASON,
+         test: tests/test_causal_pass.py::test_a_reason_that_states_no_cause_is_refused}
+    note: "M8.11 (2026-10-11): S05 refuses a link whose reason states no cause (CAUSE_REASON,
+      validators/cause_reason.py: too short, an identifier, a template on three or more links, or naming nothing of
+      either beat), and the prose prints every reason under the chain ('Why each link holds:'). reference_fight's 22
+      reasons and live_action_standoff's 3 were rewritten from the DAG's D5 instance (§2.5.1), D2's causal_graph
+      (§3.3) and the golden's action text, replacing the placeholders behind owner renders R1-R4 (audit X40).
+      LBN-2.4 prints no reasons (owner Q3 open)."
   - id: C7
     name: Attachment graph
     anchor: "§2.2 L885; §2.3 L1260"

@@ -40,7 +40,8 @@ def beat(bid, t, dur, actor, others, action, *, requires=(), effects=(), contact
 
 def courtyard_clip(requires=()):
     beats = [beat("b01", 0, 2, "acrobat", ["wizard"], "Acrobat circles the scorched flagstones.", requires=requires,
-                  causes=[{"to": "b02", "causal_strength": "soft", "why": "The circling sets up the stand-off."}]),
+                  causes=[{"to": "b02", "causal_strength": "soft",
+                           "why": "The acrobat circles out of reach, so the wizard holds a stand-off."}]),
              beat("b02", 2, 2, "wizard", ["acrobat"], "They hold the stand-off.", event_type="hold")]
     plan = plan_for(COURTYARD_2, COURTYARD, beats)
     return pipeline.run(COURTYARD_2, until="contact", plans={"temporal": plan}, previous=COURTYARD)

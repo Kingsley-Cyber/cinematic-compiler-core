@@ -83,6 +83,19 @@ Height used: y 0 to 1.2 m; depth used: z 0 to 6 m.
 B run in → B vault → B land → B spinning kick → A force ward → B slam pillar → B recover → B feint charge ⇢ A slicing bolt ⇢ B dodge flip → B land guard
 A cast fire bolt ⇢ B land → B spinning kick → A force ward → B slam pillar → B recover → B feint charge ⇢ A slicing bolt ⇢ B dodge flip → B land guard
 A regroup → A slicing bolt ⇢ B dodge flip → B land guard
+Why each link holds:
+B run in → B vault: The crouch loads the legs for the vault.
+B vault → B land: Airborne after the vault, the acrobat must land.
+A cast fire bolt ⇢ B land: The acrobat lands clear of the scorch.
+B land → B spinning kick: Grounded again, the acrobat can spin into a kick.
+B spinning kick → A force ward: The staggered wizard throws a desperate ward.
+A force ward → B slam pillar: Thrown through the air, the acrobat hits the pillar.
+B slam pillar → B recover: Braced on the pillar, the acrobat pushes off to recover.
+B recover → B feint charge: Recovered, the acrobat can attack again.
+A regroup → A slicing bolt: Steady again, the wizard can cast.
+B feint charge ⇢ A slicing bolt: The feint baits the wizard's bolt.
+A slicing bolt ⇢ B dodge flip: The acrobat flips away from the bolt.
+B dodge flip → B land guard: Airborne, the acrobat must land.
 
 [CAMERA]
 0.00–1.20 open to wide on B, A: Acrobat sprints across the moonlit flagstones toward the planted wizard; elevation 20, azimuth 90, roll 0; 35 mm wide; static: locked-off high wide across the courtyard; normal x1; shows B run in; motivated by genre convention anime establishing wide.

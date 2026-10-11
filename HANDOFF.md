@@ -12,7 +12,7 @@ Remote: github.com/Kingsley-Cyber/cinematic-compiler-core (public, MIT); push on
   38 of 84 checklist rows are verified per prompt; five owner renders (R1–R5, `docs/render_log.md`) failed for the
   reasons the unverified rows describe. A green conformance test is not adherence.
 - **State:** M1–M5.5 and M3.5 built; S01–S17 run (S18 waits for M7). K1 + M8.0–M8.9: four structured-prose modes
-  (`prose_<mode>.txt`) beside LBN-2.4 `render.txt` (actor rows as named fields), 37 prompt codes
+  (`prose_<mode>.txt`) beside LBN-2.4 `render.txt` (actor rows as named fields), 38 prompt codes (CAUSE_REASON added in M8.11)
   (`validators/prompt_validator.py`), `tests/test_dag_conformance.py`, JOINT_LIMIT (S13), TELEPORT (S04),
   PROP_KINEMATICS (S04). Owner decisions O1–O12 in MASTER_PLAN; the golden's recorded deviations in
   `tests/test_reference_fight_golden.py`. Examples: `wizard_vs_acrobat`, `reference_fight` (golden),

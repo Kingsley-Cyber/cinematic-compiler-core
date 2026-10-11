@@ -21,7 +21,7 @@ flowchart LR
   compiler -->|42| planner
   compiler -->|4| renderers
   compiler -->|7| solver
-  compiler -->|28| validators
+  compiler -->|29| validators
   kernel -->|1| compiler
   kernel -->|3| planner
   kernel -->|1| validators
@@ -62,7 +62,7 @@ flowchart LR
 | `compiler.passes.mandatory.p02_brief` | `kernel.canonical`, `planner.dependency_graph`, `planner.query_expander`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
 | `compiler.passes.mandatory.p03_constraint` | `kernel.canonical`, `planner.card_loader`, `planner.dependency_graph`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json, yaml |
 | `compiler.passes.mandatory.p04_temporal` | `compiler.authoring`, `kernel.canonical`, `planner.beat_planner`, `planner.dependency_graph`, `planner.dynamic_beat_validator`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
-| `compiler.passes.mandatory.p05_causal` | `compiler.authoring`, `kernel.canonical`, `planner.dependency_graph`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
+| `compiler.passes.mandatory.p05_causal` | `compiler.authoring`, `kernel.canonical`, `planner.dependency_graph`, `validators.cause_reason`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
 | `compiler.passes.mandatory.p06_state` | `compiler.authoring`, `kernel.canonical`, `kernel.kernel_files`, `planner.dependency_graph`, `planner.vocabulary`, `solver.prop_state_machine`, `validators.continuity_validator`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
 | `compiler.passes.mandatory.p07_contact` | `compiler.authoring`, `kernel.canonical`, `planner.dependency_graph`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
 | `compiler.pipeline` | `compiler.authoring`, `compiler.passes.derived.p08_hand_role`, `compiler.passes.derived.p09_object_state`, `compiler.passes.derived.p10_affordance`, `compiler.passes.derived.p11_kinematic`, `compiler.passes.derived.p12_bartenieff`, `compiler.passes.derived.p13_motion`, `compiler.passes.derived.p14_facial`, `compiler.passes.derived.p15_effort`, `compiler.passes.derived.p16_camera`, `compiler.passes.derived.p17_render`, `compiler.passes.mandatory.p01_intent`, `compiler.passes.mandatory.p02_brief`, `compiler.passes.mandatory.p03_constraint`, `compiler.passes.mandatory.p04_temporal`, `compiler.passes.mandatory.p05_causal`, `compiler.passes.mandatory.p06_state`, `compiler.passes.mandatory.p07_contact`, `kernel.canonical`, `kernel.kernel_files`, `kernel.version`, `planner.dependency_graph`, `planner.intent_parser`, `planner.topological_sort` | argparse, importlib, json, pathlib, subprocess, sys, time |
@@ -103,10 +103,11 @@ flowchart LR
 | `solver.staff_geometry` | `solver.quaternion` | math |
 | `solver.trajectory` | — | math |
 | `validators.camera_validator` | `planner.library_vocab`, `solver.camera_geometry` | — |
+| `validators.cause_reason` | — | re |
 | `validators.checklist` | `compiler.examples`, `planner.dependency_graph`, `validators.prompt_validator` | hashlib, json, sys, yaml |
 | `validators.continuity_validator` | `solver.prop_state_machine` | — |
 | `validators.envelope_validator` | `kernel.kernel_files`, `planner.dependency_graph`, `planner.modality`, `validators.layer_dependency_validator`, `validators.schema_validator` | json |
 | `validators.facial_validator` | — | json, re |
 | `validators.layer_dependency_validator` | `kernel.canonical`, `kernel.version`, `planner.dependency_graph`, `planner.topological_sort` | re |
-| `validators.prompt_validator` | `compiler.passes.mandatory.p07_contact`, `planner.scene_view`, `renderers.anime_renderer`, `renderers.prop_samples`, `renderers.prose_renderer`, `solver.staff_geometry` | re |
+| `validators.prompt_validator` | `compiler.passes.mandatory.p07_contact`, `planner.scene_view`, `renderers.anime_renderer`, `renderers.prop_samples`, `renderers.prose_renderer`, `solver.staff_geometry`, `validators.cause_reason` | re |
 | `validators.schema_validator` | `kernel.canonical` | re |

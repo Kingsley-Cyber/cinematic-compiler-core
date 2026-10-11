@@ -9,6 +9,8 @@ S04 beat planning (LLM call #1). Write the beat plan for this packet as JSON mat
 - Contact types: touch (instant), possess (held or carried), support (bears weight), release (ends an earlier
   possess or support of the same pair).
 - causes link this beat to a later beat it makes happen: hard (the later beat needs this beat's effect) or soft.
+- why: one sentence saying why the later beat follows (the threat, the purpose or the physical result), naming the
+  performers or props involved; never a timeline ("leads into the next exchange") and never a label (CAUSE_REASON).
 - No filler: a beat that is not a hold must change state, make or end a contact, or cause or be caused by another beat.
 - event_type substitution: the actor swaps itself for a decoy and reappears elsewhere (kawarimi). Only a
   substitution beat may move its actor faster than 25 m/s to its next position, and it must change a prop's

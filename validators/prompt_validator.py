@@ -14,6 +14,7 @@ from planner.scene_view import slots
 from renderers import prop_samples, prose_renderer
 from renderers.anime_renderer import constraint_rows
 from solver import staff_geometry
+from validators import cause_reason
 
 CODES = {
     "SECTION_MISSING": "a Master Template section is absent",
@@ -41,6 +42,7 @@ CODES = {
     "PROP_INVARIANT_MISSING": "a prop lacks its never-duplicated / never-two-hands / never-lost line",
     "CUSTODY_RULE_MISSING": "a prop that never changes holder lacks its CUSTODY rule",
     "CAUSAL_LIST_MISSING": "a causal edge is absent from CAUSAL LINKS",
+    "CAUSE_REASON": "a causal link's reason is not printed in CAUSAL LINKS, or does not state a cause",
     "REACTION_WITHOUT_CAUSE": "a hard effect's line comes before its cause's contact",
     "CAUSAL_RULE_MISSING": "a lasting effect has no time-bounded rule",
     "CONSERVATION_RULE_MISSING": "one of the six conservation laws is absent from RULES",
@@ -67,7 +69,8 @@ READS = {
     "IMPLIED_GUIDANCE_MISSING": (STAFF, "[IMPLIED GUIDANCE]"), "INTERPOLATION_UNDECLARED": ("[MOTION CONTROL]",),
     "CONVENTION_MISSING": ("[SPATIAL ANCHORS]",), "SPATIAL_ANCHOR_MISSING": ("[SPATIAL ANCHORS]",),
     "PROP_TRACK_MISSING": (PROPS,), "PROP_STATE_ORDER": (PROPS,), "PROP_INVARIANT_MISSING": (PROPS,),
-    "CUSTODY_RULE_MISSING": (PROPS,), "CAUSAL_LIST_MISSING": ("[CAUSAL LINKS]",), "REACTION_WITHOUT_CAUSE": (),
+    "CUSTODY_RULE_MISSING": (PROPS,), "CAUSAL_LIST_MISSING": ("[CAUSAL LINKS]",), "CAUSE_REASON": ("[CAUSAL LINKS]",),
+    "REACTION_WITHOUT_CAUSE": (),
     "CAUSAL_RULE_MISSING": (RULES,), "CONSERVATION_RULE_MISSING": (RULES,), "SPAN_RULE_MISSING": (STAFF, RULES),
     "EVENT_SEPARATION_MISSING": (STAFF, RULES), "RULES_MISSING": (RULES,), "NEGATIVES_MISSING": (NEGATIVES,),
     "DISCONNECTED_CAMERA_MOTION": ("[CAMERA]",), "ANCHOR_PHRASE_MISSING": ("[SCENE]",),
@@ -380,10 +383,13 @@ def _props_and_causes(envelope, parts, labels, mode, add):
         beat = beats[beat_id]
         return f"{labels.get(beat['actor'], beat['actor'])} {' '.join(beat['label'].replace('_', ' ').split())}"
 
+    printed = set(causal.splitlines())
     for edge in envelope["edges"]["causal"]["items"]:
         arrow = "→" if edge["causal_strength"] == "hard" else "⇢"
         if f"{name(edge['from'])} {arrow} {name(edge['to'])}" not in causal:
             add("CAUSAL_LIST_MISSING", f"{edge['id']} is not in CAUSAL LINKS")
+        if f"{name(edge['from'])} {arrow} {name(edge['to'])}: {edge['why']}" not in printed:
+            add("CAUSE_REASON", f"{edge['id']}: its reason is not printed in CAUSAL LINKS")
         if beats[edge["to"]]["t"] + EPSILON < beats[edge["from"]]["t"]:
             add("PROMPT_CONTRADICTION", f"CAUSAL LINKS put {edge['from']} before {edge['to']} against their times")
         if edge["causal_strength"] == "hard":
@@ -392,6 +398,9 @@ def _props_and_causes(envelope, parts, labels, mode, add):
             if touches and beats[edge["to"]]["t"] + EPSILON < min(touches):
                 add("REACTION_WITHOUT_CAUSE", f"{edge['to']} starts at {beats[edge['to']]['t']} before the contact of "
                                               f"{edge['from']} at {min(touches)}")
+    for edge_id, message in cause_reason.problems(envelope["edges"]["causal"]["items"], envelope["nodes"]["beats"]["items"],
+                                                  envelope):
+        add("CAUSE_REASON", f"{edge_id}: {message}")
     fx = " ".join(f["text"] for f in envelope["nodes"]["render"]["items"][0]["frame_parts"]["fx"]).lower()
     negatives = _body(parts, "[NEGATIVES]").lower()
     for word in ("ring", "halo", "full circle"):

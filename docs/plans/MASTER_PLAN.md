@@ -462,7 +462,11 @@ Spec and codes: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
   the union of the five; `examples/<name>/checklist.md` next to the prompts, kept current by tests/test_checklist.py;
   `python -m validators.checklist --gate` refuses any prompt with FAIL or NOT CHECKED. Day one: 0 of 20 prompts are
   deliverables; prose 37 PASS / 0 FAIL / 41-42 NOT CHECKED, LBN 4-6 PASS / 44-47 FAIL; union 40 PASS (reference fight).
-- [ ] M8.11+ close the rows in the queue's order: causes, camera, body and props, density and format, the rest. Derivable: PROP_TWO_HOLDERS (C5, S07), POST_CONTACT_MISSING (C21),
+- [x] M8.11 causes (F1, F2): CAUSE_REASON at S05 (`reason_findings`, validators/cause_reason.py) and in the prompt
+  (each link's reason printed under the chain, 'Why each link holds:'); reference_fight's 22 and live_action_standoff's 3
+  placeholder reasons rewritten from the DAG's D5 instance, D2's causal_graph and the golden's action text; beat-planning
+  prompt states the rule; C6 back to enforced, T9 gains CAUSE_REASON; render.txt byte-identical (LBN prints no reasons, Q3).
+- [ ] M8.12+ close the rows in the queue's order: camera, body and props, density and format, the rest. Derivable: PROP_TWO_HOLDERS (C5, S07), POST_CONTACT_MISSING (C21),
   PHRASING_MISSING (LMA, T6), MOMENTUM_MISSING (C22, T10), CHAIN_ORDER (KC), ANTICIPATION_MISSING (KF),
   SHOT_TRANSITION_MISSING (C25), PROP_KINEMATICS (C31). Need the owner: JOINT_LIMIT ranges (BIO, T7; the DAG gives
   none), TELEPORT speed bound and the substitution exemption (T10). By design partial: T3/T4 (superseded orders),
