@@ -6,22 +6,22 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 2.2; backlog 3.
+Layer order 1.7; rules 2.2; backlog 4.
 
 ## Last sessions
 
-- S-012 (not started): M9-06 parked: the root position and the contact tolerance are the owner's
 - S-013 (applied): M9-07a: combat verbs on contacts (F4.1, O22)
 - S-014 (applied): M9-07b: Laban actions printed as qualities (F4.2, O22)
+- S-015 (applied): M9-08a: the opening from y 10 onto the 8 m top, and SURFACE_HEIGHT (O21)
 
 ## Next slices
 
-- M9-08 (next, step temporal): O21 opening from above in V6's wording
+- M9-08b (next, step render): The opening from above in V6's wording (split from M9-08)
 - M9-09a (ready, step effort): F9.1 Laban direction against path and form
 - M9-09b (ready, step kinematic): F9.2 airborne momentum under gravity
 - M9-09c (ready, step motion): FR.4 launch before an aerial turn
 
-M9: 9 of 29 slices done, 20 left (M9-03a blocked, M9-06 blocked; 1 the owner's own).
+M9: 10 of 30 slices done, 20 left (M9-03a blocked, M9-06 blocked; 1 the owner's own).
 
 ## Waiting on the owner
 
@@ -38,7 +38,7 @@ M9: 9 of 29 slices done, 20 left (M9-03a blocked, M9-06 blocked; 1 the owner's o
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog M9-06 blocked: F5.1/F5.2 world contact points by forward kinematics — ADR-O72 (proposed): what a key's root position is, and the contact tolerance (F-066)
 
-## Open findings: 39
+## Open findings: 40
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -59,4 +59,4 @@ M9: 9 of 29 slices done, 20 left (M9-03a blocked, M9-06 blocked; 1 the owner's o
 
 ## Next free IDs
 
-Decision ADR-O73, finding F-067, session S-015, render R20.
+Decision ADR-O73, finding F-068, session S-016, render R20.

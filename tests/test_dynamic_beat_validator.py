@@ -37,6 +37,8 @@ def test_courtyard_plan_passes():
     ("BEAT_TIME", lambda p: beat(p, "b14").update(dur=0)),  # the wizard's hold (b14 since O38, S-011)
     # owner O22, plan F4.1: a verb its contact type does not take; a throw that names no prop
     ("CONTACT_VERB", lambda p: beat(p, "b13")["contacts"][0].update(verb="strike")),    # a support takes no verb
+    # owner O21 (audit X7): the acrobat lands on the ground at 9.80 with the root 2 m up
+    ("SURFACE_HEIGHT", lambda p: beat(p, "b14")["pos"].update(acrobat=[-1.1, 2.0, 5.3])),
     ("CONTACT_VERB", lambda p: beat(p, "b12")["contacts"][0].update(verb="catch")),     # a release takes only throw
     ("CONTACT_VERB", lambda p: beat(p, "b12")["contacts"][0].update(verb="throw")),     # the ground is no prop
     ("BEAT_ACTOR", lambda p: beat(p, "b01").update(actor="dragon")),
@@ -183,4 +185,19 @@ def test_a_throw_leaves_its_prop_moving():
     assert _thrown([beat]) == []
     beat["prop_samples"][0]["v"] = None                                            # still in the hand: no throw
     assert [f["code"] for f in _thrown([beat])] == ["CONTACT_VERB"]
+
+
+def test_a_landing_stands_on_the_top_it_lands_on():
+    """SURFACE_HEIGHT (owner O21, audit X7): the root lies between the top and a leg above it (interpretation)."""
+    from planner.dynamic_beat_validator import _surface_heights
+    feet = [{"contact_type": "support", "a": {"kind": "entity", "id": "a", "part": part},
+             "b": {"kind": "surface", "id": "pillar", "part": None}, "at": "start"} for part in ("left_foot", "right_foot")]
+
+    def codes(root_y):
+        beat = {"id": "b02", "t": 0.6, "dur": 0.5, "pos": {"a": [0, root_y, 5.8]}, "contacts": feet}
+        return [f["code"] for f in _surface_heights([beat], {"pillar": 8.0})]
+
+    assert codes(8.5) == []                                                   # O21: feet on the 8 m top, root 8.5
+    assert codes(7.2) == ["SURFACE_HEIGHT", "SURFACE_HEIGHT"]                  # the source's 7.2: under the top
+    assert codes(9.5) == ["SURFACE_HEIGHT", "SURFACE_HEIGHT"]                  # floating over it
 

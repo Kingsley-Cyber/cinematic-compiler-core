@@ -15,6 +15,10 @@ prop stays within 2 m of its holder's anchor; between two samples of a free prop
 moving prop follows gravity from the first sample's velocity to the second position within 0.25 m, and a prop at rest
 (v null or zero) does not move unless a contact on it at the second sample picks it up or knocks it down. A float
 (stylised, no gravity) is allowed in anime only. The 2 m reach and the 0.25 m tolerance are Claude's interpretation.
+Surface height (owner O21, audit X7, SURFACE_HEIGHT): when a foot starts bearing weight on a surface whose top is known
+(its world card's geometry text, "from y=0 to y=8"; a floor without one sits at the convention's ground), the
+performer's root (its latest anchor) lies between the top, less 0.05 m, and 1.2 m above it. Interpretation (Claude's,
+for owner review): the range holds whether the root is the pelvis or the ground point (ADR-O72 open).
 Combat verbs (owner O22, plan F4.1, CONTACT_VERB): a contact's optional verb is one its contact type takes in the
 packet's `combat_verbs` (library/combat_verbs.yaml); catch, throw and disarm name a prop, and a thrown prop has a sample
 with velocity at the throw (interpretation: a throw sends the prop off moving, so a touch may throw).
@@ -25,6 +29,7 @@ pair, and the velocity into a pre sample is held to 0.25 m/s.
 """
 
 import math
+import re
 
 from planner.vocabulary import allowed
 
@@ -34,6 +39,9 @@ REACH_M, KINEMATIC_TOLERANCE_M = 2.0, 0.25
 VELOCITY_TOLERANCE_MPS = 0.25  # interpretation (Claude's, for owner review): the pre sample's velocity under gravity
 PHASE_ORDER = {"pre": 0, None: 1, "post": 2}
 BEFORE = 1e-6  # a pre sample's holder is read this long before its contact
+TOP = re.compile(r"to y=(-?\d+(?:\.\d+)?)")
+GROUND = re.compile(r"y=(-?\d+(?:\.\d+)?)")
+SURFACE_SLACK_M, LEG_M = 0.05, 1.2  # interpretation (Claude's, for owner review): root height over a supporting top
 TELEPORT_MPS = 25.0  # owner O12: anything faster between keys is a teleport (human sprint ~12, anime ~15, strikes ~20)
 
 
@@ -125,7 +133,38 @@ def validate(plan, packet):
                 findings.append(_finding("MODE_TRANSITION", "A mode change needs a beat that causes it", bid, [entity, mode]))
             last_mode[entity] = mode
     return (findings + _teleports(beats) + _vanished(beats) + _prop_kinematics(beats, props, packet["scene"]["genre"])
-            + _thrown(beats))
+            + _thrown(beats) + _surface_heights(beats, _tops(packet)))
+
+
+def _tops(packet):
+    """{surface: top y} from each surface's geometry text, a floor without one at the convention's ground."""
+    ground = GROUND.search(str(packet["scene"].get("ax", {}).get("ground", "")))
+    tops = {}
+    for surface in packet["surfaces"]:
+        found = TOP.search(surface.get("ax") or "")
+        if found:
+            tops[surface["id"]] = float(found.group(1))
+        elif surface["kind"] == "floor" and ground:
+            tops[surface["id"]] = float(ground.group(1))
+    return tops
+
+
+def _surface_heights(beats, tops):
+    """SURFACE_HEIGHT (owner O21): at a foot support's onset on a surface with a known top, the root stands on it."""
+    findings = []
+    anchors = sorted((b["t"], entity, pos) for b in beats for entity, pos in b["pos"].items() if pos is not None)
+    for beat in beats:
+        for contact in beat["contacts"]:
+            surface, entity = contact["b"]["id"], contact["a"]["id"]
+            if contact["contact_type"] != "support" or contact["b"]["kind"] != "surface" or surface not in tops \
+                    or not contact["a"]["part"].endswith("_foot"):
+                continue
+            t = _at(beat, contact)
+            root = next((pos for at, who, pos in reversed(anchors) if who == entity and at <= t + EPSILON), None)
+            if root is not None and not tops[surface] - SURFACE_SLACK_M <= root[1] <= tops[surface] + LEG_M:
+                findings.append(_finding("SURFACE_HEIGHT", f"{entity} stands on {surface} (top y={tops[surface]:g}) at "
+                                         f"{t} with the root at y={root[1]:g}", beat["id"], contact))
+    return findings
 
 
 def _thrown(beats):

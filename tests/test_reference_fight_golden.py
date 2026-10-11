@@ -81,6 +81,12 @@ GROUNDED_DESCRIPTIONS = {
 }
 
 
+# Owner O21 (audit X7, backlog M9-08a): the pillar keeps its 8 m top, so A starts above the frame at root y=10 and lands
+# with the feet on the top at y=8, root 8.5; the source's rows start A at 7.5 and land it at 7.2, under the top.
+OPENING = {0: [0, 10, 3.5], 0.6: [0, 8.5, 5.8]}
+OPENING_WORDS = {0.6: ("both feet on pillar top y=7.2", "both feet on pillar top y=8")}
+
+
 def normalised(row):
     joints = {j: list(v) for j, v in row[4].items()}
     for knee in ("LL", "RL"):
@@ -93,7 +99,7 @@ def normalised(row):
     for after, axis, degrees in ROOT_TURNS:
         if row[0] > after:
             rot[axis] += degrees
-    return [row[0], row[1].lower(), row[2], rot, joints]
+    return [row[0], row[1].lower(), OPENING.get(row[0], row[2]), rot, joints]
 
 
 def test_a_roots_and_joints_are_the_reference_rows_with_the_recorded_deviations():
@@ -101,8 +107,9 @@ def test_a_roots_and_joints_are_the_reference_rows_with_the_recorded_deviations(
     reference = [row for row in REFERENCE["A"] if row[0] < 10 and row[0] not in VANISHED]  # 10.0 hold: no beat
     assert [[row["t"], row["label"], row["pos"], row["rot"], row["joints"]] for row in SPEC["A"]] == \
         [normalised(row) for row in reference]
-    assert all(row["desc"].endswith(ref[5]) for row, ref in zip(SPEC["A"], reference, strict=True)
-               if row["t"] not in GROUNDED_PICKUPS)
+    assert all(row["desc"].endswith(ref[5].replace(*OPENING_WORDS.get(row["t"], ("", ""))))
+               for row, ref in zip(SPEC["A"], reference, strict=True) if row["t"] not in GROUNDED_PICKUPS)
+    assert all(old in ref[5] for t, (old, _) in OPENING_WORDS.items() for ref in reference if ref[0] == t)
     pinned = {row["t"]: row["desc"] for row in SPEC["A"] if row["t"] in GROUNDED_PICKUPS}
     assert pinned.keys() == GROUNDED_DESCRIPTIONS.keys()
     assert all(pinned[t].endswith(text) for t, text in GROUNDED_DESCRIPTIONS.items())

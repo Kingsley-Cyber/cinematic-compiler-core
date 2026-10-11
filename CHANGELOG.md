@@ -6,10 +6,15 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The reference opening follows O21 (M9-08a, S-015): A starts at root y=10 above the frame and lands with the feet
+  on the 8 m pillar top, root 8.5 (S04 anchors, S13 roots, the golden test's recorded deviation).
 - Laban actions print as qualities (M9-07b, plan F4.2, owner O22, S-014): the implied guidance writes "(thrust
   quality)" for punch and "(press quality)" and so on; S15's data and LBN-2.4 keep the Laban vocabulary.
 
 ### Added
+- SURFACE_HEIGHT (M9-08a, owner O21, S-015): at a foot support's onset on a surface with a known top (the world
+  card's geometry text, or the ground), S04 refuses a root below the top or over 1.2 m above it; S04's packet carries
+  each surface's geometry. F-067 found (the query's "falling from y=8").
 - Combat verbs on contacts (M9-07a, plan F4.1, owner O22, S-013): Contact gains `verb` (contact 1.1, beat 1.2,
   beat_plan and temporal_graph 1.5, contact_graph 1.1); a draft card `library/combat_verbs.yaml` says which contact
   type takes which verb; S04 refuses a mismatch, a throw, catch or disarm naming no prop, and a throw whose prop is not

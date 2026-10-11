@@ -36,7 +36,9 @@ solver/euler_solver.py): a flip or cartwheel's inversion is read on linear Euler
 landing key for the wizard's dodge_flip is a new hold beat b14 at 9.80 (land_guard shortened to 9.40-9.80 and
 continuing the flip), not the 9.40 apex key turned into a landing. Added in S-013 (M9-07a, library/combat_verbs.yaml
 and planner/dynamic_beat_validator.py): strike joins O22's nine verbs; which contact type takes which verb; a throw
-leaves its prop moving (so a touch may throw); which of the reference fight's contacts carry a verb.
+leaves its prop moving (so a touch may throw); which of the reference fight's contacts carry a verb. Added in S-015
+(M9-08a, planner/dynamic_beat_validator.py): SURFACE_HEIGHT puts the root between a supporting top (less 0.05 m) and
+1.2 m above it, and reads a surface's top from its world card's geometry text.
 
 ## Impact
 Waits on the owner.

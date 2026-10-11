@@ -83,7 +83,7 @@ flowchart LR
 | `planner.card_loader` | `kernel.canonical`, `planner.dependency_graph`, `validators.schema_validator` | json, re, yaml |
 | `planner.chaining` | `compiler.passes.mandatory.p07_contact`, `kernel.canonical`, `kernel.kernel_files` | — |
 | `planner.dependency_graph` | `kernel.canonical` | pathlib, yaml |
-| `planner.dynamic_beat_validator` | `planner.vocabulary` | math |
+| `planner.dynamic_beat_validator` | `planner.vocabulary` | math, re |
 | `planner.entity_grounder` | — | — |
 | `planner.intent_parser` | `kernel.canonical` | argparse, re, sys |
 | `planner.library_vocab` | `planner.dependency_graph`, `validators.schema_validator` | functools, json, yaml |

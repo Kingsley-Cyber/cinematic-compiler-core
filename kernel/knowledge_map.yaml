@@ -658,8 +658,12 @@ rows:
     enforced_by:
       - {file: planner/dynamic_beat_validator.py, check: validate, code: BEAT_POSE_ANCHOR,
          test: tests/test_dynamic_beat_validator.py::test_each_rule_rejects_its_violation}
+      - {file: planner/dynamic_beat_validator.py, check: _surface_heights, code: SURFACE_HEIGHT,
+         test: tests/test_dynamic_beat_validator.py::test_a_landing_stands_on_the_top_it_lands_on}
       - {file: kernel/conventions.yaml}
-    note: "M8.4: SPATIAL_ANCHOR_MISSING checks every surface and every performer's start in the prose. 'Y/Z over X' and
+    note: "M9-08a (owner O21, audit X7): a foot support's onset on a surface with a known top (the world card's geometry
+      text; a floor at the convention's ground) has the root between the top and 1.2 m above it (SURFACE_HEIGHT, S04;
+      interpretation). M8.4: SPATIAL_ANCHOR_MISSING checks every surface and every performer's start in the prose. 'Y/Z over X' and
       'use vertical space' are the V3 style lever."
 
   - id: C10

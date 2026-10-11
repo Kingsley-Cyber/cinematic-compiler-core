@@ -1,7 +1,7 @@
 {
  "step_id": "S13",
  "band": "L4c",
- "packet_sha256": "sha256:52f1204ae3b0a45bbe5b4e8326277c8780e34f600c927a3d52dc64f5fe8a1ca8",
+ "packet_sha256": "sha256:5091899503eb0e50fc9f157512c439031acd040a8b85b2d080bcdc6b828cc008",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -13,7 +13,7 @@
    "name": "fall_from_above",
    "pos": [
     0,
-    7.5,
+    10,
     3.5
    ],
    "rot": [
@@ -161,7 +161,7 @@
    "name": "land_pillar_top",
    "pos": [
     0,
-    7.2,
+    8.5,
     5.8
    ],
    "rot": [
@@ -226,7 +226,7 @@
      0
     ]
    },
-   "description": "L:arm fwd low bent5, leg back mid bent7, lLeg bent7; R:arm fwd low bent5, leg back mid bent7, lLeg bent7; support=both feet; LANDING ON PILLAR TOP, both feet on pillar top y=7.2, deep compressed crouch, both arms out for balance, head facing down, NOT airborne",
+   "description": "L:arm fwd low bent5, leg back mid bent7, lLeg bent7; R:arm fwd low bent5, leg back mid bent7, lLeg bent7; support=both feet; LANDING ON PILLAR TOP, both feet on pillar top y=8, deep compressed crouch, both arms out for balance, head facing down, NOT airborne",
    "turn": "none",
    "axis_declaration": "none"
   },
