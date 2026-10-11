@@ -11,7 +11,7 @@ import re
 
 from compiler.passes.mandatory.p07_contact import events_for, lifecycle
 from planner.scene_view import slots
-from renderers import prose_renderer
+from renderers import prop_samples, prose_renderer
 from renderers.anime_renderer import constraint_rows
 from solver import staff_geometry
 
@@ -323,6 +323,9 @@ def _props_and_causes(envelope, parts, labels, mode, add):
         changes = sum(1 for a, b in zip(own, own[1:], strict=False) if a["conditions"] != b["conditions"])
         if track.count(" -> ") < changes:
             add("PROP_TRACK_MISSING", f"{prop['name']}: {changes} state changes, {track.count(' -> ')} written")
+        for t, row in prop_samples.rows(envelope, labels, prop["id"], compact=False):
+            if row.split(" moving")[0].split(" held")[0].split(" at rest")[0] not in track:
+                add("PROP_TRACK_MISSING", f"{prop['name']}: the sample at {t:.2f} (position, velocity) is missing")
         said = re.findall(r"holder (\S+) -> (\S+?)(?:,| ·|$)", track)
         actual = [(a, b) for a, b in zip(holders, holders[1:], strict=False) if a != b]
         if [(x, y) for x, y in said] != [(who.get(a, a), who.get(b, b)) for a, b in actual]:

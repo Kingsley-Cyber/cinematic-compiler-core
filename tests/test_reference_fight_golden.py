@@ -33,6 +33,8 @@ def test_every_kernel_and_reference_item_is_in_the_render():
 # - knee flexion is +X under Q6, so the reference's negative knee angles (a hyperextended knee) read as +|x|;
 # - the right hip at 1.1 and 3.0 (+90 = 90 degrees back) is clamped to the anime extension limit, +60.
 HIP_CLAMPS = {1.1: 60, 3.0: 60}
+# Prop positions and velocities are authored on the beats and solved under gravity (owner O8, O10); the source's
+# literal p/v (e.g. kunai thrown at 0.5 toward -Z, yet at +Z 5.0 at 2.0) are not copied, as they disagree with gravity.
 
 
 def normalised(row):

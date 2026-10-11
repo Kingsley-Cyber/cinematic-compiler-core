@@ -7,7 +7,7 @@ from planner.dependency_graph import ROOT
 from planner.vocabulary import resolve
 
 PROMPT = ROOT / "planner" / "prompts" / "beat_planning.txt"
-SCHEMA_ID = "urn:cinematic-compiler:schema:beat_plan:1.1"
+SCHEMA_ID = "urn:cinematic-compiler:schema:beat_plan:1.2"
 
 
 def given_duration(intent):

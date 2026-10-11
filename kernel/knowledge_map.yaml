@@ -907,10 +907,18 @@ rows:
     name: Prop position + velocity
     anchor: "§2.2 L909; P4.1 L1679"
     class: required
-    step: S06
-    status: missing
-    gaps: [PROP_KINEMATICS]
-    note: "Props carry holder/location words per beat; no p[x,y,z], no v[x,y,z], no ballistic agreement check."
+    step: S04
+    status: enforced
+    codes: [PROP_TRACK_MISSING]
+    enforced_by:
+      - {file: planner/dynamic_beat_validator.py, check: _prop_kinematics, code: PROP_KINEMATICS,
+         test: tests/test_dynamic_beat_validator.py::test_prop_kinematics_holds_free_flight_to_gravity}
+    note: "Owner O8: beats carry prop samples (p[x,y,z], v at throws, releases and deflects) like body positions. S04
+      refuses a held prop over 2 m from its holder, a free prop that leaves gravity between two samples by over
+      0.25 m (anime may declare a float), and a resting prop that moves with no contact (reach and tolerance are
+      Claude's interpretation). Both prompts print each sample ('2.50 p[...] v[...] moving up toward A');
+      reference_fight (17 samples) and ugc_glasses_demo (5) are solved under gravity, not copied from the golden's
+      literal numbers, which the DAG notes disagree with gravity."
 
   - id: C32
     name: Event-separation rule

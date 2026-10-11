@@ -15,6 +15,7 @@ import json
 import math
 
 from planner import library_vocab
+from renderers import prop_samples
 
 VARIANT = "LBN-2.4-ADV-LMA"
 TARGET = "lbn-2.x"
@@ -314,6 +315,8 @@ def _subject_rows(envelope, kind, identity, states, labels, cover):
             cover.mark("contacts", c["id"])
             who = labels.get(c["a"]["id"], c["a"]["id"])
             rows.append(f"{_num(c['t'])} {c['contact_type']} by {who} {c['body_part']}")
+    if kind == "prop":  # owner O8: authored position and velocity samples
+        rows += [text for _, text in prop_samples.rows(envelope, labels, identity, compact=True)]
     return sorted(rows, key=lambda r: float(r.split(" ", 1)[0]))
 
 

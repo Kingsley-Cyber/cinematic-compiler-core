@@ -23,7 +23,7 @@ import hashlib
 from compiler.passes.mandatory.p07_contact import events_for, lifecycle
 from planner import camera_library
 from planner.scene_view import slots
-from renderers import ugc_renderer
+from renderers import prop_samples, ugc_renderer
 from renderers.anime_renderer import _face_words, _items, _num, constraint_rows
 from solver import staff_geometry
 
@@ -408,6 +408,7 @@ def _props(envelope, labels):
             if c["b"]["kind"] == "prop" and c["b"]["id"] == prop["id"]:
                 verb = {"possess": "held by", "release": "released by", "touch": "touched by", "support": "supports"}
                 rows.append((c["t"], f"{_time(c['t'])} {verb[c['contact_type']]} {who(c['a']['id'])} {_part(c['body_part'])}"))
+        rows += prop_samples.rows(envelope, labels, prop["id"], compact=False)  # owner O8: p and v
         count = prop.get("count", 1)
         lines = [" · ".join(text for _, text in sorted(rows, key=lambda r: r[0]))]
         lines.append((f"ONE {prop['name']} only" if count == 1 else f"Exactly {count} {prop['unit_name']} in the "

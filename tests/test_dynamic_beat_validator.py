@@ -78,3 +78,26 @@ def _two_beats(distance, dt, event_type="action", prop_effect=True):
 def test_teleport_threshold_and_the_substitution_exemption(distance, dt, event_type, prop_effect, fires):
     from planner.dynamic_beat_validator import _teleports
     assert any(f["code"] == "TELEPORT" for f in _teleports(_two_beats(distance, dt, event_type, prop_effect))) == fires
+
+
+def _flight(p1, v0=(0.0, 2.0, 1.0), held=False, contact_inside=False, flt=False, genre="anime"):
+    first = {"id": "b01", "t": 0.0, "dur": 0.5, "actor": "a", "event_type": "action", "pos": {"a": [0, 0, 0]}, "effects": [],
+             "contacts": ([{"contact_type": "possess", "a": {"kind": "entity", "id": "a", "part": "right_hand"},
+                            "b": {"kind": "prop", "id": "k", "part": None}}] if held else []),
+             "prop_samples": [{"prop": "k", "t": 0.5, "p": [0.0, 1.0, 0.0], "v": list(v0), "float": flt}]}
+    second = {"id": "b02", "t": 0.5, "dur": 0.5, "actor": "a", "event_type": "action", "pos": {"a": [0, 0, 0]}, "effects": [],
+              "contacts": ([{"contact_type": "touch", "a": {"kind": "entity", "id": "a", "part": "right_foot"},
+                             "b": {"kind": "prop", "id": "k", "part": None}}] if contact_inside else []),
+              "prop_samples": [{"prop": "k", "t": 1.0, "p": list(p1), "v": None, "float": False}]}
+    from planner.dynamic_beat_validator import _prop_kinematics
+    return [f["code"] for f in _prop_kinematics([first, second], {"k": {}}, genre)]
+
+
+def test_prop_kinematics_holds_free_flight_to_gravity():
+    landing = [0.0, 1.0 + 2.0 * 0.5 - 0.5 * 9.81 * 0.25, 0.5]           # where gravity puts it after 0.5 s
+    assert _flight(landing) == []
+    assert _flight([0.0, 2.0, 0.5]) == ["PROP_KINEMATICS"]                # it would have to float up
+    assert _flight([0.0, 2.0, 0.5], flt=True) == []                      # a declared anime float skips gravity
+    assert _flight([0.0, 2.0, 0.5], flt=True, genre="live_action") == ["PROP_KINEMATICS"]  # floats are anime-only
+    assert _flight([5.0, 1.0, 0.0], v0=(0.0, 0.0, 0.0)) == ["PROP_KINEMATICS"]   # a resting prop moved with no contact
+    assert _flight([0.0, 2.0, 0.5], contact_inside=True) == ["PROP_KINEMATICS"]  # the contact is at the end: still checked

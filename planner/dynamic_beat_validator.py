@@ -7,6 +7,11 @@ card (mode_coherence) and a mode change needs a beat that causes it (mode_transi
 Teleport (owner O12): a body faster than 25 m/s between the anchors of two of its consecutive beats is refused
 (TELEPORT), unless the earlier beat is a substitution with that body as actor and the substitution changes a prop's
 state (the decoy revealed; the owner's rule also names the smoke pellet and the log, generalised here to any prop).
+Prop kinematics (owner O8, PROP_KINEMATICS): a beat's prop samples sit inside the beat and name declared props; a held
+prop stays within 2 m of its holder's anchor; between two samples of a free prop with no contact on it in between, a
+moving prop follows gravity from the first sample's velocity to the second position within 0.25 m, and a prop at rest
+(v null or zero) does not move unless a contact on it at the second sample picks it up or knocks it down. A float
+(stylised, no gravity) is allowed in anime only. The 2 m reach and the 0.25 m tolerance are Claude's interpretation.
 """
 
 import math
@@ -14,6 +19,8 @@ import math
 from planner.vocabulary import allowed
 
 EPSILON = 1e-9
+GRAVITY = 9.81
+REACH_M, KINEMATIC_TOLERANCE_M = 2.0, 0.25
 TELEPORT_MPS = 25.0  # owner O12: anything faster between keys is a teleport (human sprint ~12, anime ~15, strikes ~20)
 
 
@@ -98,7 +105,7 @@ def validate(plan, packet):
             if entity in last_mode and last_mode[entity] != mode and not incoming.get(bid):
                 findings.append(_finding("MODE_TRANSITION", "A mode change needs a beat that causes it", bid, [entity, mode]))
             last_mode[entity] = mode
-    return findings + _teleports(beats)
+    return findings + _teleports(beats) + _prop_kinematics(beats, props, packet["scene"]["genre"])
 
 
 def _teleports(beats):
@@ -121,4 +128,73 @@ def _teleports(beats):
                                                  beat["id"], [before["id"], beat["id"]]))
             if pos is not None:
                 last[entity] = (beat, beat["t"], pos)
+    return findings
+
+
+def holds(beats):
+    """prop -> [(start, end, holder)] from possess and release contacts (a contact happens at its beat's end)."""
+    held, open_ = {}, {}
+    for beat in sorted(beats, key=lambda b: (b["t"] + b["dur"], b["t"], b["id"])):
+        end = beat["t"] + beat["dur"]
+        for c in beat["contacts"]:
+            if c["b"]["kind"] != "prop":
+                continue
+            if c["contact_type"] == "possess":
+                open_[c["b"]["id"]] = (end, c["a"]["id"])
+            elif c["contact_type"] == "release" and c["b"]["id"] in open_:
+                start, holder = open_.pop(c["b"]["id"])
+                held.setdefault(c["b"]["id"], []).append((start, end, holder))
+    for prop, (start, holder) in open_.items():
+        held.setdefault(prop, []).append((start, math.inf, holder))
+    return held
+
+
+def _prop_kinematics(beats, props, genre):
+    findings, held, samples, touches = [], holds(beats), {}, {}
+    anchors = sorted(((b["t"], entity, pos) for b in beats for entity, pos in b["pos"].items() if pos is not None))
+    for beat in beats:
+        for c in beat["contacts"]:
+            if c["b"]["kind"] == "prop":
+                touches.setdefault(c["b"]["id"], []).append(beat["t"] + beat["dur"])
+        for sample in beat.get("prop_samples", []):
+            if sample["prop"] not in props:
+                findings.append(_finding("PROP_KINEMATICS", "Sample names an undeclared prop", beat["id"], sample["prop"]))
+            elif not beat["t"] - EPSILON <= sample["t"] <= beat["t"] + beat["dur"] + EPSILON:
+                findings.append(_finding("PROP_KINEMATICS", "Sample time is outside its beat", beat["id"], sample["t"]))
+            else:
+                samples.setdefault(sample["prop"], []).append((sample, beat["id"]))
+            if sample["float"] and genre != "anime":
+                findings.append(_finding("PROP_KINEMATICS", "Only anime may float a prop", beat["id"], sample["prop"]))
+
+    def holder_at(prop, t):
+        return next((h for start, end, h in held.get(prop, []) if start - EPSILON <= t < end - EPSILON), None)
+
+    def anchor(entity, t):
+        return next((pos for at, e, pos in reversed(anchors) if e == entity and at <= t + EPSILON), None)
+
+    for prop, rows in samples.items():
+        rows.sort(key=lambda r: r[0]["t"])
+        for sample, beat_id in rows:
+            holder = holder_at(prop, sample["t"])
+            if holder and anchor(holder, sample["t"]) and math.dist(sample["p"], anchor(holder, sample["t"])) > REACH_M:
+                findings.append(_finding("PROP_KINEMATICS", f"{prop} is held by {holder} but {REACH_M:g} m away", beat_id,
+                                         sample["t"]))
+        for (first, _), (second, beat_id) in zip(rows, rows[1:], strict=False):
+            span = second["t"] - first["t"]
+            if span <= EPSILON or holder_at(prop, first["t"]) or first["float"]:
+                continue
+            if any(first["t"] + EPSILON < t < second["t"] - EPSILON for t in touches.get(prop, [])):
+                continue  # a contact changes the flight between the two samples
+            moving = first["v"] is not None and any(abs(x) > EPSILON for x in first["v"])
+            if moving:
+                expected = [first["p"][i] + first["v"][i] * span - (0.5 * GRAVITY * span * span if i == 1 else 0)
+                            for i in range(3)]
+                if math.dist(expected, second["p"]) > KINEMATIC_TOLERANCE_M:
+                    findings.append(_finding("PROP_KINEMATICS", f"{prop} from {first['t']} would be at "
+                                             f"{[round(x, 2) for x in expected]} at {second['t']}, not {second['p']}",
+                                             beat_id, [first["t"], second["t"]]))
+            elif math.dist(first["p"], second["p"]) > KINEMATIC_TOLERANCE_M and not any(
+                    abs(t - second["t"]) <= EPSILON for t in touches.get(prop, [])):
+                findings.append(_finding("PROP_KINEMATICS", f"{prop} at rest moves between {first['t']} and {second['t']} "
+                                         "with no contact", beat_id, [first["t"], second["t"]]))
     return findings

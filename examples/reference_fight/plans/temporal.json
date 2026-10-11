@@ -1,7 +1,7 @@
 {
  "step_id": "S04",
  "band": "L1",
- "packet_sha256": "sha256:1faf78527a97bd09cc84870f78e714677d0b442d34c12bd87c529ac6eeb65408",
+ "packet_sha256": "sha256:ed1ec1c130fd30e251166fbea1de44752f5f28815fa97e908da2d058aad9b3e5",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -143,6 +143,19 @@
      "to": "b02",
      "causal_strength": "soft",
      "why": "fall_from_above leads straight into the next exchange."
+    }
+   ],
+   "prop_samples": [
+    {
+     "prop": "kunai",
+     "t": 0.6,
+     "p": [
+      1.1,
+      1.3,
+      4.4
+     ],
+     "v": null,
+     "float": false
     }
    ]
   },
@@ -413,6 +426,23 @@
      "causal_strength": "hard",
      "why": "throw_kunai leads straight into the next exchange."
     }
+   ],
+   "prop_samples": [
+    {
+     "prop": "kunai",
+     "t": 2.5,
+     "p": [
+      1.2,
+      1.5,
+      4.5
+     ],
+     "v": [
+      -1.4,
+      1.45,
+      0.2
+     ],
+     "float": false
+    }
    ]
   },
   {
@@ -624,6 +654,34 @@
      "causal_strength": "soft",
      "why": "land_facing_opponent leads straight into the next exchange."
     }
+   ],
+   "prop_samples": [
+    {
+     "prop": "kunai",
+     "t": 3.0,
+     "p": [
+      0.5,
+      1.0,
+      4.6
+     ],
+     "v": [
+      -0.5,
+      -0.54,
+      1.75
+     ],
+     "float": false
+    },
+    {
+     "prop": "rope_dart",
+     "t": 3.0,
+     "p": [
+      0.6,
+      0.9,
+      4.7
+     ],
+     "v": null,
+     "float": false
+    }
    ]
   },
   {
@@ -675,6 +733,23 @@
      "to": "b09",
      "causal_strength": "soft",
      "why": "rising_palm_charge leads straight into the next exchange."
+    }
+   ],
+   "prop_samples": [
+    {
+     "prop": "kunai",
+     "t": 3.4,
+     "p": [
+      0.3,
+      0.0,
+      5.3
+     ],
+     "v": [
+      0,
+      0,
+      0
+     ],
+     "float": false
     }
    ]
   },
@@ -780,6 +855,23 @@
      "causal_strength": "hard",
      "why": "kawarimi_substitution leads straight into the next exchange."
     }
+   ],
+   "prop_samples": [
+    {
+     "prop": "smoke_pellet",
+     "t": 3.7,
+     "p": [
+      0.4,
+      1.1,
+      4.7
+     ],
+     "v": [
+      0,
+      0,
+      0
+     ],
+     "float": false
+    }
    ]
   },
   {
@@ -884,6 +976,23 @@
      "causal_strength": "soft",
      "why": "palm_hits_log leads straight into the next exchange."
     }
+   ],
+   "prop_samples": [
+    {
+     "prop": "substitution_log",
+     "t": 4.0,
+     "p": [
+      0.4,
+      1.0,
+      4.7
+     ],
+     "v": [
+      0,
+      0,
+      0
+     ],
+     "float": false
+    }
    ]
   },
   {
@@ -971,6 +1080,23 @@
      "to": "b12",
      "causal_strength": "soft",
      "why": "reappear_behind_opponent leads straight into the next exchange."
+    }
+   ],
+   "prop_samples": [
+    {
+     "prop": "substitution_log",
+     "t": 4.4,
+     "p": [
+      0.4,
+      0.1,
+      4.7
+     ],
+     "v": [
+      0,
+      0,
+      0
+     ],
+     "float": false
     }
    ]
   },
@@ -1266,6 +1392,23 @@
      "causal_strength": "soft",
      "why": "throw_shuriken_volley leads straight into the next exchange."
     }
+   ],
+   "prop_samples": [
+    {
+     "prop": "shuriken_volley",
+     "t": 5.5,
+     "p": [
+      -1.3,
+      1.6,
+      4.3
+     ],
+     "v": [
+      3.25,
+      2.96,
+      3.87
+     ],
+     "float": false
+    }
    ]
   },
   {
@@ -1365,6 +1508,38 @@
      "to": "b16",
      "causal_strength": "soft",
      "why": "slide_under_volley leads straight into the next exchange."
+    }
+   ],
+   "prop_samples": [
+    {
+     "prop": "shuriken_volley",
+     "t": 5.9,
+     "p": [
+      0.0,
+      2.0,
+      5.85
+     ],
+     "v": [
+      0,
+      0,
+      0
+     ],
+     "float": false
+    },
+    {
+     "prop": "rope_dart",
+     "t": 5.9,
+     "p": [
+      0.4,
+      0.0,
+      3.8
+     ],
+     "v": [
+      0,
+      0,
+      0
+     ],
+     "float": false
     }
    ]
   },
@@ -1705,6 +1880,19 @@
      "causal_strength": "soft",
      "why": "aerial_rope_dart_regrapple leads straight into the next exchange."
     }
+   ],
+   "prop_samples": [
+    {
+     "prop": "rope_dart",
+     "t": 7.5,
+     "p": [
+      0.6,
+      2.0,
+      4.6
+     ],
+     "v": null,
+     "float": false
+    }
    ]
   },
   {
@@ -1769,6 +1957,30 @@
      "to": "b21",
      "causal_strength": "soft",
      "why": "pull_toward_pillar leads straight into the next exchange."
+    }
+   ],
+   "prop_samples": [
+    {
+     "prop": "kunai",
+     "t": 8.0,
+     "p": [
+      0.4,
+      1.6,
+      4.8
+     ],
+     "v": null,
+     "float": false
+    },
+    {
+     "prop": "rope_dart",
+     "t": 8.0,
+     "p": [
+      0.4,
+      1.3,
+      4.0
+     ],
+     "v": null,
+     "float": false
     }
    ]
   },
@@ -1925,6 +2137,19 @@
      "causal_strength": "soft",
      "why": "aerial_kunai_drive leads straight into the next exchange."
     }
+   ],
+   "prop_samples": [
+    {
+     "prop": "kunai",
+     "t": 8.5,
+     "p": [
+      0.8,
+      1.4,
+      5.0
+     ],
+     "v": null,
+     "float": false
+    }
    ]
   },
   {
@@ -1977,6 +2202,23 @@
      "causal_strength": "soft",
      "why": "crash_to_ground leads straight into the next exchange."
     }
+   ],
+   "prop_samples": [
+    {
+     "prop": "kunai",
+     "t": 9.0,
+     "p": [
+      1.0,
+      1.3,
+      5.2
+     ],
+     "v": [
+      0,
+      0,
+      0
+     ],
+     "float": false
+    }
    ]
   },
   {
@@ -2023,7 +2265,20 @@
    "requires": [],
    "effects": [],
    "contacts": [],
-   "causes": []
+   "causes": [],
+   "prop_samples": [
+    {
+     "prop": "rope_dart",
+     "t": 9.5,
+     "p": [
+      1.0,
+      1.3,
+      5.2
+     ],
+     "v": null,
+     "float": false
+    }
+   ]
   }
  ]
 }

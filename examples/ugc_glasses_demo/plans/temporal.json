@@ -1,7 +1,7 @@
 {
  "step_id": "S04",
  "band": "L1",
- "packet_sha256": "sha256:ce8f73c801708abcd810ce6d2f01cb42d99cfd5176d004357457a8bd397de69e",
+ "packet_sha256": "sha256:e992fe508b5b6806fab35cff32a93edf642d13283bd1a7dd7fc8da6263344cc4",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -108,6 +108,34 @@
      "causal_strength": "hard",
      "why": "Holding the frame lets the other hand open the temples."
     }
+   ],
+   "prop_samples": [
+    {
+     "prop": "glasses",
+     "t": 0.0,
+     "p": [
+      0.25,
+      0.75,
+      0.35
+     ],
+     "v": [
+      0,
+      0,
+      0
+     ],
+     "float": false
+    },
+    {
+     "prop": "glasses",
+     "t": 1.5,
+     "p": [
+      0.2,
+      1.1,
+      0.3
+     ],
+     "v": null,
+     "float": false
+    }
    ]
   },
   {
@@ -189,6 +217,19 @@
      "to": "b03",
      "causal_strength": "hard",
      "why": "Open temples let the glasses go on."
+    }
+   ],
+   "prop_samples": [
+    {
+     "prop": "glasses",
+     "t": 3.5,
+     "p": [
+      0.0,
+      1.25,
+      0.25
+     ],
+     "v": null,
+     "float": false
     }
    ]
   },
@@ -306,6 +347,23 @@
      "causal_strength": "soft",
      "why": "Wearing them, the creator shows the result."
     }
+   ],
+   "prop_samples": [
+    {
+     "prop": "glasses",
+     "t": 5.5,
+     "p": [
+      0.0,
+      1.6,
+      0.1
+     ],
+     "v": [
+      0,
+      0,
+      0
+     ],
+     "float": false
+    }
    ]
   },
   {
@@ -351,7 +409,24 @@
    ],
    "effects": [],
    "contacts": [],
-   "causes": []
+   "causes": [],
+   "prop_samples": [
+    {
+     "prop": "glasses",
+     "t": 8.0,
+     "p": [
+      0.0,
+      1.6,
+      0.1
+     ],
+     "v": [
+      0,
+      0,
+      0
+     ],
+     "float": false
+    }
+   ]
   }
  ]
 }

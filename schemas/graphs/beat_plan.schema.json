@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:beat_plan:1.1",
+  "$id": "urn:cinematic-compiler:schema:beat_plan:1.2",
   "title": "S04 beat plan (authored in-session from a hash-bound packet)",
   "description": "LLM call #1 of the owner plan, written by Claude in-session (no paid API). Times in seconds; requires are read at t, effects and contacts commit at t + dur. pos/facing are the root anchors at the beat start t (the key-pose time) and are authoritative for S06 and S13.",
   "type": "object",
@@ -303,6 +303,56 @@
           "items": {
             "$ref": "#/$defs/Cause"
           }
+        },
+        "prop_samples": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/PropSample"
+          }
+        }
+      }
+    },
+    "PropSample": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "prop",
+        "t",
+        "p",
+        "v",
+        "float"
+      ],
+      "description": "Owner O8: a prop's position (and velocity at throws, releases, deflects) at time t inside the beat; metres and metres per second in the scene frame; v null while held; float true marks a stylised anime float (no gravity).",
+      "properties": {
+        "prop": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "t": {
+          "type": "number",
+          "minimum": 0
+        },
+        "p": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "number"
+          }
+        },
+        "v": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "number"
+          }
+        },
+        "float": {
+          "type": "boolean"
         }
       }
     }

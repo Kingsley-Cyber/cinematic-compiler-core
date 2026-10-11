@@ -121,23 +121,23 @@ B starts at [0, 0, 4.5].
 Height used: y 0 to 7.5 m; depth used: z 3.5 to 5.9 m.
 
 [PROP STATE MACHINE – kunai]
-0.00 state unknown · 0.60 holder unknown -> B · 0.60 held by B R hand · 2.50 holder B -> none · 2.50 released by B R hand · 3.00 location unknown -> ground · 3.00 touched by A R foot · 8.00 holder none -> A · 8.00 held by A R hand · 9.00 embedded unknown -> embedded · 9.00 touched by B torso
+0.00 state unknown · 0.60 holder unknown -> B · 0.60 held by B R hand · 0.60 p[1.1, 1.3, 4.4] held by B · 2.50 holder B -> none · 2.50 released by B R hand · 2.50 p[1.2, 1.5, 4.5] v[-1.4, 1.45, 0.2] moving up toward A · 3.00 location unknown -> ground · 3.00 touched by A R foot · 3.00 p[0.5, 1, 4.6] v[-0.5, -0.54, 1.75] moving down along +Z · 3.40 p[0.3, 0, 5.3] at rest · 8.00 holder none -> A · 8.00 held by A R hand · 8.00 p[0.4, 1.6, 4.8] held by A · 8.50 p[0.8, 1.4, 5] held by A · 9.00 embedded unknown -> embedded · 9.00 touched by B torso · 9.00 p[1, 1.3, 5.2] held by A
 ONE kunai only: never duplicated, never in two hands at once, never lost.
 
 [PROP STATE MACHINE – rope dart]
-0.00 state unknown · 3.00 holder unknown -> A · 3.00 held by A L hand · 5.90 holder A -> none, location unknown -> ground · 5.90 released by A L hand · 7.50 holder none -> A · 7.50 held by A L hand · 8.00 line unknown -> wrapped · 8.00 touched by B torso · 8.50 line wrapped -> taut
+0.00 state unknown · 3.00 holder unknown -> A · 3.00 held by A L hand · 3.00 p[0.6, 0.9, 4.7] held by A · 5.90 holder A -> none, location unknown -> ground · 5.90 released by A L hand · 5.90 p[0.4, 0, 3.8] at rest · 7.50 holder none -> A · 7.50 held by A L hand · 7.50 p[0.6, 2, 4.6] held by A · 8.00 line unknown -> wrapped · 8.00 touched by B torso · 8.00 p[0.4, 1.3, 4] held by A · 8.50 line wrapped -> taut · 9.50 p[1, 1.3, 5.2] held by A
 ONE rope dart only: never duplicated, never in two hands at once, never lost.
 
 [PROP STATE MACHINE – smoke pellet]
-0.00 state unknown · 4.00 smoke unknown -> burst · 4.00 touched by A R hand
+0.00 state unknown · 3.70 p[0.4, 1.1, 4.7] at rest · 4.00 smoke unknown -> burst · 4.00 touched by A R hand
 ONE smoke pellet only: never duplicated, never in two hands at once, never lost.
 
 [PROP STATE MACHINE – shuriken volley]
-0.00 state unknown · 5.90 flight unknown -> embedded, location unknown -> wooden pillar · 5.90 touched by B R hand
+0.00 state unknown · 5.50 p[-1.3, 1.6, 4.3] v[3.25, 2.96, 3.87] moving up along +Z · 5.90 flight unknown -> embedded, location unknown -> wooden pillar · 5.90 touched by B R hand · 5.90 p[0, 2, 5.85] at rest
 Exactly 3 shuriken in the volley: never duplicated, never in two hands at once, never lost.
 
 [PROP STATE MACHINE – substitution log]
-0.00 state unknown · 4.00 deployment unknown -> deployed · 4.00 touched by A R hand · 4.40 deployment deployed -> fallen, location unknown -> ground · 4.40 touched by B R hand
+0.00 state unknown · 4.00 deployment unknown -> deployed · 4.00 touched by A R hand · 4.00 p[0.4, 1, 4.7] at rest · 4.40 deployment deployed -> fallen, location unknown -> ground · 4.40 touched by B R hand · 4.40 p[0.4, 0.1, 4.7] at rest
 ONE substitution log only: never duplicated, never in two hands at once, never lost.
 
 [CAUSAL LINKS]

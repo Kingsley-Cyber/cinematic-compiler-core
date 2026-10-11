@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:temporal_graph:1.1",
+  "$id": "urn:cinematic-compiler:schema:temporal_graph:1.2",
   "title": "S04 temporal graph: beats, temporal edges, beat-constraint edges",
   "description": "Beats are copied from the beat plan; temporal and beat_constraint edges are computed, never authored.",
   "type": "object",
@@ -335,6 +335,56 @@
           "items": {
             "$ref": "#/$defs/Cause"
           }
+        },
+        "prop_samples": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/PropSample"
+          }
+        }
+      }
+    },
+    "PropSample": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "prop",
+        "t",
+        "p",
+        "v",
+        "float"
+      ],
+      "description": "Owner O8: a prop's position (and velocity at throws, releases, deflects) at time t inside the beat; metres and metres per second in the scene frame; v null while held; float true marks a stylised anime float (no gravity).",
+      "properties": {
+        "prop": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "t": {
+          "type": "number",
+          "minimum": 0
+        },
+        "p": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "number"
+          }
+        },
+        "v": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "type": "number"
+          }
+        },
+        "float": {
+          "type": "boolean"
         }
       }
     }
