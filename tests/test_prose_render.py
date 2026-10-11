@@ -92,7 +92,7 @@ def test_reference_strikes_are_the_impacts_on_other_bodies_and_free_props():
                if "[DOUBLE BOW + accent:" in line]
     assert {"2.50 A", "4.70 A", "6.60 B", "8.50 B"} <= set(strikes)
     text = render["prose"]["pure_staff"]["text"]
-    assert "[DOUBLE BOW + accent: R foot > kunai blade at 3.00]" in text
+    assert "[DOUBLE BOW + accent: R foot > kunai blade]" in text  # at its pose (O23, M9-02)
     assert "chain " in next(line for line in staff(text) if line.startswith("2.50 A"))
 
 
@@ -163,7 +163,7 @@ def test_reference_rules_bound_lasting_effects_spans_and_separate_strikes():
     assert "- From 9.00 to the end, B keeps condition down." in rules
     assert "- From 9.00 to the end, kunai stays embedded." in rules
     assert "- A L foot stays on the wooden pillar from 0.60 to 1.60: one continuous contact" in rules
-    assert "- TWO SEPARATE STRIKES: A R foot > kunai blade at 3.00 and R leg > B torso at 5.10" in rules
+    assert "- TWO SEPARATE STRIKES: A R foot > kunai blade and R leg > B torso" in rules
     assert "End state: B at [1, 0, 5.3], condition down, support lying." in rules
     assert "Contact before effect: nothing reacts to a hit before the contact." in rules
     assert rules.index("Identity is immutable") > rules.index("Follow the SUPPORT column")  # laws in the rules layer

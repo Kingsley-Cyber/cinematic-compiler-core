@@ -58,7 +58,7 @@ FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship |
 - B: secondary motion of the trousers lags the body slightly.
 - A 3.60–5.20 (1.6 s without a line): carry 'staggered double palm' through; weight transfer backward, breathing gasp, tension high.
 - A 7.60–10.00 (2.4 s without a line): hold the final pose with micro-motion; weight transfer rotating, breathing exhale, tension high.
-- B after the 2.60 strike: a short natural recovery before the next phrase.
+- B after the 2.60 strike: one instant contact, the limb does not stay on the target (R16), then a short natural recovery before the next phrase.
 - B airborne 1.60–2.60: a realistic trajectory and rotation from the takeoff at 1.60 to the landing at 2.60.
 - B airborne 4.60–5.20: a realistic trajectory and rotation from the takeoff at 4.60 to the landing at 5.20.
 - B airborne 9.40–10.00: a realistic trajectory and rotation from the takeoff at 9.40 to the end of the scene.

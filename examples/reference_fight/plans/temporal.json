@@ -509,7 +509,8 @@
       "kind": "prop",
       "id": "kunai",
       "part": "handle"
-     }
+     },
+     "at": "start"
     }
    ],
    "causes": [
@@ -522,7 +523,7 @@
    "prop_samples": [
     {
      "prop": "kunai",
-     "t": 2.5,
+     "t": 2.0,
      "p": [
       1.2,
       1.5,
@@ -646,7 +647,8 @@
       "kind": "prop",
       "id": "kunai",
       "part": "blade"
-     }
+     },
+     "at": "start"
     },
     {
      "contact_type": "support",
@@ -693,6 +695,38 @@
      "to": "b07",
      "causal_strength": "soft",
      "why": "The deflect drops A onto both feet, squared up to B, the rope dart in the left hand."
+    }
+   ],
+   "prop_samples": [
+    {
+     "prop": "kunai",
+     "t": 2.5,
+     "p": [
+      0.5,
+      1.0,
+      4.6
+     ],
+     "v": [
+      -0.5,
+      -0.54,
+      1.75
+     ],
+     "float": false
+    },
+    {
+     "prop": "kunai",
+     "t": 2.9,
+     "p": [
+      0.3,
+      0.0,
+      5.3
+     ],
+     "v": [
+      0,
+      0,
+      0
+     ],
+     "float": false
     }
    ]
   },
@@ -748,21 +782,6 @@
     }
    ],
    "prop_samples": [
-    {
-     "prop": "kunai",
-     "t": 3.0,
-     "p": [
-      0.5,
-      1.0,
-      4.6
-     ],
-     "v": [
-      -0.5,
-      -0.54,
-      1.75
-     ],
-     "float": false
-    },
     {
      "prop": "rope_dart",
      "t": 3.0,
@@ -1039,7 +1058,8 @@
       "kind": "prop",
       "id": "substitution_log",
       "part": "log"
-     }
+     },
+     "at": "start"
     }
    ],
    "causes": [
@@ -1060,7 +1080,7 @@
      ],
      "v": [
       0,
-      0,
+      -0.29,
       0
      ],
      "float": false
@@ -1236,7 +1256,8 @@
       "kind": "entity",
       "id": "ninja_broad",
       "part": "torso"
-     }
+     },
+     "at": "start"
     }
    ],
    "causes": [
@@ -1416,7 +1437,8 @@
       "kind": "prop",
       "id": "shuriken_volley",
       "part": "star_1"
-     }
+     },
+     "at": "start"
     },
     {
      "contact_type": "support",
@@ -1722,7 +1744,8 @@
       "kind": "entity",
       "id": "ninja_lean",
       "part": "left_arm"
-     }
+     },
+     "at": "start"
     },
     {
      "contact_type": "touch",
@@ -1735,7 +1758,8 @@
       "kind": "entity",
       "id": "ninja_lean",
       "part": "left_arm"
-     }
+     },
+     "at": "start"
     }
    ],
    "causes": [
@@ -2161,7 +2185,8 @@
       "kind": "prop",
       "id": "kunai",
       "part": "blade"
-     }
+     },
+     "at": "start"
     },
     {
      "contact_type": "support",

@@ -12,7 +12,7 @@ critical
 L1.1
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -43,4 +43,4 @@ ADR-O23
 - backlog M9-02
 
 ## Resolution
-Open.
+Resolved in backlog M9-02 (session S-003): the reference fight's strike, throw and release contacts happen at their pose (`at: start`), and IMPACT_CONTACT_SYNC (S17 and the prompt) refuses a hit off its impact frame.

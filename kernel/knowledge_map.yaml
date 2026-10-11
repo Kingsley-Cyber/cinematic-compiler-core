@@ -789,14 +789,18 @@ rows:
     class: mandatory
     step: S07
     status: partial
-    codes: [REACTION_WITHOUT_CAUSE]
+    codes: [REACTION_WITHOUT_CAUSE, IMPACT_CONTACT_SYNC]
     gaps: [POST_CONTACT_MISSING]
     enforced_by:
+      - {file: compiler/passes/derived/p17_render.py, check: impact_sync, code: IMPACT_CONTACT_SYNC,
+         test: tests/test_render.py::test_impact_contact_sync_wants_one_time_per_hit}
       - {file: compiler/passes/mandatory/p07_contact.py, check: cross_check, code: PROP_CHANGE_CONTACT,
          test: tests/test_contact_pass.py::test_prop_change_without_any_contact_is_refused}
       - {file: compiler/passes/mandatory/p05_causal.py, check: edges_and_findings, code: CAUSE_TIMING,
          test: tests/test_causal_pass.py::test_each_causal_rule_rejects_its_violation}
-    note: "Contact before effect holds for prop changes (S07) and hard causes (S05). At-contact and post-contact
+    note: "M9-02 (owner O23): one time per hit; strike, throw and release contacts happen at their key pose, every
+      impact frame has a touch or support onset on it and every strike lands on an impact frame (IMPACT_CONTACT_SYNC,
+      S17 and the prompt). Contact before effect holds for prop changes (S07) and hard causes (S05). At-contact and post-contact
       phases (intersection; compress, accelerate, follow-through) are not modelled."
 
   - id: C22

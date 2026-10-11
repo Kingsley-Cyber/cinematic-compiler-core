@@ -7,7 +7,7 @@ Every plan. Sorted by status, then ID. Counts are the open findings whose Relate
 | Plan ID | Title | Status | Open findings | Critical | High | Open questions | Updated | File |
 |---|---|---|---|---|---|---|---|---|
 | PLAN-001 | Master plan: milestones M1-M9 | in progress | 9 | 0 | 0 | 7 | 2026-10-11 | [MASTER_PLAN.md](../plans/MASTER_PLAN.md) |
-| PLAN-003 | M9: the owner's cinematic_beat_v2 plan, deconflicted | in progress | 26 | 2 | 15 | 0 | 2026-10-11 | [deconfliction_2026-10-11.md](../plans/deconfliction_2026-10-11.md) |
+| PLAN-003 | M9: the owner's cinematic_beat_v2 plan, deconflicted | in progress | 26 | 1 | 15 | 0 | 2026-10-11 | [deconfliction_2026-10-11.md](../plans/deconfliction_2026-10-11.md) |
 | PLAN-004 | Checkable constraints and equipment | blocked | 0 | 0 | 0 | 0 | 2026-10-11 | [004-checkable-constraints.md](../plans/004-checkable-constraints.md) |
 | PLAN-002 | M8: structured-prose prompts and DAG conformance | applied | 1 | 0 | 1 | 0 | 2026-10-11 | [M8_DAG_PROSE.md](../plans/M8_DAG_PROSE.md) |
 | PLAN-005 | The docs plane | applied | 1 | 0 | 0 | 1 | 2026-10-11 | [005-docs-plane.md](../plans/005-docs-plane.md) |

@@ -165,10 +165,11 @@ BREAKS = [
     ("TURN_LABEL", "reference_fight", "mixed", _replace("ONE backflip about", "ONE spin to the left about")),
     # W1-W4, the probe wording rules (owner O47-O49): each break restores a wording a probe render refused
     ("BODY_HOLD_FRAMES", "reference_fight", "mixed", _replace("Impact frames:", "Holds: 0.60 for 3 frames.\nImpact frames:")),
-    ("EMPTY_HAND_UNSTATED", "reference_fight", "mixed", _replace("; B's right hand is empty from 2.50", "")),
+    ("EMPTY_HAND_UNSTATED", "reference_fight", "mixed", _replace("; B's right hand is empty from 2.00", "")),
     ("ROTATION_ANGLES_PRINTED", "reference_fight", "mixed", _replace(
         "ONE backflip about the side-to-side axis (sagittal plane), 5.10–5.50",
         "backflip: 0 degrees at 5.10, -180 degrees at 5.30, -360 degrees at 5.50")),
+    ("IMPACT_CONTACT_SYNC", "reference_fight", "mixed", _replace("Impact frames: 2.50,", "Impact frames: 2.40,")),
     ("HIDDEN_PHRASING", "reference_fight", "mixed", _replace("substitution log (on the ground, deployment standing until 4.00)",
                                                              "substitution log (hidden in A's coat until 3.70)")),
     ("CAUSAL_LIST_MISSING", "wizard_vs_acrobat", "mixed", _drop_causal_threads),

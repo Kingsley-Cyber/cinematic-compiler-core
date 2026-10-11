@@ -54,6 +54,8 @@ CODES = {
     "ROTATION_ANGLES_PRINTED": "a turn is written as angles at times or a rate, or a line inside a turn prints its "
                                "angles (probe R13 flipped twice)",
     "HIDDEN_PHRASING": "a prop is called hidden or not visible (probes R12, R17 drew it from the start anyway)",
+    "IMPACT_CONTACT_SYNC": "a strike bow sits off every printed impact frame, or an impact frame has no contact on it "
+                           "(one time per hit, O23; F-021)",
     "CAUSAL_LIST_MISSING": "a causal edge is absent from CAUSAL LINKS",
     "CAUSE_REASON": "a causal link's reason is not printed in CAUSAL LINKS, or does not state a cause",
     "REACTION_WITHOUT_CAUSE": "a hard effect's line comes before its cause's contact",
@@ -86,6 +88,7 @@ READS = {
     "DOUBLED_WORD": (), "COUNT_CONTRADICTION": (),
     "VANISHED_BODY": (STAFF, RULES), "TURN_LABEL": (STAFF,),
     "BODY_HOLD_FRAMES": (), "EMPTY_HAND_UNSTATED": (STAFF,), "ROTATION_ANGLES_PRINTED": (), "HIDDEN_PHRASING": (),
+    "IMPACT_CONTACT_SYNC": (STAFF, "[ANIME]", "[UGC]", "[LIVE ACTION]"),
     "CAUSAL_LIST_MISSING": ("[CAUSAL LINKS]",), "CAUSE_REASON": ("[CAUSAL LINKS]",),
     "REACTION_WITHOUT_CAUSE": (),
     "CAUSAL_RULE_MISSING": (RULES,), "CONSERVATION_RULE_MISSING": (RULES,), "SPAN_RULE_MISSING": (STAFF, RULES),
@@ -191,6 +194,7 @@ def check(text, envelope, mode):
     _vanish_checks(envelope, parts, labels, mode, add)
     _turn_checks(envelope, parts, labels, mode, add)
     _wording_checks(envelope, text, parts, labels, mode, add)
+    _impact_checks(envelope, parts, mode, add)
     _rules_checks(envelope, parts, labels, mode, add)
     _camera_checks(envelope, parts, labels, add)
     return findings
@@ -371,6 +375,37 @@ RATE = re.compile(r"degrees per second|deg/s|°/s", re.I)
 ANGLE_AT = re.compile(r"-?\d+(?:\.\d+)?\s*(?:degrees|deg|°)\s+at\s+\d+\.\d\d")
 INNER_ANGLE = re.compile(r"EulerXYZ \[|\d\s*(?:degrees|deg|°)|sign \([^)]*\d")
 HIDDEN = re.compile(r"\b(?:hidden|not visible|invisible|concealed|out of sight)\b", re.I)
+
+
+BOW_TIME = re.compile(r" at (\d+\.\d\d)\]?$")
+
+
+def _impact_checks(envelope, parts, mode, add):
+    """IMPACT_CONTACT_SYNC (owner O23, backlog M9-02): the prompt prints one time per hit. Every strike bow sits on a
+    printed impact frame; every printed impact frame has a bow on it, or a support onset in the envelope (a body hitting
+    a surface; surface supports are not printed as bows)."""
+    genre = _body(parts, GENRE_TITLES.get(envelope["scene"]["genre"], "[GENRE]"))
+    line = next((x for x in genre.splitlines() if x.startswith("Impact frames:")), "")
+    impacts = [float(x) for x in re.findall(r"\d+\.\d\d", line)]
+    tolerance = 0.5 / envelope["scene"]["fps"] + 1e-9
+    strikes, bows = [], []
+    for row in _staff(parts, mode):
+        if len(row["columns"]) != 5:
+            continue
+        for item in row["columns"][3].split("; "):
+            if item.startswith(("[DOUBLE BOW + accent:", "contact bow:")):
+                match = BOW_TIME.search(item)
+                t = float(match.group(1)) if match else row["t"]
+                bows.append(t)
+                if item.startswith("[DOUBLE BOW"):
+                    strikes.append((row["label"], t, item))
+    supports = [c["t"] for c in envelope["nodes"]["contacts"]["items"] if c["contact_type"] == "support"]
+    for label, t, item in strikes:
+        if not any(abs(t - i) <= tolerance for i in impacts):
+            add("IMPACT_CONTACT_SYNC", f"{label} strike at {t:.2f} ({item[:40]}) is on no printed impact frame")
+    for i in impacts:
+        if not any(abs(t - i) <= tolerance for t in bows + supports):
+            add("IMPACT_CONTACT_SYNC", f"Impact frame {i:.2f} has no contact on it")
 
 
 def _wording_checks(envelope, text, parts, labels, mode, add):

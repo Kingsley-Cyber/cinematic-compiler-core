@@ -88,3 +88,20 @@ def test_render_scope_and_complete_envelope(order):
     assert validate_envelope(after) == {"ok": True, "complete": True, "findings": []}
     assert after["nodes"]["render"]["items"][0]["text"] == p17_render.run(copy.deepcopy(BEFORE), PLAN, order=order)[0][
         "nodes"]["render"]["items"][0]["text"]
+
+
+def test_impact_contact_sync_wants_one_time_per_hit():
+    """IMPACT_CONTACT_SYNC (O23, M9-02): the reference fight's hits sit on their impact frames; a strike moved off its
+    frame, or an impact frame with no contact on it, is refused."""
+    import json
+
+    from conftest import ROOT
+
+    envelope = json.loads((ROOT / "examples" / "reference_fight" / "envelope.json").read_text(encoding="utf-8"))
+    impacts = envelope["nodes"]["render"]["items"][0]["frame_parts"]["impact"]
+    assert p17_render.impact_sync(envelope, impacts) == []
+    moved = copy.deepcopy(envelope)
+    next(c for c in moved["nodes"]["contacts"]["items"] if c["id"] == "b06_c1")["t"] = 3.0  # the deflect lands late
+    assert {f["message"] for f in p17_render.impact_sync(moved, impacts)} == {
+        "Impact at 2.5 has no touch or support onset on that frame", "Strike b06_c1 at 3.0 lands on no impact frame"}
+    assert [f["code"] for f in p17_render.impact_sync(envelope, impacts + [3.2])] == ["IMPACT_CONTACT_SYNC"]

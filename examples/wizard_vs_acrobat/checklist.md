@@ -6,11 +6,11 @@ Genre: anime. LBN-2.4 is read against the DAG's Master Template (O13), so many o
 
 | Prompt | File | sha256 | Bytes | PASS | FAIL | NOT CHECKED | N/A | Deliverable |
 |---|---|---|---|---|---|---|---|---|
-| LBN | `render.txt` | `0a579b46fdf5b34f8f4430f4ca4dbc4ae084b4907d068ca0c204c2e7f73b0c96` | 29404 | 4 | 47 | 27 | 6 | no |
-| Pure | `prose_pure_staff.txt` | `a458eb39fba29356507f4a00e347de23c976cdbfa03718fb4d9ab64ae75fffd8` | 20036 | 38 | 0 | 40 | 6 | no |
-| Mixed | `prose_mixed.txt` | `fc1aa139dceb4b6bcc8203ebd2b9ca144ba148332d7b4910ad7ec08e588eecd2` | 20413 | 38 | 0 | 40 | 6 | no |
-| Upgr | `prose_upgraded_mixed.txt` | `d2f5aa0ea220b34dc808291675cdc56db6f0b160a28e64139f728a4c7d9e0005` | 21058 | 38 | 0 | 40 | 6 | no |
-| Euler | `prose_euler_heavy.txt` | `8b6f34bac73dcc32984f003e1c71fc02def19db5969b48fffc8619e043aaeb7b` | 24668 | 38 | 0 | 40 | 6 | no |
+| LBN | `render.txt` | `0a579b46fdf5b34f8f4430f4ca4dbc4ae084b4907d068ca0c204c2e7f73b0c96` | 29404 | 4 | 48 | 26 | 6 | no |
+| Pure | `prose_pure_staff.txt` | `48e2ba01c4f46c105dd340e14773e05b1221b9b496bc7fdcb222bf8ab978477f` | 20106 | 38 | 0 | 40 | 6 | no |
+| Mixed | `prose_mixed.txt` | `f38030da4f664e3188f29b58bd7a6ea798dede5dea06087d7e6398241cb8dd2d` | 20483 | 38 | 0 | 40 | 6 | no |
+| Upgr | `prose_upgraded_mixed.txt` | `5636f4e3686682b1b994b4437d157f0b776d3181f686c88383b256547293905e` | 21128 | 38 | 0 | 40 | 6 | no |
+| Euler | `prose_euler_heavy.txt` | `eeb6933c2d399e1eeb7a851e3289cc64809f183a6beee00af99cf0a3178b3257` | 24738 | 38 | 0 | 40 | 6 | no |
 | Any | union of the five | | | 41 | 0 | 40 | 3 | no |
 
 | Row | Name | Class | LBN | Pure | Mixed | Upgr | Euler | Any | Findings | Evidence |
@@ -61,7 +61,7 @@ Genre: anime. LBN-2.4 is read against the DAG's Master Template (O13), so many o
 | C18 | Precision tags | projection | FAIL | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | **LBN:** STAFF_FORMAT ×1: cannot pass: the prompt has no [LABAN STAFF – EULER-HEAVY] — **Pure, Mixed, Upgr, Euler:** pass: STAFF_FORMAT; not checked: LBN-2.4 writes contacts as 'CONTACT:touch right_foot->kunai.blade at 3'. |
 | C19 | Master Template | style | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** SECTION_MISSING ×11: [SCENE] is missing; SECTION_ORDER ×2: cannot pass: the prompt has no [SCENE]; STACKED_GRAPHS ×1: LBN-2.4 embeds the laban, A, B, cam graphs as JSON fields; the DAG stacks two (causal links, prop state) — **Pure, Mixed, Upgr, Euler:** pass: SECTION_MISSING, SECTION_ORDER, STACKED_GRAPHS |
 | C20 | Attention tags | projection | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | not checked: No per-beat priority tags. |
-| C21 | Contact contract | mandatory | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | pass: REACTION_WITHOUT_CAUSE; not built: POST_CONTACT_MISSING |
+| C21 | Contact contract | mandatory | FAIL | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | **LBN:** IMPACT_CONTACT_SYNC ×1: cannot pass: the prompt has no [LABAN STAFF – EULER-HEAVY], [ANIME] — **Pure, Mixed, Upgr, Euler:** pass: REACTION_WITHOUT_CAUSE, IMPACT_CONTACT_SYNC; not built: POST_CONTACT_MISSING |
 | C22 | End state per entity | required | FAIL | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | **LBN:** END_STATE_MISSING ×3: cannot pass: the prompt has no [RULES] — **Pure, Mixed, Upgr, Euler:** pass: END_STATE_MISSING; not built: MOMENTUM_MISSING |
 | C23 | Anchor phrase | required | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** ANCHOR_PHRASE_MISSING ×3: cannot pass: the prompt has no [SCENE]; PROP_FIRST_STATE ×1: cannot pass: the prompt has no [SCENE] — **Pure, Mixed, Upgr, Euler:** pass: ANCHOR_PHRASE_MISSING, PROP_FIRST_STATE |
 | C24 | CUSTODY invariant | mandatory | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** PROP_FIRST_STATE ×1: cannot pass: the prompt has no [SCENE] — **Pure, Mixed, Upgr, Euler:** pass: CUSTODY_RULE_MISSING, PROP_FIRST_STATE |

@@ -9,6 +9,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-000 | 2026-10-11 | Claude Code (several sessions, 2026-10-10 to 2026-10-11) | All work before the docs plane: S01-S17… | applied | 9b77848 (first) to db7dd6f (owner rulin… | two days | S-001: M9 step 1, the W wording rules. | [S-000-pre-protocol-history.md](../sessions/S-000-pre-protocol-history.md) |
 | S-001 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog M9-01; findings F-031 (GAP-16),… | applied | 7cc69f8 | about 2 hours | S-002: the docs plane (owner O64-O67), then backlog M9-02 (… | [S-001-m9-step-1-wording-rules.md](../sessions/S-001-m9-step-1-wording-rules.md) |
 | S-002 | 2026-10-11 | Claude Code (Opus 5.5) | PLAN-005 (owner O64-O67): backlog D-01… | applied | a370f6f (D-01), 8312845 (D-02), 245f874… | about 3 hours | Backlog M9-02: F5.3 strike, throw and release contacts at t… | [S-002-docs-plane.md](../sessions/S-002-docs-plane.md) |
+| S-003 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog M9-02; findings F-021 (GAP-06),… | applied | the commit whose message names [S-003]… | about 1.5 hours | M9-03 (F6.3 grounded pickups). | [S-003-m9-02-strike-timing.md](../sessions/S-003-m9-02-strike-timing.md) |
 
 ## Status values
 

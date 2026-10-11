@@ -1,9 +1,10 @@
 """S17 pass (band L6, projection, authored frame parts): render the envelope into the full LBN-2.x layout.
 
 Authored: frame-part directives (impact, smear, speedlines, holds, fx, ink). Checks: impacts sit on contact onsets or
-impact shots; a smear names one subject and, for a body, one part (smear only on the declared limb or prop) and sits
-on a sudden effort of that body or an event of that prop; speedlines likewise; holds sit on beat boundaries; fx
-inside the scene; and the projection's coverage is complete (owner invariant no_render_compression).
+impact shots, and one time per hit (IMPACT_CONTACT_SYNC, O23); a smear names one subject and, for a body, one part
+(smear only on the declared limb or prop) and sits on a sudden effort of that body or an event of that prop;
+speedlines likewise; holds sit on beat boundaries; fx inside the scene; and the projection's coverage is complete
+(owner invariant no_render_compression).
 Derived: the render node (renderers/anime_renderer.py;
 ugc_renderer.py for ugc_ad): target, variant, text, sha256, coverage, frame parts; and (M8, owner O1-O3) `prose`, the
 knowledge DAG's structured-prose prompts in four movement modes (renderers/prose_renderer.py).
@@ -56,6 +57,24 @@ def _event(subject, t0, t1, packet):
         t0 <= s["t"] <= t1 for s in packet["prop_changes"] if s["subject"] == subject)
 
 
+def impact_sync(envelope, impacts):
+    """IMPACT_CONTACT_SYNC (owner O23, backlog M9-02): one time per hit. Every impact frame has a touch, or a support
+    that starts, on that frame (a body hitting a surface counts: interpretation, e.g. a crash or a slam into a pillar);
+    every strike (prose_renderer.strike_contacts) lands on an impact frame. The fix is upstream: the contact's `at` in
+    the S04 plan, or the impact frame here."""
+    fps = envelope["scene"]["fps"]
+    contacts = envelope["nodes"]["contacts"]["items"]
+    onsets = [c["t"] for c in contacts if c["contact_type"] in ("touch", "support")]
+    findings = [{"code": "IMPACT_CONTACT_SYNC", "message": f"Impact at {t} has no touch or support onset on that frame"}
+                for t in impacts if not any(_near(t, x, fps) for x in onsets)]
+    strikes = prose_renderer.strike_contacts(envelope, impacts)
+    for c in contacts:
+        if c["id"] in strikes and not any(_near(c["t"], t, fps) for t in impacts):
+            findings.append({"code": "IMPACT_CONTACT_SYNC", "message": f"Strike {c['id']} at {c['t']} lands on no impact frame",
+                             "detail": [c["a"]["id"], c["body_part"], c["b"]["id"]]})
+    return findings
+
+
 def check(document, packet, envelope=None):
     findings = []
     frame = document["frame_parts"]
@@ -88,6 +107,7 @@ def check(document, packet, envelope=None):
         if not 0 <= fx["t"] <= end or (fx["t_end"] is not None and not fx["t"] < fx["t_end"] <= end):
             findings.append({"code": "FRAME_FX", "message": f"fx at {fx['t']} is outside the scene"})
     if envelope is not None:
+        findings += impact_sync(envelope, frame["impact"])
         coverage = renderer(envelope).render(envelope, frame)["coverage"]
         if not coverage["complete"]:
             missing = {g: row["missing"] for g, row in coverage["groups"].items() if row["missing"]}

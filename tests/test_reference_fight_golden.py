@@ -106,5 +106,18 @@ def test_the_substitution_log_stands_as_a_post_from_the_start():
     assert "4 deployment standing->deployed" in SPEC["substitution_log"]
 
 
+# Owner O23 (2026-10-11, backlog M9-02): strike, throw and release contacts happen at their key pose, so bow, impact
+# frame and pose share one time, as the golden's own words say ("B THROWS KUNAI at 2.0", "FOOT DEFLECT ... at 2.5",
+# "RIGHT KNEE strikes B spine at 4.7"); the source's contacts sat at their beat's end, 0.4-0.5 s later.
+CONTACTS_AT_POSE = {"b05_c1": 2.0, "b06_c1": 2.5, "b10_c1": 4.0, "b12_c1": 4.7, "b14_c1": 5.5, "b17_c1": 6.6,
+                    "b17_c2": 6.6, "b21_c1": 8.5}
+
+
+def test_strikes_throws_and_releases_happen_at_their_pose():
+    times = {c["id"]: c["t"] for c in ENVELOPE["nodes"]["contacts"]["items"]}
+    assert {i: times[i] for i in CONTACTS_AT_POSE} == CONTACTS_AT_POSE
+    assert "FOOT DEFLECT KINDS: kunai REVERSES from +Z to -Z and downward at 2.5" in REFERENCE["rules"]
+
+
 def test_render_txt_is_the_render_node():
     assert (FOLDER / "render.txt").read_text(encoding="utf-8") == TEXT + "\n"

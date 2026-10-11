@@ -94,8 +94,8 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 1.0; backlog 1.
-- Last session: S-002 (2026-10-11, applied): The docs plane: AGENTS.md, five indexes, canonical docs, verify.sh, schemas, control and CI.
-- Next slice: M9-02 F5.3 strike, throw and release contacts at their pose (V1b's deflect wording) (step temporal).
+- Last session: S-003 (2026-10-11, applied): M9-02: strike, throw and release contacts at their pose (IMPACT_CONTACT_SYNC).
+- Next slice: M9-03 F6.3 grounded pickups at 7.5 and 8.0 (step contact).
 - Open findings: 37; decisions: 94 (0 proposed).
 <!-- END GENERATED: state -->
 

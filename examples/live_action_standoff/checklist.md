@@ -6,7 +6,7 @@ Genre: live_action. LBN-2.4 is read against the DAG's Master Template (O13), so 
 
 | Prompt | File | sha256 | Bytes | PASS | FAIL | NOT CHECKED | N/A | Deliverable |
 |---|---|---|---|---|---|---|---|---|
-| LBN | `render.txt` | `8bb6ea3a5f4b9599d86da4c292c4506adfa61c4e1314a7c8a4409c156bc73fe7` | 13492 | 4 | 47 | 27 | 6 | no |
+| LBN | `render.txt` | `8bb6ea3a5f4b9599d86da4c292c4506adfa61c4e1314a7c8a4409c156bc73fe7` | 13492 | 4 | 48 | 26 | 6 | no |
 | Pure | `prose_pure_staff.txt` | `83571634ba7e4cff72dbe437291257dba590530391cbfd870f03b2b3d4d9a39b` | 12600 | 37 | 0 | 41 | 6 | no |
 | Mixed | `prose_mixed.txt` | `135eeb87d9f98448a6acbc61f47e3d6747afcb17570d03caf8529e4c181fac31` | 12916 | 37 | 0 | 41 | 6 | no |
 | Upgr | `prose_upgraded_mixed.txt` | `01f0f133412c31d2ecaf13f3d6c44cee9fd35ca0c3911ec0c939f2e27edc7ebb` | 13340 | 37 | 0 | 41 | 6 | no |
@@ -61,7 +61,7 @@ Genre: live_action. LBN-2.4 is read against the DAG's Master Template (O13), so 
 | C18 | Precision tags | projection | FAIL | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | **LBN:** STAFF_FORMAT ×1: cannot pass: the prompt has no [LABAN STAFF – EULER-HEAVY] — **Pure, Mixed, Upgr, Euler:** pass: STAFF_FORMAT; not checked: LBN-2.4 writes contacts as 'CONTACT:touch right_foot->kunai.blade at 3'. |
 | C19 | Master Template | style | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** SECTION_MISSING ×11: [SCENE] is missing; SECTION_ORDER ×2: cannot pass: the prompt has no [SCENE]; STACKED_GRAPHS ×1: LBN-2.4 embeds the laban, A, B, cam graphs as JSON fields; the DAG stacks two (causal links, prop state) — **Pure, Mixed, Upgr, Euler:** pass: SECTION_MISSING, SECTION_ORDER, STACKED_GRAPHS |
 | C20 | Attention tags | projection | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | not checked: No per-beat priority tags. |
-| C21 | Contact contract | mandatory | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | F1 | pass: REACTION_WITHOUT_CAUSE; not built: POST_CONTACT_MISSING |
+| C21 | Contact contract | mandatory | FAIL | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | F1 | **LBN:** IMPACT_CONTACT_SYNC ×1: cannot pass: the prompt has no [LABAN STAFF – EULER-HEAVY], [LIVE ACTION] — **Pure, Mixed, Upgr, Euler:** pass: REACTION_WITHOUT_CAUSE, IMPACT_CONTACT_SYNC; not built: POST_CONTACT_MISSING |
 | C22 | End state per entity | required | FAIL | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | **LBN:** END_STATE_MISSING ×3: cannot pass: the prompt has no [RULES] — **Pure, Mixed, Upgr, Euler:** pass: END_STATE_MISSING; not built: MOMENTUM_MISSING |
 | C23 | Anchor phrase | required | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** ANCHOR_PHRASE_MISSING ×3: cannot pass: the prompt has no [SCENE]; PROP_FIRST_STATE ×1: cannot pass: the prompt has no [SCENE] — **Pure, Mixed, Upgr, Euler:** pass: ANCHOR_PHRASE_MISSING, PROP_FIRST_STATE |
 | C24 | CUSTODY invariant | mandatory | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** PROP_FIRST_STATE ×1: cannot pass: the prompt has no [SCENE] — **Pure, Mixed, Upgr, Euler:** pass: CUSTODY_RULE_MISSING, PROP_FIRST_STATE |

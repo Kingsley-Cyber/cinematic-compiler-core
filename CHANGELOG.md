@@ -6,6 +6,8 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Added
+- IMPACT_CONTACT_SYNC (S17 and the prompt): every impact frame has a touch or support onset on it, every strike
+  lands on an impact frame; S07 counts a release at its own beat's start as still holding at that instant.
 - The docs plane (owner O64-O67, session S-002): AGENTS.md as a 17-section operating manual; five generated indexes
   (`docs/index/`); one file per plan, finding, decision, session and render, each with a template; generated
   `docs/layer_order.md`, `docs/rules.md` and `docs/plan.md`; `docs/for_the_owner.md`, `docs/how_to_refactor.md`,
@@ -21,6 +23,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 - Prompt codes BODY_HOLD_FRAMES, EMPTY_HAND_UNSTATED, ROTATION_ANGLES_PRINTED, HIDDEN_PHRASING (M9 step 1, S-001).
 
 ### Changed
+- One time per hit (M9-02, owner O23, S-003): the reference fight's strike, throw and release contacts happen at
+  their pose (throw 2.0, deflect 2.5, palm 4.0, knee 4.7, shuriken 5.5, catch 6.6, kunai drive 8.5); the kunai and
+  log fly and fall under gravity; four camera cuts are motivated by their own beat and the 8.5 insert shows B's torso;
+  each strike's recovery line says "one instant contact, the limb does not stay on the target" (R16).
 - The prose prints camera holds on hits instead of body holds in frames, the empty hand after a release, each turn
   once by axis, plane and count, and no hidden props (W1-W4, owner O47-O49).
 - The reference fight's substitution log stands beside A from 0.00 (O48); FINAL's four negatives are added through

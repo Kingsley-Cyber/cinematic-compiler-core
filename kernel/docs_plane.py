@@ -216,6 +216,7 @@ def layer_order_text(root=ROOT):
         edges = [w.split("/")[2] for w in writes if w.startswith("/edges/")]
         other = [w for w in writes if not w.startswith(("/nodes/", "/edges/"))]
         code = modules.get(node["id"])
+        code = root / code.relative_to(ROOT) if code else None  # links stay inside the tree being checked
         rows.append([node["step_id"], f"`{node['id']}`", LAYER_LABELS[node["id"]], str(node["band"]),
                      ", ".join(node.get("when", ["all"])) if isinstance(node.get("when"), list) else "all",
                      ", ".join(nodes) or "—", ", ".join(edges) or "—", ", ".join(f"`{o}`" for o in other) or "—",

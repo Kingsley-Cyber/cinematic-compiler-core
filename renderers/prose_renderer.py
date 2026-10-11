@@ -276,6 +276,23 @@ def _numbers(values):
     return "[" + ", ".join(str(_num(v)) for v in values) + "]"
 
 
+def strike_contacts(envelope, impacts):
+    """{contact id}: the strikes. A strike is a touch in a beat that holds an S17 impact frame, on anything but a prop
+    the performer holds (touching your own held prop is handling, e.g. a throw, not a hit). Shared by the staff's
+    DOUBLE BOW and IMPACT_CONTACT_SYNC (S17 and the prompt)."""
+    tolerance = 0.5 / envelope["scene"]["fps"] + 1e-9
+    beats = {b["id"]: b for b in _items(envelope, "nodes", "beats")}
+    holders = {s["id"]: s["conditions"].get("holder") for s in _items(envelope, "nodes", "states")}
+    out = set()
+    for c in _items(envelope, "nodes", "contacts"):
+        beat = beats.get(c["beat"])
+        if beat is None or c["contact_type"] != "touch" or holders.get(f"{c['b']['id']}@{c['beat']}") == c["a"]["id"]:
+            continue
+        if any(beat["t"] - tolerance <= t <= beat["t"] + beat["dur"] + tolerance for t in impacts):
+            out.add(c["id"])
+    return out
+
+
 def staff_lines(envelope, frame_parts, labels):
     """One line per slot with the facts the modes need: text without Euler blocks, strike flag, the key."""
     keys = {k["id"]: k for k in _items(envelope, "nodes", "motion")}
@@ -284,9 +301,7 @@ def staff_lines(envelope, frame_parts, labels):
     facial = {f["id"]: f for f in _items(envelope, "nodes", "facial")}
     names = {p["id"]: p["name"] for p in _items(envelope, "nodes", "props")}
     contacts = _items(envelope, "nodes", "contacts")
-    holders = {s["id"]: s["conditions"].get("holder") for s in _items(envelope, "nodes", "states")}
-    tolerance = 0.5 / envelope["scene"]["fps"] + 1e-9
-    impacts = frame_parts["impact"]
+    strikes = strike_contacts(envelope, frame_parts["impact"])
     spans = _supports(envelope, labels)
     empty = empty_hands(envelope, labels)
     runs = turn_runs(envelope, labels)
@@ -318,9 +333,7 @@ def staff_lines(envelope, frame_parts, labels):
                         key=lambda c: (c["t"], c["id"])):
             at = "" if abs(c["t"] - slot["t"]) < EPSILON else f" at {_time(c['t'])}"
             part, target = _part(c["body_part"]), _target(c["b"], labels, names)
-            own_prop = holders.get(f"{c['b']['id']}@{slot['beat']}") == entity
-            if c["contact_type"] == "touch" and not own_prop and any(
-                    slot["t"] - tolerance <= t <= slot["t"] + slot["dur"] + tolerance for t in impacts):
+            if c["id"] in strikes:
                 strike = True
                 relationship.append(f"[DOUBLE BOW + accent: {part} > {target}{at}]")
             elif c["contact_type"] == "touch":
@@ -517,8 +530,8 @@ def _implied(envelope, lines, labels):
     for label, own in sorted(by_label.items()):
         for line in own:
             if line["strike"]:
-                out.append(f"{label} after the {_time(line['key']['t'])} strike: a short natural recovery before the next "
-                           f"phrase.")
+                out.append(f"{label} after the {_time(line['key']['t'])} strike: one instant contact, the limb does not stay "
+                           f"on the target (R16), then a short natural recovery before the next phrase.")
         span = None
         for i, line in enumerate(own + [None]):
             airborne = line is not None and " SUPPORT NO SUPPORT " in line["text"]

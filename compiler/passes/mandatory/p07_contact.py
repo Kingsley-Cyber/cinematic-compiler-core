@@ -101,6 +101,10 @@ def cross_check(events, intervals, states, transitions, beats):
             continue
         holder = node["conditions"].get("holder", "unknown")
         holders = _active_possessors(intervals, node["subject"]["id"], node["t"])
+        # A release at its own beat's start (O23: a throw lets go at its pose) ends the possess at the instant the beat
+        # begins; at that instant the prop is still in the hand (S06 commits the holder change at the beat's end).
+        holders |= {e["a"]["id"] for e in events if e["contact_type"] == "release" and e["beat"] == node.get("beat")
+                    and e["b"]["kind"] == "prop" and e["b"]["id"] == node["subject"]["id"] and abs(e["t"] - node["t"]) <= EPSILON}
         if holder not in ("unknown", "none") and holder not in holders:
             findings.append(_finding("HOLDER_CONTACT", "The prop's holder has no active possess contact", node["id"]))
         if holder == "none" and holders:
