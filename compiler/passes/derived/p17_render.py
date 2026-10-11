@@ -5,12 +5,13 @@ impact shots; a smear names one subject and, for a body, one part (smear only on
 on a sudden effort of that body or an event of that prop; speedlines likewise; holds sit on beat boundaries; fx
 inside the scene; and the projection's coverage is complete (owner invariant no_render_compression).
 Derived: the render node (renderers/anime_renderer.py;
-ugc_renderer.py for ugc_ad): target, variant, text, sha256, coverage, frame parts.
+ugc_renderer.py for ugc_ad): target, variant, text, sha256, coverage, frame parts; and (M8, owner O1-O3) `prose`, the
+knowledge DAG's structured-prose prompts in four movement modes (renderers/prose_renderer.py).
 """
 
 from compiler.authoring import run_authored, seal
 from planner.dependency_graph import ROOT, load
-from renderers import anime_renderer, live_renderer, ugc_renderer
+from renderers import anime_renderer, live_renderer, prose_renderer, ugc_renderer
 
 NODE, STEP = "render", "S17"
 RENDERERS = {"ugc_ad": ugc_renderer, "live_action": live_renderer}  # anime uses the anime LBN layout
@@ -97,7 +98,8 @@ def check(document, packet, envelope=None):
 
 def build(envelope, document, packet):
     result = renderer(envelope).render(envelope, document["frame_parts"])
-    return {"/nodes/render": [{"id": "render", **result, "frame_parts": document["frame_parts"]}]}
+    prose = prose_renderer.render_all(envelope, document["frame_parts"], result["labels"])
+    return {"/nodes/render": [{"id": "render", **result, "frame_parts": document["frame_parts"], "prose": prose}]}
 
 
 def run(envelope, document, *, order=None):

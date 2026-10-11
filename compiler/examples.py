@@ -2,7 +2,8 @@
 
 Layout: examples/<name>/request.json {"query", "genre", "duration_s", "until"}, optional plans/<node>.json
 (authored inputs), envelope.json (expected canonical output) and, once S17 has run, render.txt (the rendered prompt,
-exactly the render node's text, ready to paste into a video model).
+exactly the render node's text, ready to paste into a video model) and prose_<mode>.txt (M8: the structured-prose
+prompts in the four movement modes).
 """
 
 import json
@@ -31,6 +32,12 @@ def render_text(envelope):
     return render["items"][0]["text"] + "\n" if render else None
 
 
+def prose_texts(envelope):
+    """{file name: text} for the structured-prose prompts (empty before S17)."""
+    render = envelope.get("nodes", {}).get("render")
+    return {f"prose_{mode}.txt": row["text"] for mode, row in render["items"][0]["prose"].items()} if render else {}
+
+
 def check_all():
     problems, current = [], kernel_hash()
     for folder in sorted(p for p in EXAMPLES.iterdir() if p.is_dir()) if EXAMPLES.exists() else []:
@@ -44,6 +51,11 @@ def check_all():
         text, path = render_text(envelope), folder / "render.txt"
         if (text is None) != (not path.exists()) or (text is not None and path.read_text(encoding="utf-8") != text):
             problems.append(f"{folder.name}: render.txt does not match the envelope's render")
+        expected_prose = prose_texts(envelope)
+        written = {p.name for p in folder.glob("prose_*.txt")}
+        if written != set(expected_prose) or any((folder / n).read_text(encoding="utf-8") != t
+                                                  for n, t in expected_prose.items()):
+            problems.append(f"{folder.name}: prose_*.txt do not match the envelope's prose")
     return problems
 
 
@@ -57,6 +69,9 @@ def main():
             if render_text(envelope) is not None:
                 (folder / "render.txt").write_text(render_text(envelope), encoding="utf-8")
                 print("wrote", folder / "render.txt")
+            for name, text in prose_texts(envelope).items():
+                (folder / name).write_text(text, encoding="utf-8")
+                print("wrote", folder / name)
         return
     problems = check_all()
     for problem in problems:

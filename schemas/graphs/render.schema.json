@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:render:1.0",
+  "$id": "urn:cinematic-compiler:schema:render:1.1",
   "title": "S17 render (projection group, no edges)",
-  "description": "The projected prompt: target layout, variant, the full uncompressed text and its sha256, item-level coverage (complete by owner invariant no_render_compression), actor labels and the frame-part directives.",
+  "description": "The projected prompt: target layout, variant, the full uncompressed text and its sha256, item-level coverage (complete by owner invariant no_render_compression), actor labels and the frame-part directives. M8 (owner O1-O3): the same item carries the structured-prose prompts, the knowledge DAG's Master Template compiled in four movement modes alongside LBN-2.4.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -24,7 +24,8 @@
           "text",
           "sha256",
           "coverage",
-          "frame_parts"
+          "frame_parts",
+          "prose"
         ],
         "properties": {
           "id": {
@@ -273,6 +274,162 @@
               "ink": {
                 "type": "string",
                 "minLength": 1
+              }
+            }
+          },
+          "prose": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "pure_staff",
+              "mixed",
+              "upgraded_mixed",
+              "euler_heavy"
+            ],
+            "properties": {
+              "pure_staff": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "target",
+                  "variant",
+                  "text",
+                  "sha256",
+                  "omitted_constraints"
+                ],
+                "properties": {
+                  "target": {
+                    "const": "structured-prose"
+                  },
+                  "variant": {
+                    "type": "string",
+                    "pattern": "^DAG-PROSE-[A-Z-]+$"
+                  },
+                  "text": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^sha256:[0-9a-f]{64}$"
+                  },
+                  "omitted_constraints": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "description": "Applied constraints the prose leaves out on purpose (owner O3: the kernel rule '<label> root exact')."
+                  }
+                }
+              },
+              "mixed": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "target",
+                  "variant",
+                  "text",
+                  "sha256",
+                  "omitted_constraints"
+                ],
+                "properties": {
+                  "target": {
+                    "const": "structured-prose"
+                  },
+                  "variant": {
+                    "type": "string",
+                    "pattern": "^DAG-PROSE-[A-Z-]+$"
+                  },
+                  "text": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^sha256:[0-9a-f]{64}$"
+                  },
+                  "omitted_constraints": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "description": "Applied constraints the prose leaves out on purpose (owner O3: the kernel rule '<label> root exact')."
+                  }
+                }
+              },
+              "upgraded_mixed": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "target",
+                  "variant",
+                  "text",
+                  "sha256",
+                  "omitted_constraints"
+                ],
+                "properties": {
+                  "target": {
+                    "const": "structured-prose"
+                  },
+                  "variant": {
+                    "type": "string",
+                    "pattern": "^DAG-PROSE-[A-Z-]+$"
+                  },
+                  "text": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^sha256:[0-9a-f]{64}$"
+                  },
+                  "omitted_constraints": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "description": "Applied constraints the prose leaves out on purpose (owner O3: the kernel rule '<label> root exact')."
+                  }
+                }
+              },
+              "euler_heavy": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "target",
+                  "variant",
+                  "text",
+                  "sha256",
+                  "omitted_constraints"
+                ],
+                "properties": {
+                  "target": {
+                    "const": "structured-prose"
+                  },
+                  "variant": {
+                    "type": "string",
+                    "pattern": "^DAG-PROSE-[A-Z-]+$"
+                  },
+                  "text": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^sha256:[0-9a-f]{64}$"
+                  },
+                  "omitted_constraints": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "description": "Applied constraints the prose leaves out on purpose (owner O3: the kernel rule '<label> root exact')."
+                  }
+                }
               }
             }
           }

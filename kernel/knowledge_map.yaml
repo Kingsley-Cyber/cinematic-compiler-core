@@ -621,24 +621,33 @@ rows:
     anchor: "§2.2 L892; §2.3 L1274; §2.15 L340"
     class: style
     step: S17
-    status: missing
-    note: "No staff projection yet. Owner O2: compiled alongside LBN-2.4, which keeps the full data (M8.2)."
+    status: partial
+    enforced_by:
+      - {file: renderers/prose_renderer.py, check: render_all, test: tests/test_prose_render.py::test_euler_blocks_sit_on_the_lines_each_mode_names}
+    note: "M8.2: compiled as prose_pure_staff (renderers/prose_renderer.py) alongside LBN-2.4, owner O1/O2;
+      semantic codes land in M8.4."
 
   - id: C15
     name: Mixed Mode
     anchor: "§2.2 L893; §2.3 L1276; §2.14 L332"
     class: style
     step: S17
-    status: missing
-    note: "Not rendered yet. Owner O2: compiled alongside LBN-2.4 (M8.2)."
+    status: partial
+    enforced_by:
+      - {file: renderers/prose_renderer.py, check: render_all, test: tests/test_prose_render.py::test_euler_blocks_sit_on_the_lines_each_mode_names}
+    note: "M8.2: compiled as prose_mixed (root + EulerXYZ on strike lines and each performer's first and last
+      line); codes in M8.4."
 
   - id: C16
     name: Upgraded Mixed
     anchor: "§2.2 L894; §2.3 L1278; §2.14 L335"
     class: style
     step: S17
-    status: missing
-    note: "Not rendered yet. Owner O2: compiled alongside LBN-2.4 (M8.2)."
+    status: partial
+    enforced_by:
+      - {file: renderers/prose_renderer.py, check: render_all, test: tests/test_prose_render.py::test_euler_blocks_sit_on_the_lines_each_mode_names}
+    note: "M8.2: compiled as prose_upgraded_mixed (root, EulerXYZ and joints on strike lines and each
+      performer's last line); codes in M8.4."
 
   - id: C17
     name: Euler-heavy keypose
@@ -660,17 +669,18 @@ rows:
     class: projection
     step: S17
     status: partial
-    note: "Keys carry 'support=...' and 'CONTACT:touch right_foot->kunai.blade at 3' style entries; no [f:]/[h:]
-      tags and no 'DOUBLE BOW + accent' strike tag."
+    note: "LBN-2.4 writes contacts as 'CONTACT:touch right_foot->kunai.blade at 3'. The prose (M8.2) writes [f:..]/[h:..]
+      support tags, [contact: X-Y retained], [contact: Y ENDS – released] and [DOUBLE BOW + accent: X > Y] with a
+      legend in [MOVEMENT LANGUAGE] (closes audit X28 for the prose)."
 
   - id: C19
     name: Master Template
     anchor: "§2.2 L897; §2.3 L1284; §3.5 L501"
     class: style
     step: S17
-    status: missing
-    note: "The render uses the kernel layout (LBN-2.4-ADV-LMA) only. Owner O1/O2: the [SCENE]...[NEGATIVES] template
-      compiles alongside it in four modes (M8.2-M8.3)."
+    status: partial
+    note: "M8.2: the Master Template compiles in four modes with [SCENE], [MOVEMENT LANGUAGE] + FORMAT, the staff,
+      [RULES] and [NEGATIVES]; the middle sections land in M8.3."
 
   - id: C20
     name: Attention tags
@@ -714,10 +724,9 @@ rows:
     status: partial
     enforced_by:
       - {file: schemas/cards/archetype_card.schema.json}
-    note: "Archetype cards must have description, silhouette and costume, and the envelope carries them on every
-      entity, but the render drops them. An appearance phrase reaches the prompt only when the query or kernel
-      preface carries one (reference_fight, ugc_glasses_demo); wizard_vs_acrobat and live_action_standoff have none.
-      Render coverage counts the entity row, not its fields, so this passes the gate."
+    note: "Archetype cards must have description, silhouette and costume and the envelope carries them; LBN-2.4 drops
+      them (only reference_fight and ugc_glasses_demo carry appearance, through their preface). The prose [SCENE]
+      (M8.2) gives every entity one phrase from its silhouette and costume; ANCHOR_PHRASE_MISSING lands in M8.4."
 
   - id: C24
     name: CUSTODY invariant
@@ -910,9 +919,9 @@ rows:
     anchor: "§2.2 L921; §2.3 L1298; §2.14 L338"
     class: style
     step: S17
-    status: missing
+    status: partial
     note: "Owner O1/O2 (2026-10-11): no per-scene choice; all four modes compile alongside LBN-2.4, which stays the
-      uncompressed projection no_render_compression is checked on (M8.2)."
+      uncompressed projection no_render_compression is checked on (M8.2 done)."
 
   - id: V10
     name: Motion-density budget

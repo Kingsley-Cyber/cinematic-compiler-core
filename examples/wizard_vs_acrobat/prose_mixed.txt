@@ -1,0 +1,53 @@
+[SCENE]
+10 seconds anime fight scene: wizard versus acrobat in a moonlit bamboo courtyard
+10 s anime scene, 24 fps, setting: moonlit bamboo courtyard.
+Cast: A = wizard: Tall robed figure; long sleeves and hem hide the legs; often carries a staff; Layered robe with wide sleeves; hood or hat optional. B = acrobat: Lean, compact figure in close-fitting clothes; limbs clearly readable; Fitted top and trousers that do not hide the joints; soft shoes or bare feet.
+Props: none.
+Frame: Y_up, A faces -Z, B faces +Z, ground y=0, Euler XYZ intrinsic right-handed degrees, +X performer's left.
+Euler degrees XYZ.
+Render spec exactly.
+
+[MOVEMENT LANGUAGE]
+Labanotation written as words. Mode: Mixed: staff lines primary; Root [x, y, z] + EulerXYZ [x, y, z] on strike lines and on each performer's first and last line, as precision override.
+Each line = one measure for one performer; time in seconds; a symbol lasts until the next line.
+SUPPORT names what bears the weight; NO SUPPORT = airborne.
+Contact bow = touch; [contact: X-Y retained] = held; [contact: Y ENDS – released] = let go; DOUBLE BOW + accent = a strike (interp.: a momentary contact with a strong accent).
+Directions are relative to the performer's front: forward, back, left, right and the diagonals between them; levels high, mid, low; place-high / place-low = straight up / down. A limb reads mid while within 45 degrees of horizontal (interp.). Lower arm and lower leg: straight, or folded by degrees.
+Turn signs name the axis: flip = lateral axis, turn = vertical axis, cartwheel = sagittal axis.
+Precision tags: [f:L|R|both] feet, [h:L|R|both] hands, [f:alt] stepping, _on_<surface> when the support is not the ground.
+Explicit = the written lines (every support change, contact and accent has one); implied = everything between lines.
+Root [x, y, z] is the scene position in metres; EulerXYZ and joints are degrees.
+FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship | path/notes
+
+[LABAN STAFF – MIXED MODE]
+0.00 B: SUPPORT steps forward alternating [f:alt] | L arm forward-mid, lower arm folded 75, L leg back-low, lower leg folded 45, body forward-high (25 lean), head back-high | R arm back-low, lower arm folded 60, R leg forward-mid, lower leg folded 75 | - | path: forward 2.4 m; Acrobat sprints across the flagstones toward the wizard, low and quick, gathering into a crouch · Root [0, 0, 0] EulerXYZ [0, 0, 0]
+1.20 B: SUPPORT both feet place-low [f:both] | L arm left-forward-low, lower arm folded 15, L leg forward-mid, lower leg folded 120, body forward-high (45 lean), head back-high | R arm forward-mid, lower arm straight, R leg forward-mid, lower leg folded 120 | contact bow: R hand > ground at 2.00 | path: forward 0.6 m, rising 1.2 m; flip sign (lateral axis, forward, 90); Acrobat plants the right hand and vaults forward, body inverting overhead. NOT a jump straight up
+1.60 A: SUPPORT both feet place-mid [f:both] | L arm left-forward-low, lower arm folded 60, L leg left-forward-low, lower leg folded 15 | R arm forward-mid, lower arm straight, R leg right-back-low, lower leg straight | - | Wizard extends the right hand and fires a bolt at the vaulting acrobat; it misses and scorches the flagstones · Root [0, 0, 6] EulerXYZ [0, 180, 0]
+1.60 B: SUPPORT NO SUPPORT | L arm forward-high, lower arm straight, L leg forward-low, lower leg straight, body forward-mid (80 lean), head back-high | R arm right-forward-high, lower arm straight, R leg forward-low, lower leg straight | - | path: left-forward 1.0 m; flip sign (lateral axis, forward, 90)
+2.00 B: SUPPORT NO SUPPORT | L arm left-forward-mid, lower arm folded 30, L leg forward-mid, lower leg folded 105, body forward-low (150 lean), head forward-high | R arm right-forward-mid, lower arm folded 30, R leg forward-mid, lower leg folded 105 | - | path: forward 0.6 m, dropping 1.0 m; flip sign (lateral axis, forward, 180); Acrobat lands to the wizard's left in a deep crouch, both feet on the stone
+2.60 A: SUPPORT steps forward alternating [f:alt] | L arm left-forward-low, lower arm folded 45, L leg place-low, lower leg straight | R arm right-forward-low, lower arm folded 45, R leg place-low, lower leg straight | - | path: forward 0.2 m
+2.60 B: SUPPORT steps forward alternating [f:alt] | L arm left-forward-mid, lower arm folded 90, L leg forward-mid, lower leg folded 90, body forward-high (20 lean), head back-high | R arm right-back-low, lower arm folded 75, R leg forward-mid, lower leg folded 105 | [DOUBLE BOW + accent: R foot > A torso at 3.60] | path: forward 0.8 m; turn sign (vertical axis, to the right, 367); chain core > torso > right leg > right foot > left arm; Acrobat spins and drives the right heel into the wizard's chest. NOT a punch · Root [1, 0, 4.2] EulerXYZ [360, -16.7, 0]
+3.60 A: SUPPORT both feet place-mid [f:both] | L arm forward-mid, lower arm straight, L leg left-forward-low, lower leg folded 30, body back-high (15 lean), head forward-high | R arm forward-mid, lower arm straight, R leg right-back-low, lower leg folded 15 | - | Off balance, the wizard thrusts both palms; a force ward hurls the acrobat backward off the ground
+3.60 B: SUPPORT LEFT foot place-low [f:L] | L arm left-mid, lower arm folded 15, L leg forward-low, lower leg folded 30, body back-high (20 lean), head forward-high | R arm right-mid, lower arm folded 15, R leg forward-mid, lower leg folded 15 | - | path: left-back 1.7 m, rising 1.2 m
+4.60 B: SUPPORT NO SUPPORT | L arm forward-mid, lower arm folded 45, L leg forward-mid, lower leg folded 75, body forward-high (25 lean), head forward-high | R arm forward-mid, lower arm folded 45, R leg forward-mid, lower leg folded 75 | - | path: left-back 0.7 m, dropping 0.3 m; Acrobat slams back-first into the stone pillar; the stone cracks behind the shoulders
+5.20 A: SUPPORT both feet place-mid [f:both] | L arm forward-mid, lower arm folded 75, L leg left-forward-low, lower leg folded 15 | R arm forward-mid, lower arm folded 75, R leg right-back-low, lower leg straight | - | Wizard steadies the stance and draws breath, hands rising back to a casting guard
+5.20 B: SUPPORT torso place-low ON THE stone pillar [torso_on_stone_pillar] | L arm left-low, lower arm folded 30, L leg forward-mid, lower leg folded 90, body forward-high (10 lean) | R arm right-low, lower arm folded 30, R leg forward-mid, lower leg folded 90 | - | path: forward 0.4 m, dropping 0.9 m; Acrobat pushes off the cracked pillar and drops to both feet in a low guard, shaking off the hit
+6.60 A: SUPPORT both feet place-mid [f:both] | L arm forward-mid, lower arm folded 75, L leg left-forward-low, lower leg folded 15 | R arm forward-mid, lower arm folded 60, R leg right-back-low, lower leg straight | - | -
+6.60 B: SUPPORT steps forward alternating [f:alt] | L arm left-forward-low, lower arm folded 90, L leg forward-mid, lower leg folded 75, body forward-high (30 lean), head back-high | R arm forward-mid, lower arm folded 30, R leg forward-mid, lower leg folded 60 | - | path: forward 1.4 m; Acrobat rises and feints a charge at the wizard, drawing the next spell
+7.60 A: SUPPORT both feet place-mid [f:both] | L arm left-forward-low, lower arm folded 15, L leg left-forward-low, lower leg folded 15 | R arm left-forward-mid, lower arm straight, R leg right-back-low, lower leg straight | - | Composed again, the wizard sweeps a thin bolt that misses the acrobat and cuts through the bamboo wall; hold sign to the end · Root [0, 0, 5.8] EulerXYZ [0, 163.3, 0]
+7.60 B: SUPPORT steps forward alternating [f:alt] | L arm left-forward-low, lower arm folded 75, L leg forward-low, lower leg folded 45 | R arm right-forward-low, lower arm folded 75, R leg forward-low, lower leg folded 45 | - | path: forward 0.3 m
+8.60 B: SUPPORT both feet place-mid [f:both] | L arm left-forward-high, lower arm straight, L leg forward-low, lower leg folded 45, body back-high (15 lean), head back-high | R arm right-forward-high, lower arm straight, R leg forward-low, lower leg folded 45 | - | path: right-forward 1.4 m, rising 1.0 m; flip sign (lateral axis, backward, 180); Acrobat backflips over the bolt's path, body fully inverted at the apex
+9.40 B: SUPPORT NO SUPPORT | L arm left-forward-low, lower arm folded 60, L leg forward-mid, lower leg folded 120, body forward-low (145 lean), head forward-high | R arm right-forward-low, lower arm folded 60, R leg forward-mid, lower leg folded 120 | - | Acrobat lands in a crouched guard facing the wizard; the scorch, the crack and the cut bamboo remain; hold sign to the end · Root [-0.4, 1, 5.2] EulerXYZ [180, -389.055, 0]
+
+[RULES]
+- Laban support and contacts are primary; Euler numbers are precision override only.
+- slerp A joints
+- slerp B joints
+- TWO fighter identities A and B never merge or duplicate
+- Marks, cracks and cut bamboo stay visible for the rest of the scene once made.
+- A spell effect starts at a hand, staff tip or declared focus, never from empty space.
+- The wizard stays grounded unless a scene grants flight or levitation.
+- Every airborne phase starts from a declared support contact and ends in a landing or a new contact.
+
+[NEGATIVES]
+no missing limbs; no missing arms; no missing hands; no headless body; no faceless head; no extra fighters beyond A and B; no cloned A; no cloned B; no extra weapons; no full circle; no ring; no halo

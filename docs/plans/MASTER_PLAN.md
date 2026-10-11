@@ -439,7 +439,8 @@ Spec and codes: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
 - [x] M8.0 plan + owner decisions O1-O4 recorded in the map
 - [x] M8.1 staff geometry atoms (direction, level, fold, support words, turn signs); levels follow the owner's
   laban-notation lookup (mid inside +-45 degrees, place within 10 of vertical)
-- [ ] M8.2 prose renderer: SCENE, MOVEMENT LANGUAGE, FORMAT, staff in four modes, RULES, NEGATIVES
+- [x] M8.2 prose renderer: SCENE, MOVEMENT LANGUAGE, FORMAT, staff in four modes, RULES, NEGATIVES; four examples
+  carry `prose_<mode>.txt` (render.txt byte-identical); render schema 1.1 logged
 - [ ] M8.3 remaining sections (implied guidance, motion control, spatial anchors, props, causal links, camera, genre)
 - [ ] M8.4 prompt validator + semantic codes + conformance test
 - [ ] M8.5+ close the listed gaps, one per slice

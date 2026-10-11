@@ -1,0 +1,37 @@
+[SCENE]
+8 second ugc ad, 30fps. A: creator, casual hoodie, talking to camera. Creator holding the glasses, in a bright bedroom, unfolds them and puts them on.
+8 s UGC ad scene, 30 fps, setting: bright bedroom.
+Cast: A = creator: Casual figure framed from the waist up, hands near the product; Casual everyday clothes.
+Props: glasses.
+Frame: Y_up, A faces +Z, ground y=0, Euler XYZ intrinsic right-handed degrees, +X performer's left.
+Euler degrees XYZ.
+Render spec exactly.
+
+[MOVEMENT LANGUAGE]
+Labanotation written as words. Mode: Mixed: staff lines primary; Root [x, y, z] + EulerXYZ [x, y, z] on strike lines and on each performer's first and last line, as precision override.
+Each line = one measure for one performer; time in seconds; a symbol lasts until the next line.
+SUPPORT names what bears the weight; NO SUPPORT = airborne.
+Contact bow = touch; [contact: X-Y retained] = held; [contact: Y ENDS – released] = let go; DOUBLE BOW + accent = a strike (interp.: a momentary contact with a strong accent).
+Directions are relative to the performer's front: forward, back, left, right and the diagonals between them; levels high, mid, low; place-high / place-low = straight up / down. A limb reads mid while within 45 degrees of horizontal (interp.). Lower arm and lower leg: straight, or folded by degrees.
+Turn signs name the axis: flip = lateral axis, turn = vertical axis, cartwheel = sagittal axis.
+Precision tags: [f:L|R|both] feet, [h:L|R|both] hands, [f:alt] stepping, _on_<surface> when the support is not the ground.
+Explicit = the written lines (every support change, contact and accent has one); implied = everything between lines.
+Root [x, y, z] is the scene position in metres; EulerXYZ and joints are degrees.
+FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship | path/notes
+
+[LABAN STAFF – MIXED MODE]
+0.00 A: SUPPORT both feet place-mid [f:both] | L arm left-forward-low, lower arm folded 30, L leg place-low, lower leg straight, body forward-high (20 lean), head forward-high | R arm forward-mid, lower arm folded 15, R leg place-low, lower leg straight | [contact: R hand-glasses frame retained at 1.50] | Talking to camera, the creator picks the folded glasses up off the desk with the right hand; FACE: cheeks raised, crow's feet at the eyes (trace), lip corners pulled up (slight); feeling pleased, pleasant and steady, a genuine expression; looking into the lens; An easy, friendly smile while chatting to the lens. · Root [0, 0, 0] EulerXYZ [0, 0, 0]
+1.50 A: SUPPORT both feet place-mid [f:both] | L arm forward-low, lower arm folded 90, L leg place-low, lower leg straight, head forward-high | R arm forward-low, lower arm folded 90, R leg place-low, lower leg straight | contact bow: L hand > glasses left temple at 3.50 | Holding the frame steady in the right hand, the left hand swings the temples open, one then the other; FACE: brows lowered and drawn together (trace), lids tightened, eyes narrowed (trace); NOT: no smile; feeling focused, neutral and steady, a genuine expression; eyes on glasses; Eyes down on the glasses, a small concentrating frown, no smile.
+3.50 A: SUPPORT both feet place-mid [f:both] | L arm left-forward-mid, lower arm folded 120, L leg place-low, lower leg straight | R arm right-forward-mid, lower arm folded 120, R leg place-low, lower leg straight | contact bow: L hand > glasses right temple at 5.50; contact bow: head > glasses frame at 5.50; [contact: glasses frame ENDS – released at 5.50] | Both hands lift the open glasses to the face and slide the temples over the ears; the right hand lets go; FACE: inner ends of the brows lifted (trace), outer brows lifted (trace); NOT: no frown; feeling curious, pleasant and activated, a genuine expression; looking into the lens; Brows lift a little as the glasses settle on the face, eyes back to the lens.
+5.50 A: SUPPORT both feet place-mid [f:both] | L arm left-forward-low, lower arm folded 45, L leg place-low, lower leg straight | R arm forward-mid, lower arm folded 105, R leg place-low, lower leg straight | - | Wearing the glasses, the creator smiles to camera and taps the frame; FACE (carries the beat): cheeks raised, crow's feet at the eyes (slight), lip corners pulled up (marked on their left, slight on their right), lips parted (slight); NOT: no frown; feeling delighted, strongly pleasant and activated, a genuine expression; looking into the lens; A wide, genuine smile at the result, eyes creased, the smile a touch stronger on the left.; hold sign to the end · Root [0, 0, 0] EulerXYZ [0, 0, 0]
+
+[RULES]
+- Laban support and contacts are primary; Euler numbers are precision override only.
+- slerp A joints
+- ONE fighter identities A never merge or duplicate
+- ONE props tracked separately,never merged:glasses
+- The product keeps one shape, colour and label for the whole scene.
+- Hands stay in frame whenever they touch the product.
+
+[NEGATIVES]
+no missing limbs; no missing arms; no missing hands; no headless body; no faceless head; no extra fighters beyond A; no cloned A; no duplicated glasses; no extra weapons; no full circle; no ring; no halo

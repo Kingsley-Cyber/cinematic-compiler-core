@@ -1,0 +1,44 @@
+[SCENE]
+8 seconds live action: wizard versus knight in a castle
+8 s live-action scene, 24 fps, setting: castle.
+Cast: A = wizard: Tall robed figure; long sleeves and hem hide the legs; often carries a staff; Layered robe with wide sleeves; hood or hat optional. B = knight: Broad armored figure; helmet and shield change the outline; Plate or mail armor over padding; helmet; shield on one arm.
+Props: none.
+Frame: Y_up, A faces -Z, B faces +Z, ground y=0, Euler XYZ intrinsic right-handed degrees, +X performer's left.
+Euler degrees XYZ.
+Render spec exactly.
+
+[MOVEMENT LANGUAGE]
+Labanotation written as words. Mode: Upgraded Mixed: staff lines primary; Root, EulerXYZ and the full Joints dictionary on strike lines and on each performer's last line, as precision override.
+Each line = one measure for one performer; time in seconds; a symbol lasts until the next line.
+SUPPORT names what bears the weight; NO SUPPORT = airborne.
+Contact bow = touch; [contact: X-Y retained] = held; [contact: Y ENDS – released] = let go; DOUBLE BOW + accent = a strike (interp.: a momentary contact with a strong accent).
+Directions are relative to the performer's front: forward, back, left, right and the diagonals between them; levels high, mid, low; place-high / place-low = straight up / down. A limb reads mid while within 45 degrees of horizontal (interp.). Lower arm and lower leg: straight, or folded by degrees.
+Turn signs name the axis: flip = lateral axis, turn = vertical axis, cartwheel = sagittal axis.
+Precision tags: [f:L|R|both] feet, [h:L|R|both] hands, [f:alt] stepping, _on_<surface> when the support is not the ground.
+Explicit = the written lines (every support change, contact and accent has one); implied = everything between lines.
+Root [x, y, z] is the scene position in metres; EulerXYZ and joints are degrees.
+Skeleton key: Sp=Spine LUL/RUL=UpLeg LL/RL=LowLeg LA/RA=UpArm LFA/RFA=ForeArm HD=Head NK=Neck
+FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship | path/notes
+
+[LABAN STAFF – UPGRADED MIXED]
+0.00 A: SUPPORT both feet place-mid [f:both] | L arm left-forward-low, lower arm folded 30, L leg place-low, lower leg straight | R arm right-forward-low, lower arm folded 30, R leg place-low, lower leg straight | - | FACE: lips pressed together (trace); NOT: no frown; feeling calm, neutral and calm, masking it behind another expression; eyes on B; A composed, unreadable face, lips lightly pressed.
+0.00 B: SUPPORT steps forward alternating [f:alt] | L arm left-forward-low, lower arm folded 45, L leg forward-low, lower leg folded 30, body forward-high (10 lean) | R arm right-forward-low, lower arm folded 30, R leg right-back-low, lower leg folded 15 | - | path: forward 1.0 m; The knight steps in, sword arm low, glaring at the wizard; FACE (carries the beat): brows lowered and drawn together (marked), lids tightened, eyes narrowed (slight), lips tightened and narrowed (slight), jaw clenched (slight); NOT: no smile; feeling determined anger, strongly unpleasant and highly activated, a genuine expression; eyes on A; Brows hard down, eyes narrowed, lips pressed thin, jaw clenched, no smile.
+2.50 A: SUPPORT both feet place-mid [f:both] | L arm left-forward-low, lower arm folded 30, L leg place-low, lower leg straight | R arm forward-mid, lower arm folded 60, R leg place-low, lower leg straight | - | The wizard lifts one hand, unhurried, a one-sided smirk at the knight's advance; FACE (carries the beat): lip corners pulled up on their left side only (slight), lip corners tightened into dimples on their left side only (slight); NOT: cheeks not raised; feeling contemptuous, unpleasant and steady, a genuine expression; eyes on B; One corner of the mouth curls up and tightens on his left side: a contemptuous smirk, the eyes not smiling.
+2.50 B: SUPPORT both feet place-mid [f:both] | L arm left-forward-low, lower arm folded 45, L leg left-forward-low, lower leg folded 30 | R arm right-forward-low, lower arm folded 30, R leg right-forward-low, lower leg folded 15 | - | FACE: brows lowered and drawn together (marked), lids tightened, eyes narrowed (slight), lips tightened and narrowed (slight), jaw clenched (slight); NOT: no smile; feeling determined anger, strongly unpleasant and highly activated, a genuine expression; eyes on A; The same hard glare held.
+4.50 A: SUPPORT both feet place-mid [f:both] | L arm left-forward-low, lower arm folded 30, L leg place-low, lower leg straight | R arm forward-mid, lower arm folded 60, R leg place-low, lower leg straight | - | FACE: relaxed, no visible expression; NOT: no frown; feeling calm, neutral and calm, a genuine expression; eyes on B; Calm, almost bored.
+4.50 B: SUPPORT both feet place-mid [f:both] | L arm left-forward-low, lower arm folded 45, L leg left-forward-low, lower leg folded 15 | R arm right-forward-low, lower arm folded 45, R leg right-forward-low, lower leg folded 30 | - | The knight halts mid-step; fear flickers across the face and is crushed, the jaw sets; FACE (carries the beat): inner ends of the brows lifted (slight), outer brows lifted (slight), upper lids raised, eyes widened (slight), lips stretched sideways (slight); feeling afraid, strongly unpleasant and highly activated, holding it back; eyes on A; For a split second the brows jump and the eyes widen in fear, then it is crushed.
+6.50 A: SUPPORT both feet place-mid [f:both] | L arm left-forward-low, lower arm folded 30, L leg place-low, lower leg straight | R arm forward-mid, lower arm folded 60, R leg place-low, lower leg straight | - | They hold the stand-off, neither moving; FACE: relaxed, no visible expression; NOT: no frown; feeling calm, neutral and calm, a genuine expression; eyes on B; Calm, unmoved.; hold sign to the end · Root [0, 0, 4] EulerXYZ [0, 180, 0] · Joints {Sp: [0, 0, 0], LUL: [-5, 0, 6], RUL: [5, 0, -6], LL: [5, 0, 0], RL: [5, 0, 0], LA: [-10, 0, 10], RA: [-95, 0, -10], LFA: [-30, 0, 0], RFA: [-60, 0, 0], HD: [0, 0, 0], NK: [0, 0, 0]}
+6.50 B: SUPPORT both feet place-mid [f:both] | L arm left-forward-low, lower arm folded 45, L leg left-forward-low, lower leg folded 30 | R arm right-forward-low, lower arm folded 30, R leg right-forward-low, lower leg folded 15 | - | FACE: brows lowered and drawn together (slight), lips pressed together (slight), jaw clenched (marked); NOT: eyes not widened; feeling determined, unpleasant and activated, a genuine expression; eyes on A; The jaw sets hard, lips pressed, brows down: resolve over fear.; hold sign to the end · Root [0, 0, 1.2] EulerXYZ [0, 0, 0] · Joints {Sp: [5, 0, 0], LUL: [-20, 0, 10], RUL: [-10, 0, -10], LL: [25, 0, 0], RL: [20, 0, 0], LA: [-10, 0, 15], RA: [-25, 0, -10], LFA: [-50, 0, 0], RFA: [-35, 0, 0], HD: [0, 0, 0], NK: [0, 0, 0]}
+
+[RULES]
+- Laban support and contacts are primary; Euler numbers are precision override only.
+- slerp A joints
+- slerp B joints
+- TWO fighter identities A and B never merge or duplicate
+- No modern technology appears unless the scene declares it.
+- A spell effect starts at a hand, staff tip or declared focus, never from empty space.
+- The wizard stays grounded unless a scene grants flight or levitation.
+- In full armor the knight does not flip or cartwheel unless a scene grants it.
+
+[NEGATIVES]
+no missing limbs; no missing arms; no missing hands; no headless body; no faceless head; no extra fighters beyond A and B; no cloned A; no cloned B; no extra weapons; no full circle; no ring; no halo

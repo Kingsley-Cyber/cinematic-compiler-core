@@ -79,6 +79,66 @@ def render(envelope, frame_parts):
     return project(envelope, frame_parts, "anime", lambda labels, cover: _anime(frame_parts, labels))
 
 
+def first_facings(envelope):
+    first = {}
+    for beat in sorted(_items(envelope, "nodes", "beats"), key=lambda b: (b["t"], b["id"])):
+        for entity, vector in beat["facing"].items():
+            first.setdefault(entity, vector)
+    return first
+
+
+def constraint_rows(envelope, labels):
+    """Every applied constraint as (section, text, constraint id, kernel ref), in constraint order.
+
+    Kernel controls written for the reference cast are regenerated for this scene (GENERATED); owner render controls
+    come back with section None (enforced by coverage, never printed). Shared with renderers/prose_renderer.py.
+    """
+    entities, props = _items(envelope, "nodes", "entities"), _items(envelope, "nodes", "props")
+    first_facing = first_facings(envelope)
+    constraints = {c["id"]: c for c in _items(envelope, "nodes", "constraints")}
+    applications = _items(envelope, "edges", "constraint_application")
+    applied = {a["constraint_id"] for a in applications}
+    targets = {}
+    for a in applications:
+        targets.setdefault(a["constraint_id"], []).append(a["target"])
+    prop_cards = {p["id"]: p for p in props}
+    rows = []
+    for cid in sorted(applied, key=lambda c: list(constraints).index(c)):
+        constraint = constraints[cid]
+        ref = constraint["source"]["ref"]
+        if constraint["field"] in ENFORCED:
+            rows.append((None, None, cid, ref))
+        elif ref in GENERATED:
+            section, scope, template = GENERATED[ref]
+            actors = [labels[t["id"]] for t in targets[cid] if t["kind"] == "entity"]
+            if scope == "actor":
+                for target in targets[cid]:
+                    if target["kind"] == "entity":
+                        rows.append((section, template.format(label=labels[target["id"]], facing=_facing(
+                            first_facing.get(target["id"], [0, 0, 1]))), cid, ref))
+            elif scope == "scene":
+                every = [labels[e["id"]] for e in entities] or actors
+                rows.append((section, template.format(labels=_join(every), count=NUMBERS[len(every)]), cid, ref))
+            elif scope == "prop":
+                for target in targets[cid]:
+                    if target["kind"] == "prop":
+                        card = prop_cards[target["id"]]
+                        if card.get("count", 1) > 1:
+                            text = (f"no duplicated {card['unit_name']} beyond the declared {card['group_name']} "
+                                    f"of {card['count']}")
+                        else:
+                            text = f"no duplicated {card['name']}"
+                        rows.append((section, text, cid, ref))
+            else:
+                rows.append((section, template.format(count=NUMBERS[len(props)], ids=",".join(p["id"] for p in props)),
+                             cid, ref))
+        elif constraint["field"] in PRINTED:
+            rows.append((constraint["field"], constraint["rule"], cid, ref))
+        else:
+            rows.append(("rules", constraint["rule"], cid, ref))
+    return applied, rows
+
+
 def project(envelope, frame_parts, block_key, genre_block):
     """The shared LBN projection; `genre_block(labels, cover)` builds the genre's own block (placed before rules)."""
     cover = _Coverage(envelope)
@@ -89,60 +149,17 @@ def project(envelope, frame_parts, block_key, genre_block):
     for e in entities:
         cover.mark("entities", e["id"])
     beats = sorted(_items(envelope, "nodes", "beats"), key=lambda b: (b["t"], b["id"]))
-    first_facing = {}
-    for beat in beats:
-        for entity, vector in beat["facing"].items():
-            first_facing.setdefault(entity, vector)
-    constraints = {c["id"]: c for c in _items(envelope, "nodes", "constraints")}
-    applications = _items(envelope, "edges", "constraint_application")
-    applied = {a["constraint_id"] for a in applications}
-    targets = {}
-    for a in applications:
-        targets.setdefault(a["constraint_id"], []).append(a["target"])
+    applied, rows = constraint_rows(envelope, labels)
     sections = {name: [] for name in PRINTED}
     rendered, enforced = set(), set()
-
-    def emit(section, text, constraint_id=None):
+    for section, text, cid, _ in rows:
+        cover.mark("constraints", cid)
+        if section is None:
+            enforced.add(cid)
+            continue
         if text not in sections[section]:
             sections[section].append(text)
-        if constraint_id:
-            rendered.add(constraint_id)
-            cover.mark("constraints", constraint_id)
-
-    prop_cards = {p["id"]: p for p in props}
-    for cid in sorted(applied, key=lambda c: list(constraints).index(c)):
-        constraint = constraints[cid]
-        ref = constraint["source"]["ref"]
-        if constraint["field"] in ENFORCED:
-            enforced.add(cid)
-            cover.mark("constraints", cid)
-        elif ref in GENERATED:
-            section, scope, template = GENERATED[ref]
-            actors = [labels[t["id"]] for t in targets[cid] if t["kind"] == "entity"]
-            if scope == "actor":
-                for target in targets[cid]:
-                    if target["kind"] == "entity":
-                        emit(section, template.format(label=labels[target["id"]],
-                                                      facing=_facing(first_facing.get(target["id"], [0, 0, 1]))), cid)
-            elif scope == "scene":
-                every = [labels[e["id"]] for e in entities] or actors
-                emit(section, template.format(labels=_join(every), count=NUMBERS[len(every)]), cid)
-            elif scope == "prop":
-                for target in targets[cid]:
-                    if target["kind"] == "prop":
-                        card = prop_cards[target["id"]]
-                        if card.get("count", 1) > 1:
-                            text = (f"no duplicated {card['unit_name']} beyond the declared {card['group_name']} "
-                                    f"of {card['count']}")
-                        else:
-                            text = f"no duplicated {card['name']}"
-                        emit(section, text, cid)
-            else:
-                emit(section, template.format(count=NUMBERS[len(props)], ids=",".join(p["id"] for p in props)), cid)
-        elif constraint["field"] in PRINTED:
-            emit(constraint["field"], constraint["rule"], cid)
-        else:
-            emit("rules", constraint["rule"], cid)
+        rendered.add(cid)
 
     preface = envelope["provenance"]["source_prompt"].strip()
     for text in sections["preface"]:
