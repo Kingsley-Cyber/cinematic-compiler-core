@@ -41,6 +41,7 @@ CODES = {
     "PROP_STATE_ORDER": "a prop's states are out of time order or its holders disagree with S06",
     "PROP_INVARIANT_MISSING": "a prop lacks its never-duplicated / never-two-hands / never-lost line",
     "CUSTODY_RULE_MISSING": "a prop that never changes holder lacks its CUSTODY rule",
+    "PROP_FIRST_STATE": "a prop's state at the start is unknown, or SCENE or its state machine does not say it",
     "CAUSAL_LIST_MISSING": "a causal edge is absent from CAUSAL LINKS",
     "CAUSE_REASON": "a causal link's reason is not printed in CAUSAL LINKS, or does not state a cause",
     "REACTION_WITHOUT_CAUSE": "a hard effect's line comes before its cause's contact",
@@ -69,7 +70,8 @@ READS = {
     "IMPLIED_GUIDANCE_MISSING": (STAFF, "[IMPLIED GUIDANCE]"), "INTERPOLATION_UNDECLARED": ("[MOTION CONTROL]",),
     "CONVENTION_MISSING": ("[SPATIAL ANCHORS]",), "SPATIAL_ANCHOR_MISSING": ("[SPATIAL ANCHORS]",),
     "PROP_TRACK_MISSING": (PROPS,), "PROP_STATE_ORDER": (PROPS,), "PROP_INVARIANT_MISSING": (PROPS,),
-    "CUSTODY_RULE_MISSING": (PROPS,), "CAUSAL_LIST_MISSING": ("[CAUSAL LINKS]",), "CAUSE_REASON": ("[CAUSAL LINKS]",),
+    "CUSTODY_RULE_MISSING": (PROPS,), "PROP_FIRST_STATE": ("[SCENE]", PROPS),
+    "CAUSAL_LIST_MISSING": ("[CAUSAL LINKS]",), "CAUSE_REASON": ("[CAUSAL LINKS]",),
     "REACTION_WITHOUT_CAUSE": (),
     "CAUSAL_RULE_MISSING": (RULES,), "CONSERVATION_RULE_MISSING": (RULES,), "SPAN_RULE_MISSING": (STAFF, RULES),
     "EVENT_SEPARATION_MISSING": (STAFF, RULES), "RULES_MISSING": (RULES,), "NEGATIVES_MISSING": (NEGATIVES,),
@@ -168,6 +170,7 @@ def check(text, envelope, mode):
     _guidance_checks(envelope, parts, labels, mode, add)
     _scene_and_space(envelope, parts, labels, add)
     _props_and_causes(envelope, parts, labels, mode, add)
+    _first_state_checks(envelope, parts, labels, add)
     _rules_checks(envelope, parts, labels, mode, add)
     _camera_checks(envelope, parts, labels, add)
     return findings
@@ -334,6 +337,23 @@ def _scene_and_space(envelope, parts, labels, add):
     for label in sorted({labels[s["entity"]] for s in slots(envelope)}):
         if f"{label} starts at [" not in spatial:
             add("SPATIAL_ANCHOR_MISSING", f"{label}'s start position is missing")
+
+
+def _first_state_checks(envelope, parts, labels, add):
+    """PROP_FIRST_STATE (M8.12; owner renders R4 and R1-R5: B's kunai in A's hand at 0.0, the log drawn before its use)."""
+    scene = _body(parts, "[SCENE]")
+    first = prose_renderer.first_states(envelope, labels)
+    states = envelope["nodes"]["states"]["items"]
+    for prop in envelope["nodes"]["props"]["items"]:
+        own = sorted((s for s in states if s["subject"] == {"kind": "prop", "id": prop["id"]}), key=lambda s: (s["t"], s["id"]))
+        gaps = sorted(k for k, v in (own[0]["conditions"] if own else {}).items() if v == "unknown" and k != "location")
+        if not own or gaps:
+            add("PROP_FIRST_STATE", f"{prop['name']}: {', '.join(gaps) or 'state'} unknown at the start")
+        if f"{prop['name']} (" not in scene or not all(phrase in scene for phrase in first[prop["id"]]):
+            add("PROP_FIRST_STATE", f"SCENE does not give {prop['name']}'s state at the start")
+        track = _body(parts, f"[PROP STATE MACHINE – {prop['name']}]").split(" · ")[0]
+        if "unknown" in track:
+            add("PROP_FIRST_STATE", f"{prop['name']}'s state machine starts '{track[:40]}'")
 
 
 def _prop_holders(envelope, prop_id):

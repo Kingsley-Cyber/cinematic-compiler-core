@@ -1,7 +1,7 @@
 {
  "step_id": "S04",
  "band": "L1",
- "packet_sha256": "sha256:c338381ca2d9115e8f8b090c228284f901f2612a59cd4e21e31bb3ac2fcfc6bd",
+ "packet_sha256": "sha256:8db8665ea479a4afe5733a5c0079aced906bef5494c146bec3b3de5861bd2055",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -69,6 +69,86 @@
      },
      "property": "support",
      "value": "grounded"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "kunai"
+     },
+     "property": "holder",
+     "value": "ninja_broad"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "kunai"
+     },
+     "property": "embedded",
+     "value": "loose"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "rope_dart"
+     },
+     "property": "holder",
+     "value": "none"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "rope_dart"
+     },
+     "property": "line",
+     "value": "coiled"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "smoke_pellet"
+     },
+     "property": "holder",
+     "value": "none"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "smoke_pellet"
+     },
+     "property": "smoke",
+     "value": "sealed"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "shuriken_volley"
+     },
+     "property": "holder",
+     "value": "none"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "shuriken_volley"
+     },
+     "property": "flight",
+     "value": "holstered"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "substitution_log"
+     },
+     "property": "holder",
+     "value": "none"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "substitution_log"
+     },
+     "property": "deployment",
+     "value": "hidden"
     }
    ],
    "effects": [
@@ -87,14 +167,6 @@
      },
      "property": "location",
      "value": "wooden_pillar"
-    },
-    {
-     "subject": {
-      "kind": "prop",
-      "id": "kunai"
-     },
-     "property": "holder",
-     "value": "ninja_broad"
     }
    ],
    "contacts": [
@@ -135,7 +207,8 @@
       "kind": "prop",
       "id": "kunai",
       "part": "handle"
-     }
+     },
+     "at": "start"
     }
    ],
    "causes": [

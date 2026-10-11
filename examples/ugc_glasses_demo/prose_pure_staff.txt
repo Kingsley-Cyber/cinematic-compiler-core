@@ -2,7 +2,7 @@
 8 second ugc ad, 30fps. A: creator, casual hoodie, talking to camera. Creator holding the glasses, in a bright bedroom, unfolds them and puts them on.
 8 s UGC ad scene, 30 fps, setting: bright bedroom.
 Cast: A = creator: Casual figure framed from the waist up, hands near the product; Casual everyday clothes.
-Props: glasses.
+Props at the start: glasses (on the tabletop, temples folded until 3.50, worn no until 5.50).
 Render intent. Motion: measured, light, smooth, sustained acceleration; readable at one shot every 2.0 s on average. Animation: UGC ad; spacing: 0 dense, 0 medium and 3 sparse gaps between lines; 0 smears on declared limbs or props, 0 impact frames. Choreography: every effect follows its cause along the causal links; final instruction: end on A present result.
 Euler degrees XYZ.
 Render spec exactly.

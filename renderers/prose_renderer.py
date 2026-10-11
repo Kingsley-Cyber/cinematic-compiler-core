@@ -278,6 +278,36 @@ def _render_intent(envelope, frame_parts, lines, labels):
             f"{', '.join(finals)}.")
 
 
+def first_states(envelope, labels):
+    """{prop id: [phrase]}: each prop at the first beat, from S06 and S07 (M8.12, PROP_FIRST_STATE): who holds it with
+    which part, where it rests, and each card state with the time it first changes ('deployment hidden until 4.00')."""
+    states = _items(envelope, "nodes", "states")
+    ends = {b["id"]: round(b["t"] + b["dur"], 6) for b in _items(envelope, "nodes", "beats")}
+    caused = {e["to_state"]: max(ends[b] for b in e["trigger_event"])
+              for e in _items(envelope, "edges", "state_transition") if e["trigger_event"]}
+    out = {}
+    for prop in _items(envelope, "nodes", "props"):
+        own = sorted((s for s in states if s["subject"] == {"kind": "prop", "id": prop["id"]}), key=lambda s: (s["t"], s["id"]))
+        if not own:
+            out[prop["id"]] = ["state unknown"]
+            continue
+        start, phrases = own[0], []
+        holders = [c for c in _items(envelope, "nodes", "contacts") if c["b"]["kind"] == "prop"
+                   and c["b"]["id"] == prop["id"] and c["contact_type"] == "possess" and c["t"] <= start["t"] + 1e-9]
+        phrases += [f"held by {labels.get(c['a']['id'], c['a']['id'])} {_part(c['body_part'])}" for c in holders]
+        location = start["conditions"].get("location", "unknown")
+        if location != "unknown" and not holders:
+            phrases.append(f"on the {_words(location)}")
+        for key, value in sorted(start["conditions"].items()):
+            if key in ("holder", "location") or value == "unknown":
+                continue
+            change = next((s for s in own[1:] if s["conditions"].get(key) != value), None)
+            phrases.append(f"{key} {_words(str(value))}" + (f" until {_time(caused.get(change['id'], change['t']))}"
+                                                            if change else ""))
+        out[prop["id"]] = phrases or ["state unknown"]
+    return out
+
+
 def _scene(envelope, frame_parts, lines, labels, rows):
     scene = envelope["scene"]
     entities = _items(envelope, "nodes", "entities")
@@ -287,8 +317,10 @@ def _scene(envelope, frame_parts, lines, labels, rows):
            f" setting: {scene.get('setting') or _words(scene.get('world') or 'unspecified')}."]
     cast = [f"{labels[e['id']]} = {e['name']}: {e['silhouette'].rstrip('.')}; {e['costume'].rstrip('.')}." for e in entities]
     out.append("Cast: " + " ".join(cast))
-    out.append("Props: " + (", ".join(f"{p['name']}" + (f" ({p['count']} {p['unit_name']})" if p.get("count", 1) > 1
-                                                        else "") for p in props) if props else "none") + ".")
+    first = first_states(envelope, labels)
+    out.append("Props at the start: " + ("; ".join(
+        f"{p['name']} (" + ", ".join(([f"{p['count']} {p['unit_name']}"] if p.get("count", 1) > 1 else [])
+                                     + first[p["id"]]) + ")" for p in props) if props else "none") + ".")
     out.append(_render_intent(envelope, frame_parts, lines, labels))
     for text in (t for s, t, _, _ in rows if s == "preface"):
         if text not in out[0]:

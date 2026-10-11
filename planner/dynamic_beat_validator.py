@@ -2,8 +2,9 @@
 
 Rules: unique ids; times inside the duration (or budget); actor/participants/parts resolve to the packet;
 pos + facing for every entity in a beat; requires/effects use the closed vocabulary; contacts use declared
-types and parts; causes point at real later-or-same-time beats; no filler beats; modes come from the archetype
-card (mode_coherence) and a mode change needs a beat that causes it (mode_transition).
+types and parts (a contact happens at its beat's end, or its start when marked `at: start`); causes point at real
+later-or-same-time beats; no filler beats; modes come from the archetype card (mode_coherence) and a mode change needs
+a beat that causes it (mode_transition).
 Teleport (owner O12): a body faster than 25 m/s between the anchors of two of its consecutive beats is refused
 (TELEPORT), unless the earlier beat is a substitution with that body as actor and the substitution changes a prop's
 state (the decoy revealed; the owner's rule also names the smoke pellet and the log, generalised here to any prop).
@@ -131,19 +132,24 @@ def _teleports(beats):
     return findings
 
 
+def _at(beat, contact):
+    """A contact happens at its beat's end, or at its start when marked `at: start`."""
+    return beat["t"] + (0 if contact.get("at") == "start" else beat["dur"])
+
+
 def holds(beats):
-    """prop -> [(start, end, holder)] from possess and release contacts (a contact happens at its beat's end)."""
+    """prop -> [(start, end, holder)] from possess and release contacts, in contact time order."""
     held, open_ = {}, {}
-    for beat in sorted(beats, key=lambda b: (b["t"] + b["dur"], b["t"], b["id"])):
-        end = beat["t"] + beat["dur"]
-        for c in beat["contacts"]:
-            if c["b"]["kind"] != "prop":
-                continue
-            if c["contact_type"] == "possess":
-                open_[c["b"]["id"]] = (end, c["a"]["id"])
-            elif c["contact_type"] == "release" and c["b"]["id"] in open_:
-                start, holder = open_.pop(c["b"]["id"])
-                held.setdefault(c["b"]["id"], []).append((start, end, holder))
+    events = sorted(((_at(b, c), b["t"], b["id"], i, c) for b in beats for i, c in enumerate(b["contacts"])),
+                    key=lambda e: e[:4])
+    for at, _, _, _, c in events:
+        if c["b"]["kind"] != "prop":
+            continue
+        if c["contact_type"] == "possess":
+            open_[c["b"]["id"]] = (at, c["a"]["id"])
+        elif c["contact_type"] == "release" and c["b"]["id"] in open_:
+            start, holder = open_.pop(c["b"]["id"])
+            held.setdefault(c["b"]["id"], []).append((start, at, holder))
     for prop, (start, holder) in open_.items():
         held.setdefault(prop, []).append((start, math.inf, holder))
     return held
@@ -155,7 +161,7 @@ def _prop_kinematics(beats, props, genre):
     for beat in beats:
         for c in beat["contacts"]:
             if c["b"]["kind"] == "prop":
-                touches.setdefault(c["b"]["id"], []).append(beat["t"] + beat["dur"])
+                touches.setdefault(c["b"]["id"], []).append(_at(beat, c))
         for sample in beat.get("prop_samples", []):
             if sample["prop"] not in props:
                 findings.append(_finding("PROP_KINEMATICS", "Sample names an undeclared prop", beat["id"], sample["prop"]))

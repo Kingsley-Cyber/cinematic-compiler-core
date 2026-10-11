@@ -48,6 +48,15 @@ def test_starting_values_come_only_from_a_first_requirement():
     assert by_id["coffee_cup@end"]["conditions"] == {"fill": "partly_full", "holder": "none", "location": "ground"}
 
 
+def test_every_prop_state_is_known_at_the_first_beat():
+    """PROP_FIRST_STATE (M8.12): without the first beat's requirement the cup's holder is unknown at the start."""
+    assert continuity_validator.first_states(cup("state")["nodes"]["states"]["items"], ["b01", "b02", "b03"]) == []
+    with pytest.raises(ContractError) as error:
+        cup("state", edit=lambda p: p["beats"][0]["requires"].pop(0))
+    assert [f["code"] for f in error.value.path] == ["PROP_FIRST_STATE"]
+    assert "holder unknown at the first beat" in error.value.path[0]["message"]
+
+
 def test_transitions_name_their_triggering_beats():
     envelope = cup("state")
     edges = {e["to_state"]: e for e in envelope["edges"]["state_transition"]["items"]}

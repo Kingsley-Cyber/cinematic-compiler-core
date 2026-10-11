@@ -2,7 +2,7 @@
 10 seconds anime fight scene: wizard versus acrobat in a moonlit bamboo courtyard
 10 s anime scene, 24 fps, setting: moonlit bamboo courtyard.
 Cast: A = wizard: Tall robed figure; long sleeves and hem hide the legs; often carries a staff; Layered robe with wide sleeves; hood or hat optional. B = acrobat: Lean, compact figure in close-fitting clothes; limbs clearly readable; Fitted top and trousers that do not hide the joints; soft shoes or bare feet.
-Props: none.
+Props at the start: none.
 Render intent. Motion: fast, mixed, sudden accelerations into the accents; readable at one shot every 0.9 s on average. Animation: anime; spacing: 2 dense, 3 medium and 11 sparse gaps between lines; 4 smears on declared limbs or props, 2 impact frames. Choreography: every effect follows its cause along the causal links; final instruction: end on A spiral sweep windup, B inverted tuck apex.
 Euler degrees XYZ.
 Render spec exactly.

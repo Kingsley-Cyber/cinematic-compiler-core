@@ -9,6 +9,7 @@ from scenes import courtyard, cup
 
 from compiler.passes.mandatory import p07_contact
 from kernel.canonical import ContractError, canonical_json
+from planner import dynamic_beat_validator
 from validators.layer_dependency_validator import check_pass_writes
 from validators.schema_validator import validate_schema
 
@@ -54,6 +55,21 @@ def test_cup_possession_matches_holder():
 ])
 def test_each_contact_rule_rejects_its_violation(code, edit):
     assert code in failure_codes(edit)
+
+
+def test_a_contact_marked_at_start_happens_when_its_beat_starts():
+    """M8.12: a prop already in hand at t=0 — the cup's possess contact moved to the start of b01."""
+    def in_hand_from_the_start(plan):
+        first = plan["beats"][0]
+        first["contacts"][0]["at"] = "start"
+        first["requires"][0]["value"] = "wizard"  # in hand from the start; its effect still enables the hard cause
+
+    plan_check = {}
+    envelope = cup("contact", edit=lambda p: (in_hand_from_the_start(p), plan_check.update(p)))
+    assert [c["t"] for c in envelope["nodes"]["contacts"]["items"] if c["beat"] == "b01"] == [0.0]
+    assert dynamic_beat_validator.holds(plan_check["beats"])["coffee_cup"][0][0] == 0.0  # held from t=0, not 1.5
+    assert next(s for s in envelope["nodes"]["states"]["items"] if s["id"] == "coffee_cup@b01")["conditions"]["holder"] == \
+        "wizard"
 
 
 def test_prop_change_without_any_contact_is_refused():

@@ -33,7 +33,9 @@ def build(envelope):
                for prop, value in s["conditions"].items()
                if value != "unknown" and prop in tables.get((s["subject"]["kind"], s["subject"]["id"]), [])}
     snapshots, transitions, findings = replay(beats, subjects, tables, envelope["scene"]["duration_s"], carried)
+    beat_ids = [b["id"] for b in sorted(beats, key=lambda b: (b["t"], b["id"]))]
     findings += continuity_validator.check(snapshots, transitions, subjects, [b["id"] for b in beats])
+    findings += continuity_validator.first_states(snapshots, beat_ids)
     return {"states": snapshots, "state_transition": transitions}, findings
 
 

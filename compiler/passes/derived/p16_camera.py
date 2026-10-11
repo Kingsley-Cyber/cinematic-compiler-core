@@ -47,7 +47,9 @@ def prepare(envelope):
         "contacts": [{"id": c["id"], "t": c["t"], "beat": c["beat"], "contact_type": c["contact_type"], "entity": c["a"]["id"],
                       "part": c["body_part"], "other": c["b"]["id"]}
                      for c in envelope["nodes"]["contacts"]["items"]
-                     if c["contact_type"] in ONSETS and c["a"]["kind"] == "entity" and c["beat"] != "chain"],
+                     # a contact carried from the previous clip or open at t=0 is the starting state, not an event
+                     if c["contact_type"] in ONSETS and c["a"]["kind"] == "entity" and c["beat"] != "chain"
+                     and c["t"] > 1e-9],
         "efforts": [{k: e[k] for k in ("id", "actor", "t", "end", "effort_action", "intensity")}
                     for e in envelope["nodes"]["efforts"]["items"]],
         "causal": [{k: e[k] for k in ("id", "from", "to")} for e in envelope["edges"]["causal"]["items"]],

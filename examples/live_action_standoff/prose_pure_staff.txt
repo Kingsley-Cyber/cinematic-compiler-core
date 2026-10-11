@@ -2,7 +2,7 @@
 8 seconds live action: wizard versus knight in a castle
 8 s live-action scene, 24 fps, setting: castle.
 Cast: A = wizard: Tall robed figure; long sleeves and hem hide the legs; often carries a staff; Layered robe with wide sleeves; hood or hat optional. B = knight: Broad armored figure; helmet and shield change the outline; Plate or mail armor over padding; helmet; shield on one arm.
-Props: none.
+Props at the start: none.
 Render intent. Motion: measured, strong, heavy, sudden accelerations into the accents; readable at one shot every 2.0 s on average. Animation: live-action; spacing: 0 dense, 0 medium and 6 sparse gaps between lines; 0 smears on declared limbs or props, 0 impact frames. Choreography: every effect follows its cause along the causal links; final instruction: end on A wizard hand up, B knight brace.
 Euler degrees XYZ.
 Render spec exactly.

@@ -567,16 +567,18 @@ rows:
     class: mandatory
     step: S06
     status: partial
-    codes: [PROP_TRACK_MISSING, PROP_STATE_ORDER, PROP_INVARIANT_MISSING]
+    codes: [PROP_TRACK_MISSING, PROP_STATE_ORDER, PROP_INVARIANT_MISSING, PROP_FIRST_STATE]
     gaps: [PROP_TWO_HOLDERS]
     enforced_by:
+      - {file: validators/continuity_validator.py, check: first_states, code: PROP_FIRST_STATE,
+         test: tests/test_state_pass.py::test_every_prop_state_is_known_at_the_first_beat}
       - {file: validators/continuity_validator.py, check: check, code: POSSESSION_MISMATCH,
          test: tests/test_state_pass.py::test_continuity_catches_missing_subjects_and_possession_mismatch}
       - {file: solver/prop_state_machine.py, check: replay, code: STATE_CONFLICT,
          test: tests/test_state_pass.py::test_unmet_requirement_and_same_time_conflict_are_refused}
       - {file: compiler/passes/mandatory/p07_contact.py, check: lifecycle, code: CONTACT_HAND,
          test: tests/test_contact_pass.py::test_each_contact_rule_rejects_its_violation}
-    note: "Ordered states per prop (S06 replay), never lost or cloned, possession agrees with contacts, a hand holds
+    note: "M8.12: every prop's holder and card states are known from the first beat (S06 and the prompt, PROP_FIRST_STATE). Ordered states per prop (S06 replay), never lost or cloned, possession agrees with contacts, a hand holds
       one thing at a time; each prop's history is a render track. Gap: nothing refuses two entities holding active
       possess contacts on one prop at once (holder is single-valued; HOLDER_CONTACT only checks it is among them)."
 
@@ -815,10 +817,10 @@ rows:
     class: required
     step: S02
     status: enforced
-    codes: [ANCHOR_PHRASE_MISSING]
+    codes: [ANCHOR_PHRASE_MISSING, PROP_FIRST_STATE]
     enforced_by:
       - {file: schemas/cards/archetype_card.schema.json}
-    note: "Archetype cards must have description, silhouette and costume and the envelope carries them; LBN-2.4 drops
+    note: "M8.12: SCENE also gives each prop's state at the start, with the time it first changes ('deployment hidden until 4.00'; R1-R5 drew the log from the first second) (PROP_FIRST_STATE). Archetype cards must have description, silhouette and costume and the envelope carries them; LBN-2.4 drops
       them (only reference_fight and ugc_glasses_demo carry appearance, through their preface). The prose [SCENE]
       (M8.2) gives every entity one phrase from its silhouette and costume; ANCHOR_PHRASE_MISSING lands in M8.4."
 
@@ -828,11 +830,11 @@ rows:
     class: mandatory
     step: S07
     status: enforced
-    codes: [CUSTODY_RULE_MISSING]
+    codes: [CUSTODY_RULE_MISSING, PROP_FIRST_STATE]
     enforced_by:
       - {file: compiler/passes/mandatory/p07_contact.py, check: cross_check, code: HOLDER_CONTACT,
          test: tests/test_contact_pass.py::test_each_contact_rule_rejects_its_violation}
-    note: "Possession must agree with contacts at every beat (HOLDER_CONTACT). The prose prop state machine (M8.3)
+    note: "M8.12: who holds each prop at the start is known and printed (PROP_FIRST_STATE; owner render R4 put B's kunai in A's hand at 0.0). Possession must agree with contacts at every beat (HOLDER_CONTACT). The prose prop state machine (M8.3)
       writes 'CUSTODY: <label>.<prop>' for a prop whose holder never changes; none of the four examples has one."
 
   - id: C25

@@ -9,6 +9,9 @@ S04 beat planning (LLM call #1). Write the beat plan for this packet as JSON mat
 - Contact types: touch (instant), possess (held or carried), support (bears weight), release (ends an earlier
   possess or support of the same pair).
 - causes link this beat to a later beat it makes happen: hard (the later beat needs this beat's effect) or soft.
+- First states (PROP_FIRST_STATE): the first beat's requires give every prop's holder and card states at the start
+  (e.g. kunai holder B, line coiled, deployment hidden); a prop already in a hand at the start gets its possess contact
+  with "at": "start". A contact otherwise happens at its beat's end.
 - why: one sentence saying why the later beat follows (the threat, the purpose or the physical result), naming the
   performers or props involved; never a timeline ("leads into the next exchange") and never a label (CAUSE_REASON).
 - No filler: a beat that is not a hold must change state, make or end a contact, or cause or be caused by another beat.

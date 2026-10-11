@@ -470,7 +470,10 @@ Spec and codes: [M8_DAG_PROSE.md](M8_DAG_PROSE.md).
   prompt states the rule; C6 back to enforced, T9 gains CAUSE_REASON; render.txt byte-identical (LBN prints no reasons, Q3).
 - [ ] M8.12 harden the 16 PASS rows the renders contradict (owner 2026-10-11): a render finding no code catches turns a
   PASS into NOT CHECKED (done: reference fight prose 38 -> 26 PASS; F1, F2 caught by CAUSE_REASON); then one check per
-  finding (prop first states F11/F9, the rope line F8, counts/start/set F12/F10/F13, the DAG's X-audit F3, density F6/F14).
+  finding: [x] prop first states F11/F9 (PROP_FIRST_STATE at S06 and in the prompt; contacts may happen at a beat's
+  start, beat_plan/temporal_graph 1.3; the reference fight's props start known: kunai held by B R hand, line coiled,
+  smoke sealed, shuriken holstered, log hidden until 4.00; SCENE prints them; C24 PASS again) · [ ] the rope line F8 ·
+  [ ] counts/start/set F12/F10/F13 · [ ] the DAG's X-audit F3 · [ ] density F6/F14.
 - [ ] M8.13+ the applicability stage (O16), then camera, body and props, density and format, the rest. Derivable: PROP_TWO_HOLDERS (C5, S07), POST_CONTACT_MISSING (C21),
   PHRASING_MISSING (LMA, T6), MOMENTUM_MISSING (C22, T10), CHAIN_ORDER (KC), ANTICIPATION_MISSING (KF),
   SHOT_TRANSITION_MISSING (C25), PROP_KINEMATICS (C31). Need the owner: JOINT_LIMIT ranges (BIO, T7; the DAG gives

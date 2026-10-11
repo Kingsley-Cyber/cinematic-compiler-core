@@ -1,4 +1,6 @@
-"""S06 continuity: no subject disappears or is cloned, every change has a triggering beat, possession agrees."""
+"""S06 continuity: no subject disappears or is cloned, every change has a triggering beat, possession agrees, and every
+prop's state is known from the first beat (PROP_FIRST_STATE, M8.12: owner render R4 put B's kunai in A's hand at 0.0,
+R1-R5 drew the substitution log before it was used; both prompts said 'state unknown' at 0.00)."""
 
 from solver.prop_state_machine import UNKNOWN
 
@@ -32,4 +34,18 @@ def check(snapshots, transitions, subjects, beat_ids):
                 held = table.get(("entity", conditions["holder"]), {}).get("possession", UNKNOWN)
                 if held not in (UNKNOWN, sid):
                     findings.append(_finding("POSSESSION_MISMATCH", "Prop holder and actor possession disagree", [point, sid]))
+    return findings
+
+
+def first_states(snapshots, beat_ids):
+    """PROP_FIRST_STATE: at the first beat each prop's holder and card states are known (its location may be unknown
+    while it is held or hidden). They come from first requirements, a chained clip's end states and contacts at start."""
+    first = beat_ids[0] if beat_ids else None
+    findings = []
+    for node in snapshots:
+        if node["beat"] == first and node["subject"]["kind"] == "prop":
+            gaps = sorted(k for k, v in node["conditions"].items() if v == UNKNOWN and k != "location")
+            if gaps:
+                findings.append(_finding("PROP_FIRST_STATE", f"{node['subject']['id']}: {', '.join(gaps)} unknown at the "
+                                         "first beat", [first, node["subject"]["id"]]))
     return findings

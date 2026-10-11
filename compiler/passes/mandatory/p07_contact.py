@@ -33,10 +33,15 @@ def events_of(beats):
     events = []
     for beat in sorted(beats, key=lambda b: (b["t"] + b["dur"], b["t"], b["id"])):
         for index, contact in enumerate(beat["contacts"], 1):
-            events.append({"id": f"{beat['id']}_c{index}", "t": round(beat["t"] + beat["dur"], 6), "beat": beat["id"],
+            events.append({"id": f"{beat['id']}_c{index}", "t": contact_time(beat, contact), "beat": beat["id"],
                            "contact_type": contact["contact_type"], "body_part": contact["a"]["part"],
                            "a": {"kind": "entity", "id": contact["a"]["id"]}, "b": dict(contact["b"])})
     return events
+
+
+def contact_time(beat, contact):
+    """A contact happens at its beat's end, or at its start when marked `at: start` (M8.12: a prop in hand at t=0)."""
+    return round(beat["t"] + (0 if contact.get("at") == "start" else beat["dur"]), 6)
 
 
 def chain_events(scene):
