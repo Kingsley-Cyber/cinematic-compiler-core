@@ -1,0 +1,214 @@
+{
+ "step_id": "S04",
+ "band": "L1",
+ "packet_sha256": "sha256:4cba337228f8a5dcea3c825ecadd69d5bc3b14441616cfba25edaf107f7f0b0e",
+ "author": {
+  "host": "Claude Code desktop, in-session",
+  "model": "claude-opus-5-5"
+ },
+ "attempt": 1,
+ "beats": [
+  {
+   "id": "b01",
+   "t": 0.0,
+   "dur": 2.5,
+   "event_type": "action",
+   "actor": "knight",
+   "label": "advance_and_glare",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "wizard"
+    }
+   ],
+   "modes": {
+    "knight": "aggressive"
+   },
+   "pos": {
+    "knight": [
+     0,
+     0,
+     0
+    ],
+    "wizard": [
+     0,
+     0,
+     4
+    ]
+   },
+   "facing": {
+    "knight": [
+     0,
+     0,
+     1
+    ],
+    "wizard": [
+     0,
+     0,
+     -1
+    ]
+   },
+   "action": "The knight steps in, sword arm low, glaring at the wizard.",
+   "requires": [],
+   "effects": [],
+   "contacts": [],
+   "causes": [
+    {
+     "to": "b02",
+     "causal_strength": "soft",
+     "why": "The stand-off answers itself."
+    }
+   ]
+  },
+  {
+   "id": "b02",
+   "t": 2.5,
+   "dur": 2.0,
+   "event_type": "action",
+   "actor": "wizard",
+   "label": "raise_hand_smirk",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "knight"
+    }
+   ],
+   "modes": {
+    "wizard": "calm_casting"
+   },
+   "pos": {
+    "knight": [
+     0,
+     0,
+     1.0
+    ],
+    "wizard": [
+     0,
+     0,
+     4
+    ]
+   },
+   "facing": {
+    "knight": [
+     0,
+     0,
+     1
+    ],
+    "wizard": [
+     0,
+     0,
+     -1
+    ]
+   },
+   "action": "The wizard lifts one hand, unhurried, a one-sided smirk at the knight's advance.",
+   "requires": [],
+   "effects": [],
+   "contacts": [],
+   "causes": [
+    {
+     "to": "b03",
+     "causal_strength": "soft",
+     "why": "The stand-off answers itself."
+    }
+   ]
+  },
+  {
+   "id": "b03",
+   "t": 4.5,
+   "dur": 2.0,
+   "event_type": "action",
+   "actor": "knight",
+   "label": "halt_and_steel",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "wizard"
+    }
+   ],
+   "modes": {
+    "knight": "defensive"
+   },
+   "pos": {
+    "knight": [
+     0,
+     0,
+     1.2
+    ],
+    "wizard": [
+     0,
+     0,
+     4
+    ]
+   },
+   "facing": {
+    "knight": [
+     0,
+     0,
+     1
+    ],
+    "wizard": [
+     0,
+     0,
+     -1
+    ]
+   },
+   "action": "The knight halts mid-step; fear flickers across the face and is crushed, the jaw sets.",
+   "requires": [],
+   "effects": [],
+   "contacts": [],
+   "causes": [
+    {
+     "to": "b04",
+     "causal_strength": "soft",
+     "why": "The stand-off answers itself."
+    }
+   ]
+  },
+  {
+   "id": "b04",
+   "t": 6.5,
+   "dur": 1.5,
+   "event_type": "hold",
+   "actor": "wizard",
+   "label": "face_off",
+   "participants": [
+    {
+     "kind": "entity",
+     "id": "knight"
+    }
+   ],
+   "modes": {
+    "wizard": "calm_casting"
+   },
+   "pos": {
+    "knight": [
+     0,
+     0,
+     1.2
+    ],
+    "wizard": [
+     0,
+     0,
+     4
+    ]
+   },
+   "facing": {
+    "knight": [
+     0,
+     0,
+     1
+    ],
+    "wizard": [
+     0,
+     0,
+     -1
+    ]
+   },
+   "action": "They hold the stand-off, neither moving.",
+   "requires": [],
+   "effects": [],
+   "contacts": [],
+   "causes": []
+  }
+ ]
+}

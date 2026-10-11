@@ -16,7 +16,7 @@ scripts/check.sh
 DO_NOT_TRACK=1 graft --dir .graphs/graft build . --no-gitignore --no-ignore
 ```
 
-## Built (S01–S17; milestones M1, M1.5, M2, M3, M4, M5, M5.5; M3.5 face layer in progress)
+## Built (S01–S17; milestones M1, M1.5, M2, M3, M3.5, M4, M5, M5.5)
 | Step | What it compiles | Code |
 |---|---|---|
 | S01 intent (L0) | query + flags → Intent Document at `/intent`; literal only, evidence per value, `missing`/`ambiguous` | `planner/intent_parser.py`, `compiler/passes/mandatory/p01_intent.py` |
@@ -46,8 +46,11 @@ Examples (each recompiles byte-for-byte in the gate and has a `render.txt` ready
 - `examples/wizard_vs_acrobat/` — anime courtyard fight, 13 beats, 11 shots.
 - `examples/reference_fight/` — golden: the LBN reference ninja fight compiled from its preface; `render.txt`
   contains all 68 kernel + reference items and A's reference roots exactly.
-- `examples/ugc_glasses_demo/` — UGC: a creator unfolds and puts on glasses; UGC renderer.
-**The three render.txt files are ready for you to render; Claude never renders.**
+- `examples/ugc_glasses_demo/` — UGC: a creator unfolds and puts on glasses (faces: a genuine, slightly one-sided
+  smile at the reveal); UGC renderer.
+- `examples/live_action_standoff/` — live action: wizard vs knight (the knight's glare, the wizard's one-sided
+  contemptuous smirk, a suppressed fear micro-expression); live-action renderer.
+**The four render.txt files are ready for you to render; Claude never renders.**
 Kernel = the 68 controls both LBN-2.3-ADV and LBN-2.4-ADV-LMA state (`kernel/sources/`), scoped per item.
 
 ## Reference docs (generated)
@@ -83,9 +86,9 @@ linear causality only; closed kernel state vocabulary. Full log: `docs/layer_dep
 
 ## Open questions and next work
 M1–M5.5 are built (see **Done** in [docs/plans/MASTER_PLAN.md](docs/plans/MASTER_PLAN.md)).
-- **Next: M3.5 face layer** (owner decisions F1–F4, 2026-10-11). Renumbering is done (facial = S14; effort S15,
-  camera S16, render S17, post-generation S18; all three render.txt files byte-identical). S14 facial is built and the
-  glasses demo has faces. Camera face checks are built. Next: F.8b + F.9b live-action standoff example. Plan: MASTER_PLAN "M3.5".
+- **M3.5 face layer is done** (owner decisions F1–F4): renumbered (S14 facial; effort S15, camera S16, render S17,
+  post-generation S18), S14 for live_action and ugc_ad, camera face checks, words-only faces in the render.
+  Face libraries and face profiles are drafts; the research notes are in `library/facs_asymmetry_bounds.yaml`.
 - **M6 needs your definitions before it can be built.** The plan names five tools (`synergy_matrix`,
   `bridge_detector`, `layer_analyzer`, `kernel_compressor`, `ablation_runner`) but never says what each computes, and
   compression/ablation touch B3 (no compression before a target model) and the no-render rule.

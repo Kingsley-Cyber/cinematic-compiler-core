@@ -1,0 +1,322 @@
+{
+ "step_id": "S16",
+ "band": "L5.5",
+ "packet_sha256": "sha256:92f618bac5d25cc59d9d1af6dc925c17e61b6d2a5b76c750bd310203586ed7f4",
+ "author": {
+  "host": "Claude Code desktop, in-session",
+  "model": "claude-opus-5-5"
+ },
+ "attempt": 1,
+ "shots": [
+  {
+   "id": "c01",
+   "t": 0.0,
+   "dur": 2.5,
+   "beats": [
+    "b01"
+   ],
+   "intent": "emotion",
+   "motivation": {
+    "kind": "entity_focus",
+    "ref": "knight"
+   },
+   "framing": {
+    "scale": "medium_close",
+    "subjects": [
+     "knight"
+    ],
+    "detail": null,
+    "visible_action": "The knight steps in, glaring."
+   },
+   "angle": {
+    "elevation_deg": 3,
+    "azimuth_deg": -40,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "knight",
+    "distance_m": 1.562,
+    "side": "right"
+   },
+   "lens": {
+    "focal_length_mm": 50,
+    "perspective": "normal"
+   },
+   "focus": {
+    "target": "knight",
+    "depth_of_field": "shallow",
+    "transition": "hold"
+   },
+   "movement": {
+    "kind": "static",
+    "path": "held on the advancing knight"
+   },
+   "movement_quality": {
+    "easing": "linear",
+    "stability": "locked",
+    "texture": "none"
+   },
+   "support": {
+    "rig": "tripod"
+   },
+   "relation_to_action": {
+    "mode": "observe",
+    "subject": "knight",
+    "note": "the glare is the threat"
+   },
+   "composition": {
+    "placement": {
+     "knight": "center"
+    },
+    "depth_anchor": "stone_wall",
+    "negative_space": "dark stone behind"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "none",
+    "affected": []
+   },
+   "editing": {
+    "transition_in": "open",
+    "axis": "keep",
+    "eyeline": "knight toward the wizard"
+   }
+  },
+  {
+   "id": "c02",
+   "t": 2.5,
+   "dur": 2.0,
+   "beats": [
+    "b02"
+   ],
+   "intent": "emotion",
+   "motivation": {
+    "kind": "narrative_intent",
+    "ref": "b01__causes__b02"
+   },
+   "framing": {
+    "scale": "medium_close",
+    "subjects": [
+     "wizard"
+    ],
+    "detail": null,
+    "visible_action": "The wizard raises a hand with a one-sided smirk."
+   },
+   "angle": {
+    "elevation_deg": 3,
+    "azimuth_deg": -140,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "wizard",
+    "distance_m": 1.562,
+    "side": "right"
+   },
+   "lens": {
+    "focal_length_mm": 50,
+    "perspective": "normal"
+   },
+   "focus": {
+    "target": "wizard",
+    "depth_of_field": "shallow",
+    "transition": "hold"
+   },
+   "movement": {
+    "kind": "static",
+    "path": "held on the wizard's smirk"
+   },
+   "movement_quality": {
+    "easing": "linear",
+    "stability": "locked",
+    "texture": "none"
+   },
+   "support": {
+    "rig": "tripod"
+   },
+   "relation_to_action": {
+    "mode": "observe",
+    "subject": "wizard",
+    "note": "the smirk answers the advance"
+   },
+   "composition": {
+    "placement": {
+     "wizard": "center"
+    },
+    "depth_anchor": "stone_wall",
+    "negative_space": "torchlit wall"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "none",
+    "affected": []
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "wizard toward the knight"
+   }
+  },
+  {
+   "id": "c03",
+   "t": 4.5,
+   "dur": 2.0,
+   "beats": [
+    "b03"
+   ],
+   "intent": "emotion",
+   "motivation": {
+    "kind": "narrative_intent",
+    "ref": "b02__causes__b03"
+   },
+   "framing": {
+    "scale": "close",
+    "subjects": [
+     "knight"
+    ],
+    "detail": null,
+    "visible_action": "Fear flickers on the knight's face, then the jaw sets."
+   },
+   "angle": {
+    "elevation_deg": 0,
+    "azimuth_deg": -30,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "knight",
+    "distance_m": 1.771,
+    "side": "right"
+   },
+   "lens": {
+    "focal_length_mm": 85,
+    "perspective": "telephoto"
+   },
+   "focus": {
+    "target": "knight",
+    "depth_of_field": "shallow",
+    "transition": "hold"
+   },
+   "movement": {
+    "kind": "static",
+    "path": "tight on the knight's face"
+   },
+   "movement_quality": {
+    "easing": "linear",
+    "stability": "locked",
+    "texture": "none"
+   },
+   "support": {
+    "rig": "tripod"
+   },
+   "relation_to_action": {
+    "mode": "observe",
+    "subject": "knight",
+    "note": "fear leaks and is crushed"
+   },
+   "composition": {
+    "placement": {
+     "knight": "center"
+    },
+    "depth_anchor": "stone_wall",
+    "negative_space": "soft dark falloff"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "none",
+    "affected": []
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "knight toward the wizard"
+   }
+  },
+  {
+   "id": "c04",
+   "t": 6.5,
+   "dur": 1.5,
+   "beats": [
+    "b04"
+   ],
+   "intent": "spatial",
+   "motivation": {
+    "kind": "spatial_geometry",
+    "ref": "stone_wall"
+   },
+   "framing": {
+    "scale": "wide",
+    "subjects": [
+     "knight",
+     "wizard"
+    ],
+    "detail": null,
+    "visible_action": "The two hold the stand-off across the hall."
+   },
+   "angle": {
+    "elevation_deg": 5,
+    "azimuth_deg": -90,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "midpoint",
+    "distance_m": 4.0,
+    "side": "right"
+   },
+   "lens": {
+    "focal_length_mm": 24,
+    "perspective": "wide"
+   },
+   "focus": {
+    "target": "knight",
+    "depth_of_field": "deep",
+    "transition": "hold"
+   },
+   "movement": {
+    "kind": "static",
+    "path": "side-on two-shot of the stand-off"
+   },
+   "movement_quality": {
+    "easing": "linear",
+    "stability": "locked",
+    "texture": "none"
+   },
+   "support": {
+    "rig": "tripod"
+   },
+   "relation_to_action": {
+    "mode": "observe",
+    "subject": "knight",
+    "note": "neither moves"
+   },
+   "composition": {
+    "placement": {
+     "knight": "left_third",
+     "wizard": "right_third"
+    },
+    "depth_anchor": "stone_wall",
+    "negative_space": "the gap between them"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "none",
+    "affected": []
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "fighters face to face"
+   }
+  }
+ ]
+}

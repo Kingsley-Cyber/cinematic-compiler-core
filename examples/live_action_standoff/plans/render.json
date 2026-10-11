@@ -1,0 +1,29 @@
+{
+ "step_id": "S17",
+ "band": "L6",
+ "packet_sha256": "sha256:965e20d9df73c980fbc8eeb34ee8b9b21afc43b6586559be5d68f097ebe75422",
+ "author": {
+  "host": "Claude Code desktop, in-session",
+  "model": "claude-opus-5-5"
+ },
+ "attempt": 1,
+ "frame_parts": {
+  "impact": [],
+  "smear": [],
+  "speedlines": [],
+  "holds": [
+   {
+    "t": 6.5,
+    "frames": 12
+   }
+  ],
+  "fx": [
+   {
+    "t": 0.0,
+    "t_end": 8.0,
+    "text": "torchlight flicker on the stone walls"
+   }
+  ],
+  "ink": "photographic live-action footage; no ink, no smears, no speedlines"
+ }
+}

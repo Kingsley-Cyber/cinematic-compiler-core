@@ -1,0 +1,156 @@
+{
+ "step_id": "S11",
+ "band": "L4a",
+ "packet_sha256": "sha256:e47a5c0c97a019431277ef26d8f3b92769c76b70b3901ed29fee3bb08c0aafbb",
+ "author": {
+  "host": "Claude Code desktop, in-session",
+  "model": "claude-opus-5-5"
+ },
+ "attempt": 1,
+ "nodes": [
+  {
+   "slot": "knight@b01",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "shifting",
+   "loading": "loading",
+   "bracing": "light",
+   "yielding": "none",
+   "weight_transfer": "forward",
+   "tension": "high",
+   "release": "none",
+   "strain": "mild",
+   "restraint": "none",
+   "breathing": "held",
+   "reads": "Weight rolling forward into each step, shoulders squared."
+  },
+  {
+   "slot": "wizard@b01",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "unloaded",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "none",
+   "tension": "relaxed",
+   "release": "none",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "steady",
+   "reads": "Planted and loose, hands at rest."
+  },
+  {
+   "slot": "wizard@b02",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "unloaded",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "none",
+   "tension": "moderate",
+   "release": "none",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "steady",
+   "reads": "One hand rises from the shoulder, the body otherwise still."
+  },
+  {
+   "slot": "knight@b02",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "loaded",
+   "bracing": "braced",
+   "yielding": "none",
+   "weight_transfer": "none",
+   "tension": "high",
+   "release": "none",
+   "strain": "mild",
+   "restraint": "held_back",
+   "breathing": "held",
+   "reads": "Stopped in a braced stance, sword arm low and ready."
+  },
+  {
+   "slot": "knight@b03",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "recovering",
+   "loading": "loaded",
+   "bracing": "braced",
+   "yielding": "none",
+   "weight_transfer": "backward",
+   "tension": "high",
+   "release": "none",
+   "strain": "high",
+   "restraint": "held_back",
+   "breathing": "gasp",
+   "reads": "A half-step back caught and checked, breath catching."
+  },
+  {
+   "slot": "wizard@b03",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "unloaded",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "none",
+   "tension": "relaxed",
+   "release": "none",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "steady",
+   "reads": "Hand held up, at ease."
+  },
+  {
+   "slot": "wizard@b04",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "unloaded",
+   "bracing": "none",
+   "yielding": "none",
+   "weight_transfer": "none",
+   "tension": "relaxed",
+   "release": "none",
+   "strain": "none",
+   "restraint": "none",
+   "breathing": "steady",
+   "reads": "Unmoved, hand still raised."
+  },
+  {
+   "slot": "knight@b04",
+   "support": [
+    "left_foot",
+    "right_foot"
+   ],
+   "balance": "stable",
+   "loading": "loaded",
+   "bracing": "braced",
+   "yielding": "none",
+   "weight_transfer": "none",
+   "tension": "moderate",
+   "release": "none",
+   "strain": "mild",
+   "restraint": "held_back",
+   "breathing": "steady",
+   "reads": "Squared and braced, weight settled."
+  }
+ ]
+}

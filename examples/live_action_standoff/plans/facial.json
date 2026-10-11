@@ -1,0 +1,246 @@
+{
+ "step_id": "S14",
+ "band": "L4d",
+ "packet_sha256": "sha256:59dd4b88baecfb351706764a09e07f461de630d929064f4b95a38e798040e438",
+ "author": {
+  "host": "Claude Code desktop, in-session",
+  "model": "claude-opus-5-5"
+ },
+ "attempt": 1,
+ "faces": [
+  {
+   "slot": "knight@b01",
+   "aus": [
+    {
+     "au": "AU4",
+     "intensity": "C",
+     "bilateral": true
+    },
+    {
+     "au": "AU7",
+     "intensity": "B",
+     "bilateral": true
+    },
+    {
+     "au": "AU23",
+     "intensity": "B",
+     "bilateral": true
+    },
+    {
+     "au": "AU31",
+     "intensity": "B",
+     "bilateral": true
+    }
+   ],
+   "inactive_aus": [
+    "AU12"
+   ],
+   "valence": -0.6,
+   "arousal": 0.7,
+   "emotion_label": "determined_anger",
+   "display_rule": "genuine",
+   "gaze_target": "wizard",
+   "salience": "carries_beat",
+   "onset": "rapid",
+   "onset_frames": 10,
+   "description": "Brows hard down, eyes narrowed, lips pressed thin, jaw clenched, no smile."
+  },
+  {
+   "slot": "wizard@b01",
+   "aus": [
+    {
+     "au": "AU24",
+     "intensity": "A",
+     "bilateral": true
+    }
+   ],
+   "inactive_aus": [
+    "AU4"
+   ],
+   "valence": 0.1,
+   "arousal": -0.3,
+   "emotion_label": "calm",
+   "display_rule": "masked",
+   "gaze_target": "knight",
+   "salience": "supporting",
+   "onset": "slow",
+   "onset_frames": 18,
+   "description": "A composed, unreadable face, lips lightly pressed."
+  },
+  {
+   "slot": "knight@b02",
+   "aus": [
+    {
+     "au": "AU4",
+     "intensity": "C",
+     "bilateral": true
+    },
+    {
+     "au": "AU7",
+     "intensity": "B",
+     "bilateral": true
+    },
+    {
+     "au": "AU23",
+     "intensity": "B",
+     "bilateral": true
+    },
+    {
+     "au": "AU31",
+     "intensity": "B",
+     "bilateral": true
+    }
+   ],
+   "inactive_aus": [
+    "AU12"
+   ],
+   "valence": -0.6,
+   "arousal": 0.7,
+   "emotion_label": "determined_anger",
+   "display_rule": "genuine",
+   "gaze_target": "wizard",
+   "salience": "background",
+   "onset": "hold",
+   "onset_frames": 0,
+   "description": "The same hard glare held."
+  },
+  {
+   "slot": "wizard@b02",
+   "aus": [
+    {
+     "au": "AU12",
+     "left_intensity": "B",
+     "right_intensity": null,
+     "bilateral": false,
+     "asymmetry": {
+      "dominant_side": "left",
+      "magnitude": 2,
+      "pattern": "contempt"
+     }
+    },
+    {
+     "au": "AU14",
+     "left_intensity": "B",
+     "right_intensity": null,
+     "bilateral": false,
+     "asymmetry": {
+      "dominant_side": "left",
+      "magnitude": 2,
+      "pattern": "contempt"
+     }
+    }
+   ],
+   "inactive_aus": [
+    "AU6"
+   ],
+   "valence": -0.4,
+   "arousal": 0.1,
+   "emotion_label": "contemptuous",
+   "display_rule": "genuine",
+   "gaze_target": "knight",
+   "salience": "carries_beat",
+   "onset": "slow",
+   "onset_frames": 14,
+   "description": "One corner of the mouth curls up and tightens on his left side: a contemptuous smirk, the eyes not smiling."
+  },
+  {
+   "slot": "knight@b03",
+   "aus": [
+    {
+     "au": "AU1",
+     "intensity": "B",
+     "bilateral": true
+    },
+    {
+     "au": "AU2",
+     "intensity": "B",
+     "bilateral": true
+    },
+    {
+     "au": "AU5",
+     "intensity": "B",
+     "bilateral": true
+    },
+    {
+     "au": "AU20",
+     "intensity": "B",
+     "bilateral": true
+    }
+   ],
+   "inactive_aus": [],
+   "valence": -0.6,
+   "arousal": 0.8,
+   "emotion_label": "afraid",
+   "display_rule": "suppressed",
+   "gaze_target": "wizard",
+   "salience": "carries_beat",
+   "onset": "micro",
+   "onset_frames": 5,
+   "description": "For a split second the brows jump and the eyes widen in fear, then it is crushed."
+  },
+  {
+   "slot": "wizard@b03",
+   "aus": [],
+   "inactive_aus": [
+    "AU4"
+   ],
+   "valence": 0.1,
+   "arousal": -0.4,
+   "emotion_label": "calm",
+   "display_rule": "genuine",
+   "gaze_target": "knight",
+   "salience": "supporting",
+   "onset": "slow",
+   "onset_frames": 24,
+   "description": "Calm, almost bored."
+  },
+  {
+   "slot": "knight@b04",
+   "aus": [
+    {
+     "au": "AU4",
+     "intensity": "B",
+     "bilateral": true
+    },
+    {
+     "au": "AU24",
+     "intensity": "B",
+     "bilateral": true
+    },
+    {
+     "au": "AU31",
+     "intensity": "C",
+     "bilateral": true
+    }
+   ],
+   "inactive_aus": [
+    "AU5"
+   ],
+   "valence": -0.2,
+   "arousal": 0.6,
+   "emotion_label": "determined",
+   "display_rule": "genuine",
+   "gaze_target": "wizard",
+   "salience": "supporting",
+   "onset": "rapid",
+   "onset_frames": 8,
+   "description": "The jaw sets hard, lips pressed, brows down: resolve over fear."
+  },
+  {
+   "slot": "wizard@b04",
+   "aus": [],
+   "inactive_aus": [
+    "AU4"
+   ],
+   "valence": 0.1,
+   "arousal": -0.4,
+   "emotion_label": "calm",
+   "display_rule": "genuine",
+   "gaze_target": "knight",
+   "salience": "supporting",
+   "onset": "hold",
+   "onset_frames": 0,
+   "description": "Calm, unmoved."
+  }
+ ]
+}

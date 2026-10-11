@@ -10,10 +10,10 @@ ugc_renderer.py for ugc_ad): target, variant, text, sha256, coverage, frame part
 
 from compiler.authoring import run_authored, seal
 from planner.dependency_graph import ROOT, load
-from renderers import anime_renderer, ugc_renderer
+from renderers import anime_renderer, live_renderer, ugc_renderer
 
 NODE, STEP = "render", "S17"
-RENDERERS = {"ugc_ad": ugc_renderer}  # every other genre uses the anime LBN layout
+RENDERERS = {"ugc_ad": ugc_renderer, "live_action": live_renderer}  # anime uses the anime LBN layout
 PLAN_SCHEMA = ROOT / "schemas" / "graphs" / "frame_parts_plan.schema.json"
 PROMPT = ROOT / "planner" / "prompts" / "frame_parts.txt"
 ONSETS = ("touch", "possess", "support")

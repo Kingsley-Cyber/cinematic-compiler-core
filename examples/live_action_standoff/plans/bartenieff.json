@@ -1,0 +1,109 @@
+{
+ "step_id": "S12",
+ "band": "L4b",
+ "packet_sha256": "sha256:4a8dbf3d173d0cba4fc538e44579f771a025ce9cb3dfde92af7a0ec916a78a2e",
+ "author": {
+  "host": "Claude Code desktop, in-session",
+  "model": "claude-opus-5-5"
+ },
+ "attempt": 1,
+ "nodes": [
+  {
+   "slot": "knight@b01",
+   "connectivity": "cross_lateral",
+   "developmental_pattern": "push",
+   "intent": "close the distance",
+   "initiation": "left_foot",
+   "follow_through": [
+    "right_arm",
+    "torso",
+    "right_leg"
+   ],
+   "body_mode": "cross_lateral"
+  },
+  {
+   "slot": "wizard@b01",
+   "connectivity": "breath",
+   "developmental_pattern": "yield",
+   "intent": "stay unbothered",
+   "initiation": "core",
+   "follow_through": [
+    "torso",
+    "head"
+   ],
+   "body_mode": "core_distal"
+  },
+  {
+   "slot": "wizard@b02",
+   "connectivity": "body_half",
+   "developmental_pattern": "reach",
+   "intent": "raise the casting hand",
+   "initiation": "right_hand",
+   "follow_through": [
+    "right_arm",
+    "torso"
+   ],
+   "body_mode": "same_side"
+  },
+  {
+   "slot": "knight@b02",
+   "connectivity": "core_distal",
+   "developmental_pattern": "yield",
+   "intent": "hold ground",
+   "initiation": "core",
+   "follow_through": [
+    "left_leg",
+    "right_leg",
+    "right_arm"
+   ],
+   "body_mode": "core_distal"
+  },
+  {
+   "slot": "knight@b03",
+   "connectivity": "core_distal",
+   "developmental_pattern": "push",
+   "intent": "stop and steady",
+   "initiation": "core",
+   "follow_through": [
+    "left_leg",
+    "right_leg",
+    "head"
+   ],
+   "body_mode": "core_distal"
+  },
+  {
+   "slot": "wizard@b03",
+   "connectivity": "breath",
+   "developmental_pattern": "yield",
+   "intent": "wait",
+   "initiation": "core",
+   "follow_through": [
+    "torso"
+   ],
+   "body_mode": "core_distal"
+  },
+  {
+   "slot": "wizard@b04",
+   "connectivity": "breath",
+   "developmental_pattern": "yield",
+   "intent": "wait",
+   "initiation": "core",
+   "follow_through": [
+    "torso"
+   ],
+   "body_mode": "core_distal"
+  },
+  {
+   "slot": "knight@b04",
+   "connectivity": "core_distal",
+   "developmental_pattern": "yield",
+   "intent": "stay braced",
+   "initiation": "core",
+   "follow_through": [
+    "torso",
+    "right_arm"
+   ],
+   "body_mode": "core_distal"
+  }
+ ]
+}

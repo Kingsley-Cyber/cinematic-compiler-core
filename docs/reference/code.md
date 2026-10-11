@@ -19,7 +19,7 @@ flowchart LR
   cli -->|1| validators
   compiler -->|18| kernel
   compiler -->|41| planner
-  compiler -->|2| renderers
+  compiler -->|3| renderers
   compiler -->|7| solver
   compiler -->|27| validators
   kernel -->|1| compiler
@@ -53,7 +53,7 @@ flowchart LR
 | `compiler.passes.derived.p14_facial` | `compiler.authoring`, `planner.dependency_graph`, `planner.scene_view`, `solver.quaternion`, `validators.facial_validator`, `validators.schema_validator` | functools, json, yaml |
 | `compiler.passes.derived.p15_effort` | `compiler.authoring`, `planner.dependency_graph`, `planner.library_vocab`, `planner.scene_view`, `validators.schema_validator` | json, yaml |
 | `compiler.passes.derived.p16_camera` | `compiler.authoring`, `planner.camera_library`, `planner.dependency_graph`, `planner.library_vocab`, `solver.camera_geometry`, `solver.quaternion`, `validators.camera_validator` | — |
-| `compiler.passes.derived.p17_render` | `compiler.authoring`, `planner.dependency_graph`, `renderers.anime_renderer`, `renderers.ugc_renderer` | — |
+| `compiler.passes.derived.p17_render` | `compiler.authoring`, `planner.dependency_graph`, `renderers.anime_renderer`, `renderers.live_renderer`, `renderers.ugc_renderer` | — |
 | `compiler.passes.mandatory.p01_intent` | `kernel.canonical`, `planner.dependency_graph`, `planner.intent_parser`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
 | `compiler.passes.mandatory.p02_brief` | `kernel.canonical`, `planner.dependency_graph`, `planner.query_expander`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
 | `compiler.passes.mandatory.p03_constraint` | `kernel.canonical`, `planner.card_loader`, `planner.dependency_graph`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json, yaml |
@@ -87,6 +87,7 @@ flowchart LR
 | `planner.vocabulary` | `kernel.kernel_files` | — |
 | `planner.world_grounder` | `planner.card_loader` | — |
 | `renderers.anime_renderer` | `planner.library_vocab` | hashlib, json, math |
+| `renderers.live_renderer` | `renderers.anime_renderer` | — |
 | `renderers.ugc_renderer` | `renderers.anime_renderer` | — |
 | `solver.camera_geometry` | — | math |
 | `solver.euler_solver` | `solver.quaternion` | — |

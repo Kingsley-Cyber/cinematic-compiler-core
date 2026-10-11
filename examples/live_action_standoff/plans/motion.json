@@ -1,0 +1,604 @@
+{
+ "step_id": "S13",
+ "band": "L4c",
+ "packet_sha256": "sha256:c9838440fcfeb72f579caad31b5d4827821f404bc459e7cb4600205d766b050e",
+ "author": {
+  "host": "Claude Code desktop, in-session",
+  "model": "claude-opus-5-5"
+ },
+ "attempt": 1,
+ "keys": [
+  {
+   "slot": "knight@b01",
+   "name": "knight_step",
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     10,
+     0,
+     0
+    ],
+    "LUL": [
+     -30,
+     0,
+     6
+    ],
+    "RUL": [
+     10,
+     0,
+     -6
+    ],
+    "LL": [
+     30,
+     0,
+     0
+    ],
+    "RL": [
+     15,
+     0,
+     0
+    ],
+    "LA": [
+     -10,
+     0,
+     15
+    ],
+    "RA": [
+     -15,
+     0,
+     -10
+    ],
+    "LFA": [
+     -40,
+     0,
+     0
+    ],
+    "RFA": [
+     -30,
+     0,
+     0
+    ],
+    "HD": [
+     -5,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "turn": "none",
+   "axis_declaration": "none",
+   "description": "Mid-stride toward the wizard, sword arm low."
+  },
+  {
+   "slot": "wizard@b01",
+   "name": "wizard_still",
+   "pos": [
+    0,
+    0,
+    4
+   ],
+   "rot": [
+    0,
+    180,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     0,
+     0,
+     0
+    ],
+    "LUL": [
+     -5,
+     0,
+     6
+    ],
+    "RUL": [
+     5,
+     0,
+     -6
+    ],
+    "LL": [
+     5,
+     0,
+     0
+    ],
+    "RL": [
+     5,
+     0,
+     0
+    ],
+    "LA": [
+     -10,
+     0,
+     10
+    ],
+    "RA": [
+     -10,
+     0,
+     -10
+    ],
+    "LFA": [
+     -30,
+     0,
+     0
+    ],
+    "RFA": [
+     -30,
+     0,
+     0
+    ],
+    "HD": [
+     0,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "turn": "none",
+   "axis_declaration": "none",
+   "description": "Standing easy, hands at the sides."
+  },
+  {
+   "slot": "wizard@b02",
+   "name": "wizard_hand_up",
+   "pos": [
+    0,
+    0,
+    4
+   ],
+   "rot": [
+    0,
+    180,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     0,
+     0,
+     0
+    ],
+    "LUL": [
+     -5,
+     0,
+     6
+    ],
+    "RUL": [
+     5,
+     0,
+     -6
+    ],
+    "LL": [
+     5,
+     0,
+     0
+    ],
+    "RL": [
+     5,
+     0,
+     0
+    ],
+    "LA": [
+     -10,
+     0,
+     10
+    ],
+    "RA": [
+     -95,
+     0,
+     -10
+    ],
+    "LFA": [
+     -30,
+     0,
+     0
+    ],
+    "RFA": [
+     -60,
+     0,
+     0
+    ],
+    "HD": [
+     0,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "turn": "none",
+   "axis_declaration": "none",
+   "description": "Right hand raised to chest height, palm out."
+  },
+  {
+   "slot": "knight@b02",
+   "name": "knight_brace",
+   "pos": [
+    0,
+    0,
+    1.0
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     5,
+     0,
+     0
+    ],
+    "LUL": [
+     -20,
+     0,
+     10
+    ],
+    "RUL": [
+     -10,
+     0,
+     -10
+    ],
+    "LL": [
+     25,
+     0,
+     0
+    ],
+    "RL": [
+     20,
+     0,
+     0
+    ],
+    "LA": [
+     -10,
+     0,
+     15
+    ],
+    "RA": [
+     -25,
+     0,
+     -10
+    ],
+    "LFA": [
+     -50,
+     0,
+     0
+    ],
+    "RFA": [
+     -35,
+     0,
+     0
+    ],
+    "HD": [
+     0,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "turn": "none",
+   "axis_declaration": "none",
+   "description": "Planted in a braced stance."
+  },
+  {
+   "slot": "knight@b03",
+   "name": "knight_check",
+   "pos": [
+    0,
+    0,
+    1.2
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     -5,
+     0,
+     0
+    ],
+    "LUL": [
+     -15,
+     0,
+     10
+    ],
+    "RUL": [
+     -25,
+     0,
+     -10
+    ],
+    "LL": [
+     20,
+     0,
+     0
+    ],
+    "RL": [
+     35,
+     0,
+     0
+    ],
+    "LA": [
+     -15,
+     0,
+     20
+    ],
+    "RA": [
+     -20,
+     0,
+     -15
+    ],
+    "LFA": [
+     -45,
+     0,
+     0
+    ],
+    "RFA": [
+     -40,
+     0,
+     0
+    ],
+    "HD": [
+     5,
+     0,
+     0
+    ],
+    "NK": [
+     3,
+     0,
+     0
+    ]
+   },
+   "turn": "none",
+   "axis_declaration": "none",
+   "description": "Caught half a step back, then holding."
+  },
+  {
+   "slot": "wizard@b03",
+   "name": "wizard_hand_up",
+   "pos": [
+    0,
+    0,
+    4
+   ],
+   "rot": [
+    0,
+    180,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     0,
+     0,
+     0
+    ],
+    "LUL": [
+     -5,
+     0,
+     6
+    ],
+    "RUL": [
+     5,
+     0,
+     -6
+    ],
+    "LL": [
+     5,
+     0,
+     0
+    ],
+    "RL": [
+     5,
+     0,
+     0
+    ],
+    "LA": [
+     -10,
+     0,
+     10
+    ],
+    "RA": [
+     -95,
+     0,
+     -10
+    ],
+    "LFA": [
+     -30,
+     0,
+     0
+    ],
+    "RFA": [
+     -60,
+     0,
+     0
+    ],
+    "HD": [
+     0,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "turn": "none",
+   "axis_declaration": "none",
+   "description": "Hand still raised."
+  },
+  {
+   "slot": "wizard@b04",
+   "name": "wizard_hand_up",
+   "pos": [
+    0,
+    0,
+    4
+   ],
+   "rot": [
+    0,
+    180,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     0,
+     0,
+     0
+    ],
+    "LUL": [
+     -5,
+     0,
+     6
+    ],
+    "RUL": [
+     5,
+     0,
+     -6
+    ],
+    "LL": [
+     5,
+     0,
+     0
+    ],
+    "RL": [
+     5,
+     0,
+     0
+    ],
+    "LA": [
+     -10,
+     0,
+     10
+    ],
+    "RA": [
+     -95,
+     0,
+     -10
+    ],
+    "LFA": [
+     -30,
+     0,
+     0
+    ],
+    "RFA": [
+     -60,
+     0,
+     0
+    ],
+    "HD": [
+     0,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "turn": "none",
+   "axis_declaration": "none",
+   "description": "Unmoved, hand raised."
+  },
+  {
+   "slot": "knight@b04",
+   "name": "knight_brace",
+   "pos": [
+    0,
+    0,
+    1.2
+   ],
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "bones": {
+    "Sp": [
+     5,
+     0,
+     0
+    ],
+    "LUL": [
+     -20,
+     0,
+     10
+    ],
+    "RUL": [
+     -10,
+     0,
+     -10
+    ],
+    "LL": [
+     25,
+     0,
+     0
+    ],
+    "RL": [
+     20,
+     0,
+     0
+    ],
+    "LA": [
+     -10,
+     0,
+     15
+    ],
+    "RA": [
+     -25,
+     0,
+     -10
+    ],
+    "LFA": [
+     -50,
+     0,
+     0
+    ],
+    "RFA": [
+     -35,
+     0,
+     0
+    ],
+    "HD": [
+     0,
+     0,
+     0
+    ],
+    "NK": [
+     0,
+     0,
+     0
+    ]
+   },
+   "turn": "none",
+   "axis_declaration": "none",
+   "description": "Braced, squared to the wizard."
+  }
+ ]
+}

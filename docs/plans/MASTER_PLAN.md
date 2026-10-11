@@ -23,7 +23,7 @@ gates → the pass writes only its paths. A failed gate allows 2 re-authoring at
 - ~~Graph catalog (graph_types.md); URCP removed; standalone repo~~
 - ~~M1 (S04–S07), M1.5 (CLI, replan trigger), M2 (S11 kinematic, S12 Bartenieff, S13 motion), M3 (S14 effort,
   S15 camera), M4 (S16 render + reference-fight golden), M5 (S08 hand role, S09 object state, S10 affordance,
-  UGC glasses demo); three examples through S16~~
+  UGC glasses demo), M5.5 (chaining), M3.5 (renumber; S14 facial; four examples through S17)~~
 
 ---
 
@@ -317,7 +317,7 @@ _Renumbered by F2 (2026-10-11): effort is now S15, camera S16, render S17, post-
   S05 records `quadrant.carried_causes`; S15's first shot cannot open and obeys the axis and jump-cut rules against
   the previous last shot; S04's packet shows the chain; the render adds a `chained_from` block.)
 
-## M3.5 — face (S14 facial, L4d) → done when the UGC demo and a live-action example render faces in words
+## M3.5 — face (S14 facial, L4d) → done when the UGC demo and a live-action example render faces in words (done)
 
 Order of work: R (renumber, no content change) → F.1–F.6 (the facial step) → F.7–F.8 (camera and render read it) →
 F.9 (examples) → F.10 (docs). One commit per block; the gate passes after each.
@@ -403,15 +403,18 @@ F.9 (examples) → F.10 (docs). One commit per block; the gate passes after each
   in words. No AU codes and no valence/arousal numbers in the text (test: no `\bAU\d+` in any render).
   F.8b live_action gets its own genre block (frame parts under `frames`, not `anime`) via the shared projection.
   (Built with S14: rows gain `FACE` / `FACE (carries the beat)`, `NOT`, the feeling in word bands, display rule,
-  gaze by render label, and the authored description, which the validator keeps free of unit codes. F.8b waits for
-  the live-action example.)
+  gaze by render label, and the authored description, which the validator keeps free of unit codes. F.8b: `renderers/live_renderer.py`
+  puts live-action frame parts under `frames`.)
 
 ### Examples and docs
-- [ ] F.9 `examples/ugc_glasses_demo/`: facial plan for its four slots (the reveal carries the beat with a genuine,
+- [x] F.9 `examples/ugc_glasses_demo/`: facial plan for its four slots (the reveal carries the beat with a genuine,
   slightly one-sided smile); camera plan re-sealed and checked by F.7; render.txt updated.
-- [ ] F.9b New `examples/live_action_standoff/` (wizard and knight, existing cards and world): 3–4 beats S04–S17
+- [x] F.9b New `examples/live_action_standoff/` (wizard and knight, existing cards and world): 3–4 beats S04–S17
   authored in-session, including one masked face and one one-sided expression; render.txt for the owner.
-- [ ] F.10 graph_types row S14 Facial; HANDOFF; docs/reference regenerated; layer_dependency rows.
+- [x] F.10 graph_types row S14 Facial; HANDOFF; docs/reference regenerated; layer_dependency rows.
+  (Done: the glasses demo and `examples/live_action_standoff/` (wizard vs knight, 4 beats: the knight's glare, the
+  wizard's one-sided contemptuous smirk, a suppressed fear micro-expression, the set jaw) compile through S17 with
+  faces in words; render.txt written for the owner. M3.5 complete.)
 
 ## M6 — deferred tooling
 - [ ] `kernel_extraction/` synergy_matrix, bridge_detector, layer_analyzer, kernel_compressor, ablation_runner
