@@ -6,22 +6,22 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 2.0; backlog 1.
+Layer order 1.7; rules 2.0; backlog 2.
 
 ## Last sessions
 
-- S-006 (applied): M9-03b: each prop records who carries it (carried_by, O63)
 - S-007 (applied): The bootstrap directory (docs/bootstrap/, /bootstrap)
 - S-008 (applied): The autopilot prompt (/autopilot) and the decision log
+- S-009 (applied): M9-04a: pre- and post-contact prop samples (F2.2)
 
 ## Next slices
 
-- M9-04 (next, step render): F2.1/F2.2 prop physics contract, F6.1/F6.2 positions and rest
+- M9-04b (next, step render): F2.1/F6.1/F6.2 prop physics contract, positions and rest, as amended by W4 (split from M9-04)
 - M9-05 (ready, step motion): FR.1/FR.3 derived rotation path and rotation checks
 - M9-06 (ready, step motion): F5.1/F5.2 world contact points by forward kinematics
 - M9-07 (ready, step temporal): F4.1/F4.2 combat verbs on contacts and Laban wording
 
-M9: 4 of 27 slices done, 23 left (M9-03a blocked; 1 the owner's own).
+M9: 5 of 28 slices done, 23 left (M9-03a blocked; 1 the owner's own).
 
 ## Waiting on the owner
 
@@ -35,7 +35,7 @@ M9: 4 of 27 slices done, 23 left (M9-03a blocked; 1 the owner's own).
 - F-060 (low): What is a motif?
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 
-## Open findings: 36
+## Open findings: 37
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -55,4 +55,4 @@ M9: 4 of 27 slices done, 23 left (M9-03a blocked; 1 the owner's own).
 
 ## Next free IDs
 
-Decision ADR-O72, finding F-064, session S-009, render R20.
+Decision ADR-O72, finding F-065, session S-010, render R20.

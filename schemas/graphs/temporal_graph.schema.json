@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:temporal_graph:1.3",
+  "$id": "urn:cinematic-compiler:schema:temporal_graph:1.4",
   "title": "S04 temporal graph: beats, temporal edges, beat-constraint edges",
   "description": "Beats are copied from the beat plan; temporal and beat_constraint edges are computed, never authored.",
   "type": "object",
@@ -392,6 +392,13 @@
         },
         "float": {
           "type": "boolean"
+        },
+        "phase": {
+          "enum": [
+            "pre",
+            "post"
+          ],
+          "description": "F2.2: at a contact on the prop, the sample just before (pre) or just after (post) it; a pair shares t and p, and a free prop moving into a contact needs one."
         }
       }
     }

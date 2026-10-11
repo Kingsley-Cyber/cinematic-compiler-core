@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 1
+version: 2
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -21,8 +21,11 @@ items:
      depends_on: [M9-02], findings: [F-019, F-020], codes: [CONSTRAINT_BEAT]}
   - {id: M9-03b, title: "GAP-03 carried_by on prop nodes from the archetype card (O63)", status: done, step: brief,
      plan: PLAN-004, depends_on: [], findings: [F-018], codes: []}
-  - {id: M9-04, title: "F2.1/F2.2 prop physics contract, F6.1/F6.2 positions and rest", status: next, step: render,
-     plan: PLAN-003, depends_on: [M9-02], findings: [F-062], codes: [PROP_PHYSICS_UNSTATED, PROP_VISIBILITY]}
+  - {id: M9-04a, title: "F2.2 pre/post-contact prop samples: a deflect is instantaneous (split from M9-04)",
+     status: done, step: temporal, plan: PLAN-003, depends_on: [M9-02], findings: [], codes: []}
+  - {id: M9-04b, title: "F2.1/F6.1/F6.2 prop physics contract, positions and rest, as amended by W4 (split from M9-04)",
+     status: next, step: render, plan: PLAN-003, depends_on: [M9-04a], findings: [],
+     codes: [PROP_PHYSICS_UNSTATED, PROP_VISIBILITY]}
   - {id: M9-05, title: "FR.1/FR.3 derived rotation path and rotation checks", status: ready, step: motion,
      plan: PLAN-003, depends_on: [M9-01], findings: [F-028, F-058],
      codes: [ROTATION_PATH_UNSTATED, ROTATION_INCOMPLETE, ROTATION_NOT_MONOTONIC, INVERSION_MISSING]}

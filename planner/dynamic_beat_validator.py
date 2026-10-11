@@ -15,6 +15,10 @@ prop stays within 2 m of its holder's anchor; between two samples of a free prop
 moving prop follows gravity from the first sample's velocity to the second position within 0.25 m, and a prop at rest
 (v null or zero) does not move unless a contact on it at the second sample picks it up or knocks it down. A float
 (stylised, no gravity) is allowed in anime only. The 2 m reach and the 0.25 m tolerance are Claude's interpretation.
+Contact pairs (plan F2.2): two samples of a prop share a time only as a `pre` and a `post` on a contact on that prop at
+that instant, at one position (the contact is instantaneous); gravity is checked into the pre sample, velocity too,
+and out of the post sample. Interpretation (Claude's, for owner review): a free prop moving into a contact needs the
+pair, and the velocity into a pre sample is held to 0.25 m/s.
 """
 
 import math
@@ -24,6 +28,9 @@ from planner.vocabulary import allowed
 EPSILON = 1e-9
 GRAVITY = 9.81
 REACH_M, KINEMATIC_TOLERANCE_M = 2.0, 0.25
+VELOCITY_TOLERANCE_MPS = 0.25  # interpretation (Claude's, for owner review): the pre sample's velocity under gravity
+PHASE_ORDER = {"pre": 0, None: 1, "post": 2}
+BEFORE = 1e-6  # a pre sample's holder is read this long before its contact
 TELEPORT_MPS = 25.0  # owner O12: anything faster between keys is a teleport (human sprint ~12, anime ~15, strikes ~20)
 
 
@@ -201,19 +208,23 @@ def _prop_kinematics(beats, props, genre):
     def holder_at(prop, t):
         return next((h for start, end, h in held.get(prop, []) if start - EPSILON <= t < end - EPSILON), None)
 
+    def holder_of(prop, sample):
+        return holder_at(prop, sample["t"] - (BEFORE if sample.get("phase") == "pre" else 0))
+
     def anchor(entity, t):
         return next((pos for at, e, pos in reversed(anchors) if e == entity and at <= t + EPSILON), None)
 
     for prop, rows in samples.items():
-        rows.sort(key=lambda r: r[0]["t"])
+        rows.sort(key=lambda r: (r[0]["t"], PHASE_ORDER[r[0].get("phase")]))
+        findings += _contact_pairs(prop, rows, touches.get(prop, []), lambda t, p=prop: holder_at(p, t))
         for sample, beat_id in rows:
-            holder = holder_at(prop, sample["t"])
+            holder = holder_of(prop, sample)
             if holder and anchor(holder, sample["t"]) and math.dist(sample["p"], anchor(holder, sample["t"])) > REACH_M:
                 findings.append(_finding("PROP_KINEMATICS", f"{prop} is held by {holder} but {REACH_M:g} m away", beat_id,
                                          sample["t"]))
         for (first, _), (second, beat_id) in zip(rows, rows[1:], strict=False):
             span = second["t"] - first["t"]
-            if span <= EPSILON or holder_at(prop, first["t"]) or first["float"]:
+            if span <= EPSILON or holder_of(prop, first) or first["float"]:
                 continue
             if any(first["t"] + EPSILON < t < second["t"] - EPSILON for t in touches.get(prop, [])):
                 continue  # a contact changes the flight between the two samples
@@ -225,8 +236,49 @@ def _prop_kinematics(beats, props, genre):
                     findings.append(_finding("PROP_KINEMATICS", f"{prop} from {first['t']} would be at "
                                              f"{[round(x, 2) for x in expected]} at {second['t']}, not {second['p']}",
                                              beat_id, [first["t"], second["t"]]))
+                velocity = [first["v"][0], first["v"][1] - GRAVITY * span, first["v"][2]]
+                if second.get("phase") == "pre" and second["v"] is not None and \
+                        math.dist(velocity, second["v"]) > VELOCITY_TOLERANCE_MPS:
+                    findings.append(_finding("PROP_KINEMATICS", f"{prop} from {first['t']} would arrive at {second['t']} "
+                                             f"with v {[round(x, 2) for x in velocity]}, not {second['v']}",
+                                             beat_id, [first["t"], second["t"]]))
             elif math.dist(first["p"], second["p"]) > KINEMATIC_TOLERANCE_M and not any(
                     abs(t - second["t"]) <= EPSILON for t in touches.get(prop, [])):
                 findings.append(_finding("PROP_KINEMATICS", f"{prop} at rest moves between {first['t']} and {second['t']} "
                                          "with no contact", beat_id, [first["t"], second["t"]]))
+    return findings
+
+
+def _moving(sample):
+    return sample["v"] is not None and any(abs(x) > EPSILON for x in sample["v"])
+
+
+def _contact_pairs(prop, rows, touch_times, holder_at):
+    """F2.2: same-time samples are one pre and one post on a contact at one position; a free prop moving into a
+    contact has the pair there."""
+    findings, at = [], {}
+    for sample, beat_id in rows:
+        at.setdefault(round(sample["t"], 6), []).append((sample, beat_id))
+    for t, group in at.items():
+        phases = sorted(sample.get("phase") or "none" for sample, _ in group)
+        if len(group) == 1 and phases == ["none"]:
+            continue
+        beat_id = group[-1][1]
+        if phases != ["post", "pre"]:
+            findings.append(_finding("PROP_KINEMATICS", f"{prop} at {t} has samples {phases}: a time takes one sample, or "
+                                     "one pre and one post on a contact", beat_id, t))
+        elif not any(abs(x - t) <= EPSILON for x in touch_times):
+            findings.append(_finding("PROP_KINEMATICS", f"{prop} has a pre and a post sample at {t} but no contact on it "
+                                     "then", beat_id, t))
+        elif math.dist(group[0][0]["p"], group[1][0]["p"]) > KINEMATIC_TOLERANCE_M:
+            findings.append(_finding("PROP_KINEMATICS", f"{prop} moves between its pre and post samples at {t}; the "
+                                     "contact is instantaneous", beat_id, t))
+    for t in sorted(set(touch_times)):
+        before = [sample for sample, _ in rows if sample["t"] < t - EPSILON]
+        if holder_at(t - BEFORE) or not before or not _moving(before[-1]):
+            continue
+        phases = sorted(sample.get("phase") or "none" for sample, _ in at.get(round(t, 6), []))
+        if phases != ["post", "pre"]:
+            findings.append(_finding("PROP_KINEMATICS", f"{prop} is moving free into a contact at {t}: give it a pre and a "
+                                     "post sample there (F2.2)", None, t))
     return findings

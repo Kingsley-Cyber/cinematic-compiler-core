@@ -156,5 +156,16 @@ def test_strikes_throws_and_releases_happen_at_their_pose():
     assert "FOOT DEFLECT KINDS: kunai REVERSES from +Z to -Z and downward at 2.5" in REFERENCE["rules"]
 
 
+# Plan F2.2 (backlog M9-04a under owner O61's build order; ADR-O71 rule 1, covered): a deflect is instantaneous, so
+# the kunai carries a pre-contact sample at 2.5 (the 2.0 throw under gravity for 0.5 s) beside the golden's own sample,
+# now marked post-contact. The golden's post velocity keeps +Z against its rule's '+Z to -Z' (finding F-064).
+DEFLECT_PAIR = ["2.5 pre-contact p[0.5,1,4.6] v[-1.4,-3.46,0.2] moving down along -X",
+                "2.5 post-contact p[0.5,1,4.6] v[-0.5,-0.54,1.75] moving down along +Z"]
+
+
+def test_the_kunai_deflect_is_a_pre_and_post_pair():
+    assert [row for row in SPEC["kunai"] if "-contact " in row] == DEFLECT_PAIR
+
+
 def test_render_txt_is_the_render_node():
     assert (FOLDER / "render.txt").read_text(encoding="utf-8") == TEXT + "\n"

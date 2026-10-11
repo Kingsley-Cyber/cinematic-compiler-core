@@ -98,10 +98,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 2.0; backlog 1.
-- Last session: S-008 (2026-10-11, applied): The autopilot prompt (/autopilot) and the decision log.
-- Next slice: M9-04 F2.1/F2.2 prop physics contract, F6.1/F6.2 positions and rest (step render).
-- Open findings: 36; decisions: 98 (0 proposed).
+- Layer order 1.7; rules 2.0; backlog 2.
+- Last session: S-009 (2026-10-11, applied): M9-04a: pre- and post-contact prop samples (F2.2).
+- Next slice: M9-04b F2.1/F6.1/F6.2 prop physics contract, positions and rest, as amended by W4 (split from M9-04) (step render).
+- Open findings: 37; decisions: 98 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

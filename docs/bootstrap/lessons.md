@@ -20,3 +20,5 @@ one that supersedes it).
 | L-13 | `.claude/commands/` load only in sessions opened in the repo folder; elsewhere, paste the prompt ("Run the self-audit in docs/prompts/self_audit.md …"). | S-005 |
 | L-14 | A release marked `at: start` happens at its beat's first instant; S07 counts the prop as still in the hand then (S06 commits the holder change at the beat's end, F-061). | S-003 |
 | L-15 | A hand-typed number in a test can be wrong: compute expected distances in Python before pinning them. | S-004 |
+| L-16 | A commit message needs a blank line after its first line; without it git folds the whole body into the subject. Write the message file with the blank line, check `git log -1 --format=%s`. | S-008 |
+| L-17 | `python -m compiler.rebind` takes bare example names (`reference_fight`), not paths; with no names it reports every example, and silence means no packet moved. | S-009 |

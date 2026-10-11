@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:beat:1.0",
+  "$id": "urn:cinematic-compiler:schema:beat:1.1",
   "title": "Beat (shared definition)",
   "description": "One timed event of a scene with its actor, participants, positions, facings, requirements, effects, contacts, causes and prop samples (S04). Shared by the beat plan and the temporal graph (owner O65); Contact is embedded from contact.schema.json by kernel/shared_schemas.py.",
   "$defs": {
@@ -308,6 +308,13 @@
         },
         "float": {
           "type": "boolean"
+        },
+        "phase": {
+          "enum": [
+            "pre",
+            "post"
+          ],
+          "description": "F2.2: at a contact on the prop, the sample just before (pre) or just after (post) it; a pair shares t and p, and a free prop moving into a contact needs one."
         }
       }
     }

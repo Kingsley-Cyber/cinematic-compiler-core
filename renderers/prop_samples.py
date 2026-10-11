@@ -3,12 +3,13 @@
 Each S04 prop sample becomes one row: time, p[x,y,z], v[x,y,z] when moving, and words a model reads: held by <label>,
 at rest, or moving up/down toward the performer it heads for (the entity whose direction from the prop best matches
 the horizontal velocity, within about 45 degrees, at least 0.5 m away), else along the dominant scene axis.
-Floats are marked.
+Floats are marked. A contact pair (plan F2.2) prints as two rows at one time, "pre-contact" before "post-contact"; a
+pre sample's holder is read just before its contact.
 """
 
 import math
 
-from planner.dynamic_beat_validator import holds
+from planner.dynamic_beat_validator import BEFORE, PHASE_ORDER, holds
 
 EPSILON = 1e-9
 
@@ -55,10 +56,13 @@ def rows(envelope, labels, prop, compact):
     """[(t, text)] for one prop's samples, in time order."""
     beats = envelope["nodes"]["beats"]["items"]
     held, anchors, out = holds(beats), _anchors(beats), []
-    for sample in sorted((s for b in beats for s in b.get("prop_samples", []) if s["prop"] == prop), key=lambda s: s["t"]):
-        holder = next((h for start, end, h in held.get(prop, []) if start - EPSILON <= sample["t"] < end - EPSILON), None)
+    for sample in sorted((s for b in beats for s in b.get("prop_samples", []) if s["prop"] == prop),
+                         key=lambda s: (s["t"], PHASE_ORDER[s.get("phase")])):
+        when = sample["t"] - (BEFORE if sample.get("phase") == "pre" else 0)
+        holder = next((h for start, end, h in held.get(prop, []) if start - EPSILON <= when < end - EPSILON), None)
         moving = sample["v"] is not None and any(abs(x) > EPSILON for x in sample["v"]) and not holder
         t = (str(int(sample["t"])) if float(sample["t"]).is_integer() else str(sample["t"])) if compact else f"{sample['t']:.2f}"
-        text = f"{t} p{_fmt(sample['p'], compact)}" + (f" v{_fmt(sample['v'], compact)}" if moving else "")
+        phase = f" {sample['phase']}-contact" if sample.get("phase") else ""
+        text = f"{t}{phase} p{_fmt(sample['p'], compact)}" + (f" v{_fmt(sample['v'], compact)}" if moving else "")
         out.append((sample["t"], f"{text} {motion_words(sample, holder, anchors, labels)}"))
     return out

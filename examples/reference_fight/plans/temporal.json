@@ -535,6 +535,22 @@
       0.2
      ],
      "float": false
+    },
+    {
+     "prop": "kunai",
+     "t": 2.5,
+     "p": [
+      0.5,
+      1.0,
+      4.6
+     ],
+     "v": [
+      -1.4,
+      -3.46,
+      0.2
+     ],
+     "float": false,
+     "phase": "pre"
     }
    ]
   },
@@ -711,7 +727,8 @@
       -0.54,
       1.75
      ],
-     "float": false
+     "float": false,
+     "phase": "post"
     },
     {
      "prop": "kunai",

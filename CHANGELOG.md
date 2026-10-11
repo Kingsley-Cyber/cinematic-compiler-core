@@ -6,6 +6,11 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Added
+- Pre- and post-contact prop samples (M9-04a, plan F2.2, S-009): PropSample gains `phase: pre | post` (beat 1.1,
+  beat_plan and temporal_graph 1.4); PROP_KINEMATICS takes two samples at one time only as a pair on a contact at one
+  position, checks gravity into the pre sample in velocity too, and needs the pair where a free prop moves into a
+  contact; the reference fight's kunai deflect at 2.5 is a pair (recorded in the golden test); the rows print
+  "pre-contact" and "post-contact". M9-04 split by step into M9-04a and M9-04b (backlog 2). F-064 found.
 - The autopilot (owner O70, S-008): `docs/prompts/autopilot.md` and `/autopilot` build slice after slice without
   stopping until no slice is ready, committing each locally after the gate and the self-audit (never pushing); every
   decision goes in the session's new Decisions section (rule R-32, rules 2.0, session template 2.0); golden changes

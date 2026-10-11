@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:beat_plan:1.3",
+  "$id": "urn:cinematic-compiler:schema:beat_plan:1.4",
   "title": "S04 beat plan (authored in-session from a hash-bound packet)",
   "description": "LLM call #1 of the owner plan, written by Claude in-session (no paid API). Times in seconds; requires are read at t, effects commit at t + dur, contacts happen at t + dur unless marked at: start (then at t). pos/facing are the root anchors at the beat start t (the key-pose time) and are authoritative for S06 and S13.",
   "type": "object",
@@ -360,6 +360,13 @@
         },
         "float": {
           "type": "boolean"
+        },
+        "phase": {
+          "enum": [
+            "pre",
+            "post"
+          ],
+          "description": "F2.2: at a contact on the prop, the sample just before (pre) or just after (post) it; a pair shares t and p, and a free prop moving into a contact needs one."
         }
       }
     }
