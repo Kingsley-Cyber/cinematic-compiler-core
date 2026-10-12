@@ -6,6 +6,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- C12 (Stylization layer) loses CONTACT_WORLD and reads NOT CHECKED until AS-06 (RV-01, F-074, S-037): its PASS on twelve
+  prose prompts rested on a check of printed points. F-119 answered (ADR-O102: a test changes only where a ruling or
+  the plan's intent moves the data it pins). Finish run 1 started.
 - The finish run (owner O101, S-036): docs/prompts/finish.md and `/finish` work slice after slice, each committed and
   pushed, until the gate's six conditions hold; open questions are answered from the plan's own sources; the
   bootstrap (3.0) resumes a running finish run after a compaction.

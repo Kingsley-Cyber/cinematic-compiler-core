@@ -46,7 +46,6 @@ done only when every row that applies passes. Claude never renders; you render, 
 - F-116 (medium): Rebinding re-stamps hashes instead of forcing re-authoring
 - F-117 (low): F-013 and F-014 cannot close
 - F-118 (low): O37 and the genre_profile schema disagree on where genre values live
-- F-119 (high): The anti-reward-hacking clause and R-33: does a recorded deviation count as the owner's ask?
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog RV-13b blocked: Every prompt fits the caps (O97) — the owner's answers in F-088
 - Backlog RV-20 blocked: Authoring prompts teach their steps' checks; external_inputs complete — an accepted ADR for the layer-order edit (R-09)

@@ -10,16 +10,16 @@ Layer order 1.7; rules 3.1; backlog 12.
 
 ## Last sessions
 
-- S-034 (applied): The owner's ten asymmetric things per beat: ADR-O87, the map against the repo, PLAN-006 and its slices
 - S-035 (applied): The first principal review, and its gaps filed: rulings O88-O100, findings F-074-F-119, PLAN-007
 - S-036 (applied): The finish run: a prompt that works until the repo is done (O101)
+- S-037 (applied): RV-01: C12 loses CONTACT_WORLD and is NOT CHECKED until AS-06 (F-074)
 
 ## Next slices
 
-- RV-01 (next, step render): C12 loses CONTACT_WORLD and is NOT CHECKED until AS-06 (F-074)
-- RV-02 (ready, step motion): CONTACT_WORLD per O89: no exact-instant exemption; B's throw, the palm on the log and the vault hand re-blocked; releases measured
+- RV-02 (next, step motion): CONTACT_WORLD per O89: no exact-instant exemption; B's throw, the palm on the log and the vault hand re-blocked; releases measured
 - RV-03 (ready, step temporal): The UGC pickup on the table; no resting-prop jump at a pickup; UGC poses agree with their words
 - RV-04 (ready, step docs): Records: rules 4.0, version bumps checked, layer_order.yaml logged, the hook active, stale docs and findings closed
+- RV-05 (ready, step motion): A's limb and head words follow the source's words (O88)
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -41,7 +41,6 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-116 (medium): Rebinding re-stamps hashes instead of forcing re-authoring
 - F-117 (low): F-013 and F-014 cannot close
 - F-118 (low): O37 and the genre_profile schema disagree on where genre values live
-- F-119 (high): The anti-reward-hacking clause and R-33: does a recorded deviation count as the owner's ask?
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog RV-13b blocked: Every prompt fits the caps (O97) — the owner's answers in F-088
 - Backlog RV-20 blocked: Authoring prompts teach their steps' checks; external_inputs complete — an accepted ADR for the layer-order edit (R-09)
@@ -52,7 +51,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-40 blocked: Rebinding forces re-authoring — the owner's answer in F-116
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 82
+## Open findings: 80
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -68,7 +67,6 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-031 (critical, L6): Render wording the model does not follow
 - F-036 (high, L6): Aerial timing is not followed: takeoffs come late
 - F-066 (high, L4c): What is a key's root position: the pelvis or the ground point?
-- F-074 (high, L6): C12 passes on a check that does not measure stylisation
 - F-075 (high, L4c): CONTACT_WORLD exempts exact-instant misses as artefacts, and never measures a release
 - F-080 (high, L4c): A's limb and head words contradict the source's own words
 - F-081 (high, L1.1): The vanish is half-checked: A keeps supports and a hold while gone
@@ -83,8 +81,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-091 (high, L6): render.txt's laban chains mix both fighters' moves
 - F-096 (high, L6): PASS cells are inflated: rows pass on codes that cover part of the row
 - F-115 (high, all): Two gate conditions have no check: soul_check_passes, fight_works
-- F-119 (high, all): The anti-reward-hacking clause and R-33: does a recorded deviation count as the owner's ask?
 
 ## Next free IDs
 
-Decision ADR-O102, finding F-120, session S-037, render R20.
+Decision ADR-O103, finding F-120, session S-038, render R20.

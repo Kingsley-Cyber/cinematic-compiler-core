@@ -713,16 +713,14 @@ rows:
     class: style
     step: S17
     status: enforced
-    codes: [CONTACT_WORLD]
     enforced_by:
       - {file: compiler/passes/derived/p17_render.py, check: check, code: FRAME_SMEAR,
          test: tests/test_render.py::test_each_frame_rule_rejects_its_violation}
-      - {file: solver/contact_world.py, check: refusals, code: CONTACT_WORLD,
-         test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
     note: "A smear names one subject and, for a body, one part, and sits on a sudden effort of that body or an event
-      of that prop; the ink line renders 'smear follows ONLY the declared limb, body does NOT smear' (F1). M9-06b
-      (plan F5.2, owner O83): CONTACT_WORLD holds stylised bodies to their contacts too, sparing only the
-      measurement artefacts (the actor airborne or turning, the prop moving)."
+      of that prop; the ink line renders 'smear follows ONLY the declared limb, body does NOT smear' (F1). S-030 put
+      CONTACT_WORLD here, whose prompt side checks only that two world points are printed, not stylisation; RV-01
+      (S-037, F-074) took it off: the prompt text is not checked against this row until AS-06's limb-only smear and
+      speedline checks (F-073)."
 
   - id: C13
     name: Rules + Negatives

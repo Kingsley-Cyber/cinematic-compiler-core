@@ -102,9 +102,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 3.1; backlog 12.
-- Last session: S-036 (2026-10-11, applied): The finish run: a prompt that works until the repo is done (O101).
-- Next slice: RV-01 C12 loses CONTACT_WORLD and is NOT CHECKED until AS-06 (F-074) (step render).
-- Open findings: 82; decisions: 128 (0 proposed).
+- Last session: S-037 (2026-10-11, applied): RV-01: C12 loses CONTACT_WORLD and is NOT CHECKED until AS-06 (F-074).
+- Next slice: RV-02 CONTACT_WORLD per O89: no exact-instant exemption; B's throw, the palm on the log and the vault hand re-blocked; releases measured (step motion).
+- Open findings: 80; decisions: 129 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
@@ -129,7 +129,6 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - F-116 (medium): Rebinding re-stamps hashes instead of forcing re-authoring
 - F-117 (low): F-013 and F-014 cannot close
 - F-118 (low): O37 and the genre_profile schema disagree on where genre values live
-- F-119 (high): The anti-reward-hacking clause and R-33: does a recorded deviation count as the owner's ask?
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog RV-13b blocked: Every prompt fits the caps (O97) — the owner's answers in F-088
 - Backlog RV-20 blocked: Authoring prompts teach their steps' checks; external_inputs complete — an accepted ADR for the layer-order edit (R-09)

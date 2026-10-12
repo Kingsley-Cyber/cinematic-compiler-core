@@ -12,7 +12,7 @@ high
 all
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -46,7 +46,7 @@ Until the owner answers: a test changes only where a ruling explicitly asks for 
 would break stops the slice and is reported.
 
 ## Owner Ruling
-none yet
+ADR-O102 (answered from the sources under ADR-O101)
 
 ## Related
 - ADR-O100
@@ -54,4 +54,5 @@ none yet
 - PLAN-007
 
 ## Resolution
-Open.
+ADR-O102 (S-037): a test changes only where a ruling or the plan's intent moves the data it pins, each a recorded
+deviation citing the ruling; never to make a failing check pass; R-33 stands inside that bound.

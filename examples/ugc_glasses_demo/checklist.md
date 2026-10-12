@@ -6,12 +6,12 @@ Genre: ugc_ad. LBN-2.4 is read against the DAG's Master Template (O13), so many 
 
 | Prompt | File | sha256 | Bytes | PASS | FAIL | NOT CHECKED | N/A | Deliverable |
 |---|---|---|---|---|---|---|---|---|
-| LBN | `render.txt` | `12d41b3293baf73b6a591019141ff5f228c498afd5e054e52d479825c7a37406` | 11445 | 3 | 50 | 26 | 5 | no |
-| Pure | `prose_pure_staff.txt` | `d0d21914d6a609c266c1776dceea7866ec56d228cc1b99408ccd76dee9af1e0e` | 12439 | 39 | 0 | 40 | 5 | no |
-| Mixed | `prose_mixed.txt` | `b21032423393a0dcd29404cc3553baba8c937351b5be3840ed58df1a19008d38` | 12681 | 39 | 0 | 40 | 5 | no |
-| Upgr | `prose_upgraded_mixed.txt` | `751c121399da9aa83fe90fc4c445212d2be3073e104f34029a58863716bdeb91` | 12951 | 39 | 0 | 40 | 5 | no |
-| Euler | `prose_euler_heavy.txt` | `29593a82f94636dc88bf6fda8c28509f100ac93dce99f2cabf78dc3f8af838b4` | 13622 | 39 | 0 | 40 | 5 | no |
-| Any | union of the five | | | 42 | 0 | 40 | 2 | no |
+| LBN | `render.txt` | `12d41b3293baf73b6a591019141ff5f228c498afd5e054e52d479825c7a37406` | 11445 | 3 | 49 | 27 | 5 | no |
+| Pure | `prose_pure_staff.txt` | `d0d21914d6a609c266c1776dceea7866ec56d228cc1b99408ccd76dee9af1e0e` | 12439 | 38 | 0 | 41 | 5 | no |
+| Mixed | `prose_mixed.txt` | `b21032423393a0dcd29404cc3553baba8c937351b5be3840ed58df1a19008d38` | 12681 | 38 | 0 | 41 | 5 | no |
+| Upgr | `prose_upgraded_mixed.txt` | `751c121399da9aa83fe90fc4c445212d2be3073e104f34029a58863716bdeb91` | 12951 | 38 | 0 | 41 | 5 | no |
+| Euler | `prose_euler_heavy.txt` | `29593a82f94636dc88bf6fda8c28509f100ac93dce99f2cabf78dc3f8af838b4` | 13622 | 38 | 0 | 41 | 5 | no |
+| Any | union of the five | | | 41 | 0 | 41 | 2 | no |
 
 | Row | Name | Class | LBN | Pure | Mixed | Upgr | Euler | Any | Findings | Evidence |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -52,7 +52,7 @@ Genre: ugc_ad. LBN-2.4 is read against the DAG's Master Template (O13), so many 
 | C9 | Spatial anchors / axis | required | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** SPATIAL_ANCHOR_MISSING ×4: cannot pass: the prompt has no [SPATIAL ANCHORS]; ENTRANCE_UNSTATED ×1: cannot pass: the prompt has no [RULES], [NEGATIVES] — **Pure, Mixed, Upgr, Euler:** pass: SPATIAL_ANCHOR_MISSING, ENTRANCE_UNSTATED |
 | C10 | Camera layer (dynamic) | style | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | not checked: Genre cards set shot length (anime 0.25-6.0 s), crossing and roll; every shot is motivated. |
 | C11 | UGC camera | style | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | not checked: Draft ugc_ad card: handheld/gimbal/tripod rigs, jump cuts, roll at most 10, shots 0.4-4.0 s, axis never crossed. |
-| C12 | Stylization layer | style | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** CONTACT_WORLD ×5: cannot pass: the prompt has no [LABAN STAFF – EULER-HEAVY] — **Pure, Mixed, Upgr, Euler:** pass: CONTACT_WORLD |
+| C12 | Stylization layer | style | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | checked on the graph only (FRAME_SMEAR at S17); the prompt text is not checked |
 | C13 | Rules + Negatives | mandatory | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** RULES_MISSING ×6: cannot pass: the prompt has no [RULES]; NEGATIVES_MISSING ×16: cannot pass: the prompt has no [NEGATIVES]; CAUSAL_RULE_MISSING ×4: cannot pass: the prompt has no [RULES]; SECTION_ORDER ×2: cannot pass: the prompt has no [SCENE] — **Pure, Mixed, Upgr, Euler:** pass: RULES_MISSING, NEGATIVES_MISSING, CAUSAL_RULE_MISSING, SECTION_ORDER |
 | C14 | Pure staff | style | N/A | PASS | N/A | N/A | N/A | PASS |  | **LBN, Euler:** menu (DAG §2.14, O14): the pure_staff mode's row; this prompt is euler_heavy — **Pure:** pass: EULER_MODE_MISMATCH, STAFF_FORMAT — **Mixed:** menu (DAG §2.14, O14): the pure_staff mode's row; this prompt is mixed — **Upgr:** menu (DAG §2.14, O14): the pure_staff mode's row; this prompt is upgraded_mixed |
 | C15 | Mixed Mode | style | N/A | N/A | PASS | N/A | N/A | PASS |  | **LBN, Euler:** menu (DAG §2.14, O14): the mixed mode's row; this prompt is euler_heavy — **Pure:** menu (DAG §2.14, O14): the mixed mode's row; this prompt is pure_staff — **Mixed:** pass: EULER_MODE_MISMATCH — **Upgr:** menu (DAG §2.14, O14): the mixed mode's row; this prompt is upgraded_mixed |

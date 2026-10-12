@@ -167,6 +167,8 @@ about 120 minutes
   on C12 moved that row from NOT CHECKED to FAIL on the four LBN prompts (LBN-2.4 prints no world points, as with the
   other prose-only codes); the break fires, no prose prompt fires it, and on the prose prompts C12 stays NOT CHECKED
   (renders F5 and F15). Prediction 6 held: 639.
+- Correction (S-037, F-074): on the prose prompts of the wizard, live-action and UGC examples C12 did not stay NOT
+  CHECKED; it turned PASS on all twelve, on a code that checks only printed points. RV-01 took CONTACT_WORLD off C12.
 
 ## Next
 M9-10 (F4.3/F4.4 B's active keys and the idle-fighter check).

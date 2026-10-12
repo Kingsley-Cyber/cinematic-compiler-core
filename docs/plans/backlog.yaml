@@ -66,9 +66,9 @@ items:
      plan: PLAN-003, depends_on: [M9-09a], findings: [], codes: []}
   - {id: M9-09h, title: "F-071: B moves to A's far side at 8.0, so the pull runs toward the pillar (O86)", status: done,
      step: temporal, plan: PLAN-003, depends_on: [M9-06b], findings: [F-071], codes: []}
-  - {id: RV-01, title: "C12 loses CONTACT_WORLD and is NOT CHECKED until AS-06 (F-074)", status: next,
+  - {id: RV-01, title: "C12 loses CONTACT_WORLD and is NOT CHECKED until AS-06 (F-074)", status: done,
      step: render, plan: PLAN-007, depends_on: [], findings: [F-074], codes: []}
-  - {id: RV-02, title: "CONTACT_WORLD per O89: no exact-instant exemption; B's throw, the palm on the log and the vault hand re-blocked; releases measured", status: ready,
+  - {id: RV-02, title: "CONTACT_WORLD per O89: no exact-instant exemption; B's throw, the palm on the log and the vault hand re-blocked; releases measured", status: next,
      step: motion, plan: PLAN-007, depends_on: [M9-06b], findings: [F-075, F-076, F-079], codes: []}
   - {id: RV-03, title: "The UGC pickup on the table; no resting-prop jump at a pickup; UGC poses agree with their words", status: ready,
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-077], codes: []}

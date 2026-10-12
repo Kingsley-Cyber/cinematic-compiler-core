@@ -127,6 +127,7 @@ Every owner decision. ADR IDs keep the names the code and tests cite (Q, A, B: 2
 | ADR-O99 | The principal review and the no-shortcuts principle | accepted | all | 2026-10-11 | [ADR-O99-the-principal-review-and-the-no-shortcuts-princi.md](../decisions/ADR-O99-the-principal-review-and-the-no-shortcuts-princi.md) |
 | ADR-O100 | The anti-reward-hacking clause | accepted | all | 2026-10-11 | [ADR-O100-the-anti-reward-hacking-clause.md](../decisions/ADR-O100-the-anti-reward-hacking-clause.md) |
 | ADR-O101 | Finish the repo: work until the plan's soul is built and the fight wo… | accepted | all | 2026-10-11 | [ADR-O101-finish-the-repo.md](../decisions/ADR-O101-finish-the-repo.md) |
+| ADR-O102 | When a test may change: only where a ruling or the plan's intent move… | accepted | all | 2026-10-11 | [ADR-O102-when-a-test-may-change.md](../decisions/ADR-O102-when-a-test-may-change.md) |
 | ADR-S1 | Log every schema, library and kernel change | accepted | Schema control | 2026-10-10 | [ADR-S1-log-every-schema-library-and-kernel-change.md](../decisions/ADR-S1-log-every-schema-library-and-kernel-change.md) |
 | ADR-S2 | The owner renders; no paid model API | accepted | all | 2026-10-11 | [ADR-S2-the-owner-renders-no-paid-model-api.md](../decisions/ADR-S2-the-owner-renders-no-paid-model-api.md) |
 | ADR-S3 | Every prompt adheres to the knowledge DAG as a checklist | accepted | L6 | 2026-10-11 | [ADR-S3-every-prompt-adheres-to-the-knowledge-dag-as.md](../decisions/ADR-S3-every-prompt-adheres-to-the-knowledge-dag-as.md) |

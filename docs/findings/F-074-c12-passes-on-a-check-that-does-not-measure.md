@@ -12,7 +12,7 @@ high
 L6
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -47,4 +47,5 @@ none needed (R-19)
 - ADR-O99
 
 ## Resolution
-Open.
+RV-01 (S-037): CONTACT_WORLD is off row C12 (it stays on C21); C12 reads NOT CHECKED on every prompt until
+AS-06's limb-only smear and speedline checks cover it; S-030's verification carries the correction.

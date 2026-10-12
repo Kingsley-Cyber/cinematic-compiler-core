@@ -6,7 +6,7 @@ Genre: anime. LBN-2.4 is read against the DAG's Master Template (O13), so many o
 
 | Prompt | File | sha256 | Bytes | PASS | FAIL | NOT CHECKED | N/A | Deliverable |
 |---|---|---|---|---|---|---|---|---|
-| LBN | `render.txt` | `85057e9a4e993a7344729bbc204644c8f2bca7e9c97270840c83fee7499c1e5d` | 70486 | 3 | 50 | 25 | 6 | no |
+| LBN | `render.txt` | `85057e9a4e993a7344729bbc204644c8f2bca7e9c97270840c83fee7499c1e5d` | 70486 | 3 | 49 | 26 | 6 | no |
 | Pure | `prose_pure_staff.txt` | `4962c07bf698ce99da4615237e2f666ab7763e1a96c3c8a0fe90390496cd554f` | 45827 | 31 | 0 | 47 | 6 | no |
 | Mixed | `prose_mixed.txt` | `08bef9ff852ecafa86cb93b8a87c00b9899f76f068f072d1ca8b19687371bc43` | 46394 | 31 | 0 | 47 | 6 | no |
 | Upgr | `prose_upgraded_mixed.txt` | `57a15784830667821edd3b7ce606b5b7428c05ee762c104e0d1cf1adc8b7ed21` | 47889 | 31 | 0 | 47 | 6 | no |
@@ -52,7 +52,7 @@ Genre: anime. LBN-2.4 is read against the DAG's Master Template (O13), so many o
 | C9 | Spatial anchors / axis | required | FAIL | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | F10 (caught), F13 | **LBN:** SPATIAL_ANCHOR_MISSING ×6: cannot pass: the prompt has no [SPATIAL ANCHORS]; ENTRANCE_UNSTATED ×3: cannot pass: the prompt has no [RULES], [NEGATIVES] — **Pure, Mixed, Upgr, Euler:** pass: SPATIAL_ANCHOR_MISSING, ENTRANCE_UNSTATED, but render finding F13 contradicts it and no code here checks what it saw |
 | C10 | Camera layer (dynamic) | style | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | F4, F5 | not checked: Genre cards set shot length (anime 0.25-6.0 s), crossing and roll; every shot is motivated. |
 | C11 | UGC camera | style | N/A | N/A | N/A | N/A | N/A | N/A | F4 | O14: applies to ugc_ad; this example is anime |
-| C12 | Stylization layer | style | FAIL | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | F5, F15 | **LBN:** CONTACT_WORLD ×13: cannot pass: the prompt has no [LABAN STAFF – EULER-HEAVY] — **Pure, Mixed, Upgr, Euler:** pass: CONTACT_WORLD, but render finding F5, F15 contradicts it and no code here checks what it saw |
+| C12 | Stylization layer | style | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | F5, F15 | checked on the graph only (FRAME_SMEAR at S17); the prompt text is not checked |
 | C13 | Rules + Negatives | mandatory | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** RULES_MISSING ×10: cannot pass: the prompt has no [RULES]; NEGATIVES_MISSING ×42: cannot pass: the prompt has no [NEGATIVES]; CAUSAL_RULE_MISSING ×16: cannot pass: the prompt has no [RULES]; SECTION_ORDER ×2: cannot pass: the prompt has no [SCENE] — **Pure, Mixed, Upgr, Euler:** pass: RULES_MISSING, NEGATIVES_MISSING, CAUSAL_RULE_MISSING, SECTION_ORDER |
 | C14 | Pure staff | style | N/A | PASS | N/A | N/A | N/A | PASS |  | **LBN, Euler:** menu (DAG §2.14, O14): the pure_staff mode's row; this prompt is euler_heavy — **Pure:** pass: EULER_MODE_MISMATCH, STAFF_FORMAT — **Mixed:** menu (DAG §2.14, O14): the pure_staff mode's row; this prompt is mixed — **Upgr:** menu (DAG §2.14, O14): the pure_staff mode's row; this prompt is upgraded_mixed |
 | C15 | Mixed Mode | style | N/A | N/A | PASS | N/A | N/A | PASS |  | **LBN, Euler:** menu (DAG §2.14, O14): the mixed mode's row; this prompt is euler_heavy — **Pure:** menu (DAG §2.14, O14): the mixed mode's row; this prompt is pure_staff — **Mixed:** pass: EULER_MODE_MISMATCH — **Upgr:** menu (DAG §2.14, O14): the mixed mode's row; this prompt is upgraded_mixed |
