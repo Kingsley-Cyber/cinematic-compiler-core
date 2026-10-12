@@ -998,6 +998,8 @@ rows:
          test: tests/test_dynamic_beat_validator.py::test_prop_kinematics_holds_free_flight_to_gravity}
       - {file: planner/dynamic_beat_validator.py, check: _contact_pairs, code: PROP_KINEMATICS,
          test: tests/test_dynamic_beat_validator.py::test_one_sample_at_a_contact_on_a_flying_prop_is_refused}
+      - {file: planner/dynamic_beat_validator.py, check: _prop_kinematics, code: PROP_KINEMATICS,
+         test: tests/test_dynamic_beat_validator.py::test_a_resting_prop_is_where_it_rests_when_a_contact_takes_it}
       - {file: validators/prompt_validator.py, check: _where_checks, code: PROP_PHYSICS_UNSTATED,
          test: tests/test_prop_track.py::test_a_flight_without_its_physics_is_refused}
     note: "M8.12: where a sample sits on a line prop fastened to two bodies, the track says which body holds which end (PROP_LINE_MISSING, F8). Owner O8: beats carry prop samples (p[x,y,z], v at throws, releases and deflects) like body positions. S04

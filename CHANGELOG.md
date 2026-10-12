@@ -6,6 +6,11 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The UGC creator takes the glasses on the table at the first frame (RV-03, F-077, S-041): the query's "Creator
+  holding the glasses"; they rest on the creator's right, where the right hand reaches them; PROP_KINEMATICS keeps a
+  resting prop where it rests when a contact takes it; the UGC keys follow their words (both hands at the glasses,
+  elbows out; the index finger at the frame); the put-on's left hand takes the left temple; shot c02 is motivated by
+  its unfold beat.
 - A change of hands takes effect at its contact (RV-08, F-061, S-040): S06 commits a holder change at its possess or
   release, not the beat's end; each state transition records its instant `t` (state_graph 1.1) and the renderers print
   it, so the kunai is free at 2.00 with its release; S07 drops its special case. RV-03 now depends on RV-08 (the UGC

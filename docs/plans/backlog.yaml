@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 15
+version: 16
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -72,13 +72,13 @@ items:
      step: motion, plan: PLAN-007, depends_on: [M9-06b, RV-05], findings: [F-075, F-076, F-079], codes: []}
   - {id: RV-02b, title: "CONTACT_WORLD measures releases (a thrown or dropped prop leaves the hand where the hand is); B's kunai throw re-staged, since B's 2.0 hand is on A's side of A's 2.5 foot (S-039)", status: ready,
      step: motion, plan: PLAN-007, depends_on: [RV-02a, RV-03, RV-06], findings: [F-075, F-108], codes: []}
-  - {id: RV-03, title: "The UGC pickup on the table; no resting-prop jump at a pickup; UGC poses agree with their words", status: next,
+  - {id: RV-03, title: "The UGC pickup on the table; no resting-prop jump at a pickup; UGC poses agree with their words", status: done,
      step: temporal, plan: PLAN-007, depends_on: [RV-08], findings: [F-077], codes: []}
   - {id: RV-04, title: "Records: rules 4.0, version bumps checked, layer_order.yaml logged, the hook active, stale docs and findings closed", status: ready,
      step: docs, plan: PLAN-007, depends_on: [], findings: [F-078, F-063, F-066, F-028, F-015], codes: []}
   - {id: RV-05, title: "A's limb and head words follow the source's words (O88)", status: done,
      step: motion, plan: PLAN-007, depends_on: [], findings: [F-080], codes: []}
-  - {id: RV-06, title: "The vanish (O90): A's supports and holds end at 3.7; the rope dart on the ground until 7.5", status: ready,
+  - {id: RV-06, title: "The vanish (O90): A's supports and holds end at 3.7; the rope dart on the ground until 7.5", status: next,
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-081], codes: []}
   - {id: RV-08, title: "A state change commits at its contact's instant, not the beat's end (F-061)", status: done,
      step: state, plan: PLAN-007, depends_on: [], findings: [F-061], codes: []}

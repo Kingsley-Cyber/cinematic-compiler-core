@@ -47,6 +47,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-038 | 2026-10-11 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-05 (PLAN-007); finding F-080… | applied | the commit whose message names [S-038] | about 50 minutes | RV-02a (CONTACT_WORLD per O89, re-blocks against A's final… | [S-038-rv-05-a-s-words-follow-the-source.md](../sessions/S-038-rv-05-a-s-words-follow-the-source.md) |
 | S-039 | 2026-10-11 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-02a (PLAN-007); findings F-0… | applied | the commit whose message names [S-039] | about 3 hours | RV-03 (the UGC pickup on the table). | [S-039-rv-02a-contact-world-per-o89.md](../sessions/S-039-rv-02a-contact-world-per-o89.md) |
 | S-040 | 2026-10-11 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-08 (PLAN-007); finding F-061… | applied | the commit whose message names [S-040] | about 50 minutes | RV-03 (the UGC pickup on the table; it depends on this slic… | [S-040-rv-08-a-holder-change-commits-at-its-contact.md](../sessions/S-040-rv-08-a-holder-change-commits-at-its-contact.md) |
+| S-041 | 2026-10-11 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-03 (PLAN-007); finding F-077… | applied | the commit whose message names [S-041] | about 1 hour, with RV-08 between | RV-06 (the vanish, O90). | [S-041-rv-03-the-ugc-pickup-on-the-table.md](../sessions/S-041-rv-03-the-ugc-pickup-on-the-table.md) |
 
 ## Status values
 

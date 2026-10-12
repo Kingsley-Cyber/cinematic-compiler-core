@@ -99,7 +99,8 @@
       "kind": "prop",
       "id": "glasses",
       "part": "frame"
-     }
+     },
+     "at": "start"
     }
    ],
    "causes": [
@@ -114,7 +115,7 @@
      "prop": "glasses",
      "t": 0.0,
      "p": [
-      0.25,
+      -0.25,
       0.75,
       0.35
      ],
@@ -311,7 +312,7 @@
      "b": {
       "kind": "prop",
       "id": "glasses",
-      "part": "right_temple"
+      "part": "left_temple"
      }
     },
     {

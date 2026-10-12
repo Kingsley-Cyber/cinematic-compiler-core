@@ -12,7 +12,7 @@ medium
 L1.1
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -46,4 +46,12 @@ none needed (R-17, R-33)
 - F-062
 
 ## Resolution
-Open.
+RV-03 (S-041, after RV-08): the query's "Creator holding the glasses" holds from the first frame: the possess is `at:
+start` (0.0) where the glasses rest on the table, moved to the creator's right so the right hand reaches them leaning
+in (on the left the reach needed a 45-degree twist the key's words do not have); the 1.5 sample is the lift.
+PROP_KINEMATICS keeps a resting prop where it rests at the instant a contact takes it
+(tests/test_dynamic_beat_validator.py::test_a_resting_prop_is_where_it_rests_when_a_contact_takes_it). The keys follow
+their words: the hand on the glasses at 0.0, the left fingers at the temples at 1.5, both hands at the glasses with the
+elbows out at 3.5, the right index finger at the frame at 5.5; the put-on's left hand takes the left temple, so both
+hands carry the glasses through the two-handed put-on. Shot c02 is motivated by its unfold beat; c01 rises with the
+lifting hand.

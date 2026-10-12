@@ -6,20 +6,20 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 3.1; backlog 15.
+Layer order 1.7; rules 3.1; backlog 16.
 
 ## Last sessions
 
-- S-038 (applied): RV-05: A's limb and head words follow the source's words (O88)
 - S-039 (applied): RV-02a: CONTACT_WORLD per O89, the repo side of each miss re-blocked
 - S-040 (applied): RV-08: a holder change commits at its contact's instant, not the beat's end
+- S-041 (applied): RV-03: the UGC pickup on the table, no resting-prop jump, the UGC poses agree with their words
 
 ## Next slices
 
-- RV-03 (next, step temporal): The UGC pickup on the table; no resting-prop jump at a pickup; UGC poses agree with their words
+- RV-06 (next, step temporal): The vanish (O90): A's supports and holds end at 3.7; the rope dart on the ground until 7.5
 - RV-02b (ready, step motion): CONTACT_WORLD measures releases (a thrown or dropped prop leaves the hand where the hand is); B's kunai throw re-staged, since B's 2.0 hand is on A's side of A's 2.5 foot (S-039)
 - RV-04 (ready, step docs): Records: rules 4.0, version bumps checked, layer_order.yaml logged, the hook active, stale docs and findings closed
-- RV-06 (ready, step temporal): The vanish (O90): A's supports and holds end at 3.7; the rope dart on the ground until 7.5
+- RV-07 (ready, step temporal): The smoke bursts at 3.7 at A's body; the spent pellet falls and rests (O91)
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -51,7 +51,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-40 blocked: Rebinding forces re-authoring — the owner's answer in F-116
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 76
+## Open findings: 75
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -83,4 +83,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O105, finding F-120, session S-041, render R20.
+Decision ADR-O105, finding F-120, session S-042, render R20.

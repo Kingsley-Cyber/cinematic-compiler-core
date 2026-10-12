@@ -219,3 +219,22 @@ def test_a_resting_prop_has_something_under_it():
     assert codes(1.1, [fact("location", "wooden_pillar")]) == []              # stuck in the pillar
     assert codes(1.6, [fact("worn", "yes")]) == []                            # worn: the wearer holds it up
 
+
+
+def test_a_resting_prop_is_where_it_rests_when_a_contact_takes_it():
+    """F-077 (RV-03): a prop at rest is still where it rested at the instant a contact takes it, so it may not jump
+    there (the UGC glasses left the table before the hand reached them); a contact between two samples still moves it."""
+    from planner.dynamic_beat_validator import _prop_kinematics
+
+    def taken_at(contact_t, p_after):
+        take = {"contact_type": "possess", "a": {"kind": "entity", "id": "a", "part": "right_hand"},
+                "b": {"kind": "prop", "id": "k", "part": None}}
+        first = {"id": "b01", "t": 0.0, "dur": contact_t, "pos": {"a": [0, 1, 0]}, "contacts": [take],
+                 "prop_samples": [{"prop": "k", "t": 0.0, "p": [0.3, 0.75, 0.3], "v": [0, 0, 0], "float": False}]}
+        second = {"id": "b02", "t": contact_t, "dur": 1.0 - contact_t, "pos": {"a": [0, 1, 0]}, "contacts": [],
+                  "prop_samples": [{"prop": "k", "t": 1.0, "p": p_after, "v": None, "float": False}]}
+        return [(f["code"], f["message"]) for f in _prop_kinematics([first, second], {"k": {}}, "anime")]
+    assert taken_at(1.0, [0.2, 1.1, 0.3]) == [("PROP_KINEMATICS",
+                                               "k at rest moves between 0.0 and 1.0 with no contact before it")]
+    assert taken_at(1.0, [0.3, 0.75, 0.3]) == []                       # taken where it rests
+    assert taken_at(0.5, [0.2, 1.1, 0.3]) == []                        # taken at 0.5, then lifted

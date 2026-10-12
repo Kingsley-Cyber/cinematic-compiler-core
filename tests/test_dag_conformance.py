@@ -154,7 +154,7 @@ BREAKS = [
     ("SPATIAL_ANCHOR_MISSING", "wizard_vs_acrobat", "mixed", _line("A starts at")),
     ("PROP_TRACK_MISSING", "ugc_glasses_demo", "mixed",
      lambda text, env: (re.sub(r"\[PROP STATE MACHINE – glasses\]\n.*?\n\n", "", text, flags=re.S), env)),
-    ("PROP_STATE_ORDER", "ugc_glasses_demo", "mixed", _replace("holder none -> A", "holder none -> B")),
+    ("PROP_STATE_ORDER", "ugc_glasses_demo", "mixed", _replace("holder A -> none", "holder B -> none")),  # held from 0 (RV-03)
     ("PROP_INVARIANT_MISSING", "ugc_glasses_demo", "mixed", _line("ONE glasses only")),
     ("CUSTODY_RULE_MISSING", "ugc_glasses_demo", "mixed", _custody),
     ("PROP_FIRST_STATE", "ugc_glasses_demo", "mixed", _replace("temples folded until", "temples until")),
@@ -199,7 +199,7 @@ BREAKS = [
     ("RENDER_INTENT_MISSING", "wizard_vs_acrobat", "mixed", _replace("Choreography:", "Plan:")),
     ("END_STATE_MISSING", "wizard_vs_acrobat", "mixed", _line("- End state: A")),
     ("PRECEDENCE_RULE_MISSING", "wizard_vs_acrobat", "mixed", _line("- Laban support and contacts are primary")),
-    ("PROMPT_CONTRADICTION", "ugc_glasses_demo", "mixed", _replace("1.50 held by A R hand", "1.50 held by B R hand")),
+    ("PROMPT_CONTRADICTION", "ugc_glasses_demo", "mixed", _replace("0.00 held by A R hand", "0.00 held by B R hand")),
 ]
 
 

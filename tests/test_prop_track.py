@@ -27,7 +27,7 @@ def test_the_kunai_is_somewhere_every_moment():
 def test_a_place_set_before_a_hold_does_not_outlive_it():
     envelope = _envelope("ugc_glasses_demo")
     spans = prop_samples.track(envelope, envelope["nodes"]["render"]["items"][0]["labels"], "glasses")
-    assert spans[0][3] == "at rest on the tabletop at [0.25, 0.75, 0.35]"
+    assert spans[0][3] == "held by A R hand"            # taken on the tabletop at the first frame (RV-03, F-077, R-17)
     assert spans[-1][3] == "at rest at [0, 1.66, 0.06]"               # worn on the face (S-030), not 'on the tabletop'
 
 
@@ -42,7 +42,7 @@ def test_a_flight_without_its_physics_is_refused():
 def test_a_prop_with_no_place_is_refused():
     envelope = copy.deepcopy(_envelope("ugc_glasses_demo"))
     for beat in envelope["nodes"]["beats"]["items"]:
-        beat["prop_samples"] = []
+        beat["prop_samples"], beat["contacts"] = [], []      # no hold either: held from 0.0 since RV-03 (F-077)
     for state in envelope["nodes"]["states"]["items"]:
         state["conditions"]["location"] = "unknown"
     labels = envelope["nodes"]["render"]["items"][0]["labels"]

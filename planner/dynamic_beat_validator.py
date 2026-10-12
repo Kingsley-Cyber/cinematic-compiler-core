@@ -346,10 +346,11 @@ def _prop_kinematics(beats, props, genre):
                     findings.append(_finding("PROP_KINEMATICS", f"{prop} from {first['t']} would arrive at {second['t']} "
                                              f"with v {[round(x, 2) for x in velocity]}, not {second['v']}",
                                              beat_id, [first["t"], second["t"]]))
-            elif math.dist(first["p"], second["p"]) > KINEMATIC_TOLERANCE_M and not any(
-                    abs(t - second["t"]) <= EPSILON for t in touches.get(prop, [])):
+            elif math.dist(first["p"], second["p"]) > KINEMATIC_TOLERANCE_M:
+                # F-077 (RV-03): a contact at the second sample takes or strikes the prop where it rests, so the prop
+                # is still there at that instant; only a contact between the two samples moves it.
                 findings.append(_finding("PROP_KINEMATICS", f"{prop} at rest moves between {first['t']} and {second['t']} "
-                                         "with no contact", beat_id, [first["t"], second["t"]]))
+                                         "with no contact before it", beat_id, [first["t"], second["t"]]))
     return findings
 
 
