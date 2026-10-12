@@ -105,6 +105,9 @@ ninja's insert on it went; the UGC card plays normal only, following PLAYBACK_RA
 Added in S-060 (RV-61, compiler/passes/derived/p09_object_state.py, p10_affordance.py): a change's trigger hand is
 judged at the earliest instant among the transition's changes inside the triggering beat; a postcondition is read at
 the next state before that state's beat acts, as a precondition is.
+Added in S-061 (RV-62, renderers/prose_renderer.py, examples/reference_fight): the vanishing actor's line keeps its
+key's support for the instant and ends it there, in words ("then none: A vanishes here until 4.40"); B draws the volley
+at 5.1, its key in A's beat, with the repo's 5.1 arm re-posed to the thigh pouch (0.05 m off the thigh's surface).
 
 ## Impact
 Waits on the owner.

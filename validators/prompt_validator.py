@@ -47,7 +47,8 @@ CODES = {
     "PROP_LINE_MISSING": "a line prop held by one body and fastened to another is not written as one line between them",
     "DOUBLED_WORD": "a word is written twice in a row ('rope dart dart'): the reader cannot tell what is meant",
     "COUNT_CONTRADICTION": "a stated count (fighters, props, a prop's units) disagrees with the scene",
-    "VANISHED_BODY": "a substituted body has a staff line before it reappears, or RULES do not say it is gone",
+    "VANISHED_BODY": "a substituted body has a staff line before it reappears, its vanish line carries its support or a "
+                     "path into the vanish, or RULES do not say it is gone",
     "TURN_LABEL": "a line whose beat names a flip or a cartwheel does not write that turn",
     "BODY_HOLD_FRAMES": "a hold, freeze or pause is written in frames (probes R10, R11, R14 stretched each to about 1 s)",
     "EMPTY_HAND_UNSTATED": "a hand that releases a prop and then holds nothing is not said to be empty (probe R11 kept a "
@@ -507,6 +508,10 @@ def _vanish_checks(envelope, parts, labels, mode, add):
         for row in _staff(parts, mode):
             if row["label"] == labels.get(actor) and start + EPSILON < row["t"] and (back is None or row["t"] < back - EPSILON):
                 add("VANISHED_BODY", f"{row['label']} has a staff line at {row['t']:.2f} while gone")
+            elif row["label"] == labels.get(actor) and abs(row["t"] - start) <= EPSILON and (  # owner O90, F-163 (RV-62)
+                    f"then none: {row['label']} vanishes here" not in row["columns"][0]
+                    or (len(row["columns"]) > 4 and "path: " in row["columns"][4])):
+                add("VANISHED_BODY", f"{row['label']}'s line at {row['t']:.2f} carries its support or a path into the vanish")
 
 
 def _turn_checks(envelope, parts, labels, mode, add):

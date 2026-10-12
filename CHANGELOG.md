@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- Two contradictions in the reference prose gone (RV-62, F-163, F-105, S-061): A's 3.70 line ends its support as A
+  vanishes and no longer walks A to 4.40 (owner O90), which the prompt's VANISHED_BODY now checks; B draws the shuriken
+  volley from the thigh pouch at 5.1 and lets it go with the 5.5 throw, so B no longer throws from an empty hand (the
+  volley's card gains flight `drawn`; deviations DEV-30, DEV-31).
 - "Before a beat" is read one way (RV-61, F-161, S-060): a beat's state snapshot keeps the values its own at-start
   effects replaced (`before_own_effects`, state_graph 1.4), which S10 reads for preconditions and postconditions as
   S06 reads requirements; S09 carries each change's instant (object_state_graph 1.2) and credits only a hand on the

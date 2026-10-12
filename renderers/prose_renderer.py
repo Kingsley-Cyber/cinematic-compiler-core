@@ -315,6 +315,8 @@ def staff_lines(envelope, frame_parts, labels):
     heads = {r["slots"][0]: r["head"] for r in runs}
     world = {r["id"]: r for r in contact_world.measure(envelope) if r["measurable"] and r["kind"] != "foot or body on a surface"}
     mids = {s: r["more"] for r in runs for s in r["slots"][1:]}
+    gone = {(actor, beat): back for actor, beat, _, back in dynamic_beat_validator.vanish_windows(
+        _items(envelope, "nodes", "beats"))}
     ordered = sorted(slots(envelope), key=lambda s: (s["t"], labels[s["entity"]]))
     by_entity = {}
     for slot in ordered:
@@ -330,7 +332,8 @@ def staff_lines(envelope, frame_parts, labels):
         surfaces = {part: _surface_at(spans, entity, part, slot["t"]) for part in kin["support"]}
         support = staff_geometry.support_words(kin["support"], posture=slot["state"].get("posture"), knee_folds=folds,
                                                surfaces=surfaces)
-        horizontal, rise = _travel(slot, following)
+        vanishing = slot["role"] == "actor" and (entity, slot["beat"]) in gone  # owner O90, F-163: it does not walk on
+        horizontal, rise = (None, 0.0) if vanishing else _travel(slot, following)
         grounded = [kin["support"]] + ([kinematic[following["slot"]]["support"]] if following else [])
         if horizontal and not rise and following and all(
                 parts and all(p.endswith("_foot") for p in parts) for parts in grounded) and all(
@@ -377,8 +380,13 @@ def staff_lines(envelope, frame_parts, labels):
             notes.append(_face_words(facial[slot["slot"]], labels))
         if following is None:
             notes.append("hold sign to the end")
+        ends = ""
+        if vanishing:  # owner O90 (F-163, RV-62): the support ends as the body vanishes; the legend would carry it on
+            back = gone[(entity, slot["beat"])]
+            ends = f", then none: {labels[entity]} vanishes here " + (f"until {_time(back)}" if back is not None
+                                                                      else "to the end")
         text = (f"{_time(slot['t'])} {labels[entity]}: SUPPORT {support['words']}"
-                f"{' ' + support['tags'] if support['tags'] else ''} | {left} | {right} | "
+                f"{' ' + support['tags'] if support['tags'] else ''}{ends} | {left} | {right} | "
                 f"{'; '.join(relationship) or '-'} | {'; '.join(notes) or '-'}")
         lines.append({"text": text, "strike": strike, "key": key, "entity": entity, "kin": kin,
                       "first": index == 0, "last": following is None, "mid_turn": slot["slot"] in mids})

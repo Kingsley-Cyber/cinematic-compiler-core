@@ -208,3 +208,20 @@ def test_the_printed_camera_rules_follow_o92():
     assert "HIT_HOLD" in fired("Cut close on the receiver after a blow lands.")
     assert "PLAYBACK_RAMP" in fired("Slow motion only around the peak of an action.")
     assert not {"HIT_HOLD", "PLAYBACK_RAMP"} & fired("Hold on the frame of impact so the hit reads.")
+
+
+def test_the_vanishing_actor_s_line_ends_its_support_and_walks_nowhere():
+    """Owner O90 (F-163, RV-62): A's 3.70 line keeps its key's support for the instant and says it ends there, and no
+    path walks A to where it reappears; a vanish line that carries either into the vanish is refused (VANISHED_BODY)."""
+    envelope, render = load(ROOT / "examples" / "reference_fight")
+    for prose in render["prose"].values():
+        line = next(x for x in prose["text"].splitlines() if x.startswith("3.70 A: "))
+        assert line.startswith("3.70 A: SUPPORT both feet place-mid [f:both], then none: A vanishes here until 4.40 | ")
+        assert "path: " not in line
+    text = render["prose"]["mixed"]["text"]
+
+    def fired(prompt):
+        return {f["code"] for f in prompt_validator.check(prompt, envelope, "mixed")}
+    assert "VANISHED_BODY" not in fired(text)
+    assert "VANISHED_BODY" in fired(text.replace("3.70 A: SUPPORT both feet place-mid [f:both], then none: A vanishes here "
+                                                 "until 4.40", "3.70 A: SUPPORT steps left alternating [f:alt]", 1))

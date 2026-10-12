@@ -102,9 +102,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 7.0; backlog 25.
-- Last session: S-060 (2026-10-12, applied): RV-61: "before a beat" read one way: S10 reads the state before the beat's own effects; S09 carries instants.
-- Next slice: RV-62 The vanishing actor's line prints no support into the vanish; the volley is drawn into B's hand before 5.5 (step render).
-- Open findings: 93; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
+- Last session: S-061 (2026-10-12, applied): RV-62: the vanishing actor's line ends its support; B draws the volley before throwing it.
+- Next slice: RV-57 Hits found from the contacts are camera holds on every body present, at S16 and in the prompt, whatever S17 holds (O92) (step camera).
+- Open findings: 92; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

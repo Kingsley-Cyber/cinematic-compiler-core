@@ -12,7 +12,7 @@ medium
 L6
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -47,4 +47,9 @@ none needed
 - RV-62
 
 ## Resolution
-Open.
+RV-62 (S-061): A's 3.70 line keeps its key's support for the instant and says it ends there ("then none: A vanishes
+here until 4.40"), with no path to where A reappears (renderers/prose_renderer.py; owner O90), and the prompt's
+VANISHED_BODY refuses a vanish line that carries either; B draws the volley from the thigh pouch at 5.1 and lets it
+go with the 5.5 throw, so B's right hand is empty 2.00-5.10 and 5.50-6.60 (DEV-30, DEV-31;
+tests/test_reference_fight_golden.py::test_b_draws_the_volley_before_throwing_it,
+tests/test_prose_render.py::test_the_vanishing_actor_s_line_ends_its_support_and_walks_nowhere).

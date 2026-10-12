@@ -67,6 +67,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-058 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-48b (PLAN-007); findings F-1… | applied | the commit whose message names [S-058] | about 12 minutes by the clock (03:45 to 03:57) | — | [S-058-rv-48b-support-hand-and-s04-instructions.md](../sessions/S-058-rv-48b-support-hand-and-s04-instructions.md) |
 | S-059 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-60 (PLAN-007); finding F-160… | applied | the commit whose message names [S-059] | about 7 minutes by the clock (03:58 to 04:05) | — | [S-059-rv-60-camera-cards-follow-o92.md](../sessions/S-059-rv-60-camera-cards-follow-o92.md) |
 | S-060 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-61 (PLAN-007); finding F-161… | applied | the commit whose message names [S-060] | about 9 minutes by the clock (04:07 to 04:16) | — | [S-060-rv-61-before-a-beat-one-reading.md](../sessions/S-060-rv-61-before-a-beat-one-reading.md) |
+| S-061 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-62 (PLAN-007); findings F-16… | applied | the commit whose message names [S-061] | about 12 minutes by the clock (04:17 to 04:29) | — | [S-061-rv-62-vanish-line-and-volley-draw.md](../sessions/S-061-rv-62-vanish-line-and-volley-draw.md) |
 
 ## Status values
 

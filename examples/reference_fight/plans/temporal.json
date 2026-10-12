@@ -1,7 +1,7 @@
 {
  "step_id": "S04",
  "band": "L1",
- "packet_sha256": "sha256:93f3501b60b511330166e6468273fe2e6e25a2b9325e3dd86fcb4e23dd915502",
+ "packet_sha256": "sha256:7d8eee7b51bbc02b53a49533491aba7d644435165c2c009cd044c6080c5ef9c7",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -1438,6 +1438,10 @@
     {
      "kind": "entity",
      "id": "ninja_broad"
+    },
+    {
+     "kind": "prop",
+     "id": "shuriken_volley"
     }
    ],
    "modes": {
@@ -1469,13 +1473,59 @@
    },
    "action": "AERIAL BACKFLIP KICK at 5.1,full backflip in vertical screen plane,LEFT LEG crescent arc VERTICAL on one side,NOT a cartwheel,NOT a wheel,NOT horizontal arc",
    "requires": [],
-   "effects": [],
-   "contacts": [],
+   "effects": [
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "shuriken_volley"
+     },
+     "property": "holder",
+     "value": "ninja_broad"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "shuriken_volley"
+     },
+     "property": "flight",
+     "value": "drawn",
+     "at": "start"
+    }
+   ],
+   "contacts": [
+    {
+     "contact_type": "possess",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_broad",
+      "part": "right_hand"
+     },
+     "b": {
+      "kind": "prop",
+      "id": "shuriken_volley",
+      "part": null
+     },
+     "at": "start"
+    }
+   ],
    "causes": [
     {
      "to": "b14",
      "causal_strength": "soft",
      "why": "Kicked away, B recovers mid-air and answers with exactly three shuriken at A."
+    }
+   ],
+   "prop_samples": [
+    {
+     "prop": "shuriken_volley",
+     "t": 5.1,
+     "p": [
+      -1.13,
+      1.91,
+      4.16
+     ],
+     "v": null,
+     "float": false
     }
    ]
   },
@@ -1532,8 +1582,42 @@
     ]
    },
    "action": "THREE SHURIKEN volley at 5.5,exactly THREE no more no less,all three STAY IN FRAME; B recovers mid-air and throws from the right hand; the three shuriken fly past A into the pillar",
-   "requires": [],
+   "requires": [
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "shuriken_volley"
+     },
+     "property": "holder",
+     "value": "ninja_broad"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "shuriken_volley"
+     },
+     "property": "flight",
+     "value": "drawn"
+    }
+   ],
    "effects": [
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "shuriken_volley"
+     },
+     "property": "holder",
+     "value": "none"
+    },
+    {
+     "subject": {
+      "kind": "prop",
+      "id": "shuriken_volley"
+     },
+     "property": "flight",
+     "value": "flying",
+     "at": "start"
+    },
     {
      "subject": {
       "kind": "prop",
@@ -1600,6 +1684,20 @@
       "id": "ground",
       "part": null
      }
+    },
+    {
+     "contact_type": "release",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_broad",
+      "part": "right_hand"
+     },
+     "b": {
+      "kind": "prop",
+      "id": "shuriken_volley",
+      "part": null
+     },
+     "at": "start"
     }
    ],
    "causes": [

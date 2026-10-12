@@ -385,6 +385,27 @@ def test_the_log_takes_a_s_place_at_the_swap():
                    for c in ENVELOPE["nodes"]["contacts"]["items"])
 
 
+# RV-62 (F-163, F-105; owners O23, O8, O83): the source holsters the volley "in B right thigh pouch" and throws it "from
+# B right hand" at 5.5, with no draw between; B draws it at 5.1, its key in A's backflip beat, where the repo's own
+# pose ("arms flung wide", no source row) now reaches the right hand to the thigh pouch, and lets it go with the throw.
+VOLLEY_DRAW = (5.1, 5.5, [-1.13, 1.91, 4.16])
+DRAW_POSE = {"RA": [15, 0, -5], "RFA": [-5, 0, 0]}
+
+
+def test_b_draws_the_volley_before_throwing_it():
+    held = {(c["contact_type"], c["t"]) for c in ENVELOPE["nodes"]["contacts"]["items"]
+            if c["b"]["id"] == "shuriken_volley" and c["a"]["id"] == "ninja_broad" and c["body_part"] == "right_hand"}
+    assert held == {("possess", VOLLEY_DRAW[0]), ("touch", VOLLEY_DRAW[1]), ("release", VOLLEY_DRAW[1])}
+    key = next(k for k in ENVELOPE["nodes"]["motion"]["items"] if k["id"] == "ninja_broad@b13")
+    assert {joint: key["bones"][joint] for joint in DRAW_POSE} == DRAW_POSE
+    samples = {s["t"]: s["p"] for b in ENVELOPE["nodes"]["beats"]["items"] for s in b.get("prop_samples", [])
+               if s["prop"] == "shuriken_volley"}
+    assert samples[VOLLEY_DRAW[0]] == VOLLEY_DRAW[2] and "holstered in B right thigh pouch" in SOURCE
+    text = RENDER["prose"]["mixed"]["text"]
+    assert "B's right hand is empty from 2.00 until 5.10" in text and "B's right hand is empty from 5.50 until 6.60" in text
+    assert "5.10 flight holstered -> drawn, holder none -> B" in text and "5.50 flight drawn -> flying" in text
+
+
 def test_every_recorded_deviation_is_typed_and_ruled():
     """RV-45 (F-128, R-17, R-33; docs/prompts/no_shortcuts.md): each of this test's records is a typed deviation in
     examples/reference_fight/deviations.yaml, and each names rulings that exist as ADR files."""

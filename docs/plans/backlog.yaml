@@ -104,9 +104,9 @@ items:
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-160], codes: []}
   - {id: RV-61, title: "S10 reads the state before the beat's own effects; S09 carries each change's instant", status: done,
      step: affordance, plan: PLAN-007, depends_on: [], findings: [F-161], codes: []}
-  - {id: RV-62, title: "The vanishing actor's line prints no support into the vanish; the volley is drawn into B's hand before 5.5", status: next,
+  - {id: RV-62, title: "The vanishing actor's line prints no support into the vanish; the volley is drawn into B's hand before 5.5", status: done,
      step: render, plan: PLAN-007, depends_on: [], findings: [F-163, F-105], codes: []}
-  - {id: RV-57, title: "Hits found from the contacts are camera holds on every body present, at S16 and in the prompt, whatever S17 holds (O92)", status: ready,
+  - {id: RV-57, title: "Hits found from the contacts are camera holds on every body present, at S16 and in the prompt, whatever S17 holds (O92)", status: next,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-155, F-015], codes: []}
   - {id: RV-58, title: "The compiler judges prompts with the owner's render findings; a possess counts on an impact frame only as a catch; a touch of another's held prop is no strike only for a non-limb part", status: ready,
      step: render, plan: PLAN-007, depends_on: [], findings: [F-156, F-157], codes: []}

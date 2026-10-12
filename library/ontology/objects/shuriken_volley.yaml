@@ -1,13 +1,13 @@
 card_id: shuriken_volley
 kind: object
-card_version: 1
+card_version: 2
 status: draft
 names: [shuriken volley, shuriken]
 description: "A volley of exactly three throwing stars thrown together."
 parts: [star_1, star_2, star_3]
 materials: [steel]
 states:
-  - {property: flight, values: [holstered, flying, embedded]}
+  - {property: flight, values: [holstered, drawn, flying, embedded]}  # drawn: in the hand (RV-62, F-163)
 affordances: [throw, embed]
 grips: [fan_hold]
 count: 3

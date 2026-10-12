@@ -44,4 +44,5 @@ none needed
 - PLAN-007
 
 ## Resolution
-Open.
+Open in part: the volley starts holstered and is drawn into B's right hand at 5.1 before its 5.5 throw (RV-62,
+S-061); the rope dart's start, the kunai's grip and render.txt's unknowns remain RV-30's.

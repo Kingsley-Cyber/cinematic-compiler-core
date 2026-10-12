@@ -43,3 +43,5 @@ deviations:
   - {id: DEV-27, record: PELLET, type: retimed, rulings: [ADR-O91, ADR-O78], what: "the smoke bursts at 3.7 at A's body; the spent pellet falls and rests"}
   - {id: DEV-28, record: PELLET_STATES, type: retimed, rulings: [ADR-O91], what: "the burst at 3.7, the landing at 4.0"}
   - {id: DEV-29, record: LOG_SWAP, type: added, rulings: [ADR-O48, ADR-O12], what: "the log swapped into A's former place at 3.7; A's hand touch of it went"}
+  - {id: DEV-30, record: VOLLEY_DRAW, type: added, rulings: [ADR-O23, ADR-O8], what: "B draws the volley from the thigh pouch at 5.1 and lets it go with the 5.5 throw; flight drawn between"}
+  - {id: DEV-31, record: DRAW_POSE, type: re-blocked, rulings: [ADR-O83], what: "B's right arm at 5.1 reaches the thigh pouch (was flung wide)"}
