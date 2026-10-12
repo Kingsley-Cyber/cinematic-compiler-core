@@ -232,3 +232,20 @@ def test_s13_refuses_a_body_under_the_floor_between_keys():
     assert [(f["slot"], "0.209 m under the floor at 8.70833 between keys" in f["message"]) for f in sinks] == \
         [("ninja_broad@b21", True)]
     assert p13_motion.check(plan, packet) == []
+
+
+def test_an_in_between_inside_a_turn_prints_its_root_mid_turn():
+    """F-232 (RV-59k, W3): an in-between whose key before declares a turn prints its root as mid-turn in every mode that
+    prints a root, as the staff rows do (the acrobat's 3.55 inside its spin from 2.6, B's 8.75 inside its tip from
+    8.5), and ROTATION_ANGLES_PRINTED refuses its angles printed there."""
+    from validators import prompt_validator
+    for example, head in (("wizard_vs_acrobat", "3.55 B: "), ("reference_fight", "8.75 B: ")):
+        envelope = json.loads((ROOT / "examples" / example / "envelope.json").read_text(encoding="utf-8"))
+        prose = envelope["nodes"]["render"]["items"][0]["prose"]
+        for mode, prompt in prose.items():
+            line = next(row for row in prompt["text"].splitlines() if row.startswith(head))
+            assert ("EulerXYZ mid-turn" in line) == (mode != "pure_staff") and "EulerXYZ [" not in line, (example, mode)
+        text = prose["mixed"]["text"]
+        line = next(row for row in text.splitlines() if row.startswith(head))
+        planted = text.replace(line, line.replace("EulerXYZ mid-turn", "EulerXYZ [0, 90, 0]"))
+        assert "ROTATION_ANGLES_PRINTED" in {f["code"] for f in prompt_validator.check(planted, envelope, "mixed")}

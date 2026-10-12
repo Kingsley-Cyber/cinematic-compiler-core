@@ -12,7 +12,7 @@ medium
 L6
 
 ## Status
-open
+in progress
 
 ## Reported
 2026-10-12
@@ -55,4 +55,7 @@ none needed
 - RV-59k
 
 ## Resolution
-open
+In part by RV-59k (S-102): an in-between whose key before declares a turn prints its root as "EulerXYZ mid-turn" in
+every mode that prints one (B@8.75 and the acrobat@3.55, three modes each), and ROTATION_ANGLES_PRINTED reads the
+in-between lines. Left (latent, ADR-O110): INBETWEEN_SPAN reading its entity's vanish window, and a turn's one
+direction across in-betweens.

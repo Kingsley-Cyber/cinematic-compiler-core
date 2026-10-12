@@ -14,7 +14,7 @@ from compiler.passes.derived import p11_kinematic
 from compiler.passes.mandatory.p07_contact import events_for, lifecycle
 from planner import dynamic_beat_validator, hits
 from planner.scene_view import slots
-from renderers import prop_samples, prose_renderer
+from renderers import anime_renderer, prop_samples, prose_renderer
 from renderers.anime_renderer import constraint_rows
 from solver import contact_world, euler_solver, shape_direction, staff_geometry
 from validators import cause_reason
@@ -481,6 +481,13 @@ def _wording_checks(envelope, text, parts, labels, mode, add):
     for row in rows:
         if (row["label"], round(row["t"], 6)) in inside and INNER_ANGLE.search(row["line"]):
             add("ROTATION_ANGLES_PRINTED", f"{row['label']} {row['t']:.2f} prints angles inside a turn")
+    motion = next((lines for header, lines in parts if header.startswith("[MOTION CONTROL]")), [])
+    turning = anime_renderer.inbetweens_turning(envelope)  # RV-59k (F-232): the in-between lines too
+    for between in anime_renderer.inbetweens(envelope):
+        head = f"{prose_renderer._time(between['t'])} {labels[between['entity']]}: "
+        line = next((line for line in motion if line.startswith(head)), "")
+        if between["id"] in turning and INNER_ANGLE.search(line):
+            add("ROTATION_ANGLES_PRINTED", f"{head.rstrip(': ')} (an in-between key) prints angles inside a turn")
     props = envelope["nodes"]["props"]["items"]
     names = [p["name"].lower() for p in props] + [p["unit_name"].lower() for p in props if p.get("unit_name")]
     for header, lines in parts:

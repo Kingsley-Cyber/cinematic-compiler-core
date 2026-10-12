@@ -188,3 +188,4 @@ backlog order (backlog 33).
 - 2026-10-12 — Principal review 8 (S-099): partially, no tampering; F-230 to F-233 filed, F-210 reopened; the owner narrows the run to significant work (ADR-O110): RV-113 next, then RV-59j, RV-59k, RV-59l, RV-99c, then the owner renders.
 - 2026-10-12 — RV-113 done (S-100): every prose prompt's legend hangs the legs from the spine (ADR-O84); F-231 resolved; RV-59j next.
 - 2026-10-12 — RV-59j done (S-101): an in-between keeps one of its keys' supports (INBETWEEN_SUPPORT); B stands at 6.45 and 6.7 (both soles held), 7.375 added; the in-betweens' words from their poses; the crash's floor split to RV-59m (blocked, F-215); RV-59k next.
+- 2026-10-12 — RV-59k done (S-102): an in-between inside a declared turn prints its root as mid-turn; ROTATION_ANGLES_PRINTED reads the in-between lines; RV-59l next.

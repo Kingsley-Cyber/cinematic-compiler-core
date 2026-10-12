@@ -65,6 +65,18 @@ def inbetweens(envelope):
                   key=lambda b: (b["t"], b["id"]))
 
 
+def inbetweens_turning(envelope):
+    """The ids of the in-between keys inside a declared turn: those whose entity's key before declares one, the turn
+    each carries (ADR-O109, RV-59k; solver/interpolation.py), so a prose line prints its root as mid-turn (W3)."""
+    keys = sorted(_items(envelope, "nodes", "motion"), key=lambda k: k["t"])
+    out = set()
+    for between in inbetweens(envelope):
+        before = [k for k in keys if k["entity"] == between["entity"] and k["t"] < between["t"]]
+        if before and before[-1].get("turn", "none") != "none":
+            out.add(between["id"])
+    return out
+
+
 class _Coverage:
     def __init__(self, envelope):
         self.groups = {g: {i["id"] for i in envelope["nodes"][g]["items"]} for g in envelope["nodes"] if g != "render"}

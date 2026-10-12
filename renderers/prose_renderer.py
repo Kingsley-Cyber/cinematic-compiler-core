@@ -27,7 +27,7 @@ from compiler.passes.mandatory.p07_contact import events_for, lifecycle
 from planner import camera_library, dynamic_beat_validator, hits
 from planner.scene_view import slots
 from renderers import prop_samples, ugc_renderer
-from renderers.anime_renderer import NUMBERS, _face_words, _items, _num, constraint_rows, inbetweens
+from renderers.anime_renderer import NUMBERS, _face_words, _items, _num, constraint_rows, inbetweens, inbetweens_turning
 from solver import contact_world, euler_solver, staff_geometry
 
 TARGET = "structured-prose"
@@ -595,7 +595,7 @@ def _implied(envelope, lines, labels):
     return "[IMPLIED GUIDANCE]\n" + "\n".join(f"- {line}" for line in out)
 
 
-def _motion_control(lines, labels, between=(), mode="pure_staff"):
+def _motion_control(lines, labels, between=(), mode="pure_staff", turning=frozenset()):
     gaps = _gaps(lines, labels, between)
     sizes = [b - a for _, a, b in gaps]
     text = ["Interpolation: slerp joint rotations between lines; the root follows its derived path between positions; "
@@ -609,13 +609,13 @@ def _motion_control(lines, labels, between=(), mode="pure_staff"):
     text.append(f"Explicit = {explicit}; implied = everything between them (IMPLIED GUIDANCE).")
     if between:  # ADR-O109 (RV-59i, RV-59e): inside the Master Template's motion control, not a section of its own
         text.append("In-between keys (no beat, no contact): the interpolation passes through each pose at its time.")
-        text += _inbetween_lines(between, mode, labels)
+        text += _inbetween_lines(between, mode, labels, turning)
     return "[MOTION CONTROL]\n" + "\n".join(text)
 
 
-def _inbetween_lines(between, mode, labels):
+def _inbetween_lines(between, mode, labels, turning=frozenset()):
     """ADR-O109 (RV-59i): each in-between key's time, performer, name and pose words; Root and Joints in every mode but
-    the pure staff."""
+    the pure staff, the root of one inside a declared turn as mid-turn, as the staff rows write it (W3, RV-59k)."""
     out = []
     for b in between:
         words = staff_geometry.pose_words(b)
@@ -625,7 +625,8 @@ def _inbetween_lines(between, mode, labels):
         left += f", head {words['head']}" if words["head"] else ""
         right = (f"R arm {words['right']['arm']}, lower arm {words['right']['lower_arm']}, R leg {words['right']['leg']}, "
                  f"lower leg {words['right']['lower_leg']}")
-        euler = "" if mode == "pure_staff" else (f" · Root {_numbers(b['pos'])} EulerXYZ {_numbers(b['rot'])} · Joints {{"
+        rot = "mid-turn" if b["id"] in turning else _numbers(b["rot"])
+        euler = "" if mode == "pure_staff" else (f" · Root {_numbers(b['pos'])} EulerXYZ {rot} · Joints {{"
                                                  + ", ".join(f"{j}: {_numbers(b['bones'][j])}" for j in JOINTS) + "}")
         out.append(f"{_time(b['t'])} {labels[b['entity']]}: {_words(b['name'])} | {left} | {right}{euler}")
     return out
@@ -939,7 +940,7 @@ def render_all(envelope, frame_parts, labels):
     _, rows = constraint_rows(envelope, labels)
     omitted = sorted({cid for _, _, cid, ref in rows if ref == ROOT_EXACT})
     lines = staff_lines(envelope, frame_parts, labels)
-    between = inbetweens(envelope)  # ADR-O109 (RV-59i)
+    between, turning = inbetweens(envelope), inbetweens_turning(envelope)  # ADR-O109 (RV-59i, RV-59k)
     shared = {"scene": _scene(envelope, frame_parts, lines, labels, rows), "implied": _implied(envelope, lines, labels),
               "spatial": _spatial(envelope, lines, labels, rows),
               "props": _props(envelope, labels), "causal": _causal(envelope, labels),
@@ -950,7 +951,7 @@ def render_all(envelope, frame_parts, labels):
         staff = "\n".join(line["text"] + _euler(line, mode) for line in lines)
         verbs = any(c.get("verb") for c in _items(envelope, "nodes", "contacts"))
         blocks = [shared["scene"], _movement_language(mode, rows, verbs), f"[LABAN STAFF – {title}]\n{staff}",
-                  shared["implied"], _motion_control(lines, labels, between, mode),
+                  shared["implied"], _motion_control(lines, labels, between, mode, turning),
                   shared["spatial"], *shared["props"], shared["causal"], shared["camera"], shared["genre"],
                   _rules(envelope, mode, rows, lines, labels), shared["negatives"]]
         text = "\n\n".join(blocks) + "\n"

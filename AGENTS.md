@@ -101,9 +101,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.2; backlog 44.
-- Last session: S-101 (2026-10-12, applied): RV-59j: an in-between keeps its keys' supports; B's in-betweens stand, and its crash stays over the floor.
-- Next slice: RV-59k An in-between line inside its body's declared turn prints its root as mid-turn, and ROTATION_ANGLES_PRINTED reads the in-between lines (step render).
+- Layer order 1.7; rules 7.2; backlog 45.
+- Last session: S-102 (2026-10-12, applied): RV-59k: an in-between inside a declared turn prints its root as mid-turn.
+- Next slice: RV-59l Between keys a body standing on its keys' claimed supports is not airborne (a landing still never is): RV-59h's loosening undone (step motion).
 - Open findings: 145; decisions: 137 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 

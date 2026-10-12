@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 44
+version: 45
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -186,9 +186,9 @@ items:
      step: motion, plan: PLAN-007, depends_on: [RV-59e, RV-59c], findings: [F-230], codes: [INBETWEEN_SUPPORT]}
   - {id: RV-59m, title: "B's crash held over the floor with no allowance for the repo's keys: the measured solve flings B's legs 1.2-1.5 m up at 8.75 with the trunk past horizontal, so it waits for F-215 and the owner's renders", status: blocked,
      blocked_by: "F-215 (the floor's allowance) and the owner's renders (ADR-O110)", step: motion, plan: PLAN-007, depends_on: [RV-59j], findings: [F-230, F-215], codes: []}
-  - {id: RV-59k, title: "An in-between line inside its body's declared turn prints its root as mid-turn, and ROTATION_ANGLES_PRINTED reads the in-between lines", status: next,
+  - {id: RV-59k, title: "An in-between line inside its body's declared turn prints its root as mid-turn, and ROTATION_ANGLES_PRINTED reads the in-between lines", status: done,
      step: render, plan: PLAN-007, depends_on: [RV-59i], findings: [F-232], codes: []}
-  - {id: RV-59l, title: "Between keys a body standing on its keys' claimed supports is not airborne (a landing still never is): RV-59h's loosening undone", status: ready,
+  - {id: RV-59l, title: "Between keys a body standing on its keys' claimed supports is not airborne (a landing still never is): RV-59h's loosening undone", status: next,
      step: motion, plan: PLAN-007, depends_on: [RV-59h], findings: [F-233], codes: []}
   - {id: RV-99c, title: "The camera floor's negation governs only the phrase it heads (the four rules RV-99b let through refused again, O92's own sentences passing) and the feet are striking parts", status: ready,
      step: camera, plan: PLAN-007, depends_on: [RV-99b], findings: [F-233, F-210], codes: []}

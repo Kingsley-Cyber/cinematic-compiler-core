@@ -6,6 +6,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- An in-between inside a declared turn prints its root as mid-turn, as the staff rows do (RV-59k, F-232, S-102):
+  B@8.75 and the acrobat@3.55 no longer print angles the body only passes through; ROTATION_ANGLES_PRINTED reads the
+  in-between lines.
 - An in-between keeps one of the supports its keys on both sides claim (RV-59j, F-230, S-101): S13 refuses one off
   them (INBETWEEN_SUPPORT); B's in-betweens at 6.45 and 6.7, which floated 0.22 to 0.5 m with the trunk bent back 55
   degrees, are re-solved with both soles held (upright, and 22 degrees back), and one at 7.375 clears the frame that
