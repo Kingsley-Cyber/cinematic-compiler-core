@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 38
+version: 39
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -166,9 +166,11 @@ items:
      step: motion, plan: PLAN-007, depends_on: [RV-59d], findings: [F-222], codes: []}
   - {id: RV-99b, title: "The camera floor's hit words from what the scene's contacts and planner/hits.py name (the knee, the elbow, the palm, the drive), a negation read in every floor word, the cards and O92's own sentences run against it", status: done,
      step: camera, plan: PLAN-007, depends_on: [RV-99], findings: [F-210, F-187, F-160], codes: []}
-  - {id: RV-95b, title: "The pickups judged as drawn: the lean by the trunk vector and the twist against the limit (R-34), the knee and head bounds without slack, the ankle bound restored or asked, the words in the legend's frame, S-078's values pinned as hand choices", status: next,
-     step: motion, plan: PLAN-007, depends_on: [RV-95], findings: [F-223, F-224, F-226], codes: []}
-  - {id: RV-59f, title: "In-between keys (ADR-O109): one entity's pose at an instant between two of its keys, checked like a key, printed with its instant, placed by the re-block solver", status: ready,
+  - {id: RV-95b, title: "The pickups judged as drawn: the lean by the trunk vector (R-34), the knee and head bounds without slack, the ankle bound restored in the commands and its misses asked, S-078's values pinned as hand choices", status: done,
+     step: motion, plan: PLAN-007, depends_on: [RV-95], findings: [F-223, F-226], codes: []}
+  - {id: RV-95c, title: "The pickup rows worded in the printed legend's frame, and A's head at 7.5 aimed at B by a facing goal in the re-block solver (or its words dropped)", status: ready,
+     step: motion, plan: PLAN-007, depends_on: [RV-95b], findings: [F-224, F-111], codes: []}
+  - {id: RV-59f, title: "In-between keys (ADR-O109): one entity's pose at an instant between two of its keys, checked like a key, printed with its instant, placed by the re-block solver", status: next,
      step: motion, plan: PLAN-007, depends_on: [RV-59b], findings: [F-220, F-159], codes: []}
   - {id: RV-108, title: "A declared turn drawn about its own axis by its net angle between keys (B's 8.5 tip), F-053's straight-Euler reading revised, the between-keys report re-measured", status: ready,
      step: motion, plan: PLAN-007, depends_on: [RV-59a], findings: [F-225], codes: []}

@@ -6,6 +6,11 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- A's pickups judged as drawn (RV-95b, F-223, F-226, S-093): the recorded commands state every bound S-083's plan
+  stated (knees 0.08 m, ankles 0.045 m, the head 0.2 m over the pelvis, the trunk within 70 degrees), and both keys
+  were re-solved from their start keys; the knees and the head hold without test slack, and the lean (70.2 and 71.2
+  degrees, read from the trunk's vector) and three ankles (0.0263 to 0.0449 m) are pinned as drawn and asked of the
+  owner (F-223, F-215). DEV-09 updated; the fight's overlap frames between keys 29 to 28.
 - The camera floor finds a hit by what strikes (RV-99b, F-210, F-187, F-160, S-092): a combat verb of
   library/combat_verbs.yaml, an attack, or a striking part or a blade meeting something (the fight's palm, knee,
   elbow and kunai drive), and every floor word and camera term is read outside a negation, so O92's own sentences

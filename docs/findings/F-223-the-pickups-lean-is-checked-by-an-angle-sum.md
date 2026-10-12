@@ -3,7 +3,7 @@
 <!-- docs-version: 1.0 -->
 
 ## Type
-gap
+question
 
 ## Severity
 medium
@@ -44,7 +44,7 @@ RV-95b: judge the lean by the trunk vector and the twist against the genre's lim
 report the numbers to the owner with F-205 (the anime arm).
 
 ## Owner Ruling
-none needed (R-34; F-205 for the arm)
+the question open: keep the drawn lean (70.2 and 71.2 degrees) or change what the reach needs (a lower crouch than A's own 0.57 m, or F-205's longer anime arm)
 
 ## Related
 - F-206
@@ -54,3 +54,9 @@ none needed (R-34; F-205 for the arm)
 
 ## Resolution
 Open.
+Open in part after S-093 (RV-95b): the lean is now read from the trunk's vector, and the pickups were re-solved from
+their recorded commands with the 70-degree bound stated as the chest's height over the pelvis: the trunk leans 70.2
+degrees at 7.5 and 71.2 at 8.0, the hand within 7 and 10 mm of its prop, the 8.0 spine twisted 71.4 degrees inside the
+anime limit of 75 (O11). From A's own 0.57 m the hand cannot reach the ground within 70 degrees (the shoulder sits
+about 0.74 m up, the arm 0.65 m long), so the bound is the owner's question rather than one to move; the test pins the
+drawn lean.

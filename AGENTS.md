@@ -101,10 +101,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.2; backlog 38.
-- Last session: S-092 (2026-10-12, applied): RV-99b: the camera floor finds a hit by what strikes, and reads a negation in every word.
-- Next slice: RV-95b The pickups judged as drawn: the lean by the trunk vector and the twist against the limit (R-34), the knee and head bounds without slack, the ankle bound restored or asked, the words in the legend's frame, S-078's values pinned as hand choices (step motion).
-- Open findings: 145; decisions: 136 (0 proposed, 7 owner_default awaiting the owner).
+- Layer order 1.7; rules 7.2; backlog 39.
+- Last session: S-093 (2026-10-12, applied): RV-95b: the pickups judged as drawn, their stated bounds restored.
+- Next slice: RV-59f In-between keys (ADR-O109): one entity's pose at an instant between two of its keys, checked like a key, printed with its instant, placed by the re-block solver (step motion).
+- Open findings: 144; decisions: 136 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
@@ -156,6 +156,7 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - F-211 (medium): Must each fighter's laban chain carry its side of the other's beats?
 - F-215 (high): May a body point sit up to 0.15 m under the floor, or only by its radius?
 - F-220 (high): By a contact the declared interpolation draws one body through the other, and B's crash through the floor
+- F-223 (medium): The pickups' lean is checked by an angle sum the drawn body does not hold
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog RV-15c blocked: A strike's limb and a facing head point at their target, checked at S13 (B's keys re-aimed in RV-103b) — the owner's answer in F-148 (A's source facings: the check would refuse the golden's own rows, O10)
 - Backlog RV-14b blocked: A held or embedded prop at its holder at every sample (the rope dart's line in RV-14c) — the owner's answer in F-148 (the climax: A's source right hand is 0.65-0.87 m from the kunai the source keeps in B's shoulder at 8.5-9.5)

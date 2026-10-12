@@ -163,7 +163,9 @@ sorted names; a sum limit (NK+HD) is not enforced, so the neck and the head are 
 Added in S-083 (RV-95): a hand grasping a prop at a pickup is no support (the feet bear the weight); the pickup rows'
 words take bent N as 15 N degrees (the source's 'arm fwd high bent3' at 45) and their directions from the staff's
 sectors (forward and its diagonals 'fwd', back 'back', left or right 'side', place 'down' or 'up'); an ankle need only
-be over the floor, the sole being the contact point (the foot is the shin's extension, F-219).
+be over the floor, the sole being the contact point (the foot is the shin's extension, F-219). Superseded in S-093
+(RV-95b): the commands state the ankle's 0.045 m bound again; where the body cannot meet it the number goes to the
+owner (F-215), and the lean is read from the trunk's vector (F-223).
 Added in S-085 (RV-99, planner/camera_library.py): the hit words (the nouns, the striking verbs, the attacks on a body),
 the words that frame one body (alone, solely, only or on the receiver, attacker, striker, defender, target, victim) and
 that shake a camera (handheld, shake, jitter, wobble, judder), a negation (no, not, never, without) read as one.

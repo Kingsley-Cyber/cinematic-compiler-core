@@ -12,7 +12,7 @@ medium
 L4c
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -57,4 +57,9 @@ the ankle relaxation is F-215's question
 - RV-95b
 
 ## Resolution
-Open.
+Resolved in S-093 (RV-95b): the recorded commands state every bound S-083's plan stated, each floor with the solver's
+1 mm margin stated before the solve (knees 0.08 m, ankles 0.045 m, the head 0.2 m over the pelvis, the trunk within 70
+degrees by the chest's height), and both pickups were re-solved from their start keys. The tests hold the knees and
+the head without slack (0.0851 m the lowest knee) and pin, for the owner, what is not met: the ankles at 7.5 (0.0385,
+0.0263 m) and the 8.0 right ankle (0.0449 m), F-215 and F-219; the lean, F-223. S-078's test says what it shows: the
+solver reaches a hand-chosen height.

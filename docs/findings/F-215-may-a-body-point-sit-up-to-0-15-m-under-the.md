@@ -54,3 +54,7 @@ Open.
 Corrected in S-090 (principal review 7): this finding's evidence said RV-95 keeps the repo's re-blocks above the floor
 by their radii either way; A's ankles at 7.5 sit 0.012 and 0.022 m over the floor against the foot's radius of 0.045
 (S-083 relaxed its 0.045 m bound after the solve, F-226).
+Noted in S-093 (RV-95b): with S-083's stated 0.045 m ankle bound restored in the recorded commands, A's ankles reach
+0.0385 and 0.0263 m at 7.5 and 0.0484 and 0.0449 m at 8.0: the foot, the shin's extension (F-219), cannot keep its
+surface off the floor in A's deepest crouch. Whether a point within 0.15 m or a surface is the floor's measure decides
+whether that stands.

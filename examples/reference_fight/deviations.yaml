@@ -4,7 +4,7 @@
 # no entry, a type not listed here, or a ruling with no ADR file. RV-100 (F-212, S-084) typed this run's rewrites
 # (S-076's shots, S-078's lunge, S-083's pickups); deviations the golden test does not yet record (the camera values
 # before S-076, B's other joints, the props' points) are RV-51's (F-147).
-version: 3
+version: 4
 types:
   reworded: the source's words changed
   renumbered: the source's own numbers changed (A's rows)
@@ -23,7 +23,7 @@ deviations:
   - {id: DEV-06, record: HEAD_FLIPS, type: renumbered, rulings: [ADR-O88], what: "A's head pitch flipped to the source's words"}
   - {id: DEV-07, record: VANISHED, type: dropped, rulings: [ADR-O18], what: "A's 4.0 row is not drawn: A is gone from 3.7 to 4.4"}
   - {id: DEV-08, record: ROOT_TURNS, type: renumbered, rulings: [ADR-O18], what: "angles stay continuous after the backflip and the cartwheel"}
-  - {id: DEV-09, record: GROUNDED_PICKUPS, type: renumbered, rulings: [ADR-O18, ADR-O72, ADR-O11], what: "A's rows at the two pickups crouch at A's own 0.57 m on planted feet, one hand at its prop, every knee over the floor (RV-95's recorded commands, S-083)"}
+  - {id: DEV-09, record: GROUNDED_PICKUPS, type: renumbered, rulings: [ADR-O18, ADR-O72, ADR-O11], what: "A's rows at the two pickups crouch at A's own 0.57 m on planted feet, one hand at its prop, every knee over the floor (RV-95's recorded commands, S-083; re-solved with every bound S-083 stated in RV-95b, S-093)"}
   - {id: DEV-10, record: GROUNDED_DESCRIPTIONS, type: reworded, rulings: [ADR-O18], what: "the pickup rows' words say what their numbers do (bent N = 15 N degrees, S-083)"}
   - {id: DEV-11, record: CONTACT_EXCEPTIONS, type: kept, rulings: [ADR-O83], what: "the source's slide at 5.9 keeps its two misses (the owner's list)"}
   - {id: DEV-12, record: OPENING, type: renumbered, rulings: [ADR-O21], what: "A starts at y=10 and lands on the 8 m top"}

@@ -79,5 +79,5 @@ def test_the_report_measures_the_fight_between_keys():
     assert [(row["entity"], row["span"], row["frames"], row["deepest"], row["whose"]) for row in found["sinks"]] == \
         [("ninja_broad", (8.5, 9.0), 9, 0.385, "repo keys")]
     assert max(row["deepest"] for row in found["overlaps"]) == 0.149
-    assert sum(row["frames"] for row in found["overlaps"]) == 29  # 38 on S-086; S-087 re-blocked 3.4-3.7 and 4.4-4.7
+    assert sum(row["frames"] for row in found["overlaps"]) == 28  # 38 on S-086, 29 after S-087, 28 after S-093
     assert all(row["whose"][0] == "repo keys" and row["pair"][0] == "ninja_broad" for row in found["overlaps"])

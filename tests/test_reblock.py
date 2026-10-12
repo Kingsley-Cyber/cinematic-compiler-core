@@ -3,6 +3,7 @@ it re-derived crouch on the feet with one hand down (F-110); and a clearance goa
 body between keys (RV-59b, F-159)."""
 
 import json
+import math
 
 import pytest
 from conftest import ROOT
@@ -32,8 +33,10 @@ def test_the_solver_meets_a_goal_by_the_least_change_inside_its_bounds():
     assert abs(forward_kinematics.points({**lifted, "bones": bones}, metres)["left_foot"][1]) < 0.01
 
 
-def test_s078_s_re_blocks_are_re_derived_from_their_goals():
-    """B's lunge at 3.4 (S-078) comes back from the hip alone with its sole's height as the goal."""
+def test_s078_s_lunge_height_is_reached_by_the_hip_alone():
+    """B's lunge at 3.4 (S-078): its front sole's height is a hand choice (DEV-33, F-207), given here as the goal; from
+    the key before, the hip alone reaches it within a degree of the committed angle. This shows the solver's reach, not
+    a re-derivation of the choice (F-226)."""
     metres = forward_kinematics.segments("anime")
     key = _key("reference_fight", "ninja_broad@b08")
     before = {**key, "bones": {**key["bones"], "LUL": [-85.17, 1.29, 22.95]}}  # the key before S-078
@@ -84,17 +87,20 @@ def test_the_cli_re_derives_a_solve_from_its_start_key_and_weighted_goals(tmp_pa
     assert printed["command"] == "python -m solver.reblock " + " ".join(argv)
 
 
-# RV-95 (F-206, S-083): the commands that re-blocked the pickups, run from the keys S-080 committed (a62e551), whose
-# bones START keeps; `--from a62e551` reads the same keys from git.
+# RV-95 (F-206, S-083), re-solved in RV-95b (F-223, F-226, S-093): the commands that re-blocked the pickups, run from
+# the keys S-080 committed (a62e551), whose bones START keeps; `--from a62e551` reads the same keys from git. They state
+# every bound S-083's plan stated, each floor with the solver's 1 mm margin (its floors are soft): the knees over 0.08
+# m, the ankles over 0.045 m, the head 0.2 m over the pelvis, the trunk within 70 degrees of vertical (the chest over
+# the pelvis by 0.5 * cos 70 = 0.171 m); the spine inside the anime limits (O11).
 START = {"ninja_lean@b19": {"Sp": [28.375, -19.25, -13.125], "LUL": [-82.325, 0, 45.0], "RUL": [-80.0, 0, 30.0],
           "LL": [118.475, 0, 0], "RL": [124.0, 0, 0], "LA": [-60.85, 32.125, 12.25], "RA": [-103.375, 0, -0.5],
           "LFA": [-16.0, 0, 0], "RFA": [-45.375, 0, 0], "HD": [10, 0, 0], "NK": [0, 0, 0]},
          "ninja_lean@b20": {"Sp": [45.0, 45.0, 15.25], "LUL": [-69.975, 0, -23.5], "RUL": [-65.975, 0, -14.0],
           "LL": [102.05, 0, 0], "RL": [109.375, 0, 0], "LA": [-60.0, 0, 0.0], "RA": [-56.2, -10.575, -24.875],
           "LFA": [-30.0, 0, 0], "RFA": [-3.275, 0, 0], "HD": [10, 0, 0], "NK": [0, 0, 0]}}
-COMMON = ["--root-y", "0.57", "--goal", "left_foot.y=0", "--goal", "right_foot.y=0", "--above", "left_leg.y=0.08",
-          "--above", "right_leg.y=0.08", "--above", "left_ankle.y=0", "--above", "right_ankle.y=0", "--above", "head.y=0.77",
-          "--bound", "Sp.x=-30..40"]
+COMMON = ["--root-y", "0.57", "--goal", "left_foot.y=0", "--goal", "right_foot.y=0", "--above", "left_leg.y=0.081",
+          "--above", "right_leg.y=0.081", "--above", "left_ankle.y=0.046", "--above", "right_ankle.y=0.046",
+          "--above", "head.y=0.771", "--above", "chest.y=0.742"]
 COMMANDS = {
     "ninja_lean@b19": ["--free", "Sp.x,Sp.y,Sp.z,LUL.x,RUL.x,LUL.z,RUL.z,LL.x,RL.x,LA.x,LA.y,LA.z,LFA.x,RA.x,RA.z,RFA.x",
                        "--goal", "left_hand=1.18,0.0,4.51", "--goal", "left_foot=0.693,0,3.724@0.01",
@@ -121,23 +127,29 @@ def test_the_pickups_re_derive_from_their_recorded_commands(tmp_path, capsys):
 
 
 def test_the_pickups_crouch_on_the_feet_with_one_hand_down():
-    """F-110, F-206 (RV-95, owner O18): at 7.5 and 8.0 A crouches on both soles with one hand at its prop and the other
-    off the floor, every knee 0.08 m (the thigh's radius) and every ankle over the floor, the head 0.2 m over the pelvis
-    and the trunk leaning 70 degrees or less; the feet bear the weight, so the hand is no support."""
+    """F-110, F-206, F-223, F-226 (RV-95, RV-95b; owner O18, R-34): at 7.5 and 8.0 A crouches on both soles with one hand
+    at its prop and the other off the floor, every knee 0.08 m (the thigh's radius) over the floor and the head 0.2 m
+    over the pelvis; the feet bear the weight, so the hand is no support. The lean is read from the trunk's own vector
+    (pelvis to chest). Two stated bounds are not met and are pinned as drawn, for the owner: the trunk leans 70.2 and
+    71.2 degrees, over 70, since the hand cannot reach the ground from A's own 0.57 m within it (F-223); the 7.5 ankles
+    sit 0.0385 and 0.0263 m over the floor and the 8.0 right 0.0449, under the foot's 0.045 m radius (F-215, F-219)."""
     envelope = json.loads((EXAMPLES / "reference_fight" / "envelope.json").read_text(encoding="utf-8"))
     keys = {k["id"]: k for k in envelope["nodes"]["motion"]["items"]}
     kinematic = {k["id"]: k for k in envelope["nodes"]["kinematic"]["items"]}
     metres = forward_kinematics.segments("anime")
+    drawn = {}
     for slot, hand, other in (("ninja_lean@b19", "left_hand", "right_hand"), ("ninja_lean@b20", "right_hand", "left_hand")):
         points, key = keys[slot]["points"], keys[slot]
         joints = forward_kinematics.joints(key, metres)
         assert abs(points["left_foot"][1]) <= 0.02 and abs(points["right_foot"][1]) <= 0.02
         assert points[hand][1] <= 0.03 and points[other][1] >= 0.3
-        assert min(joints["left_knee"][1], joints["right_knee"][1]) >= 0.08 - 1e-3
-        assert min(joints["left_ankle"][1], joints["right_ankle"][1]) >= 0
-        assert points["head"][1] - points["pelvis"][1] >= 0.2 - 1e-3
-        assert (key["rot"][0] % 360) + key["bones"]["Sp"][0] <= 70  # the root's 30 degrees and the spine's lean
+        assert min(joints["left_knee"][1], joints["right_knee"][1]) >= 0.08
+        assert points["head"][1] - points["pelvis"][1] >= 0.2
+        trunk = [c - p for c, p in zip(joints["chest"], joints["pelvis"], strict=True)]
+        drawn[slot] = (round(math.degrees(math.acos(trunk[1] / math.hypot(*trunk))), 1),
+                       round(joints["left_ankle"][1], 4), round(joints["right_ankle"][1], 4))
         assert kinematic[slot]["support"] == ["left_foot", "right_foot"]
+    assert drawn == {"ninja_lean@b19": (70.2, 0.0385, 0.0263), "ninja_lean@b20": (71.2, 0.0484, 0.0449)}
 
 
 def test_the_solver_s_capsules_are_forward_kinematics():
