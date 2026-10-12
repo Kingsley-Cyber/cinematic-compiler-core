@@ -82,7 +82,7 @@ Full table: [docs/layer_order.md](docs/layer_order.md).
 - **R-17** Where the golden contradicts its own words or the DAG, fix the golden as a recorded deviation; where a new check fails on internally consistent golden content, fix the check.
 - **R-18** Bodies and props obey the scene's physics: no teleport above 25 m/s except a declared substitution; props follow gravity unless a float is declared (anime only).
 - **R-35** Hip angles are read from the trunk (the root, then Sp) in every key, genre and example: forward kinematics hangs the legs from the spine, and every authored key writes its hips that way.
-- **R-19** A prompt is a deliverable only when every applicable DAG-map row passes on it, shown per prompt; NOT CHECKED is not a pass; a row the DAG excludes is N/A unless a code checks it; cinematic compile refuses a prompt that is not a deliverable.
+- **R-19** A prompt is a deliverable only when every applicable DAG-map row passes on it, shown per prompt, and it fits a documented target's length cap (O97: PROMPT_LENGTH); NOT CHECKED is not a pass; a row the DAG excludes is N/A unless a code checks it; cinematic compile refuses a prompt that is not a deliverable.
 - **R-20** The format comes from the DAG's own instances (D6, D9, D10).
 - **R-21** No hold, freeze or pause is written in frames; a hit gets a camera hold with the bodies in frame and no close-up or insert; no shot changes playback speed (no slow motion or ramps in a fixed-length clip).
 - **R-22** A hand that releases a prop and then holds nothing is said to be empty.
@@ -101,10 +101,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.1; backlog 34.
-- Last session: S-083 (2026-10-12, applied): RV-95: the pickups re-blocked from a recorded command, every part above the floor.
-- Next slice: RV-100 S-076's, S-078's, S-080's and S-083's example rewrites typed in deviations.yaml; DEV-09 updated; R-19 cites O97 (step docs).
-- Open findings: 140; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
+- Layer order 1.7; rules 7.2; backlog 34.
+- Last session: S-084 (2026-10-12, applied): RV-100: this run's example rewrites typed as deviations; R-19 cites O97.
+- Next slice: RV-99 Camera card rules: RV-60's word lists restored as a floor; a hit rule found from what a contact means; subject and rig words read (step camera).
+- Open findings: 139; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

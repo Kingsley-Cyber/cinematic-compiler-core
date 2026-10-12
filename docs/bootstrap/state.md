@@ -6,20 +6,20 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 7.1; backlog 34.
+Layer order 1.7; rules 7.2; backlog 34.
 
 ## Last sessions
 
-- S-081 (applied): Principal review 6: does the finished work match the plan?
 - S-082 (applied): RV-96: the re-block solver re-derives a re-block from its record
 - S-083 (applied): RV-95: the pickups re-blocked from a recorded command, every part above the floor
+- S-084 (applied): RV-100: this run's example rewrites typed as deviations; R-19 cites O97
 
 ## Next slices
 
-- RV-100 (next, step docs): S-076's, S-078's, S-080's and S-083's example rewrites typed in deviations.yaml; DEV-09 updated; R-19 cites O97
+- RV-99 (next, step camera): Camera card rules: RV-60's word lists restored as a floor; a hit rule found from what a contact means; subject and rig words read
 - RV-35b (ready, step all): The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools
-- RV-99 (ready, step camera): Camera card rules: RV-60's word lists restored as a floor; a hit rule found from what a contact means; subject and rig words read
 - RV-59 (ready, step motion): BODY_OVERLAP, CONTACT_WORLD and FLOOR_PENETRATION along the declared interpolation between keys; the paths re-blocked
+- RV-97 (ready, step camera): VERTICAL_FRAMING along a static shot's window, frames on the declared interpolation, a margin by each part's radius; c11 and c20 re-authored
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -88,7 +88,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 140
+## Open findings: 139
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -137,4 +137,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-220, session S-084, render R20.
+Decision ADR-O109, finding F-220, session S-085, render R20.

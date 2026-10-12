@@ -425,6 +425,34 @@ def test_b_draws_the_volley_before_throwing_it():
     assert "5.10 flight holstered -> drawn, holder none -> B" in text and "5.50 flight drawn -> flying" in text
 
 
+# RV-15a (F-090, S-076; owners O72, O92): the shots VERTICAL_FRAMING or the moved aim refused, re-authored with the
+# least printed change; each changed field as S-076 left it (typed as DEV-32, RV-100).
+REAUTHORED_SHOTS = {"c02": {"framing.scale": "extreme_wide", "position.distance_m": 7.5},
+                    "c05": {"position.distance_m": 3.5}, "c07": {"composition.placement.ninja_broad": "right_third"},
+                    "c08": {"composition.placement.ninja_lean": "left_third"}, "c11": {"position.distance_m": 2.3},
+                    "c12": {"position.distance_m": 2.1}, "c16": {"composition.placement.ninja_broad": "center"},
+                    "c18": {"composition.placement.ninja_broad": "center"},
+                    "c19": {"framing.scale": "medium_wide", "position.distance_m": 3.0},
+                    "c20": {"position.distance_m": 1.95}, "c22": {"composition.placement.ninja_broad": "center"}}
+# RV-14a (F-089, S-078; owner O72): B's lunge at 3.4 and 3.7 plants its front sole by the hip alone, a hand choice
+# (typed as DEV-33, RV-100).
+B_LUNGE = {"ninja_broad@b08": {"LUL": [-70.17, 1.29, 22.95]}, "ninja_broad@b09": {"LUL": [-65.7, 2.7, 23.3]}}
+
+
+def test_the_re_authored_shots_and_the_lunge_are_what_the_records_say():
+    """F-212 (RV-100): the shots S-076 re-authored and the lunge S-078 re-posed are held to their records, so a change
+    to either is a change to a typed deviation."""
+    shots = {s["id"]: s for s in json.loads((FOLDER / "plans" / "camera.json").read_text(encoding="utf-8"))["shots"]}
+    for shot, fields in REAUTHORED_SHOTS.items():
+        for path, value in fields.items():
+            node = shots[shot]
+            for step in path.split("."):
+                node = node[step]
+            assert node == value, (shot, path)
+    keys = {k["slot"]: k for k in json.loads((FOLDER / "plans" / "motion.json").read_text(encoding="utf-8"))["keys"]}
+    assert {slot: {joint: keys[slot]["bones"][joint] for joint in bones} for slot, bones in B_LUNGE.items()} == B_LUNGE
+
+
 def test_every_recorded_deviation_is_typed_and_ruled():
     """RV-45 (F-128, R-17, R-33; docs/prompts/no_shortcuts.md): each of this test's records is a typed deviation in
     examples/reference_fight/deviations.yaml, and each names rulings that exist as ADR files."""

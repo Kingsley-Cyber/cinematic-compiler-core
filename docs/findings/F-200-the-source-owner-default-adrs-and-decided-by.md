@@ -51,3 +51,5 @@ needed
 Open.
 Noted in S-081 (the sixth review): R-33 says a rewrite is recorded 'in the golden test and the session file', ADR-O102
 'or' (F-212).
+Noted in S-084 (RV-100): the run records a rewrite in the golden test, the registry and the session file, which meets
+both R-33's 'and' and O102's 'or'; the question stands.

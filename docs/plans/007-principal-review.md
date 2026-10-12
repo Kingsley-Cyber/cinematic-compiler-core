@@ -170,3 +170,4 @@ backlog order (backlog 33).
 - 2026-10-12 — Review 6 (S-081): verdict partially, no tampering; F-206 to F-218 with RV-95 to RV-105; F-090, F-110, F-187, F-160, F-091 reopened in part; RV-96 next.
 - 2026-10-12 — RV-96 done (S-082): the re-block solver is order-independent, bound by the joint limits, and re-derivable from its printed command.
 - 2026-10-12 — RV-95 done (S-083): the pickups re-blocked from recorded commands at A's own 0.57 m, every knee over the floor, the hand no support; F-206, F-110, F-207 resolved; F-219 (the ankle) filed.
+- 2026-10-12 — RV-100 done (S-084): S-076's shots and S-078's lunge typed (DEV-32, DEV-33), DEV-09 and DEV-10 updated, R-19 cites O97; F-212 resolved.

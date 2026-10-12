@@ -6,6 +6,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- This run's rewrites of the golden are typed deviations (RV-100, F-212, S-084): the golden test records S-076's eleven
+  re-authored shots and S-078's lunge, held to the plans by a test and typed as DEV-32 and DEV-33; DEV-09 and DEV-10
+  say what RV-95 did; R-19 cites O97's length cap (rules 7.2). No example changed.
 - A's pickups re-blocked again, from recorded commands (RV-95, F-206, S-083): A crouches at its own 0.57 m with both
   feet planted, every knee over the floor and one hand at its prop; the feet bear the weight, so S-080's hand supports
   are gone and each row prints one support; the rows' words say the new numbers. A test re-derives both keys from the

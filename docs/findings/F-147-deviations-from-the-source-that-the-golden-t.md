@@ -50,3 +50,5 @@ none needed (R-17), F-148 for the knee
 
 ## Resolution
 Open.
+Noted in S-084 (RV-100): this run's rewrites (S-076's shots, S-078's lunge, S-083's pickups) are typed (DEV-32,
+DEV-33, DEV-09, DEV-10); the camera values before S-076, B's other joints and the props' points remain.

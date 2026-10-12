@@ -1,9 +1,10 @@
 # The reference fight's recorded deviations from its source (kernel/sources/lbn-2.3-adv.txt), typed and numbered
 # (rules R-17 and R-33; docs/prompts/no_shortcuts.md: a fix that changes an example records a typed deviation, and every
 # deviation matches its ADR). One entry per record in tests/test_reference_fight_golden.py, which refuses a record with
-# no entry, a type not listed here, or a ruling with no ADR file. Deviations the golden test does not yet record (the
-# camera's re-authoring, B's joints, the props' points) are RV-51's (F-147).
-version: 1
+# no entry, a type not listed here, or a ruling with no ADR file. RV-100 (F-212, S-084) typed this run's rewrites
+# (S-076's shots, S-078's lunge, S-083's pickups); deviations the golden test does not yet record (the camera values
+# before S-076, B's other joints, the props' points) are RV-51's (F-147).
+version: 2
 types:
   reworded: the source's words changed
   renumbered: the source's own numbers changed (A's rows)
@@ -22,8 +23,8 @@ deviations:
   - {id: DEV-06, record: HEAD_FLIPS, type: renumbered, rulings: [ADR-O88], what: "A's head pitch flipped to the source's words"}
   - {id: DEV-07, record: VANISHED, type: dropped, rulings: [ADR-O18], what: "A's 4.0 row is not drawn: A is gone from 3.7 to 4.4"}
   - {id: DEV-08, record: ROOT_TURNS, type: renumbered, rulings: [ADR-O18], what: "angles stay continuous after the backflip and the cartwheel"}
-  - {id: DEV-09, record: GROUNDED_PICKUPS, type: renumbered, rulings: [ADR-O18, ADR-O83, ADR-O89], what: "A's rows at the two pickups crouch on the ground and reach the props"}
-  - {id: DEV-10, record: GROUNDED_DESCRIPTIONS, type: reworded, rulings: [ADR-O18], what: "the pickup rows' words say what their numbers do"}
+  - {id: DEV-09, record: GROUNDED_PICKUPS, type: renumbered, rulings: [ADR-O18, ADR-O72, ADR-O11], what: "A's rows at the two pickups crouch at A's own 0.57 m on planted feet, one hand at its prop, every knee over the floor (RV-95's recorded commands, S-083)"}
+  - {id: DEV-10, record: GROUNDED_DESCRIPTIONS, type: reworded, rulings: [ADR-O18], what: "the pickup rows' words say what their numbers do (bent N = 15 N degrees, S-083)"}
   - {id: DEV-11, record: CONTACT_EXCEPTIONS, type: kept, rulings: [ADR-O83], what: "the source's slide at 5.9 keeps its two misses (the owner's list)"}
   - {id: DEV-12, record: OPENING, type: renumbered, rulings: [ADR-O21], what: "A starts at y=10 and lands on the 8 m top"}
   - {id: DEV-13, record: OPENING_WORDS, type: reworded, rulings: [ADR-O21], what: "the 0.6 row lands on the top at y=8"}
@@ -45,3 +46,5 @@ deviations:
   - {id: DEV-29, record: LOG_SWAP, type: added, rulings: [ADR-O48, ADR-O12], what: "the log swapped into A's former place at 3.7; A's hand touch of it went"}
   - {id: DEV-30, record: VOLLEY_DRAW, type: added, rulings: [ADR-O23, ADR-O8], what: "B draws the volley from the thigh pouch at 5.1 and lets it go with the 5.5 throw; flight drawn between"}
   - {id: DEV-31, record: DRAW_POSE, type: re-blocked, rulings: [ADR-O83], what: "B's right arm at 5.1 reaches the thigh pouch (was flung wide)"}
+  - {id: DEV-32, record: REAUTHORED_SHOTS, type: re-blocked, rulings: [ADR-O72, ADR-O92], what: "eleven shots re-authored when the camera aimed at the bodies and VERTICAL_FRAMING came (S-076): distances, two scales, placements"}
+  - {id: DEV-33, record: B_LUNGE, type: re-blocked, rulings: [ADR-O72], what: "B's front sole planted at 3.4 and 3.7 by the hip alone, a hand choice (S-078)"}

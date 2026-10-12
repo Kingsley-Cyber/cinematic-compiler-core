@@ -152,9 +152,9 @@ items:
      step: motion, plan: PLAN-007, depends_on: [RV-35a], findings: [F-207, F-127], codes: []}
   - {id: RV-95, title: "The pickups re-blocked with RV-96's solver: every body point above the floor, the hand on it only at the pickup, the words re-written to the numbers", status: done,
      step: motion, plan: PLAN-007, depends_on: [RV-96], findings: [F-206, F-110], codes: []}
-  - {id: RV-100, title: "S-076's, S-078's, S-080's and S-083's example rewrites typed in deviations.yaml; DEV-09 updated; R-19 cites O97", status: next,
+  - {id: RV-100, title: "S-076's, S-078's, S-080's and S-083's example rewrites typed in deviations.yaml; DEV-09 updated; R-19 cites O97", status: done,
      step: docs, plan: PLAN-007, depends_on: [], findings: [F-212], codes: []}
-  - {id: RV-99, title: "Camera card rules: RV-60's word lists restored as a floor; a hit rule found from what a contact means; subject and rig words read", status: ready,
+  - {id: RV-99, title: "Camera card rules: RV-60's word lists restored as a floor; a hit rule found from what a contact means; subject and rig words read", status: next,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-210, F-187, F-160], codes: []}
   - {id: RV-59, title: "BODY_OVERLAP, CONTACT_WORLD and FLOOR_PENETRATION along the declared interpolation between keys; the paths re-blocked", status: ready,
      step: motion, plan: PLAN-007, depends_on: [RV-35a], findings: [F-159, F-089], codes: []}

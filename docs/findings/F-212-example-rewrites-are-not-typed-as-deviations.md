@@ -12,7 +12,7 @@ medium
 docs
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -54,4 +54,9 @@ none needed (R-33)
 - RV-51
 
 ## Resolution
-Open.
+Resolved by RV-100 (S-084): the golden test records S-076's eleven re-authored shots (REAUTHORED_SHOTS, every changed
+field) and S-078's lunge (B_LUNGE), each held to the plans by a test and typed in deviations.yaml (DEV-32, DEV-33);
+DEV-09 and DEV-10 say what RV-95 did and cite O18, O72 and O11; the registry's header names what it still does not
+record (RV-51). R-19 cites O97 and PROMPT_LENGTH (rules 7.2). The wizard, live-action and UGC examples have no source
+to depart from; their rewrites stay in the session records. Commits name their deviations from S-083 on. Whether
+R-33's 'and' or O102's 'or' binds is the owner's (F-200).
