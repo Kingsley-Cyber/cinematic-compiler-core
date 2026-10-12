@@ -6,6 +6,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- A substitution exempts only its decoy (RV-66, F-169, S-064): the prop it changes and places within 0.15 m of its
+  actor's anchor may appear and change there with no hand (the log at A's place, O48); any other prop a substitution
+  moves or changes needs a contact, at S04 and S07. The S04 instructions say so; no example changed.
 - Principal review 4 (S-063, finish.md section 6): five read-only reviewers, verdict "partially"; their gaps filed as
   F-169 to F-186 with slices RV-66 to RV-84, the builder's own shortcuts first (the substitution's exemption, the S04
   instructions, the draw's measure). Ten findings reopened in part; RV-27 and RV-33 blocked; RV-64 split; RV-39 covers

@@ -102,9 +102,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 7.0; backlog 26.
-- Last session: S-063 (2026-10-12, applied): Principal review 4: does the finished work match the plan?.
-- Next slice: RV-66 A substitution exempts only its decoy, the prop it places at its actor's anchor (step temporal).
-- Open findings: 119; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
+- Last session: S-064 (2026-10-12, applied): RV-66: a substitution exempts only its decoy, the prop it places at its actor's anchor.
+- Next slice: RV-67 The S04 instructions and the validator's docstring teach F-077's rule and O48's standing log (step temporal).
+- Open findings: 117; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

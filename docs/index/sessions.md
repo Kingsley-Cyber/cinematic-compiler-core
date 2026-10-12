@@ -70,6 +70,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-061 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-62 (PLAN-007); findings F-16… | applied | the commit whose message names [S-061] | about 12 minutes by the clock (04:17 to 04:29) | — | [S-061-rv-62-vanish-line-and-volley-draw.md](../sessions/S-061-rv-62-vanish-line-and-volley-draw.md) |
 | S-062 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-57 (PLAN-007); findings F-15… | applied | the commit whose message names [S-062] | about 9 minutes by the clock (04:30 to 04:39) | — | [S-062-rv-57-hits-from-the-contacts.md](../sessions/S-062-rv-57-hits-from-the-contacts.md) |
 | S-063 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | docs/prompts/finish.md section 6 (after… | applied | the commit whose message names [S-063] | about 41 minutes by the clock (04:40 to 05:21; the reviewers ran about 18 to 26 minutes each) | — | [S-063-principal-review-4.md](../sessions/S-063-principal-review-4.md) |
+| S-064 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-66 (PLAN-007); findings F-16… | applied | the commit whose message names [S-064] | about 3 minutes by the clock (05:23 to 05:26) | — | [S-064-rv-66-the-decoy-alone-is-exempt.md](../sessions/S-064-rv-66-the-decoy-alone-is-exempt.md) |
 
 ## Status values
 

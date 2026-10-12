@@ -90,6 +90,22 @@ def test_prop_change_without_any_contact_is_refused():
     assert [f["code"] for f in findings] == ["PROP_CHANGE_CONTACT"]
 
 
+def test_a_substitution_changes_only_its_decoy_with_no_hand():
+    """F-169 (RV-66, owners O12, O48): the log is b09's decoy, so its deployment needs no hand; the kunai, which b09
+    neither touches nor holds, may not change there (PROP_CHANGE_CONTACT)."""
+    envelope = json.loads((ROOT / "examples" / "reference_fight" / "envelope.json").read_text())
+    b09 = next(b for b in envelope["nodes"]["beats"]["items"] if b["id"] == "b09")
+
+    def changed(prop, change):
+        states = [{"id": f"{prop}@b09", "subject": {"kind": "prop", "id": prop}, "t": 3.7, "conditions": {"holder": "none"}},
+                  {"id": f"{prop}@b10", "subject": {"kind": "prop", "id": prop}, "t": 4.0, "conditions": {"holder": "none"}}]
+        transitions = [{"id": "x", "from_state": f"{prop}@b09", "to_state": f"{prop}@b10", "trigger_event": ["b09"],
+                        "changes": [change]}]
+        return [f["code"] for f in p07_contact.cross_check([], [], states, transitions, [b09])]
+    assert changed("substitution_log", {"property": "deployment", "from": "standing", "to": "deployed"}) == []
+    assert changed("kunai", {"property": "embedded", "from": "loose", "to": "embedded"}) == ["PROP_CHANGE_CONTACT"]
+
+
 @pytest.mark.integration
 def test_s07_writes_only_its_paths_and_is_deterministic(order):
     before = courtyard("state")

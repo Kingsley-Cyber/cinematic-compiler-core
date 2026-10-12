@@ -18,7 +18,7 @@ flowchart LR
   cli -->|1| kernel
   cli -->|2| validators
   compiler -->|19| kernel
-  compiler -->|46| planner
+  compiler -->|47| planner
   compiler -->|4| renderers
   compiler -->|11| solver
   compiler -->|29| validators
@@ -67,7 +67,7 @@ flowchart LR
 | `compiler.passes.mandatory.p04_temporal` | `compiler.authoring`, `kernel.canonical`, `planner.beat_planner`, `planner.dependency_graph`, `planner.dynamic_beat_validator`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
 | `compiler.passes.mandatory.p05_causal` | `compiler.authoring`, `kernel.canonical`, `planner.dependency_graph`, `validators.cause_reason`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
 | `compiler.passes.mandatory.p06_state` | `compiler.authoring`, `kernel.canonical`, `kernel.kernel_files`, `planner.dependency_graph`, `planner.vocabulary`, `solver.prop_state_machine`, `validators.continuity_validator`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
-| `compiler.passes.mandatory.p07_contact` | `compiler.authoring`, `kernel.canonical`, `planner.dependency_graph`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
+| `compiler.passes.mandatory.p07_contact` | `compiler.authoring`, `kernel.canonical`, `planner.dependency_graph`, `planner.dynamic_beat_validator`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
 | `compiler.pipeline` | `compiler.authoring`, `compiler.passes.derived.p08_hand_role`, `compiler.passes.derived.p09_object_state`, `compiler.passes.derived.p10_affordance`, `compiler.passes.derived.p11_kinematic`, `compiler.passes.derived.p12_bartenieff`, `compiler.passes.derived.p13_motion`, `compiler.passes.derived.p14_facial`, `compiler.passes.derived.p15_effort`, `compiler.passes.derived.p16_camera`, `compiler.passes.derived.p17_render`, `compiler.passes.mandatory.p01_intent`, `compiler.passes.mandatory.p02_brief`, `compiler.passes.mandatory.p03_constraint`, `compiler.passes.mandatory.p04_temporal`, `compiler.passes.mandatory.p05_causal`, `compiler.passes.mandatory.p06_state`, `compiler.passes.mandatory.p07_contact`, `kernel.canonical`, `kernel.kernel_files`, `kernel.version`, `planner.dependency_graph`, `planner.intent_parser`, `planner.topological_sort` | argparse, importlib, json, pathlib, subprocess, sys, time |
 | `compiler.rebind` | `compiler.examples`, `compiler.pipeline`, `kernel.canonical`, `planner.dependency_graph` | json, sys |
 | `compiler.replan_trigger` | `compiler.authoring`, `kernel.canonical`, `planner.dependency_graph`, `planner.topological_sort` | — |

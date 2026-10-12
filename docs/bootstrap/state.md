@@ -10,16 +10,16 @@ Layer order 1.7; rules 7.0; backlog 26.
 
 ## Last sessions
 
-- S-061 (applied): RV-62: the vanishing actor's line ends its support; B draws the volley before throwing it
 - S-062 (applied): RV-57: hits found from the contacts are camera holds at S16, S17 and in the prompt, whatever S17 holds
 - S-063 (applied): Principal review 4: does the finished work match the plan?
+- S-064 (applied): RV-66: a substitution exempts only its decoy, the prop it places at its actor's anchor
 
 ## Next slices
 
-- RV-66 (next, step temporal): A substitution exempts only its decoy, the prop it places at its actor's anchor
-- RV-67 (ready, step temporal): The S04 instructions and the validator's docstring teach F-077's rule and O48's standing log
+- RV-67 (next, step temporal): The S04 instructions and the validator's docstring teach F-077's rule and O48's standing log
 - RV-68 (ready, step temporal): The holstered volley rests at the thigh pouch, and the draw is measured against it
 - RV-69 (ready, step camera): A body touched by a prop another performer threw is a hit, whatever the verb
+- RV-70 (ready, step render): A vanished body is gone from every section (S15's coverage, the guidance, a vanish that never returns), and VANISHED_BODY reads them
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -72,7 +72,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 119
+## Open findings: 117
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -103,7 +103,6 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-155 (high, L5.5): HIT_HOLD reads O92 backwards: only holds the S17 author placed are judged
 - F-159 (high, L4c): Bodies pass through each other between keys
 - F-167 (high, L1.1): The S04 author never sees the query it plans
-- F-169 (high, L1.1): A substitution exempts any prop it changes, anywhere
 - F-174 (high, L1.1): The S04 and S08 packets lack what their checks read
 - F-175 (high, L5.5): A hit is found by how its contact is written, not by what lands
 - F-178 (high, all): No prompt can become deliverable: thirty checklist rows have no way to pass
@@ -112,4 +111,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-187, session S-064, render R20.
+Decision ADR-O109, finding F-187, session S-065, render R20.

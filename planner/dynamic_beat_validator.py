@@ -18,7 +18,8 @@ prop stays within 2 m of its holder's anchor; between two samples of a free prop
 moving prop follows gravity from the first sample's velocity to the second position within 0.25 m, and a prop at rest
 (v null or zero) does not move unless a contact on it at the second sample picks it up or knocks it down, and a contact
 between two samples moves it only by taking hold of it (it is held at the second sample); any other needs a sample at
-its instant (F-138); the substitution's decoy appears in its new place at the substitution's start (O12, O48). A float
+its instant (F-138); the substitution's decoy, the prop it changes and places within 0.15 m of its actor's anchor at
+its start (O12, O48; F-169), appears there with no hand, and no other prop may. A float
 (stylised, no gravity) is allowed in anime only. The 2 m reach and the 0.25 m tolerance are Claude's interpretation.
 Surface height (owner O21, audit X7, SURFACE_HEIGHT): when a foot starts bearing weight on a surface whose top is known
 (its world card's geometry text, "from y=0 to y=8"; a floor without one sits at the convention's ground), the
@@ -56,6 +57,7 @@ GROUND = re.compile(r"y=(-?\d+(?:\.\d+)?)")
 # interpretation (Claude's, for owner review): a root's height over its supporting top; a resting prop on a top
 SURFACE_SLACK_M, SUPPORT_M = 0.05, 0.1
 TELEPORT_MPS = 25.0  # owner O12: anything faster between keys is a teleport (human sprint ~12, anime ~15, strikes ~20)
+DECOY_M = 0.15  # owner O72's contact tolerance: the decoy stands where its actor stood (O48: A swaps places with it)
 
 
 def _finding(code, message, beat=None, detail=None):
@@ -412,12 +414,23 @@ def _prop_kinematics(beats, props, genre):
     return findings
 
 
+def decoy(beat):
+    """A substitution's decoy (owner O12, O48; F-138, F-169): the prop it changes whose sample at its start lies within
+    DECOY_M of its actor's anchor, the nearest if several (the log takes A's place at 3.7); None for any other beat.
+    Interpretation (Claude's, for owner review): the swap needs no hand on the decoy, and no other prop is swapped."""
+    anchor = beat.get("pos", {}).get(beat.get("actor"))
+    if beat.get("event_type") != "substitution" or anchor is None:
+        return None
+    changed = {e["subject"]["id"] for e in beat["effects"] if e["subject"]["kind"] == "prop"}
+    near = sorted((math.dist(s["p"], anchor), s["prop"]) for s in beat.get("prop_samples", [])
+                  if s["prop"] in changed and abs(s["t"] - beat["t"]) <= EPSILON
+                  and math.dist(s["p"], anchor) <= DECOY_M + EPSILON)
+    return near[0][1] if near else None
+
+
 def _swapped(beats, prop, t):
-    """The substitution's decoy (owner O12, O48; F-138): a substitution that changes the prop's state swaps it into its
-    new place at the substitution's start (the log takes A's place at 3.7). Interpretation (Claude's, for owner review):
-    the swap moves only a prop the substitution itself changes, and needs no hand on it."""
-    return any(b.get("event_type") == "substitution" and abs(b["t"] - t) <= EPSILON
-               and any(e["subject"] == {"kind": "prop", "id": prop} for e in b["effects"]) for b in beats)
+    """The prop is the decoy of a substitution starting at t, so it may stand in its new place with no contact."""
+    return any(abs(b["t"] - t) <= EPSILON and decoy(b) == prop for b in beats)
 
 
 def _moving(sample):

@@ -12,7 +12,7 @@ high
 L1.1
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -49,4 +49,9 @@ none needed to narrow it (O48: A swaps places with it); whether a substitution m
 - PLAN-007
 
 ## Resolution
-Open.
+RV-66 (S-064): `decoy(beat)` (planner/dynamic_beat_validator.py) names a substitution's decoy, the prop it changes
+whose sample at its start lies within 0.15 m of its actor's anchor; S04's swap and S07's PROP_CHANGE_CONTACT exempt that
+prop alone, and the S04 instructions say so. The reviewers' probes are refused
+(tests/test_dynamic_beat_validator.py::test_a_substitution_swaps_only_its_decoy,
+tests/test_contact_pass.py::test_a_substitution_changes_only_its_decoy_with_no_hand). Whether a substitution may move or
+change other props without a hand stays listed for the owner.

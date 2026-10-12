@@ -300,21 +300,39 @@ def test_nobody_touches_a_vanished_body_and_a_touched_body_is_in_its_beat():
 
 
 def test_a_contact_between_two_samples_does_not_move_a_resting_prop():
-    """PROP_KINEMATICS (F-138): a touch between two samples cannot carry a resting prop elsewhere; a substitution that
-    changes the prop swaps it into its new place at the substitution's start (the decoy, O12, O48); an action cannot."""
+    """PROP_KINEMATICS (F-138): a touch between two samples cannot carry a resting prop elsewhere; a substitution swaps
+    its decoy, the prop it changes and places at its actor's anchor, into that place at its start (O12, O48; F-169,
+    RV-66: the anchor is new, so the swap's case gives its actor one); an action, or a prop away from the anchor,
+    cannot."""
     from planner.dynamic_beat_validator import _prop_kinematics
 
-    def messages(event_type, touch_between, swap_sample):
+    def messages(event_type, touch_between, swap_sample, anchor=None):
         touch = {"contact_type": "touch", "a": {"kind": "entity", "id": "a", "part": "right_hand"},
                  "b": {"kind": "prop", "id": "k", "part": None}, "at": "start"}
         rest = {"prop": "k", "t": 0.0, "p": [0, 1, 0], "v": None, "float": False}
         moved = {"prop": "k", "t": 0.4 if swap_sample else 1.0, "p": [0.6, 1, 0], "v": None, "float": False}
         beats = [{"id": "b01", "t": 0.0, "dur": 0.4, "pos": {}, "contacts": [], "effects": [], "event_type": "action",
                   "prop_samples": [rest]},
-                 {"id": "b02", "t": 0.4, "dur": 0.6, "pos": {}, "contacts": [touch] if touch_between else [],
-                  "event_type": event_type, "prop_samples": [moved],
+                 {"id": "b02", "t": 0.4, "dur": 0.6, "actor": "a", "pos": {"a": anchor} if anchor else {},
+                  "contacts": [touch] if touch_between else [], "event_type": event_type, "prop_samples": [moved],
                   "effects": [{"subject": {"kind": "prop", "id": "k"}, "property": "x", "value": "y"}]}]
         return [f["message"] for f in _prop_kinematics(beats, {"k": {}}, "anime")]
     assert any("give it a sample at the contact" in m for m in messages("action", True, False))
-    assert messages("substitution", False, True) == []
+    assert messages("substitution", False, True, anchor=[0.6, 1.1, 0]) == []
+    assert any("moves between" in m for m in messages("substitution", False, True, anchor=[3.0, 1.1, 0]))
     assert any("moves between" in m for m in messages("action", False, True))
+
+
+def test_a_substitution_swaps_only_its_decoy():
+    """F-169 (RV-66, owners O12, O48): the log, 0.1 m from A's anchor at 3.7, is b09's decoy and may stand there with no
+    hand; the log 2.5 m away, or a resting pellet lifted into A's hand at 3.7, is refused (PROP_KINEMATICS)."""
+    assert "PROP_KINEMATICS" not in fight_codes(lambda b: None)
+
+    def far_log(beats):
+        next(s for s in beats["b09"]["prop_samples"] if s["prop"] == "substitution_log")["p"] = [2.9, 1.0, 4.7]
+    assert "PROP_KINEMATICS" in fight_codes(far_log)
+
+    def pellet_jump(beats):
+        beats["b08"].setdefault("prop_samples", []).append(
+            {"prop": "smoke_pellet", "t": 3.4, "p": [1.18, 0.0, 4.85], "v": None, "float": False})
+    assert "PROP_KINEMATICS" in fight_codes(pellet_jump)

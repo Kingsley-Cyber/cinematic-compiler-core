@@ -67,8 +67,8 @@ Prop samples (owner O8)
   prop only by taking hold of it (it is held at the second sample); any other move needs a sample at the contact's
   instant. Two samples share a time only as a "pre" and a "post" pair at one position on a contact on that prop at
   that instant; a free prop moving into a contact needs the pair (gravity is checked into the pre sample and out of
-  the post one). A substitution's decoy appears in its new place at the substitution's start (owners O12, O48): give
-  it a sample there.
+  the post one). A substitution's decoy is the prop it changes and places within 0.15 m of its actor's anchor at its
+  start: give it a sample there; it needs no hand to appear or change there (owners O12, O48), and no other prop does.
 - A free prop at rest lies on a surface's top, within 0.1 m of its height, or a fact since its last hold places it (a
   location, or worn: yes) (PROP_SUPPORT, owner O78).
 

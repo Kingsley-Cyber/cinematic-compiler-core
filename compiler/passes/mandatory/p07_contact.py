@@ -5,7 +5,8 @@ Lifecycle: touch is instant; possess/support become active at their instant (the
 of the same pair (entity part ↔ target part); a release needs an active contact; a pair is not acquired twice;
 a hand possesses one thing at a time. Cross-checks: a prop's holder matches an active possess contact, and every
 prop state change has a contact event in its triggering beat or an active contact on the prop, except a substitution's
-own change of its decoy (the swap needs no hand: owner O12, O48; RV-48a).
+own change of its decoy, the prop it places at its actor's anchor (the swap needs no hand: owner O12, O48; RV-48a,
+F-169).
 """
 
 import copy
@@ -14,6 +15,7 @@ import json
 from compiler.authoring import StepFailed
 from kernel.canonical import ContractError
 from planner.dependency_graph import ROOT, load, node_index
+from planner.dynamic_beat_validator import decoy
 from validators.layer_dependency_validator import check_pass_writes
 from validators.schema_validator import validate_schema
 
@@ -110,7 +112,7 @@ def cross_check(events, intervals, states, transitions, beats):
             findings.append(_finding("HOLDER_CONTACT", "The prop is possessed but its holder is none", node["id"]))
     by_state = {s["id"]: s for s in states}
     beat_start = {b["id"]: b["t"] for b in beats}
-    beat_kind = {b["id"]: b.get("event_type") for b in beats}
+    decoys = {b["id"]: decoy(b) for b in beats}
     for edge in transitions:
         subject = by_state[edge["to_state"]]["subject"]
         if subject["kind"] != "prop":
@@ -119,7 +121,7 @@ def cross_check(events, intervals, states, transitions, beats):
             touched = any(e["beat"] == beat_id and e["b"]["kind"] == "prop" and e["b"]["id"] == subject["id"] for e in events)
             held = any(pair[2:4] == ("prop", subject["id"]) and start <= beat_start[beat_id] + EPSILON
                        and (end is None or beat_start[beat_id] < end - EPSILON) for pair, _, start, end in intervals)
-            swapped = beat_kind.get(beat_id) == "substitution"  # the decoy's swap (owner O12, O48; F-138)
+            swapped = decoys.get(beat_id) == subject["id"]  # the decoy's swap alone (owner O12, O48; F-138, F-169)
             if not (touched or held or swapped):
                 findings.append(_finding("PROP_CHANGE_CONTACT", "A prop changed without a contact", [edge["id"], beat_id]))
     return findings

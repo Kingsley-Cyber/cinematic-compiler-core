@@ -137,3 +137,4 @@ RV-16, RV-37, RV-35, RV-59, RV-22; then RV-78 to RV-84 and the rest in backlog o
 - 2026-10-12 — RV-62 done (S-061): the vanish line ends A's support; B draws the volley at 5.1.
 - 2026-10-12 — RV-57 done (S-062): hits come from the contacts; S16 holds the camera on each.
 - 2026-10-12 — Review 4 (S-063): verdict partially; F-169 to F-186 filed with RV-66 to RV-84; RV-27, RV-33 blocked; RV-64 split.
+- 2026-10-12 — RV-66 done (S-064): a substitution exempts only its decoy, the prop at its actor's anchor.
