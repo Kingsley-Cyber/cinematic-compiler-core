@@ -6,6 +6,7 @@ import json
 import pytest
 from conftest import ROOT
 
+from planner import modality
 from solver import contact_world, forward_kinematics
 from validators import prompt_validator
 
@@ -31,8 +32,11 @@ def test_a_bent_hip_and_knee_carry_the_foot_forward_and_up():
     assert foot == [0.1, 0.45, 0.45]
 
 
-def test_each_genre_takes_its_body():
-    """ADR-O85: anime bodies have the leg fitted to the source; live action and UGC keep the 0.98 m adult."""
+def test_each_genre_profile_names_its_body():
+    """ADR-O85: the genre profile's body_type picks the card's body (no per-key or per-performer choice); anime bodies
+    have the leg fitted to the source, live action and UGC keep the 0.98 m adult."""
+    assert {g: modality.body_type(g) for g in ("anime", "live_action", "ugc_ad")} == \
+        {"anime": "anime", "live_action": "adult", "ugc_ad": "adult"}
     assert forward_kinematics.standing_leg(ANIME) == 1.22 and forward_kinematics.standing_leg(METRES) == 0.98
     assert forward_kinematics.segments("ugc_ad") == METRES and ANIME["spine"] == METRES["spine"]
 

@@ -35,7 +35,7 @@ flowchart LR
   renderers -->|5| planner
   renderers -->|3| solver
   solver -->|1| kernel
-  solver -->|2| planner
+  solver -->|3| planner
   solver -->|1| validators
   validators -->|4| compiler
   validators -->|4| kernel
@@ -104,7 +104,7 @@ flowchart LR
 | `solver.camera_geometry` | — | math |
 | `solver.contact_world` | `planner.dynamic_beat_validator`, `solver.forward_kinematics` | math |
 | `solver.euler_solver` | `solver.quaternion` | — |
-| `solver.forward_kinematics` | `planner.dependency_graph`, `solver.quaternion`, `validators.schema_validator` | json, yaml |
+| `solver.forward_kinematics` | `planner.dependency_graph`, `planner.modality`, `solver.quaternion`, `validators.schema_validator` | json, yaml |
 | `solver.prop_state_machine` | — | — |
 | `solver.quaternion` | `kernel.canonical` | math |
 | `solver.shape_direction` | `solver.quaternion`, `solver.staff_geometry` | math |

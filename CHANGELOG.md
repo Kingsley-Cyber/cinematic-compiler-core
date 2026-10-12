@@ -6,6 +6,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The genre profiles name the body type (M9-06d, owner O85 as clarified, S-031): `schemas/modality/<genre>.schema.json`
+  1.1 gain `scene.body_type` (anime: anime; live action and UGC: adult); the segment card holds two bodies keyed by
+  type (card 3, schema 3.0); forward kinematics reads the genre's body_type. No output changes.
 - CONTACT_WORLD (M9-06b, plan F5.2, ADR-O83 accepted, S-030): S13 refuses a touch, hold or support whose two world
   points lie over 0.15 m apart, except an artefact (the actor airborne or turning, the prop moving: reported) and a
   source row the motion plan lists with its reason (motion_plan schema 1.1); the prompt prints both points. Seven

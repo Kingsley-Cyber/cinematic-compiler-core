@@ -101,9 +101,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 3.1; backlog 7.
-- Last session: S-030 (2026-10-11, applied): M9-06b: CONTACT_WORLD refuses a contact over 0.15 m; repo misses re-blocked, source misses excepted (O83).
-- Next slice: M9-10 F4.3/F4.4 B's active keys and the idle-fighter check (step effort).
+- Layer order 1.7; rules 3.1; backlog 8.
+- Last session: S-031 (2026-10-11, applied): M9-06d: the genre profiles name each genre's body type; the card holds two bodies (O85 as clarified).
+- Next slice: M9-09h F-071: B moves to A's far side at 8.0, so the pull runs toward the pillar (O86) (step temporal).
 - Open findings: 35; decisions: 112 (0 proposed).
 <!-- END GENERATED: state -->
 

@@ -4,7 +4,7 @@ The Q6 chain with the hips read from the trunk (owner O84, rule R-35): root -> S
 LUL -> LL, RUL -> RL), each joint's Euler rotation local to its parent; at rest the body is upright and every limb
 hangs straight down; +X is the performer's left. The hip joints sit on the pelvis (the root's frame) and the thighs
 turn with the trunk, as the owner's source writes its crouches (S-029). Segment lengths come from
-library/body_segments.yaml (draft), one body per genre group (owner O85). `points` gives each key's named world
+library/body_segments.yaml (draft), the body each genre profile names (owner O85). `points` gives each key's named world
 points; `part_point` maps a contact's body part onto one of them.
 Interpretation (Claude's, for owner review): the hip joints sit on the pelvis while the thighs turn with the trunk
 (O84 sets the trunk reading, not where the joint sits); a foot's point is its sole, below the ankle along the shin; a
@@ -16,6 +16,7 @@ import json
 
 import yaml
 
+from planner import modality
 from planner.dependency_graph import ROOT
 from solver.quaternion import apply, matrix
 from validators.schema_validator import validate_schema
@@ -31,10 +32,8 @@ def _card():
 
 
 def segments(genre):
-    """The metres of the body the genre uses (owner O85): the body that lists it, else the card's default."""
-    card = _card()
-    name = next((name for name, body in card["bodies"].items() if genre in body["genres"]), card["default"])
-    return card["bodies"][name]["metres"]
+    """The metres of the body the genre's profile names (owner O85: schemas/modality/<genre>.schema.json body_type)."""
+    return _card()["bodies"][modality.body_type(genre)]["metres"]
 
 
 def standing_leg(metres):

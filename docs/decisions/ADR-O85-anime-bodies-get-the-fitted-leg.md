@@ -19,14 +19,21 @@ Owner, in chat, 2026-10-11: "Anime bodies get the fitted leg (×1.25, standing p
 Live-action and UGC keep the 0.98m adult. The card gains an anime body entry. The two anime examples (reference fight,
 wizard) use the anime body. The live-action knight and the UGC creator use the 0.98m adult. Small schema change"
 
+Owner, in chat, 2026-10-11, after S-030: "Anime bodies only. [...] The card gains an anime body (standing pelvis 1.22m,
+×1.25 the draft adult). The two anime examples use it. The live-action knight and the UGC creator keep the 0.98m adult.
+Schema change: body_segments has two entries (adult, anime). Genre profiles gain a body_type field. The FK solver reads
+body_type from the genre profile. No per-key flag. No per-performer frame. Update the card, the schema, and the genre
+profiles."
+
 ## Context
 M9-06c (S-029): the leg fitted to the source's grounded A rows (O82) under the trunk reading (O84) is 1.25 times the
 draft adult's. PLAN-003 F5.1 already asks for segment lengths "per archetype or body mode"; S-027 had drafted one
 adult for every body.
 
 ## Consequences
-- `library/body_segments.yaml` holds two bodies, `adult` and `anime`, and the genre that uses each;
-  `schemas/cards/body_segments.schema.json` follows (version bump, logged).
+- `library/body_segments.yaml` holds two bodies, `adult` and `anime` (card 3; schema 3.0, logged); each genre profile
+  (`schemas/modality/<genre>.schema.json`, 1.1, logged) names its `scene.body_type`: anime for anime, adult for live
+  action and UGC; `solver/forward_kinematics.segments` reads it (S-031). S-029 had put the genres in the card.
 - S13's packet carries the body of the scene's genre; S04's SURFACE_HEIGHT bound reads that body's standing leg.
 
 ## Alternatives Considered

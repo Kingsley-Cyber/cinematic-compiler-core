@@ -6,22 +6,22 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 3.1; backlog 7.
+Layer order 1.7; rules 3.1; backlog 8.
 
 ## Last sessions
 
-- S-028 (applied): Bootstrap before a compaction: the owner's review of the miss list (O82, O83)
 - S-029 (applied): M9-06c: legs read from the trunk, the segment card calibrated to the source's grounded A rows, re-root (O82)
 - S-030 (applied): M9-06b: CONTACT_WORLD refuses a contact over 0.15 m; repo misses re-blocked, source misses excepted (O83)
+- S-031 (applied): M9-06d: the genre profiles name each genre's body type; the card holds two bodies (O85 as clarified)
 
 ## Next slices
 
-- M9-10 (next, step effort): F4.3/F4.4 B's active keys and the idle-fighter check
+- M9-09h (next, step temporal): F-071: B moves to A's far side at 8.0, so the pull runs toward the pillar (O86)
+- M9-10 (ready, step effort): F4.3/F4.4 B's active keys and the idle-fighter check
 - M9-11 (ready, step render): FR.7 genre cards; FR.6 money-shot frame parts; FR.2 limb paths
 - M9-12 (ready, step render): O19 D9-style staff lines
-- M9-13 (ready, step camera): C10 camera in V5's wording, FR.5 arc, F8.1-F8.3
 
-M9: 21 of 36 slices done, 15 left (M9-03a blocked; 1 the owner's own).
+M9: 22 of 38 slices done, 16 left (M9-03a blocked; 1 the owner's own).
 
 ## Waiting on the owner
 
@@ -55,4 +55,4 @@ M9: 21 of 36 slices done, 15 left (M9-03a blocked; 1 the owner's own).
 
 ## Next free IDs
 
-Decision ADR-O86, finding F-072, session S-031, render R20.
+Decision ADR-O86, finding F-072, session S-032, render R20.

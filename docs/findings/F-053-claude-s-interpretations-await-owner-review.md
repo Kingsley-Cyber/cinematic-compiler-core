@@ -63,6 +63,8 @@ naming a contact that is not a real miss is refused too; each re-block is the le
 joints (and root over the ground, both soles kept on it) that brings the point within 0.06 m; the rope dart's sample
 is its dart (the weight), so at 8.0 it sits on B while A keeps the rope's end; the UGC glasses sit on the face 0.1 m
 in front of the head's centre.
+Added in S-031 (M9-06d): the genre profiles that gain body_type are the per-genre modality schemas, which already hold
+each genre's fps and duration defaults (ADR-O37: no new combined profile file); body_type is a const there.
 
 ## Impact
 Waits on the owner.
