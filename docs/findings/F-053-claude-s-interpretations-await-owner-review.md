@@ -130,6 +130,8 @@ rule applies "between hits"; the knight's shield hit becomes a medium-wide hold 
 Added in S-073 (RV-85, planner/camera_library.py): the synonyms read as camera terms (TERMS: tight, ECU, detail shot, crash
 zoom, slow-mo, half speed, bullet time, overcrank, speed up, fast motion, push, whip, track, hold); the words that name a
 hit (blow, hit, impact, strike, struck; "between hits" excepted); the knight's heavy blow read as a hit.
+Added in S-075 (RV-13, validators/prompt_length.py): O97's cap read as a delivery refusal beside O10's conformance; a
+prompt with no named target must fit either cap; a word is a run of non-space characters.
 
 ## Impact
 Waits on the owner.

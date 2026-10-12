@@ -47,4 +47,8 @@ ADR-O97 (the cap); the three questions open
 - R-16
 
 ## Resolution
-Open.
+Open in part: RV-13 (S-075) builds the check as a delivery refusal: validators/prompt_length.py measures each prompt
+against O97's caps, and the checklist's deliverable column and `cinematic compile` refuse a prompt that fits neither
+(PROMPT_LENGTH); conformance is untouched, so the golden still passes it with nothing set aside (O10). Every prompt
+today is over both caps (the closest, the UGC's render.txt, has 11,464 characters and 1,085 words). The questions
+stand: which prompts carry the cap, what a capped prompt may drop, and whether O97 amends R-16 (RV-13b).

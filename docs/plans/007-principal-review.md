@@ -153,3 +153,4 @@ RV-93, RV-75, RV-76, RV-77, RV-58, RV-18, RV-64 and the rest in backlog order (b
 - 2026-10-12 — Review 5 (S-072): verdict partially; F-187 to F-195 with RV-85 to RV-93, questions F-196 to F-203; the queue rebalanced toward the fight.
 - 2026-10-12 — RV-85 done (S-073): a camera rule's words ask only what its fields ask; a rule about a hit is a hit rule.
 - 2026-10-12 — RV-86 done (S-074): TELEPORT's exemption reads the decoy.
+- 2026-10-12 — RV-13 done (S-075): PROMPT_LENGTH refuses delivery of a prompt over both of O97's caps; fitting waits (RV-13b).

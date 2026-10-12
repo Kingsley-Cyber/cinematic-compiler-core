@@ -102,8 +102,8 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 7.1; backlog 28.
-- Last session: S-074 (2026-10-12, applied): RV-86: TELEPORT's exemption needs a decoy in the actor's place.
-- Next slice: RV-13 PROMPT_LENGTH: 3,500 characters for Runway, 1,000 words for BytePlus (O97) (step render).
+- Last session: S-075 (2026-10-12, applied): RV-13: PROMPT_LENGTH: a prompt over 3,500 characters for Runway or 1,000 words for BytePlus is not delivered.
+- Next slice: RV-15 The camera aims at the body and an insert at its detail; vertical framing checked (step camera).
 - Open findings: 125; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 

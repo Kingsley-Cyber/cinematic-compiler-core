@@ -10,16 +10,16 @@ Layer order 1.7; rules 7.1; backlog 28.
 
 ## Last sessions
 
-- S-072 (applied): Principal review 5: does the finished work match the plan?
 - S-073 (applied): RV-85: a camera rule's words ask only what its fields ask, and a rule about a hit is a hit rule
 - S-074 (applied): RV-86: TELEPORT's exemption needs a decoy in the actor's place
+- S-075 (applied): RV-13: PROMPT_LENGTH: a prompt over 3,500 characters for Runway or 1,000 words for BytePlus is not delivered
 
 ## Next slices
 
-- RV-13 (next, step render): PROMPT_LENGTH: 3,500 characters for Runway, 1,000 words for BytePlus (O97)
-- RV-15 (ready, step camera): The camera aims at the body and an insert at its detail; vertical framing checked
+- RV-15 (next, step camera): The camera aims at the body and an insert at its detail; vertical framing checked
 - RV-14 (ready, step motion): Every-key body checks: no body under the floor; supports at every key; held and embedded props at their holder
 - RV-16 (ready, step render): One laban chain per fighter in render.txt
+- RV-35 (ready, step motion): Pickups crouch on the feet with a hand down; the support names the hand
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -124,4 +124,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-204, session S-075, render R20.
+Decision ADR-O109, finding F-204, session S-076, render R20.

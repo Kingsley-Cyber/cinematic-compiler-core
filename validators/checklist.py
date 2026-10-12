@@ -17,8 +17,9 @@ Each cell is PASS, FAIL, NOT CHECKED or N/A, with its evidence:
 
 O13: the five prompts are fragments of one complete prompt (one content set in the DAG's template, the mode as a
 setting), so the Any column is their union: PASS if any prompt passes, else NOT CHECKED if any is unchecked, else
-FAIL. A prompt is a deliverable only with no FAIL and no NOT CHECKED row; `--gate` refuses the rest, and so does
-`cinematic compile` for every prompt it emits (owner O94, `refusals`). The tables sit next to the prompts
+FAIL. A prompt is a deliverable only with no FAIL and no NOT CHECKED row and within a target's length cap
+(PROMPT_LENGTH, owner O97, validators/prompt_length.py); `--gate` refuses the rest, and so does `cinematic compile` for
+every prompt it emits (owner O94, `refusals`). The tables sit next to the prompts
 (examples/<name>/checklist.md); tests/test_checklist.py keeps them current.
 
     python -m validators.checklist           # report every prompt; exit 1 if a checklist.md is stale
@@ -34,7 +35,7 @@ import yaml
 
 from compiler.examples import EXAMPLES, prose_texts, render_text
 from planner.dependency_graph import ROOT
-from validators import prompt_validator
+from validators import prompt_length, prompt_validator
 
 PASS, FAIL, OPEN, NA = "PASS", "FAIL", "NOT CHECKED", "N/A"
 RESULTS = (PASS, FAIL, OPEN, NA)
@@ -170,8 +171,10 @@ def union(results):
     return next(r for r in (PASS, OPEN, FAIL) if r in applicable)
 
 
-def deliverable(results):
-    return all(r in (PASS, NA) for r in results)
+def deliverable(results, text=None):
+    """No FAIL and no NOT CHECKED row, and (given the prompt's text) within a target's length cap (PROMPT_LENGTH, owner
+    O97, RV-13)."""
+    return all(r in (PASS, NA) for r in results) and (text is None or not prompt_length.problems(text))
 
 
 def judge_prompts(envelope, texts, name=None):
@@ -193,9 +196,10 @@ def evaluate(name):
     folder = EXAMPLES / name
     envelope = json.loads((folder / "envelope.json").read_text(encoding="utf-8"))
     data = {file: (folder / file).read_bytes() for _, file, _ in PROMPTS}
+    texts = {f: d.decode("utf-8") for f, d in data.items()}
     columns = [{"label": label, "file": file, "sha256": hashlib.sha256(data[file]).hexdigest(), "bytes": len(data[file]),
-                "cells": cells}
-               for label, file, cells in judge_prompts(envelope, {f: d.decode("utf-8") for f, d in data.items()}, name)]
+                "cells": cells, "text": texts[file]}
+               for label, file, cells in judge_prompts(envelope, texts, name)]
     return {"genre": envelope["scene"]["genre"], "columns": columns, "rows": rows()}
 
 
@@ -203,14 +207,16 @@ def refusals(envelope):
     """Owner O94 (RV-11, F-085, R-19): why the prompts of a freshly compiled envelope are not deliverables, one line per
     prompt that is not (its counts and the rows that are neither PASS nor N/A); empty when all five are."""
     checklist, out = rows(), []
-    for label, file, cells in judge_prompts(envelope, {"render.txt": render_text(envelope), **prose_texts(envelope)}):
+    texts = {"render.txt": render_text(envelope), **prose_texts(envelope)}
+    for label, file, cells in judge_prompts(envelope, texts):
         results = [r for r, _ in cells]
-        if deliverable(results):
+        if deliverable(results, texts[file]):
             continue
         blocking = [f"{row['id']} {r}" for row, (r, _) in zip(checklist, cells, strict=True) if r not in (PASS, NA)]
         out.append(f"{label} ({file}) is not a deliverable: {'/'.join(map(str, _counts(results)))} "
-                   f"PASS/FAIL/NOT CHECKED/N/A; " + ", ".join(blocking[:8])
-                   + (f" and {len(blocking) - 8} more" if len(blocking) > 8 else ""))
+                   f"PASS/FAIL/NOT CHECKED/N/A; " + "; ".join([f"{code}: {message}" for code, message in
+                                                              prompt_length.problems(texts[file])] + [", ".join(blocking[:8])
+                   + (f" and {len(blocking) - 8} more" if len(blocking) > 8 else "")]))
     return out
 
 
@@ -244,17 +250,20 @@ def markdown(name, result=None):
            "what that render saw, otherwise the finding turns a PASS into NOT CHECKED.", "",
            f"Genre: {result['genre']}. LBN-2.4 is read against the DAG's Master Template (O13), so many of its FAIL "
            "cells are layout gaps: it keeps rules, negatives, props and shots in its own JSON fields. A prompt is a "
-           "deliverable only with no FAIL and no NOT CHECKED row; Any is the union of the five (O13).", "",
-           "| Prompt | File | sha256 | Bytes | PASS | FAIL | NOT CHECKED | N/A | Deliverable |",
-           "|---|---|---|---|---|---|---|---|---|"]
+           "deliverable only with no FAIL and no NOT CHECKED row, and within a target's length cap (PROMPT_LENGTH, "
+           "owner O97: 3,500 characters for Runway, 1,000 words for BytePlus); Any is the union of the five (O13).", "",
+           "| Prompt | File | sha256 | Bytes | Words | Fits a cap | PASS | FAIL | NOT CHECKED | N/A | Deliverable |",
+           "|---|---|---|---|---|---|---|---|---|---|---|"]
     for column in columns:
         results = [r for r, _ in column["cells"]]
-        counts = _counts(results)
-        out.append(f"| {column['label']} | `{column['file']}` | `{column['sha256']}` | {column['bytes']} | "
-                   + " | ".join(map(str, counts)) + f" | {'yes' if deliverable(results) else 'no'} |")
+        counts, size = _counts(results), prompt_length.measure(column["text"])
+        out.append(f"| {column['label']} | `{column['file']}` | `{column['sha256']}` | {column['bytes']} | {size['words']} | "
+                   f"{', '.join(prompt_length.fits(column['text'])) or 'none'} | " + " | ".join(map(str, counts))
+                   + f" | {'yes' if deliverable(results, column['text']) else 'no'} |")
     counts = _counts(any_column)
-    out += ["| Any | union of the five | | | " + " | ".join(map(str, counts))
-            + f" | {'yes' if deliverable(any_column) else 'no'} |", "",
+    fit = any(prompt_length.fits(c["text"]) for c in columns)
+    out += ["| Any | union of the five | | | | " + ("some" if fit else "none") + " | " + " | ".join(map(str, counts))
+            + f" | {'yes' if deliverable(any_column) and fit else 'no'} |", "",
             "| Row | Name | Class | " + " | ".join(c["label"] for c in columns) + " | Any | Findings | Evidence |",
             "|---|---|---|" + "---|" * len(columns) + "---|---|---|"]
     for i, row in enumerate(checklist):
@@ -283,7 +292,7 @@ def main(argv=None):
         for column in result["columns"]:
             results = [r for r, _ in column["cells"]]
             total += 1
-            refused += not deliverable(results)
+            refused += not deliverable(results, column["text"])
             report.append(f"{column['label']} {'/'.join(map(str, _counts(results)))}")
         print(f"{name}: " + " · ".join(report) + "  (PASS/FAIL/NOT CHECKED/N/A)")
     print(f"deliverable prompts: {total - refused} of {total}")

@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The prompt length is capped (RV-13, owner O97, F-088, S-075): a prompt over 3,500 characters (Runway) and over 1,000
+  words (BytePlus) is not delivered (PROMPT_LENGTH: the checklist's deliverable column and `cinematic compile`); the
+  checklists print each prompt's words and the caps it fits. Every prompt today is over both; fitting them waits for
+  the owner (RV-13b). Conformance is unchanged (O10).
 - TELEPORT's exemption reads the decoy (RV-86, F-188, S-074): an actor may jump after its substitution only when the
   substitution leaves its decoy in its place, the rule S04's swap and S07 read since RV-66. No prompt changed.
 - A camera rule's words are checked against its fields (RV-85, F-187, S-073): each camera term a card's rule prints, in
