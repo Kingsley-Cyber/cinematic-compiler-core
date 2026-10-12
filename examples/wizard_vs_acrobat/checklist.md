@@ -7,10 +7,10 @@ Genre: anime. LBN-2.4 is read against the DAG's Master Template (O13), so many o
 | Prompt | File | sha256 | Bytes | PASS | FAIL | NOT CHECKED | N/A | Deliverable |
 |---|---|---|---|---|---|---|---|---|
 | LBN | `render.txt` | `129942f0689166ac630367479e37fb0b71e15695d91fd973c7208b11ec49490f` | 30824 | 4 | 49 | 14 | 17 | no |
-| Pure | `prose_pure_staff.txt` | `78c6b33a2c294ce6f5d78455a12a7c13d3adcabf540f7689d0b406a972005030` | 21504 | 38 | 0 | 29 | 17 | no |
-| Mixed | `prose_mixed.txt` | `3e29de8d5994f515faefff76e7a37d805701cf62522a62e17a0954d02a3fc6bb` | 21894 | 38 | 0 | 29 | 17 | no |
-| Upgr | `prose_upgraded_mixed.txt` | `e2e9e4cbd4b2537b3b57a0aa07012472532148cee4b6e49fe2f7aa3346b02ed4` | 22559 | 38 | 0 | 29 | 17 | no |
-| Euler | `prose_euler_heavy.txt` | `55c386e34c1108b6c9dc977a629abf27b0c8c0e9af6ba7d01b280c78be0161e7` | 26519 | 38 | 0 | 29 | 17 | no |
+| Pure | `prose_pure_staff.txt` | `68a8b921d3aa453faea0fbae1c1e4b7ec7f9069738c43ac830a94ebb55386bdd` | 21517 | 38 | 0 | 29 | 17 | no |
+| Mixed | `prose_mixed.txt` | `6f6e4e59ac02b7387d31db59904d97abac31f59cd99b82431fa9e3457d9b6775` | 21907 | 38 | 0 | 29 | 17 | no |
+| Upgr | `prose_upgraded_mixed.txt` | `5599e0baf7f2e308ee994d5baab8202202293e2ea56d094dac8102324b5f7da3` | 22572 | 38 | 0 | 29 | 17 | no |
+| Euler | `prose_euler_heavy.txt` | `91ad64b4c406a8021068b5b854e47339a67be2b3b28bd6c5feb7894b17adb604` | 26532 | 38 | 0 | 29 | 17 | no |
 | Any | union of the five | | | 41 | 0 | 29 | 14 | no |
 
 | Row | Name | Class | LBN | Pure | Mixed | Upgr | Euler | Any | Findings | Evidence |
@@ -50,7 +50,7 @@ Genre: anime. LBN-2.4 is read against the DAG's Master Template (O13), so many o
 | C7 | Attachment graph | mandatory | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** PROMPT_CONTRADICTION ×1: cannot pass: the prompt has no [LABAN STAFF – EULER-HEAVY], [NEGATIVES] — **Pure, Mixed, Upgr, Euler:** pass: PROP_STATE_ORDER, PROMPT_CONTRADICTION, PROP_LINE_MISSING |
 | C8 | Layer 1.5 / 3.5 | style | FAIL | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | **LBN:** CAUSAL_LIST_MISSING ×14: cannot pass: the prompt has no [CAUSAL LINKS] — **Pure, Mixed, Upgr, Euler:** pass: CAUSAL_LIST_MISSING; not checked: Causal (S05) and attachment (S06/S07) graphs are built before key poses (S13), as the DAG places them; 'after Laban' does not hold (S15 comes later). |
 | C9 | Spatial anchors / axis | required | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** SPATIAL_ANCHOR_MISSING ×6: cannot pass: the prompt has no [SPATIAL ANCHORS]; ENTRANCE_UNSTATED ×1: cannot pass: the prompt has no [RULES], [NEGATIVES] — **Pure, Mixed, Upgr, Euler:** pass: SPATIAL_ANCHOR_MISSING, ENTRANCE_UNSTATED |
-| C10 | Camera layer (dynamic) | style | FAIL | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | **LBN:** HIT_HOLD ×3: cannot pass: the prompt has no [CAMERA]; PLAYBACK_RAMP ×1: cannot pass: the prompt has no [CAMERA] — **Pure, Mixed, Upgr, Euler:** pass: HIT_HOLD, PLAYBACK_RAMP; not checked: Genre cards set shot length (anime 0.25-6.0 s), crossing and roll; every shot is motivated. |
+| C10 | Camera layer (dynamic) | style | FAIL | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | **LBN:** HIT_HOLD ×3: cannot pass: the prompt has no [CAMERA]; PLAYBACK_RAMP ×1: cannot pass: the prompt has no [CAMERA]; CAMERA_RULES ×2: cannot pass: the prompt has no [CAMERA] — **Pure, Mixed, Upgr, Euler:** pass: HIT_HOLD, PLAYBACK_RAMP, CAMERA_RULES; not checked: Genre cards set shot length (anime 0.25-6.0 s), crossing and roll; every shot is motivated. |
 | C11 | UGC camera | style | N/A | N/A | N/A | N/A | N/A | N/A |  | O14: applies to ugc_ad; this example is anime |
 | C12 | Stylization layer | style | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | checked on the graph only (FRAME_SMEAR at S17); the prompt text is not checked |
 | C13 | Rules + Negatives | mandatory | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** RULES_MISSING ×8: cannot pass: the prompt has no [RULES]; NEGATIVES_MISSING ×13: cannot pass: the prompt has no [NEGATIVES]; CAUSAL_RULE_MISSING ×9: cannot pass: the prompt has no [RULES]; SECTION_ORDER ×2: cannot pass: the prompt has no [SCENE] — **Pure, Mixed, Upgr, Euler:** pass: RULES_MISSING, NEGATIVES_MISSING, CAUSAL_RULE_MISSING, SECTION_ORDER |

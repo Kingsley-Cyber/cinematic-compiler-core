@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The camera rules are structured (RV-71b, F-177, S-070): each convention and idiom carries its trigger and what it asks
+  of the shot, checked against the grammar and owner O92 where it is written (CAMERA_CARD), and the prompt must print
+  the genre card's rules word for word (CAMERA_RULES, new), in place of RV-60's word lists. The knight's shield hit is a
+  hold on both fighters; anime's speed rule applies between hits (eight anime prompts reworded in that rule).
 - A hit's hold is still and names its bodies (RV-71a, F-177, S-069): a static shot on a shaky or floating rig is no
   hold at S16 and S17, and the prompt's hold line must name every body present; archetype cards may name their camera
   idiom card, so the ninja idioms reach the fight (archetype_card 1.1). The cards' word-list rules wait for RV-71b.

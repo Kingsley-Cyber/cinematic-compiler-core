@@ -1,6 +1,6 @@
 card_id: live_action
 kind: camera_convention
-card_version: 2
+card_version: 3
 status: draft
 genre: live_action
 description: "Live-action coverage: cut on action, matched movement across cuts, every shot at normal speed."
@@ -12,8 +12,8 @@ shot_duration_s: [0.4, 10.0]
 cross_line: allowed
 required_intents: []
 conventions:
-  - {id: live_establishing_wide, statement: "Establish the space before the action needs it."}
-  - {id: live_cut_on_action, statement: "Cut during the movement and match it across the cut."}
+  - {id: live_establishing_wide, statement: "Establish the space before the action needs it.", trigger: opening, asks: {scale: [wide, extreme_wide]}}
+  - {id: live_cut_on_action, statement: "Cut during the movement and match it across the cut.", trigger: any_cut, asks: {}}
 provenance:
   authored_by: claude-code
   date: "2026-10-10"

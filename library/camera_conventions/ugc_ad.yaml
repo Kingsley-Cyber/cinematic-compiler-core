@@ -1,6 +1,6 @@
 card_id: ugc_ad
 kind: camera_convention
-card_version: 2
+card_version: 3
 status: draft
 genre: ugc_ad
 description: "UGC ad: phone-native handheld or gimbal coverage, jump cuts allowed, the product shown in use; the axis is never crossed."
@@ -12,9 +12,9 @@ shot_duration_s: [0.4, 4.0]
 cross_line: forbidden
 required_intents: [product]
 conventions:
-  - {id: ugc_hook_first, statement: "The first shot carries the hook or the product."}
-  - {id: ugc_hand_object, statement: "Every product use shows the hand on the object."}
-  - {id: ugc_lens_eyeline, statement: "Talking-to-camera shots keep the eyeline in the lens."}
+  - {id: ugc_hook_first, statement: "The first shot carries the hook or the product.", trigger: opening, asks: {}}
+  - {id: ugc_hand_object, statement: "Every product use shows the hand on the object.", trigger: product_use, asks: {subjects: hand_and_object}}
+  - {id: ugc_lens_eyeline, statement: "Talking-to-camera shots keep the eyeline in the lens.", trigger: talking_to_camera, asks: {subjects: speaker}}
 provenance:
   authored_by: claude-code
   date: "2026-10-10"

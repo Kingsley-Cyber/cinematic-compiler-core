@@ -87,10 +87,10 @@ CODES = {
     "NEGATIVES_MISSING": "a negative constraint is absent from NEGATIVES",
     "DISCONNECTED_CAMERA_MOTION": "a shot is missing, or a camera line lacks its motivation or the beats it shows",
     "HIT_HOLD": "a hit (from the contacts, or a hold on an impact frame) is not printed as a camera hold naming every body "
-                "present, or its shot is a close-up, an insert or a moving camera, or a printed camera rule puts a "
-                "close-up or an insert on a hit (owner O92, R-21; F-083, F-155, F-160, F-177)",
-    "PLAYBACK_RAMP": "a camera line plays at a speed other than normal x1, or a printed camera rule slows, ramps or freezes "
-                     "the playback (owner O92: the clip has a fixed length; F-083, F-160)",
+                "present, or its shot is a close-up, an insert or a moving camera (owner O92, R-21; F-083, F-155, F-177)",
+    "PLAYBACK_RAMP": "a camera line plays at a speed other than normal x1 (owner O92: the clip has a fixed length; F-083)",
+    "CAMERA_RULES": "the printed camera rules are not the genre card's, word for word; the card's rules are checked against "
+                    "the grammar and owner O92 where they are written (planner/camera_library.py; F-160, F-177)",
     "ANCHOR_PHRASE_MISSING": "an entity lacks its appearance phrase in SCENE",
     "RENDER_INTENT_MISSING": "SCENE lacks the motion, animation or choreography intent",
     "END_STATE_MISSING": "a performer lacks its end state (position and support)",
@@ -122,6 +122,7 @@ READS = {
     "CAUSAL_RULE_MISSING": (RULES,), "CONSERVATION_RULE_MISSING": (RULES,), "SPAN_RULE_MISSING": (STAFF, RULES),
     "EVENT_SEPARATION_MISSING": (STAFF, RULES), "RULES_MISSING": (RULES,), "NEGATIVES_MISSING": (NEGATIVES,),
     "DISCONNECTED_CAMERA_MOTION": ("[CAMERA]",), "HIT_HOLD": ("[CAMERA]",), "PLAYBACK_RAMP": ("[CAMERA]",),
+    "CAMERA_RULES": ("[CAMERA]",),
     "ANCHOR_PHRASE_MISSING": ("[SCENE]",),
     "RENDER_INTENT_MISSING": ("[SCENE]",), "END_STATE_MISSING": (RULES,),
 }
@@ -133,10 +134,6 @@ GENRE_TITLES = {"anime": "[ANIME]", "ugc_ad": "[UGC]", "live_action": "[LIVE ACT
 LAWS = ("Identity is immutable", "Spatial continuity", "Momentum is conserved", "Ground force needs support",
         "Contact before effect", "Rotation is continuous")
 EPSILON = 1e-6
-# F-160 (RV-60): the words of a camera rule that asks for what owner O92 struck (interpretation, Claude's, for owner review)
-SLOWED = re.compile(r"\b(?:slow[- ]?motion|slowed|slows? down|ramp(?:s|ed|ing)?|freeze[- ]?frames?|freezes?|frozen)\b", re.I)
-ON_A_HIT = re.compile(r"\b(?:blows?|hits?|impacts?|strikes?|contact)\b", re.I)
-CLOSE = re.compile(r"\b(?:close(?:-?ups?)?|inserts?)\b", re.I)
 
 
 def sections(text):
@@ -814,19 +811,6 @@ def _rules_checks(envelope, parts, labels, mode, add):
             add("EVENT_SEPARATION_MISSING", f"{label} has {count} strikes and fewer than {count - 1} separation rules")
 
 
-def camera_rule_problems(rule):
-    """[(code, message)] for one camera rule (a sentence) that asks for what owner O92 struck (F-160, RV-60): slowed,
-    ramped or frozen playback (PLAYBACK_RAMP), or a close-up or an insert on a blow, hit, impact, strike or contact
-    (HIT_HOLD). The prompt's printed rules and the camera cards are read the same way; the words are an interpretation,
-    and a rule that negates them ("no slow motion") is flagged too, so rules are written as what to do."""
-    problems = []
-    if SLOWED.search(rule):
-        problems.append(("PLAYBACK_RAMP", f"A camera rule slows the playback: {rule[:60]}"))
-    if ON_A_HIT.search(rule) and CLOSE.search(rule):
-        problems.append(("HIT_HOLD", f"A camera rule puts a close-up or an insert on a hit: {rule[:60]}"))
-    return problems
-
-
 def _camera_checks(envelope, parts, labels, add):
     lines = [line for line in _body(parts, "[CAMERA]").splitlines()
              if line and not line.startswith(("Camera rules:", "Holds on hits:"))]
@@ -840,10 +824,9 @@ def _camera_checks(envelope, parts, labels, add):
         if played and (played.group(1), float(played.group(2))) != ("normal", 1.0):
             add("PLAYBACK_RAMP", f"A camera line plays {played.group(1)} x{played.group(2)}: {line[:40]}")
     camera = _body(parts, "[CAMERA]")
-    rules = next((line.removeprefix("Camera rules: ") for line in camera.splitlines() if line.startswith("Camera rules: ")), "")
-    for rule in re.split(r"(?<=\.)\s+", rules):  # F-160 (RV-60): the printed rules follow O92 too
-        for code, message in camera_rule_problems(rule):
-            add(code, message)
+    printed = next((line for line in camera.splitlines() if line.startswith("Camera rules: ")), None)
+    if printed != "Camera rules: " + " ".join(prose_renderer.camera_rules(envelope)):  # F-177 (RV-71b): word for word
+        add("CAMERA_RULES", "The printed camera rules are not the genre card's, word for word")
     held = camera.split("Holds on hits: ", 1)[1].split("\n", 1)[0] if "Holds on hits: " in camera else ""
     frame_parts = envelope["nodes"]["render"]["items"][0]["frame_parts"]
     for t in hits.hold_times(envelope, frame_parts):  # every hit, from the contacts or S17's holds (owner O92, F-155)

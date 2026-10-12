@@ -1,6 +1,6 @@
 card_id: anime
 kind: camera_convention
-card_version: 2
+card_version: 3
 status: draft
 genre: anime
 description: "Anime fight coverage: readable impacts, held frames, fast cuts and whips; the axis may be crossed when the cut says so."
@@ -12,9 +12,9 @@ shot_duration_s: [0.25, 6.0]
 cross_line: allowed
 required_intents: []
 conventions:
-  - {id: anime_establishing_wide, statement: "Open on a wide that sets the arena geometry before the first exchange."}
-  - {id: anime_impact_hold, statement: "Hold on the frame of impact so the hit reads."}
-  - {id: anime_speed_follow, statement: "A fast body move is followed by a tracking or whip move with speedlines on the moving limb."}
+  - {id: anime_establishing_wide, statement: "Open on a wide that sets the arena geometry before the first exchange.", trigger: opening, asks: {scale: [wide, extreme_wide]}}
+  - {id: anime_impact_hold, statement: "Hold on the frame of impact so the hit reads.", trigger: hit, asks: {movement: [static], subjects: all_present}}
+  - {id: anime_speed_follow, statement: "A fast body move between hits is followed by a tracking or whip move with speedlines on the moving limb.", trigger: fast_move, asks: {movement: [tracking, whip_pan]}}
 provenance:
   authored_by: claude-code
   date: "2026-10-10"

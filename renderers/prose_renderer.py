@@ -716,14 +716,19 @@ def _camera(envelope, frame_parts, labels):
                    f"{_num(a['azimuth_deg'])}, roll {_num(a['roll_deg'])}; {_num(lens['focal_length_mm'])} mm "
                    f"{lens['perspective']}; {mv['kind']}: {mv['path'].rstrip('.')}; {pb['treatment']} x{_num(pb['speed'])}; "
                    f"shows {shows}; motivated by {_words(s['motivation']['kind'])} {name(s['motivation']['ref'])}.")
-    card = camera_library.convention(envelope["scene"]["genre"])
-    rules = [c["statement"] for c in card["conventions"]] + [
-        f"Shots last {_num(card['shot_duration_s'][0])}-{_num(card['shot_duration_s'][1])} s.",
-        "Crossing the action axis is " + ("allowed when a cut declares it." if card["cross_line"] == "allowed"
-                                          else "never allowed.")]
+    rules = camera_rules(envelope)
     holds = hit_holds(envelope, frame_parts, labels)
     return "[CAMERA]\n" + "\n".join(out + (["Holds on hits: " + "; ".join(holds) + "."] if holds else [])
                                      + ["Camera rules: " + " ".join(rules)])
+
+
+def camera_rules(envelope):
+    """The genre card's camera rules as the prompt prints them; CAMERA_RULES wants them word for word (F-177)."""
+    card = camera_library.convention(envelope["scene"]["genre"])
+    return [c["statement"] for c in card["conventions"]] + [
+        f"Shots last {_num(card['shot_duration_s'][0])}-{_num(card['shot_duration_s'][1])} s.",
+        "Crossing the action axis is " + ("allowed when a cut declares it." if card["cross_line"] == "allowed"
+                                          else "never allowed.")]
 
 
 class _Unseen:

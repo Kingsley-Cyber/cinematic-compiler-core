@@ -1,11 +1,11 @@
 card_id: superman_variant
 kind: camera_idiom
-card_version: 1
+card_version: 2
 status: draft
 archetype: superman_variant
 idioms:
-  - {id: flyer_hero_low, when: "the flyer lands or stands", prefer: "Low angle full shot against the sky."}
-  - {id: flyer_flight_track, when: "flight across the frame", prefer: "Long-lens tracking move matching the flight line."}
+  - {id: flyer_hero_low, when: "the flyer lands or stands", prefer: "Low angle full shot against the sky.", trigger: landing, asks: {scale: [full]}}
+  - {id: flyer_flight_track, when: "flight across the frame", prefer: "Long-lens tracking move matching the flight line.", trigger: flight, asks: {movement: [tracking]}}
 provenance:
   authored_by: claude-code
   date: "2026-10-10"

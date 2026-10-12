@@ -30,7 +30,7 @@
 # Anchors are line numbers in the frozen copy (§2.2 = Mermaid block, §2.3 = node catalogue).
 # X1-X41 (§3.5) are findings about specific prompts, not rules, and are not mapped.
 
-version: 12
+version: 13
 status: draft
 basis: "Mapped by Claude 2026-10-11 against the repo at 9c9fd98 (layer_order 1.7); owner decisions O1-O4 recorded
   2026-10-11 (docs/plans/M8_DAG_PROSE.md); O13-O14 (checklist scope, not-applicable rulings) 2026-10-11; owner
@@ -699,7 +699,7 @@ rows:
     class: style
     step: S16
     status: partial
-    codes: [HIT_HOLD, PLAYBACK_RAMP]
+    codes: [HIT_HOLD, PLAYBACK_RAMP, CAMERA_RULES]
     enforced_by:
       - {file: validators/camera_validator.py, check: _genre, code: CAMERA_GENRE,
          test: tests/test_camera_solver.py::test_genre_card_rules_apply_scene_wide}
@@ -711,11 +711,9 @@ rows:
          test: tests/test_prose_render.py::test_hits_are_camera_holds_and_nothing_plays_slow}
       - {file: validators/prompt_validator.py, check: _camera_checks, code: PLAYBACK_RAMP,
          test: tests/test_prose_render.py::test_hits_are_camera_holds_and_nothing_plays_slow}
-      - {file: validators/prompt_validator.py, check: camera_rule_problems, code: HIT_HOLD,
+      - {file: validators/prompt_validator.py, check: _camera_checks, code: CAMERA_RULES,
          test: tests/test_prose_render.py::test_the_printed_camera_rules_follow_o92}
-      - {file: validators/prompt_validator.py, check: camera_rule_problems, code: PLAYBACK_RAMP,
-         test: tests/test_prose_render.py::test_the_printed_camera_rules_follow_o92}
-      - {file: validators/prompt_validator.py, check: camera_rule_problems, code: HIT_HOLD,
+      - {file: planner/camera_library.py, check: _checked, code: CAMERA_CARD,
          test: tests/test_camera_solver.py::test_no_camera_card_slows_playback_or_puts_a_close_up_on_a_hit}
       - {file: validators/camera_validator.py, check: _hit_holds, code: HIT_HOLD,
          test: tests/test_camera_solver.py::test_a_hit_from_the_contacts_is_a_camera_hold_at_s16}
@@ -729,7 +727,9 @@ rows:
       O92, F-083): a hit (a hold on an impact frame) is a static camera hold with every body present in frame, no
       close-up or insert (HIT_HOLD at S17 and in the prompt), and every shot plays at normal x1 (PLAYBACK_RAMP at S16
       and in the prompt). RV-60 (F-160): the camera cards follow O92 (no close-up after a blow, no insert on a landing
-      blade, playback normal only), and the prompt's printed camera rules are read for both codes. RV-57 (F-155): the
+      blade, playback normal only). RV-71b (F-177): each card rule carries its trigger and asks, checked against the
+      grammar and O92 where it is written (CAMERA_CARD), and the prompt prints the genre card's rules word for word
+      (CAMERA_RULES), in place of RV-60's word lists. RV-57 (F-155): the
       hits come from the contacts (planner/hits.py), so S16 holds the camera on each, as S17 and the prompt do,
       whatever S17 holds; the vertical framing is RV-15's. Not encoded:
       the six rules (eye-level medium at most 1.2 s, height change every 2 s, low angles in aerial dominance,

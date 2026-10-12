@@ -143,3 +143,4 @@ RV-16, RV-37, RV-35, RV-59, RV-22; then RV-78 to RV-84 and the rest in backlog o
 - 2026-10-12 — RV-69 done (S-067): a prop another performer threw is a hit when it touches a body, whatever the verb.
 - 2026-10-12 — RV-70 done (S-068): the vanished body is gone from the guidance too; VANISHED_BODY reads it.
 - 2026-10-12 — RV-71 split; RV-71a done (S-069): a hit's hold on a still rig, naming its bodies; ninja idioms reach the fight.
+- 2026-10-12 — RV-71b done (S-070): the camera cards' rules as structured fields; the prompt prints them word for word.

@@ -12,7 +12,7 @@ medium
 L5.5
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -48,7 +48,10 @@ whether a smash cut or a whip onto the impact frame, or a shaky handheld shot, i
 - ADR-O92
 
 ## Resolution
-Open in part: RV-71a (S-069) makes a hit's hold a static shot on a locked or smooth rig at S16 and S17
-(validators/camera_validator.py STILL), the prompt's HIT_HOLD reads the bodies its hold line names, and an archetype card
-may name its idiom card (archetype_card 1.1; ninja_lean and ninja_broad name ninja). RV-71b carries the rest: the cards'
-rules as structured fields in place of the word lists.
+RV-71a (S-069): a hit's hold is static on a locked or smooth rig at S16 and S17; the prompt's hold names its bodies;
+archetype cards name their idiom card (ninja_lean, ninja_broad). RV-71b (S-070): each convention and idiom carries its
+trigger and asks (camera_convention_card 1.1, camera_idiom_card 1.1), which planner/camera_library.py checks against the
+grammar and owner O92 (CAMERA_CARD); the prompt prints the genre card's rules word for word (CAMERA_RULES), in place of
+the word lists; the knight's shield hit is a hold on both fighters and anime's speed rule applies between hits
+(tests/test_camera_solver.py::test_no_camera_card_slows_playback_or_puts_a_close_up_on_a_hit,
+tests/test_prose_render.py::test_the_printed_camera_rules_follow_o92).

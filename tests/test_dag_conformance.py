@@ -178,6 +178,8 @@ BREAKS = [
     ("HIT_HOLD", "reference_fight", "mixed", _replace("2.50 impact: hold with", "2.50 impact: cut to")),  # O92
     ("PLAYBACK_RAMP", "reference_fight", "mixed", _replace("normal x1; shows A foot deflect kunai",
                                                            "slow x0.25; shows A foot deflect kunai")),
+    ("CAMERA_RULES", "reference_fight", "mixed", _replace("Camera rules: ", "Camera rules: Cut close on the receiver "
+                                                          "after a blow lands. ")),  # F-177 (RV-71b)
     ("CONTACT_WORLD", "reference_fight", "mixed", _replace(", kunai handle at [1.4, 0, 3.77]", "")),  # O89 landing
     ("SHAPE_DIRECTION", "reference_fight", "mixed", _replace("B 7.50–9.00: maintain sudden time, bound flow; shape advancing",
                                                              "B 7.50–9.00: maintain sudden time, bound flow; shape retreating")),

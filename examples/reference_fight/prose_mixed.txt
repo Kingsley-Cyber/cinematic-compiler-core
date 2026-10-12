@@ -194,7 +194,7 @@ A crash to ground ⇢ A hold crouch over opponent: Slammed down with the kunai i
 9.00–9.50 cut to full on A, B: A and B crash to the ground; A lands in a crouch over B; elevation -5, azimuth 0, roll 0; 35 mm normal; static: held low on the crash; normal x1; shows A crash to ground; motivated by narrative intent b22 causes b23.
 9.50–10.00 cut to medium_wide on A, B: A holds a crouch over B; the shuriken stay in the pillar, the log on the ground, smoke thinning; elevation 3, azimuth 0, roll 0; 57.09 mm normal; dolly_in: slow push in on the crouch; normal x1; shows A hold crouch over opponent; motivated by beat type b23.
 Holds on hits: 2.50 impact: hold with BOTH bodies in frame (A and B), no close-up; 4.70 impact: hold with BOTH bodies in frame (A and B), no close-up; 6.60 impact: hold with BOTH bodies in frame (A and B), no close-up; 8.50 impact: hold with BOTH bodies in frame (A and B), no close-up.
-Camera rules: Open on a wide that sets the arena geometry before the first exchange. Hold on the frame of impact so the hit reads. A fast body move is followed by a tracking or whip move with speedlines on the moving limb. Shots last 0.25-6 s. Crossing the action axis is allowed when a cut declares it.
+Camera rules: Open on a wide that sets the arena geometry before the first exchange. Hold on the frame of impact so the hit reads. A fast body move between hits is followed by a tracking or whip move with speedlines on the moving limb. Shots last 0.25-6 s. Crossing the action axis is allowed when a cut declares it.
 
 [ANIME]
 Impact frames: 2.50, 4.70, 5.50, 6.60, 8.50, 9.00.

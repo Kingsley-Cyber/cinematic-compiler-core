@@ -124,6 +124,9 @@ Added in S-067 (RV-69, planner/hits.py): a fifth kind of hit, a touch between a 
 threw and no one holds, whatever the verb and whichever side names the body.
 Added in S-068 (RV-70, renderers/prose_renderer.py): the source's Effort on the substitution row is the vanish's own
 quality, printed at its instant ("vanishes with ... in place"), not maintained over the beat.
+Added in S-069 (RV-71a): a hold is a static shot on a locked or smooth rig. Added in S-070 (RV-71b,
+library/camera_conventions, library/camera_idioms): each rule's trigger and asks read from its words; anime's speed
+rule applies "between hits"; the knight's shield hit becomes a medium-wide hold on both fighters.
 
 ## Impact
 Waits on the owner.

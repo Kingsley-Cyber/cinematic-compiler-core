@@ -1,11 +1,11 @@
 card_id: knight
 kind: camera_idiom
-card_version: 1
+card_version: 2
 status: draft
 archetype: knight
 idioms:
-  - {id: knight_weight_low, when: "a heavy blow or charge", prefer: "Low, steady frame that lets armour weight read; no shaky texture."}
-  - {id: knight_shield_impact, when: "a blow lands on the shield", prefer: "Medium on the shield arm with a short hold at contact."}
+  - {id: knight_weight_low, when: "a heavy blow or charge", prefer: "Low, steady frame that lets armour weight read; no shaky texture.", trigger: heavy_move, asks: {}}
+  - {id: knight_shield_impact, when: "a blow lands on the shield", prefer: "Hold medium-wide on both fighters as the blow meets the shield.", trigger: hit, asks: {scale: [medium_wide], movement: [static], subjects: all_present}}  # owner O92 (RV-71b): was a medium on the shield arm
 provenance:
   authored_by: claude-code
   date: "2026-10-10"

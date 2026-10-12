@@ -193,22 +193,25 @@ def test_hits_are_camera_holds_and_nothing_plays_slow():
 
 
 def test_the_printed_camera_rules_follow_o92():
-    """F-160 (RV-60, owner O92): no example prints a camera rule that puts a close-up on a hit or slows the playback, and
-    a prompt whose "Camera rules:" line does is refused (HIT_HOLD, PLAYBACK_RAMP)."""
+    """F-160, F-177 (RV-60, RV-71b; owner O92): every example prints its genre card's camera rules word for word (the
+    card's rules are checked where they are written), and a prompt that adds or alters one is refused (CAMERA_RULES),
+    whatever its words. The test moved from word lists to the card with the check it pins (ADR-O102)."""
     for name in ("reference_fight", "wizard_vs_acrobat", "live_action_standoff", "ugc_glasses_demo"):
         envelope, render = load(ROOT / "examples" / name)
         for variant, prose in render["prose"].items():
             found = {f["code"] for f in prompt_validator.check(prose["text"], envelope, variant)}
-            assert not {"HIT_HOLD", "PLAYBACK_RAMP"} & found, (name, variant)
+            assert not {"CAMERA_RULES", "HIT_HOLD", "PLAYBACK_RAMP"} & found, (name, variant)
     envelope, render = load(ROOT / "examples" / "reference_fight")
     text = render["prose"]["mixed"]["text"]
 
     def fired(rule):
         prompt = text.replace("Camera rules: ", f"Camera rules: {rule} ", 1)
         return {f["code"] for f in prompt_validator.check(prompt, envelope, "mixed")}
-    assert "HIT_HOLD" in fired("Cut close on the receiver after a blow lands.")
-    assert "PLAYBACK_RAMP" in fired("Slow motion only around the peak of an action.")
-    assert not {"HIT_HOLD", "PLAYBACK_RAMP"} & fired("Hold on the frame of impact so the hit reads.")
+    for rule in ("Cut close on the receiver after a blow lands.", "Slow motion only around the peak of an action.",
+                 "Crash zoom onto the blow.", "Run the fall at half speed."):
+        assert "CAMERA_RULES" in fired(rule), rule
+    assert "CAMERA_RULES" in {f["code"] for f in prompt_validator.check(
+        text.replace("between hits is followed by a tracking or whip move", "is followed by a crash zoom", 1), envelope, "mixed")}
 
 
 def test_the_vanishing_actor_s_line_ends_its_support_and_walks_nowhere():

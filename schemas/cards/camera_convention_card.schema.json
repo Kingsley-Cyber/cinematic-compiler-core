@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:camera_convention_card:1.0",
+  "$id": "urn:cinematic-compiler:schema:camera_convention_card:1.1",
   "title": "Camera convention card (S16, per genre)",
   "description": "What a genre's coverage allows; conventions are the ids a genre_convention motivation names.",
   "type": "object",
@@ -108,7 +108,9 @@
         "additionalProperties": false,
         "required": [
           "id",
-          "statement"
+          "statement",
+          "trigger",
+          "asks"
         ],
         "properties": {
           "id": {
@@ -118,6 +120,65 @@
           "statement": {
             "type": "string",
             "minLength": 1
+          },
+          "trigger": {
+            "enum": [
+              "opening",
+              "any_cut",
+              "hit",
+              "fast_move",
+              "heavy_move",
+              "turn",
+              "airborne",
+              "landing",
+              "flight",
+              "appearance",
+              "cast",
+              "ward",
+              "product_use",
+              "talking_to_camera"
+            ],
+            "description": "When the rule applies (F-177, RV-71b)."
+          },
+          "asks": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "F-177 (RV-71b): what the rule asks of the shot, in the grammar's words; planner/camera_library.py checks it (a hit rule is a static hold on every body present at an impact scale, owner O92).",
+            "properties": {
+              "scale": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "movement": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "playback": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "subjects": {
+                "enum": [
+                  "all_present",
+                  "actor",
+                  "detail",
+                  "hand_and_object",
+                  "speaker"
+                ]
+              }
+            }
           }
         }
       }
