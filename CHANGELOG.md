@@ -6,6 +6,11 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- No body through another (RV-49, F-144, R-18, S-049): each segment is a capsule with a draft radius from the body card
+  (library/body_segments.yaml 5, schema 3.1); S13 refuses two bodies that overlap at an instant both have a key
+  (BODY_OVERLAP), and CONTACT_WORLD measures a contact between two bodies from surface to surface. B re-blocked at
+  3.4, 3.7, 4.4, 4.7, 6.6, 8.5, 9.0 and 9.5 and the acrobat's kick at 3.6; shot c08 steps back to 2.1 m. A body
+  through a prop is not yet checked (F-151, RV-54).
 - The smoke bursts at 3.7 at A's body (RV-07, O91, F-082, F-132, S-048): a beat effect may say `at: start` (beat 1.3,
   embedded in beat_plan and temporal_graph 1.6) and S06 commits it at its beat's start; b09's smoke burst and the log's
   deployment take effect at 3.7, as the source says, and the spent pellet rests on the ground from 4.0. Each change in

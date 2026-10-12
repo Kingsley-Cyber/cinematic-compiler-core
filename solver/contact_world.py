@@ -1,12 +1,15 @@
 """World contact points, their misses and CONTACT_WORLD (plan F5.1, F5.2; owners O24, O72, O81, O83).
 
 For each touch, hold and support: the actor's point (the S13 key at the contact's instant, its world points by forward
-kinematics) and the target's point (a prop's sample at that instant; another body's point from its own key; a
-surface's top, vertically), and the distance between them. Flags mark the owner's measurement artefacts: the actor
-airborne, the actor's key turning, the prop moving at the instant. A contact with no key at its instant, a prop with
-no sample there, or a surface with no top (a wall, a pillar's face; a touch on any surface but a floor) is not
-measurable. `measure` reads an envelope (the report, the prose); `measure_plan` reads S13's packet and its authored
-keys (the check). CONTACT_WORLD (ADR-O83, O89) refuses a measurable miss over 0.15 m (O72) unless it is a genuine
+kinematics) and the target's point (a prop's sample at that instant; a surface's top, vertically; another body's
+surface, from its own key: the nearest point of the named part's capsules, the torso when none is named), and the
+distance between them; between two bodies it runs from surface to surface, the actor's part carrying its segment's
+radius (RV-49, F-144: a strike is measured to the target's surface, and BODY_OVERLAP refuses one inside it). Flags mark
+the owner's measurement artefacts: the actor airborne, the actor's key turning, the prop moving at the instant. A
+contact with no key at its instant, a prop with no sample there, or a surface with no top (a wall, a pillar's face; a
+touch on any surface but a floor) is not measurable. `measure` reads an envelope (the report, the prose);
+`measure_plan` reads S13's packet and its authored keys (the check). CONTACT_WORLD (ADR-O83, O89) refuses a
+measurable miss over 0.15 m (O72) unless it is a genuine
 artefact, or the owner's list keeps it with its reason (kernel/contact_world_exceptions.yaml, read through S13's packet,
 never from an authored plan: the owner's source rows, ADR-O83 point 2, F-123); an exception that names anything but
 such a miss is refused, so the list stays true. A genuine artefact (ADR-O104) is a contact measured between keys or
@@ -21,7 +24,8 @@ from pathlib import Path
 import yaml
 
 from planner.dynamic_beat_validator import surface_tops
-from solver.forward_kinematics import part_point, points
+from solver import forward_kinematics
+from solver.forward_kinematics import capsules, part_capsules, part_point, part_radius, points, surface_gap
 
 TOLERANCE_M = 0.15  # owner O72
 EXCEPTIONS = Path(__file__).resolve().parents[1] / "kernel" / "contact_world_exceptions.yaml"
@@ -44,13 +48,16 @@ def _words(text):
 def measure(envelope):
     """[{id, t, actor, part, target, kind, actor_point, target_point, distance, airborne, rotating, prop_moving,
     measurable, reason}] for every touch, possess and support contact and every release of a prop, in time order."""
-    keys = {(k["entity"], round(k["t"], 6)): k for k in envelope["nodes"]["motion"]["items"]}
+    genre = envelope["scene"]["genre"]
+    metres, radii = forward_kinematics.segments(genre), forward_kinematics.radii(genre)
+    keys = {(k["entity"], round(k["t"], 6)): {**k, "capsules": capsules(k, metres, radii)}
+            for k in envelope["nodes"]["motion"]["items"]}
     support = {k["id"]: k["support"] for k in envelope["nodes"]["kinematic"]["items"]}
     surfaces = envelope["nodes"]["surfaces"]["items"]
     tops = surface_tops(surfaces, envelope["scene"]["ax"].get("ground"))
     samples = [sample for beat in envelope["nodes"]["beats"]["items"] for sample in beat.get("prop_samples", [])]
     return _rows(keys, support, tops, {s["id"] for s in surfaces if s["kind"] == "floor"}, samples,
-                 envelope["nodes"]["contacts"]["items"])
+                 envelope["nodes"]["contacts"]["items"], radii)
 
 
 def packet_view(envelope):
@@ -65,16 +72,22 @@ def packet_view(envelope):
             "exceptions": owner_exceptions(envelope["provenance"]["source_prompt"])}
 
 
+def plan_bodies(keys, slots, packet):
+    """{(entity, t): {id, turn, points, capsules}} from S13's packet and its authored keys ({slot: key})."""
+    return {(slots[slot]["entity"], round(slots[slot]["t"], 6)):
+            {"id": slot, "turn": key["turn"], "points": points(key, packet["segments"]),
+             "capsules": capsules(key, packet["segments"], packet["radii"])} for slot, key in keys.items()}
+
+
 def measure_plan(keys, slots, packet):
     """The same rows from S13's packet and its authored keys ({slot: key}), the points by forward kinematics."""
     view = packet["contact_world"]
-    named = {(slots[slot]["entity"], round(slots[slot]["t"], 6)):
-             {"id": slot, "turn": key["turn"], "points": points(key, packet["segments"])} for slot, key in keys.items()}
     support = {slot: slots[slot]["kinematic"]["support"] for slot in keys}
-    return _rows(named, support, view["surface_tops"], set(view["floors"]), view["prop_samples"], view["contacts"])
+    return _rows(plan_bodies(keys, slots, packet), support, view["surface_tops"], set(view["floors"]),
+                 view["prop_samples"], view["contacts"], packet["radii"])
 
 
-def _rows(keys, support, tops, floors, prop_samples, contacts):
+def _rows(keys, support, tops, floors, prop_samples, contacts, radii):
     samples = {}
     for sample in prop_samples:
         samples.setdefault((sample["prop"], round(sample["t"], 6)), []).append(sample)
@@ -114,12 +127,11 @@ def _rows(keys, support, tops, floors, prop_samples, contacts):
             row["distance"] = round(math.dist(point, here[0]["p"]), 3)
         else:
             other = keys.get((b["id"], t))
-            target = part_point(other["points"], b.get("part") or "torso") if other else None
-            if target is None:
-                row["reason"] = f"no key or point for {_words(b['id'])} at {c['t']}"
+            if other is None:
+                row["reason"] = f"no key for {_words(b['id'])} at {c['t']}"
                 continue
-            row["target_point"] = target
-            row["distance"] = round(math.dist(point, target), 3)
+            target = [other["capsules"][name] for name in part_capsules(b.get("part") or "torso")]
+            row["distance"], row["target_point"] = surface_gap(point, part_radius(c["body_part"], radii), target)
         row["measurable"] = True
     return rows
 

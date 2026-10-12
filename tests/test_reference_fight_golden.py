@@ -165,9 +165,14 @@ REBLOCKED_SAMPLES = {("rope_dart", 3.0): [0.85, 0.74, 4.55], ("rope_dart", 8.0):
                      ("kunai", 2.72): [1.4, 0.0, 3.77], ("shuriken_volley", 5.5): [-1.12, 2.74, 4.83]}
 CATCH_ROOT = [0.07, 1.03, 4.8]
 # O105 (S-043): the kunai leaves B's right hand at 2.0 (CONTACT_WORLD measures releases), and B throws from A's -Z side.
-REBLOCKED_ROOTS = {"ninja_broad@b10": [1.0, 1.09, 5.0], "ninja_broad@b12": [-0.2, 1.2, 4.44],
+# RV-49 (S-049, F-144, R-18: no body through another, a strike measured to the target's surface): B holds back at 3.7
+# while A leans into the swap, then lunges to the log; B stands clear of A's legs at 4.4; A's knee meets the surface of
+# B's back at 4.7, so B stands 0.24 m further along the launch; B bows less at 8.5; B lies 0.18 m aside at 9.0-9.5.
+REBLOCKED_ROOTS = {"ninja_broad@b10": [1.0, 1.09, 5.0], "ninja_broad@b12": [-0.44, 1.2, 4.56],
                    "ninja_broad@b04": [1.4, 1.19, 3.3], "ninja_broad@b05": [1.77, 1.14, 2.97],
-                   "ninja_broad@b06": [1.77, 1.19, 3.0]}
+                   "ninja_broad@b06": [1.77, 1.19, 3.0], "ninja_broad@b09": [1.39, 1.07, 4.53],
+                   "ninja_broad@b11": [-0.39, 1.07, 4.51], "ninja_broad@b21": [1.09, 1.08, 5.06],
+                   "ninja_broad@b22": [0.96, 0.1, 5.48], "ninja_broad@b23": [0.96, 0.1, 5.48]}
 # Owner O86 (F-071, S-032): at 8.0 B stands on A's far side from the pillar (z 6), pose and facing kept, so the rope from
 # B to A's hand pulls toward the pillar and B is dragged that way to 8.5; with the kunai's landing since O89 (S-039).
 PULL_ANCHOR = [2.2, 1.18, 3.47]

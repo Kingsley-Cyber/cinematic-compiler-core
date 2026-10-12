@@ -1,16 +1,22 @@
 # Body segments for S13 forward kinematics (owner O24: world contact points are computed from the pose; O72: the root
 # is the pelvis; O84: the hips are read from the trunk; O85: anime bodies get the leg fitted to the owner's source).
 # Draft by Claude for owner review. Each genre profile (library/genre_profiles/<genre>.yaml) names its body_type.
+# Radii (RV-49, F-144, R-18): each segment is a capsule, its axis between two joints and this radius, so S13 can keep
+# one body out of another (BODY_OVERLAP) and measure a strike to the target's surface.
 library_id: body_segments
-version: 4
+version: 5
 status: draft
 basis: "Owner O24, O72, O84 and O85; PLAN-003 F5.1 (segment lengths per archetype or body mode)."
 bodies:
   adult:
-    basis: "S-027 draft: one adult of about 1.75 m, standing pelvis 0.98 m above the soles (thigh + shin + ankle), rounded from common anthropometric proportions, not measured from a source."
+    basis: "S-027 draft: one adult of about 1.75 m, standing pelvis 0.98 m above the soles (thigh + shin + ankle), rounded from common anthropometric proportions, not measured from a source. Radii (S-049 draft): half of each segment's common girth or depth (trunk 0.13 between half its depth and half its width), rounded, not measured from a source."
     metres: {hip: 0.10, thigh: 0.45, shin: 0.45, ankle: 0.08, spine: 0.50, torso_point: 0.8, shoulder: 0.18,
              upper_arm: 0.30, forearm: 0.35, neck: 0.10, head: 0.11}
+    radii: {trunk: 0.13, girdle: 0.06, hips: 0.08, neck: 0.05, head: 0.10, upper_arm: 0.05, forearm: 0.04,
+            thigh: 0.08, shin: 0.055, foot: 0.045}
   anime:
-    basis: "S-029 (O82, O85): the adult with its leg scaled x1.25 (standing pelvis 1.22 m), the one scale that best puts the soles of the source's grounded A rows (kernel/sources/lbn-2.3-adv.txt, support=both feet on the ground) on the ground with the hips read from the trunk (O84); the upper body is the adult's."
+    basis: "S-029 (O82, O85): the adult with its leg scaled x1.25 (standing pelvis 1.22 m), the one scale that best puts the soles of the source's grounded A rows (kernel/sources/lbn-2.3-adv.txt, support=both feet on the ground) on the ground with the hips read from the trunk (O84); the upper body is the adult's. Radii (S-049 draft): the adult's; the longer leg keeps the adult's girth."
     metres: {hip: 0.10, thigh: 0.56, shin: 0.56, ankle: 0.10, spine: 0.50, torso_point: 0.8, shoulder: 0.18,
              upper_arm: 0.30, forearm: 0.35, neck: 0.10, head: 0.11}
+    radii: {trunk: 0.13, girdle: 0.06, hips: 0.08, neck: 0.05, head: 0.10, upper_arm: 0.05, forearm: 0.04,
+            thigh: 0.08, shin: 0.055, foot: 0.045}

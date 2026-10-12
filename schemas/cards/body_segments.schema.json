@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:body_segments:3.0",
+  "$id": "urn:cinematic-compiler:schema:body_segments:3.1",
   "title": "Body segments (S13 forward kinematics)",
-  "description": "Segment lengths in metres for forward kinematics from the pelvis root (owner O24, O72), one body per body type, chosen by the genre profile's body_type (owner O85): the chain root -> Sp -> (NK -> HD, LA -> LFA, RA -> RFA, LUL -> LL, RUL -> RL) of the Q6 convention, the hips read from the trunk (owner O84).",
+  "description": "Segment lengths in metres for forward kinematics from the pelvis root (owner O24, O72), one body per body type, chosen by the genre profile's body_type (owner O85): the chain root -> Sp -> (NK -> HD, LA -> LFA, RA -> RFA, LUL -> LL, RUL -> RL) of the Q6 convention, the hips read from the trunk (owner O84). Each segment is also a capsule with a radius (RV-49, F-144): S13 keeps one body out of another (BODY_OVERLAP) and measures a strike to the target's surface.",
   "type": "object",
   "additionalProperties": false,
   "required": ["library_id", "version", "status", "basis", "bodies"],
@@ -16,10 +16,11 @@
       "additionalProperties": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["basis", "metres"],
+        "required": ["basis", "metres", "radii"],
         "properties": {
           "basis": {"type": "string", "minLength": 1},
-          "metres": {"$ref": "#/$defs/metres"}
+          "metres": {"$ref": "#/$defs/metres"},
+          "radii": {"$ref": "#/$defs/radii"}
         }
       }
     }
@@ -41,6 +42,24 @@
         "forearm": {"type": "number", "exclusiveMinimum": 0, "description": "elbow to the palm's centre"},
         "neck": {"type": "number", "exclusiveMinimum": 0, "description": "shoulder line to the head's base"},
         "head": {"type": "number", "exclusiveMinimum": 0, "description": "the head's base to its centre"}
+      }
+    },
+    "radii": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Capsule radii in metres (RV-49, F-144): each segment's axis runs between its two joints.",
+      "required": ["trunk", "girdle", "hips", "neck", "head", "upper_arm", "forearm", "thigh", "shin", "foot"],
+      "properties": {
+        "trunk": {"type": "number", "exclusiveMinimum": 0, "description": "pelvis to the shoulder line"},
+        "girdle": {"type": "number", "exclusiveMinimum": 0, "description": "across the shoulders, joint to joint"},
+        "hips": {"type": "number", "exclusiveMinimum": 0, "description": "across the hips, joint to joint"},
+        "neck": {"type": "number", "exclusiveMinimum": 0, "description": "the shoulder line to the head's base"},
+        "head": {"type": "number", "exclusiveMinimum": 0, "description": "a sphere about the head's centre"},
+        "upper_arm": {"type": "number", "exclusiveMinimum": 0, "description": "shoulder to elbow"},
+        "forearm": {"type": "number", "exclusiveMinimum": 0, "description": "elbow to the palm's centre"},
+        "thigh": {"type": "number", "exclusiveMinimum": 0, "description": "hip to knee"},
+        "shin": {"type": "number", "exclusiveMinimum": 0, "description": "knee to ankle"},
+        "foot": {"type": "number", "exclusiveMinimum": 0, "description": "ankle to the sole"}
       }
     }
   }

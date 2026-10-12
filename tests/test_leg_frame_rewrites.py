@@ -14,10 +14,12 @@ from solver import staff_geometry
 pytestmark = pytest.mark.unit
 
 # Keys re-posed again to meet their contacts (CONTACT_WORLD): in S-030 (ADR-O83), S-038 (O88) and S-039 (O89, B rises
-# to A's knee at 4.7); each side prints the word its re-posed key reads (recorded here since S-039).
+# to A's knee at 4.7); each side prints the word its re-posed key reads (recorded here since S-039). RV-49 (S-049,
+# F-144, R-18: no body through another): B's trailing right leg at 4.4 swings in out of A's legs, so it reads forward.
 RE_POSED = {("reference_fight", "ninja_broad@b17"): {"left": "forward-low", "right": "right-forward-low"},
             ("wizard_vs_acrobat", "acrobat@b06"): {"left": "left-forward-low", "right": "forward-mid"},
-            ("reference_fight", "ninja_broad@b12"): {"left": "left-back-low", "right": "right-back-low"}}
+            ("reference_fight", "ninja_broad@b12"): {"left": "left-back-low", "right": "right-back-low"},
+            ("reference_fight", "ninja_broad@b11"): {"left": "forward-mid", "right": "forward-low"}}
 # (example, key, side): (the word before S-029, the word S-029 printed)
 LEG_WORDS = {
     ("reference_fight", "ninja_broad@b01", "right"): ("right-forward-low", "forward-low"),

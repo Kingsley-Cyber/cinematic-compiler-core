@@ -8,7 +8,7 @@ import yaml
 from conftest import ROOT
 
 from planner import genre_profile
-from solver import contact_world, forward_kinematics
+from solver import body_overlap, contact_world, forward_kinematics
 from validators import prompt_validator
 
 pytestmark = pytest.mark.unit
@@ -108,6 +108,52 @@ def test_the_kunai_pickup_meets_since_its_re_block():
     assert pickup["measurable"] and pickup["distance"] <= contact_world.TOLERANCE_M and pickup["target_point"] == [1.4, 0.0, 3.77]
     assert rows["b01_c1"]["distance"] <= contact_world.TOLERANCE_M          # A lands on the pillar's top (O21)
     assert not rows["b18_c1"]["measurable"]                                   # the pillar's face has no top to meet
+
+
+def test_a_strike_is_measured_to_the_target_s_surface():
+    """RV-49 (F-144): a contact between two bodies runs from the part's surface to the target's, so a knee on the
+    target's back meets; a knee at its centre is inside it, which BODY_OVERLAP refuses, not CONTACT_WORLD."""
+    radii = forward_kinematics.radii("live_action")
+    body = forward_kinematics.capsules({"pos": [0, 0.98, 0], "rot": [0, 0, 0], "bones": REST}, METRES, radii)
+    trunk = [body[name] for name in forward_kinematics.part_capsules("torso")]
+    knee = forward_kinematics.part_radius("right_leg", radii)                  # the thigh's radius
+    assert forward_kinematics.surface_gap([0, 1.3, -(radii["trunk"] + knee)], knee, trunk) == (0.0, [0.0, 1.3, -0.13])
+    assert forward_kinematics.surface_gap([0, 1.3, -0.5], knee, trunk)[0] == round(0.5 - radii["trunk"] - knee, 3)
+    assert forward_kinematics.surface_gap([0, 1.3, 0.0], knee, trunk)[0] == 0.0
+    import copy
+    envelope = _envelope("reference_fight")
+    kept = contact_world.owner_exceptions(envelope["provenance"]["source_prompt"])
+    assert {r["id"]: r for r in contact_world.measure(envelope)}["b12_c1"]["distance"] <= 0.03   # A's knee on B's back
+    moved = copy.deepcopy(envelope)
+    back = next(k for k in moved["nodes"]["motion"]["items"] if k["id"] == "ninja_broad@b12")
+    back["pos"] = [back["pos"][0] - 0.3, back["pos"][1], back["pos"][2]]                   # B 0.3 m off A's knee
+    found = contact_world.refusals(contact_world.measure(moved), kept)
+    assert [(f["code"], f["contact"]) for f in found] == [("CONTACT_WORLD", "b12_c1")]
+
+
+def test_no_body_passes_through_another():
+    """RV-49 (F-144, R-18): two bodies at one instant overlap when two of their capsules come closer than their radii;
+    bodies at different instants are not compared."""
+    radii = forward_kinematics.radii("live_action")
+
+    def body(entity, x):
+        key = {"pos": [x, 0.98, 0], "rot": [0, 0, 0], "bones": REST}
+        return {"id": f"{entity}@b01", "capsules": forward_kinematics.capsules(key, METRES, radii)}
+    assert body_overlap.refusals({("a", 1.0): body("a", 0.0), ("b", 1.0): body("b", 0.6)}) == []
+    found = body_overlap.refusals({("a", 1.0): body("a", 0.0), ("b", 1.0): body("b", 0.2)})
+    assert [f["code"] for f in found] == ["BODY_OVERLAP"] and found[0]["slot"] == "a@b01"
+    assert body_overlap.refusals({("a", 1.0): body("a", 0.0), ("b", 2.0): body("b", 0.0)}) == []
+
+
+def test_every_example_keeps_its_bodies_apart():
+    """RV-49 (F-144): after the re-blocks no two bodies overlap at any instant in any example."""
+    for name in ("wizard_vs_acrobat", "live_action_standoff", "ugc_glasses_demo", "reference_fight"):
+        envelope = _envelope(name)
+        genre = envelope["scene"]["genre"]
+        metres, radii = forward_kinematics.segments(genre), forward_kinematics.radii(genre)
+        bodies = {(k["entity"], round(k["t"], 6)): {"id": k["id"], "capsules": forward_kinematics.capsules(k, metres, radii)}
+                  for k in envelope["nodes"]["motion"]["items"]}
+        assert body_overlap.refusals(bodies) == [], name
 
 
 def test_the_prompt_prints_both_points_of_each_contact():

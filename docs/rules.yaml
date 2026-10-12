@@ -2,7 +2,7 @@
 # and a docs-log entry (python -m kernel.schema_log --log docs record docs/rules.yaml ...). Every rule cites accepted
 # decisions (docs/decisions/) and names what enforces it: a code or test the gate runs, or `protocol` (the agent
 # follows it; AGENTS.md). Validated by schemas/rules.schema.json.
-version: "5.0"
+version: "5.1"
 rules:
   # ---- agent: how every session works
   - {id: R-01, scope: agent, source: [ADR-S6, ADR-O64],
@@ -71,7 +71,7 @@ rules:
      enforced_by: [tests/test_reference_fight_golden.py]}
   - {id: R-18, scope: compiler, source: [ADR-O8, ADR-O12],
      rule: "Bodies and props obey the scene's physics: no teleport above 25 m/s except a declared substitution; props follow gravity unless a float is declared (anime only).",
-     enforced_by: [TELEPORT, PROP_KINEMATICS]}
+     enforced_by: [TELEPORT, PROP_KINEMATICS, BODY_OVERLAP]}
   - {id: R-35, scope: compiler, source: [ADR-O84, ADR-S7],
      rule: "Hip angles are read from the trunk (the root, then Sp) in every key, genre and example: forward kinematics hangs the legs from the spine, and every authored key writes its hips that way.",
      enforced_by: [solver/forward_kinematics.py, planner/prompts/euler_solving.txt, tests/test_forward_kinematics.py]}

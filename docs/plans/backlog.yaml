@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 21
+version: 22
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -84,7 +84,7 @@ items:
      step: state, plan: PLAN-007, depends_on: [], findings: [F-061], codes: []}
   - {id: RV-07, title: "The smoke bursts at 3.7 at A's body; the spent pellet falls and rests (O91)", status: done,
      step: temporal, plan: PLAN-007, depends_on: [RV-08], findings: [F-082, F-132], codes: []}
-  - {id: RV-09, title: "Hits are camera holds framing both bodies, no playback ramps; the source's camera directives (O92)", status: ready,
+  - {id: RV-09, title: "Hits are camera holds framing both bodies, no playback ramps; the source's camera directives (O92)", status: next,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-083, F-005, F-015], codes: [HIT_HOLD, PLAYBACK_RAMP]}
   - {id: RV-10, title: "The kunai drive holds the kunai in B's right shoulder; the catch is a grasp plus a throw (O93)", status: ready,
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-084], codes: []}
@@ -162,7 +162,7 @@ items:
      step: render, plan: PLAN-007, depends_on: [], findings: [F-122], codes: []}
   - {id: RV-43, title: "CONTACT_WORLD exceptions come only from an owner-held, logged list", status: done,
      step: motion, plan: PLAN-007, depends_on: [], findings: [F-123], codes: []}
-  - {id: RV-49, title: "No body through another: an overlap check at S13, strikes measured to the target's surface, the failing poses re-blocked", status: next,
+  - {id: RV-49, title: "No body through another: an overlap check at S13, strikes measured to the target's surface, the failing poses re-blocked", status: done,
      step: motion, plan: PLAN-007, depends_on: [RV-43], findings: [F-144], codes: [BODY_OVERLAP]}
   - {id: RV-50, title: "The golden test's recorded reasons match the data (the rope's pull along its line, the wrap at 7.6, the log at 3.7, the deflect's kick)", status: ready,
      step: temporal, plan: PLAN-007, depends_on: [RV-07], findings: [F-146], codes: []}
@@ -170,6 +170,8 @@ items:
      step: temporal, plan: PLAN-007, depends_on: [RV-09, RV-10], findings: [F-147], codes: []}
   - {id: RV-47, title: "Every contact measured or reported: prop points interpolated between samples; unmeasurable rows NOT CHECKED", status: ready,
      step: motion, plan: PLAN-007, depends_on: [RV-14], findings: [F-131], codes: []}
+  - {id: RV-54, title: "No body through a prop: each prop card gives an extent; S13 refuses a body through a prop at its samples (and between, with RV-47)", status: ready,
+     step: motion, plan: PLAN-007, depends_on: [RV-47], findings: [F-151], codes: [PROP_OVERLAP]}
   - {id: RV-48, title: "Latent checks: throws and releases at their pose, a vanished body never touched, a resting prop moved only with a sample, the first location, S08's support hand; the S04 prompt rewritten", status: ready,
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-135, F-136, F-137, F-138, F-139], codes: [RELEASE_AT_POSE]}
   - {id: RV-44, title: "Each file whose version also labels older bytes takes one new version; the bump cutoff goes", status: ready,

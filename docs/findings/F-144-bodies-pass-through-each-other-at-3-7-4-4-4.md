@@ -12,7 +12,7 @@ high
 L4c
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -44,6 +44,14 @@ none needed (R-18)
 - PLAN-007
 - F-089
 - RV-14
+- F-151
 
 ## Resolution
-Open.
+RV-49 (S-049): each segment is a capsule with a draft radius from the body card (library/body_segments.yaml 5);
+S13 refuses two bodies whose capsules overlap at an instant both have a key (BODY_OVERLAP, solver/body_overlap.py;
+tests/test_forward_kinematics.py::test_no_body_passes_through_another and
+tests/test_motion_solver.py::test_each_rule_rejects_its_violation); a contact between two bodies is measured from the
+part's surface to the target's (tests/test_forward_kinematics.py::test_a_strike_is_measured_to_the_target_s_surface).
+B was re-blocked at 3.4, 3.7, 4.4, 4.7, 6.6, 8.5, 9.0 and 9.5, and the acrobat's kick at 3.6 in the wizard example
+(tests/test_forward_kinematics.py::test_every_example_keeps_its_bodies_apart). The second item, a body through a prop
+between keys, needs props to have an extent: F-151 (RV-54).

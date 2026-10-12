@@ -54,7 +54,7 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 | RV-04 | docs | medium | done (S-044; the hook is the owner's) | records: versions, logs, hook, stale docs and findings (F-078) |
 | RV-05 | L4c | high | done (S-038) | A's words follow the source (F-080) |
 | RV-06 | L1.1 | high | done (S-042) | the vanish (F-081) |
-| RV-07, RV-08 | L1.1, L2.1 | high | RV-08 done (S-040); RV-07 open | the smoke at 3.7 after commits at the contact's instant (F-082, F-061) |
+| RV-07, RV-08 | L1.1, L2.1 | high | done (S-040, S-048) | the smoke at 3.7 after commits at the contact's instant (F-082, F-061) |
 | RV-09 | L5.5 | high | open | hits as camera holds (F-083, F-005) |
 | RV-10 | L1.1 | high | open | the kunai drive and the catch (F-084) |
 | RV-11 | L6 | high | open | compile refuses non-deliverables; excluded rows N/A (F-085) |
@@ -65,7 +65,7 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 | RV-16 | L6 | high | open | one laban chain per fighter (F-091) |
 | RV-17 | L2.2 | medium | open | one possession model; PROP_TWO_HOLDERS (F-092) |
 | RV-18 to RV-41 | various | medium-low | open | F-093 to F-116 and F-016, one slice each (docs/plans/backlog.yaml) |
-| RV-42 to RV-53 | various | high-low | open | the second review's gaps, F-122 to F-150 (docs/reports/2026-10-12-principal-review-2.md) |
+| RV-42 to RV-54 | various | high-low | RV-42, RV-43, RV-49 done (S-046, S-047, S-049); the rest open | the second review's gaps, F-122 to F-150 (docs/reports/2026-10-12-principal-review-2.md), and F-151 (a body through a prop, RV-54) |
 
 ## Dependencies
 - RV-02a after RV-05 (A's final poses); RV-02b after RV-02a, RV-03 and RV-06; RV-07 after RV-08; RV-13b after RV-13 and
@@ -108,3 +108,4 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
   B's kunai throw (S-039).
 - 2026-10-12 — RV-08, RV-03, RV-06 and RV-02b done (S-040 to S-043); ADR-O105 answers F-108.
 - 2026-10-12 — RV-04 done (S-044); the second principal review (S-045): F-120 to F-150, RV-42 to RV-53; ADR-O107.
+- 2026-10-12 — RV-42, RV-43, RV-07 and RV-49 done (S-046 to S-049); F-151 and RV-54 (a body through a prop) filed.

@@ -99,6 +99,8 @@ def test_courtyard_keys_pass_and_the_joints_come_from_the_kernel():
     ("JOINT_LIMIT", lambda p: key(p, "wizard@b03")["bones"].update(NK=[40, 0, 0], HD=[40, 0, 0])),  # neck 80 > 45 + 30
     # F5.2, owners O72, O83: the kick's pose before S-030 leaves the foot 1.2 m under the wizard's torso
     ("CONTACT_WORLD", lambda p: key(p, "acrobat@b06")["bones"].update(RUL=[-40, 0, -15], RL=[15, 0, 0])),
+    # RV-49 (F-144, R-18): the kick's pose before S-049 drives the acrobat's foot through the wizard's trunk
+    ("BODY_OVERLAP", lambda p: key(p, "acrobat@b06")["bones"].update(Sp=[-20, 0, 0], RUL=[-87, 2.2, -2.7])),
 ])
 def test_each_rule_rejects_its_violation(code, change):
     assert code in codes(change)

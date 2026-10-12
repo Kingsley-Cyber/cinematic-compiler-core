@@ -101,9 +101,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 5.0; backlog 21.
-- Last session: S-048 (2026-10-12, applied): RV-07: the smoke bursts at 3.7 at A's body; an effect can take effect at its beat's start.
-- Next slice: RV-49 No body through another: an overlap check at S13, strikes measured to the target's surface, the failing poses re-blocked (step motion).
+- Layer order 1.7; rules 5.1; backlog 22.
+- Last session: S-049 (2026-10-12, applied): RV-49: no body through another; a strike meets the target's surface (F-144).
+- Next slice: RV-09 Hits are camera holds framing both bodies, no playback ramps; the source's camera directives (O92) (step camera).
 - Open findings: 94; decisions: 135 (0 proposed).
 <!-- END GENERATED: state -->
 

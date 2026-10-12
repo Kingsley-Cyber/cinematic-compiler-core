@@ -28,6 +28,8 @@ agent
 - 2.5-3.0: B dashes 1.82 m in 0.5 s, worded "Braces low and rises" (S-043 put B on A's -Z side)
 - 6.3-6.6: B lunges 1.46 m in 0.3 s from "brace facing A"
 - 7.5-8.5: grappled, B runs 1.70 m away from the pillar, then is dragged 1.95 m back (S-042 moved B's 7.5 anchor)
+- 3.4-3.7 (since RV-49, S-049): B stands with both feet placed under the source's "B charges forward": A's 3.7 lean
+  (read under ADR-Q6, F-143) fills the space ahead of B, so B charges in the 3.7-4.0 lunge to the log instead
 
 ## Description
 The run's re-blocks kept each contact but not B's path between them.

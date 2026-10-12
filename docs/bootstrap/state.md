@@ -6,20 +6,20 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 5.0; backlog 21.
+Layer order 1.7; rules 5.1; backlog 22.
 
 ## Last sessions
 
-- S-046 (applied): RV-42: the deflect has one reading; a track says "toward X" only where the path reaches X
 - S-047 (applied): RV-43: CONTACT_WORLD exceptions come only from an owner-held, logged list
 - S-048 (applied): RV-07: the smoke bursts at 3.7 at A's body; an effect can take effect at its beat's start
+- S-049 (applied): RV-49: no body through another; a strike meets the target's surface (F-144)
 
 ## Next slices
 
-- RV-49 (next, step motion): No body through another: an overlap check at S13, strikes measured to the target's surface, the failing poses re-blocked
-- RV-09 (ready, step camera): Hits are camera holds framing both bodies, no playback ramps; the source's camera directives (O92)
+- RV-09 (next, step camera): Hits are camera holds framing both bodies, no playback ramps; the source's camera directives (O92)
 - RV-10 (ready, step temporal): The kunai drive holds the kunai in B's right shoulder; the catch is a grasp plus a throw (O93)
 - RV-11 (ready, step render): DAG-excluded rows are N/A; cinematic compile refuses a non-deliverable prompt (O94)
+- RV-12 (ready, step render): The 6.3 cartwheel is a full turn in render.txt (O96)
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -80,10 +80,9 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-096 (high, L6): PASS cells are inflated: rows pass on codes that cover part of the row
 - F-115 (high, all): Two gate conditions have no check: soul_check_passes, fight_works
 - F-143 (high, L4c): The Euler convention reads the source's turned leans as rolls and its backflip as a front flip
-- F-144 (high, L4c): Bodies pass through each other at 3.7, 4.4, 4.7 and 9.0
 - F-145 (high, L1.1): Fighters face away from their targets while their words face them
 - F-148 (high, L1.1): Source rows whose numbers contradict their own words: fix them or keep them?
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-151, session S-049, render R20.
+Decision ADR-O109, finding F-152, session S-050, render R20.
