@@ -6,6 +6,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The re-block solver keeps a key's spans over the floor (RV-59c, F-089, S-089): `--floor` counts each contact point
+  deeper than FLOOR_PENETRATION's 0.15 m under the floor at every frame of the key's spans. No re-pose of B's 8.5 or
+  9.0 key keeps B's crash over it (0.217 m left at best), so F-220 now asks for the fall too and RV-59c waits for it.
 - A contact between keys is measured (RV-59d, F-089, S-088): CONTACT_WORLD poses an actor or a body target with no
   key at the contact's instant along the declared interpolation, and reads a prop between its samples straight
   between them; the row is interpolated, so ADR-O104's artefact applies when the span starts in the air. The wizard

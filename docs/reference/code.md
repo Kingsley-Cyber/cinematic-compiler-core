@@ -112,7 +112,7 @@ flowchart LR
 | `solver.interpolation` | `solver.quaternion` | functools, math |
 | `solver.prop_state_machine` | — | — |
 | `solver.quaternion` | `kernel.canonical` | functools, math |
-| `solver.reblock` | `planner.dynamic_beat_validator`, `solver.euler_solver`, `solver.forward_kinematics`, `solver.interpolation`, `solver.quaternion` | argparse, copy, json, math, pathlib, shlex, subprocess, sys, yaml |
+| `solver.reblock` | `planner.dynamic_beat_validator`, `solver.euler_solver`, `solver.floor_penetration`, `solver.forward_kinematics`, `solver.interpolation`, `solver.quaternion` | argparse, copy, json, math, pathlib, shlex, subprocess, sys, yaml |
 | `solver.shape_direction` | `solver.quaternion`, `solver.staff_geometry` | math |
 | `solver.staff_geometry` | `solver.quaternion` | math |
 | `solver.trajectory` | — | math |

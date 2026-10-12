@@ -218,3 +218,21 @@ def test_the_re_blocked_paths_clear_a_between_keys():
         assert clearance(before, envelope, slot, ["ninja_lean"], margin=0.0)(old) > 0, slot
         assert clearance(after, envelope, slot, ["ninja_lean"], margin=0.0)(new) == 0, slot
 
+
+def test_the_floor_term_counts_a_point_under_the_floor_between_keys():
+    """RV-59c (F-089): with a floor, the clearance counts each contact point deeper than FLOOR_PENETRATION's 0.15 m
+    under it at the key and every frame of its spans. The acrobat standing at 7.6 is clear; dropped 0.3 m its soles
+    are 0.3 m under. B's crash from 8.5 to 9.0 sinks a sole whatever B's legs at 9.0 do (measured on S-089: within 45
+    degrees of their start the right sole stays 0.218 m under; F-220)."""
+    import copy
+    wizard = json.loads((EXAMPLES / "wizard_vs_acrobat" / "envelope.json").read_text(encoding="utf-8"))
+    plan = json.loads((EXAMPLES / "wizard_vs_acrobat" / "plans" / "motion.json").read_text(encoding="utf-8"))
+    cost = clearance(plan, wizard, "acrobat@b11", [], margin=0.0, floor=0.0)
+    key = _key("wizard_vs_acrobat", "acrobat@b11")
+    dropped = copy.deepcopy(key)
+    dropped["pos"][1] -= 0.3
+    assert cost(key) == 0 and cost(dropped) > (0.3 - 0.15 - 0.02) ** 2
+    fight = json.loads((EXAMPLES / "reference_fight" / "envelope.json").read_text(encoding="utf-8"))
+    motion = json.loads((EXAMPLES / "reference_fight" / "plans" / "motion.json").read_text(encoding="utf-8"))
+    assert clearance(motion, fight, "ninja_broad@b22", [], margin=0.0, floor=0.0)(_key("reference_fight", "ninja_broad@b22")) > 0
+

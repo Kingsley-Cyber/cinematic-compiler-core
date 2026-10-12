@@ -101,9 +101,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.2; backlog 36.
-- Last session: S-088 (2026-10-12, applied): RV-59d: a contact with no key at its instant measured on the interpolated pose.
-- Next slice: RV-59c FLOOR_PENETRATION at every frame between keys; B's crash given a key between or a declared fall (step motion).
+- Layer order 1.7; rules 7.2; backlog 37.
+- Last session: S-089 (2026-10-12, applied): RV-59c: the floor between keys measured; B's crash needs a key mid-fall (F-220).
+- Next slice: RV-97 VERTICAL_FRAMING along a static shot's window, frames on the declared interpolation, a margin by each part's radius; c11 and c20 re-authored (step camera).
 - Open findings: 137; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
@@ -159,6 +159,7 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - Backlog RV-15c blocked: A strike's limb and a facing head point at their target, checked at S13 (B's keys re-aimed in RV-103b) — the owner's answer in F-148 (A's source facings: the check would refuse the golden's own rows, O10)
 - Backlog RV-14b blocked: A held or embedded prop at its holder at every sample (the rope dart's line in RV-14c) — the owner's answer in F-148 (the climax: A's source right hand is 0.65-0.87 m from the kunai the source keeps in B's shoulder at 8.5-9.5)
 - Backlog RV-59e blocked: BODY_OVERLAP refused at every frame between keys; the spans by a contact cleared as F-220's answer says (the knee at 4.7, the catch and the throw 6.3-7.5, the drive and the crash 8.0-9.0, the wizard's kick at 3.6) — the owner's answer in F-220 (in-between keys, an allowance by a contact, looser contacts or A's rows)
+- Backlog RV-59c blocked: FLOOR_PENETRATION at every frame between keys; B's crash cleared as F-220's answer says (a key mid-fall or a declared fall path) — the owner's answer in F-220 (no re-pose of B's 8.5 or 9.0 key keeps the fall over the floor)
 - Backlog RV-87 blocked: The substitution's decoy is declared, stands in the scene from the first beat, and is measured where the actor stood; a substitution needs the capability — the owner's answers in F-196 (Q1-Q3: who declares the decoy, whether it stands from the first frame, who may substitute)
 - Backlog RV-90b blocked: HIT_HOLD's scale follows the grammar's impact scales — the owner's answer in F-197 (Q3: may a hit be held at a wide scale)
 - Backlog RV-64b blocked: The S04 packet carries the scene_reference rules — the owner's answer in F-133

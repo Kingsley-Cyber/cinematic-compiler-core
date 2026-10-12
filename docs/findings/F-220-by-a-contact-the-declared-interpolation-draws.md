@@ -39,6 +39,10 @@ agent
 - the wizard example's kick at 3.6 (0.111 m at 3.583, 0.098 m at 3.708): the acrobat's foot reaches the wizard's torso
   through it
 - bigger re-poses broke a key instead (an overlap at the 8.5 key) or left misses
+- S-089 (RV-59c): B's crash from 8.5 to 9.0 sinks the left sole 0.385 m under the floor at 8.75: the declared flip
+  runs B's root angles straight while the root drops straight from 1.08 to 0.1 m (a slerp would still sink 0.209 m,
+  and a 90-degree change must be declared); re-posing B's legs at 9.0 within 45 degrees (120 tried) leaves 0.217 m,
+  and B's legs at 8.5, its feet held on the floor, 0.27 m: the fall needs a key mid-fall or a declared fall path
 
 ## Description
 Keys 0.3 to 0.5 s apart hold a contact at its key; the interpolation from the key before draws the striking or
@@ -46,8 +50,8 @@ gripping limb through the target before it meets the surface, or the two bodies 
 draws an approach and a recoil around a contact; the keys have neither.
 
 ## Impact
-BODY_OVERLAP cannot be refused between keys (RV-59e) while these spans pass through; the render is told to slerp
-through them.
+BODY_OVERLAP and FLOOR_PENETRATION cannot be refused between keys (RV-59e, RV-59c) while these spans pass through;
+the render is told to slerp through them.
 
 ## Proposed Fix
 Owner question, one of: (a) in-between keys: a declared pose of one entity between two of its keys (no beat, no
@@ -68,6 +72,7 @@ the question open (R-18 against the contacts as the keys hold them)
 - ADR-O104
 - RV-59b
 - RV-59e
+- RV-59c
 
 ## Resolution
 Open.

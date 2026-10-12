@@ -2,7 +2,7 @@
 posed along the declared interpolation (solver/interpolation.py: joints slerped, the root straight), measured the way
 S13 measures its keys: two bodies whose capsules overlap (BODY_OVERLAP's measure, no depth allowed) and a body point
 more than 0.15 m under the floor (FLOOR_PENETRATION's). S13 checks the keys; between them this report measures, until
-RV-59e (the overlaps, after F-220) and RV-59c (the floor) refuse.
+RV-59e (the overlaps) and RV-59c (the floor) refuse, both after F-220's answer.
 
     python -m validators.between_keys_report > docs/reports/<date>-between-keys.md
 """

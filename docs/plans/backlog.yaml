@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 36
+version: 37
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -165,9 +165,10 @@ items:
   - {id: RV-59e, title: "BODY_OVERLAP refused at every frame between keys; the spans by a contact cleared as F-220's answer says (the knee at 4.7, the catch and the throw 6.3-7.5, the drive and the crash 8.0-9.0, the wizard's kick at 3.6)", status: blocked,
      blocked_by: "the owner's answer in F-220 (in-between keys, an allowance by a contact, looser contacts or A's rows)",
      step: motion, plan: PLAN-007, depends_on: [RV-59b], findings: [F-159, F-220], codes: []}
-  - {id: RV-59c, title: "FLOOR_PENETRATION at every frame between keys; B's crash given a key between or a declared fall", status: next,
-     step: motion, plan: PLAN-007, depends_on: [RV-59a], findings: [F-089], codes: []}
-  - {id: RV-97, title: "VERTICAL_FRAMING along a static shot's window, frames on the declared interpolation, a margin by each part's radius; c11 and c20 re-authored", status: ready,
+  - {id: RV-59c, title: "FLOOR_PENETRATION at every frame between keys; B's crash cleared as F-220's answer says (a key mid-fall or a declared fall path)", status: blocked,
+     blocked_by: "the owner's answer in F-220 (no re-pose of B's 8.5 or 9.0 key keeps the fall over the floor)",
+     step: motion, plan: PLAN-007, depends_on: [RV-59a], findings: [F-089, F-220], codes: []}
+  - {id: RV-97, title: "VERTICAL_FRAMING along a static shot's window, frames on the declared interpolation, a margin by each part's radius; c11 and c20 re-authored", status: next,
      step: camera, plan: PLAN-007, depends_on: [RV-59a], findings: [F-208, F-090], codes: []}
   - {id: RV-98, title: "A declared entrance may start outside its shot's frame (O21): c01 opens with A above the frame", status: ready,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-209, F-090], codes: []}

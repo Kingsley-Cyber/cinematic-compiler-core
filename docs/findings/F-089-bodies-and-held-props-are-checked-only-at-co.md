@@ -63,3 +63,5 @@ frames, the only body more than 0.15 m under it between keys in the four example
 Noted in S-088 (RV-59d): a contact between two of its actor's keys is measured on the interpolated pose (a prop
 between its samples straight between them); the wizard example's landing at 6.4 missed the ground by 0.275 and 0.181 m
 there, braced on the pillar at the key before, so its beat now lands at the 6.6 key. The floor between keys is RV-59c.
+Noted in S-089 (RV-59c): the re-block solver's floor term found no re-pose of B's 8.5 or 9.0 key that keeps the crash
+over the floor (0.217 m left at best); F-220 now asks for the fall too, and RV-59c waits for it.

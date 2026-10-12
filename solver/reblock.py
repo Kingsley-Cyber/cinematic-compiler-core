@@ -13,7 +13,8 @@ the caller lists them in cannot change the answer. A root component (`pos.x`, `p
 change counted in centimetres (a centimetre weighs as a degree) and its bound stated in metres. A clearance goal
 (`--clear <entity>`, RV-59b, R-18) keeps the moving body clear of another at the key's instant and at every frame of
 its two spans, posed along the declared interpolation (solver/interpolation.py), by CLEARANCE_M between their
-capsules' surfaces; its misses count like a goal's.
+capsules' surfaces, and `--floor` keeps its contact points over the floor less FLOOR_PENETRATION's 0.15 m there by
+the same margin (RV-59c); their misses count like a goal's.
 A recorded re-block is re-derived by its command, which the CLI prints with its result:
 `python -m solver.reblock <example> <slot> --from <git revision> --root-y 0.4 --free Sp.x,RUL.x
 --goal right_hand=1.4,0,3.77 --goal left_foot.y=0 --goal left_foot=0.46,0,3.54@0.01 --above head.y=0.65
@@ -32,7 +33,7 @@ from pathlib import Path
 import yaml
 
 from planner.dynamic_beat_validator import vanish_windows
-from solver import forward_kinematics, interpolation
+from solver import floor_penetration, forward_kinematics, interpolation
 from solver.euler_solver import effective_limits
 from solver.quaternion import matrix
 
@@ -116,9 +117,13 @@ def _from(base, m, vector):
     return [base[i] + m[i][0] * vector[0] + m[i][1] * vector[1] + m[i][2] * vector[2] for i in range(3)]
 
 
-def _capsules(key, metres, radii):
-    """forward_kinematics.capsules unrounded, each chain's rotations composed once: the clearance's inner loop (a test
-    holds the two to a micrometre on every key of the examples)."""
+POINTS = ("pelvis", "torso", "head", "left_knee", "right_knee", "left_sole", "right_sole", "left_elbow", "right_elbow",
+          "left_hand", "right_hand")  # forward_kinematics.points: what FLOOR_PENETRATION reads
+
+
+def _joints(key, metres):
+    """forward_kinematics.joints unrounded, and the torso point, each chain's rotations composed once: the clearance's
+    inner loop (a test holds the capsules to forward kinematics' on every key of the examples)."""
     bones, pelvis = key["bones"], list(key["pos"])
     root = matrix(key["rot"])
     trunk = _mm(root, matrix(bones["Sp"]))
@@ -138,6 +143,13 @@ def _capsules(key, metres, radii):
     neck = _mm(trunk, matrix(bones["NK"]))
     at["neck"] = _from(at["chest"], neck, (0.0, metres["neck"], 0.0))
     at["head"] = _from(at["neck"], _mm(neck, matrix(bones["HD"])), (0.0, metres["head"], 0.0))
+    at["torso"] = _from(pelvis, trunk, (0.0, metres["torso_point"] * metres["spine"], 0.0))
+    return at
+
+
+def _capsules(key, metres, radii, at=None):
+    """forward_kinematics.capsules unrounded, from `_joints`."""
+    at = at or _joints(key, metres)
     return {name: (at[a], at[b], radii[r]) for name, (a, b, r) in forward_kinematics.CAPSULES.items()}
 
 
@@ -146,11 +158,12 @@ def _reach(start, end, radius):
     return [(a + b) / 2 for a, b in zip(start, end, strict=True)], math.dist(start, end) / 2 + radius
 
 
-def clearance(plan, envelope, slot, others, margin=CLEARANCE_M):
+def clearance(plan, envelope, slot, others, margin=CLEARANCE_M, floor=None):
     """f(key) -> square metres, for a trial key of `slot` (RV-59b, R-18): over the key's instant and every frame of its
     two spans (the scene's fps, posed along the declared interpolation, a vanished body left out but a body at its own
     key always in, as S13 judges it), the sum of each overlap's squared depth plus `margin` between the moving body's
-    capsules and those of each entity in `others`."""
+    capsules and those of each entity in `others`, and, with a `floor` height (RV-59c), of each contact point's depth
+    plus `margin` under the floor less FLOOR_PENETRATION's tolerance."""
     genre, fps = envelope["scene"]["genre"], envelope["scene"]["fps"]
     metres, radii = forward_kinematics.segments(genre), forward_kinematics.radii(genre)
     keys = _scene_keys(plan, envelope)
@@ -170,6 +183,7 @@ def clearance(plan, envelope, slot, others, margin=CLEARANCE_M):
     body = max(metres["hip"] + metres["thigh"] + metres["shin"] + metres["ankle"],
                 metres["spine"] + metres["shoulder"] + metres["upper_arm"] + metres["forearm"],
                 metres["spine"] + metres["neck"] + metres["head"]) + max(radii.values())
+    lowest = None if floor is None else floor - floor_penetration.TOLERANCE_M + margin
     fixed = []
     for t in sorted(frames):
         if abs(t - t0) > EPSILON and away(slot.split("@")[0], t):
@@ -184,6 +198,8 @@ def clearance(plan, envelope, slot, others, margin=CLEARANCE_M):
         if targets:  # a ball holding every capsule of the others, to pass over a frame the body cannot reach
             centre = [sum(target[1][i] for target in targets) / len(targets) for i in range(3)]
             fixed.append((t, targets, centre, max(math.dist(centre, middle) + far for _, middle, far in targets)))
+        elif lowest is not None:
+            fixed.append((t, [], None, None))
 
     def cost(key):
         trial, total = {**key, "t": t0}, 0.0
@@ -192,9 +208,13 @@ def clearance(plan, envelope, slot, others, margin=CLEARANCE_M):
                 pose = trial
             else:
                 pose = interpolation.pose(before, trial, t) if t < t0 else interpolation.pose(trial, after, t)
-            if math.dist(pose["pos"], centre) > body + far + margin:
+            at = None
+            if lowest is not None:
+                at = _joints(pose, metres)
+                total += sum(max(0.0, lowest - at[name][1]) ** 2 for name in POINTS)
+            if not targets or math.dist(pose["pos"], centre) > body + far + margin:
                 continue
-            for start, end, radius in _capsules(pose, metres, radii).values():
+            for start, end, radius in _capsules(pose, metres, radii, at).values():
                 middle, reach = _reach(start, end, radius)
                 for (p, q, r), other_middle, other_reach in targets:
                     if math.dist(middle, other_middle) <= reach + other_reach + margin:
@@ -291,6 +311,7 @@ def main(argv=None):
     parser.add_argument("--above", action="append", default=[], help="part.y=height kept at or over")
     parser.add_argument("--bound", action="append", default=[], help="component=low..high")
     parser.add_argument("--clear", action="append", default=[], help="an entity kept clear between keys (RV-59b)")
+    parser.add_argument("--floor", action="store_true", help="the body kept over the floor between keys (RV-59c)")
     args = parser.parse_args(argv)
     plan = _plan(args.example, args.revision, args.plan)
     envelope = json.loads((ROOT / "examples" / args.example / "envelope.json").read_text(encoding="utf-8"))
@@ -300,7 +321,10 @@ def main(argv=None):
         key["pos"] = [key["pos"][0], args.root_y, key["pos"][2]]
     above = [(part.removesuffix(".y"), float(value)) for part, value in (a.split("=") for a in args.above)]
     bounds = {name: tuple(float(v) for v in span.split("..")) for name, span in (b.split("=") for b in args.bound)}
-    extra = clearance(plan, envelope, args.slot, args.clear) if args.clear else None
+    floor = None
+    if args.floor:
+        floor = floor_penetration.floor_level(envelope["nodes"]["surfaces"]["items"], envelope["scene"]["ax"].get("ground"))
+    extra = clearance(plan, envelope, args.slot, args.clear, floor=floor) if args.clear or floor is not None else None
     solved, misses = solve_key(key, forward_kinematics.segments(genre), [_goal(g) for g in args.goal],
                                args.free.split(","), bounds, above, limits(genre), extra)
     command = "python -m solver.reblock " + " ".join(shlex.quote(a) for a in (argv if argv is not None else sys.argv[1:]))

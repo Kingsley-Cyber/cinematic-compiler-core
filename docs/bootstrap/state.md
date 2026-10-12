@@ -6,20 +6,20 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 7.2; backlog 36.
+Layer order 1.7; rules 7.2; backlog 37.
 
 ## Last sessions
 
-- S-086 (applied): RV-59a: bodies measured between keys, along the declared interpolation
 - S-087 (applied): RV-59b: the re-block solver clears paths between keys; two of B's spans re-blocked, the rest filed
 - S-088 (applied): RV-59d: a contact with no key at its instant measured on the interpolated pose
+- S-089 (applied): RV-59c: the floor between keys measured; B's crash needs a key mid-fall (F-220)
 
 ## Next slices
 
-- RV-59c (next, step motion): FLOOR_PENETRATION at every frame between keys; B's crash given a key between or a declared fall
+- RV-97 (next, step camera): VERTICAL_FRAMING along a static shot's window, frames on the declared interpolation, a margin by each part's radius; c11 and c20 re-authored
 - RV-35b (ready, step all): The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools
-- RV-97 (ready, step camera): VERTICAL_FRAMING along a static shot's window, frames on the declared interpolation, a margin by each part's radius; c11 and c20 re-authored
 - RV-98 (ready, step camera): A declared entrance may start outside its shot's frame (O21): c01 opens with A above the frame
+- RV-101 (ready, step camera): An insert's detail has a point; a carried prop takes its carrier's point; a prop a shot's action names is framed; a vanished body is no aim
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -71,6 +71,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-15c blocked: A strike's limb and a facing head point at their target, checked at S13 (B's keys re-aimed in RV-103b) — the owner's answer in F-148 (A's source facings: the check would refuse the golden's own rows, O10)
 - Backlog RV-14b blocked: A held or embedded prop at its holder at every sample (the rope dart's line in RV-14c) — the owner's answer in F-148 (the climax: A's source right hand is 0.65-0.87 m from the kunai the source keeps in B's shoulder at 8.5-9.5)
 - Backlog RV-59e blocked: BODY_OVERLAP refused at every frame between keys; the spans by a contact cleared as F-220's answer says (the knee at 4.7, the catch and the throw 6.3-7.5, the drive and the crash 8.0-9.0, the wizard's kick at 3.6) — the owner's answer in F-220 (in-between keys, an allowance by a contact, looser contacts or A's rows)
+- Backlog RV-59c blocked: FLOOR_PENETRATION at every frame between keys; B's crash cleared as F-220's answer says (a key mid-fall or a declared fall path) — the owner's answer in F-220 (no re-pose of B's 8.5 or 9.0 key keeps the fall over the floor)
 - Backlog RV-87 blocked: The substitution's decoy is declared, stands in the scene from the first beat, and is measured where the actor stood; a substitution needs the capability — the owner's answers in F-196 (Q1-Q3: who declares the decoy, whether it stands from the first frame, who may substitute)
 - Backlog RV-90b blocked: HIT_HOLD's scale follows the grammar's impact scales — the owner's answer in F-197 (Q3: may a hit be held at a wide scale)
 - Backlog RV-64b blocked: The S04 packet carries the scene_reference rules — the owner's answer in F-133
@@ -138,4 +139,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-221, session S-089, render R20.
+Decision ADR-O109, finding F-221, session S-090, render R20.
