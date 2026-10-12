@@ -101,10 +101,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.1; backlog 33.
-- Last session: S-082 (2026-10-12, applied): RV-96: the re-block solver re-derives a re-block from its record.
-- Next slice: RV-95 The pickups re-blocked with RV-96's solver: every body point above the floor, the hand on it only at the pickup, the words re-written to the numbers (step motion).
-- Open findings: 142; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
+- Layer order 1.7; rules 7.1; backlog 34.
+- Last session: S-083 (2026-10-12, applied): RV-95: the pickups re-blocked from a recorded command, every part above the floor.
+- Next slice: RV-100 S-076's, S-078's, S-080's and S-083's example rewrites typed in deviations.yaml; DEV-09 updated; R-19 cites O97 (step docs).
+- Open findings: 140; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

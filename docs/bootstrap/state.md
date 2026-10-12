@@ -6,20 +6,20 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 7.1; backlog 33.
+Layer order 1.7; rules 7.1; backlog 34.
 
 ## Last sessions
 
-- S-080 (applied): RV-35a: A's pickups crouch on the feet with one hand down, re-blocked by a committed solver
 - S-081 (applied): Principal review 6: does the finished work match the plan?
 - S-082 (applied): RV-96: the re-block solver re-derives a re-block from its record
+- S-083 (applied): RV-95: the pickups re-blocked from a recorded command, every part above the floor
 
 ## Next slices
 
-- RV-95 (next, step motion): The pickups re-blocked with RV-96's solver: every body point above the floor, the hand on it only at the pickup, the words re-written to the numbers
+- RV-100 (next, step docs): S-076's, S-078's, S-080's and S-083's example rewrites typed in deviations.yaml; DEV-09 updated; R-19 cites O97
 - RV-35b (ready, step all): The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools
-- RV-100 (ready, step docs): S-076's, S-078's and S-080's example rewrites typed in deviations.yaml; DEV-09 updated; R-19 cites O97
 - RV-99 (ready, step camera): Camera card rules: RV-60's word lists restored as a floor; a hit rule found from what a contact means; subject and rig words read
+- RV-59 (ready, step motion): BODY_OVERLAP, CONTACT_WORLD and FLOOR_PENETRATION along the declared interpolation between keys; the paths re-blocked
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -88,7 +88,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 142
+## Open findings: 140
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -129,8 +129,6 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-196 (high, all): The substitution's decoy: who declares it, where it stands, who may substitute
 - F-197 (high, all): Hits and holds: what counts, how long, how wide, and which cuts hold
 - F-198 (high, all): Which checklist rows must pass for a prompt to be a deliverable
-- F-206 (high, L4c): S-080's pickups put a knee in the floor and the hands on it through a throw and a leap
-- F-207 (high, L4c): The re-block solver does not re-derive a re-block from its record
 - F-208 (high, L5.5): A static shot is framed at its keys only and loses the hit holds' bodies between them
 - F-209 (high, L5.5): VERTICAL_FRAMING refuses O21's opening, A above the frame
 - F-210 (high, L5.5): The camera rule check lets through what RV-60's word lists refused
@@ -139,4 +137,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-219, session S-083, render R20.
+Decision ADR-O109, finding F-220, session S-084, render R20.

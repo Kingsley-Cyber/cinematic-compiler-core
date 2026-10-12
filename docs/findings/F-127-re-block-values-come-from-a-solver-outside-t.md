@@ -63,3 +63,5 @@ camera values chosen by trial in S-050 and S-076 (S-076's search lives in a scra
 tools (RV-35b).
 Noted in S-082 (RV-96): the solver is now order-independent, bound by the joint limits, and re-derivable from its
 printed command; the pickups (RV-95) and the older re-blocks and camera trials (RV-35b) remain.
+Noted in S-083 (RV-95): the pickups are re-derived by a test from their recorded commands; the older re-blocks and
+camera trials remain (RV-35b).

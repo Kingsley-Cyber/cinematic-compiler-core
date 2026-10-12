@@ -84,16 +84,19 @@ ROOT_TURNS = ((5.1, 0, -360), (6.3, 2, -360))
 # it, pose and facing kept (+0.78 x, +0.71 z). RV-35a (F-110, S-080): that re-block made A crawl (trunk past flat, head at
 # the pelvis, both hands down), so A crouches deeper (pelvis 0.40) on planted feet with one hand on the prop and the
 # other off the floor, the trunk leaning 58 and 75 degrees with a twist; the values come from solver/reblock.py with
-# the goals S-080 records, and S04 and S11 name the hand's support on the ground.
+# the goals S-080 records, and S04 and S11 name the hand's support on the ground. RV-95 (F-206, S-083): that re-block
+# put a knee in the floor and the hands on it through a throw and a leap, so A crouches at its own 0.57 m again, every
+# knee 0.08 m over the floor, the hand on its prop only at the key (the feet bear the weight), from the commands S-083
+# records (tests/test_reblock.py re-derives them); the words say the new numbers (bent N = 15 N degrees).
 GROUNDED_PICKUPS = {  # O18: A's rows at the two pickups, crouched on the ground
-    7.5: [7.5, "rope_dart_regrapple", [0.71, 0.4, 4.22], [-330, 30, -360],
-          {"Sp": [28.375, -19.25, -13.125], "LUL": [-82.325, 0, 45.0], "RUL": [-80.0, 0, 30.0], "LL": [118.475, 0, 0],
-           "RL": [124.0, 0, 0], "LA": [-60.85, 32.125, 12.25], "RA": [-103.375, 0, -0.5], "LFA": [-16.0, 0, 0],
+    7.5: [7.5, "rope_dart_regrapple", [0.71, 0.57, 4.22], [-330, 30, -360],
+          {"Sp": [28.625, -38.125, -29.0], "LUL": [-92.575, 0, 64.75], "RUL": [-94.25, 0, 60.0], "LL": [100.6, 0, 0],
+           "RL": [108.0, 0, 0], "LA": [-61.1, 1.125, 30.125], "RA": [-103.375, 0, -0.5], "LFA": [-16.0, 0, 0],
            "RFA": [-45.375, 0, 0], "HD": [10, 0, 0], "NK": [0, 0, 0]}],
-    8.0: [8.0, "pull_b_toward_pillar", [0.91, 0.4, 4.0], [-330, 90, -360],
-          {"Sp": [45.0, 45.0, 15.25], "LUL": [-69.975, 0, -23.5], "RUL": [-65.975, 0, -14.0], "LL": [102.05, 0, 0],
-           "RL": [109.375, 0, 0], "LA": [-60.0, 0, 0.0], "RA": [-56.2, -10.575, -24.875], "LFA": [-30.0, 0, 0],
-           "RFA": [-3.275, 0, 0], "HD": [10, 0, 0], "NK": [0, 0, 0]}],
+    8.0: [8.0, "pull_b_toward_pillar", [0.91, 0.57, 4.0], [-330, 90, -360],
+          {"Sp": [40.0, 70.375, 27.125], "LUL": [-56.975, 0, -41.5], "RUL": [-57.6, 0, -37.5], "LL": [79.3, 0, 0],
+           "RL": [91.0, 0, 0], "LA": [-60.0, 0, 0.0], "RA": [-39.325, -7.95, -58.875], "LFA": [-30.0, 0, 0],
+           "RFA": [-4.75, 0, 0], "HD": [10, 0, 0], "NK": [0, 0, 0]}],
 }
 # ADR-O83 point 2 kept the source's one real miss (b06_c3, A's right foot 1.5 m over the ground at 3.0) as an
 # exception; O88's flip of that hip to the row's own "R: leg fwd mid" puts the foot on the ground (S-038). O89 (S-039):
@@ -103,13 +106,14 @@ CONTACT_EXCEPTIONS = {"b14_c2", "b14_c3"}
 
 
 GROUNDED_DESCRIPTIONS = {
-    7.5: "L:arm fwd low bent1 taking the rope dart from the ground, leg fwd mid bent7, lLeg bent7; R:arm fwd mid bent3, leg "
-         "fwd mid bent7, lLeg bent7; support=both feet; A LANDS CROUCHED BY THE ROPE DART and takes it with the left hand, "
-         "then whips it forward to wrap B right shoulder, head facing B, this is a GRAPPLE NOT a strike",
-    8.0: "L:arm fwd mid bent3 holding rope dart taut, leg fwd mid bent7, lLeg bent7; R:arm fwd low bent1 taking the kunai "
-         "from the ground, leg fwd mid bent7, lLeg bent7; support=both feet; A CROUCHES BY THE KUNAI, the right hand takes "
-         "it from the ground while the left hand hauls the taut rope dart, B dragged toward the pillar at z=6, this is a "
-         "PULL NOT a strike",
+    7.5: "L:arm fwd mid bent1 taking the rope dart from the ground, leg fwd mid bent7, lLeg bent7; R:arm fwd mid "
+         "bent3, leg fwd mid bent7, lLeg bent7; support=both feet; A LANDS CROUCHED BY THE ROPE DART and takes it with"
+         " the left hand, then whips it forward to wrap B right shoulder, head facing B, this is a GRAPPLE NOT a "
+         "strike",
+    8.0: "L:arm fwd mid bent2 holding rope dart taut, leg fwd mid bent5, lLeg bent5; R:arm side mid straight taking "
+         "the kunai from the ground, leg fwd mid bent6, lLeg bent6; support=both feet; A CROUCHES BY THE KUNAI, the "
+         "right hand takes it from the ground while the left hand hauls the taut rope dart, B dragged toward the "
+         "pillar at z=6, this is a PULL NOT a strike",
 }
 
 

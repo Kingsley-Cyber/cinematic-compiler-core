@@ -12,7 +12,7 @@ high
 L4c
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -57,7 +57,9 @@ none needed
 - RV-35b
 
 ## Resolution
-Open in part: RV-96 (S-082) makes the search a steepest descent over every free component, ties broken by the
+Resolved: RV-95 (S-083) re-blocked the pickups from recorded commands and a test re-derives them from the keys before
+the re-block (tests/test_reblock.py).
+Before that, open in part: RV-96 (S-082) makes the search a steepest descent over every free component, ties broken by the
 components' sorted names, so the order of the free list cannot change the answer (a test shuffles it); the genre's
 joint limits bound every free component (a goal past them is left unmet); the CLI takes the start key from a plan file
 or a git revision, the root's height, weighted goals and the free set, and prints the command with its result, which

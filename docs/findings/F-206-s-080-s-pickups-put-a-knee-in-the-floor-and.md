@@ -12,7 +12,7 @@ high
 L4c
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -62,4 +62,11 @@ none needed
 - PLAN-007
 
 ## Resolution
-Open.
+Resolved by RV-95 (S-083): both pickups re-blocked by solver/reblock.py from commands S-083 records, run from the keys
+S-080 committed, and a test re-derives them: A crouches at its own 0.57 m at both (the highest root, searched down
+from 0.57 and 0.59, at which every bound holds), both soles on the floor, every knee 0.08 m over it, the grasping hand
+within 0.005 m of its prop, the other hand 0.59 and 1.0 m up, the head 0.23 and 0.20 m over the pelvis, the trunk at
+58.6 and 70 degrees (8.0 twists 70 degrees to reach across). The hand is no support: S-080's four S04 contacts and two
+S11 hand supports are gone, so the rows print one support. The pinned words say the new numbers (bent N = 15 N
+degrees). The ankle bound the plan set (0.045 m) proved unattainable in this body model, whose foot is the shin's
+extension (F-219).

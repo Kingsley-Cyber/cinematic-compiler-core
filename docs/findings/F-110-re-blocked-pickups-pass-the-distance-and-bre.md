@@ -12,7 +12,7 @@ medium
 L4c
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -45,6 +45,8 @@ none needed
 - F-075
 
 ## Resolution
+Resolved again by RV-95 (S-083): A crouches on planted feet at its own 0.57 m with one hand at the prop and every knee
+over the floor; the feet bear the weight, so the support names them (F-206). What follows is the history.
 Open in part, reopened by the sixth review (S-081): S-080's re-block left A's right knee 0.109 m in the floor at 7.5,
 kept each pickup hand bearing weight through a throw (7.5-8.0) and a leap (8.0-8.5), left the pinned words describing
 the old pose, and justified the 0.40 m crouch by a search that freed no spine twist: at 0.57 m with the twist free the

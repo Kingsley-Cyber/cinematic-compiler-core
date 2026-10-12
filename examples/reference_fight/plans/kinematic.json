@@ -1,7 +1,7 @@
 {
  "step_id": "S11",
  "band": "L4a",
- "packet_sha256": "sha256:3fff4a9b62513b470967710a3a851c6033fe74d85da3f8a833df8cf6a433b523",
+ "packet_sha256": "sha256:7e0722191cccf48b8a90806141d392ee4e9487d1d97a24b6bf136c5714ce98d8",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -561,8 +561,7 @@
    "slot": "ninja_lean@b19",
    "support": [
     "left_foot",
-    "right_foot",
-    "left_hand"
+    "right_foot"
    ],
    "balance": "shifting",
    "loading": "loaded",
@@ -598,8 +597,7 @@
    "slot": "ninja_lean@b20",
    "support": [
     "left_foot",
-    "right_foot",
-    "right_hand"
+    "right_foot"
    ],
    "balance": "stable",
    "loading": "loaded",

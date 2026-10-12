@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 33
+version: 34
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -150,9 +150,9 @@ items:
      step: all, plan: PLAN-007, depends_on: [RV-35a], findings: [F-127], codes: []}
   - {id: RV-96, title: "The re-block solver re-derives a re-block from its record: order-independent, joint limits, weighted goals and a start key in the CLI", status: done,
      step: motion, plan: PLAN-007, depends_on: [RV-35a], findings: [F-207, F-127], codes: []}
-  - {id: RV-95, title: "The pickups re-blocked with RV-96's solver: every body point above the floor, the hand on it only at the pickup, the words re-written to the numbers", status: next,
+  - {id: RV-95, title: "The pickups re-blocked with RV-96's solver: every body point above the floor, the hand on it only at the pickup, the words re-written to the numbers", status: done,
      step: motion, plan: PLAN-007, depends_on: [RV-96], findings: [F-206, F-110], codes: []}
-  - {id: RV-100, title: "S-076's, S-078's and S-080's example rewrites typed in deviations.yaml; DEV-09 updated; R-19 cites O97", status: ready,
+  - {id: RV-100, title: "S-076's, S-078's, S-080's and S-083's example rewrites typed in deviations.yaml; DEV-09 updated; R-19 cites O97", status: next,
      step: docs, plan: PLAN-007, depends_on: [], findings: [F-212], codes: []}
   - {id: RV-99, title: "Camera card rules: RV-60's word lists restored as a floor; a hit rule found from what a contact means; subject and rig words read", status: ready,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-210, F-187, F-160], codes: []}
@@ -326,7 +326,7 @@ items:
   - {id: AS-01, title: "O87 item 6: the striking surface on contacts (F3.1)", status: ready, step: temporal,
      plan: PLAN-006, depends_on: [RV-37], findings: [F-025], codes: [CONTACT_SURFACE]}
   - {id: AS-02, title: "O87 item 9: hand shape, foot set and the palm's facing from the forearm's twist", status: ready,
-     step: motion, plan: PLAN-006, depends_on: [AS-01], findings: [F-072], codes: [HAND_FOOT_ORIENTATION]}
+     step: motion, plan: PLAN-006, depends_on: [AS-01], findings: [F-072, F-219], codes: [HAND_FOOT_ORIENTATION]}
   - {id: AS-03, title: "O87 item 5: the trail limb (S12 counterbalance) against the lead (OPPOSITION)", status: ready,
      step: motion, plan: PLAN-006, depends_on: [M9-06b], findings: [], codes: [OPPOSITION]}
   - {id: AS-04, title: "O87 item 2 (O95): the derived asymmetry flag; no mirrored key on a strike or action beat", status: ready, step: motion,

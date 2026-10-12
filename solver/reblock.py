@@ -3,13 +3,14 @@ plain Python, re-derivable from its record.
 
 A re-block moves some joints of one key so that named body points meet their goals: a point (a hand at a prop's
 sample) or a height (a sole on the floor), each with an optional weight under 1 for a goal that may give (a sole's
-place); `above` floors keep a point at or over a height (a knee off the floor). Only the listed joint components move,
-inside the genre's joint limits (library/joint_limits.yaml, widened for anime: owner O11), narrowed by any stated
-bound; a sum limit (NK+HD) is not enforced, so the neck and the head are not freed together. The cost is the sum of
-the squared degree changes plus GOAL_WEIGHT per square metre of weighted miss. The search is a deterministic steepest
-descent: at each step size, from 16 down to 0.125 degrees, it takes the best of every free component's two moves (ties
-broken by the components' sorted names) until no move improves, so the order the caller lists them in cannot change
-the answer. A recorded re-block is re-derived by its command, which the CLI prints with its result:
+place); `above` floors keep a contact point or a joint at or over a height (a knee or an ankle off the floor). Only
+the listed joint components move, inside the genre's joint limits (library/joint_limits.yaml, widened for anime: owner
+O11), narrowed by any stated bound; a sum limit (NK+HD) is not enforced, so the neck and the head are not freed
+together. The cost is the sum of the squared degree changes plus GOAL_WEIGHT per square metre of weighted miss. The
+search is a deterministic steepest descent: at each step size, from 16 down to 0.125 degrees, it takes the best of
+every free component's two moves (ties broken by the components' sorted names) until no move improves, so the order
+the caller lists them in cannot change the answer. A recorded re-block is re-derived by its command, which the CLI
+prints with its result:
 `python -m solver.reblock <example> <slot> --from <git revision> --root-y 0.4 --free Sp.x,RUL.x
 --goal right_hand=1.4,0,3.77 --goal left_foot.y=0 --goal left_foot=0.46,0,3.54@0.01 --above head.y=0.65
 --bound Sp.x=-30..45`.
@@ -49,6 +50,7 @@ def _component(name):
 
 def _misses(key, metres, goals, above):
     points = forward_kinematics.points(key, metres)
+    joints = forward_kinematics.joints(key, metres) if any(part not in points for part, _ in above) else {}
     total = 0.0
     for part, target, *weight in goals:
         point = forward_kinematics.part_point(points, part)
@@ -57,8 +59,9 @@ def _misses(key, metres, goals, above):
         else:
             miss = sum((a - b) ** 2 for a, b in zip(point, target, strict=True))
         total += miss * (weight[0] if weight else 1.0)
-    for part, floor in above:
-        total += max(0.0, floor - forward_kinematics.part_point(points, part)[1]) ** 2
+    for part, floor in above:  # a contact point or a joint (an ankle, a knee)
+        point = points[part] if part in points else joints.get(part) or forward_kinematics.part_point(points, part)
+        total += max(0.0, floor - point[1]) ** 2
     return total
 
 

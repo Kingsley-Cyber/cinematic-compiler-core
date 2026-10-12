@@ -54,3 +54,6 @@ Noted in S-081 (the sixth review): the evidence above is corrected: S-080's sear
 spine's twist; with it free, the 7.5 reach meets the rope dart within 0.031 m at a 66-degree lean, both knees above
 the floor, and the 8.0 reach comes within 0.07 to 0.15 m at 66 to 80 degrees from the 0.59 m crouch. The question
 stands with these numbers.
+S-083 (RV-95) re-blocked both pickups at A's own 0.57 m crouch with the spine's twist free: 7.5 leans 58.6 degrees,
+8.0 leans 70 degrees with a 70-degree twist to reach across the body. The arm's length no longer blocks the pickups; a
+longer arm would ease the 8.0 reach. The question stands.

@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- A's pickups re-blocked again, from recorded commands (RV-95, F-206, S-083): A crouches at its own 0.57 m with both
+  feet planted, every knee over the floor and one hand at its prop; the feet bear the weight, so S-080's hand supports
+  are gone and each row prints one support; the rows' words say the new numbers. A test re-derives both keys from the
+  commands. The prose changes on A's 7.0, 7.5 and 8.0 lines.
 - The re-block solver re-derives a re-block from its record (RV-96, F-207, S-082): solver/reblock.py takes the best
   move among all free joints at each step, so their order cannot change its answer; the genre's joint limits bound
   every free joint; its command takes the start key from a plan file or a git revision, the root's height, weighted
