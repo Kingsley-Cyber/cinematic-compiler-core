@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- A's limb and head words follow the source's words (RV-05, O88, S-038): 19 limb and 13 head flips in A's rows, each a
+  recorded deviation; the hips at 0.6 keep their crouch (ADR-O103); A's 3.0 right foot now meets the ground, so
+  CONTACT_WORLD needs no exception; B's catch at 6.6 re-blocked to A's moved elbow. RV-02 split into RV-02a and
+  RV-02b, after RV-05 (backlog 13).
 - C12 (Stylization layer) loses CONTACT_WORLD and reads NOT CHECKED until AS-06 (RV-01, F-074, S-037): its PASS on twelve
   prose prompts rested on a check of printed points. F-119 answered (ADR-O102: a test changes only where a ruling or
   the plan's intent moves the data it pins). Finish run 1 started.

@@ -28,7 +28,7 @@ CLAUDE.md).
 | Ruling | In short | Slice |
 |---|---|---|
 | ADR-O88 | A's limb and head words follow the source's words; each flip a recorded deviation | RV-05 |
-| ADR-O89 | An exact-instant miss is not an artefact; re-block B's throw, the palm on the log, the vault hand | RV-02 |
+| ADR-O89 | An exact-instant miss is not an artefact; re-block B's throw, the palm on the log, the vault hand | RV-02a, RV-02b |
 | ADR-O90 | A's supports and holds end at 3.7; the rope dart rests on the ground until 7.5 | RV-06 |
 | ADR-O91 | The smoke bursts at 3.7 at A's body; the spent pellet falls and rests | RV-07 |
 | ADR-O92 | Hits are camera holds framing both bodies; no playback ramps; no inserts | RV-09 |
@@ -42,13 +42,13 @@ CLAUDE.md).
 | ADR-O100 | The anti-reward-hacking clause | F-119 |
 
 The builder reads O89's "genuine airborne or prop-moving misses" as contacts measured between keys or samples (an
-interpolated instant); RV-02 carries that reading for the owner to confirm.
+interpolated instant); RV-02a carries that reading for the owner to confirm.
 
 ## Gaps
 | Gap | Layer | Severity | Status | Fix |
 |-----|-------|----------|--------|-----|
 | RV-01 | L6 | high | open | C12 off CONTACT_WORLD (F-074) |
-| RV-02 | L4c | high | open | CONTACT_WORLD per O89; releases measured; the vault's hand plant; test hygiene (F-075, F-076, F-079) |
+| RV-02a, RV-02b | L4c | high | open | CONTACT_WORLD per O89 (re-blocks, the vault's hand plant, test hygiene), then releases measured (F-075, F-076, F-079) |
 | RV-03 | L1.1 | medium | open | the UGC pickup and poses (F-077) |
 | RV-04 | docs | medium | open | records: versions, logs, hook, stale docs and findings (F-078) |
 | RV-05 | L4c | high | open | A's words follow the source (F-080) |
@@ -66,7 +66,8 @@ interpolated instant); RV-02 carries that reading for the owner to confirm.
 | RV-18 to RV-41 | various | medium-low | open | F-093 to F-116 and F-016, one slice each (docs/plans/backlog.yaml) |
 
 ## Dependencies
-- RV-07 after RV-08; RV-13b after RV-13 and F-088; RV-21 after RV-01; RV-22 after RV-14; RV-35 after RV-02; RV-39
+- RV-02a after RV-05 (A's final poses); RV-02b after RV-02a, RV-03 and RV-06; RV-07 after RV-08; RV-13b after RV-13 and
+  F-088; RV-21 after RV-01; RV-22 after RV-14; RV-35 after RV-02a; RV-39
   after RV-11. PLAN-006's AS-01 and AS-07 follow RV-37 (one strike definition at S04).
 
 ## Owner Rulings Needed
@@ -83,7 +84,8 @@ interpolated instant); RV-02 carries that reading for the owner to confirm.
 - RV-20: an ADR for the layer-order edit; RV-38: the owner's review of draft values and F-053
 
 ## Critical Path
-1. Step 3, the builder's own shortcuts first (only on the owner's "go"): RV-01, RV-02, RV-03, RV-04
+1. Step 3, the builder's own shortcuts first (only on the owner's "go"): RV-01, then RV-05 (O88 moves A's arms that
+   RV-02a's re-blocks aim at), RV-02a, RV-03, RV-06, RV-02b, RV-04
 2. The owner's rulings: RV-05, RV-06, RV-08, RV-07, RV-09, RV-10, RV-11, RV-12, RV-13
 3. The fight-breakers that need no ruling: RV-14, RV-15, RV-16, RV-17, RV-37, RV-35, RV-22
 4. The rest in backlog order: RV-18, RV-19, RV-21, RV-23, RV-25, RV-27 to RV-32, RV-34, RV-39, RV-41
@@ -97,3 +99,4 @@ interpolated instant); RV-02 carries that reading for the owner to confirm.
 
 ## Changelog
 - 2026-10-11 — Created from the first principal review (S-035) and the owner's rulings O88 to O100.
+- 2026-10-11 — RV-02 split into RV-02a and RV-02b; RV-05 moved ahead of them (S-038).

@@ -101,10 +101,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 3.1; backlog 12.
-- Last session: S-037 (2026-10-11, applied): RV-01: C12 loses CONTACT_WORLD and is NOT CHECKED until AS-06 (F-074).
-- Next slice: RV-02 CONTACT_WORLD per O89: no exact-instant exemption; B's throw, the palm on the log and the vault hand re-blocked; releases measured (step motion).
-- Open findings: 80; decisions: 129 (0 proposed).
+- Layer order 1.7; rules 3.1; backlog 13.
+- Last session: S-038 (2026-10-11, applied): RV-05: A's limb and head words follow the source's words (O88).
+- Next slice: RV-02a CONTACT_WORLD per O89: no exact-instant exemption; the repo side of each miss re-blocked (the palm on the log, B's throw, the vault hand, the kunai's arc, the pellet, B at the knee); the slide excepted (step motion).
+- Open findings: 79; decisions: 130 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

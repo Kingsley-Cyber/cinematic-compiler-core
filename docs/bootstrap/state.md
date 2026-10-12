@@ -6,20 +6,20 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 3.1; backlog 12.
+Layer order 1.7; rules 3.1; backlog 13.
 
 ## Last sessions
 
-- S-035 (applied): The first principal review, and its gaps filed: rulings O88-O100, findings F-074-F-119, PLAN-007
 - S-036 (applied): The finish run: a prompt that works until the repo is done (O101)
 - S-037 (applied): RV-01: C12 loses CONTACT_WORLD and is NOT CHECKED until AS-06 (F-074)
+- S-038 (applied): RV-05: A's limb and head words follow the source's words (O88)
 
 ## Next slices
 
-- RV-02 (next, step motion): CONTACT_WORLD per O89: no exact-instant exemption; B's throw, the palm on the log and the vault hand re-blocked; releases measured
+- RV-02a (next, step motion): CONTACT_WORLD per O89: no exact-instant exemption; the repo side of each miss re-blocked (the palm on the log, B's throw, the vault hand, the kunai's arc, the pellet, B at the knee); the slide excepted
+- RV-02b (ready, step motion): CONTACT_WORLD measures releases (a thrown or dropped prop leaves the hand where the hand is)
 - RV-03 (ready, step temporal): The UGC pickup on the table; no resting-prop jump at a pickup; UGC poses agree with their words
 - RV-04 (ready, step docs): Records: rules 4.0, version bumps checked, layer_order.yaml logged, the hook active, stale docs and findings closed
-- RV-05 (ready, step motion): A's limb and head words follow the source's words (O88)
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -51,7 +51,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-40 blocked: Rebinding forces re-authoring — the owner's answer in F-116
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 80
+## Open findings: 79
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -68,7 +68,6 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-036 (high, L6): Aerial timing is not followed: takeoffs come late
 - F-066 (high, L4c): What is a key's root position: the pelvis or the ground point?
 - F-075 (high, L4c): CONTACT_WORLD exempts exact-instant misses as artefacts, and never measures a release
-- F-080 (high, L4c): A's limb and head words contradict the source's own words
 - F-081 (high, L1.1): The vanish is half-checked: A keeps supports and a hold while gone
 - F-082 (high, L1.1): O78 was applied backwards: the smoke bursts on landing at 4.0
 - F-083 (high, L5.5): Hits are slow-motion close-up inserts, and most of the source's holds are not printed
@@ -84,4 +83,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O103, finding F-120, session S-038, render R20.
+Decision ADR-O104, finding F-120, session S-039, render R20.

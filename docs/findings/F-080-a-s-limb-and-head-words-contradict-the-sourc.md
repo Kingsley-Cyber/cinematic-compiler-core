@@ -12,7 +12,7 @@ high
 L4c
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -47,4 +47,6 @@ ADR-O88
 - ADR-O7
 
 ## Resolution
-Open.
+RV-05 (S-038, O88): 19 limb flips and 13 head flips in A's rows; A's printed limb words agree with the source's
+fwd/back on 86 of 88 and no A line prints a head tipped back; the two hips at 0.6 keep their crouch (ADR-O103); each
+flip recorded in tests/test_reference_fight_golden.py (WORD_FLIPS, HEAD_FLIPS).

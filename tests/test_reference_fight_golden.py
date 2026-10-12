@@ -48,10 +48,17 @@ def test_every_kernel_and_reference_item_is_in_the_render():
     assert RENDER["coverage"]["complete"] and RENDER["coverage"]["constraints"]["enforced_by_renderer"] == ["c_k_owner_00"]
 
 
-# Recorded deviations from the reference numbers, both owner decisions of 2026-10-11 (O7, O10 + O11):
+# Recorded deviations from the reference numbers, owner decisions of 2026-10-11 (O7; O10 + O11; O88):
 # - knee flexion is +X under Q6, so the reference's negative knee angles (a hyperextended knee) read as +|x|;
-# - the right hip at 1.1 and 3.0 (+90 = 90 degrees back) is clamped to the anime extension limit, +60.
-HIP_CLAMPS = {1.1: 60, 3.0: 60}
+# - O88 (S-038): where a joint's number points the other way to the row's own words, it flips so the printed word
+#   follows the source: 19 limbs and 13 heads. A flip past the anime hip-extension limit is held at +60 (O11, as O10
+#   clamped before); the right hips at 1.1 and 3.0 (+90, once clamped to +60) flip to -90 ("R: leg fwd mid"). The two
+#   hips at 0.6 keep their crouch (ADR-O103: flipped, the soles would leave the pillar top).
+WORD_FLIPS = {(1.1, "LA"): -60, (1.1, "LUL"): 60, (1.1, "RA"): 60, (1.1, "RUL"): -90, (1.6, "LUL"): 45, (1.6, "RUL"): -45,
+              (2.0, "LA"): -90, (2.0, "RA"): -90, (2.5, "LA"): -60, (3.0, "RA"): -30, (3.0, "RUL"): -90,
+              (3.7, "LA"): -60, (3.7, "RA"): -60, (4.7, "LA"): -60, (5.1, "LA"): -90, (5.1, "RA"): -90,
+              (6.6, "LA"): -90, (7.0, "LUL"): 45, (7.0, "RUL"): -45}
+HEAD_FLIPS = {0.0, 0.6, 1.1, 1.6, 2.0, 3.7, 5.1, 5.9, 7.0, 9.0, 9.5}  # HD's sign; 7.5 and 8.0 in GROUNDED_PICKUPS
 # Owner O18 (2026-10-11, audit X9): A vanishes at 3.7 (the substitution) and reappears at 4.4, so the reference's A row
 # at 4.0 (a full pose with both feet down while 'A already gone') is not drawn.
 VANISHED = {4.0}
@@ -69,14 +76,16 @@ ROOT_TURNS = ((5.1, 0, -360), (6.3, 2, -360))
 GROUNDED_PICKUPS = {  # O18: A's rows at the two pickups, crouched on the ground (from A's own crouches at 5.9 and 9.5)
     7.5: [7.5, "rope_dart_regrapple", [-0.07, 0.57, 3.51], [-330, 30, -360],
           {"Sp": [59.6, 0, 0], "LUL": [-110.2, 0, 0], "RUL": [-108.5, 0, 0], "LL": [104.6, 0, 0], "RL": [108, 0, 0],
-           "LA": [-65.1, -4, 0], "RA": [-45, 0, 0], "LFA": [-27, 0, 0], "RFA": [-45, 0, 0], "HD": [-10, 0, 0], "NK": [0, 0, 0]}],
+           "LA": [-65.1, -4, 0], "RA": [-45, 0, 0], "LFA": [-27, 0, 0], "RFA": [-45, 0, 0], "HD": [10, 0, 0], "NK": [0, 0, 0]}],
     8.0: [8.0, "pull_b_toward_pillar", [0.11, 0.59, 4.23], [-330, 90, -360],
           {"Sp": [85.6, 0, 0], "LUL": [-104.1, 0, 0], "RUL": [-100.6, 0, 0], "LL": [89.8, 0, 0], "RL": [97.5, 0, 0],
-           "LA": [-60, 0, 0], "RA": [-68.2, 14.8, 0], "LFA": [-30, 0, 0], "RFA": [-27.9, 0, 0], "HD": [-10, 0, 0],
+           "LA": [-60, 0, 0], "RA": [-68.2, 14.8, 0], "LFA": [-30, 0, 0], "RFA": [-27.9, 0, 0], "HD": [10, 0, 0],
            "NK": [0, 0, 0]}],
 }
-# ADR-O83 point 2: the source's one real miss, kept as the owner wrote it and listed in the motion plan with its reason.
-CONTACT_EXCEPTIONS = {"b06_c3"}  # 3.0, A's right foot 1.5 m over the ground (RUL +90 against 'R: leg fwd mid')
+# ADR-O83 point 2 kept the source's one real miss (b06_c3, A's right foot 1.5 m over the ground at 3.0) as an
+# exception; O88's flip of that hip to the row's own "R: leg fwd mid" puts the foot on the ground (S-038), so no
+# contact is excepted.
+CONTACT_EXCEPTIONS = set()
 
 
 GROUNDED_DESCRIPTIONS = {
@@ -101,8 +110,11 @@ def normalised(row):
     joints = {j: list(v) for j, v in row[4].items()}
     for knee in ("LL", "RL"):
         joints[knee][0] = abs(joints[knee][0])
-    if row[0] in HIP_CLAMPS:
-        joints["RUL"][0] = HIP_CLAMPS[row[0]]
+    for (t, joint), x in WORD_FLIPS.items():
+        if row[0] == t:
+            joints[joint][0] = x
+    if row[0] in HEAD_FLIPS:
+        joints["HD"][0] = -joints["HD"][0]
     if row[0] in GROUNDED_PICKUPS:
         return GROUNDED_PICKUPS[row[0]]
     rot = list(row[3])
@@ -114,9 +126,10 @@ def normalised(row):
 
 # S-030 (CONTACT_WORLD, ADR-O83, R-33): the repo-authored side of each real miss moved. The rope dart's sample at 3.0 sits
 # in A's left hand (the source's pose); at 8.0 it is the dart, wrapped on B since 7.6, so it sits on B's torso while A
-# keeps the rope's end; B steps in and straightens to catch A's elbow at 6.6 with both hands.
+# keeps the rope's end; B steps in and straightens to catch A's elbow at 6.6 with both hands, re-blocked in S-038 when
+# O88 turned A's left arm forward (B leans back 23 degrees to the elbow).
 REBLOCKED_SAMPLES = {("rope_dart", 3.0): [0.85, 0.74, 4.55], ("rope_dart", 8.0): [1.6, 1.53, 3.7]}  # 8.0: with B, O86
-CATCH_ROOT = [0.13, 1.2, 4.87]
+CATCH_ROOT = [0.07, 1.03, 4.8]
 # Owner O86 (F-071, S-032): at 8.0 B stands on A's far side from the pillar (z 6), pose and facing kept, so the rope from
 # B to A's hand pulls toward the pillar and B is dragged that way to 8.5.
 PULL_ANCHOR = [1.4, 1.18, 3.7]
@@ -137,8 +150,8 @@ def test_the_re_blocked_samples_and_the_catch_are_recorded():
 
 def test_contact_world_excepts_only_the_source_miss():
     plan = json.loads((ROOT / "examples" / "reference_fight" / "plans" / "motion.json").read_text(encoding="utf-8"))
-    assert set(plan["contact_world_exceptions"]) == CONTACT_EXCEPTIONS
-    assert all("O83" in reason for reason in plan["contact_world_exceptions"].values())
+    assert set(plan.get("contact_world_exceptions", {})) == CONTACT_EXCEPTIONS
+    assert all("O83" in reason for reason in plan.get("contact_world_exceptions", {}).values())
 
 
 def test_a_roots_and_joints_are_the_reference_rows_with_the_recorded_deviations():

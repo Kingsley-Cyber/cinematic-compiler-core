@@ -44,6 +44,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-035 | 2026-10-11 | Claude Code (Opus 5.5), with five independent read-only reviewers | Backlog RV-01 to RV-41 (added this sess… | applied | the commit whose message names [S-035] | about 3 hours (the review, its verification and the filing) | Wait for the owner's "go" before step 3 (RV-01). The owner… | [S-035-principal-review-filed.md](../sessions/S-035-principal-review-filed.md) |
 | S-036 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog D-11 (added this session); ruli… | applied | the commit whose message names [S-036] | about 30 minutes | Run `/finish` (or "Read docs/bootstrap/README.md, then run… | [S-036-the-finish-run-prompt.md](../sessions/S-036-the-finish-run-prompt.md) |
 | S-037 | 2026-10-11 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-01 (PLAN-007); findings F-07… | applied | the commit whose message names [S-037] | about 15 minutes | RV-02 (CONTACT_WORLD per O89). | [S-037-rv-01-c12-off-contact-world.md](../sessions/S-037-rv-01-c12-off-contact-world.md) |
+| S-038 | 2026-10-11 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-05 (PLAN-007); finding F-080… | applied | the commit whose message names [S-038] | about 50 minutes | RV-02a (CONTACT_WORLD per O89, re-blocks against A's final… | [S-038-rv-05-a-s-words-follow-the-source.md](../sessions/S-038-rv-05-a-s-words-follow-the-source.md) |
 
 ## Status values
 
