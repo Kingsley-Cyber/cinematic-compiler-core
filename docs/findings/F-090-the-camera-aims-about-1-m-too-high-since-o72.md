@@ -12,7 +12,7 @@ high
 L5.5
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -50,14 +50,17 @@ none needed
 - ADR-O72
 
 ## Resolution
-Open in part: RV-15a (S-076) aims each shot at the middle of the extent of the parts its scale shows of its target
-(both axis performers for `midpoint`), from S13's keys carried in S16's packet, and VERTICAL_FRAMING refuses a part
-the scale shows that projects outside the frame, up and down as well as across, at every beat a static shot lists and
-at a moving shot's first beat; a subject's screen side is its pelvis's. The examples' refused shots were re-authored
-(eleven in the reference fight, two each in the wizard and live-action examples, one in the UGC). Measured after:
-no contact moment projects outside its shot's frame (the reference fight 0 of 28, from 15; the wizard 0 of 7, from
-3; the UGC 0 of 3, from 1), and the source's "ground level" shots sit 0.72 m (3.0) and 0.19 m (9.0) high, from 1.90
-and 1.14 m. Open: an insert still aims 1 m above its target's pelvis, a framed prop is not checked, and the camera schemas'
-`position` text still reads "target + aim height" (RV-15b, one major bump for both); a
-moving shot is checked at its first beat only, since S16 does not model a camera's path; c01 frames A from frame 0,
-against the source's "A starts ABOVE the frame" (F-202 asks the owner).
+Resolved by RV-15a (S-076) and RV-15b (S-077). RV-15a (S-076) aims each shot at the middle of the extent of the parts
+its scale shows of its target (both axis performers for `midpoint`), from S13's keys carried in S16's packet, and
+VERTICAL_FRAMING refuses a part the scale shows that projects outside the frame, up and down as well as across, at
+every beat a static shot lists and at a moving shot's first beat; a subject's screen side is its pelvis's. The
+examples' refused shots were re-authored (eleven in the reference fight, two each in the wizard and live-action
+examples, one in the UGC). Measured after: no contact moment projects outside its shot's frame (the reference fight 0
+of 28, from 15; the wizard 0 of 7, from 3; the UGC 0 of 3, from 1), and the source's "ground level" shots sit 0.72 m
+(3.0) and 0.19 m (9.0) high, from 1.90 and 1.14 m. RV-15b (S-077) aims an insert at its detail, a part of its target
+or a prop (a detail that names neither is refused, CAMERA_VOCABULARY), and holds every framed prop in frame where
+S16's packet places it (its sample, the hand that holds it, its flight or its rest); the camera schemas' `position`
+text names the aim (camera, camera_graph and camera_plan 2.0). The UGC's insert on the hands now aims at the right
+hand (1.12 m high) instead of 1.97 m. Carried elsewhere: a moving shot is checked at its first beat only, since S16
+does not model a camera's path (F-204, RV-94); c01 frames A from frame 0, against the source's "A starts ABOVE the
+frame" (F-202 asks the owner).

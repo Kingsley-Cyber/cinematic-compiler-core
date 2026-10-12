@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 29
+version: 30
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -132,12 +132,12 @@ items:
      step: render, plan: PLAN-007, depends_on: [], findings: [F-088], codes: [PROMPT_LENGTH]}
   - {id: RV-15a, title: "The camera aims at the body it frames; every part its scale shows is in frame, up and down", status: done,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-090], codes: [VERTICAL_FRAMING]}
-  - {id: RV-15b, title: "An insert aims at its detail and a framed prop is in frame; the camera schemas' position text names the aim", status: next,
+  - {id: RV-15b, title: "An insert aims at its detail and a framed prop is in frame; the camera schemas' position text names the aim", status: done,
      step: camera, plan: PLAN-007, depends_on: [RV-15a], findings: [F-090], codes: []}
   - {id: RV-15c, title: "A strike's limb and a facing head point at their target, checked at S13; B's keys re-aimed", status: blocked,
      blocked_by: "the owner's answer in F-148 (A's source facings: the check would refuse the golden's own rows, O10)",
      step: motion, plan: PLAN-007, depends_on: [], findings: [F-145], codes: []}
-  - {id: RV-14, title: "Every-key body checks: no body under the floor; supports at every key; held and embedded props at their holder", status: ready,
+  - {id: RV-14, title: "Every-key body checks: no body under the floor; supports at every key; held and embedded props at their holder", status: next,
      step: motion, plan: PLAN-007, depends_on: [M9-06b], findings: [F-089, F-062], codes: [FLOOR_PENETRATION]}
   - {id: RV-16, title: "One laban chain per fighter in render.txt", status: ready,
      step: render, plan: PLAN-007, depends_on: [], findings: [F-091], codes: []}
@@ -165,6 +165,8 @@ items:
      step: render, plan: PLAN-007, depends_on: [], findings: [F-193], codes: []}
   - {id: RV-93, title: "S07: a prop's change needs a contact on it in its beat, or a hold by a body of that beat (MASTER_PLAN S07.3)", status: ready,
      step: contact, plan: PLAN-007, depends_on: [], findings: [F-130], codes: []}
+  - {id: RV-94, title: "A moving camera's path per movement kind, derived and framed at every beat its shot lists", status: ready,
+     step: camera, plan: PLAN-007, depends_on: [RV-15b], findings: [F-204], codes: []}
   - {id: RV-75, title: "CAUSE_REASON asks that a reason state a cause", status: ready,
      step: causal, plan: PLAN-007, depends_on: [], findings: [F-185, F-001, F-002], codes: []}
   - {id: RV-76, title: "The checklist: unselected menus N/A (O14); a step-enforced row judged by its step codes", status: ready,

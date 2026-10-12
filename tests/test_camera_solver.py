@@ -193,6 +193,37 @@ def test_every_part_a_shot_shows_is_in_frame_up_and_down():
     assert [(f["slot"], f["message"].split(" is ")[0]) for f in found] == [("c11", "At b14, acrobat's head")]
 
 
+def test_an_insert_aims_at_its_detail():
+    """F-090 (RV-15b): an insert aims at its detail, a part of its target (forward kinematics' contact points) or a prop,
+    no longer aim_height_m above the target's pelvis; a detail that names neither is refused (CAMERA_VOCABULARY)."""
+    plan = copy.deepcopy(PLAN)
+    insert = shot(plan, "c07")  # the wizard's close-up at b09, made an insert on the right hand
+    insert["framing"].update(scale="insert", detail="right_hand")
+    insert["position"]["distance_m"] = 0.9  # 85 mm: a 0.25 m frame
+    assert camera_validator.derive(insert, PACKET)["aim"] == PACKET["points"]["b09"]["wizard"]["right_hand"]
+    assert "CAMERA_VOCABULARY" not in codes(lambda p: (shot(p, "c07")["framing"].update(scale="insert",
+                                                                                        detail="right_hand"),
+                                                      shot(p, "c07")["position"].update(distance_m=0.9)))
+    assert "CAMERA_VOCABULARY" in codes(lambda p: (shot(p, "c07")["framing"].update(scale="insert", detail="aura"),
+                                                   shot(p, "c07")["position"].update(distance_m=0.9)))
+
+
+def test_a_framed_prop_is_in_frame():
+    """F-090 (RV-15b): a prop a shot frames is held in frame where the packet places it (its sample, the hand that
+    holds it, its flight or its rest), as a body's parts are (VERTICAL_FRAMING)."""
+    packet = copy.deepcopy(PACKET)
+    packet["props"] = sorted(packet["props"] + ["orb"])
+    near = packet["points"]["b06"]["wizard"]["right_hand"]
+    packet["prop_points"]["b06"]["orb"] = near
+
+    def framed(plan):
+        shot(plan, "c04")["framing"]["subjects"].append("orb")
+
+    assert "VERTICAL_FRAMING" not in codes(framed, packet)
+    packet["prop_points"]["b06"]["orb"] = [near[0], near[1] + 4, near[2]]
+    assert "VERTICAL_FRAMING" in codes(framed, packet)
+
+
 def test_genre_card_rules_apply_scene_wide():
     packet = copy.deepcopy(PACKET)
     packet["convention"]["required_intents"] = ["product"]

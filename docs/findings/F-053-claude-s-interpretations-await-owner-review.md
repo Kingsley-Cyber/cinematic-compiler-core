@@ -137,6 +137,11 @@ points its scale shows; "in frame" is each part's point (forward kinematics' hea
 inside the frame, so a part may be cropped at its edge; the grammar's visible_parts decide what a scale shows, so a
 medium close-up holds both hands (the library's rule, unchanged); a subject's screen side is its pelvis's (O72's
 root); a static shot is checked at every beat it lists, a moving one at its first beat.
+Added in S-077 (RV-15b, compiler/passes/derived/p16_camera.py, validators/camera_validator.py): a prop's point at a
+beat is its sample at that instant, else the hand that holds it, else its flight toward a later sample, else its
+rest at its last sample, and none while carried or unplaced; an insert's detail names a part by forward kinematics'
+contact points (palm, fingers and fist read as the hand; chest, back, spine and shoulder as the torso) or a prop; in
+an insert, its target's place on screen is the detail.
 
 ## Impact
 Waits on the owner.

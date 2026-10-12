@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:camera:1.0",
+  "$id": "urn:cinematic-compiler:schema:camera:2.0",
   "title": "Camera shot node (S16, L5.5)",
   "description": "One shot: its time window, the beats it shows, the 13 subdivisions and its motivation, all required. Closed values come from library/camera_subdivisions.yaml.",
   "type": "object",
@@ -155,7 +155,7 @@
           "minLength": 1
         }
       },
-      "description": "target: an entity id or midpoint (between the axis entities); the camera sits distance_m from the aim point (target + aim height)."
+      "description": "target: an entity id or midpoint (between the axis entities); the camera sits distance_m from the aim point: the middle of the parts its scale shows of the target (both axis entities for midpoint), or an insert's detail (a part of the target or a prop)."
     },
     "lens": {
       "type": "object",

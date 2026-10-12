@@ -2,15 +2,16 @@
 
 The packet carries the scene facts a camera answers to (beats, positions, contact onsets, effort intervals, causal
 edges, surfaces) and the camera library (subdivision vocabulary, grammar, tempo, the genre's conventions, the
-archetypes' idioms), and each performer's body points at every beat (F-090, RV-15a). Checks:
-validators/camera_validator.py. Derived: the aim (the middle of the parts the scale shows), camera position, side,
-field of view, frame height and screen x per subject (solver/camera_geometry.py), and `cuts_to` edges between
-consecutive shots.
+archetypes' idioms), and each performer's body points and each prop's point at every beat (F-090, RV-15a, RV-15b).
+Checks: validators/camera_validator.py. Derived: the aim (the middle of the parts the scale shows, an insert's
+detail), camera position, side, field of view, frame height and screen x per subject (solver/camera_geometry.py),
+and `cuts_to` edges between consecutive shots.
 """
 
 from compiler.authoring import run_authored, seal
 from planner import camera_library, hits, library_vocab
 from planner.dependency_graph import ROOT, load
+from planner.dynamic_beat_validator import GRAVITY, PHASE_ORDER, holds
 from solver import forward_kinematics
 from solver.camera_geometry import azimuth_change
 from solver.quaternion import head_heading
@@ -47,6 +48,43 @@ def _points(envelope, beats, entities):
     return out
 
 
+def _prop_points(envelope, beats, bodies):
+    """{beat: {prop: [x, y, z]}} at each beat's start (F-090, RV-15b: a framed prop is in frame): the prop's sample at
+    that instant (the post one of a pair), else the point of the hand that holds it, else its flight from its last
+    sample toward a later one (gravity unless it floats), else its rest at its last sample. A prop carried on a body,
+    unplaced, or flying past its last sample has no point."""
+    contacts = envelope["nodes"]["contacts"]["items"]
+    held = holds(beats)
+    out = {b["id"]: {} for b in beats}
+    for prop in sorted(p["id"] for p in envelope["nodes"]["props"]["items"]):
+        samples = sorted((s for b in beats for s in b.get("prop_samples", []) if s["prop"] == prop),
+                         key=lambda s: (s["t"], PHASE_ORDER[s.get("phase")]))
+        grips = {round(c["t"], 6): c["body_part"] for c in contacts
+                 if c["contact_type"] == "possess" and c["b"]["kind"] == "prop" and c["b"]["id"] == prop}
+        for b in beats:
+            t, point = b["t"], None
+            at = [s for s in samples if abs(s["t"] - t) <= 1e-9]
+            hold = next(((start, holder) for start, end, holder in held.get(prop, []) if start - 1e-9 <= t < end - 1e-9),
+                        None)
+            last = [s for s in samples if s["t"] < t - 1e-9]
+            if at:
+                point = at[-1]["p"]
+            elif hold:
+                body = bodies[b["id"]].get(hold[1])
+                part = grips.get(round(hold[0], 6))
+                point = forward_kinematics.part_point(body, part) if body and part else None
+            elif last and last[-1]["v"] is not None and any(abs(v) > 1e-9 for v in last[-1]["v"]):
+                if any(s["t"] > t + 1e-9 for s in samples):
+                    p, v, tau = last[-1]["p"], last[-1]["v"], t - last[-1]["t"]
+                    drop = 0.0 if last[-1].get("float") else 0.5 * GRAVITY * tau * tau
+                    point = [p[0] + v[0] * tau, p[1] + v[1] * tau - drop, p[2] + v[2] * tau]
+            elif last:
+                point = last[-1]["p"]
+            if point is not None:
+                out[b["id"]][prop] = [round(v, 4) + 0.0 for v in point]
+    return out
+
+
 def prepare(envelope):
     scene = envelope["scene"]
     beats = sorted(envelope["nodes"]["beats"]["items"], key=lambda b: (b["t"], b["id"]))
@@ -54,7 +92,7 @@ def prepare(envelope):
     ids = sorted(entities)
     motion = {n["id"]: {k: n[k] for k in ("name", "turn", "description")} for n in envelope["nodes"]["motion"]["items"]}
     return seal({
-        "step_id": STEP, "band": "L5.5", "kind": "camera_plan", "schema": "urn:cinematic-compiler:schema:camera_plan:1.0",
+        "step_id": STEP, "band": "L5.5", "kind": "camera_plan", "schema": "urn:cinematic-compiler:schema:camera_plan:2.0",
         "instructions": PROMPT.read_text(encoding="utf-8"),
         "scene": {k: scene[k] for k in ("genre", "duration_s", "fps", "setting", "style_reference")},
         "beats": [{"id": b["id"], "t": b["t"], "dur": b["dur"], "event_type": b["event_type"], "actor": b["actor"],
@@ -64,7 +102,8 @@ def prepare(envelope):
         "entities": entities, "props": sorted(p["id"] for p in envelope["nodes"]["props"]["items"]),
         "surfaces": sorted(s["id"] for s in envelope["nodes"]["surfaces"]["items"]),
         "axis": ids[:2] if len(ids) >= 2 else [], "positions": _positions(envelope, beats, ids),
-        "points": _points(envelope, beats, ids),
+        "points": (bodies := _points(envelope, beats, ids)),
+        "prop_points": _prop_points(envelope, beats, bodies),
         "contacts": [{"id": c["id"], "t": c["t"], "beat": c["beat"], "contact_type": c["contact_type"], "entity": c["a"]["id"],
                       "part": c["body_part"], "other": c["b"]["id"]}
                      for c in envelope["nodes"]["contacts"]["items"]

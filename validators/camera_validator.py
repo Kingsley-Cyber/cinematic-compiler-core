@@ -8,15 +8,17 @@
   causal edge, genre convention);
 - axis (180-line): the declared side equals the derived side; a left/right switch between consecutive shots must be
   declared `cross` and the genre must allow crossing; `cross` without a switch is refused;
-- aim (F-090, RV-15a): a shot aims at the middle of the extent of the parts its scale shows (the grammar's
+- aim (F-090, RV-15a, RV-15b): a shot aims at the middle of the extent of the parts its scale shows (the grammar's
   visible_parts) of its target, both axis performers for `midpoint`, from the S13 keys (the packet's `points`); an
-  insert, whose scale names no parts, still aims aim_height_m above its target's pelvis until RV-15b;
+  insert aims at its detail, a part of its target or a prop (the packet's `prop_points`), and a detail that names
+  neither is refused (CAMERA_VOCABULARY);
 - coupling (camera shows what matters): each shown beat's actor is a subject; each contact onset in the window is
   shown (entity is a subject, the part is visible at the scale or is the insert detail); every subject is in frame;
-- framing (VERTICAL_FRAMING, F-090, RV-15a): every part the scale shows of each subject projects inside the frame, up
-  and down as well as across, at every listed beat of a static shot and at the first beat of a moving one;
-- composition: declared screen placement agrees with the projected screen x of each subject's pelvis, the root (owner
-  O72; left/right sign and order);
+- framing (VERTICAL_FRAMING, F-090, RV-15a, RV-15b): every part the scale shows of each subject (an insert's detail)
+  and every framed prop with a point projects inside the frame, up and down as well as across, at every listed beat
+  of a static shot and at the first beat of a moving one (S16 does not model a moving camera's path, F-204);
+- composition: declared screen placement agrees with the projected screen x of each subject's place: a performer's
+  pelvis, the root (owner O72), or its detail in an insert on it; a prop's point (left/right sign and order);
 - continuity: no jump cut (same target and scale with an azimuth change under the grammar's minimum) unless the cut
   is declared jump_cut;
 - genre: transition, playback, rig, roll, shot length and required intents per library/camera_conventions/<genre>;
@@ -35,6 +37,7 @@
 
 from planner import library_vocab
 from solver import camera_geometry as geometry
+from solver.forward_kinematics import part_point
 
 EPSILON = 1e-6
 STILL = ("locked", "smooth")  # the grammar's stabilities that hold a frame still (a hit's hold, owner O92)
@@ -55,14 +58,50 @@ def value(shot, field):
 
 def shown(shot, packet, entity, beat=None):
     """{part: point} of the entity that the shot's scale shows (the grammar's visible_parts), at the beat's key (the
-    shot's first beat by default); None without the entity's body points or for a scale that names no parts (an insert,
-    RV-15b)."""
+    shot's first beat by default); an insert shows its detail alone, when the detail is a part of this entity, its
+    target (RV-15b). None without the entity's body points or anything of it to show."""
     beat = beat or min(shot["beats"], key=lambda b: packet["beat_index"][b])
     body = packet.get("points", {}).get(beat, {}).get(entity)
+    if body is None:
+        return None
+    if shot["framing"]["scale"] == "insert":
+        detail = shot["framing"]["detail"]
+        if not detail or detail in packet["props"] or entity != shot["position"]["target"]:
+            return None
+        point = part_point(body, detail)
+        return {detail: point} if point is not None else None
     parts = packet["grammar"]["visible_parts"].get(shot["framing"]["scale"])
-    if body is None or parts is None:
+    if parts is None:
         return None
     return {part: body[part] for part in parts if part in body} or None
+
+
+def framed(shot, packet, subject, beat):
+    """{name: point} of one subject the shot must hold in frame at the beat: a performer's shown parts, or a prop's
+    point when it has one (F-090, RV-15b)."""
+    if subject in packet["props"]:
+        point = packet.get("prop_points", {}).get(beat, {}).get(subject)
+        return {subject: point} if point is not None else {}
+    return shown(shot, packet, subject, beat) or {}
+
+
+def _detail(shot, packet, beat):
+    """The point an insert's detail names at the beat: a part of its target (forward kinematics' contact points) or a
+    prop (RV-15b); None when it names neither."""
+    detail = shot["framing"]["detail"]
+    if detail in packet["props"]:
+        return packet.get("prop_points", {}).get(beat, {}).get(detail)
+    body = packet.get("points", {}).get(beat, {}).get(shot["position"]["target"])
+    return part_point(body, detail) if body and detail else None
+
+
+def _place(shot, packet, subject, beat):
+    """A subject's place on screen: a prop's point; a performer's pelvis, the root (owner O72), or the detail of an
+    insert on it (F-090, RV-15a, RV-15b)."""
+    if subject in packet["props"]:
+        return packet.get("prop_points", {}).get(beat, {}).get(subject)
+    detail = shown(shot, packet, subject, beat) if shot["framing"]["scale"] == "insert" else None
+    return next(iter(detail.values())) if detail else packet["positions"][beat].get(subject)
 
 
 def _centre(points):
@@ -76,20 +115,21 @@ def derive(shot, packet):
     grammar, sensor = packet["grammar"], packet["grammar"]["sensor_mm"]
     first = min(shot["beats"], key=lambda b: packet["beat_index"][b])
     positions, axis = packet["positions"][first], packet["axis"]
-    target = shot["position"]["target"]  # F-090 (RV-15a): aim at the centre of what the scale shows of the target
-    bodies = [shown(shot, packet, e) for e in (axis if target == "midpoint" else [target])]
-    if bodies and all(bodies):
-        aim_point = _centre([point for body in bodies for point in body.values()])
+    target = shot["position"]["target"]  # F-090: what the scale shows of the target (RV-15a), an insert's detail (RV-15b)
+    if shot["framing"]["scale"] == "insert":
+        points = [point for point in [_detail(shot, packet, first)] if point is not None]
     else:
-        aim_point = geometry.aim(target, positions, axis, grammar["aim_height_m"])
+        bodies = [shown(shot, packet, e) for e in (axis if target == "midpoint" else [target])]
+        points = [point for body in bodies for point in body.values()] if bodies and all(bodies) else []
+    aim_point = _centre(points) if points else geometry.aim(target, positions, axis, grammar["aim_height_m"])
     camera = geometry.camera_position(aim_point, shot["position"]["distance_m"], shot["angle"]["elevation_deg"],
                                       shot["angle"]["azimuth_deg"])
     side = geometry.side(camera, positions[axis[0]], positions[axis[1]], grammar["on_axis_m"]) if len(axis) == 2 else "none"
     focal = shot["lens"]["focal_length_mm"]
     screen = {}
     for subject in shot["framing"]["subjects"]:
-        point = positions.get(subject)
-        if point is not None:  # a subject's place on screen is its pelvis, the root (owner O72; F-090, RV-15a)
+        point = _place(shot, packet, subject, first)
+        if point is not None:
             screen[subject] = geometry.screen_x(camera, aim_point, point, focal, sensor)
     return {"camera_pos": geometry.rounded(camera), "aim": geometry.rounded(aim_point), "height_m": round(camera[1], 6) + 0.0,
             "side": side, "fov_deg": geometry.fov_degrees(focal, sensor),
@@ -97,19 +137,24 @@ def derive(shot, packet):
 
 
 def _framing(shot, packet, geo):
-    """VERTICAL_FRAMING (F-090, RV-15a): every part the shot's scale shows of each subject projects inside the frame,
-    up and down as well as across: at every listed beat's key in a static shot, whose camera stands where S16 derived
-    it, and at the first beat's key in a moving one (S16 does not model a moving camera's path)."""
+    """VERTICAL_FRAMING (F-090, RV-15a, RV-15b): every part the shot's scale shows of each subject (an insert's detail)
+    and every framed prop with a point projects inside the frame, up and down as well as across: at every listed
+    beat's key in a static shot, whose camera stands where S16 derived it, and at the first beat's key in a moving one
+    (S16 does not model a moving camera's path, F-204)."""
     rows = []
     beats = sorted(shot["beats"], key=lambda b: packet["beat_index"][b])
+    detail = shot["framing"]["detail"] if shot["framing"]["scale"] == "insert" else None
     for beat in beats if shot["movement"]["kind"] == "static" else beats[:1]:
-        for subject in shot["framing"]["subjects"]:
-            for part, point in sorted((shown(shot, packet, subject, beat) or {}).items()):
-                xy = geometry.screen_xy(geo["camera_pos"], geo["aim"], point, shot["lens"]["focal_length_mm"],
-                                        packet["grammar"]["sensor_mm"])
-                if xy is None or abs(xy[0]) > 1 + EPSILON or abs(xy[1]) > 1 + EPSILON:
-                    where = "behind the camera" if xy is None else f"out of frame at screen ({xy[0]:.2f}, {xy[1]:.2f})"
-                    rows.append(("VERTICAL_FRAMING", f"At {beat}, {subject}'s {part} is {where}", None))
+        held = {subject if part == subject else f"{subject}'s {part}": point for subject in shot["framing"]["subjects"]
+                for part, point in framed(shot, packet, subject, beat).items()}
+        if detail in packet["props"] and _detail(shot, packet, beat) is not None:
+            held.setdefault(detail, _detail(shot, packet, beat))  # an insert's prop detail, framed or not
+        for name, point in sorted(held.items()):
+            xy = geometry.screen_xy(geo["camera_pos"], geo["aim"], point, shot["lens"]["focal_length_mm"],
+                                    packet["grammar"]["sensor_mm"])
+            if xy is None or abs(xy[0]) > 1 + EPSILON or abs(xy[1]) > 1 + EPSILON:
+                where = "behind the camera" if xy is None else f"out of frame at screen ({xy[0]:.2f}, {xy[1]:.2f})"
+                rows.append(("VERTICAL_FRAMING", f"At {beat}, {name} is {where}", None))
     return rows
 
 
@@ -231,6 +276,10 @@ def _references(shot, packet):
     target = shot["position"]["target"]
     if target != "midpoint" and target not in packet["entities"]:
         problems.append(("CAMERA_VOCABULARY", f"Position target {target} is not an entity or midpoint"))
+    detail = shot["framing"]["detail"]
+    if shot["framing"]["scale"] == "insert" and detail is not None and detail not in packet["props"] and not any(
+            part_point(bodies.get(target), detail) for bodies in packet.get("points", {}).values() if bodies.get(target)):
+        problems.append(("CAMERA_VOCABULARY", f"Insert detail {detail} is neither a part of {target} nor a prop (RV-15b)"))
     if target == "midpoint" and len(packet["axis"]) != 2:
         problems.append(("CAMERA_VOCABULARY", "midpoint needs two entities"))
     for key in shot["composition"]["placement"]:

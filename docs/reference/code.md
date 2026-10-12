@@ -18,7 +18,7 @@ flowchart LR
   cli -->|1| kernel
   cli -->|2| validators
   compiler -->|19| kernel
-  compiler -->|47| planner
+  compiler -->|48| planner
   compiler -->|4| renderers
   compiler -->|12| solver
   compiler -->|30| validators
@@ -41,7 +41,7 @@ flowchart LR
   validators -->|4| kernel
   validators -->|9| planner
   validators -->|3| renderers
-  validators -->|7| solver
+  validators -->|8| solver
 ```
 
 ## Modules
@@ -59,7 +59,7 @@ flowchart LR
 | `compiler.passes.derived.p13_motion` | `compiler.authoring`, `kernel.kernel_files`, `planner.dependency_graph`, `planner.scene_view`, `solver.body_overlap`, `solver.contact_world`, `solver.euler_solver`, `solver.forward_kinematics`, `solver.quaternion`, `solver.trajectory`, `validators.schema_validator` | json, yaml |
 | `compiler.passes.derived.p14_facial` | `compiler.authoring`, `planner.dependency_graph`, `planner.scene_view`, `solver.quaternion`, `validators.facial_validator`, `validators.schema_validator` | functools, json, yaml |
 | `compiler.passes.derived.p15_effort` | `compiler.authoring`, `planner.dependency_graph`, `planner.library_vocab`, `planner.scene_view`, `solver.shape_direction`, `validators.schema_validator` | json, yaml |
-| `compiler.passes.derived.p16_camera` | `compiler.authoring`, `planner.camera_library`, `planner.dependency_graph`, `planner.hits`, `planner.library_vocab`, `solver.camera_geometry`, `solver.forward_kinematics`, `solver.quaternion`, `validators.camera_validator` | — |
+| `compiler.passes.derived.p16_camera` | `compiler.authoring`, `planner.camera_library`, `planner.dependency_graph`, `planner.dynamic_beat_validator`, `planner.hits`, `planner.library_vocab`, `solver.camera_geometry`, `solver.forward_kinematics`, `solver.quaternion`, `validators.camera_validator` | — |
 | `compiler.passes.derived.p17_render` | `compiler.authoring`, `planner.dependency_graph`, `planner.dynamic_beat_validator`, `planner.hits`, `renderers.anime_renderer`, `renderers.live_renderer`, `renderers.prose_renderer`, `renderers.ugc_renderer`, `validators.camera_validator` | — |
 | `compiler.passes.mandatory.p01_intent` | `kernel.canonical`, `planner.dependency_graph`, `planner.intent_parser`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
 | `compiler.passes.mandatory.p02_brief` | `kernel.canonical`, `planner.dependency_graph`, `planner.query_expander`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
@@ -113,7 +113,7 @@ flowchart LR
 | `solver.shape_direction` | `solver.quaternion`, `solver.staff_geometry` | math |
 | `solver.staff_geometry` | `solver.quaternion` | math |
 | `solver.trajectory` | — | math |
-| `validators.camera_validator` | `planner.library_vocab`, `solver.camera_geometry` | — |
+| `validators.camera_validator` | `planner.library_vocab`, `solver.camera_geometry`, `solver.forward_kinematics` | — |
 | `validators.cause_reason` | — | re |
 | `validators.checklist` | `compiler.examples`, `planner.dependency_graph`, `validators.prompt_length`, `validators.prompt_validator` | hashlib, json, sys, yaml |
 | `validators.contact_world_report` | `compiler.examples`, `solver.contact_world` | json, math |

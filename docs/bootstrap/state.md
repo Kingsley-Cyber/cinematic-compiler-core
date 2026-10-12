@@ -6,20 +6,20 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 7.1; backlog 29.
+Layer order 1.7; rules 7.1; backlog 30.
 
 ## Last sessions
 
-- S-074 (applied): RV-86: TELEPORT's exemption needs a decoy in the actor's place
 - S-075 (applied): RV-13: PROMPT_LENGTH: a prompt over 3,500 characters for Runway or 1,000 words for BytePlus is not delivered
 - S-076 (applied): RV-15a: the camera aims at the body it frames, and every visible part is in frame vertically
+- S-077 (applied): RV-15b: an insert aims at its detail, a framed prop is in frame, and the camera schemas name the aim
 
 ## Next slices
 
-- RV-15b (next, step camera): An insert aims at its detail and a framed prop is in frame; the camera schemas' position text names the aim
-- RV-14 (ready, step motion): Every-key body checks: no body under the floor; supports at every key; held and embedded props at their holder
+- RV-14 (next, step motion): Every-key body checks: no body under the floor; supports at every key; held and embedded props at their holder
 - RV-16 (ready, step render): One laban chain per fighter in render.txt
 - RV-35 (ready, step motion): Pickups crouch on the feet with a hand down; the support names the hand
+- RV-59 (ready, step motion): BODY_OVERLAP along the declared interpolation between keys; the paths re-blocked
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -99,7 +99,6 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-086 (high, L4c): Mirror-symmetric keys are not refused on strikes and action beats
 - F-088 (high, L6): Every prompt is over the length caps; fitting them needs the owner's call on what goes
 - F-089 (high, L4c): Bodies and held props are checked only at contact onsets, never against the floor
-- F-090 (high, L5.5): The camera aims about 1 m too high since O72, and vertical framing is unchecked
 - F-091 (high, L6): render.txt's laban chains mix both fighters' moves
 - F-096 (high, L6): PASS cells are inflated: rows pass on codes that cover part of the row
 - F-115 (high, all): Two gate conditions have no check: soul_check_passes, fight_works
@@ -125,4 +124,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-204, session S-077, render R20.
+Decision ADR-O109, finding F-205, session S-078, render R20.

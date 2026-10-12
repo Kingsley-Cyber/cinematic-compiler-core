@@ -155,3 +155,4 @@ RV-93, RV-75, RV-76, RV-77, RV-58, RV-18, RV-64 and the rest in backlog order (b
 - 2026-10-12 — RV-86 done (S-074): TELEPORT's exemption reads the decoy.
 - 2026-10-12 — RV-13 done (S-075): PROMPT_LENGTH refuses delivery of a prompt over both of O97's caps; fitting waits (RV-13b).
 - 2026-10-12 — RV-15a done (S-076): the camera aims at the body it frames; VERTICAL_FRAMING; RV-15 split (15b inserts and props, 15c body aim, blocked).
+- 2026-10-12 — RV-15b done (S-077): an insert aims at its detail; a framed prop is in frame; camera schemas 2.0; F-090 resolved; F-204 and RV-94 filed.

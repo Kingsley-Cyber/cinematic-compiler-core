@@ -101,9 +101,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.1; backlog 29.
-- Last session: S-076 (2026-10-12, applied): RV-15a: the camera aims at the body it frames, and every visible part is in frame vertically.
-- Next slice: RV-15b An insert aims at its detail and a framed prop is in frame; the camera schemas' position text names the aim (step camera).
+- Layer order 1.7; rules 7.1; backlog 30.
+- Last session: S-077 (2026-10-12, applied): RV-15b: an insert aims at its detail, a framed prop is in frame, and the camera schemas name the aim.
+- Next slice: RV-14 Every-key body checks: no body under the floor; supports at every key; held and embedded props at their holder (step motion).
 - Open findings: 125; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:camera_plan:1.0",
+  "$id": "urn:cinematic-compiler:schema:camera_plan:2.0",
   "title": "S16 camera plan (authored in-session): the shot list",
   "description": "Shots tile the scene in time order; each shot follows schemas/camera.schema.json (embedded as $defs.shot).",
   "type": "object",
@@ -211,7 +211,7 @@
               "minLength": 1
             }
           },
-          "description": "target: an entity id or midpoint (between the axis entities); the camera sits distance_m from the aim point (target + aim height)."
+          "description": "target: an entity id or midpoint (between the axis entities); the camera sits distance_m from the aim point: the middle of the parts its scale shows of the target (both axis entities for midpoint), or an insert's detail (a part of the target or a prop)."
         },
         "lens": {
           "type": "object",

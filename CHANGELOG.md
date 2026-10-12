@@ -6,6 +6,11 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- An insert aims at its detail and a framed prop is held in frame (RV-15b, F-090, S-077): the detail is a part of the
+  insert's target or a prop, and S16's packet places each prop at every beat (its sample, the hand that holds it, its
+  flight or its rest), so VERTICAL_FRAMING covers both. The camera schemas' `position` text names the aim (camera,
+  camera_graph and camera_plan 2.0). The UGC's insert on the hands moved from above the creator's head to the hands;
+  no prose prompt changed. A moving camera's path is filed (F-204, RV-94).
 - The camera aims at the body it frames (RV-15a, F-090, owner O72, S-076): a shot aims at the middle of the parts its
   scale shows, not 1 m above the pelvis, and VERTICAL_FRAMING refuses a shown part outside the frame, up and down as
   well as across, at every beat a static shot lists. Sixteen shots across the four examples were re-authored
