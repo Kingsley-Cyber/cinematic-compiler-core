@@ -49,6 +49,17 @@ def test_each_causal_rule_rejects_its_violation(code, change):
     assert code in codes(beats)
 
 
+def test_an_effect_s_instant_does_not_change_what_it_sets():
+    """RV-07 (O91): an effect marked `at: start` still satisfies a hard cause's requirement of the same fact."""
+    fact = {"subject": {"kind": "prop", "id": "log"}, "property": "deployment", "value": "deployed"}
+    beats = [{"id": "b01", "t": 0, "dur": 1, "effects": [dict(fact, at="start")], "requires": [], "event_type": "action",
+              "causes": [{"to": "b02", "causal_strength": "hard", "why": "x"}]},
+             {"id": "b02", "t": 1, "dur": 1, "effects": [], "requires": [fact], "event_type": "action", "causes": []}]
+    assert p05_causal.edges_and_findings(beats)[1] == []
+    beats[0]["effects"] = [dict(fact, value="fallen", at="start")]
+    assert [f["code"] for f in p05_causal.edges_and_findings(beats)[1]] == ["CAUSE_EFFECT"]
+
+
 ENVELOPE = pipeline.run(QUERY, until="temporal", plans=PLANS)
 
 

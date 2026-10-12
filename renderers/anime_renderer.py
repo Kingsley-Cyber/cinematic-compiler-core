@@ -295,7 +295,8 @@ def _face_words(face, labels):
 def _subject_rows(envelope, kind, identity, states, labels, cover):
     """Initial conditions, then each change at the instant S06 commits it, then contacts on this subject."""
     own = sorted((s for s in states if s["subject"] == {"kind": kind, "id": identity}), key=lambda s: (s["t"], s["id"]))
-    caused = {e["to_state"]: e["t"] for e in _items(envelope, "edges", "state_transition")}  # S06's instant (F-061)
+    caused = {e["to_state"]: {c["property"]: c["t"] for c in e["changes"]}  # each change's S06 instant (F-061, F-132)
+              for e in _items(envelope, "edges", "state_transition")}
     rows = []
     previous = None
     for snapshot in own:
@@ -303,10 +304,12 @@ def _subject_rows(envelope, kind, identity, states, labels, cover):
         if previous is None:
             rows.append(f"{_num(snapshot['t'])} " + ",".join(f"{p}={v}" for p, v in sorted(snapshot["conditions"].items())))
         else:
-            changes = [f"{p} {previous['conditions'].get(p)}->{v}" for p, v in sorted(snapshot["conditions"].items())
-                       if previous["conditions"].get(p) != v]
-            if changes:
-                rows.append(f"{_num(caused.get(snapshot['id'], snapshot['t']))} " + ",".join(changes))
+            changes = {}
+            for p, v in sorted(snapshot["conditions"].items()):
+                if previous["conditions"].get(p) != v:
+                    changes.setdefault(caused.get(snapshot["id"], {}).get(p, snapshot["t"]), []).append(
+                        f"{p} {previous['conditions'].get(p)}->{v}")
+            rows += [f"{_num(t)} " + ",".join(texts) for t, texts in sorted(changes.items())]
         previous = snapshot
     for c in _items(envelope, "nodes", "contacts"):
         if c["b"]["kind"] == kind and c["b"]["id"] == identity:

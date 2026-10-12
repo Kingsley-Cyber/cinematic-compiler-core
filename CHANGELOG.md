@@ -6,6 +6,11 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The smoke bursts at 3.7 at A's body (RV-07, O91, F-082, F-132, S-048): a beat effect may say `at: start` (beat 1.3,
+  embedded in beat_plan and temporal_graph 1.6) and S06 commits it at its beat's start; b09's smoke burst and the log's
+  deployment take effect at 3.7, as the source says, and the spent pellet rests on the ground from 4.0. Each change in
+  an S06 transition carries its own instant (state_graph 1.2), and the prompts' "From t to the end" rules, their check,
+  the prop tracks and the first states read it. Every example re-bound.
 - CONTACT_WORLD exceptions are the owner's alone (RV-43, F-123, S-047): kernel/contact_world_exceptions.yaml (kernel
   log) holds them by the scene's query hash; S13 reads them through its packet; the motion plan loses its
   `contact_world_exceptions` field (motion_plan 2.0), so an authored exception fails the schema. Every example re-bound.

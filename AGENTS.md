@@ -101,10 +101,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 5.0; backlog 20.
-- Last session: S-047 (2026-10-12, applied): RV-43: CONTACT_WORLD exceptions come only from an owner-held, logged list.
-- Next slice: RV-07 The smoke bursts at 3.7 at A's body; the spent pellet falls and rests (O91) (step temporal).
-- Open findings: 96; decisions: 135 (0 proposed).
+- Layer order 1.7; rules 5.0; backlog 21.
+- Last session: S-048 (2026-10-12, applied): RV-07: the smoke bursts at 3.7 at A's body; an effect can take effect at its beat's start.
+- Next slice: RV-49 No body through another: an overlap check at S13, strikes measured to the target's surface, the failing poses re-blocked (step motion).
+- Open findings: 94; decisions: 135 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

@@ -54,6 +54,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-045 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | finish.md section 6 (a review after eig… | applied | the commit whose message names [S-045] | about 2 hours (the reviewers' reading included) | RV-42 (the deflect's one reading). | [S-045-principal-review-2.md](../sessions/S-045-principal-review-2.md) |
 | S-046 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-42 (PLAN-007); finding F-122… | applied | the commit whose message names [S-046] | about 40 minutes | RV-43 (CONTACT_WORLD exceptions from an owner-held list). | [S-046-rv-42-the-deflect-has-one-reading.md](../sessions/S-046-rv-42-the-deflect-has-one-reading.md) |
 | S-047 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-43 (PLAN-007); finding F-123… | applied | the commit whose message names [S-047] | about 40 minutes | RV-07 (the smoke bursts at 3.7, O91). | [S-047-rv-43-contact-world-exceptions-are-the-owner-s.md](../sessions/S-047-rv-43-contact-world-exceptions-are-the-owner-s.md) |
+| S-048 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-07 (PLAN-007); findings F-08… | applied | the commit whose message names [S-048] | about 50 minutes | RV-49 (no body through another). | [S-048-rv-07-the-smoke-bursts-at-3-7.md](../sessions/S-048-rv-07-the-smoke-bursts-at-3-7.md) |
 
 ## Status values
 

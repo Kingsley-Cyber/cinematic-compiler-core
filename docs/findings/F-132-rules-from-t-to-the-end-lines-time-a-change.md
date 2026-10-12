@@ -12,7 +12,7 @@ medium
 L6
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -45,4 +45,8 @@ none needed (F-061, ADR-O107)
 - F-061
 
 ## Resolution
-Open.
+RV-07 (S-048): each change in an S06 transition carries its own instant (state_graph 1.2), the transition the
+last of them; the prompts' "From t to the end" rules, their check (validators/prompt_validator.py), the prop tracks and
+the first states read it (renderers/prose_renderer.py `last_changes`). The wizard's acrobat@b11 to b12 now records
+posture at 7.8 and support at 8.6
+(tests/test_state_pass.py::test_an_effect_marked_at_start_takes_effect_at_its_beat_start).

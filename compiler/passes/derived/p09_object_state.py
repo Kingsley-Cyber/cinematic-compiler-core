@@ -49,7 +49,7 @@ def build(envelope):
         if e["to_state"] not in by_id:
             continue
         obj = by_id[e["to_state"]]["object"]
-        changes = [c for c in e["changes"] if c["property"] in internal[obj]]
+        changes = [{k: c[k] for k in ("property", "from", "to")} for c in e["changes"] if c["property"] in internal[obj]]
         if not changes:
             continue
         for beat in e["trigger_event"]:

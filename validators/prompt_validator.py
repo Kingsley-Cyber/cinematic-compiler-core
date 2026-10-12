@@ -728,20 +728,20 @@ def _where_checks(envelope, parts, labels, add):
 
 
 def _lasting_expected(envelope, labels):
-    ends = {(s["subject"]["kind"], s["subject"]["id"]): s["conditions"] for s in envelope["nodes"]["states"]["items"]
-            if s["id"].endswith("@end")}
-    last = {}
-    for beat in sorted(envelope["nodes"]["beats"]["items"], key=lambda b: (b["t"] + b["dur"], b["t"], b["id"])):
-        for effect in beat["effects"]:
-            last[(effect["subject"]["kind"], effect["subject"]["id"], effect["property"])] = (beat, effect["value"])
+    """Each property's last S06 change at the instant it took effect (F-132), when known and before the end: the
+    time-bounded rule it needs (read here from S06, not through the renderer)."""
+    subjects = {s["id"]: s["subject"] for s in envelope["nodes"]["states"]["items"]}
     names = {p["id"]: p["name"] for p in envelope["nodes"]["props"]["items"]}
-    out = []
-    for (kind, identity, prop), (beat, value) in last.items():
-        commit = beat["t"] + beat["dur"]
-        if value != "unknown" and ends.get((kind, identity), {}).get(prop) == value and \
-                commit < envelope["scene"]["duration_s"] - EPSILON:
-            out.append((commit, labels.get(identity) or names.get(identity) or identity.replace("_", " "), prop, value))
-    return out
+    last = {}
+    for edge in envelope["edges"]["state_transition"]["items"]:
+        subject = subjects[edge["to_state"]]
+        for change in edge["changes"]:
+            key = (subject["kind"], subject["id"], change["property"])
+            if key not in last or change["t"] >= last[key][0]:
+                last[key] = (change["t"], change["to"])
+    return [(t, labels.get(identity) or names.get(identity) or identity.replace("_", " "), prop, value)
+            for (_, identity, prop), (t, value) in last.items()
+            if value != "unknown" and t < envelope["scene"]["duration_s"] - EPSILON]
 
 
 def _rules_checks(envelope, parts, labels, mode, add):

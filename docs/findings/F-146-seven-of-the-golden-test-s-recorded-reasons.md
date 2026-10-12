@@ -52,4 +52,5 @@ none needed
 - F-082
 
 ## Resolution
-Open.
+Open. RV-07 (S-048) corrected PELLET's and SUBSTITUTION_POST's comments with the data (the smoke and the log at
+3.7); the rest waits for RV-50.

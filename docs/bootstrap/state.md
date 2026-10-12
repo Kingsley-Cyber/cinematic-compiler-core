@@ -6,17 +6,17 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 5.0; backlog 20.
+Layer order 1.7; rules 5.0; backlog 21.
 
 ## Last sessions
 
-- S-045 (applied): Principal review 2: five read-only reviewers, their gaps filed, the owner's ruling O107 recorded
 - S-046 (applied): RV-42: the deflect has one reading; a track says "toward X" only where the path reaches X
 - S-047 (applied): RV-43: CONTACT_WORLD exceptions come only from an owner-held, logged list
+- S-048 (applied): RV-07: the smoke bursts at 3.7 at A's body; an effect can take effect at its beat's start
 
 ## Next slices
 
-- RV-07 (next, step temporal): The smoke bursts at 3.7 at A's body; the spent pellet falls and rests (O91)
+- RV-49 (next, step motion): No body through another: an overlap check at S13, strikes measured to the target's surface, the failing poses re-blocked
 - RV-09 (ready, step camera): Hits are camera holds framing both bodies, no playback ramps; the source's camera directives (O92)
 - RV-10 (ready, step temporal): The kunai drive holds the kunai in B's right shoulder; the catch is a grasp plus a throw (O93)
 - RV-11 (ready, step render): DAG-excluded rows are N/A; cinematic compile refuses a non-deliverable prompt (O94)
@@ -55,7 +55,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-53 blocked: The source rows whose numbers contradict their words; O95 against O88 on two action keys — the owner's answers in F-148 and F-149
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 96
+## Open findings: 94
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -69,7 +69,6 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-030 (high, L5.5): Camera lacks C10's rules and the arc with the rotation
 - F-031 (critical, L6): Render wording the model does not follow
 - F-036 (high, L6): Aerial timing is not followed: takeoffs come late
-- F-082 (high, L1.1): O78 was applied backwards: the smoke bursts on landing at 4.0
 - F-083 (high, L5.5): Hits are slow-motion close-up inserts, and most of the source's holds are not printed
 - F-084 (high, L1.1): The kunai drive and the catch print as instant strikes, and the kunai floats over the downed B
 - F-085 (high, L6): Prompt checks never run at compile, and no prompt can be a deliverable
@@ -87,4 +86,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-151, session S-048, render R20.
+Decision ADR-O109, finding F-151, session S-049, render R20.

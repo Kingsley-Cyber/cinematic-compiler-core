@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:temporal_graph:1.5",
+  "$id": "urn:cinematic-compiler:schema:temporal_graph:1.6",
   "title": "S04 temporal graph: beats, temporal edges, beat-constraint edges",
   "description": "Beats are copied from the beat plan; temporal and beat_constraint edges are computed, never authored.",
   "type": "object",
@@ -343,7 +343,7 @@
         "effects": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/Fact"
+            "$ref": "#/$defs/Effect"
           }
         },
         "contacts": {
@@ -414,6 +414,35 @@
             "post"
           ],
           "description": "F2.2: at a contact on the prop, the sample just before (pre) or just after (post) it; a pair shares t and p, and a free prop moving into a contact needs one."
+        }
+      }
+    },
+    "Effect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "subject",
+        "property",
+        "value"
+      ],
+      "properties": {
+        "subject": {
+          "$ref": "#/$defs/Ref"
+        },
+        "property": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "at": {
+          "enum": [
+            "start",
+            "end"
+          ],
+          "description": "When the change takes effect inside its beat: at its start, or (the default) at its end; a change of hands takes effect at its possess or release (F-061). RV-07, O91."
         }
       }
     }

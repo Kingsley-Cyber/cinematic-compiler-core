@@ -474,7 +474,8 @@ def first_states(envelope, labels):
     which part, where it rests, or who carries it (S02 carried_by, O63) when it is neither held nor anywhere known, and
     each card state with the time it first changes ('line coiled until 8.00')."""
     states = _items(envelope, "nodes", "states")
-    caused = {e["to_state"]: e["t"] for e in _items(envelope, "edges", "state_transition")}  # S06's instant (F-061)
+    caused = {e["to_state"]: {c["property"]: c["t"] for c in e["changes"]}  # each change's S06 instant (F-061, F-132)
+              for e in _items(envelope, "edges", "state_transition")}
     out = {}
     for prop in _items(envelope, "nodes", "props"):
         own = sorted((s for s in states if s["subject"] == {"kind": "prop", "id": prop["id"]}), key=lambda s: (s["t"], s["id"]))
@@ -496,8 +497,8 @@ def first_states(envelope, labels):
             if key in ("holder", "location") or value == "unknown":
                 continue
             change = next((s for s in own[1:] if s["conditions"].get(key) != value), None)
-            phrases.append(f"{key} {_words(str(value))}" + (f" until {_time(caused.get(change['id'], change['t']))}"
-                                                            if change else ""))
+            phrases.append(f"{key} {_words(str(value))}" + (
+                f" until {_time(caused.get(change['id'], {}).get(key, change['t']))}" if change else ""))
         out[prop["id"]] = phrases or ["state unknown"]
     return out
 
@@ -609,7 +610,8 @@ def _spatial(envelope, lines, labels, rows):
 def _props(envelope, labels):
     blocks = []
     states = _items(envelope, "nodes", "states")
-    caused = {e["to_state"]: e["t"] for e in _items(envelope, "edges", "state_transition")}  # S06's instant (F-061)
+    caused = {e["to_state"]: {c["property"]: c["t"] for c in e["changes"]}  # each change's S06 instant (F-061, F-132)
+              for e in _items(envelope, "edges", "state_transition")}
 
     def who(value):
         return labels.get(value, _words(str(value)))
@@ -623,11 +625,12 @@ def _props(envelope, labels):
                 known = [f"{k} {who(v)}" for k, v in sorted(snap["conditions"].items()) if v != "unknown"]
                 rows.append((snap["t"], f"{_time(snap['t'])} " + (", ".join(known) or "state unknown")))
             else:
-                changes = [f"{k} {who(previous['conditions'].get(k))} -> {who(v)}"
-                           for k, v in sorted(snap["conditions"].items()) if previous["conditions"].get(k) != v]
-                if changes:
-                    t = caused.get(snap["id"], snap["t"])
-                    rows.append((t, f"{_time(t)} " + ", ".join(changes)))
+                changes = {}
+                for k, v in sorted(snap["conditions"].items()):
+                    if previous["conditions"].get(k) != v:
+                        changes.setdefault(caused.get(snap["id"], {}).get(k, snap["t"]), []).append(
+                            f"{k} {who(previous['conditions'].get(k))} -> {who(v)}")
+                rows += [(t, f"{_time(t)} " + ", ".join(texts)) for t, texts in sorted(changes.items())]
             previous = snap
         for c in _items(envelope, "nodes", "contacts"):
             if c["b"]["kind"] == "prop" and c["b"]["id"] == prop["id"]:
@@ -731,25 +734,30 @@ def _genre_block(envelope, frame_parts, labels):
     return f"[{title}]\n" + "\n".join(out)
 
 
-def _lasting(envelope, labels):
-    """Time-bounded rules (C13, T9): the last effect on a property, when its value is still the value at the end."""
-    ends = {(s["subject"]["kind"], s["subject"]["id"]): s["conditions"] for s in _items(envelope, "nodes", "states")
-            if s["id"].endswith("@end")}
-    names = {p["id"]: p["name"] for p in _items(envelope, "nodes", "props")}
+def last_changes(envelope):
+    """{(kind, id, property): (t, value)}: each property's last S06 change and the instant it took effect (F-132), when
+    its value is known and it takes effect before the end. The value lasts to the end: no later change follows."""
+    subjects = {s["id"]: s["subject"] for s in _items(envelope, "nodes", "states")}
     last = {}
-    for beat in sorted(_items(envelope, "nodes", "beats"), key=lambda b: (b["t"] + b["dur"], b["t"], b["id"])):
-        for effect in beat["effects"]:
-            last[(effect["subject"]["kind"], effect["subject"]["id"], effect["property"])] = (beat, effect["value"])
+    for edge in _items(envelope, "edges", "state_transition"):
+        subject = subjects[edge["to_state"]]
+        for change in edge["changes"]:
+            key = (subject["kind"], subject["id"], change["property"])
+            if key not in last or change["t"] >= last[key][0]:
+                last[key] = (change["t"], change["to"])
+    return {key: (t, value) for key, (t, value) in last.items()
+            if value != "unknown" and t < envelope["scene"]["duration_s"] - EPSILON}
+
+
+def _lasting(envelope, labels):
+    """Time-bounded rules (C13, T9): a property's last change, from the instant S06 says it took effect (F-132)."""
+    names = {p["id"]: p["name"] for p in _items(envelope, "nodes", "props")}
     rules = []
-    for (kind, identity, prop), (beat, value) in sorted(last.items(), key=lambda kv: (kv[1][0]["t"] + kv[1][0]["dur"],
-                                                                                         kv[0])):
-        if (value == "unknown" or ends.get((kind, identity), {}).get(prop) != value
-                or beat["t"] + beat["dur"] >= envelope["scene"]["duration_s"] - EPSILON):
-            continue
+    for (_, identity, prop), (t, value) in sorted(last_changes(envelope).items(), key=lambda kv: (kv[1][0], kv[0])):
         who = labels.get(identity) or names.get(identity) or _words(identity)
         shown = _words(labels.get(value, str(value)))
         keeps = f"stays {shown}" if shown == _words(prop) else f"keeps {_words(prop)} {shown}"
-        rules.append(f"From {_time(beat['t'] + beat['dur'])} to the end, {who} {keeps}.")
+        rules.append(f"From {_time(t)} to the end, {who} {keeps}.")
     return rules
 
 

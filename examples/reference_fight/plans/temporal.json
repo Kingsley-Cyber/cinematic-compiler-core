@@ -1,7 +1,7 @@
 {
  "step_id": "S04",
  "band": "L1",
- "packet_sha256": "sha256:fae0a2d8183086ad323f483c7ae0ba570ce8c337b28b66773d4a470024f401fb",
+ "packet_sha256": "sha256:b7ccbdc52ab65d1f6a3d9453a9bc369ecb4f8998ba0ae3affb86ff9f9a436acf",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -940,7 +940,8 @@
       "id": "smoke_pellet"
      },
      "property": "smoke",
-     "value": "burst"
+     "value": "burst",
+     "at": "start"
     },
     {
      "subject": {
@@ -948,7 +949,8 @@
       "id": "substitution_log"
      },
      "property": "deployment",
-     "value": "deployed"
+     "value": "deployed",
+     "at": "start"
     },
     {
      "subject": {

@@ -85,6 +85,29 @@ def test_a_change_of_hands_takes_effect_at_its_contact():
     snapshots, _, findings = replay(late, [("prop", "cup")], {("prop", "cup"): ["fill", "holder"]}, 3)
     assert findings == [] and {s["id"]: s["conditions"]["holder"] for s in snapshots}["cup@b01"] == "none"
 
+def test_an_effect_marked_at_start_takes_effect_at_its_beat_start():
+    """O91 (RV-07): an effect marked `at: start` commits at its beat's start, any other at its end; each change in a
+    transition carries its own instant, and the transition the last of them (F-132)."""
+    pellet = {"kind": "prop", "id": "pellet"}
+    burst = {"subject": pellet, "property": "smoke", "value": "burst", "at": "start"}
+    beats = [{"id": "b01", "t": 0, "dur": 1, "pos": {}, "facing": {}, "contacts": [], "effects": [],
+              "requires": [{"subject": pellet, "property": "smoke", "value": "sealed"}]},
+             {"id": "b02", "t": 1, "dur": 0.5, "pos": {}, "facing": {}, "contacts": [], "requires": [],
+              "effects": [burst, {"subject": pellet, "property": "location", "value": "ground"}]},
+             {"id": "b03", "t": 1.2, "dur": 0.6, "pos": {}, "facing": {}, "contacts": [], "requires": [],
+              "effects": [{"subject": pellet, "property": "spent", "value": "yes"}]}]
+    tables = {("prop", "pellet"): ["location", "smoke", "spent"]}
+    snapshots, transitions, findings = replay(beats, [("prop", "pellet")], tables, 3)
+    assert findings == [] and {s["id"]: s["conditions"]["smoke"] for s in snapshots}["pellet@b02"] == "burst"
+    assert [(e["to_state"], e["t"], [(c["property"], c["t"]) for c in e["changes"]]) for e in transitions] == [
+        ("pellet@b02", 1.0, [("smoke", 1.0)]), ("pellet@end", 1.8, [("location", 1.5), ("spent", 1.8)])]
+    late = [dict(b, effects=[{k: v for k, v in f.items() if k != "at"} for f in b["effects"]]) for b in beats]
+    snapshots, transitions, _ = replay(late, [("prop", "pellet")], tables, 3)
+    assert {s["id"]: s["conditions"]["smoke"] for s in snapshots}["pellet@b02"] == "sealed"
+    assert [(c["property"], c["t"]) for c in transitions[-1]["changes"]] == [("location", 1.5), ("smoke", 1.5),
+                                                                             ("spent", 1.8)]
+
+
 def test_unmet_requirement_and_same_time_conflict_are_refused():
     with pytest.raises(ContractError) as error:
         cup("state", edit=lambda p: p["beats"][2]["requires"].__setitem__(0, {

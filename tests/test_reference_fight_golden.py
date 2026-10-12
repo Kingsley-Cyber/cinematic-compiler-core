@@ -234,14 +234,17 @@ def test_props_cast_and_anime_directives_survive():
 
 # Owner O48 (2026-10-11, probes R12 and R17, as in R1-R5): the source keeps the log 'hidden in A coat' until 3.7, but the
 # model draws a later object from the start whatever the prompt says. The log stands beside A as a post from 0.0 and is
-# deployed into A's place in the smoke at the substitution (card state 'standing').
+# deployed into A's place in the smoke at the substitution (card state 'standing'). Owner O91 (RV-07): the deployment
+# takes effect as the smoke bursts, at 3.7, as the source says ("3.7 A deploys substitution log at A former position"),
+# no longer at the substitution's end (4.0).
 SUBSTITUTION_POST = ["0 deployment=standing,holder=none,location=ground", "0 p[0.4,1,5.3] at rest"]
 
 
 def test_the_substitution_log_stands_as_a_post_from_the_start():
     assert REFERENCE["substitution_log"][0].startswith("0.0 not present,hidden in A coat")
+    assert REFERENCE["substitution_log"][1].startswith("3.7 A deploys substitution log")
     assert SPEC["substitution_log"][:2] == SUBSTITUTION_POST
-    assert "4 deployment standing->deployed" in SPEC["substitution_log"]
+    assert "3.7 deployment standing->deployed" in SPEC["substitution_log"]
 
 
 # Owner O23 (2026-10-11, backlog M9-02): strike, throw and release contacts happen at their key pose, so bow, impact
@@ -303,16 +306,20 @@ def test_the_aerial_spans_declare_their_hang_time():
     assert all(any(t0 < t < t1 for t0, t1 in HANG_SPANS[entity]) for entity, t in floats)
 
 
-# Owner O78 (F-065, backlog M9-09e): the smoke pellet does not rest in the air; A's hand throws it down at 3.7 and it
-# bursts on the ground at 4.0 (the source's burst time) and stays there. Owner O89 (S-039): it leaves A's right hand
-# (O91 moves the burst to 3.7 in RV-07).
+# Owner O91 (RV-07, F-082): the smoke bursts at 3.7 at A's body ("3.7 A deploys smoke pellet at current position ...
+# SMOKE BURST") and the spent pellet falls and rests: it leaves A's right hand at 3.7 (O89, S-039) and lies on the ground
+# from 4.0, so it does not rest in the air (O78, F-065). S-024 had it burst on landing at 4.0, the reverse of O78's order.
 PELLET = [(3.7, [1.18, 0.99, 4.85], [0, -1.83, 0]), (4.0, [1.18, 0.0, 4.85], [0, 0, 0])]
+PELLET_STATES = ["3.7 smoke sealed->burst", "4 location unknown->ground"]
 
 
-def test_the_smoke_pellet_falls_and_bursts_on_the_ground():
+def test_the_smoke_bursts_at_a_s_body_and_the_spent_pellet_falls_and_rests():
     samples = sorted((s["t"], s["p"], s["v"]) for b in ENVELOPE["nodes"]["beats"]["items"]
                      for s in b.get("prop_samples", []) if s["prop"] == "smoke_pellet")
     assert samples == PELLET
+    assert REFERENCE["smoke_pellet"][1].startswith("3.7 A deploys smoke pellet") and "SMOKE BURST" in REFERENCE[
+        "smoke_pellet"][1]
+    assert all(row in SPEC["smoke_pellet"] for row in PELLET_STATES)
 
 
 def test_render_txt_is_the_render_node():

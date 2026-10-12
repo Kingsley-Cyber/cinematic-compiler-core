@@ -1,10 +1,10 @@
 """S04 checks on an authored beat plan, using only the plan and its packet (so anyone can re-run them).
 
 Rules: unique ids; times inside the duration (or budget); actor/participants/parts resolve to the packet;
-pos + facing for every entity in a beat; requires/effects use the closed vocabulary; contacts use declared
-types and parts (a contact happens at its beat's end, or its start when marked `at: start`); causes point at real
-later-or-same-time beats; no filler beats; modes come from the archetype card (mode_coherence) and a mode change needs
-a beat that causes it (mode_transition).
+pos + facing for every entity in a beat; requires/effects use the closed vocabulary (an effect takes effect at its
+beat's end, or its start when marked `at: start`, O91); contacts use declared types and parts (a contact happens at its
+beat's end, or its start when marked `at: start`); causes point at real later-or-same-time beats; no filler beats;
+modes come from the archetype card (mode_coherence) and a mode change needs a beat that causes it (mode_transition).
 Teleport (owner O12): a body faster than 25 m/s between the anchors of two of its consecutive beats is refused
 (TELEPORT), unless the earlier beat is a substitution with that body as actor and the substitution changes a prop's
 state (the decoy revealed; the owner's rule also names the smoke pellet and the log, generalised here to any prop).
@@ -147,7 +147,8 @@ def validate(plan, packet):
 def _prop_support(beats, tops):
     """PROP_SUPPORT (owner O78, F-065): a free prop at rest has something under it."""
     findings, held = [], holds(beats)
-    facts = sorted((b["t"] if kind == "requires" else b["t"] + b["dur"], f["subject"]["id"], f["property"], f["value"])
+    facts = sorted((b["t"] if kind == "requires" or f.get("at") == "start" else b["t"] + b["dur"], f["subject"]["id"],
+                    f["property"], f["value"])
                    for b in beats for kind in ("requires", "effects") for f in b[kind] if f["subject"]["kind"] == "prop")
     for beat in beats:
         for sample in beat.get("prop_samples", []):

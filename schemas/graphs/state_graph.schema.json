@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:state_graph:1.1",
+  "$id": "urn:cinematic-compiler:schema:state_graph:1.2",
   "title": "S06 state graph: one state per subject per beat (+ end), transitions with triggering beats",
-  "description": "States are replayed from the beat plan: requires are read at t, effects commit at t + dur; a property's starting value comes only from its first requirement, else unknown. pos/facing come from the beat (authoritative) or are carried from the entity's last anchor (pos_source says which).",
+  "description": "States are replayed from the beat plan: requires are read at t, effects commit at t + dur (at t when marked `at: start`, O91; a change of hands at its possess or release, F-061); a property's starting value comes only from its first requirement, else unknown. pos/facing come from the beat (authoritative) or are carried from the entity's last anchor (pos_source says which).",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -133,7 +133,7 @@
           "t": {
             "type": "number",
             "minimum": 0,
-            "description": "The instant the changes take effect: the beat's end, or for a change of hands the instant of the possess or release that makes it (F-061, RV-08)."
+            "description": "The instant the last of the changes takes effect; each change carries its own (F-132)."
           },
           "changes": {
             "type": "array",
@@ -144,7 +144,8 @@
               "required": [
                 "property",
                 "from",
-                "to"
+                "to",
+                "t"
               ],
               "properties": {
                 "property": {
@@ -156,6 +157,11 @@
                 },
                 "to": {
                   "type": "string"
+                },
+                "t": {
+                  "type": "number",
+                  "minimum": 0,
+                  "description": "The instant this change takes effect: its beat's end, its start for an effect marked `at: start` (O91), or for a change of hands the instant of the possess or release that makes it (F-061); the last such commit when several land between two states (F-132)."
                 }
               }
             }

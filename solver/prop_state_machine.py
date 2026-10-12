@@ -1,9 +1,11 @@
 """S06 replay: states of every entity, prop and surface at each beat start and at the scene end.
 
 requires are read at t, before the beat's own effects; effects commit at t + dur (a beat starting when another ends
-sees its effects), except a change of hands (F-061, RV-08): a prop's holder change commits at the instant of its
-beat's possess (to the new holder) or release (to none) of that prop, and an entity's possession change at its own
-possess or release, so a throw that lets go at its pose (`at: start`, O23) frees the prop at that instant.
+sees its effects), or at t when the effect says `at: start` (O91, RV-07: the smoke bursts as the swap begins), except
+a change of hands (F-061, RV-08): a prop's holder change commits at the instant of its beat's possess (to the new
+holder) or release (to none) of that prop, and an entity's possession change at its own possess or release, so a throw
+that lets go at its pose (`at: start`, O23) frees the prop at that instant. Each change in a transition carries the
+instant it took effect (F-132), which the prompts' time-bounded rules read.
 A property's starting value is the value its first requirement asserts when that comes before any effect;
 otherwise it is "unknown". A chained clip (M5.5) starts from the previous clip's end values instead, and a first
 requirement must then agree with them. Conflicting effects committing at the same time are refused.
@@ -26,7 +28,8 @@ def _contact_time(beat, contact):
 
 
 def commit_time(beat, fact):
-    """When an effect commits: at the possess or release that hands its prop over (F-061), else at the beat's end."""
+    """When an effect commits: at the possess or release that hands its prop over (F-061), else at the beat's start
+    when it says `at: start` (O91), else at the beat's end."""
     kind, sid, prop = _key(fact)
     for contact in beat.get("contacts", []):
         if contact["contact_type"] not in ("possess", "release") or contact["b"]["kind"] != "prop":
@@ -37,7 +40,7 @@ def commit_time(beat, fact):
         gives = contact["b"]["id"] if contact["contact_type"] == "possess" else "none"
         if (kind, prop) == ("entity", "possession") and contact["a"]["id"] == sid and fact["value"] == gives:
             return _contact_time(beat, contact)
-    return beat["t"] + beat["dur"]
+    return beat["t"] + (0 if fact.get("at") == "start" else beat["dur"])
 
 
 def replay(beats, subjects, tables, end_time, carried=None):
@@ -99,6 +102,8 @@ def replay(beats, subjects, tables, end_time, carried=None):
                            for p in tables[(kind, sid)] if prior["conditions"][p] != conditions[p]]
                 if changes:
                     landed = [c for c in commits if prior["t"] + EPSILON < c[0] <= time + EPSILON and c[2][:2] == (kind, sid)]
+                    for change in changes:
+                        change["t"] = round(max((c[0] for c in landed if c[2][2] == change["property"]), default=time), 6)
                     transitions.append({"id": f"{prior['id']}__{node['id']}", "from_state": prior["id"],
                                         "to_state": node["id"], "trigger_event": sorted({c[1] for c in landed}),
                                         "t": round(max((c[0] for c in landed), default=time), 6), "changes": changes})

@@ -12,7 +12,7 @@ high
 L1.1
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -49,4 +49,9 @@ ADR-O91
 - F-061
 
 ## Resolution
-Open.
+RV-07 (S-048, O91): a beat effect may take effect at its beat's start (`at: start`, schemas/beat.schema.json
+1.3), and S06 commits it then (solver/prop_state_machine.py `commit_time`). b09's smoke burst and the log's deployment
+take effect at 3.7, as the source says; the spent pellet leaves A's right hand at 3.7 and rests on the ground from 4.0.
+The prompts print "smoke sealed until 3.70", "3.70 smoke sealed -> burst" and "From 3.70 to the end, smoke pellet keeps
+smoke burst" (tests/test_reference_fight_golden.py::test_the_smoke_bursts_at_a_s_body_and_the_spent_pellet_falls_and_rests,
+tests/test_state_pass.py::test_an_effect_marked_at_start_takes_effect_at_its_beat_start).

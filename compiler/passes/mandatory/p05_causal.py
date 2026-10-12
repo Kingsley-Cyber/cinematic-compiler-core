@@ -1,7 +1,8 @@
 """S05 pass (band L1): causal edges from the beat plan, checked, plus scene.quadrant.
 
 Checks: no cycles; while `linear` is true (owner: linear only) a beat has at most one outgoing cause;
-a hard cause's target starts at or after the source ends and one source effect satisfies a target requirement;
+a hard cause's target starts at or after the source ends and one source effect satisfies a target requirement (the
+same subject, property and value; an effect's `at` says when it takes effect, not what it sets);
 a soft cause's target starts at or after the source starts; every link's `why` states a cause (CAUSE_REASON,
 validators/cause_reason.py: not a timeline template, an identifier or a sentence about nobody).
 Quadrant (owner table): causal = branching + parallel effects + prerequisites (0–2 each); style 0–2;
@@ -33,6 +34,10 @@ def _band(value, edges):
     return next(score for limit, score in edges if value <= limit)
 
 
+def _fact(effect):
+    return {k: effect[k] for k in ("subject", "property", "value")}
+
+
 def edges_and_findings(beats, *, linear=True):
     by_id = {b["id"]: b for b in beats}
     edges, findings = [], []
@@ -50,7 +55,7 @@ def edges_and_findings(beats, *, linear=True):
             if cause["causal_strength"] == "hard":
                 if target["t"] + EPSILON < beat["t"] + beat["dur"]:
                     findings.append(_finding("CAUSE_TIMING", "A hard cause's target starts before the source ends", edge["id"]))
-                if not any(e == r for e in beat["effects"] for r in target["requires"]):
+                if not any(_fact(e) == r for e in beat["effects"] for r in target["requires"]):
                     findings.append(_finding("CAUSE_EFFECT", "No source effect satisfies a target requirement", edge["id"]))
             elif target["t"] + EPSILON < beat["t"]:
                 findings.append(_finding("CAUSE_TIMING", "A soft cause's target starts before the source", edge["id"]))

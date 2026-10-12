@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:beat:1.2",
+  "$id": "urn:cinematic-compiler:schema:beat:1.3",
   "title": "Beat (shared definition)",
   "description": "One timed event of a scene with its actor, participants, positions, facings, requirements, effects, contacts, causes and prop samples (S04). Shared by the beat plan and the temporal graph (owner O65); Contact is embedded from contact.schema.json by kernel/shared_schemas.py.",
   "$defs": {
@@ -52,6 +52,35 @@
         "value": {
           "type": "string",
           "minLength": 1
+        }
+      }
+    },
+    "Effect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "subject",
+        "property",
+        "value"
+      ],
+      "properties": {
+        "subject": {
+          "$ref": "#/$defs/Ref"
+        },
+        "property": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "at": {
+          "enum": [
+            "start",
+            "end"
+          ],
+          "description": "When the change takes effect inside its beat: at its start, or (the default) at its end; a change of hands takes effect at its possess or release (F-061). RV-07, O91."
         }
       }
     },
@@ -259,7 +288,7 @@
         "effects": {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/Fact"
+            "$ref": "#/$defs/Effect"
           }
         },
         "contacts": {
