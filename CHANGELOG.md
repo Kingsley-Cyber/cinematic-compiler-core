@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The vanish lets go (RV-06, O90, F-081, S-042): at the substitution A's feet and left hand let go; the rope dart drops
+  and lies on the ground until A takes it at 7.5 (the 5.9 release goes); A reappears on both feet at 4.4; VANISHED_BODY
+  refuses a vanished body's open supports and holds; A's rows 4.4-6.3 and the slide's rule stop holding the dart
+  (recorded deviations); the 7.5 crouch and B's 7.5 anchor move with the dart; shot c10 frames A's feet.
 - The UGC creator takes the glasses on the table at the first frame (RV-03, F-077, S-041): the query's "Creator
   holding the glasses"; they rest on the creator's right, where the right hand reaches them; PROP_KINEMATICS keeps a
   resting prop where it rests when a contact takes it; the UGC keys follow their words (both hands at the glasses,

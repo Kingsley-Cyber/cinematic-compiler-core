@@ -34,7 +34,11 @@ GROUNDED_RULES = {"k_rules_18": "ROPE DART REGRAPPLE at 7.5 from a crouch,left h
                   "k_rules_27": "kunai picked up from ground at 8.0,A crouched by it"}
 # Owner O79 (F-067, backlog M9-09f): O21 wins, A starts at y=10, so the query and its reference item say so.
 START_HEIGHT = {"k_preface_04": "A starts ABOVE the frame, falling from y=10"}
-REWORDED = {**PREFACE_RECOUNTED, **GROUNDED_RULES, **START_HEIGHT}
+# Owner O90 (F-081, RV-06, S-042): A lets go of everything at the substitution (3.7); the rope dart lies on the ground
+# from then until A takes it at 7.5, so the slide no longer releases it.
+VANISH_RULE = {"k_rules_26": "rope dart left on the ground at 3.7 when A vanishes,picked up again at 7.5 during wall-push "
+                             "recovery"}
+REWORDED = {**PREFACE_RECOUNTED, **GROUNDED_RULES, **START_HEIGHT, **VANISH_RULE}
 
 
 def test_every_kernel_and_reference_item_is_in_the_render():
@@ -73,9 +77,11 @@ ROOT_TURNS = ((5.1, 0, -360), (6.3, 2, -360))
 # the trunk (O84); 0.6 before. Re-blocked in S-030 (CONTACT_WORLD, ADR-O83, R-33): the left hand reaches the rope dart
 # on the ground at 7.5 and A crouches at the kunai, the right hand on it at 8.0 (each within 0.15 m; the least change
 # of root, crouch and arm, both soles on the ground). O89 (S-039): the kunai is deflected at A's right foot, so it lands
-# at [1.4, 0, 3.77] (O77's v_post), and the 8.0 crouch moves with it, pose kept (+0.8 x, -0.23 z).
+# at [1.4, 0, 3.77] (O77's v_post), and the 8.0 crouch moves with it, pose kept (+0.8 x, -0.23 z). O90 (S-042): the
+# rope dart drops from A's left hand at the substitution and rests at [1.18, 0, 4.51], so the 7.5 crouch moves with
+# it, pose and facing kept (+0.78 x, +0.71 z).
 GROUNDED_PICKUPS = {  # O18: A's rows at the two pickups, crouched on the ground (from A's own crouches at 5.9 and 9.5)
-    7.5: [7.5, "rope_dart_regrapple", [-0.07, 0.57, 3.51], [-330, 30, -360],
+    7.5: [7.5, "rope_dart_regrapple", [0.71, 0.57, 4.22], [-330, 30, -360],
           {"Sp": [59.6, 0, 0], "LUL": [-110.2, 0, 0], "RUL": [-108.5, 0, 0], "LL": [104.6, 0, 0], "RL": [108, 0, 0],
            "LA": [-65.1, -4, 0], "RA": [-45, 0, 0], "LFA": [-27, 0, 0], "RFA": [-45, 0, 0], "HD": [10, 0, 0], "NK": [0, 0, 0]}],
     8.0: [8.0, "pull_b_toward_pillar", [0.91, 0.59, 4.0], [-330, 90, -360],
@@ -106,6 +112,27 @@ GROUNDED_DESCRIPTIONS = {
 # (O72, O82, O85): the landing root re-rooted to 8.71 so the soles meet the top under the anime body (O84).
 OPENING = {0: [0, 10, 3.5], 0.6: [0, 8.71, 5.8]}
 OPENING_WORDS = {0.6: ("both feet on pillar top y=7.2", "both feet on pillar top y=8")}
+# Owner O90 (F-081, S-042): A holds no rope dart while it is gone or after, until 7.5, so A's own rows stop saying so.
+ROPE_DART_WORDS = {
+    4.4: [("L:arm fwd mid bent3 holding rope dart", "L:arm fwd mid bent3"),
+          ("left hand holding rope dart", "left hand empty, rope dart on the ground")],
+    4.7: [("L:arm fwd mid bent3 holding rope dart", "L:arm fwd mid bent3"),
+          ("left hand still holding rope dart", "left hand empty, rope dart on the ground")],
+    5.1: [("L:arm fwd mid bent3 holding rope dart", "L:arm fwd mid bent3"),
+          ("left hand still holding rope dart", "left hand empty, rope dart on the ground")],
+    5.5: [("L:arm fwd mid bent3 holding rope dart", "L:arm fwd mid bent3")],
+    5.9: [("L:arm fwd low bent3 holding rope dart", "L:arm fwd low bent3"),
+          ("left hand still holding rope dart", "left hand empty, rope dart on the ground")],
+    6.3: [("left hand no longer holding rope dart, rope dart has been released during the slide",
+           "left hand empty, rope dart on the ground since the substitution")]}
+WORDS = {t: [pair] for t, pair in OPENING_WORDS.items()} | ROPE_DART_WORDS
+
+
+def reworded(t, text):
+    for old, new in WORDS.get(t, []):
+        assert old in text, (t, old)
+        text = text.replace(old, new)
+    return text
 
 
 def normalised(row):
@@ -168,9 +195,8 @@ def test_a_roots_and_joints_are_the_reference_rows_with_the_recorded_deviations(
     reference = [row for row in REFERENCE["A"] if row[0] < 10 and row[0] not in VANISHED]  # 10.0 hold: no beat
     assert [[row["t"], row["label"], row["pos"], row["rot"], row["joints"]] for row in SPEC["A"]] == \
         [normalised(row) for row in reference]
-    assert all(row["desc"].endswith(ref[5].replace(*OPENING_WORDS.get(row["t"], ("", ""))))
+    assert all(row["desc"].endswith(reworded(row["t"], ref[5]))
                for row, ref in zip(SPEC["A"], reference, strict=True) if row["t"] not in GROUNDED_PICKUPS)
-    assert all(old in ref[5] for t, (old, _) in OPENING_WORDS.items() for ref in reference if ref[0] == t)
     pinned = {row["t"]: row["desc"] for row in SPEC["A"] if row["t"] in GROUNDED_PICKUPS}
     assert pinned.keys() == GROUNDED_DESCRIPTIONS.keys()
     assert all(pinned[t].endswith(text) for t, text in GROUNDED_DESCRIPTIONS.items())

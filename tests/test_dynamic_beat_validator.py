@@ -238,3 +238,26 @@ def test_a_resting_prop_is_where_it_rests_when_a_contact_takes_it():
                                                "k at rest moves between 0.0 and 1.0 with no contact before it")]
     assert taken_at(1.0, [0.3, 0.75, 0.3]) == []                       # taken where it rests
     assert taken_at(0.5, [0.2, 1.1, 0.3]) == []                        # taken at 0.5, then lifted
+
+
+def test_a_vanished_body_lets_go_of_its_supports_and_holds():
+    """VANISHED_BODY (owner O90, F-081): from a substitution until its actor's next beat the actor has no open support
+    or hold; letting go at the substitution's start, and standing again when it reappears, pass."""
+    from planner.dynamic_beat_validator import _vanished
+
+    def plan(release_at):
+        foot = {"contact_type": "support", "a": {"kind": "entity", "id": "x", "part": "left_foot"},
+                "b": {"kind": "surface", "id": "ground", "part": None}, "at": "start"}
+        let_go = {**foot, "contact_type": "release"}
+        base = {"pos": {}, "participants": [], "event_type": "action", "actor": "x"}
+        beats = [{**base, "id": "b01", "t": 0.0, "dur": 1.0, "contacts": [foot]},
+                 {**base, "id": "b02", "t": 1.0, "dur": 1.0, "event_type": "substitution", "contacts": []},
+                 {**base, "id": "b03", "t": 2.0, "dur": 1.0, "contacts": []},
+                 {**base, "id": "b04", "t": 3.0, "dur": 1.0, "contacts": []}]
+        if release_at == 1.0:                                    # lets go as it vanishes, stands again at 2.0
+            beats[1]["contacts"], beats[2]["contacts"] = [let_go], [foot]
+        else:
+            beats[3]["contacts"] = [let_go]
+        return [(f["code"], f["beat"]) for f in _vanished(beats)]
+    assert plan(1.0) == []                                       # lets go as it vanishes, stands again at 2.0
+    assert ("VANISHED_BODY", "b02") in plan(3.0)                  # the foot stays on the ground while x is gone

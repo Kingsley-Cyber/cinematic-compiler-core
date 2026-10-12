@@ -101,10 +101,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 3.1; backlog 16.
-- Last session: S-041 (2026-10-11, applied): RV-03: the UGC pickup on the table, no resting-prop jump, the UGC poses agree with their words.
-- Next slice: RV-06 The vanish (O90): A's supports and holds end at 3.7; the rope dart on the ground until 7.5 (step temporal).
-- Open findings: 75; decisions: 131 (0 proposed).
+- Layer order 1.7; rules 3.1; backlog 17.
+- Last session: S-042 (2026-10-11, applied): RV-06: the vanish: A's supports and holds end at 3.7; the rope dart lies on the ground until 7.5.
+- Next slice: RV-02b CONTACT_WORLD measures releases (a thrown or dropped prop leaves the hand where the hand is); B's kunai throw re-staged, since B's 2.0 hand is on A's side of A's 2.5 foot (S-039) (step motion).
+- Open findings: 74; decisions: 131 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

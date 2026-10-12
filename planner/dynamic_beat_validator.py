@@ -258,7 +258,8 @@ def vanish_windows(beats):
 
 
 def _vanished(beats):
-    """VANISHED_BODY: no other beat lists, anchors or touches with a substituted body before it reappears."""
+    """VANISHED_BODY: no other beat lists, anchors or touches with a substituted body before it reappears, and none of
+    its supports or holds stays open inside that window (owner O90, F-081): it lets go when it vanishes."""
     findings = []
     for actor, sub, start, back in vanish_windows(beats):
         for beat in beats:
@@ -266,7 +267,25 @@ def _vanished(beats):
             if inside and beat["actor"] != actor and (actor in beat["pos"] or any(
                     p["id"] == actor for p in beat["participants"]) or any(c["a"]["id"] == actor for c in beat["contacts"])):
                 findings.append(_finding("VANISHED_BODY", "A substituted body appears before it reappears", beat["id"], actor))
+        for part, target, opened, closed in _open_contacts(beats, actor):
+            if opened < (math.inf if back is None else back) - EPSILON and (closed is None or closed > start + EPSILON):
+                findings.append(_finding("VANISHED_BODY", f"{actor}'s {part} stays on {target} while it is gone (owner O90)",
+                                         sub, [opened, closed]))
     return findings
+
+
+def _open_contacts(beats, actor):
+    """[(part, target, opened, closed or None)]: the actor's supports and holds, each from its contact to its release."""
+    out, open_ = [], {}
+    events = sorted(((_at(b, c), c) for b in beats for c in b["contacts"] if c["a"]["id"] == actor),
+                    key=lambda e: (e[0], e[1]["contact_type"] != "release"))
+    for t, c in events:
+        pair = (c["a"].get("part"), c["b"]["id"], c["b"].get("part"))
+        if c["contact_type"] in ("support", "possess"):
+            open_.setdefault(pair, t)  # a second opening of an open pair is S07's CONTACT_DUPLICATE
+        elif c["contact_type"] == "release" and pair in open_:
+            out.append((pair[0], pair[1], open_.pop(pair), t))
+    return out + [(pair[0], pair[1], t, None) for pair, t in open_.items()]
 
 
 def _at(beat, contact):

@@ -12,7 +12,7 @@ high
 L1.1
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -47,4 +47,10 @@ ADR-O90
 - ADR-O90
 
 ## Resolution
-Open.
+RV-06 (S-042, O90): at the substitution (3.7) A's feet and left hand let go; the rope dart drops from the hand and lies on
+the ground from 4.0 until A takes it at 7.5 (the 5.9 release and its sample are gone); A reappears at 4.4 on both feet.
+VANISHED_BODY refuses a vanished body's support or hold left open while it is gone
+(tests/test_dynamic_beat_validator.py::test_a_vanished_body_lets_go_of_its_supports_and_holds). A's rows from 4.4 to
+6.3 no longer hold the rope dart and the slide's rule says it was left at the substitution, each recorded in the golden
+test (ROPE_DART_WORDS, VANISH_RULE); the 7.5 crouch and B's 7.5 anchor moved with the dart; shot c10 is full so A's
+feet show.

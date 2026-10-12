@@ -1,7 +1,7 @@
 {
  "step_id": "S16",
  "band": "L5.5",
- "packet_sha256": "sha256:0bb5d9bef68f9f5e91f71ef0bf2f5171b127140ee52ae2089f223234a0bed04d",
+ "packet_sha256": "sha256:1558a80208fa6d8c2968e07d4db39f782c4346cf1f443d044cfc477854df40de",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -737,13 +737,13 @@
     "ref": "b11"
    },
    "framing": {
-    "scale": "medium",
+    "scale": "full",
     "subjects": [
      "ninja_lean",
      "ninja_broad"
     ],
     "detail": null,
-    "visible_action": "A reappears behind B, right elbow cocked."
+    "visible_action": "A reappears behind B on both feet, right elbow cocked."
    },
    "angle": {
     "elevation_deg": 0,
@@ -752,7 +752,7 @@
    },
    "position": {
     "target": "midpoint",
-    "distance_m": 1.68,
+    "distance_m": 3.2,
     "side": "left"
    },
    "lens": {
