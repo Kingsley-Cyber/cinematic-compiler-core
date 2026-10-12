@@ -6,6 +6,8 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The S04 instructions and the validator's docstring teach the rule the code applies (RV-67, F-170, S-065): a resting
+  prop stays where it rests at a contact's instant (F-077), and the log's first state is "standing" (O48).
 - A substitution exempts only its decoy (RV-66, F-169, S-064): the prop it changes and places within 0.15 m of its
   actor's anchor may appear and change there with no hand (the log at A's place, O48); any other prop a substitution
   moves or changes needs a contact, at S04 and S07. The S04 instructions say so; no example changed.

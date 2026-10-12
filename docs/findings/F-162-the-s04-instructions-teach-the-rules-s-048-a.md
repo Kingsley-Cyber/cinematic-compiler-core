@@ -12,7 +12,7 @@ medium
 L1.1
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -54,3 +54,5 @@ releases on a key, the vanished body, prop samples, the decoy's swap, first plac
 tests/test_instructions.py fails when a code S04 to S07 emit, or one S08 emits, is missing from its step's
 instructions. C21's note follows the code (knowledge map 9). RV-20's prompt part for S11 to S17 is RV-65; RV-20 keeps
 external_inputs.
+Resolved again in RV-67 (S-065): the two sentences that taught what the code refuses now follow it (F-170); the test
+checks the codes' names, and the wording is checked by review.

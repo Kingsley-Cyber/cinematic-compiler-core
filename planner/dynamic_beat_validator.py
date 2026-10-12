@@ -16,11 +16,12 @@ instant where its actor has a key, the start of a beat that lists it.
 Prop kinematics (owner O8, PROP_KINEMATICS): a beat's prop samples sit inside the beat and name declared props; a held
 prop stays within 2 m of its holder's anchor; between two samples of a free prop with no contact on it in between, a
 moving prop follows gravity from the first sample's velocity to the second position within 0.25 m, and a prop at rest
-(v null or zero) does not move unless a contact on it at the second sample picks it up or knocks it down, and a contact
-between two samples moves it only by taking hold of it (it is held at the second sample); any other needs a sample at
-its instant (F-138); the substitution's decoy, the prop it changes and places within 0.15 m of its actor's anchor at
-its start (O12, O48; F-169), appears there with no hand, and no other prop may. A float
-(stylised, no gravity) is allowed in anime only. The 2 m reach and the 0.25 m tolerance are Claude's interpretation.
+(v null or zero) stays where it rests: a contact at the second sample takes or strikes it there, so it is still in its
+place at that instant (F-077); a contact between two samples moves it only by taking hold of it (it is held at the
+second sample), and any other move needs a sample at the contact's instant (F-138); the substitution's decoy, the
+prop it changes and places within 0.15 m of its actor's anchor at its start (O12, O48; F-169), appears there with no
+hand, and no other prop may. A float (stylised, no gravity) is allowed in anime only. The 2 m reach and the 0.25 m
+tolerance are Claude's interpretation.
 Surface height (owner O21, audit X7, SURFACE_HEIGHT): when a foot starts bearing weight on a surface whose top is known
 (its world card's geometry text, "from y=0 to y=8"; a floor without one sits at the convention's ground), the
 performer's root (its anchor at that instant; a landing between two keys has none and is not judged) lies between

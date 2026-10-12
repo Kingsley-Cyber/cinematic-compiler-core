@@ -12,7 +12,7 @@ medium
 L1.1
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -48,4 +48,8 @@ none needed
 - ADR-O48
 
 ## Resolution
-Open.
+RV-67 (S-065): planner/prompts/beat_planning.txt and planner/dynamic_beat_validator.py's docstring say a resting prop
+stays where it rests (a contact at the second sample takes or strikes it there, F-077), a contact between two samples
+moves it only by taking hold of it, and any other move needs a sample at the contact's instant; the first-state
+example reads "deployment standing" (O48). tests/test_instructions.py still checks names only; the wording is checked
+by review.

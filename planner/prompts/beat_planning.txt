@@ -36,7 +36,7 @@ States
   unknown. A chained clip starts from chained_from's end values, and a first requirement must agree with them.
 - First states (PROP_FIRST_STATE): at the first beat every prop's holder and card states are known, and its location
   too unless it starts held or carried on a body as the brief declares (e.g. kunai holder B, line coiled, deployment
-  hidden); a prop already in a hand at the start gets its possess contact with "at": "start".
+  standing); a prop already in a hand at the start gets its possess contact with "at": "start".
 - An entity's possession and its prop's holder agree at every beat and at the end (POSSESSION_MISMATCH). S06 also
   keeps every subject present once at every beat and gives every state change its triggering beat
   (CONTINUITY_PRESENCE, CONTINUITY_TRIGGER).
@@ -62,13 +62,14 @@ Prop samples (owner O8)
   float with no gravity, anime only.
 - PROP_KINEMATICS: samples name declared props and sit inside their beat; a held prop stays within 2 m of its
   holder's anchor; between two samples of a free prop with no contact on it in between, a moving prop follows gravity
-  from the first sample's velocity to the second position within 0.25 m, and a prop at rest does not move unless a
-  contact on it at the second sample picks it up or knocks it down. A contact between two samples moves a resting
-  prop only by taking hold of it (it is held at the second sample); any other move needs a sample at the contact's
-  instant. Two samples share a time only as a "pre" and a "post" pair at one position on a contact on that prop at
-  that instant; a free prop moving into a contact needs the pair (gravity is checked into the pre sample and out of
-  the post one). A substitution's decoy is the prop it changes and places within 0.15 m of its actor's anchor at its
-  start: give it a sample there; it needs no hand to appear or change there (owners O12, O48), and no other prop does.
+  from the first sample's velocity to the second position within 0.25 m, and a prop at rest stays where it rests: a
+  contact at the second sample takes or strikes it there, so it is still in its place at that instant (F-077). A
+  contact between two samples moves a resting prop only by taking hold of it (it is held at the second sample); any
+  other move needs a sample at the contact's instant. Two samples share a time only as a "pre" and a "post" pair at
+  one position on a contact on that prop at that instant; a free prop moving into a contact needs the pair (gravity is
+  checked into the pre sample and out of the post one). A substitution's decoy is the prop it changes and places
+  within 0.15 m of its actor's anchor at its start: give it a sample there; it needs no hand to appear or change there
+  (owners O12, O48), and no other prop does.
 - A free prop at rest lies on a surface's top, within 0.1 m of its height, or a fact since its last hold places it (a
   location, or worn: yes) (PROP_SUPPORT, owner O78).
 

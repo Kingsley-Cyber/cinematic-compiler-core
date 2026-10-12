@@ -110,9 +110,9 @@ items:
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-155, F-015], codes: []}
   - {id: RV-66, title: "A substitution exempts only its decoy, the prop it places at its actor's anchor", status: done,
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-169, F-130], codes: []}
-  - {id: RV-67, title: "The S04 instructions and the validator's docstring teach F-077's rule and O48's standing log", status: next,
+  - {id: RV-67, title: "The S04 instructions and the validator's docstring teach F-077's rule and O48's standing log", status: done,
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-170, F-162], codes: []}
-  - {id: RV-68, title: "The holstered volley rests at the thigh pouch, and the draw is measured against it", status: ready,
+  - {id: RV-68, title: "The holstered volley rests at the thigh pouch, and the draw is measured against it", status: next,
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-182, F-163], codes: []}
   - {id: RV-69, title: "A body touched by a prop another performer threw is a hit, whatever the verb", status: ready,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-175], codes: []}
