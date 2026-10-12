@@ -5,7 +5,7 @@ import json
 
 import pytest
 from conftest import ROOT
-from ugc_scene import glasses
+from ugc_scene import glasses, ugc_plans
 
 from compiler.authoring import StepFailed
 from compiler.passes.derived import p09_object_state
@@ -49,6 +49,27 @@ def test_changes_without_a_hand_or_outside_an_interaction_are_refused():
     assert {f["code"] for f in p09_object_state.build(envelope)[1]} == {"OBJECT_STATE_INTERACTION"}
     with pytest.raises(StepFailed):
         p09_object_state.run(envelope)
+
+
+def at_start_unfold():
+    """F-161's case: b02 opens the temples as it starts, 1.5, while its hand touch lands at its end, 3.5."""
+    plan = copy.deepcopy(ugc_plans()["temporal"])
+    next(f for f in next(b for b in plan["beats"] if b["id"] == "b02")["effects"] if f["property"] == "temples")["at"] = "start"
+    return glasses("hand_role", temporal=plan)
+
+
+def test_a_change_carries_its_instant_and_a_hand_arriving_after_it_is_no_trigger():
+    """F-161 (RV-61): each change keeps its instant; a hand counts only if it touches the object by then, or holds it."""
+    envelope = at_start_unfold()
+    graph, findings = p09_object_state.build(envelope)
+    assert findings == [] and [(e["trigger_contact"], [c["t"] for c in e["changes"]])
+                               for e in graph["object_state_transition"]] == [("held:ugc_creator.right_hand", [1.5]),
+                                                                              ("b03_c1", [5.5])]
+    unheld = copy.deepcopy(envelope)  # the right hand never takes the glasses: only the 3.5 touch is left in b02
+    for beat in unheld["nodes"]["beats"]["items"]:
+        beat["contacts"] = [c for c in beat["contacts"] if c["a"]["part"] != "right_hand"]
+    unheld["nodes"]["contacts"]["items"] = [c for c in unheld["nodes"]["contacts"]["items"] if c["body_part"] != "right_hand"]
+    assert {f["code"] for f in p09_object_state.build(unheld)[1]} == {"OBJECT_STATE_TRIGGER"}
 
 
 @pytest.mark.integration

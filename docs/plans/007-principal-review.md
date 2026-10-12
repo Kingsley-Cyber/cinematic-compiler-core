@@ -127,3 +127,4 @@ RV-64 and RV-13, then the rest in backlog order.
 - 2026-10-12 — RV-48b done (S-058): S08's support hand; the S04 and S08 instructions name every rule their plans
   must meet (tests/test_instructions.py); RV-20 split: its prompt part for S11 to S17 is RV-65.
 - 2026-10-12 — RV-60 done (S-059): the camera cards follow O92; the printed camera rules are checked.
+- 2026-10-12 — RV-61 done (S-060): "before a beat" read one way by S06, S09 and S10; S09 carries instants.

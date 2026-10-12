@@ -102,6 +102,9 @@ Added in S-059 (RV-60, validators/prompt_validator.py, library/camera_convention
 the words that make a camera rule ask for slowed playback (slow motion, slowed, ramp, freeze) or a close-up on a hit
 (close or insert with blow, hit, impact, strike or contact); a blade landing in a body is one of O92's hits, so the
 ninja's insert on it went; the UGC card plays normal only, following PLAYBACK_RAMP's reach to every scene.
+Added in S-060 (RV-61, compiler/passes/derived/p09_object_state.py, p10_affordance.py): a change's trigger hand is
+judged at the earliest instant among the transition's changes inside the triggering beat; a postcondition is read at
+the next state before that state's beat acts, as a precondition is.
 
 ## Impact
 Waits on the owner.

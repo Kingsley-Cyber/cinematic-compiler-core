@@ -10,16 +10,16 @@ Layer order 1.7; rules 7.0; backlog 25.
 
 ## Last sessions
 
-- S-057 (applied): RV-48a: releases at their pose, a vanished body untouched, a resting prop moved only at a sample, a first place
 - S-058 (applied): RV-48b: the support hand holds or touches its object; the S04 and S08 instructions follow the code
 - S-059 (applied): RV-60: the camera cards follow O92, and the printed camera rules are checked
+- S-060 (applied): RV-61: "before a beat" read one way: S10 reads the state before the beat's own effects; S09 carries instants
 
 ## Next slices
 
-- RV-61 (next, step affordance): S10 reads the state before the beat's own effects; S09 carries each change's instant
-- RV-62 (ready, step render): The vanishing actor's line prints no support into the vanish; the volley is drawn into B's hand before 5.5
+- RV-62 (next, step render): The vanishing actor's line prints no support into the vanish; the volley is drawn into B's hand before 5.5
 - RV-57 (ready, step camera): Hits found from the contacts are camera holds on every body present, at S16 and in the prompt, whatever S17 holds (O92)
 - RV-58 (ready, step render): The compiler judges prompts with the owner's render findings; a possess counts on an impact frame only as a catch; a touch of another's held prop is no strike only for a non-limb part
+- RV-18 (ready, step brief): Declared validators run (S02 coherence); the envelope records what ran
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -68,7 +68,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 94
+## Open findings: 93
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -99,4 +99,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-169, session S-060, render R20.
+Decision ADR-O109, finding F-169, session S-061, render R20.

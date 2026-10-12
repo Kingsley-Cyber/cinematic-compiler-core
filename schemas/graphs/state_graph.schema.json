@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:state_graph:1.2",
+  "$id": "urn:cinematic-compiler:schema:state_graph:1.4",
   "title": "S06 state graph: one state per subject per beat (+ end), transitions with triggering beats",
-  "description": "States are replayed from the beat plan: requires are read at t, effects commit at t + dur (at t when marked `at: start`, O91; a change of hands at its possess or release, F-061); a property's starting value comes only from its first requirement, else unknown. pos/facing come from the beat (authoritative) or are carried from the entity's last anchor (pos_source says which).",
+  "description": "States are replayed from the beat plan: requires are read at t, effects commit at t + dur (at t when marked `at: start`, O91; a change of hands at its possess or release, F-061); a property's starting value comes only from its first requirement, else unknown. pos/facing come from the beat (authoritative) or are carried from the entity's last anchor (pos_source says which). A beat's snapshot holds the values after its own at-start effects; before_own_effects keeps, where they changed a value, the value before them, as the beat's requirements read it (F-161, RV-61).",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -94,6 +94,14 @@
               "type": "string",
               "minLength": 1
             }
+          },
+          "before_own_effects": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "F-161 (RV-61): the values at the beat's start before its own effects, for the properties those effects changed there; absent when they changed none."
           }
         }
       }

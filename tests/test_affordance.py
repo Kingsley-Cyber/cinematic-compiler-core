@@ -6,7 +6,7 @@ import json
 import pytest
 import yaml
 from conftest import ROOT
-from ugc_scene import glasses
+from ugc_scene import glasses, ugc_plans
 
 from compiler.authoring import StepFailed
 from compiler.passes.derived import p10_affordance
@@ -57,6 +57,17 @@ def node(envelope, group, identity):
 ])
 def test_each_failure_is_named(code, change):
     assert code in edited(change)
+
+
+def test_conditions_are_read_before_the_beat_s_own_effects():
+    """F-161 (RV-61): S10 reads a precondition, and a postcondition, before the own effects of the beat starting there,
+    as S06 reads requirements: an unfold that opens the temples as it starts still needs them folded before, and an
+    effect never meets its own beat's precondition."""
+    plan = copy.deepcopy(ugc_plans()["temporal"])
+    next(f for f in next(b for b in plan["beats"] if b["id"] == "b02")["effects"] if f["property"] == "temples")["at"] = "start"
+    assert p10_affordance.build(glasses("object_state", temporal=plan))[1] == []
+    assert "AFFORDANCE_PRECONDITION" in edited(lambda e: node(e, "object_state", "glasses@b03").update(
+        before_own_effects={"temples": "folded"}))
 
 
 @pytest.mark.integration

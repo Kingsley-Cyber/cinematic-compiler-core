@@ -12,7 +12,7 @@ medium
 L2.2
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -47,4 +47,10 @@ none needed
 - RV-61
 
 ## Resolution
-Open.
+RV-61 (S-060): S06 computes the values before a beat's own effects with the function its requirements use, and a
+beat's snapshot keeps them where they differ (`before_own_effects`, state_graph 1.4); S09 carries them for internal
+properties and each change's instant (object_state_graph 1.2), and credits only a hand on the object by that instant;
+S10 reads preconditions and postconditions before the own effects of the beat starting there
+(tests/test_state_pass.py::test_a_beat_s_own_start_effects_are_kept_apart_in_its_state,
+tests/test_object_state.py::test_a_change_carries_its_instant_and_a_hand_arriving_after_it_is_no_trigger,
+tests/test_affordance.py::test_conditions_are_read_before_the_beat_s_own_effects).

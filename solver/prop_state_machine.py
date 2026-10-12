@@ -6,6 +6,9 @@ a change of hands (F-061, RV-08): a prop's holder change commits at the instant 
 holder) or release (to none) of that prop, and an entity's possession change at its own possess or release, so a throw
 that lets go at its pose (`at: start`, O23) frees the prop at that instant. Each change in a transition carries the
 instant it took effect (F-132), which the prompts' time-bounded rules read.
+A beat's snapshot holds the values at its start after its own at-start effects; where those effects changed a value,
+`before_own_effects` keeps the value before them, as the requirements read it (F-161, RV-61: one reading of "before a
+beat" for S06, S09 and S10).
 A property's starting value is the value its first requirement asserts when that comes before any effect;
 otherwise it is "unknown". A chained clip (M5.5) starts from the previous clip's end values instead, and a first
 requirement must then agree with them. Conflicting effects committing at the same time are refused.
@@ -95,6 +98,11 @@ def replay(beats, subjects, tables, end_time, carried=None):
             conditions = {prop: value_at((kind, sid, prop), time) for prop in tables[(kind, sid)]}
             node = {"id": f"{sid}@{beat_id}", "subject": {"kind": kind, "id": sid}, "beat": beat_id, "t": time,
                     "pos": pos, "facing": facing, "pos_source": source, "conditions": conditions}
+            if beat is not None:  # F-161 (RV-61): the values before the beat's own effects, as its requirements read them
+                own = {prop: value_at((kind, sid, prop), time, before=beat_id) for prop in tables[(kind, sid)]}
+                own = {prop: value for prop, value in own.items() if value != conditions[prop]}
+                if own:
+                    node["before_own_effects"] = own
             snapshots.append(node)
             prior = last.get((kind, sid))
             if prior is not None:

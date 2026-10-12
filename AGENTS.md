@@ -102,9 +102,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 7.0; backlog 25.
-- Last session: S-059 (2026-10-12, applied): RV-60: the camera cards follow O92, and the printed camera rules are checked.
-- Next slice: RV-61 S10 reads the state before the beat's own effects; S09 carries each change's instant (step affordance).
-- Open findings: 94; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
+- Last session: S-060 (2026-10-12, applied): RV-61: "before a beat" read one way: S10 reads the state before the beat's own effects; S09 carries instants.
+- Next slice: RV-62 The vanishing actor's line prints no support into the vanish; the volley is drawn into B's hand before 5.5 (step render).
+- Open findings: 93; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

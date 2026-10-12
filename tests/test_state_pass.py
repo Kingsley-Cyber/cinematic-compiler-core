@@ -6,6 +6,7 @@ import json
 import pytest
 from conftest import ROOT
 from scenes import courtyard, cup
+from ugc_scene import glasses as ugc
 
 from compiler.passes.mandatory import p06_state
 from kernel.canonical import ContractError, canonical_json
@@ -117,6 +118,25 @@ def test_an_effect_marked_at_start_takes_effect_at_its_beat_start():
     assert {s["id"]: s["conditions"]["smoke"] for s in snapshots}["pellet@b02"] == "sealed"
     assert [(c["property"], c["t"]) for c in transitions[-1]["changes"]] == [("location", 1.5), ("smoke", 1.5),
                                                                              ("spent", 1.8)]
+
+
+def test_a_beat_s_own_start_effects_are_kept_apart_in_its_state():
+    """F-161 (RV-61): a beat's snapshot holds the values after its own at-start effects, and before_own_effects the
+    values before them, which its requirements read (REPLAY_REQUIRES); a change of hands at an at-start contact counts."""
+    pellet = {"kind": "prop", "id": "pellet"}
+    beats = [{"id": "b01", "t": 0, "dur": 1, "pos": {}, "facing": {}, "contacts": [], "effects": [],
+              "requires": [{"subject": pellet, "property": "smoke", "value": "sealed"}]},
+             {"id": "b02", "t": 1, "dur": 0.5, "pos": {}, "facing": {}, "contacts": [],
+              "requires": [{"subject": pellet, "property": "smoke", "value": "sealed"}],
+              "effects": [{"subject": pellet, "property": "smoke", "value": "burst", "at": "start"}]},
+             {"id": "b03", "t": 1.5, "dur": 0.5, "pos": {}, "facing": {}, "contacts": [], "requires": [], "effects": []}]
+    snapshots, _, findings = replay(beats, [("prop", "pellet")], {("prop", "pellet"): ["smoke"]}, 3)
+    by_id = {s["id"]: s for s in snapshots}
+    assert findings == [] and by_id["pellet@b02"]["conditions"] == {"smoke": "burst"}
+    assert by_id["pellet@b02"]["before_own_effects"] == {"smoke": "sealed"}
+    assert [s["id"] for s in snapshots if "before_own_effects" in s] == ["pellet@b02"]
+    glasses = states(ugc("state"))["glasses@b01"]  # the creator holds the glasses from the first frame (M8.12)
+    assert glasses["conditions"]["holder"] == "ugc_creator" and glasses["before_own_effects"] == {"holder": "none"}
 
 
 def test_unmet_requirement_and_same_time_conflict_are_refused():

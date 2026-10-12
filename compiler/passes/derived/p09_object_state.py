@@ -1,8 +1,10 @@
 """S09 pass (band L2.6, derived, UGC): each object's internal states per beat, every change tied to a hand.
 
-Internal states are the object card's own state properties (holder and location stay in S06). Checks: every
-internal change has a hand contact on the object in its triggering beat, or a hand holding it at that beat's start
-(the trigger contact); and happens inside an S08 interaction on that object (the verb that changes it).
+Internal states are the object card's own state properties (holder and location stay in S06); a state keeps S06's
+`before_own_effects` for them (the values before its beat's own at-start effects) and each change its instant (F-161,
+RV-61). Checks: every internal change has a hand contact on the object in its triggering beat at or before the
+change's instant, or a hand holding it at that instant (the trigger contact); and happens inside an S08 interaction
+on that object (the verb that changes it).
 """
 
 import copy
@@ -41,23 +43,29 @@ def build(envelope):
         if s["subject"]["kind"] != "prop" or not internal[obj]:
             continue
         state = {p: s["conditions"][p] for p in internal[obj]}
-        states.append({"id": s["id"], "object": obj, "beat": s["beat"], "t": s["t"], "state": state, "state_name": _name(state),
-                       "interaction": interaction_at(obj, s["beat"]) if s["beat"] in beats else None})
+        node = {"id": s["id"], "object": obj, "beat": s["beat"], "t": s["t"], "state": state, "state_name": _name(state),
+                "interaction": interaction_at(obj, s["beat"]) if s["beat"] in beats else None}
+        own = {p: v for p, v in s.get("before_own_effects", {}).items() if p in internal[obj]}
+        if own:
+            node["before_own_effects"] = own
+        states.append(node)
     by_id = {s["id"]: s for s in states}
     edges = []
     for e in envelope["edges"]["state_transition"]["items"]:
         if e["to_state"] not in by_id:
             continue
         obj = by_id[e["to_state"]]["object"]
-        changes = [{k: c[k] for k in ("property", "from", "to")} for c in e["changes"] if c["property"] in internal[obj]]
+        changes = [{k: c[k] for k in ("property", "from", "to", "t")} for c in e["changes"] if c["property"] in internal[obj]]
         if not changes:
             continue
         for beat in e["trigger_event"]:
+            start, end = beats[beat]["t"], beats[beat]["t"] + beats[beat]["dur"]
+            instant = min((c["t"] for c in changes if start - EPSILON <= c["t"] <= end + EPSILON),
+                          default=min(c["t"] for c in changes))  # F-161: the hand is on the object by then
             hand = [c["id"] for c in contacts if c["beat"] == beat and c["b"]["kind"] == "prop" and c["b"]["id"] == obj
-                    and c["body_part"] in HANDS]
-            start = beats[beat]["t"]
+                    and c["body_part"] in HANDS and c["t"] <= instant + EPSILON]
             held = [f"{pair[0]}.{pair[1]}" for pair, kind, t0, t1 in intervals if kind == "possess" and pair[1] in HANDS
-                    and pair[2:4] == ("prop", obj) and t0 <= start + EPSILON and (t1 is None or start < t1 - EPSILON)]
+                    and pair[2:4] == ("prop", obj) and t0 <= instant + EPSILON and (t1 is None or instant < t1 - EPSILON)]
             trigger = (hand or [f"held:{h}" for h in held] or [None])[0]
             if trigger is None:
                 findings.append({"code": "OBJECT_STATE_TRIGGER", "message": f"{obj} changes in {beat} without a hand on it",

@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:object_state_graph:1.0",
+  "$id": "urn:cinematic-compiler:schema:object_state_graph:1.2",
   "title": "S09 object-state graph",
-  "description": "object_state = each object's internal card states per beat (+ end) with the S08 interaction in progress; object_state_transition = each internal change with its triggering beat, hand contact (or held:<entity>.<hand>) and interaction.",
+  "description": "object_state = each object's internal card states per beat (+ end) with the S08 interaction in progress; object_state_transition = each internal change with its triggering beat, hand contact (or held:<entity>.<hand>) and interaction. A state keeps S06's before_own_effects for its internal properties, and each change its instant t (F-161, RV-61).",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -50,6 +50,17 @@
               }
             },
             "additionalProperties": false
+          },
+          "before_own_effects": {
+            "type": "object",
+            "patternProperties": {
+              "^[a-z][a-z0-9_]*$": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "additionalProperties": false,
+            "description": "F-161 (RV-61): the internal values at the beat's start before its own effects, where they changed them."
           },
           "state_name": {
             "type": "string",
@@ -105,7 +116,8 @@
               "required": [
                 "property",
                 "from",
-                "to"
+                "to",
+                "t"
               ],
               "properties": {
                 "property": {
@@ -119,6 +131,11 @@
                 "to": {
                   "type": "string",
                   "minLength": 1
+                },
+                "t": {
+                  "type": "number",
+                  "minimum": 0,
+                  "description": "The instant the change took effect (S06's change t; F-161)."
                 }
               }
             }

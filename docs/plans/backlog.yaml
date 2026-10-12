@@ -102,9 +102,9 @@ items:
      step: hand_role, plan: PLAN-007, depends_on: [RV-48a], findings: [F-137, F-135, F-162], codes: []}
   - {id: RV-60, title: "The camera cards' rules follow O92: no close-up after a blow, no slowed playback; the printed camera rules checked", status: done,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-160], codes: []}
-  - {id: RV-61, title: "S10 reads the state before the beat's own effects; S09 carries each change's instant", status: next,
+  - {id: RV-61, title: "S10 reads the state before the beat's own effects; S09 carries each change's instant", status: done,
      step: affordance, plan: PLAN-007, depends_on: [], findings: [F-161], codes: []}
-  - {id: RV-62, title: "The vanishing actor's line prints no support into the vanish; the volley is drawn into B's hand before 5.5", status: ready,
+  - {id: RV-62, title: "The vanishing actor's line prints no support into the vanish; the volley is drawn into B's hand before 5.5", status: next,
      step: render, plan: PLAN-007, depends_on: [], findings: [F-163, F-105], codes: []}
   - {id: RV-57, title: "Hits found from the contacts are camera holds on every body present, at S16 and in the prompt, whatever S17 holds (O92)", status: ready,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-155, F-015], codes: []}

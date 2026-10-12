@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- "Before a beat" is read one way (RV-61, F-161, S-060): a beat's state snapshot keeps the values its own at-start
+  effects replaced (`before_own_effects`, state_graph 1.4), which S10 reads for preconditions and postconditions as
+  S06 reads requirements; S09 carries each change's instant (object_state_graph 1.2) and credits only a hand on the
+  object by then. No prompt changes.
 - The camera cards follow O92 (RV-60, F-160, S-059): no close-up after a blow, no insert on a landing blade and no
   slowed playback in the draft cards (every convention card plays normal only); the prompt's printed camera rules are
   checked for both (HIT_HOLD, PLAYBACK_RAMP), so twelve prose prompts lose one sentence each.

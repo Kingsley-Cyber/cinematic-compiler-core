@@ -1,8 +1,9 @@
 """S10 pass (band L2.7, derived, UGC): prove every functional verb succeeds.
 
 For each S08 interaction the library/affordances entry for (object card, verb) must exist; its preconditions hold
-in the S09 object state when the interaction starts, its postconditions hold once it ends, the agent hand uses the
-required grip, and the interaction lasts within the entry's duration range. Edges: an earlier verb's postconditions
+in the S09 object state when the interaction starts, its postconditions hold once it ends (each read before the
+own effects of the beat starting there, as S06's requirements are: F-161, RV-61), the agent hand uses the required
+grip, and the interaction lasts within the entry's duration range. Edges: an earlier verb's postconditions
 that satisfy a later verb's preconditions on the same object (`enables`).
 """
 
@@ -39,6 +40,11 @@ def library():
     return entries
 
 
+def _before(node):
+    """An object state as it stands before its beat's own effects (S06's `before_own_effects`, carried by S09)."""
+    return {**node["state"], **node.get("before_own_effects", {})}
+
+
 def _holds(conditions, state):
     return all(state.get(c["property"]) in c["values"] for c in conditions)
 
@@ -51,8 +57,8 @@ def build(envelope):
     affordances, findings = [], []
     for i in sorted(nodes["hand_role"]["items"], key=lambda n: (n["t"], n["id"])):
         own = sorted((s for s in states if s["object"] == i["object"]), key=lambda s: s["t"])
-        before = next(s for s in own if s["beat"] == i["beats"][0])["state"]
-        after = next((s for s in own if s["t"] >= i["end"] - EPSILON and s["beat"] not in i["beats"]), own[-1])["state"]
+        before = _before(next(s for s in own if s["beat"] == i["beats"][0]))
+        after = _before(next((s for s in own if s["t"] >= i["end"] - EPSILON and s["beat"] not in i["beats"]), own[-1]))
         entry = entries.get((cards[i["object"]], i["verb"]))
         if entry is None:
             findings.append({"code": "AFFORDANCE_MISSING", "message": f"No affordance entry for {i['object']} {i['verb']}",
