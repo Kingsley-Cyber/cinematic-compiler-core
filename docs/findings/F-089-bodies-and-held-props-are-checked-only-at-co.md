@@ -65,3 +65,5 @@ between its samples straight between them); the wizard example's landing at 6.4 
 there, braced on the pillar at the key before, so its beat now lands at the 6.6 key. The floor between keys is RV-59c.
 Noted in S-089 (RV-59c): the re-block solver's floor term found no re-pose of B's 8.5 or 9.0 key that keeps the crash
 over the floor (0.217 m left at best); F-220 now asks for the fall too, and RV-59c waits for it.
+Corrected in S-090 (principal review 7): S-089's note said no re-pose keeps B's crash over the floor; that held with
+the hips' twist frozen (F-220's correction). Open supports between keys are F-221's (RV-59g).

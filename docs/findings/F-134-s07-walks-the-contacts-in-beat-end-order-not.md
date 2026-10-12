@@ -49,3 +49,6 @@ Open.
 Noted in S-081 (the sixth review): S07 walks a beat's contacts in list order: the golden's b19 with its support listed
 after its release is refused (CONTACT_RELEASE), and a second opening of an open support listed after a release passes
 (RV-17, pulled forward).
+Noted in S-090 (principal review 7): S-083 removed b19's pair; the live instance is b11, whose releases listed before
+its at-start supports give CONTACT_RELEASE on b11_c1 and b11_c2, then CONTACT_DUPLICATE on b14_c2 and b14_c3
+(p07_contact.lifecycle, reviewer's run). RV-17 carries it.

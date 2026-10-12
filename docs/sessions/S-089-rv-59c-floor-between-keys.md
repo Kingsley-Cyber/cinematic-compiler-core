@@ -86,3 +86,9 @@ from 10:58 (the plan) to 11:01 (the record's last edit before the gate; the gate
 - the gate on this record (11:01:35): `scripts/verify.sh` exit 0, 731 passed in 72.17 s, docs plane: PASS, check:
   PASS
 - the hygiene scan over the staged diff: 0 hits (run first in the chained commit)
+
+## Correction (S-090)
+Corrected in S-090 (principal review 7): D2's "within 120 degrees 0.217 m" held the hips' twist frozen; freed, the
+committed solver clears the crash (deepest 0.141 m) with B's left foot 1.0 m up at 9.0, so RV-59c was not blocked by
+the evidence; D1's "covered (O72, R-18)" for the floor allowance is F-215's question. ADR-O109 answers F-220's option
+(a) and RV-59c is ready again.

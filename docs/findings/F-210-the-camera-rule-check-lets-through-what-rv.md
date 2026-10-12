@@ -12,7 +12,7 @@ high
 L5.5
 
 ## Status
-resolved
+open
 
 ## Reported
 2026-10-12
@@ -60,3 +60,9 @@ slash, stab, chop, jab or headbutt; between hits and a kick-off aside), and refu
 body or shake the camera, reading a negation ('no shaky texture') as one. Every rule review 6 found passing is refused
 (a test); the library's seventeen rules pass unchanged, so no card and no prompt changed. CAMERA_RULES keeps the
 printed rules the card's word for word, so the floor reaches the prompt.
+Reopened in S-090 (principal review 7): S-085's plan listed the hit words "kick, punch, knee, elbow, palm" and its
+code dropped knee, elbow and palm without a reason; "Cut to a close-up as the knee connects." and "... as the elbow
+drives into the chest." pass, while the fight's own hits are the palm at 3.4, the knee at 4.7, the elbow at 6.3 and
+the drive at 8.5 (planner/hits.py). The floor also refuses O92's own words ("No playback ramps.", "Hits are holds, not
+inserts"): a negation is read only for the shaking words. The proposed fix said "not a noun list". RV-99b carries it
+(with F-187 and F-160).

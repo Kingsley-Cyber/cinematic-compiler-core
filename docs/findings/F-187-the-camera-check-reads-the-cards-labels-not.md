@@ -12,7 +12,7 @@ high
 L5.5
 
 ## Status
-resolved
+open
 
 ## Reported
 2026-10-12
@@ -60,3 +60,5 @@ when S16 loads the card, before any rule is printed); the prompt prints the card
 R-21 names both (rules 7.1). The knight's heavy-blow idiom became a hit rule
 (tests/test_camera_solver.py::test_a_card_rule_s_words_ask_only_what_its_fields_ask,
 test_a_rule_that_speaks_of_a_hit_is_a_hit_rule).
+Open in part again (S-090, principal review 7): the hit words F-210's fix built miss the fight's own hits (knee,
+elbow, palm, drive) and the floor refuses O92's own sentences; RV-99b carries it.

@@ -176,3 +176,4 @@ backlog order (backlog 33).
 - 2026-10-12 — RV-59b done (S-087): the re-block solver keeps a key's spans clear; B re-blocked at 3.7 and 4.4 (29 overlap frames left, all by a contact); F-220 asks how those clear, RV-59e (the check) waits for it; RV-59d next.
 - 2026-10-12 — RV-59d done (S-088): a contact between keys is measured on the interpolated pose; the wizard example's landing moves to its 6.6 key; RV-59c next.
 - 2026-10-12 — RV-59c measured (S-089): the re-block solver keeps a span over the floor, but no re-pose keeps B's crash there; RV-59c waits for F-220 with RV-59e; RV-97 next, after principal review 7.
+- 2026-10-12 — Principal review 7 (S-090): partially, no tampering; F-221 to F-229 filed, F-210 reopened; F-220 corrected and its option a taken as ADR-O109 (in-between keys); RV-59c and RV-59e ready again behind RV-59f; RV-59h next.

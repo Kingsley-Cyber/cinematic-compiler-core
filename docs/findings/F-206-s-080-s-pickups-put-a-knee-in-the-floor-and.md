@@ -70,3 +70,6 @@ within 0.005 m of its prop, the other hand 0.59 and 1.0 m up, the head 0.23 and 
 S11 hand supports are gone, so the rows print one support. The pinned words say the new numbers (bent N = 15 N
 degrees). The ankle bound the plan set (0.045 m) proved unattainable in this body model, whose foot is the shin's
 extension (F-219).
+Corrected in S-090 (principal review 7): "every knee 0.08 m" holds to a millimetre's slack only: A's right knee at 7.5
+is 0.0796 m, and the test allows 1e-3 (F-226); the trunk leans 74 degrees at 8.0, not the 70 the X angles sum to
+(F-223); the words read in the trunk's frame (F-224). RV-95b carries them.

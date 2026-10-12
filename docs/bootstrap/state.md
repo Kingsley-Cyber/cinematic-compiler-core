@@ -6,20 +6,20 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 7.2; backlog 37.
+Layer order 1.7; rules 7.2; backlog 38.
 
 ## Last sessions
 
-- S-087 (applied): RV-59b: the re-block solver clears paths between keys; two of B's spans re-blocked, the rest filed
 - S-088 (applied): RV-59d: a contact with no key at its instant measured on the interpolated pose
 - S-089 (applied): RV-59c: the floor between keys measured; B's crash needs a key mid-fall (F-220)
+- S-090 (applied): Principal review 7: does the finished work match the plan?
 
 ## Next slices
 
-- RV-97 (next, step camera): VERTICAL_FRAMING along a static shot's window, frames on the declared interpolation, a margin by each part's radius; c11 and c20 re-authored
+- RV-59h (next, step motion): A support onset is never airborne at its own instant: an interpolated contact's exemption reads the support in force just before it, never a landing's
 - RV-35b (ready, step all): The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools
-- RV-98 (ready, step camera): A declared entrance may start outside its shot's frame (O21): c01 opens with A above the frame
-- RV-101 (ready, step camera): An insert's detail has a point; a carried prop takes its carrier's point; a prop a shot's action names is framed; a vanished body is no aim
+- RV-99b (ready, step camera): The camera floor's hit words from what the scene's contacts and planner/hits.py name (the knee, the elbow, the palm, the drive), a negation read in every floor word, the cards and O92's own sentences run against it
+- RV-95b (ready, step motion): The pickups judged as drawn: the lean by the trunk vector and the twist against the limit (R-34), the knee and head bounds without slack, the ankle bound restored or asked, the words in the legend's frame, S-078's values pinned as hand choices
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -31,6 +31,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - ADR-O105 (owner_default, confirm or strike): B's kunai leaves the hand once, at the 2.0 throw
 - ADR-O106 (owner_default, confirm or strike): Version bumps follow docs/versioning.md as written
 - ADR-O108 (owner_default, confirm or strike): The deflected kunai goes down to the ground on B's side, not at B
+- ADR-O109 (owner_default, confirm or strike): In-between keys on the repo's side where the declared interpolation draws a body through another or under the floor
 - F-051 (low): Draft library cards await owner review
 - F-052 (low): Kernel scope numbers await owner review
 - F-053 (medium): Claude's interpretations await owner review
@@ -66,12 +67,10 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-205 (medium): The anime body's arms reach the floor only with the trunk leaning 58 to 75 degrees
 - F-211 (medium): Must each fighter's laban chain carry its side of the other's beats?
 - F-215 (high): May a body point sit up to 0.15 m under the floor, or only by its radius?
-- F-220 (high): By a contact the declared interpolation draws one body through the other; no re-pose of a key clears it
+- F-220 (high): By a contact the declared interpolation draws one body through the other, and B's crash through the floor
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog RV-15c blocked: A strike's limb and a facing head point at their target, checked at S13 (B's keys re-aimed in RV-103b) — the owner's answer in F-148 (A's source facings: the check would refuse the golden's own rows, O10)
 - Backlog RV-14b blocked: A held or embedded prop at its holder at every sample (the rope dart's line in RV-14c) — the owner's answer in F-148 (the climax: A's source right hand is 0.65-0.87 m from the kunai the source keeps in B's shoulder at 8.5-9.5)
-- Backlog RV-59e blocked: BODY_OVERLAP refused at every frame between keys; the spans by a contact cleared as F-220's answer says (the knee at 4.7, the catch and the throw 6.3-7.5, the drive and the crash 8.0-9.0, the wizard's kick at 3.6) — the owner's answer in F-220 (in-between keys, an allowance by a contact, looser contacts or A's rows)
-- Backlog RV-59c blocked: FLOOR_PENETRATION at every frame between keys; B's crash cleared as F-220's answer says (a key mid-fall or a declared fall path) — the owner's answer in F-220 (no re-pose of B's 8.5 or 9.0 key keeps the fall over the floor)
 - Backlog RV-87 blocked: The substitution's decoy is declared, stands in the scene from the first beat, and is measured where the actor stood; a substitution needs the capability — the owner's answers in F-196 (Q1-Q3: who declares the decoy, whether it stands from the first frame, who may substitute)
 - Backlog RV-90b blocked: HIT_HOLD's scale follows the grammar's impact scales — the owner's answer in F-197 (Q3: may a hit be held at a wide scale)
 - Backlog RV-64b blocked: The S04 packet carries the scene_reference rules — the owner's answer in F-133
@@ -91,7 +90,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 137
+## Open findings: 149
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -127,16 +126,20 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-178 (high, all): No prompt can become deliverable: thirty checklist rows have no way to pass
 - F-179 (high, all): The done-gate has conditions no slice reaches
 - F-185 (high, L1.2): CAUSE_REASON passes sentences that state no cause
+- F-187 (high, L5.5): The camera check reads the cards' labels, not the words the prompt prints
 - F-189 (high, L1.1): The decoy is guessed by distance and may come from nowhere
 - F-196 (high, all): The substitution's decoy: who declares it, where it stands, who may substitute
 - F-197 (high, all): Hits and holds: what counts, how long, how wide, and which cuts hold
 - F-198 (high, all): Which checklist rows must pass for a prompt to be a deliverable
 - F-208 (high, L5.5): A static shot is framed at its keys only and loses the hit holds' bodies between them
 - F-209 (high, L5.5): VERTICAL_FRAMING refuses O21's opening, A above the frame
+- F-210 (high, L5.5): The camera rule check lets through what RV-60's word lists refused
 - F-215 (high, L4c): May a body point sit up to 0.15 m under the floor, or only by its radius?
 - F-216 (high, L1.1): Repo-authored fight defects outside the owner's questions
-- F-220 (high, L4c): By a contact the declared interpolation draws one body through the other; no re-pose of a key clears it
+- F-220 (high, L4c): By a contact the declared interpolation draws one body through the other, and B's crash through the floor
+- F-221 (high, L4c): Open supports are not checked between keys: a supporting part lifts far off its surface before its release
+- F-222 (high, L4c): A landing between keys is excused as airborne
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-221, session S-090, render R20.
+Decision ADR-O110, finding F-230, session S-091, render R20.

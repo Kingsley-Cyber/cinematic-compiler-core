@@ -65,3 +65,5 @@ joint limits bound every free component (a goal past them is left unmet); the CL
 or a git revision, the root's height, weighted goals and the free set, and prints the command with its result, which
 `solve` reproduces (a test). S-078's three values are recorded as hand choices (S-078's correction, RV-100). Open:
 S-080's pickups re-blocked from a recorded command with a re-derivation test (RV-95).
+Noted in S-090 (principal review 7): tests/test_reblock.py's S-078 test still claims a re-derivation from goals whose
+height is the committed sole's; RV-95b pins the values as the hand choices DEV-33 says they are (F-226).

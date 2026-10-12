@@ -12,7 +12,7 @@ medium
 L5.5
 
 ## Status
-resolved
+open
 
 ## Reported
 2026-10-12
@@ -63,3 +63,5 @@ tests/test_camera_solver.py::test_no_camera_card_slows_playback_or_puts_a_close_
 follows PLAYBACK_RAMP's reach to every scene, the builder's reading listed in F-053.
 Resolved again in RV-71b (S-070): the word lists gave way to the cards' structured rules and the word-for-word check (F-177).
 Resolved again in RV-85 (S-073): the cards' words are read against their fields (F-187).
+Open in part again (S-090, principal review 7): the hit words F-210's fix built miss the fight's own hits (knee,
+elbow, palm, drive) and the floor refuses O92's own sentences; RV-99b carries it.

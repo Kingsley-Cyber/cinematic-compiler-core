@@ -108,3 +108,11 @@ from 10:13 (the plan) to 10:40 (the record's last edit before the gate; the gate
   lru_cache by name). The chained commit does not wait on the scan, so 458030a went in with it; this wording came in
   a second [S-087] commit (its staged scan read 1, the first wording's removed line), and the scan over the pushed
   range read 0.
+
+## Correction (S-090)
+Corrected in S-090 (principal review 7): B at 4.4 clears A by 2.95 mm at 4.458 (A's left forearm, B's trunk; measured
+by the builder), not the 0.3 mm read from the misses, which sum several frames; the probe commands behind D3 were not
+recorded (S-090's record lists them); the 7.0-7.5 span is no contact's and clears with B's 7.5 root moved 0.30 m, so
+D3's "eight of the ten spans lie by a contact" was seven; the correction commit d2c650c cited R-33, which is about
+example rewrites. The commit messages from S-086 on dropped the Gap, Layer, Rules and Slice lines no_shortcuts.md asks
+for (restored from S-090).

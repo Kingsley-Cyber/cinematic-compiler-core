@@ -93,3 +93,9 @@ from 10:49 (the plan) to 10:54 (the record's last edit before the gate; the gate
 - the gate on this record (10:54:33): `scripts/verify.sh` exit 0, 730 passed in 71.91 s, docs plane: PASS, check:
   PASS
 - the hygiene scan over the staged diff: 0 hits (the chained commit now runs the scan first and stops on a hit)
+
+## Correction (S-090)
+Corrected in S-090 (principal review 7): D1's "covered (ADR-O104)" held for the measure only: the airborne rule
+excuses a landing (F-222, RV-59h) and the straight prop path is an interpretation (F-228); D2's "covered (O72)" was an
+interpretation (R-32): O72 does not choose between stretching the beat and keying the landing, and the shots and S04's
+instructions were left as they were (F-227, RV-107).

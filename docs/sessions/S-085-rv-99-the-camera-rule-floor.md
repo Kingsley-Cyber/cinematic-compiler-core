@@ -85,3 +85,8 @@ from 09:46 (the plan) to 09:49 (the record's last edit before the gate; the gate
 - the gate on this record (09:49:12): `scripts/verify.sh` exit 0, 718 passed in 97.57 s, docs plane: PASS, check:
   PASS
 - the hygiene scan over the staged diff: 0 hits
+
+## Correction (S-090)
+Corrected in S-090 (principal review 7): the plan listed knee, elbow and palm among the hit words, and D2 dropped them
+without a reason; the floor passes the fight's own hits ("a close-up as the knee connects") and refuses O92's own
+sentences ("No playback ramps."), a negation being read only for the shaking words (F-210 reopened, RV-99b).

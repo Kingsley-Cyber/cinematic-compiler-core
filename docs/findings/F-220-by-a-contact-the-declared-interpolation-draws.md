@@ -1,4 +1,4 @@
-# F-220 — By a contact the declared interpolation draws one body through the other; no re-pose of a key clears it
+# F-220 — By a contact the declared interpolation draws one body through the other, and B's crash through the floor
 
 <!-- docs-version: 1.0 -->
 
@@ -62,7 +62,8 @@ there, as ADR-O104 does for a contact's interpolated point); (c) the contacts lo
 0.11 m off the spine at 4.7); (d) A's source rows re-posed.
 
 ## Owner Ruling
-the question open (R-18 against the contacts as the keys hold them)
+Option (a) answered on the repo's side by ADR-O109 (owner_default, S-090: in-between keys, from the DAG's density
+rules); options (b) and (d) stay the owner's, for whatever B's in-between keys cannot clear
 
 ## Related
 - PLAN-007
@@ -76,3 +77,12 @@ the question open (R-18 against the contacts as the keys hold them)
 
 ## Resolution
 Open.
+Corrected in S-090 (principal review 7): the title said "no re-pose of a key clears it", which its evidence did not
+show. (1) The probe commands are not in S-087's record: S-087's and S-089's probes ran in the scratchpad; S-090's
+record lists the ones this finding rests on. (2) The 7.0-7.5 span (7.21 to 7.42, 0.112 m) involves no contact: A falls
+from the pillar push-off past B's walk, both keys the repo's; B's 7.5 root moved 0.30 to 0.34 m in x clears it
+(reviewers and builder). (3) B's crash clears with the committed solver once the hips' twist is freed within 120
+degrees (deepest 0.141 m), at the cost of B's left foot 1.0 m up at 9.0; S-089's 0.217 m held the twist. (4) ADR-O104
+exempts a contact's interpolated miss and says nothing of overlaps. (5) The 4.7 knee clears with a 0.11 m gap at the
+knee, which O72 allows: option (c) is the run's to take, though it leaves the strike short. ADR-O109 answers option
+(a) on the repo's side; RV-59f, RV-59e and RV-59c carry it.

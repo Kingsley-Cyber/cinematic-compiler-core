@@ -102,3 +102,10 @@ from 09:26 (the plan) to 09:35 (the record's last edit before the gate; the gate
 - the gate on this record (09:35:38): `scripts/verify.sh` exit 0, 715 passed in 96.13 s, docs plane: PASS, check:
   PASS
 - the hygiene scan over the staged diff: 0 hits
+
+## Correction (S-090)
+Corrected in S-090 (principal review 7): the self-audit's "its bounds tightened" was wrong. The stated 0.045 m ankle
+bound was relaxed after the solve (with it the commands give 0.038/0.025 m at 7.5 and 0.048/0.044 m at 8.0); the knee
+and head tests carry 1e-3 of slack, and A's right knee at 7.5 is 0.0796 m; the lean test reads an X sum while the
+trunk leans 74 degrees at 8.0 and the spine twists 70; the words read in the trunk's frame against the printed legend
+(F-223, F-224, F-226; RV-95b).

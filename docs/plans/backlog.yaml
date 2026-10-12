@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 37
+version: 38
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -162,14 +162,30 @@ items:
      step: motion, plan: PLAN-007, depends_on: [RV-59a], findings: [F-159], codes: []}
   - {id: RV-59d, title: "CONTACT_WORLD at an instant with no key measured on the interpolated pose (the wizard example's landing at 6.4)", status: done,
      step: motion, plan: PLAN-007, depends_on: [RV-59a], findings: [F-089], codes: []}
-  - {id: RV-59e, title: "BODY_OVERLAP refused at every frame between keys; the spans by a contact cleared as F-220's answer says (the knee at 4.7, the catch and the throw 6.3-7.5, the drive and the crash 8.0-9.0, the wizard's kick at 3.6)", status: blocked,
-     blocked_by: "the owner's answer in F-220 (in-between keys, an allowance by a contact, looser contacts or A's rows)",
-     step: motion, plan: PLAN-007, depends_on: [RV-59b], findings: [F-159, F-220], codes: []}
-  - {id: RV-59c, title: "FLOOR_PENETRATION at every frame between keys; B's crash cleared as F-220's answer says (a key mid-fall or a declared fall path)", status: blocked,
-     blocked_by: "the owner's answer in F-220 (no re-pose of B's 8.5 or 9.0 key keeps the fall over the floor)",
-     step: motion, plan: PLAN-007, depends_on: [RV-59a], findings: [F-089, F-220], codes: []}
-  - {id: RV-97, title: "VERTICAL_FRAMING along a static shot's window, frames on the declared interpolation, a margin by each part's radius; c11 and c20 re-authored", status: next,
+  - {id: RV-59h, title: "A support onset is never airborne at its own instant: an interpolated contact's exemption reads the support in force just before it, never a landing's", status: next,
+     step: motion, plan: PLAN-007, depends_on: [RV-59d], findings: [F-222], codes: []}
+  - {id: RV-99b, title: "The camera floor's hit words from what the scene's contacts and planner/hits.py name (the knee, the elbow, the palm, the drive), a negation read in every floor word, the cards and O92's own sentences run against it", status: ready,
+     step: camera, plan: PLAN-007, depends_on: [RV-99], findings: [F-210, F-187, F-160], codes: []}
+  - {id: RV-95b, title: "The pickups judged as drawn: the lean by the trunk vector and the twist against the limit (R-34), the knee and head bounds without slack, the ankle bound restored or asked, the words in the legend's frame, S-078's values pinned as hand choices", status: ready,
+     step: motion, plan: PLAN-007, depends_on: [RV-95], findings: [F-223, F-224, F-226], codes: []}
+  - {id: RV-59f, title: "In-between keys (ADR-O109): one entity's pose at an instant between two of its keys, checked like a key, printed with its instant, placed by the re-block solver", status: ready,
+     step: motion, plan: PLAN-007, depends_on: [RV-59b], findings: [F-220, F-159], codes: []}
+  - {id: RV-108, title: "A declared turn drawn about its own axis by its net angle between keys (B's 8.5 tip), F-053's straight-Euler reading revised, the between-keys report re-measured", status: ready,
+     step: motion, plan: PLAN-007, depends_on: [RV-59a], findings: [F-225], codes: []}
+  - {id: RV-59e, title: "BODY_OVERLAP refused at every frame between keys: B's 7.5 root re-blocked (the descent, no contact), the spans by a contact cleared with B's in-between keys (ADR-O109); what only A's rows could clear stays F-220's", status: ready,
+     step: motion, plan: PLAN-007, depends_on: [RV-59f], findings: [F-159, F-220], codes: []}
+  - {id: RV-59c, title: "FLOOR_PENETRATION at every frame between keys; B's crash cleared with a key mid-fall (ADR-O109) after RV-108 draws its tip", status: ready,
+     step: motion, plan: PLAN-007, depends_on: [RV-59f, RV-108], findings: [F-089, F-220, F-225], codes: []}
+  - {id: RV-59g, title: "CONTACT_WORLD on every open support at every frame between keys (the DAG's 'respect support'), the examples' takeoffs placed where the motion leaves its surface", status: ready,
+     step: motion, plan: PLAN-007, depends_on: [RV-59f], findings: [F-221], codes: []}
+  - {id: RV-107, title: "The wizard example's push-off at the pillar's release and its landing keyed where the fall ends; c06 and c08 re-authored; beat_planning.txt teaches RV-59d's measure", status: ready,
+     step: temporal, plan: PLAN-007, depends_on: [RV-59f], findings: [F-227], codes: []}
+  - {id: RV-97, title: "VERTICAL_FRAMING along a static shot's window, frames on the declared interpolation, a margin by each part's radius; c11 and c20 re-authored", status: ready,
      step: camera, plan: PLAN-007, depends_on: [RV-59a], findings: [F-208, F-090], codes: []}
+  - {id: RV-110, title: "CONTACT_WORLD reads a free prop between samples on S04's gravity arc and a held one at its holder's hand", status: ready,
+     step: motion, plan: PLAN-007, depends_on: [RV-59d], findings: [F-228], codes: []}
+  - {id: RV-111, title: "S15 refuses one body's overlapping Effort spans; the wizard example's acrobat spans meet at 7.6", status: ready,
+     step: effort, plan: PLAN-007, depends_on: [], findings: [F-229], codes: []}
   - {id: RV-98, title: "A declared entrance may start outside its shot's frame (O21): c01 opens with A above the frame", status: ready,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-209, F-090], codes: []}
   - {id: RV-101, title: "An insert's detail has a point; a carried prop takes its carrier's point; a prop a shot's action names is framed; a vanished body is no aim", status: ready,

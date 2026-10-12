@@ -6,6 +6,11 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- Principal review 7 (S-090): five read-only reviewers, verdict partially, no test tampering
+  (docs/reports/2026-10-12-principal-review-7.md). F-221 to F-229 filed; F-210 reopened with F-187 and F-160; F-220's
+  evidence corrected and its option a answered by ADR-O109 (owner_default: in-between keys on the repo's side, from
+  the DAG's density rules), so RV-59c and RV-59e are ready again behind RV-59f; corrections appended to S-083, S-085,
+  S-087, S-088 and S-089; F-053's interpretations gathered into its Description. Next: RV-59h.
 - The re-block solver keeps a key's spans over the floor (RV-59c, F-089, S-089): `--floor` counts each contact point
   deeper than FLOOR_PENETRATION's 0.15 m under the floor at every frame of the key's spans. No re-pose of B's 8.5 or
   9.0 key keeps B's crash over it (0.217 m left at best), so F-220 now asks for the fall too and RV-59c waits for it.

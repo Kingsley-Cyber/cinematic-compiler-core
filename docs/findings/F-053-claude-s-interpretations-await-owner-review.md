@@ -154,12 +154,36 @@ Added in S-080 (RV-35a, solver/reblock.py): a re-block's cost is the sum of the 
 square metre of goal miss, searched by pattern steps from 16 to 0.125 degrees; a pickup "crouches with one hand down"
 when both soles are within 0.03 m of the floor, the grasping hand within 0.03 m of it, the other hand 0.3 m or more
 over it, the head 0.2 m or more over the pelvis and the trunk (root and spine) under 80 degrees; A's crouch at 0.40 m
-is the repo's reading of O18's "crouched on the ground", and a hand on the floor at a pickup bears weight (a support).
+is the repo's reading of O18's "crouched on the ground", and a hand on the floor at a pickup bears weight (a support). Superseded in S-083: A crouches at its own 0.57 m and the hand bears no weight; the lean is F-223's.
 Noted in S-081 (the sixth review): S-074's TELEPORT exemption (a substitution's decoy in the actor's place) answers
 F-196 Q5, which is open; S-080's quote of O18 was wrong (O18 says A "lands beside the rope dart and the kunai before
 picking them up"), and its crouch height and hand supports are reopened (F-206).
 Added in S-082 (RV-96, solver/reblock.py): the search is a steepest descent with ties broken by the components'
 sorted names; a sum limit (NK+HD) is not enforced, so the neck and the head are not freed together.
+Added in S-083 (RV-95): a hand grasping a prop at a pickup is no support (the feet bear the weight); the pickup rows'
+words take bent N as 15 N degrees (the source's 'arm fwd high bent3' at 45) and their directions from the staff's
+sectors (forward and its diagonals 'fwd', back 'back', left or right 'side', place 'down' or 'up'); an ankle need only
+be over the floor, the sole being the contact point (the foot is the shin's extension, F-219).
+Added in S-085 (RV-99, planner/camera_library.py): the hit words (the nouns, the striking verbs, the attacks on a body),
+the words that frame one body (alone, solely, only or on the receiver, attacker, striker, defender, target, victim) and
+that shake a camera (handheld, shake, jitter, wobble, judder), a negation (no, not, never, without) read as one.
+Added in S-086 (RV-59a, solver/interpolation.py): the root runs straight between keys (its positions exact only
+there), the joints slerp as the source says, a declared turn's root angles run straight; at Y = 90 or -90 degrees the
+shared X and Z turn is read back as X; frames at the scene's fps, a vanished body's window left out; a span is the
+source's when both its keys are the owner's rows.
+Added in S-088 (RV-59d, solver/contact_world.py): between keys the actor is airborne (ADR-O104) when the key before
+claims no support, and turning when that key declares a turn; nothing else states the support between keys.
+Added in S-084 (RV-100): the repo's own examples (all but the reference fight) carry no typed deviations; F-200 asks
+the owner.
+Added in S-087 (RV-59b, solver/reblock.py): a re-block holds at its start point every part the key's contacts and S11
+supports name, keeps each freed angle within 45 degrees of its start and a root component within 0.15 m (the probes'
+bounds, not a ruling: ADR-O109 lets a repo key move as far as its joint limits and O72 allow); CLEARANCE_M (0.01 m) is
+a goal, not a bound; a body at its own key always counts, a substitution's start included.
+Added in S-088 (RV-59d): a free prop between its samples runs straight, where S04 reads a gravity arc (F-228); the
+wizard example's landing beat was lengthened to its next key rather than keyed at the landing (F-227); the airborne
+rule excuses a landing (F-222).
+Added in S-089 (RV-59c, solver/reblock.py): the floor term applies FLOOR_PENETRATION's 0.15 m between keys; F-215 asks
+whether that allowance holds.
 
 ## Impact
 Waits on the owner.
@@ -175,16 +199,3 @@ none yet
 
 ## Resolution
 Open.
-Added in S-083 (RV-95): a hand grasping a prop at a pickup is no support (the feet bear the weight); the pickup rows'
-words take bent N as 15 N degrees (the source's 'arm fwd high bent3' at 45) and their directions from the staff's
-sectors (forward and its diagonals 'fwd', back 'back', left or right 'side', place 'down' or 'up'); an ankle need only
-be over the floor, the sole being the contact point (the foot is the shin's extension, F-219).
-Added in S-085 (RV-99, planner/camera_library.py): the hit words (the nouns, the striking verbs, the attacks on a body),
-the words that frame one body (alone, solely, only or on the receiver, attacker, striker, defender, target, victim) and
-that shake a camera (handheld, shake, jitter, wobble, judder), a negation (no, not, never, without) read as one.
-Added in S-086 (RV-59a, solver/interpolation.py): the root runs straight between keys (its positions exact only
-there), the joints slerp as the source says, a declared turn's root angles run straight; at Y = 90 or -90 degrees the
-shared X and Z turn is read back as X; frames at the scene's fps, a vanished body's window left out; a span is the
-source's when both its keys are the owner's rows.
-Added in S-088 (RV-59d, solver/contact_world.py): between keys the actor is airborne (ADR-O104) when the key before
-claims no support, and turning when that key declares a turn; nothing else states the support between keys.

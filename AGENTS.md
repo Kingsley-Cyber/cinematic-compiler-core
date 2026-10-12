@@ -101,10 +101,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.2; backlog 37.
-- Last session: S-089 (2026-10-12, applied): RV-59c: the floor between keys measured; B's crash needs a key mid-fall (F-220).
-- Next slice: RV-97 VERTICAL_FRAMING along a static shot's window, frames on the declared interpolation, a margin by each part's radius; c11 and c20 re-authored (step camera).
-- Open findings: 137; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
+- Layer order 1.7; rules 7.2; backlog 38.
+- Last session: S-090 (2026-10-12, applied): Principal review 7: does the finished work match the plan?.
+- Next slice: RV-59h A support onset is never airborne at its own instant: an interpolated contact's exemption reads the support in force just before it, never a landing's (step motion).
+- Open findings: 149; decisions: 136 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
@@ -119,6 +119,7 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - ADR-O105 (owner_default, confirm or strike): B's kunai leaves the hand once, at the 2.0 throw
 - ADR-O106 (owner_default, confirm or strike): Version bumps follow docs/versioning.md as written
 - ADR-O108 (owner_default, confirm or strike): The deflected kunai goes down to the ground on B's side, not at B
+- ADR-O109 (owner_default, confirm or strike): In-between keys on the repo's side where the declared interpolation draws a body through another or under the floor
 - F-051 (low): Draft library cards await owner review
 - F-052 (low): Kernel scope numbers await owner review
 - F-053 (medium): Claude's interpretations await owner review
@@ -154,12 +155,10 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - F-205 (medium): The anime body's arms reach the floor only with the trunk leaning 58 to 75 degrees
 - F-211 (medium): Must each fighter's laban chain carry its side of the other's beats?
 - F-215 (high): May a body point sit up to 0.15 m under the floor, or only by its radius?
-- F-220 (high): By a contact the declared interpolation draws one body through the other; no re-pose of a key clears it
+- F-220 (high): By a contact the declared interpolation draws one body through the other, and B's crash through the floor
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog RV-15c blocked: A strike's limb and a facing head point at their target, checked at S13 (B's keys re-aimed in RV-103b) — the owner's answer in F-148 (A's source facings: the check would refuse the golden's own rows, O10)
 - Backlog RV-14b blocked: A held or embedded prop at its holder at every sample (the rope dart's line in RV-14c) — the owner's answer in F-148 (the climax: A's source right hand is 0.65-0.87 m from the kunai the source keeps in B's shoulder at 8.5-9.5)
-- Backlog RV-59e blocked: BODY_OVERLAP refused at every frame between keys; the spans by a contact cleared as F-220's answer says (the knee at 4.7, the catch and the throw 6.3-7.5, the drive and the crash 8.0-9.0, the wizard's kick at 3.6) — the owner's answer in F-220 (in-between keys, an allowance by a contact, looser contacts or A's rows)
-- Backlog RV-59c blocked: FLOOR_PENETRATION at every frame between keys; B's crash cleared as F-220's answer says (a key mid-fall or a declared fall path) — the owner's answer in F-220 (no re-pose of B's 8.5 or 9.0 key keeps the fall over the floor)
 - Backlog RV-87 blocked: The substitution's decoy is declared, stands in the scene from the first beat, and is measured where the actor stood; a substitution needs the capability — the owner's answers in F-196 (Q1-Q3: who declares the decoy, whether it stands from the first frame, who may substitute)
 - Backlog RV-90b blocked: HIT_HOLD's scale follows the grammar's impact scales — the owner's answer in F-197 (Q3: may a hit be held at a wide scale)
 - Backlog RV-64b blocked: The S04 packet carries the scene_reference rules — the owner's answer in F-133
