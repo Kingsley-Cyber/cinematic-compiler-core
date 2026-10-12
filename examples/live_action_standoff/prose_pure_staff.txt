@@ -53,9 +53,9 @@ Frame: up +Y, forward +Z, ground y=0, units m; Euler XYZ intrinsic, right-handed
 Axes: Y_up, A faces -Z, B faces +Z, ground y=0.
 ground (floor): Packed earth or stone flooring at y=0; solid.
 stone wall (wall): Heavy stone wall bounding the space; solid.
-A starts at [0, 0, 4].
-B starts at [0, 0, 0].
-Height used: y 0 to 0 m; depth used: z 0 to 4 m.
+A starts at [0, 0.97, 4].
+B starts at [0, 0.92, 0].
+Height used: y 0.92 to 0.97 m; depth used: z 0 to 4 m.
 
 [CAUSAL LINKS]
 → hard cause (the effect starts after the cause ends); ⇢ soft cause (it may start while the cause runs).
@@ -94,8 +94,8 @@ Ink: photographic live-action footage; no ink, no smears, no speedlines.
 - Ground force needs support: pushing, bracing and striking from the ground need a supporting part.
 - Contact before effect: nothing reacts to a hit before the contact.
 - Rotation is continuous: turns, flips and cartwheels sweep through every angle in between.
-- End state: A at [0, 0, 4], support both feet place-mid.
-- End state: B at [0, 0, 1.2], support both feet place-mid.
+- End state: A at [0, 0.97, 4], support both feet place-mid.
+- End state: B at [0, 0.95, 1.2], support both feet place-mid.
 
 [NEGATIVES]
 no missing limbs; no missing arms; no missing hands; no headless body; no faceless head; no extra fighters beyond A and B; no cloned A; no cloned B; no extra weapons; no full circle; no ring; no halo

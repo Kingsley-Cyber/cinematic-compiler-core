@@ -33,6 +33,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-024 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog M9-09e; finding F-065; rulings… | applied | the commit whose message names [S-024] | about 25 minutes | M9-09f (F-067: the query says A falls from y=10, O79). | [S-024-m9-09e-prop-support.md](../sessions/S-024-m9-09e-prop-support.md) |
 | S-025 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog M9-09f; finding F-067; ruling O… | applied | the commit whose message names [S-025] | about 10 minutes | M9-09g (the face's heading through the spine, R-34). | [S-025-m9-09f-query-starts-a-at-y-10.md](../sessions/S-025-m9-09f-query-starts-a-at-y-10.md) |
 | S-026 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog M9-09g (the S-020 single-joint… | applied | the commit whose message names [S-026] | about 15 minutes | M9-06 (forward kinematics, world contact points, roots at t… | [S-026-m9-09g-face-heading-through-the-spine.md](../sessions/S-026-m9-09g-face-heading-through-the-spine.md) |
+| S-027 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog M9-06a (split from M9-06; PLAN-… | applied | the commit whose message names [S-027] | about 120 minutes | Report the miss list to the owner (O81); M9-06b waits for t… | [S-027-m9-06a-forward-kinematics.md](../sessions/S-027-m9-06a-forward-kinematics.md) |
 
 ## Status values
 

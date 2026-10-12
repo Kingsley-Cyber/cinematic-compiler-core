@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:body_segments:1.0",
+  "title": "Body segments (S13 forward kinematics)",
+  "description": "Segment lengths in metres for forward kinematics from the pelvis root (owner O24, O72): the chain root, Sp, NK, HD, LA, LFA, RA, RFA, LUL, LL, RUL, RL of the Q6 convention.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["library_id", "version", "status", "basis", "metres"],
+  "properties": {
+    "library_id": {"const": "body_segments"},
+    "version": {"type": "integer", "minimum": 1},
+    "status": {"enum": ["draft", "approved"]},
+    "basis": {"type": "string", "minLength": 1},
+    "metres": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hip", "thigh", "shin", "ankle", "spine", "torso_point", "shoulder", "upper_arm", "forearm", "neck", "head"],
+      "properties": {
+        "hip": {"type": "number", "exclusiveMinimum": 0, "description": "pelvis centre to each hip joint, sideways"},
+        "thigh": {"type": "number", "exclusiveMinimum": 0, "description": "hip to knee"},
+        "shin": {"type": "number", "exclusiveMinimum": 0, "description": "knee to ankle"},
+        "ankle": {"type": "number", "exclusiveMinimum": 0, "description": "ankle to the sole, along the shin"},
+        "spine": {"type": "number", "exclusiveMinimum": 0, "description": "pelvis to the shoulder line"},
+        "torso_point": {"type": "number", "exclusiveMinimum": 0, "maximum": 1, "description": "where a torso contact lands, as a share of the spine from the pelvis"},
+        "shoulder": {"type": "number", "exclusiveMinimum": 0, "description": "shoulder line centre to each shoulder joint"},
+        "upper_arm": {"type": "number", "exclusiveMinimum": 0, "description": "shoulder to elbow"},
+        "forearm": {"type": "number", "exclusiveMinimum": 0, "description": "elbow to the palm's centre"},
+        "neck": {"type": "number", "exclusiveMinimum": 0, "description": "shoulder line to the head's base"},
+        "head": {"type": "number", "exclusiveMinimum": 0, "description": "the head's base to its centre"}
+      }
+    }
+  }
+}

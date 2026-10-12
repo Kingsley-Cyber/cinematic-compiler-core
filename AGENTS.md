@@ -100,10 +100,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 3.0; backlog 5.
-- Last session: S-026 (2026-10-11, applied): M9-09g: the face's heading reads the whole chain (O76, R-34).
-- Next slice: M9-06 F5.1/F5.2 world contact points by forward kinematics; roots at the pelvis (O72) (step motion).
-- Open findings: 34; decisions: 107 (0 proposed).
+- Layer order 1.7; rules 3.0; backlog 6.
+- Last session: S-027 (2026-10-11, applied): M9-06a: forward kinematics, roots at the pelvis, printed world points, the miss report (F5.1; O72, O81).
+- Next slice: none.
+- Open findings: 35; decisions: 108 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
@@ -122,6 +122,7 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - F-060 (low): What is a motif?
 - F-066 (high): What is a key's root position: the pelvis or the ground point?
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
+- Backlog M9-06b blocked: F5.2 CONTACT_WORLD refuses a contact over 0.15 m (O72) — the owner reviews M9-06a's miss list first (ADR-O81)
 <!-- END GENERATED: rulings -->
 
 The owner updates this section by ruling: in chat (the agent writes the ADR) or by writing an ADR from

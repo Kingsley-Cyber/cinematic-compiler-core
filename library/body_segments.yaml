@@ -1,0 +1,10 @@
+# Body segments for S13 forward kinematics (owner O24: world contact points are computed from the pose; O72: the root
+# is the pelvis). Draft by Claude for owner review: one adult of about 1.75 m, standing pelvis 0.98 m above the soles
+# (thigh + shin + ankle); every archetype uses it until the owner asks for per-archetype bodies. Rounded from common
+# anthropometric proportions, not measured from a source.
+library_id: body_segments
+version: 1
+status: draft
+basis: "Owner O24 and O72; one adult body, about 1.75 m tall, drafted by Claude from common anthropometric proportions."
+metres: {hip: 0.10, thigh: 0.45, shin: 0.45, ankle: 0.08, spine: 0.50, torso_point: 0.8, shoulder: 0.18, upper_arm: 0.30,
+         forearm: 0.35, neck: 0.10, head: 0.11}

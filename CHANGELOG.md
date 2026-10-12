@@ -22,6 +22,11 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
   quality)" for punch and "(press quality)" and so on; S15's data and LBN-2.4 keep the Laban vocabulary.
 
 ### Added
+- Forward kinematics (M9-06a, plan F5.1, owners O24, O72, O81, S-027): `solver/forward_kinematics.py` and a draft
+  `library/body_segments.yaml` (logged, schema `cards/body_segments`); S13 writes each key's world points (motion graph
+  1.1); the repo-authored roots stand at the pelvis (the source's A rows unchanged); each touch prints its two points;
+  `solver/contact_world.py` and `validators/contact_world_report.py` produce the miss report (F-070). CONTACT_WORLD
+  does not refuse yet (M9-06b). SURFACE_HEIGHT judges a landing only on a pose at its instant.
 - PROP_SUPPORT (M9-09e, owner O78, S-024): S04 refuses a free prop resting with nothing under it (a top within
   0.1 m, or a location or worn fact since its last hold); the smoke pellet is thrown down at 3.7 and bursts on the
   ground at 4.0. F-065 resolved.

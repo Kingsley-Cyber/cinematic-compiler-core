@@ -75,6 +75,7 @@ Every finding: a bug, gap, contradiction, drift, question, risk or opportunity f
 | F-067 | The query says "falling from y=8"; O21 starts A at y=10 | contradiction | low | L0 | resolved | — | - examples/reference_fight/request.json and kerne… | 2026-10-11 | [F-067-query-start-height-against-o21.md](../findings/F-067-query-start-height-against-o21.md) |
 | F-068 | Twelve Effort intervals declare a Shape quality their motion contradi… | question | medium | L5 | resolved | — | - the S-017 prototype (ADR-O73's measure) over th… | 2026-10-11 | [F-068-shape-qualities-contradict-the-motion.md](../findings/F-068-shape-qualities-contradict-the-motion.md) |
 | F-069 | Nine airborne spans hang longer than gravity allows | question | medium | L4a | resolved | — | - the S-018 prototype (ADR-O74's arc) over the fo… | 2026-10-11 | [F-069-airborne-spans-leave-the-gravity-arc.md](../findings/F-069-airborne-spans-leave-the-gravity-arc.md) |
+| F-070 | Most contacts miss their targets by forward kinematics | gap | high | L4c | open | — | - docs/reports/2026-10-11-contact-world-misses.md… | 2026-10-11 | [F-070-contacts-miss-their-targets.md](../findings/F-070-contacts-miss-their-targets.md) |
 
 ## Type values
 

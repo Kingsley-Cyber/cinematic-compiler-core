@@ -6,22 +6,22 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 3.0; backlog 5.
+Layer order 1.7; rules 3.0; backlog 6.
 
 ## Last sessions
 
-- S-024 (applied): M9-09e: a prop at rest has something under it; the smoke pellet falls (F-065, O78)
 - S-025 (applied): M9-09f: the reference query says A falls from y=10 (F-067, O79)
 - S-026 (applied): M9-09g: the face's heading reads the whole chain (O76, R-34)
+- S-027 (applied): M9-06a: forward kinematics, roots at the pelvis, printed world points, the miss report (F5.1; O72, O81)
 
 ## Next slices
 
-- M9-06 (next, step motion): F5.1/F5.2 world contact points by forward kinematics; roots at the pelvis (O72)
 - M9-10 (ready, step effort): F4.3/F4.4 B's active keys and the idle-fighter check
 - M9-11 (ready, step render): FR.7 genre cards; FR.6 money-shot frame parts; FR.2 limb paths
 - M9-12 (ready, step render): O19 D9-style staff lines
+- M9-13 (ready, step camera): C10 camera in V5's wording, FR.5 arc, F8.1-F8.3
 
-M9: 18 of 34 slices done, 16 left (M9-03a blocked; 1 the owner's own).
+M9: 19 of 35 slices done, 16 left (M9-03a blocked, M9-06b blocked; 1 the owner's own).
 
 ## Waiting on the owner
 
@@ -35,8 +35,9 @@ M9: 18 of 34 slices done, 16 left (M9-03a blocked; 1 the owner's own).
 - F-060 (low): What is a motif?
 - F-066 (high): What is a key's root position: the pelvis or the ground point?
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
+- Backlog M9-06b blocked: F5.2 CONTACT_WORLD refuses a contact over 0.15 m (O72) — the owner reviews M9-06a's miss list first (ADR-O81)
 
-## Open findings: 34
+## Open findings: 35
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -52,7 +53,8 @@ M9: 18 of 34 slices done, 16 left (M9-03a blocked; 1 the owner's own).
 - F-031 (critical, L6): Render wording the model does not follow
 - F-036 (high, L6): Aerial timing is not followed: takeoffs come late
 - F-066 (high, L4c): What is a key's root position: the pelvis or the ground point?
+- F-070 (high, L4c): Most contacts miss their targets by forward kinematics
 
 ## Next free IDs
 
-Decision ADR-O81, finding F-070, session S-027, render R20.
+Decision ADR-O82, finding F-071, session S-028, render R20.

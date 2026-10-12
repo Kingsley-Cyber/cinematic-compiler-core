@@ -49,6 +49,9 @@ effects of the wizard's two flips sit on the beats before them (run_in, the slic
 Added in S-024 (planner/dynamic_beat_validator.py): PROP_SUPPORT reads a top by height alone and a card's worn
 state as the wearer's support; the pellet bursts as it lands at 4.0 (the owner's words: fall after bursting).
 Added in S-026 (solver/quaternion.py): a face within FACE_LEVEL 0.2 of vertical keeps the summed heading.
+Added in S-027 (solver/forward_kinematics.py, library/body_segments.yaml, validators/contact_world_report.py): the
+draft segment lengths; where each contact part's point is; the pelvis re-rooting rule; a touch on a non-floor surface
+is a face; the miss report's likely causes.
 
 ## Impact
 Waits on the owner.

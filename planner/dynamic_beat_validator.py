@@ -17,8 +17,9 @@ moving prop follows gravity from the first sample's velocity to the second posit
 (stylised, no gravity) is allowed in anime only. The 2 m reach and the 0.25 m tolerance are Claude's interpretation.
 Surface height (owner O21, audit X7, SURFACE_HEIGHT): when a foot starts bearing weight on a surface whose top is known
 (its world card's geometry text, "from y=0 to y=8"; a floor without one sits at the convention's ground), the
-performer's root (its latest anchor) lies between the top, less 0.05 m, and 1.2 m above it. Interpretation (Claude's,
-for owner review): the range holds whether the root is the pelvis or the ground point (ADR-O72 open).
+performer's root (its anchor at that instant; a landing between two keys has none and is not judged) lies between
+the top, less 0.05 m, and 1.2 m above it. Interpretation (Claude's, for owner review): the range; the root is the
+pelvis (ADR-O72).
 Prop support (owner O78, PROP_SUPPORT): a free prop at rest lies on a surface's top (within 0.1 m of its height),
 or a fact since its last hold places it (a location, or worn: yes on its wearer). Interpretation (Claude's, for owner
 review): the height alone stands for "on the top" (surfaces have no extent), and a card's worn state is the wearer's
@@ -192,8 +193,8 @@ def _surface_heights(beats, tops):
             if contact["contact_type"] != "support" or contact["b"]["kind"] != "surface" or surface not in tops \
                     or not contact["a"]["part"].endswith("_foot"):
                 continue
-            t = _at(beat, contact)
-            root = next((pos for at, who, pos in reversed(anchors) if who == entity and at <= t + EPSILON), None)
+            t = _at(beat, contact)  # judged on the pose at the onset; a landing between keys has none (S-027)
+            root = next((pos for at, who, pos in reversed(anchors) if who == entity and abs(at - t) <= EPSILON), None)
             if root is not None and not tops[surface] - SURFACE_SLACK_M <= root[1] <= tops[surface] + LEG_M:
                 findings.append(_finding("SURFACE_HEIGHT", f"{entity} stands on {surface} (top y={tops[surface]:g}) at "
                                          f"{t} with the root at y={root[1]:g}", beat["id"], contact))

@@ -106,6 +106,7 @@ Every owner decision. ADR IDs keep the names the code and tests cite (Q, A, B: 2
 | ADR-O78 | A prop at rest has support; the smoke pellet falls after it bursts | accepted | L1.1 | 2026-10-11 | [ADR-O78-a-resting-prop-has-support.md](../decisions/ADR-O78-a-resting-prop-has-support.md) |
 | ADR-O79 | The reference query says A falls from y=10 | accepted | L0 | 2026-10-11 | [ADR-O79-the-query-starts-a-at-y-10.md](../decisions/ADR-O79-the-query-starts-a-at-y-10.md) |
 | ADR-O80 | A launch needs grounded support in the beat before it | accepted | L4a, L4c | 2026-10-11 | [ADR-O80-a-launch-needs-grounded-support-before-it.md](../decisions/ADR-O80-a-launch-needs-grounded-support-before-it.md) |
+| ADR-O81 | M9-06 lands forward kinematics and reports the contact misses before… | accepted | L4c | 2026-10-11 | [ADR-O81-m9-06-measures-before-it-refuses.md](../decisions/ADR-O81-m9-06-measures-before-it-refuses.md) |
 | ADR-S1 | Log every schema, library and kernel change | accepted | Schema control | 2026-10-10 | [ADR-S1-log-every-schema-library-and-kernel-change.md](../decisions/ADR-S1-log-every-schema-library-and-kernel-change.md) |
 | ADR-S2 | The owner renders; no paid model API | accepted | all | 2026-10-11 | [ADR-S2-the-owner-renders-no-paid-model-api.md](../decisions/ADR-S2-the-owner-renders-no-paid-model-api.md) |
 | ADR-S3 | Every prompt adheres to the knowledge DAG as a checklist | accepted | L6 | 2026-10-11 | [ADR-S3-every-prompt-adheres-to-the-knowledge-dag-as.md](../decisions/ADR-S3-every-prompt-adheres-to-the-knowledge-dag-as.md) |

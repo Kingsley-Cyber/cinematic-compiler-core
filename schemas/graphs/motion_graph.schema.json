@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:motion_graph:1.0",
+  "$id": "urn:cinematic-compiler:schema:motion_graph:1.1",
   "title": "S13 motion graph",
   "description": "motion = key poses (/nodes/motion) with derived quaternions; motion_edges = follows edges (/edges/motion) with derived Euler deltas, interpolation and root trajectory.",
   "type": "object",
@@ -28,7 +28,8 @@
           "turn",
           "axis_declaration",
           "heading_basis",
-          "description"
+          "description",
+          "points"
         ],
         "properties": {
           "id": {
@@ -106,6 +107,18 @@
           "description": {
             "type": "string",
             "minLength": 1
+          },
+          "points": {
+            "type": "object",
+            "description": "Owner O24, O72 (M9-06a): world points of the key by forward kinematics from the pelvis root (solver/forward_kinematics.py, library/body_segments.yaml).",
+            "additionalProperties": {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 3,
+              "items": {
+                "type": "number"
+              }
+            }
           }
         }
       }

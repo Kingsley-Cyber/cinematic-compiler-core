@@ -40,6 +40,7 @@ done only when every row that applies passes. Claude never renders; you render, 
 - F-060 (low): What is a motif?
 - F-066 (high): What is a key's root position: the pelvis or the ground point?
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
+- Backlog M9-06b blocked: F5.2 CONTACT_WORLD refuses a contact over 0.15 m (O72) — the owner reviews M9-06a's miss list first (ADR-O81)
 <!-- END GENERATED: owner_rulings -->
 
 To rule, tell the agent in chat. The agent writes it up as a decision file (an ADR), cites it in the rules if it

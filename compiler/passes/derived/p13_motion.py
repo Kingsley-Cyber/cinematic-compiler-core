@@ -13,7 +13,7 @@ from compiler.authoring import run_authored, seal
 from kernel.kernel_files import load as load_kernel
 from planner.dependency_graph import ROOT, load
 from planner.scene_view import slots, values_in_progress
-from solver import euler_solver, quaternion, trajectory
+from solver import euler_solver, forward_kinematics, quaternion, trajectory
 from validators.schema_validator import validate_schema
 
 NODE, STEP = "motion", "S13"
@@ -45,7 +45,8 @@ def prepare(envelope):
     return seal({"step_id": STEP, "band": "L4c", "kind": "motion_plan", "schema": "urn:cinematic-compiler:schema:motion_plan:1.0",
                  "instructions": PROMPT.read_text(encoding="utf-8"), "rotation_convention": convention,
                  "joints": euler_solver.kernel_joints(load_kernel("invariants")),
-                 "joint_limits": joint_limits(envelope["scene"]["genre"]), "slots": view})
+                 "joint_limits": joint_limits(envelope["scene"]["genre"]), "segments": forward_kinematics.segments(),
+                 "slots": view})
 
 
 def _keys(document, packet):
@@ -80,7 +81,8 @@ def build(envelope, document, packet):
                       "pos": key["pos"], "rot": key["rot"], "quat": quaternion.quaternion(key["rot"]),
                       "bones": {j: key["bones"][j] for j in packet["joints"]}, "turn": key["turn"],
                       "axis_declaration": key["axis_declaration"], "heading_basis": bases[slot_id],
-                      "description": key["description"]})
+                      "description": key["description"],
+                      "points": forward_kinematics.points(key, packet["segments"])})  # owner O24, O72 (M9-06a)
     edges, last = [], {}
     for node in nodes:
         prior = last.get(node["entity"])

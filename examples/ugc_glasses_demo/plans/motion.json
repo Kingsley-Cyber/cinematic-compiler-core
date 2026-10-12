@@ -1,7 +1,7 @@
 {
  "step_id": "S13",
  "band": "L4c",
- "packet_sha256": "sha256:86a7b95e9ea025163d0958d71138865c0637daaeff68447f4ad8df72b7d5775d",
+ "packet_sha256": "sha256:77c7eb2b95b519cdfd94022212d040e7b0df0e17368c5bfd33e626f36fe7920c",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -13,7 +13,7 @@
    "name": "reach_for_glasses",
    "pos": [
     0,
-    0,
+    0.97,
     0
    ],
    "rot": [
@@ -87,7 +87,7 @@
    "name": "unfold_at_chest",
    "pos": [
     0,
-    0,
+    0.97,
     0
    ],
    "rot": [
@@ -161,7 +161,7 @@
    "name": "lift_to_face",
    "pos": [
     0,
-    0,
+    0.97,
     0
    ],
    "rot": [
@@ -235,7 +235,7 @@
    "name": "present_result",
    "pos": [
     0,
-    0,
+    0.97,
     0
    ],
    "rot": [

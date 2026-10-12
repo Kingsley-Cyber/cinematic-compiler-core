@@ -1,7 +1,7 @@
 {
  "step_id": "S13",
  "band": "L4c",
- "packet_sha256": "sha256:73108d17f89c697bdbb11897f128dbe5574c94ae91a36a96e3bfc9faf2b4c3fa",
+ "packet_sha256": "sha256:585b92a47b9d5889e231f5c0e5f4b137d959133a4f4e30457b1f858e715d7470",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -13,7 +13,7 @@
    "name": "low_sprint",
    "pos": [
     0,
-    0,
+    0.77,
     0
    ],
    "rot": [
@@ -87,7 +87,7 @@
    "name": "crouch_hand_plant",
    "pos": [
     0,
-    0,
+    0.71,
     2.4
    ],
    "rot": [
@@ -161,7 +161,7 @@
    "name": "vault_layout",
    "pos": [
     0,
-    1.2,
+    1.88,
     3.0
    ],
    "rot": [
@@ -235,7 +235,7 @@
    "name": "inverted_tuck",
    "pos": [
     0.8,
-    1.0,
+    1.66,
     3.6
    ],
    "rot": [
@@ -309,7 +309,7 @@
    "name": "coiled_spin_windup",
    "pos": [
     1.0,
-    0,
+    0.63,
     4.2
    ],
    "rot": [
@@ -383,7 +383,7 @@
    "name": "hurled_off_one_foot",
    "pos": [
     0.6,
-    0,
+    0.91,
     4.9
    ],
    "rot": [
@@ -457,7 +457,7 @@
    "name": "rounded_back_impact",
    "pos": [
     2.0,
-    1.2,
+    2.08,
     4.0
    ],
    "rot": [
@@ -531,7 +531,7 @@
    "name": "braced_push_off",
    "pos": [
     2.5,
-    0.9,
+    1.77,
     3.5
    ],
    "rot": [
@@ -605,7 +605,7 @@
    "name": "feint_lunge_guard",
    "pos": [
     2.2,
-    0,
+    0.83,
     3.8
    ],
    "rot": [
@@ -679,7 +679,7 @@
    "name": "rising_guard",
    "pos": [
     1.2,
-    0,
+    0.88,
     4.8
    ],
    "rot": [
@@ -753,7 +753,7 @@
    "name": "backflip_takeoff",
    "pos": [
     1.0,
-    0,
+    0.74,
     5.0
    ],
    "rot": [
@@ -827,7 +827,7 @@
    "name": "inverted_tuck_apex",
    "pos": [
     -0.4,
-    1.0,
+    1.63,
     5.2
    ],
    "rot": [
@@ -901,7 +901,7 @@
    "name": "crouched_guard_landing",
    "pos": [
     -1.1,
-    0,
+    0.58,
     5.3
    ],
    "rot": [
@@ -975,7 +975,7 @@
    "name": "bolt_cast_extend",
    "pos": [
     0,
-    0,
+    0.96,
     6
    ],
    "rot": [
@@ -1049,7 +1049,7 @@
    "name": "centered_breath",
    "pos": [
     0,
-    0,
+    0.97,
     6
    ],
    "rot": [
@@ -1123,7 +1123,7 @@
    "name": "staggered_double_palm",
    "pos": [
     0,
-    0,
+    0.94,
     5.8
    ],
    "rot": [
@@ -1197,7 +1197,7 @@
    "name": "steadying_guard",
    "pos": [
     0,
-    0,
+    0.96,
     5.8
    ],
    "rot": [
@@ -1271,7 +1271,7 @@
    "name": "tracking_guard",
    "pos": [
     0,
-    0,
+    0.95,
     5.8
    ],
    "rot": [
@@ -1345,7 +1345,7 @@
    "name": "spiral_sweep_windup",
    "pos": [
     0,
-    0,
+    0.95,
     5.8
    ],
    "rot": [

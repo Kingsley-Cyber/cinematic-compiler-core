@@ -164,6 +164,6 @@ def test_reference_rules_bound_lasting_effects_spans_and_separate_strikes():
     assert "- From 9.00 to the end, kunai stays embedded." in rules
     assert "- A L foot stays on the wooden pillar from 0.60 to 1.60: one continuous contact" in rules
     assert "- TWO SEPARATE STRIKES: A R foot > kunai blade and R leg > B torso" in rules
-    assert "End state: B at [1, 0, 5.3], condition down, support lying." in rules
+    assert "End state: B at [1, 0.1, 5.3], condition down, support lying." in rules  # the pelvis lying (O72, S-027)
     assert "Contact before effect: nothing reacts to a hit before the contact." in rules
     assert rules.index("Identity is immutable") > rules.index("Follow the SUPPORT column")  # laws in the rules layer

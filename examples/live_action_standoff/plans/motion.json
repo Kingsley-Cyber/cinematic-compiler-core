@@ -1,7 +1,7 @@
 {
  "step_id": "S13",
  "band": "L4c",
- "packet_sha256": "sha256:728ec4d5538f3f151fe185aa6c648733545bcca598c5455600d9bd722abbabb6",
+ "packet_sha256": "sha256:7bf55284cc1d7b9ba95c44040f6dd4234f8db5cb8f26d3cecd60c3e5860caa8f",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -13,7 +13,7 @@
    "name": "knight_step",
    "pos": [
     0,
-    0,
+    0.92,
     0
    ],
    "rot": [
@@ -87,7 +87,7 @@
    "name": "wizard_still",
    "pos": [
     0,
-    0,
+    0.97,
     4
    ],
    "rot": [
@@ -161,7 +161,7 @@
    "name": "wizard_hand_up",
    "pos": [
     0,
-    0,
+    0.97,
     4
    ],
    "rot": [
@@ -235,7 +235,7 @@
    "name": "knight_brace",
    "pos": [
     0,
-    0,
+    0.95,
     1.0
    ],
    "rot": [
@@ -309,7 +309,7 @@
    "name": "knight_check",
    "pos": [
     0,
-    0,
+    0.95,
     1.2
    ],
    "rot": [
@@ -383,7 +383,7 @@
    "name": "wizard_hand_up",
    "pos": [
     0,
-    0,
+    0.97,
     4
    ],
    "rot": [
@@ -457,7 +457,7 @@
    "name": "wizard_hand_up",
    "pos": [
     0,
-    0,
+    0.97,
     4
    ],
    "rot": [
@@ -531,7 +531,7 @@
    "name": "knight_brace",
    "pos": [
     0,
-    0,
+    0.95,
     1.2
    ],
    "rot": [

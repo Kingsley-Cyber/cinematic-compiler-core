@@ -28,7 +28,7 @@ from planner import camera_library, dynamic_beat_validator
 from planner.scene_view import slots
 from renderers import prop_samples, ugc_renderer
 from renderers.anime_renderer import NUMBERS, _face_words, _items, _num, constraint_rows
-from solver import euler_solver, staff_geometry
+from solver import contact_world, euler_solver, staff_geometry
 
 TARGET = "structured-prose"
 MODES = {
@@ -294,6 +294,10 @@ def strike_contacts(envelope, impacts):
     return out
 
 
+def _point(values):
+    return "[" + ", ".join(f"{round(v, 2):g}" for v in values) + "]"
+
+
 def staff_lines(envelope, frame_parts, labels):
     """One line per slot with the facts the modes need: text without Euler blocks, strike flag, the key."""
     keys = {k["id"]: k for k in _items(envelope, "nodes", "motion")}
@@ -307,6 +311,7 @@ def staff_lines(envelope, frame_parts, labels):
     empty = empty_hands(envelope, labels)
     runs = turn_runs(envelope, labels)
     heads = {r["slots"][0]: r["head"] for r in runs}
+    world = {r["id"]: r for r in contact_world.measure(envelope) if r["measurable"] and r["kind"] != "foot or body on a surface"}
     mids = {s: r["more"] for r in runs for s in r["slots"][1:]}
     ordered = sorted(slots(envelope), key=lambda s: (s["t"], labels[s["entity"]]))
     by_entity = {}
@@ -348,6 +353,9 @@ def staff_lines(envelope, frame_parts, labels):
                     relationship.append(empty[c["id"]])
             elif c["contact_type"] == "support" and c["b"]["kind"] != "surface":
                 relationship.append(f"support bow: {part} on {target}{at}")
+            if c["id"] in world:  # plan F5.1, owners O24, O72, O81: the two world points the contact joins
+                row = world[c["id"]]
+                relationship.append(f"{part} at {_point(row['actor_point'])}, {target} at {_point(row['target_point'])}")
         left = (f"L arm {words['left']['arm']}, lower arm {words['left']['lower_arm']}, L leg {words['left']['leg']}, "
                 f"lower leg {words['left']['lower_leg']}")
         left += f", body {words['body']}" if words["body"] else ""

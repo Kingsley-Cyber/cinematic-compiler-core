@@ -1,0 +1,67 @@
+"""Forward kinematics for S13 key poses (owner O24: world contact points come from the pose; O72: the root is the pelvis).
+
+The Q6 chain (kernel/conventions.yaml; solver/staff_geometry.py): root -> Sp -> (NK -> HD, LA -> LFA, RA -> RFA) and
+root -> (LUL -> LL, RUL -> RL), each joint's Euler rotation local to its parent; at rest the body is upright and every
+limb hangs straight down; +X is the performer's left. Segment lengths come from library/body_segments.yaml (draft).
+`points` gives each key's named world points; `part_point` maps a contact's body part onto one of them.
+Interpretation (Claude's, for owner review): a foot's point is its sole, below the ankle along the shin; a hand's is
+the palm's centre at the end of the forearm; a leg's is the knee and an arm's the elbow; the torso's lies at
+`torso_point` of the spine from the pelvis; the head's at its centre.
+"""
+
+import json
+
+import yaml
+
+from planner.dependency_graph import ROOT
+from solver.quaternion import apply, matrix
+from validators.schema_validator import validate_schema
+
+POINTS = ("pelvis", "torso", "head", "left_arm", "left_hand", "right_arm", "right_hand", "left_leg", "left_foot",
+          "right_leg", "right_foot")
+
+
+def segments():
+    """library/body_segments.yaml, validated; the metres by name."""
+    card = yaml.safe_load((ROOT / "library" / "body_segments.yaml").read_text(encoding="utf-8"))
+    validate_schema(card, json.loads((ROOT / "schemas" / "cards" / "body_segments.schema.json").read_text(encoding="utf-8")))
+    return card["metres"]
+
+
+def _turn(chain, vector):
+    for rot in reversed(chain):
+        vector = apply(matrix(rot), vector)
+    return vector
+
+
+def _at(base, chain, vector):
+    return [round(b + d, 6) + 0.0 for b, d in zip(base, _turn(chain, vector), strict=True)]
+
+
+def points(key, metres):
+    """{name: [x, y, z]} in the scene frame for one key (root position and rotation, joints in `bones`)."""
+    root, bones, pelvis = key["rot"], key["bones"], list(key["pos"])
+    out = {"pelvis": [float(v) for v in pelvis]}
+    for side, sign, upper, lower in (("left", 1, "LUL", "LL"), ("right", -1, "RUL", "RL")):
+        hip = _at(pelvis, [root], (sign * metres["hip"], 0.0, 0.0))
+        out[f"{side}_leg"] = knee = _at(hip, [root, bones[upper]], (0.0, -metres["thigh"], 0.0))
+        ankle = _at(knee, [root, bones[upper], bones[lower]], (0.0, -metres["shin"], 0.0))
+        out[f"{side}_foot"] = _at(ankle, [root, bones[upper], bones[lower]], (0.0, -metres["ankle"], 0.0))
+    chest = _at(pelvis, [root, bones["Sp"]], (0.0, metres["spine"], 0.0))
+    out["torso"] = _at(pelvis, [root, bones["Sp"]], (0.0, metres["torso_point"] * metres["spine"], 0.0))
+    for side, sign, upper, lower in (("left", 1, "LA", "LFA"), ("right", -1, "RA", "RFA")):
+        shoulder = _at(chest, [root, bones["Sp"]], (sign * metres["shoulder"], 0.0, 0.0))
+        out[f"{side}_arm"] = elbow = _at(shoulder, [root, bones["Sp"], bones[upper]], (0.0, -metres["upper_arm"], 0.0))
+        out[f"{side}_hand"] = _at(elbow, [root, bones["Sp"], bones[upper], bones[lower]], (0.0, -metres["forearm"], 0.0))
+    neck = _at(chest, [root, bones["Sp"], bones["NK"]], (0.0, metres["neck"], 0.0))
+    out["head"] = _at(neck, [root, bones["Sp"], bones["NK"], bones["HD"]], (0.0, metres["head"], 0.0))
+    return out
+
+
+def part_point(named, part):
+    """The world point a contact's body part touches with, or None for a part with no point."""
+    if part in named:
+        return named[part]
+    side, _, name = part.partition("_")
+    return named.get(f"{side}_{'hand' if name in ('palm', 'fingers', 'fist') else name}") if side in ("left", "right") else (
+        named["torso"] if part in ("chest", "back", "spine", "shoulder") else None)

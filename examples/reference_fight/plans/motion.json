@@ -1,7 +1,7 @@
 {
  "step_id": "S13",
  "band": "L4c",
- "packet_sha256": "sha256:dd2f23ad1e8cef2dbee7cf1a6f8a19e99dc6f10f14288ecf77daff739b1d2a10",
+ "packet_sha256": "sha256:03d61faee3ee02b339e60aa6ac53220044ba2e1d1dda44b2a22501a0c2afbaed",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -87,7 +87,7 @@
    "name": "wait_with_kunai",
    "pos": [
     0,
-    0,
+    0.96,
     4.5
    ],
    "rot": [
@@ -383,7 +383,7 @@
    "name": "track_a_off_pillar",
    "pos": [
     1.2,
-    0,
+    0.96,
     4.6
    ],
    "rot": [
@@ -457,7 +457,7 @@
    "name": "throw_kunai_upward",
    "pos": [
     1.4,
-    0,
+    0.91,
     4.6
    ],
    "rot": [
@@ -679,7 +679,7 @@
    "name": "watch_kunai_turn",
    "pos": [
     1.4,
-    0,
+    0.96,
     4.6
    ],
    "rot": [
@@ -827,7 +827,7 @@
    "name": "brace_and_rise",
    "pos": [
     1.6,
-    0,
+    0.83,
     4.8
    ],
    "rot": [
@@ -901,7 +901,7 @@
    "name": "rising_palm_charge",
    "pos": [
     1.4,
-    0,
+    0.86,
     4.7
    ],
    "rot": [
@@ -1123,7 +1123,7 @@
    "name": "palm_into_smoke",
    "pos": [
     1.0,
-    0,
+    0.86,
     4.7
    ],
    "rot": [
@@ -1197,7 +1197,7 @@
    "name": "palm_hits_log",
    "pos": [
     0.9,
-    0,
+    0.86,
     4.7
    ],
    "rot": [
@@ -1345,7 +1345,7 @@
    "name": "stumble_forward",
    "pos": [
     -0.3,
-    0,
+    0.86,
     4.5
    ],
    "rot": [
@@ -1493,7 +1493,7 @@
    "name": "spine_struck_launched",
    "pos": [
     -0.3,
-    0,
+    0.89,
     4.5
    ],
    "rot": [
@@ -1641,7 +1641,7 @@
    "name": "airborne_forward",
    "pos": [
     -1.2,
-    1.0,
+    1.88,
     4.4
    ],
    "rot": [
@@ -1715,7 +1715,7 @@
    "name": "air_throw_shuriken",
    "pos": [
     -1.5,
-    0.8,
+    1.66,
     4.3
    ],
    "rot": [
@@ -1937,7 +1937,7 @@
    "name": "land_behind_volley",
    "pos": [
     -1.6,
-    0,
+    0.84,
     4.2
    ],
    "rot": [
@@ -2085,7 +2085,7 @@
    "name": "brace_facing_a",
    "pos": [
     -1.0,
-    0,
+    0.83,
     3.8
    ],
    "rot": [
@@ -2159,7 +2159,7 @@
    "name": "catch_elbow_throw",
    "pos": [
     -0.4,
-    0,
+    0.86,
     4.5
    ],
    "rot": [
@@ -2455,7 +2455,7 @@
    "name": "rope_dart_wraps_shoulder",
    "pos": [
     0.4,
-    0,
+    0.93,
     4.0
    ],
    "rot": [
@@ -2603,7 +2603,7 @@
    "name": "dragged_toward_pillar",
    "pos": [
     1.4,
-    0,
+    0.95,
     4.7
    ],
    "rot": [
@@ -2751,7 +2751,7 @@
    "name": "kunai_in_shoulder",
    "pos": [
     1.0,
-    0,
+    0.87,
     5.0
    ],
    "rot": [
@@ -2899,7 +2899,7 @@
    "name": "slammed_down",
    "pos": [
     1.0,
-    0,
+    0.1,
     5.3
    ],
    "rot": [
@@ -3047,7 +3047,7 @@
    "name": "remains_down",
    "pos": [
     1.0,
-    0,
+    0.1,
     5.3
    ],
    "rot": [

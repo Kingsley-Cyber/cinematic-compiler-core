@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 5
+version: 6
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -29,9 +29,11 @@ items:
   - {id: M9-05, title: "FR.1/FR.3 derived rotation path and rotation checks", status: done, step: motion,
      plan: PLAN-003, depends_on: [M9-01], findings: [F-028, F-058],
      codes: [ROTATION_PATH_UNSTATED, ROTATION_INCOMPLETE, ROTATION_NOT_MONOTONIC, INVERSION_MISSING]}
-  - {id: M9-06, title: "F5.1/F5.2 world contact points by forward kinematics; roots at the pelvis (O72)", status: next,
-     step: motion,
-     plan: PLAN-003, depends_on: [M9-02], findings: [F-025, F-028, F-062], codes: [CONTACT_WORLD]}
+  - {id: M9-06a, title: "F5.1 forward kinematics, pelvis roots (O72), printed world points, the miss report (O81)",
+     status: done, step: motion, plan: PLAN-003, depends_on: [M9-02], findings: [F-025, F-028, F-062], codes: []}
+  - {id: M9-06b, title: "F5.2 CONTACT_WORLD refuses a contact over 0.15 m (O72)", status: blocked,
+     blocked_by: "the owner reviews M9-06a's miss list first (ADR-O81)", step: motion, plan: PLAN-003,
+     depends_on: [M9-06a], findings: [F-025], codes: [CONTACT_WORLD]}
   - {id: M9-07a, title: "F4.1 combat verbs on contacts (O22; split from M9-07)", status: done, step: temporal,
      plan: PLAN-003, depends_on: [M9-02], findings: [], codes: [CONTACT_VERB]}
   - {id: M9-07b, title: "F4.2 Laban actions printed as qualities (O22; split from M9-07)", status: done, step: render,
@@ -65,7 +67,7 @@ items:
      findings: [F-006, F-031], codes: [LINE_DENSITY]}
   - {id: M9-13, title: "C10 camera in V5's wording, FR.5 arc, F8.1-F8.3", status: ready, step: camera, plan: PLAN-003,
      depends_on: [M9-02, M9-05], findings: [F-004, F-005, F-030, F-039], codes: [SHOT_TRANSITION_MISSING]}
-  - {id: M9-14a, title: "F4.5 timed kinetic chain", status: ready, step: motion, plan: PLAN-003, depends_on: [M9-06],
+  - {id: M9-14a, title: "F4.5 timed kinetic chain", status: ready, step: motion, plan: PLAN-003, depends_on: [M9-06a],
      findings: [], codes: [CHAIN_ORDER]}
   - {id: M9-14b, title: "F9.3 anticipation and F9.4 reaction", status: ready, step: effort, plan: PLAN-003,
      depends_on: [M9-02], findings: [], codes: [ANTICIPATION_MISSING, POST_CONTACT_MISSING]}
@@ -74,7 +76,7 @@ items:
   - {id: M9-15a, title: "F6.4 world state and character state (O28, O44)", status: ready, step: state,
      plan: PLAN-003, depends_on: [M9-02], findings: [F-024], codes: []}
   - {id: M9-15b, title: "FP.1 Bartenieff agrees with the pose", status: ready, step: motion, plan: PLAN-003,
-     depends_on: [M9-06], findings: [F-027], codes: [BARTENIEFF_POSE]}
+     depends_on: [M9-06a], findings: [F-027], codes: [BARTENIEFF_POSE]}
   - {id: M9-15c, title: "FP.4 causal delay printed", status: ready, step: causal, plan: PLAN-003,
      depends_on: [M9-02], findings: [F-023], codes: []}
   - {id: M9-15d, title: "FP.6 phrasing and drives (O43)", status: ready, step: effort, plan: PLAN-003,
