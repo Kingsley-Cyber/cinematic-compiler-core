@@ -48,4 +48,7 @@ whether a smash cut or a whip onto the impact frame, or a shaky handheld shot, i
 - ADR-O92
 
 ## Resolution
-Open.
+Open in part: RV-71a (S-069) makes a hit's hold a static shot on a locked or smooth rig at S16 and S17
+(validators/camera_validator.py STILL), the prompt's HIT_HOLD reads the bodies its hold line names, and an archetype card
+may name its idiom card (archetype_card 1.1; ninja_lean and ninja_broad name ninja). RV-71b carries the rest: the cards'
+rules as structured fields in place of the word lists.

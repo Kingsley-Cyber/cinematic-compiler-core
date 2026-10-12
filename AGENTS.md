@@ -101,9 +101,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.0; backlog 26.
-- Last session: S-068 (2026-10-12, applied): RV-70: a vanished body is gone from every section of the prompt, and VANISHED_BODY reads them.
-- Next slice: RV-71 Camera rules as structured card fields; a hold is static on a locked or smooth rig; the prompt's hold names its bodies; idiom cards keyed to the scenes' archetypes (step camera).
+- Layer order 1.7; rules 7.0; backlog 27.
+- Last session: S-069 (2026-10-12, applied): RV-71a: a hit's hold is still on a steady rig and names its bodies; idiom cards reach the scene's archetypes.
+- Next slice: RV-71b The camera cards' rules as structured fields checked against the grammar, in place of the word lists (step camera).
 - Open findings: 112; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 

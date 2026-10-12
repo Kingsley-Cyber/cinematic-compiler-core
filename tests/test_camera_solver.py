@@ -113,6 +113,19 @@ def test_a_hit_from_the_contacts_is_a_camera_hold_at_s16():
     assert "HIT_HOLD" in codes(lambda p: shot(p, "c04")["framing"].update(subjects=["acrobat"]))
 
 
+def test_a_hit_s_hold_is_on_a_still_rig_and_idioms_reach_their_archetypes():
+    """F-177 (RV-71a, owner O92): a static shot on a shaky or floating rig is no hold (HIT_HOLD at S16); the ninja
+    idioms reach the fight's ninja_lean and ninja_broad through their cards' camera_idioms."""
+    assert "HIT_HOLD" not in codes(lambda p: None)
+    assert "HIT_HOLD" in codes(lambda p: (shot(p, "c04")["support"].update(rig="handheld"),
+                                          shot(p, "c04")["movement_quality"].update(stability="shaky")))
+    assert "HIT_HOLD" in codes(lambda p: (shot(p, "c04")["support"].update(rig="gimbal"),
+                                          shot(p, "c04")["movement_quality"].update(stability="floating")))
+    from planner import camera_library
+    found = camera_library.idioms(["ninja_broad", "ninja_lean"])
+    assert sorted(found) == ["ninja_broad", "ninja_lean"] and found["ninja_lean"] == found["ninja_broad"] != []
+
+
 def test_genre_card_rules_apply_scene_wide():
     packet = copy.deepcopy(PACKET)
     packet["convention"]["required_intents"] = ["product"]

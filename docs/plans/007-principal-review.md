@@ -103,8 +103,8 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 5. Then PLAN-006 (AS-01 to AS-07) and PLAN-003's remaining M9 slices
 After review 3 (S-054): RV-45 and RV-46 (the records) first, then RV-48a, RV-48b, RV-60, RV-61, RV-62, RV-57, RV-58, RV-18,
 RV-64 and RV-13, then the rest in backlog order.
-After review 4 (S-063): the builder's own shortcuts and overclaims first, RV-66, RV-67, RV-68, RV-69, RV-70, RV-71,
-RV-72, RV-73, RV-74, RV-75, RV-76, RV-77; then RV-58, RV-18, RV-64, RV-13; then the fight-breakers RV-15, RV-14,
+After review 4 (S-063): the builder's own shortcuts and overclaims first, RV-66, RV-67, RV-68, RV-69, RV-70, RV-71a,
+RV-71b, RV-72, RV-73, RV-74, RV-75, RV-76, RV-77; then RV-58, RV-18, RV-64, RV-13; then the fight-breakers RV-15, RV-14,
 RV-16, RV-37, RV-35, RV-59, RV-22; then RV-78 to RV-84 and the rest in backlog order.
 6. Waiting on the owner: RV-13b, RV-20, RV-24, RV-26, RV-36, RV-40, RV-52, RV-53, RV-55, RV-56, RV-63 (and RV-33, which
    follows RV-52); the owner's own: RV-38
@@ -142,3 +142,4 @@ RV-16, RV-37, RV-35, RV-59, RV-22; then RV-78 to RV-84 and the rest in backlog o
 - 2026-10-12 — RV-68 done (S-066): the volley waits at the thigh pouch; the draw is measured at 0.045 m.
 - 2026-10-12 — RV-69 done (S-067): a prop another performer threw is a hit when it touches a body, whatever the verb.
 - 2026-10-12 — RV-70 done (S-068): the vanished body is gone from the guidance too; VANISHED_BODY reads it.
+- 2026-10-12 — RV-71 split; RV-71a done (S-069): a hit's hold on a still rig, naming its bodies; ninja idioms reach the fight.

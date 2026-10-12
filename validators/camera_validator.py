@@ -31,6 +31,7 @@ from planner import library_vocab
 from solver import camera_geometry as geometry
 
 EPSILON = 1e-6
+STILL = ("locked", "smooth")  # the grammar's stabilities that hold a frame still (a hit's hold, owner O92)
 VALUE_FIELDS = ("framing.scale", "lens.perspective", "focus.depth_of_field", "focus.transition", "movement.kind",
                 "movement_quality.easing", "movement_quality.stability", "support.rig", "relation_to_action.mode",
                 "position.side", "playback.treatment", "blur.motion_blur", "editing.transition_in", "editing.axis",
@@ -80,6 +81,8 @@ def _hit_holds(shots, packet):
             problems.append(f"a {shot['framing']['scale']} is a close-up")
         if shot["movement"]["kind"] != "static":
             problems.append(f"the camera moves ({shot['movement']['kind']})")
+        if shot["movement_quality"]["stability"] not in STILL:  # F-177 (RV-71a): a static shot on a shaky rig moves
+            problems.append(f"the camera is {shot['movement_quality']['stability']}")
         if problems:
             out.append(("HIT_HOLD", f"The hit at {t:g} in {shot['id']} is no camera hold on the bodies: "
                         + "; ".join(problems) + " (owner O92)", shot))

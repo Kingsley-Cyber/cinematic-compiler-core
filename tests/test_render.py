@@ -85,6 +85,15 @@ def test_a_hit_from_the_contacts_is_held_whatever_s17_holds():
     assert "HIT_HOLD" in codes(unheld, moving)
 
 
+def test_a_hit_s_hold_is_on_a_still_rig_at_s17():
+    """F-177 (RV-71a, owner O92): the shot holding the 3.6 kick is static on a locked tripod; on a shaky handheld rig it
+    is no hold, and S17 refuses it (HIT_HOLD)."""
+    shaky = copy.deepcopy(BEFORE)
+    c04 = next(s for s in shaky["nodes"]["camera"]["items"] if s["id"] == "c04")
+    c04["support"]["rig"], c04["movement_quality"]["stability"] = "handheld", "shaky"
+    assert "HIT_HOLD" not in codes(lambda f: None) and "HIT_HOLD" in codes(lambda f: None, shaky)
+
+
 @pytest.mark.parametrize("code, change", [
     ("FRAME_IMPACT", lambda f: f["impact"].append(1.0)),
     ("FRAME_SMEAR", lambda f: f["smear"][0].update(part=None)),

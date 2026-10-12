@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:archetype_card:1.0",
+  "$id": "urn:cinematic-compiler:schema:archetype_card:1.1",
   "title": "Archetype card (character definition; L0.5 entities)",
   "description": "Library concept card. Draft cards are owner-reviewable data, not research claims.",
   "type": "object",
@@ -157,6 +157,11 @@
         "pattern": "^[a-z][a-z0-9_]*$"
       },
       "description": "Object card ids this archetype carries into a scene as props (S02, source card)."
+    },
+    "camera_idioms": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "description": "The camera idiom card (library/camera_idioms/<id>.yaml) this archetype's shots draw on when it is not the archetype's own id (F-177, RV-71a)."
     },
     "face_profile": {
       "type": "object",

@@ -32,9 +32,12 @@ def convention(genre):
 
 
 def idioms(archetypes):
+    """{archetype: idioms} from the idiom card each archetype names (its `camera_idioms`, else its own id; F-177)."""
     found = {}
     for archetype in archetypes:
-        path = LIBRARY / "camera_idioms" / f"{archetype}.yaml"
+        card = LIBRARY / "archetypes" / f"{archetype}.yaml"
+        name = _load(card, "archetype_card").get("camera_idioms", archetype) if card.exists() else archetype
+        path = LIBRARY / "camera_idioms" / f"{name}.yaml"
         if path.exists():
             found[archetype] = _load(path, "camera_idiom_card")["idioms"]
     return found

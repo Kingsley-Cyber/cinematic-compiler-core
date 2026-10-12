@@ -6,6 +6,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- A hit's hold is still and names its bodies (RV-71a, F-177, S-069): a static shot on a shaky or floating rig is no
+  hold at S16 and S17, and the prompt's hold line must name every body present; archetype cards may name their camera
+  idiom card, so the ninja idioms reach the fight (archetype_card 1.1). The cards' word-list rules wait for RV-71b.
 - The vanished body is gone from every section (RV-70, F-176, S-068): the guidance prints A's dissolve at its instant
   ("A at 3.70: vanishes with ... in place; gone until 4.40") instead of "maintain" over 3.70-4.00, excepts a gone
   performer from "travels through space", and a vanish that never returns says so; VANISHED_BODY reads the guidance.

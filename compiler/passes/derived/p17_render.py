@@ -3,8 +3,9 @@
 Authored: frame-part directives (impact, smear, speedlines, holds, fx, ink). Checks: impacts sit on contact onsets or
 impact shots, and one time per hit (IMPACT_CONTACT_SYNC, O23); a smear names one subject and, for a body, one part
 (smear only on the declared limb or prop) and sits on a sudden effort of that body or an event of that prop;
-speedlines likewise; holds sit on beat boundaries; fx inside the scene; a hold on an impact frame (a hit) is a camera
-hold on every body present, never a close-up (HIT_HOLD, owner O92, R-21); and the projection's coverage is complete
+speedlines likewise; holds sit on beat boundaries; fx inside the scene; every hit (from the contacts, planner/hits.py,
+or a hold on an impact frame) is a still camera hold on every body present, never a close-up (HIT_HOLD, owner O92,
+R-21; F-155, F-177); and the projection's coverage is complete
 (owner invariant no_render_compression).
 Derived: the render node (renderers/anime_renderer.py;
 ugc_renderer.py for ugc_ad): target, variant, text, sha256, coverage, frame parts; and (M8, owner O1-O3) `prose`, the
@@ -16,6 +17,7 @@ from planner import hits
 from planner.dependency_graph import ROOT, load
 from planner.dynamic_beat_validator import vanish_windows
 from renderers import anime_renderer, live_renderer, prose_renderer, ugc_renderer
+from validators import camera_validator
 
 NODE, STEP = "render", "S17"
 RENDERERS = {"ugc_ad": ugc_renderer, "live_action": live_renderer}  # anime uses the anime LBN layout
@@ -100,6 +102,8 @@ def hit_hold(envelope, frame):
             problems.append(f"a {shot['framing']['scale']} is a close-up")
         if shot["movement"]["kind"] != "static":
             problems.append(f"the camera moves ({shot['movement']['kind']})")
+        if shot["movement_quality"]["stability"] not in camera_validator.STILL:  # F-177 (RV-71a)
+            problems.append(f"the camera is {shot['movement_quality']['stability']}")
         if problems:
             findings.append({"code": "HIT_HOLD", "message": f"The hit at {t} in {shot['id']} is no camera hold on the bodies: "
                              + "; ".join(problems) + " (owner O92)", "slot": shot["id"]})

@@ -263,3 +263,15 @@ def test_the_vanished_body_is_gone_from_the_guidance():
     assert prose_renderer.vanish_note(None) == "SUBSTITUTION: the decoy takes this place and the body does not return"
     assert "reappears at its next line" in prose_renderer.vanish_note(4.4)
 
+
+def test_the_printed_hold_names_every_body_present():
+    """F-177 (RV-71a, owner O92): the prompt's hold line names the bodies it holds, and one that leaves out a body present
+    at the hit is refused (HIT_HOLD)."""
+    envelope, render = load(ROOT / "examples" / "reference_fight")
+    text = render["prose"]["mixed"]["text"]
+    one = text.replace("2.50 impact: hold with BOTH bodies in frame (A and B)", "2.50 impact: hold with BOTH bodies in "
+                       "frame (A)", 1)
+    found = [f["message"] for f in prompt_validator.check(one, envelope, "mixed") if f["code"] == "HIT_HOLD"]
+    assert one != text and found == ["The hold at 2.50 leaves out B"]
+    assert not [f for f in prompt_validator.check(text, envelope, "mixed") if f["code"] == "HIT_HOLD"]
+

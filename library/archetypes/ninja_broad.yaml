@@ -1,6 +1,6 @@
 card_id: ninja_broad
 kind: archetype
-card_version: 1
+card_version: 2
 status: draft
 names: [broad ninja]
 description: "A broad, armoured ninja who fights from the ground with thrown weapons and grabs."
@@ -15,6 +15,7 @@ invariants:
     rule: "A thrown weapon leaves the hand and does not return without a declared catch."
 negatives: [no floating limbs, no inverted gravity errors]  # O54: FINAL's two body negatives
 equipment: [kunai, shuriken_volley]
+camera_idioms: ninja  # its shots draw on the ninja idioms (F-177, RV-71a)
 face_profile:
   visible_regions: [brows, eyes, cheeks, nose, mouth, jaw]
   dominant_side: none

@@ -86,9 +86,9 @@ CODES = {
     "RULES_MISSING": "a rule constraint (other than root exact) is absent from RULES",
     "NEGATIVES_MISSING": "a negative constraint is absent from NEGATIVES",
     "DISCONNECTED_CAMERA_MOTION": "a shot is missing, or a camera line lacks its motivation or the beats it shows",
-    "HIT_HOLD": "a hit (a hold on an impact frame) is not printed as a camera hold with the bodies in frame, or its shot "
-                "is a close-up, an insert or a moving camera, or a printed camera rule puts a close-up or an insert on a "
-                "hit (owner O92, R-21; F-083, F-160)",
+    "HIT_HOLD": "a hit (from the contacts, or a hold on an impact frame) is not printed as a camera hold naming every body "
+                "present, or its shot is a close-up, an insert or a moving camera, or a printed camera rule puts a "
+                "close-up or an insert on a hit (owner O92, R-21; F-083, F-155, F-160, F-177)",
     "PLAYBACK_RAMP": "a camera line plays at a speed other than normal x1, or a printed camera rule slows, ramps or freezes "
                      "the playback (owner O92: the clip has a fixed length; F-083, F-160)",
     "ANCHOR_PHRASE_MISSING": "an entity lacks its appearance phrase in SCENE",
@@ -852,3 +852,12 @@ def _camera_checks(envelope, parts, labels, add):
         if (f"{t:.2f} impact: hold with " not in held or shot is None or "; static: " not in shot.string
                 or any(word in shot.group(3) for word in ("close", "insert"))):
             add("HIT_HOLD", f"The hit at {t:.2f} is not a camera hold with the bodies in frame")
+            continue
+        entry = held.split(f"{t:.2f} impact: hold with ", 1)[1].split("; ", 1)[0]  # F-177 (RV-71a): the bodies it names
+        named = set(re.split(r", | and ", entry[entry.find("(") + 1:entry.find(")")])) if "(" in entry else set()
+        present = {labels[e["id"]] for e in envelope["nodes"]["entities"]["items"]
+                   if not any(actor == e["id"] and start < t - EPSILON and (back is None or t < back - EPSILON)
+                              for actor, _, start, back in dynamic_beat_validator.vanish_windows(
+                                  envelope["nodes"]["beats"]["items"]))}
+        if not present <= named:
+            add("HIT_HOLD", f"The hold at {t:.2f} leaves out {', '.join(sorted(present - named))}")
