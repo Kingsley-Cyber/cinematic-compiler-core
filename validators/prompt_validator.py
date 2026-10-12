@@ -594,6 +594,15 @@ def _props_and_causes(envelope, parts, labels, mode, add):
         for t, row in prop_samples.rows(envelope, labels, prop["id"], compact=False):
             if row.split(" moving")[0].split(" held")[0].split(" at rest")[0] not in track:
                 add("PROP_TRACK_MISSING", f"{prop['name']}: the sample at {t:.2f} (position, velocity) is missing")
+        everything = "\n".join(_body(parts, header) for header, _ in parts)
+        for clause in re.split(r"[;\n]", everything):  # F-122: a goal the prompt denies the prop elsewhere
+            if prop["name"].lower() not in clause.lower():
+                continue
+            for label in sorted(set(labels.values())):
+                if re.search(rf"\bNOT toward {re.escape(label)}\b", clause) and \
+                        re.search(rf"(?<!NOT )\btoward {re.escape(label)}\b", track):
+                    add("PROMPT_CONTRADICTION", f"{prop['name']}: its track says toward {label} where the prompt says "
+                                                f"NOT toward {label}")
         said = re.findall(r"holder (\S+) -> (\S+?)(?:,| ·|$)", track)
         actual = [(a, b) for a, b in zip(holders, holders[1:], strict=False) if a != b]
         if [(x, y) for x, y in said] != [(who.get(a, a), who.get(b, b)) for a, b in actual]:

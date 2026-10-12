@@ -102,9 +102,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 5.0; backlog 20.
-- Last session: S-045 (2026-10-12, applied): Principal review 2: five read-only reviewers, their gaps filed, the owner's ruling O107 recorded.
-- Next slice: RV-42 The deflect has one reading (down to the ground on B's side, not at B); a track says 'toward X' only where the path reaches X; a prompt never prints 'toward X' beside 'NOT toward X' (step render).
-- Open findings: 98; decisions: 134 (0 proposed).
+- Last session: S-046 (2026-10-12, applied): RV-42: the deflect has one reading; a track says "toward X" only where the path reaches X.
+- Next slice: RV-43 CONTACT_WORLD exceptions come only from an owner-held, logged list (step motion).
+- Open findings: 97; decisions: 135 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

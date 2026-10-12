@@ -49,3 +49,32 @@ def test_a_prop_with_no_place_is_refused():
     assert prop_samples.track(envelope, labels, "glasses")[0][2:] == ("unplaced", "place not given")
     text = envelope["nodes"]["render"]["items"][0]["prose"]["mixed"]["text"]
     assert "PROP_VISIBILITY" in {f["code"] for f in prompt_validator.check(text, envelope, "mixed")}
+
+
+def test_a_track_names_a_goal_only_where_the_path_reaches_it():
+    """F-122 (ADR-O108): the kunai thrown at 2.0 reaches A's foot, so it moves toward A; deflected at 2.5 it lands 0.85 m
+    short of B, so it names no goal; aimed into B's body, it would."""
+    envelope = _envelope("reference_fight")
+    labels = envelope["nodes"]["render"]["items"][0]["labels"]
+    texts = dict(prop_samples.rows(envelope, labels, "kunai", compact=False))
+    assert texts[2.0].endswith("moving up toward A")
+    rows = [text for t, text in prop_samples.rows(envelope, labels, "kunai", compact=False) if t == 2.5]
+    assert rows[1].endswith("moving down along -Z")
+    post = next(s for b in envelope["nodes"]["beats"]["items"] for s in b.get("prop_samples", [])
+                if s["prop"] == "kunai" and s.get("phase") == "post")
+    body = prop_samples.bodies(envelope)
+    torso = next(points["torso"] for t, points in body["ninja_broad"] if t == 2.5)
+    tau = 0.2                                                      # into B's torso at 2.7, B's 2.5 key the nearest
+    aimed = dict(post, v=[(torso[0] - post["p"][0]) / tau, (torso[1] - post["p"][1] + 0.5 * 9.81 * tau * tau) / tau,
+                          (torso[2] - post["p"][2]) / tau])
+    assert prop_samples.reaches(post, 2.72, body) is None and prop_samples.reaches(aimed, 2.72, body) == "ninja_broad"
+
+
+def test_a_track_never_says_toward_what_the_prompt_says_not():
+    """F-122 (PROMPT_CONTRADICTION): the deflected kunai's line said "toward B" beside "...NOT toward B"."""
+    envelope = _envelope("reference_fight")
+    text = envelope["nodes"]["render"]["items"][0]["prose"]["mixed"]["text"]
+    broken = text.replace("v[0.5, -4, -3] moving down along -Z", "v[0.5, -4, -3] moving down toward B", 1)
+    assert broken != text
+    assert "PROMPT_CONTRADICTION" in {f["code"] for f in prompt_validator.check(broken, envelope, "mixed")}
+    assert "PROMPT_CONTRADICTION" not in {f["code"] for f in prompt_validator.check(text, envelope, "mixed")}

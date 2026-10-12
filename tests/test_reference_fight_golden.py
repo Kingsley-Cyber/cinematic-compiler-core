@@ -258,9 +258,10 @@ def test_strikes_throws_and_releases_happen_at_their_pose():
 # now marked post-contact. Owner O77 (F-064): the golden is right, the kunai reverses from +Z to -Z: the post velocity
 # is the source's own v_post [0.5,-4.0,-3.0]. Owner O89 (S-039): the pair sits at A's right foot, the throw arrives
 # along +Z, and the kunai lands at 2.72 on [1.4,0,3.77], where A takes it at 8.0. O105 (S-043): B throws it from A's
-# -Z side, so it leaves B's hand toward A and goes back down toward B, as the source's rule says.
+# -Z side, so it leaves B's hand toward A. O108 (S-046): it goes back down to the ground on B's side, not at B (the
+# source's "toward B and ground" with its "NOT toward B"), so the track names no goal after the deflect.
 DEFLECT_PAIR = ["2.5 pre-contact p[1.29,1.13,4.44] v[0.2,-3.96,1.98] moving down along +Z",
-                "2.5 post-contact p[1.29,1.13,4.44] v[0.5,-4,-3] moving down toward B"]
+                "2.5 post-contact p[1.29,1.13,4.44] v[0.5,-4,-3] moving down along -Z"]
 
 
 def test_the_kunai_deflect_is_a_pre_and_post_pair():

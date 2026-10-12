@@ -12,7 +12,7 @@ high
 L6
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -39,7 +39,7 @@ All five prompts carry a reader contradiction at the fight's first hit, pinned b
 Backlog RV-42: one printed reading (down to the ground on B's side, not at B), answered from the sources; the track says "toward X" only where the path reaches X's body; a prompt check refuses "toward X" beside "NOT toward X"; S-043's, F-075's, the CHANGELOG's and the golden comment's words corrected.
 
 ## Owner Ruling
-none needed (finish.md section 4 answers it from the sources)
+ADR-O108 (owner_default; the owner confirms or strikes it)
 
 ## Related
 - PLAN-007
@@ -48,4 +48,9 @@ none needed (finish.md section 4 answers it from the sources)
 - ADR-O77
 
 ## Resolution
-Open.
+RV-42 (S-046, ADR-O108): the deflected kunai goes down to the ground on B's side, not at B, and its line reads "moving
+down along -Z"; a prop track names a goal only where the prop's path reaches that performer's body
+(renderers/prop_samples.py `reaches`; tests/test_prop_track.py::test_a_track_names_a_goal_only_where_the_path_reaches_it);
+PROMPT_CONTRADICTION refuses "toward X" where the prompt says "NOT toward X"
+(tests/test_prop_track.py::test_a_track_never_says_toward_what_the_prompt_says_not); S-043, F-075 and the CHANGELOG
+corrected.

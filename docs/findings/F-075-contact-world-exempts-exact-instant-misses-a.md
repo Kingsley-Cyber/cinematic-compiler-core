@@ -52,4 +52,5 @@ RV-02a (S-039, O89, ADR-O104): only a point interpolated between keys or samples
 moving, is an artefact; the repo side of each exact-instant miss is re-blocked and the source's slide is listed.
 RV-02b (S-043, ADR-O105): CONTACT_WORLD measures a prop's release
 (tests/test_forward_kinematics.py::test_a_release_leaves_the_prop_where_the_hand_is); B throws the kunai from A's -Z
-side, from B's right hand at 2.0, so it arrives along +Z and goes back down toward B, as the source's rule says.
+side, from B's right hand at 2.0, so it arrives along +Z and goes back down to the ground on B's side, not at B
+(ADR-O108, S-046; S-043 had credited "the source's rule" for "toward B", F-122).

@@ -1,8 +1,11 @@
 """Prop position and velocity rows (owner O8) shared by the LBN-2.4 and the structured-prose renderers.
 
 Each S04 prop sample becomes one row: time, p[x,y,z], v[x,y,z] when moving, and words a model reads: held by <label>,
-at rest, or moving up/down toward the performer it heads for (the entity whose direction from the prop best matches
-the horizontal velocity, within about 45 degrees, at least 0.5 m away), else along the dominant scene axis.
+at rest, or moving up/down toward the performer its path reaches, else along the dominant scene axis. A path reaches a
+performer when the prop's free flight from the sample (ballistic, or straight when it floats) to its next sample or
+the ground passes within REACH_M of one of that performer's body points (the key nearest in time) and comes nearer than
+it starts (F-122: "toward B" printed where the kunai lands short of B, beside "NOT toward B"). A pre-contact sample
+describes its arrival and names no goal. Interpretation (Claude's, for owner review): REACH_M 0.3 m, APPROACH_M 0.1 m.
 Floats are marked. A contact pair (plan F2.2) prints as two rows at one time, "pre-contact" before "post-contact"; a
 pre sample's holder is read just before its contact.
 
@@ -16,9 +19,10 @@ the UGC glasses stay 'tabletop' on the face).
 
 import math
 
-from planner.dynamic_beat_validator import BEFORE, PHASE_ORDER, holds
+from planner.dynamic_beat_validator import BEFORE, GRAVITY, PHASE_ORDER, holds
 
 EPSILON = 1e-9
+REACH_M, APPROACH_M, STEP_S, FLIGHT_S = 0.3, 0.1, 0.02, 2.0  # interpretation (Claude's, for owner review)
 
 
 def _fmt(values, compact):
@@ -26,11 +30,40 @@ def _fmt(values, compact):
     return "[" + ("," if compact else ", ").join(text) + "]"
 
 
-def _anchors(beats):
-    return sorted((b["t"], entity, pos) for b in beats for entity, pos in b["pos"].items() if pos is not None)
+def bodies(envelope):
+    """{entity: [(t, body points)]} from S13's keys (forward kinematics, F5.1)."""
+    out = {}
+    for key in envelope["nodes"].get("motion", {}).get("items", []):
+        if key.get("points"):
+            out.setdefault(key["entity"], []).append((key["t"], key["points"]))
+    return out
 
 
-def motion_words(sample, holder, anchors, labels):
+def reaches(sample, until, body_keys):
+    """The performer the prop's free flight reaches before `until` (its next sample) or the ground, or None."""
+    p, v, best = sample["p"], sample["v"], None
+    span = min((until if until is not None else sample["t"] + FLIGHT_S) - sample["t"], FLIGHT_S)
+    if span <= EPSILON:
+        return None
+    steps = max(1, round(span / STEP_S))
+    for entity, keys in sorted(body_keys.items()):
+        start = nearest = None
+        for i in range(steps + 1):
+            tau = span * i / steps
+            drop = 0.0 if sample["float"] else 0.5 * GRAVITY * tau * tau
+            point = (p[0] + v[0] * tau, p[1] + v[1] * tau - drop, p[2] + v[2] * tau)
+            if point[1] < -EPSILON:
+                break  # on the ground
+            points = min(keys, key=lambda k: abs(k[0] - (sample["t"] + tau)))[1]
+            d = min(math.dist(point, q) for q in points.values())
+            start = d if start is None else start
+            nearest = d if nearest is None else min(nearest, d)
+        if nearest is not None and nearest <= REACH_M and nearest < start - APPROACH_M and (best is None or nearest < best[0]):
+            best = (nearest, entity)
+    return best[1] if best else None
+
+
+def motion_words(sample, holder, labels, goal=None):
     if holder:
         return f"held by {labels.get(holder, holder)}"
     v = sample["v"]
@@ -38,20 +71,8 @@ def motion_words(sample, holder, anchors, labels):
         return "at rest"
     parts = ["up"] if v[1] > 0.3 else ["down"] if v[1] < -0.3 else []
     flat = math.hypot(v[0], v[2])
-    best = None
-    latest = {}
-    for at, entity, pos in anchors:
-        if at <= sample["t"] + EPSILON:
-            latest[entity] = pos
-    for entity, pos in sorted(latest.items()):
-        dx, dz = pos[0] - sample["p"][0], pos[2] - sample["p"][2]
-        distance = math.hypot(dx, dz)
-        if flat > 0.1 and distance > 0.5:
-            cos = (dx * v[0] + dz * v[2]) / (distance * flat)
-            if cos >= 0.7 and (best is None or cos > best[0]):
-                best = (cos, entity)
-    if best:
-        parts.append(f"toward {labels.get(best[1], best[1])}")
+    if goal and flat > 0.1:
+        parts.append(f"toward {labels.get(goal, goal)}")
     elif flat > 0.1:
         axis = 0 if abs(v[0]) >= abs(v[2]) else 2
         parts.append(f"along {'+' if v[axis] > 0 else '-'}{'XZ'[axis // 2]}")
@@ -129,14 +150,17 @@ def where_line(spans):
 def rows(envelope, labels, prop, compact):
     """[(t, text)] for one prop's samples, in time order."""
     beats = envelope["nodes"]["beats"]["items"]
-    held, anchors, out = holds(beats), _anchors(beats), []
-    for sample in sorted((s for b in beats for s in b.get("prop_samples", []) if s["prop"] == prop),
-                         key=lambda s: (s["t"], PHASE_ORDER[s.get("phase")])):
+    held, body_keys, out = holds(beats), bodies(envelope), []
+    samples = sorted((s for b in beats for s in b.get("prop_samples", []) if s["prop"] == prop),
+                     key=lambda s: (s["t"], PHASE_ORDER[s.get("phase")]))
+    for index, sample in enumerate(samples):
         when = sample["t"] - (BEFORE if sample.get("phase") == "pre" else 0)
         holder = next((h for start, end, h in held.get(prop, []) if start - EPSILON <= when < end - EPSILON), None)
         moving = sample["v"] is not None and any(abs(x) > EPSILON for x in sample["v"]) and not holder
         t = (str(int(sample["t"])) if float(sample["t"]).is_integer() else str(sample["t"])) if compact else f"{sample['t']:.2f}"
         phase = f" {sample['phase']}-contact" if sample.get("phase") else ""
         text = f"{t}{phase} p{_fmt(sample['p'], compact)}" + (f" v{_fmt(sample['v'], compact)}" if moving else "")
-        out.append((sample["t"], f"{text} {motion_words(sample, holder, anchors, labels)}"))
+        after = next((s["t"] for s in samples[index + 1:] if s["t"] > sample["t"] + EPSILON), None)
+        goal = None if sample.get("phase") == "pre" or not moving else reaches(sample, after, body_keys)
+        out.append((sample["t"], f"{text} {motion_words(sample, holder, labels, goal)}"))
     return out

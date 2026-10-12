@@ -80,5 +80,10 @@ about 50 minutes
   "moving down toward B"; S16 refused nothing. Prediction 4 held in part: the UGC's prose changed too (its release now
   prints both points). Prediction 5 held in part: 645 tests, one new; the golden records changed as predicted.
 
+## Correction (S-046)
+D3 and the Verification credit "the source's rule" for the kunai going back toward B. The source's rules say
+"NOT toward B"; its A row and its B and kunai tracks say "toward B and ground". The prompts then printed "moving down
+toward B" beside "NOT toward B" (F-122); ADR-O108 settles the reading (S-046).
+
 ## Next
 RV-04 (records: versions, logs, the hook, stale docs and findings).

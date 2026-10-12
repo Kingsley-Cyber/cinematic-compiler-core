@@ -6,6 +6,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The deflect has one reading (RV-42, ADR-O108, F-122, S-046): the deflected kunai goes down to the ground on B's
+  side, not at B; a prop track names a goal only where the prop's path reaches that performer; PROMPT_CONTRADICTION
+  refuses "toward X" where the prompt says "NOT toward X". S-043's records corrected.
 - Principal review 2 (S-045, finish.md section 6): five read-only reviewers, verdict "partially"; their gaps filed as
   F-120 to F-150 with slices RV-42 to RV-53. The owner confirmed ADR-O102 and per-slice pushes (ADR-O107); rules 5.0
   (R-03, R-06, R-30) and finish.md 2.0 record it, and a question that would set aside an owner ruling or invariant now
@@ -16,7 +19,8 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
   ADR texts and answered findings (F-066, F-028, F-063) closed; F-015 stays open (no code catches it yet). The pre-commit hook waits on the owner (O52).
 - CONTACT_WORLD measures a prop's release (RV-02b, ADR-O105, F-075, S-043): a thrown or dropped prop leaves the hand
   where the hand is. F-108 answered: B's kunai leaves the hand once, at the 2.0 throw. B throws from A's -Z side, so
-  the kunai rises toward A, arrives along +Z and is deflected back down toward B, as the source's rule says. Every S13
+  the kunai rises toward A, arrives along +Z and is deflected back down on B's side (corrected in S-046: the
+  source's rule says "NOT toward B"; ADR-O108). Every S13
   packet carries the releases (the examples re-bound).
 - The vanish lets go (RV-06, O90, F-081, S-042): at the substitution A's feet and left hand let go; the rope dart drops
   and lies on the ground until A takes it at 7.5 (the 5.9 release goes); A reappears on both feet at 4.4; VANISHED_BODY

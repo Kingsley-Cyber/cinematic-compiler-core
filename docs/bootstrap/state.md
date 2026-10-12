@@ -10,13 +10,13 @@ Layer order 1.7; rules 5.0; backlog 20.
 
 ## Last sessions
 
-- S-043 (applied): RV-02b: CONTACT_WORLD measures releases; B's kunai throw re-staged
 - S-044 (applied): RV-04: the records agree with the repo: versions, logs, stale documents and findings
 - S-045 (applied): Principal review 2: five read-only reviewers, their gaps filed, the owner's ruling O107 recorded
+- S-046 (applied): RV-42: the deflect has one reading; a track says "toward X" only where the path reaches X
 
 ## Next slices
 
-- RV-42 (next, step render): The deflect has one reading (down to the ground on B's side, not at B); a track says 'toward X' only where the path reaches X; a prompt never prints 'toward X' beside 'NOT toward X'
+- RV-43 (next, step motion): CONTACT_WORLD exceptions come only from an owner-held, logged list
 - RV-07 (ready, step temporal): The smoke bursts at 3.7 at A's body; the spent pellet falls and rests (O91)
 - RV-09 (ready, step camera): Hits are camera holds framing both bodies, no playback ramps; the source's camera directives (O92)
 - RV-10 (ready, step temporal): The kunai drive holds the kunai in B's right shoulder; the catch is a grasp plus a throw (O93)
@@ -55,7 +55,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-53 blocked: The source rows whose numbers contradict their words; O95 against O88 on two action keys — the owner's answers in F-148 and F-149
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 98
+## Open findings: 97
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -80,7 +80,6 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-091 (high, L6): render.txt's laban chains mix both fighters' moves
 - F-096 (high, L6): PASS cells are inflated: rows pass on codes that cover part of the row
 - F-115 (high, all): Two gate conditions have no check: soul_check_passes, fight_works
-- F-122 (high, L6): The prompt contradicts itself at the deflect, and S-043's records mis-cite the source
 - F-123 (high, L4c): The S13 author can list its own CONTACT_WORLD exceptions
 - F-143 (high, L4c): The Euler convention reads the source's turned leans as rolls and its backflip as a front flip
 - F-144 (high, L4c): Bodies pass through each other at 3.7, 4.4, 4.7 and 9.0
@@ -89,4 +88,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O108, finding F-151, session S-046, render R20.
+Decision ADR-O109, finding F-151, session S-047, render R20.

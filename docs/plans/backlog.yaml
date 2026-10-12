@@ -158,9 +158,9 @@ items:
      step: all, plan: PLAN-007, depends_on: [], findings: [F-116], codes: []}
   - {id: RV-41, title: "Literal starts, counts and anchors from the query (F-016)", status: ready,
      step: intent, plan: PLAN-007, depends_on: [], findings: [F-016], codes: [START_LITERAL]}
-  - {id: RV-42, title: "The deflect has one reading (down to the ground on B's side, not at B); a track says 'toward X' only where the path reaches X; a prompt never prints 'toward X' beside 'NOT toward X'", status: next,
+  - {id: RV-42, title: "The deflect has one reading (down to the ground on B's side, not at B); a track says 'toward X' only where the path reaches X; a prompt never prints 'toward X' beside 'NOT toward X'", status: done,
      step: render, plan: PLAN-007, depends_on: [], findings: [F-122], codes: []}
-  - {id: RV-43, title: "CONTACT_WORLD exceptions come only from an owner-held, logged list", status: ready,
+  - {id: RV-43, title: "CONTACT_WORLD exceptions come only from an owner-held, logged list", status: next,
      step: motion, plan: PLAN-007, depends_on: [], findings: [F-123], codes: []}
   - {id: RV-49, title: "No body through another: an overlap check at S13, strikes measured to the target's surface, the failing poses re-blocked", status: ready,
      step: motion, plan: PLAN-007, depends_on: [RV-43], findings: [F-144], codes: [BODY_OVERLAP]}
