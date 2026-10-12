@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- Principal review 2 (S-045, finish.md section 6): five read-only reviewers, verdict "partially"; their gaps filed as
+  F-120 to F-150 with slices RV-42 to RV-53. The owner confirmed ADR-O102 and per-slice pushes (ADR-O107); rules 5.0
+  (R-03, R-06, R-30) and finish.md 2.0 record it, and a question that would set aside an owner ruling or invariant now
+  waits for the owner.
 - The records agree with the repo (RV-04, F-078, ADR-O106, S-044): rules 4.0; the gate refuses an unbumped change in the
   schemas, library and kernel logs from now on; the library log reads `version` where a file has no `card_version`; the
   kernel log covers kernel/layer_order.yaml; the knowledge map is version 2; README points to docs/layer_order.md; stale

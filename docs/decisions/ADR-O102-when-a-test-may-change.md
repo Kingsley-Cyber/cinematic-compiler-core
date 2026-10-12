@@ -9,12 +9,14 @@ accepted
 2026-10-11
 
 ## Decided By
-owner_default
+owner
 
 ## Scope
 all
 
 ## Decision
+Confirmed by the owner on 2026-10-12 (ADR-O107: "O102 confirmed").
+
 Answered from the sources under ADR-O101 (finish run 1, S-037), answering F-119:
 1. A test, fixture or expected output changes only where an owner ruling or the plan's intent moves the data it pins,
    and each such change is a typed, recorded deviation (in the golden test or the session file) that cites the ruling.

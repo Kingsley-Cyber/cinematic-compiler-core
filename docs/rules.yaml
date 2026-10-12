@@ -2,7 +2,7 @@
 # and a docs-log entry (python -m kernel.schema_log --log docs record docs/rules.yaml ...). Every rule cites accepted
 # decisions (docs/decisions/) and names what enforces it: a code or test the gate runs, or `protocol` (the agent
 # follows it; AGENTS.md). Validated by schemas/rules.schema.json.
-version: "4.0"
+version: "5.0"
 rules:
   # ---- agent: how every session works
   - {id: R-01, scope: agent, source: [ADR-S6, ADR-O64],
@@ -11,8 +11,8 @@ rules:
   - {id: R-02, scope: agent, source: [ADR-O5, ADR-O67],
      rule: "One slice per commit, committed only when scripts/verify.sh exits 0.",
      enforced_by: [.githooks/pre-commit, .github/workflows/verify.yml]}
-  - {id: R-03, scope: agent, source: [ADR-O5],
-     rule: "Nothing is pushed without the owner's word.",
+  - {id: R-03, scope: agent, source: [ADR-O5, ADR-O101, ADR-O107],
+     rule: "Nothing is pushed without the owner's word; a finish run the owner started has that word for each slice that clears its gate, its self-audit and the hygiene scan.",
      enforced_by: [protocol]}
   - {id: R-04, scope: agent, source: [ADR-S2, ADR-O40],
      rule: "Claude never renders and never calls a paid model API; authored steps are written in-session from a sealed packet.",
@@ -20,8 +20,8 @@ rules:
   - {id: R-05, scope: agent, source: [ADR-S4],
      rule: "Predict the outcome before each check and report whether it held.",
      enforced_by: [protocol]}
-  - {id: R-06, scope: agent, source: [ADR-S4, ADR-O64],
-     rule: "Ask the owner only where the DAG, these rules or the decisions are silent or contradict; write the question as a finding (type question) and wait instead of guessing.",
+  - {id: R-06, scope: agent, source: [ADR-S4, ADR-O64, ADR-O101, ADR-O107],
+     rule: "Ask the owner only where the DAG, these rules or the decisions are silent or contradict; write the question as a finding (type question) and wait instead of guessing. A finish run answers it from the plan's own sources as an owner_default ADR for the owner to confirm, unless the answer would set aside an owner ruling or an owner invariant; that question waits.",
      enforced_by: [protocol]}
   - {id: R-07, scope: agent, source: [ADR-S1, ADR-O64],
      rule: "Log every schema, library card, kernel file and frozen doc change in its hash log; a frozen doc change also bumps its docs-version.",
@@ -110,6 +110,6 @@ rules:
   - {id: R-29, scope: owner, source: [ADR-S5, ADR-O56],
      rule: "Only the owner renders and gives render verdicts; verdicts are logged word for word, Claude's frame notes apart.",
      enforced_by: [docs/renders/ Owner Verdict field]}
-  - {id: R-30, scope: owner, source: [ADR-O5, ADR-S1],
-     rule: "Only the owner approves a push, a card leaving draft and a change to the layer order or the golden.",
+  - {id: R-30, scope: owner, source: [ADR-O5, ADR-S1, ADR-O102, ADR-O107],
+     rule: "Only the owner approves a push, a card leaving draft and a change to the layer order or the golden; in a finish run that approval stands for each slice's push and for golden changes recorded as deviations under ADR-O102.",
      enforced_by: [protocol, .github/CODEOWNERS]}

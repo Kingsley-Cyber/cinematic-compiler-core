@@ -61,10 +61,10 @@ Full table: [docs/layer_order.md](docs/layer_order.md).
 <!-- BEGIN GENERATED: rules -->
 - **R-01** Read AGENTS.md, the five indexes and docs/plan.md before touching anything; refresh and query graft and graphify before reading files.
 - **R-02** One slice per commit, committed only when scripts/verify.sh exits 0.
-- **R-03** Nothing is pushed without the owner's word.
+- **R-03** Nothing is pushed without the owner's word; a finish run the owner started has that word for each slice that clears its gate, its self-audit and the hygiene scan.
 - **R-04** Claude never renders and never calls a paid model API; authored steps are written in-session from a sealed packet.
 - **R-05** Predict the outcome before each check and report whether it held.
-- **R-06** Ask the owner only where the DAG, these rules or the decisions are silent or contradict; write the question as a finding (type question) and wait instead of guessing.
+- **R-06** Ask the owner only where the DAG, these rules or the decisions are silent or contradict; write the question as a finding (type question) and wait instead of guessing. A finish run answers it from the plan's own sources as an owner_default ADR for the owner to confirm, unless the answer would set aside an owner ruling or an owner invariant; that question waits.
 - **R-07** Log every schema, library card, kernel file and frozen doc change in its hash log; a frozen doc change also bumps its docs-version.
 - **R-08** Never edit authored data silently: scripts derive and refuse; a content change is an owner-decided, recorded deviation.
 - **R-09** Never edit kernel/layer_order.yaml or the golden by hand: a change needs an accepted ADR, its log entry and a version bump; examples are rewritten only by python -m compiler.examples --write.
@@ -93,7 +93,7 @@ Full table: [docs/layer_order.md](docs/layer_order.md).
 - **R-27** Effort actions stay Laban (punch = thrust); combat verbs go on contacts.
 - **R-28** Only the owner accepts a decision; an agent proposal not objected to is recorded as owner_default.
 - **R-29** Only the owner renders and gives render verdicts; verdicts are logged word for word, Claude's frame notes apart.
-- **R-30** Only the owner approves a push, a card leaving draft and a change to the layer order or the golden.
+- **R-30** Only the owner approves a push, a card leaving draft and a change to the layer order or the golden; in a finish run that approval stands for each slice's push and for golden changes recorded as deviations under ADR-O102.
 
 With sources and enforcement: [docs/rules.md](docs/rules.md).
 <!-- END GENERATED: rules -->
@@ -101,10 +101,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 4.0; backlog 19.
-- Last session: S-044 (2026-10-12, applied): RV-04: the records agree with the repo: versions, logs, stale documents and findings.
-- Next slice: RV-07 The smoke bursts at 3.7 at A's body; the spent pellet falls and rests (O91) (step temporal).
-- Open findings: 69; decisions: 133 (0 proposed).
+- Layer order 1.7; rules 5.0; backlog 20.
+- Last session: S-045 (2026-10-12, applied): Principal review 2: five read-only reviewers, their gaps filed, the owner's ruling O107 recorded.
+- Next slice: RV-42 The deflect has one reading (down to the ground on B's side, not at B); a track says 'toward X' only where the path reaches X; a prompt never prints 'toward X' beside 'NOT toward X' (step render).
+- Open findings: 98; decisions: 134 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
@@ -128,6 +128,10 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - F-116 (medium): Rebinding re-stamps hashes instead of forcing re-authoring
 - F-117 (low): F-013 and F-014 cannot close
 - F-118 (low): O37 and the genre_profile schema disagree on where genre values live
+- F-124 (medium): The 5.9 slide's exception: the prompt says both feet support while the soles are 0.35-0.55 m up
+- F-133 (medium): The 37 scene_reference rules reach no scene
+- F-143 (high): The Euler convention reads the source's turned leans as rolls and its backflip as a front flip
+- F-148 (high): Source rows whose numbers contradict their own words: fix them or keep them?
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog RV-13b blocked: Every prompt fits the caps (O97) — the owner's answers in F-088
 - Backlog RV-20 blocked: Authoring prompts teach their steps' checks; external_inputs complete — an accepted ADR for the layer-order edit (R-09)
@@ -135,6 +139,8 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - Backlog RV-26 blocked: Momentum at the true takeoff; the opening fall judged; each span re-timed or hung — the owner's span-by-span answer in F-101
 - Backlog RV-36 blocked: Limb and head words read in one declared frame — the owner's answer in F-111
 - Backlog RV-40 blocked: Rebinding forces re-authoring — the owner's answer in F-116
+- Backlog RV-52 blocked: The Euler convention: the source's turned leans and its backflip (ADR-Q6) — the owner's answer in F-143 (ADR-Q6's label or its meaning)
+- Backlog RV-53 blocked: The source rows whose numbers contradict their words; O95 against O88 on two action keys — the owner's answers in F-148 and F-149
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 <!-- END GENERATED: rulings -->
 

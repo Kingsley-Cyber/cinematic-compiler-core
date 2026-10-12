@@ -37,7 +37,7 @@ fixing causes (F-074 to F-077).
 —
 
 ## Superseded By
-—
+- ADR-O107
 
 ## Related
 - ADR-O99

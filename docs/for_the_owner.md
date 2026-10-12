@@ -45,6 +45,10 @@ done only when every row that applies passes. Claude never renders; you render, 
 - F-116 (medium): Rebinding re-stamps hashes instead of forcing re-authoring
 - F-117 (low): F-013 and F-014 cannot close
 - F-118 (low): O37 and the genre_profile schema disagree on where genre values live
+- F-124 (medium): The 5.9 slide's exception: the prompt says both feet support while the soles are 0.35-0.55 m up
+- F-133 (medium): The 37 scene_reference rules reach no scene
+- F-143 (high): The Euler convention reads the source's turned leans as rolls and its backflip as a front flip
+- F-148 (high): Source rows whose numbers contradict their own words: fix them or keep them?
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog RV-13b blocked: Every prompt fits the caps (O97) — the owner's answers in F-088
 - Backlog RV-20 blocked: Authoring prompts teach their steps' checks; external_inputs complete — an accepted ADR for the layer-order edit (R-09)
@@ -52,6 +56,8 @@ done only when every row that applies passes. Claude never renders; you render, 
 - Backlog RV-26 blocked: Momentum at the true takeoff; the opening fall judged; each span re-timed or hung — the owner's span-by-span answer in F-101
 - Backlog RV-36 blocked: Limb and head words read in one declared frame — the owner's answer in F-111
 - Backlog RV-40 blocked: Rebinding forces re-authoring — the owner's answer in F-116
+- Backlog RV-52 blocked: The Euler convention: the source's turned leans and its backflip (ADR-Q6) — the owner's answer in F-143 (ADR-Q6's label or its meaning)
+- Backlog RV-53 blocked: The source rows whose numbers contradict their words; O95 against O88 on two action keys — the owner's answers in F-148 and F-149
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 <!-- END GENERATED: owner_rulings -->
 

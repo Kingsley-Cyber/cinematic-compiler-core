@@ -40,6 +40,7 @@ CLAUDE.md).
 | ADR-O98 | The gate's six conditions | RV-39 |
 | ADR-O99 | The principal review and the no-shortcuts principle | this plan |
 | ADR-O100 | The anti-reward-hacking clause | F-119 |
+| ADR-O107 | O102 confirmed; the finish run pushes each slice and continues | S-045 |
 
 The builder reads O89's "genuine airborne or prop-moving misses" as contacts measured between keys or samples (an
 interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
@@ -64,6 +65,7 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 | RV-16 | L6 | high | open | one laban chain per fighter (F-091) |
 | RV-17 | L2.2 | medium | open | one possession model; PROP_TWO_HOLDERS (F-092) |
 | RV-18 to RV-41 | various | medium-low | open | F-093 to F-116 and F-016, one slice each (docs/plans/backlog.yaml) |
+| RV-42 to RV-53 | various | high-low | open | the second review's gaps, F-122 to F-150 (docs/reports/2026-10-12-principal-review-2.md) |
 
 ## Dependencies
 - RV-02a after RV-05 (A's final poses); RV-02b after RV-02a, RV-03 and RV-06; RV-07 after RV-08; RV-13b after RV-13 and
@@ -80,7 +82,9 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 - F-116: whether a moved packet forces re-authoring
 - F-117: how F-013 and F-014 close without a fixed seed
 - F-118: O37's split cards or the one genre profile (blocks M9-11)
-- F-119: how the anti-reward-hacking clause meets R-33 (decides how step 3 treats every test pin)
+- F-119: how the anti-reward-hacking clause meets R-33 (answered: the owner confirmed ADR-O102, ADR-O107)
+- F-143: ADR-Q6's label or its meaning (the source's turned leans and its backflip)
+- F-148: the source rows whose numbers contradict their words; F-149: O95 against O88 on two action keys
 - RV-20: an ADR for the layer-order edit; RV-38: the owner's review of draft values and F-053
 
 ## Critical Path
@@ -103,3 +107,4 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 - 2026-10-11 — RV-01, RV-05 and RV-02a done (S-037 to S-039); ADR-O104 answers O89's "genuine"; RV-02b also re-stages
   B's kunai throw (S-039).
 - 2026-10-12 — RV-08, RV-03, RV-06 and RV-02b done (S-040 to S-043); ADR-O105 answers F-108.
+- 2026-10-12 — RV-04 done (S-044); the second principal review (S-045): F-120 to F-150, RV-42 to RV-53; ADR-O107.

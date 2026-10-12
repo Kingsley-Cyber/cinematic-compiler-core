@@ -1,6 +1,6 @@
 # Finish the repo: work until the plan's soul is built and the fight works
 
-<!-- docs-version: 1.0 -->
+<!-- docs-version: 2.0 -->
 
 Invoke (owner ADR-O101):
 - in Claude Code, in a session opened in the repo folder: `/finish`;
@@ -65,15 +65,17 @@ new one):
 2. Choose the reading that serves the soul best: the fight works, nothing the plan intends is lost, the owner's newest
    words win, the DAG over a plan, the source fight over a repo-authored value.
 3. Record an ADR (next free O number; Status accepted; Decided By `owner_default`; the quoted lines in Context; the
-   alternatives), resolve or update the finding, unblock the slice.
+   alternatives), resolve or update the finding, unblock the slice. The owner confirms or strikes it later (ADR-O107).
+   A question whose answer would set aside an owner ruling or an owner invariant (no_render_compression, for one) is not
+   answered here: it stays a finding of type question, its slice waits, and the run goes on with other slices (R-06).
 4. Where the sources cannot decide and the choice is visual and uncertain, prepare a render probe in
    `docs/render_tests/` (R-11) and go on with the reading the DAG favours, labelled.
 
 Only renders, render verdicts and cards leaving draft wait for the owner, and they never block other work.
 
-Open at the start of this run: F-088 (the length caps against `no_render_compression` and R-16), F-099, F-101, F-108,
-F-111, F-114, F-116, F-117, F-118, F-119, ADR-O89's "genuine" reading, RV-20's layer-order ADR, and RV-38 (prepare the
-owner's review pack of draft values and F-053; do not approve).
+Open at the start of this run: F-099, F-101, F-108, F-111, F-114, F-116, F-117, F-118, F-119, ADR-O89's "genuine"
+reading, RV-20's layer-order ADR, and RV-38 (prepare the owner's review pack of draft values and F-053; do not
+approve). F-088 (the length caps against `no_render_compression` and R-16) waits for the owner (ADR-O97, ADR-O107).
 
 ## 5. Each slice
 
