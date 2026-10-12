@@ -12,7 +12,7 @@ Kingsley (owner); Claude executes
 2026-10-11
 
 ## Updated
-2026-10-11
+2026-10-12
 
 ## Intent
 Close what the first principal review (docs/prompts/principal_review.md, S-035) found, under the no-shortcuts principle
@@ -66,6 +66,7 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 | RV-17 | L2.2 | medium | open | one possession model; PROP_TWO_HOLDERS (F-092) |
 | RV-18 to RV-41 | various | medium-low | open | F-093 to F-116 and F-016, one slice each (docs/plans/backlog.yaml) |
 | RV-42 to RV-54 | various | high-low | RV-42, RV-43, RV-49 done (S-046, S-047, S-049); the rest open | the second review's gaps, F-122 to F-150 (docs/reports/2026-10-12-principal-review-2.md), and F-151 (a body through a prop, RV-54) |
+| RV-55 to RV-64 | various | high-medium | open (RV-55, RV-56, RV-63 wait for the owner) | the third review's gaps, F-152 to F-167 (docs/reports/2026-10-12-principal-review-3.md) |
 
 ## Dependencies
 - RV-02a after RV-05 (A's final poses); RV-02b after RV-02a, RV-03 and RV-06; RV-07 after RV-08; RV-13b after RV-13 and
@@ -85,6 +86,9 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 - F-119: how the anti-reward-hacking clause meets R-33 (answered: the owner confirmed ADR-O102, ADR-O107)
 - F-143: ADR-Q6's label or its meaning (the source's turned leans and its backflip)
 - F-148: the source rows whose numbers contradict their words; F-149: O95 against O88 on two action keys
+- F-152: O72's measure for body contacts; F-153: render.txt's deliverability under O1 and O94; F-154: owner_default
+  ADRs as rulings (confirm or strike O103 to O106 and O108); F-164: O90's timing; F-165: the pellet's point
+- F-055, F-057 and F-060: open since before the run
 - RV-20: an ADR for the layer-order edit; RV-38: the owner's review of draft values and F-053
 
 ## Critical Path
@@ -94,6 +98,8 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 3. The fight-breakers that need no ruling: RV-14, RV-15, RV-16, RV-17, RV-37, RV-35, RV-22
 4. The rest in backlog order: RV-18, RV-19, RV-21, RV-23, RV-25, RV-27 to RV-32, RV-34, RV-39, RV-41
 5. Then PLAN-006 (AS-01 to AS-07) and PLAN-003's remaining M9 slices
+After review 3 (S-054): RV-45 and RV-46 (the records) first, then RV-48, RV-60, RV-61, RV-62, RV-57, RV-58, RV-18,
+RV-64 and RV-13, then the rest in backlog order.
 6. Waiting on the owner: RV-13b, RV-20, RV-24, RV-26, RV-33, RV-36, RV-40; the owner's own: RV-38
 
 ## Verification
@@ -113,3 +119,4 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 - 2026-10-12 — RV-10 done (S-051): the kunai drive holds the kunai in B; the catch grasps then throws.
 - 2026-10-12 — RV-11 done (S-052): excluded rows N/A; cinematic compile refuses non-deliverables.
 - 2026-10-12 — RV-12 done (S-053): the cartwheel is a full turn in the words.
+- 2026-10-12 — Principal review 3 (S-054): verdict partially; F-152 to F-167, RV-55 to RV-64.

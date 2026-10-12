@@ -101,10 +101,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.0; backlog 22.
-- Last session: S-053 (2026-10-12, applied): RV-12: the 6.3 cartwheel is a full turn in the words too (O96).
-- Next slice: RV-13 PROMPT_LENGTH: 3,500 characters for Runway, 1,000 words for BytePlus (O97) (step render).
-- Open findings: 89; decisions: 135 (0 proposed).
+- Layer order 1.7; rules 7.0; backlog 23.
+- Last session: S-054 (2026-10-12, applied): Principal review 3: five read-only reviewers, their gaps filed as F-152 to F-167.
+- Next slice: RV-45 Each slice's records: a self-audit section, interpretations labelled, typed deviation IDs, commit IDs (step docs).
+- Open findings: 105; decisions: 135 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
@@ -132,6 +132,9 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - F-133 (medium): The 37 scene_reference rules reach no scene
 - F-143 (high): The Euler convention reads the source's turned leans as rolls and its backflip as a front flip
 - F-148 (high): Source rows whose numbers contradict their own words: fix them or keep them?
+- F-152 (high): O72's point measure and BODY_OVERLAP cannot both hold for body contacts
+- F-153 (high): No compile can ever emit: render.txt cannot pass the Master Template rows
+- F-154 (medium): Owner_default ADRs taken under O101 are counted as rulings the owner has not seen
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog RV-13b blocked: Every prompt fits the caps (O97) — the owner's answers in F-088
 - Backlog RV-20 blocked: Authoring prompts teach their steps' checks; external_inputs complete — an accepted ADR for the layer-order edit (R-09)
@@ -141,6 +144,9 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - Backlog RV-40 blocked: Rebinding forces re-authoring — the owner's answer in F-116
 - Backlog RV-52 blocked: The Euler convention: the source's turned leans and its backflip (ADR-Q6) — the owner's answer in F-143 (ADR-Q6's label or its meaning)
 - Backlog RV-53 blocked: The source rows whose numbers contradict their words; O95 against O88 on two action keys — the owner's answers in F-148 and F-149
+- Backlog RV-55 blocked: Body contacts measured as the owner rules (O72's measure against BODY_OVERLAP) — the owner's answer in F-152
+- Backlog RV-56 blocked: render.txt's deliverability as the owner rules (O1 with O94 and O13) — the owner's answer in F-153
+- Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 <!-- END GENERATED: rulings -->
 

@@ -6,6 +6,8 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- Principal review 3 (S-054, finish.md section 6): five read-only reviewers, verdict "partially"; their gaps filed as
+  F-152 to F-167 with slices RV-55 to RV-64 (three wait for the owner). The records come first (RV-45, RV-46).
 - The 6.3 cartwheel is a full turn in the words too (RV-12, O96, F-087, S-053): A's 6.3 row says "one full turn", as its
   keys roll it; a recorded rewording.
 - `cinematic compile` refuses a prompt that is not a deliverable (RV-11, O94, F-085, S-052): it runs the prompt checks

@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 22
+version: 23
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -92,7 +92,27 @@ items:
      step: render, plan: PLAN-007, depends_on: [], findings: [F-085], codes: []}
   - {id: RV-12, title: "The 6.3 cartwheel is a full turn in render.txt (O96)", status: done,
      step: render, plan: PLAN-007, depends_on: [], findings: [F-087], codes: []}
-  - {id: RV-13, title: "PROMPT_LENGTH: 3,500 characters for Runway, 1,000 words for BytePlus (O97)", status: next,
+  - {id: RV-45, title: "Each slice's records: a self-audit section, interpretations labelled, typed deviation IDs, commit IDs", status: next,
+     step: docs, plan: PLAN-007, depends_on: [], findings: [F-128, F-166], codes: []}
+  - {id: RV-46, title: "Stale records corrected; F-015, F-052 and F-054 assigned; the track test keeps its claim", status: ready,
+     step: docs, plan: PLAN-007, depends_on: [], findings: [F-130, F-140, F-166, F-154], codes: []}
+  - {id: RV-48, title: "Latent checks: throws and releases at their pose, a vanished body never touched, a resting prop moved only with a sample, the first location, S08's support hand; the S04 prompt rewritten; the 6.6 throw on its pose", status: ready,
+     step: temporal, plan: PLAN-007, depends_on: [], findings: [F-135, F-136, F-137, F-138, F-139, F-158, F-162], codes: [RELEASE_AT_POSE]}
+  - {id: RV-60, title: "The camera cards' rules follow O92: no close-up after a blow, no slowed playback; the printed camera rules checked", status: ready,
+     step: camera, plan: PLAN-007, depends_on: [], findings: [F-160], codes: []}
+  - {id: RV-61, title: "S10 reads the state before the beat's own effects; S09 carries each change's instant", status: ready,
+     step: affordance, plan: PLAN-007, depends_on: [], findings: [F-161], codes: []}
+  - {id: RV-62, title: "The vanishing actor's line prints no support into the vanish; the volley is drawn into B's hand before 5.5", status: ready,
+     step: render, plan: PLAN-007, depends_on: [], findings: [F-163, F-105], codes: []}
+  - {id: RV-57, title: "Hits found from the contacts are camera holds on every body present, at S16 and in the prompt, whatever S17 holds (O92)", status: ready,
+     step: camera, plan: PLAN-007, depends_on: [], findings: [F-155, F-015], codes: []}
+  - {id: RV-58, title: "The compiler judges prompts with the owner's render findings; a possess counts on an impact frame only as a catch; a touch of another's held prop is no strike only for a non-limb part", status: ready,
+     step: render, plan: PLAN-007, depends_on: [], findings: [F-156, F-157], codes: []}
+  - {id: RV-18, title: "Declared validators run (S02 coherence); the envelope records what ran", status: ready,
+     step: brief, plan: PLAN-007, depends_on: [], findings: [F-093, F-142], codes: []}
+  - {id: RV-64, title: "The S04 packet carries the query's choreography and the scene_reference rules", status: ready,
+     step: temporal, plan: PLAN-007, depends_on: [RV-18], findings: [F-167], codes: []}
+  - {id: RV-13, title: "PROMPT_LENGTH: 3,500 characters for Runway, 1,000 words for BytePlus (O97)", status: ready,
      step: render, plan: PLAN-007, depends_on: [], findings: [F-088], codes: [PROMPT_LENGTH]}
   - {id: RV-13b, title: "Every prompt fits the caps (O97)", status: blocked,
      blocked_by: "the owner's answers in F-088",
@@ -105,8 +125,6 @@ items:
      step: render, plan: PLAN-007, depends_on: [], findings: [F-091], codes: []}
   - {id: RV-17, title: "One possession model for S04 and S07; PROP_TWO_HOLDERS", status: ready,
      step: contact, plan: PLAN-007, depends_on: [], findings: [F-092, F-134], codes: [PROP_TWO_HOLDERS]}
-  - {id: RV-18, title: "Declared validators run (S02 coherence); the envelope records what ran", status: ready,
-     step: brief, plan: PLAN-007, depends_on: [], findings: [F-093, F-142], codes: []}
   - {id: RV-19, title: "Replans reach the step that owns the fix", status: ready,
      step: all, plan: PLAN-007, depends_on: [], findings: [F-094], codes: []}
   - {id: RV-20, title: "Authoring prompts teach their steps' checks; external_inputs complete", status: blocked,
@@ -127,7 +145,7 @@ items:
      blocked_by: "the owner's span-by-span answer in F-101",
      step: kinematic, plan: PLAN-007, depends_on: [], findings: [F-101, F-036], codes: []}
   - {id: RV-27, title: "Prop paths and times follow the source (R-17)", status: ready,
-     step: temporal, plan: PLAN-007, depends_on: [], findings: [F-102, F-059], codes: []}
+     step: temporal, plan: PLAN-007, depends_on: [], findings: [F-102, F-059, F-165], codes: []}
   - {id: RV-28, title: "Per-span Efforts keep each fighter's source signature", status: ready,
      step: effort, plan: PLAN-007, depends_on: [], findings: [F-103], codes: [EFFORT_SIGNATURE]}
   - {id: RV-29, title: "Smears follow the source's subjects and windows", status: ready,
@@ -139,7 +157,7 @@ items:
   - {id: RV-32, title: "Reference-cast rules filled per scene at S03", status: ready,
      step: constraint, plan: PLAN-007, depends_on: [], findings: [F-107], codes: []}
   - {id: RV-33, title: "B's track follows the source (F-108's question answered by ADR-O105)", status: ready,
-     step: temporal, plan: PLAN-007, depends_on: [], findings: [F-108, F-150], codes: []}
+     step: temporal, plan: PLAN-007, depends_on: [RV-52], findings: [F-108, F-150], codes: []}
   - {id: RV-34, title: "R-14 checked in code", status: ready,
      step: all, plan: PLAN-007, depends_on: [], findings: [F-109], codes: []}
   - {id: RV-35, title: "Pickups crouch on the feet with a hand down; the support names the hand", status: ready,
@@ -172,20 +190,25 @@ items:
      step: motion, plan: PLAN-007, depends_on: [RV-14], findings: [F-131], codes: []}
   - {id: RV-54, title: "No body through a prop: each prop card gives an extent; S13 refuses a body through a prop at its samples (and between, with RV-47)", status: ready,
      step: motion, plan: PLAN-007, depends_on: [RV-47], findings: [F-151], codes: [PROP_OVERLAP]}
-  - {id: RV-48, title: "Latent checks: throws and releases at their pose, a vanished body never touched, a resting prop moved only with a sample, the first location, S08's support hand; the S04 prompt rewritten", status: ready,
-     step: temporal, plan: PLAN-007, depends_on: [], findings: [F-135, F-136, F-137, F-138, F-139], codes: [RELEASE_AT_POSE]}
+  - {id: RV-59, title: "BODY_OVERLAP along the declared interpolation between keys; the paths re-blocked", status: ready,
+     step: motion, plan: PLAN-007, depends_on: [RV-35], findings: [F-159], codes: []}
   - {id: RV-44, title: "Each file whose version also labels older bytes takes one new version; the bump cutoff goes", status: ready,
      step: docs, plan: PLAN-007, depends_on: [], findings: [F-126], codes: []}
-  - {id: RV-45, title: "Each slice's records: a self-audit section, interpretations labelled, typed deviation IDs, commit IDs", status: ready,
-     step: docs, plan: PLAN-007, depends_on: [], findings: [F-128], codes: []}
-  - {id: RV-46, title: "Stale records corrected; F-015, F-052 and F-054 assigned; the track test keeps its claim", status: ready,
-     step: docs, plan: PLAN-007, depends_on: [], findings: [F-130, F-140], codes: []}
   - {id: RV-52, title: "The Euler convention: the source's turned leans and its backflip (ADR-Q6)", status: blocked,
      blocked_by: "the owner's answer in F-143 (ADR-Q6's label or its meaning)",
      step: motion, plan: PLAN-007, depends_on: [], findings: [F-143], codes: []}
   - {id: RV-53, title: "The source rows whose numbers contradict their words; O95 against O88 on two action keys", status: blocked,
      blocked_by: "the owner's answers in F-148 and F-149",
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-148, F-149, F-124], codes: []}
+  - {id: RV-55, title: "Body contacts measured as the owner rules (O72's measure against BODY_OVERLAP)", status: blocked,
+     blocked_by: "the owner's answer in F-152",
+     step: motion, plan: PLAN-007, depends_on: [], findings: [F-152], codes: []}
+  - {id: RV-56, title: "render.txt's deliverability as the owner rules (O1 with O94 and O13)", status: blocked,
+     blocked_by: "the owner's answer in F-153",
+     step: render, plan: PLAN-007, depends_on: [], findings: [F-153], codes: []}
+  - {id: RV-63, title: "A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed", status: blocked,
+     blocked_by: "the owner's answer on O90's timing in F-164",
+     step: temporal, plan: PLAN-007, depends_on: [], findings: [F-164], codes: []}
   - {id: AS-01, title: "O87 item 6: the striking surface on contacts (F3.1)", status: ready, step: temporal,
      plan: PLAN-006, depends_on: [RV-37], findings: [F-025], codes: [CONTACT_SURFACE]}
   - {id: AS-02, title: "O87 item 9: hand shape, foot set and the palm's facing from the forearm's twist", status: ready,

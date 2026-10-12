@@ -49,6 +49,9 @@ done only when every row that applies passes. Claude never renders; you render, 
 - F-133 (medium): The 37 scene_reference rules reach no scene
 - F-143 (high): The Euler convention reads the source's turned leans as rolls and its backflip as a front flip
 - F-148 (high): Source rows whose numbers contradict their own words: fix them or keep them?
+- F-152 (high): O72's point measure and BODY_OVERLAP cannot both hold for body contacts
+- F-153 (high): No compile can ever emit: render.txt cannot pass the Master Template rows
+- F-154 (medium): Owner_default ADRs taken under O101 are counted as rulings the owner has not seen
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog RV-13b blocked: Every prompt fits the caps (O97) — the owner's answers in F-088
 - Backlog RV-20 blocked: Authoring prompts teach their steps' checks; external_inputs complete — an accepted ADR for the layer-order edit (R-09)
@@ -58,6 +61,9 @@ done only when every row that applies passes. Claude never renders; you render, 
 - Backlog RV-40 blocked: Rebinding forces re-authoring — the owner's answer in F-116
 - Backlog RV-52 blocked: The Euler convention: the source's turned leans and its backflip (ADR-Q6) — the owner's answer in F-143 (ADR-Q6's label or its meaning)
 - Backlog RV-53 blocked: The source rows whose numbers contradict their words; O95 against O88 on two action keys — the owner's answers in F-148 and F-149
+- Backlog RV-55 blocked: Body contacts measured as the owner rules (O72's measure against BODY_OVERLAP) — the owner's answer in F-152
+- Backlog RV-56 blocked: render.txt's deliverability as the owner rules (O1 with O94 and O13) — the owner's answer in F-153
+- Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 <!-- END GENERATED: owner_rulings -->
 

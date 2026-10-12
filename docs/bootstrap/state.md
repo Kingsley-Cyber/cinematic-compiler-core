@@ -6,20 +6,20 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 7.0; backlog 22.
+Layer order 1.7; rules 7.0; backlog 23.
 
 ## Last sessions
 
-- S-051 (applied): RV-10: the kunai drive holds the kunai in B's shoulder; the catch is a grasp plus a throw (O93)
 - S-052 (applied): RV-11: DAG-excluded rows are N/A; `cinematic compile` refuses a prompt that is not a deliverable (O94)
 - S-053 (applied): RV-12: the 6.3 cartwheel is a full turn in the words too (O96)
+- S-054 (applied): Principal review 3: five read-only reviewers, their gaps filed as F-152 to F-167
 
 ## Next slices
 
-- RV-13 (next, step render): PROMPT_LENGTH: 3,500 characters for Runway, 1,000 words for BytePlus (O97)
-- RV-14 (ready, step motion): Every-key body checks: no body under the floor; supports at every key; held and embedded props at their holder
-- RV-15 (ready, step camera): The camera aims at the body and an insert at its detail; vertical framing checked
-- RV-16 (ready, step render): One laban chain per fighter in render.txt
+- RV-45 (next, step docs): Each slice's records: a self-audit section, interpretations labelled, typed deviation IDs, commit IDs
+- RV-46 (ready, step docs): Stale records corrected; F-015, F-052 and F-054 assigned; the track test keeps its claim
+- RV-48 (ready, step temporal): Latent checks: throws and releases at their pose, a vanished body never touched, a resting prop moved only with a sample, the first location, S08's support hand; the S04 prompt rewritten; the 6.6 throw on its pose
+- RV-60 (ready, step camera): The camera cards' rules follow O92: no close-up after a blow, no slowed playback; the printed camera rules checked
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -44,6 +44,9 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-133 (medium): The 37 scene_reference rules reach no scene
 - F-143 (high): The Euler convention reads the source's turned leans as rolls and its backflip as a front flip
 - F-148 (high): Source rows whose numbers contradict their own words: fix them or keep them?
+- F-152 (high): O72's point measure and BODY_OVERLAP cannot both hold for body contacts
+- F-153 (high): No compile can ever emit: render.txt cannot pass the Master Template rows
+- F-154 (medium): Owner_default ADRs taken under O101 are counted as rulings the owner has not seen
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog RV-13b blocked: Every prompt fits the caps (O97) — the owner's answers in F-088
 - Backlog RV-20 blocked: Authoring prompts teach their steps' checks; external_inputs complete — an accepted ADR for the layer-order edit (R-09)
@@ -53,9 +56,12 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-40 blocked: Rebinding forces re-authoring — the owner's answer in F-116
 - Backlog RV-52 blocked: The Euler convention: the source's turned leans and its backflip (ADR-Q6) — the owner's answer in F-143 (ADR-Q6's label or its meaning)
 - Backlog RV-53 blocked: The source rows whose numbers contradict their words; O95 against O88 on two action keys — the owner's answers in F-148 and F-149
+- Backlog RV-55 blocked: Body contacts measured as the owner rules (O72's measure against BODY_OVERLAP) — the owner's answer in F-152
+- Backlog RV-56 blocked: render.txt's deliverability as the owner rules (O1 with O94 and O13) — the owner's answer in F-153
+- Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 89
+## Open findings: 105
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -78,7 +84,12 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-143 (high, L4c): The Euler convention reads the source's turned leans as rolls and its backflip as a front flip
 - F-145 (high, L1.1): Fighters face away from their targets while their words face them
 - F-148 (high, L1.1): Source rows whose numbers contradict their own words: fix them or keep them?
+- F-152 (high, L4c): O72's point measure and BODY_OVERLAP cannot both hold for body contacts
+- F-153 (high, L6): No compile can ever emit: render.txt cannot pass the Master Template rows
+- F-155 (high, L5.5): HIT_HOLD reads O92 backwards: only holds the S17 author placed are judged
+- F-159 (high, L4c): Bodies pass through each other between keys
+- F-167 (high, L1.1): The S04 author never sees the query it plans
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-152, session S-054, render R20.
+Decision ADR-O109, finding F-168, session S-055, render R20.
