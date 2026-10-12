@@ -1,7 +1,7 @@
 {
  "step_id": "S13",
  "band": "L4c",
- "packet_sha256": "sha256:0ef1ea60864d1fabbdd8cdca77ffaa506b42909ebb8e3c8acf171a6f25c70e69",
+ "packet_sha256": "sha256:91c518860f7e6c6e8ead2e4eb18081d116edab96a9592b2fe620506016cdff28",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -1681,9 +1681,9 @@
      60
     ],
     "RA": [
-     15,
-     0,
-     -5
+     30,
+     -15,
+     0
     ],
     "LFA": [
      -20,
@@ -1691,7 +1691,7 @@
      0
     ],
     "RFA": [
-     -5,
+     -45,
      0,
      0
     ],
@@ -1706,7 +1706,7 @@
      0
     ]
    },
-   "description": "Airborne from the knee strike, left arm flung wide, the right hand at the thigh pouch drawing the shuriken.",
+   "description": "Airborne from the knee strike, left arm flung wide, the right hand at the pouch high on the right thigh, drawing the shuriken.",
    "turn": "spin",
    "axis_declaration": "Y"
   },

@@ -54,3 +54,4 @@ VANISHED_BODY refuses a vanish line that carries either; B draws the volley from
 go with the 5.5 throw, so B's right hand is empty 2.00-5.10 and 5.50-6.60 (DEV-30, DEV-31;
 tests/test_reference_fight_golden.py::test_b_draws_the_volley_before_throwing_it,
 tests/test_prose_render.py::test_the_vanishing_actor_s_line_ends_its_support_and_walks_nowhere).
+RV-68 (S-066): the drawn volley is measured at the pouch (F-182 resolved); the rest is F-176's (RV-70).

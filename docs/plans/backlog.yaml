@@ -112,9 +112,9 @@ items:
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-169, F-130], codes: []}
   - {id: RV-67, title: "The S04 instructions and the validator's docstring teach F-077's rule and O48's standing log", status: done,
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-170, F-162], codes: []}
-  - {id: RV-68, title: "The holstered volley rests at the thigh pouch, and the draw is measured against it", status: next,
+  - {id: RV-68, title: "The holstered volley rests at the thigh pouch, and the draw is measured against it", status: done,
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-182, F-163], codes: []}
-  - {id: RV-69, title: "A body touched by a prop another performer threw is a hit, whatever the verb", status: ready,
+  - {id: RV-69, title: "A body touched by a prop another performer threw is a hit, whatever the verb", status: next,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-175], codes: []}
   - {id: RV-70, title: "A vanished body is gone from every section (S15's coverage, the guidance, a vanish that never returns), and VANISHED_BODY reads them", status: ready,
      step: render, plan: PLAN-007, depends_on: [], findings: [F-176, F-163], codes: []}

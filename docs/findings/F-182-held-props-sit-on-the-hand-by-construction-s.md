@@ -12,7 +12,7 @@ medium
 L4c
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -47,4 +47,7 @@ none needed
 - ADR-O83
 
 ## Resolution
-Open.
+RV-68 (S-066): the volley's 5.1 sample rests at the pouch, on the outer side of B's right thigh a quarter of the way
+from the hip, and B's repo 5.1 arm is re-posed (RA [30, -15, 0], RFA [-45, 0, 0]) so the hand meets it from outside the
+thigh: CONTACT_WORLD measures the draw at 0.045 m; the golden's draw test pins the sample on the thigh's surface and the
+hand outside it (tests/test_reference_fight_golden.py::test_b_draws_the_volley_before_throwing_it).

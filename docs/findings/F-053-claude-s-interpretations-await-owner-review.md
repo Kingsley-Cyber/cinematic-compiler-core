@@ -118,6 +118,8 @@ Added in S-063 (review 4), four choices the sessions made without a ruling: S-05
 R-18's source, for RV-49's re-blocks, which had no ruling of their own); S-056 D2 (a partly fixed finding kept
 resolved with a "Corrected" line, against F-166's proposed fix; reversed in S-063); S-059 D5 (a camera rule that negates
 the struck words is flagged too); S-061 D5 (the volley's card gains flight `drawn`).
+Added in S-066 (RV-68, examples/reference_fight): the thigh pouch sits on the thigh's outer side a quarter of the way
+from the hip, where B's hand can reach it while airborne at 5.1.
 
 ## Impact
 Waits on the owner.

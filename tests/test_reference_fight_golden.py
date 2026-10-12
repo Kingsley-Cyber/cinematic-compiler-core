@@ -3,6 +3,7 @@ contains every kernel and reference-fight item, carries A's reference roots exac
 deviations (owner O7/O10/O11), and keeps its anime directives."""
 
 import json
+import math
 from pathlib import Path
 
 import pytest
@@ -388,8 +389,10 @@ def test_the_log_takes_a_s_place_at_the_swap():
 # RV-62 (F-163, F-105; owners O23, O8, O83): the source holsters the volley "in B right thigh pouch" and throws it "from
 # B right hand" at 5.5, with no draw between; B draws it at 5.1, its key in A's backflip beat, where the repo's own
 # pose ("arms flung wide", no source row) now reaches the right hand to the thigh pouch, and lets it go with the throw.
-VOLLEY_DRAW = (5.1, 5.5, [-1.13, 1.91, 4.16])
-DRAW_POSE = {"RA": [15, 0, -5], "RFA": [-5, 0, 0]}
+# RV-68 (F-182): the volley waits in the pouch, on the thigh's outer side a quarter of the way from the hip, and the
+# hand meets it there from outside the thigh, so the draw is measured, not placed on the hand.
+VOLLEY_DRAW = (5.1, 5.5, [-1.18, 1.97, 4.2])
+DRAW_POSE = {"RA": [30, -15, 0], "RFA": [-45, 0, 0]}
 
 
 def test_b_draws_the_volley_before_throwing_it():
@@ -401,6 +404,14 @@ def test_b_draws_the_volley_before_throwing_it():
     samples = {s["t"]: s["p"] for b in ENVELOPE["nodes"]["beats"]["items"] for s in b.get("prop_samples", [])
                if s["prop"] == "shuriken_volley"}
     assert samples[VOLLEY_DRAW[0]] == VOLLEY_DRAW[2] and "holstered in B right thigh pouch" in SOURCE
+    from solver import forward_kinematics as fk
+    metres, radii = fk.segments("anime"), fk.radii("anime")
+    joints = fk.joints(key, metres)
+    hip, knee, hand = joints["right_hip"], joints["right_knee"], joints["right_hand"]
+    pouch = math.dist(VOLLEY_DRAW[2], fk.closest(VOLLEY_DRAW[2], hip, knee)) - radii["thigh"]
+    assert abs(pouch) <= 0.02  # the volley rests on the thigh's surface
+    assert math.dist(hand, fk.closest(hand, hip, knee)) - radii["thigh"] >= radii["forearm"]  # the hand stays outside it
+    assert math.dist(hand, VOLLEY_DRAW[2]) <= 0.15  # and meets the pouch (owner O72)
     text = RENDER["prose"]["mixed"]["text"]
     assert "B's right hand is empty from 2.00 until 5.10" in text and "B's right hand is empty from 5.50 until 6.60" in text
     assert "5.10 flight holstered -> drawn, holder none -> B" in text and "5.50 flight drawn -> flying" in text

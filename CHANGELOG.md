@@ -6,6 +6,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The draw is measured (RV-68, F-182, S-066): the shuriken volley waits at the pouch on B's right thigh until B's hand,
+  re-posed to meet it from outside the thigh, draws it at 5.1; CONTACT_WORLD reads 0.045 m where it read the hand
+  against itself.
 - The S04 instructions and the validator's docstring teach the rule the code applies (RV-67, F-170, S-065): a resting
   prop stays where it rests at a contact's instant (F-077), and the log's first state is "standing" (O48).
 - A substitution exempts only its decoy (RV-66, F-169, S-064): the prop it changes and places within 0.15 m of its

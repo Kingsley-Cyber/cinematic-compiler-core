@@ -139,3 +139,4 @@ RV-16, RV-37, RV-35, RV-59, RV-22; then RV-78 to RV-84 and the rest in backlog o
 - 2026-10-12 — Review 4 (S-063): verdict partially; F-169 to F-186 filed with RV-66 to RV-84; RV-27, RV-33 blocked; RV-64 split.
 - 2026-10-12 — RV-66 done (S-064): a substitution exempts only its decoy, the prop at its actor's anchor.
 - 2026-10-12 — RV-67 done (S-065): the S04 instructions and the validator teach F-077's rule and O48's log.
+- 2026-10-12 — RV-68 done (S-066): the volley waits at the thigh pouch; the draw is measured at 0.045 m.
