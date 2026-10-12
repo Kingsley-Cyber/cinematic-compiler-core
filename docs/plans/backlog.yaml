@@ -100,9 +100,9 @@ items:
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-135, F-136, F-138, F-139, F-158], codes: [RELEASE_AT_POSE]}
   - {id: RV-48b, title: "S08's support hand holds or touches its object; the S04 instructions rewritten to today's rules", status: done,
      step: hand_role, plan: PLAN-007, depends_on: [RV-48a], findings: [F-137, F-135, F-162], codes: []}
-  - {id: RV-60, title: "The camera cards' rules follow O92: no close-up after a blow, no slowed playback; the printed camera rules checked", status: next,
+  - {id: RV-60, title: "The camera cards' rules follow O92: no close-up after a blow, no slowed playback; the printed camera rules checked", status: done,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-160], codes: []}
-  - {id: RV-61, title: "S10 reads the state before the beat's own effects; S09 carries each change's instant", status: ready,
+  - {id: RV-61, title: "S10 reads the state before the beat's own effects; S09 carries each change's instant", status: next,
      step: affordance, plan: PLAN-007, depends_on: [], findings: [F-161], codes: []}
   - {id: RV-62, title: "The vanishing actor's line prints no support into the vanish; the volley is drawn into B's hand before 5.5", status: ready,
      step: render, plan: PLAN-007, depends_on: [], findings: [F-163, F-105], codes: []}

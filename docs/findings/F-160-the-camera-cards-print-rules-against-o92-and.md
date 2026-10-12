@@ -12,7 +12,7 @@ medium
 L5.5
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -48,4 +48,10 @@ none needed (O92; PLAYBACK_RAMP's reach beyond the fight is the builder's readin
 - RV-60
 
 ## Resolution
-Open.
+RV-60 (S-059): anime's "Cut close on the receiver after a blow lands.", live action's "Slow motion only around the
+peak of an action." and the ninja idiom's insert on a landing blade are struck from the draft cards, and every
+convention card's playback is [normal] (card_version 2, library log); the prompt validator reads the printed "Camera
+rules:" line for both codes (validators/prompt_validator.py camera_rule_problems;
+tests/test_prose_render.py::test_the_printed_camera_rules_follow_o92,
+tests/test_camera_solver.py::test_no_camera_card_slows_playback_or_puts_a_close_up_on_a_hit). The UGC card's list
+follows PLAYBACK_RAMP's reach to every scene, the builder's reading listed in F-053.

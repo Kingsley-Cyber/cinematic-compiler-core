@@ -1,11 +1,11 @@
 card_id: ugc_ad
 kind: camera_convention
-card_version: 1
+card_version: 2
 status: draft
 genre: ugc_ad
 description: "UGC ad: phone-native handheld or gimbal coverage, jump cuts allowed, the product shown in use; the axis is never crossed."
 transitions: [open, cut, jump_cut, match_cut]
-playback: [normal, fast, ramp]
+playback: [normal]  # PLAYBACK_RAMP for every scene (S-050's reading of owner O92; RV-60)
 rigs: [handheld, gimbal, tripod]
 max_roll_deg: 10
 shot_duration_s: [0.4, 4.0]

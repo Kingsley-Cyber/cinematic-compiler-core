@@ -102,9 +102,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 7.0; backlog 25.
-- Last session: S-058 (2026-10-12, applied): RV-48b: the support hand holds or touches its object; the S04 and S08 instructions follow the code.
-- Next slice: RV-60 The camera cards' rules follow O92: no close-up after a blow, no slowed playback; the printed camera rules checked (step camera).
-- Open findings: 95; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
+- Last session: S-059 (2026-10-12, applied): RV-60: the camera cards follow O92, and the printed camera rules are checked.
+- Next slice: RV-61 S10 reads the state before the beat's own effects; S09 carries each change's instant (step affordance).
+- Open findings: 94; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

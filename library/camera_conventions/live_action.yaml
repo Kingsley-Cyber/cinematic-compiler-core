@@ -1,11 +1,11 @@
 card_id: live_action
 kind: camera_convention
-card_version: 1
+card_version: 2
 status: draft
 genre: live_action
-description: "Live-action coverage: cut on action, matched movement across cuts, slow motion only at a peak."
+description: "Live-action coverage: cut on action, matched movement across cuts, every shot at normal speed."
 transitions: [open, cut, match_cut, smash_cut, whip_pan, dissolve]
-playback: [normal, slow, ramp]
+playback: [normal]  # owner O92 (RV-60, F-160): no slow motion or ramp
 rigs: [tripod, dolly, crane, gimbal, steadicam, handheld, drone]
 max_roll_deg: 20
 shot_duration_s: [0.4, 10.0]
@@ -14,7 +14,6 @@ required_intents: []
 conventions:
   - {id: live_establishing_wide, statement: "Establish the space before the action needs it."}
   - {id: live_cut_on_action, statement: "Cut during the movement and match it across the cut."}
-  - {id: live_slow_peak, statement: "Slow motion only around the peak of an action."}
 provenance:
   authored_by: claude-code
   date: "2026-10-10"

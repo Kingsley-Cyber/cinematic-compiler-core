@@ -1,11 +1,11 @@
 card_id: anime
 kind: camera_convention
-card_version: 1
+card_version: 2
 status: draft
 genre: anime
 description: "Anime fight coverage: readable impacts, held frames, fast cuts and whips; the axis may be crossed when the cut says so."
 transitions: [open, cut, match_cut, smash_cut, whip_pan, dissolve]
-playback: [normal, slow, ramp, freeze]
+playback: [normal]  # owner O92 (RV-60, F-160): no slow motion, ramp or freeze
 rigs: [tripod, dolly, crane, gimbal, steadicam, handheld, drone]
 max_roll_deg: 30
 shot_duration_s: [0.25, 6.0]
@@ -15,7 +15,6 @@ conventions:
   - {id: anime_establishing_wide, statement: "Open on a wide that sets the arena geometry before the first exchange."}
   - {id: anime_impact_hold, statement: "Hold on the frame of impact so the hit reads."}
   - {id: anime_speed_follow, statement: "A fast body move is followed by a tracking or whip move with speedlines on the moving limb."}
-  - {id: anime_reaction_close, statement: "Cut close on the receiver after a blow lands."}
 provenance:
   authored_by: claude-code
   date: "2026-10-10"

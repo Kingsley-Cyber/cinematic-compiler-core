@@ -7,10 +7,10 @@ Genre: live_action. LBN-2.4 is read against the DAG's Master Template (O13), so 
 | Prompt | File | sha256 | Bytes | PASS | FAIL | NOT CHECKED | N/A | Deliverable |
 |---|---|---|---|---|---|---|---|---|
 | LBN | `render.txt` | `c12867967cebd53e01401a0808997c5d0c28b9dfb04f6c7178becd452ae86788` | 13514 | 4 | 49 | 14 | 17 | no |
-| Pure | `prose_pure_staff.txt` | `65339605ce1e7a802f20bb0f07c6d88ba616a791104a36ff58d879f14134c23b` | 12645 | 37 | 0 | 30 | 17 | no |
-| Mixed | `prose_mixed.txt` | `421f4c65e9678e0c1afdf667645baeffffd23fb90883464863132292deb94da6` | 12973 | 37 | 0 | 30 | 17 | no |
-| Upgr | `prose_upgraded_mixed.txt` | `69b36d1b3f8557e91357a4be29966137ad322c83210b79ef835f16f1a81cdf75` | 13391 | 37 | 0 | 30 | 17 | no |
-| Euler | `prose_euler_heavy.txt` | `81a23d0aa4a573960202a64db258221797a60b0d1b9fb3ad88da7efee8665e58` | 14766 | 37 | 0 | 30 | 17 | no |
+| Pure | `prose_pure_staff.txt` | `617355080dc0b761e564a871969914a868e4923dc0427c2fe3ffb8bc7252cb30` | 12598 | 37 | 0 | 30 | 17 | no |
+| Mixed | `prose_mixed.txt` | `5b3ec7392491f026d543c7ab35df926e5a72f20a60fcff4fad22a67269d22816` | 12926 | 37 | 0 | 30 | 17 | no |
+| Upgr | `prose_upgraded_mixed.txt` | `bb6dd9dab12d42c7d1a509dfb066686cbef1613f4ed56acf3df099e1cc5e64d4` | 13344 | 37 | 0 | 30 | 17 | no |
+| Euler | `prose_euler_heavy.txt` | `a09be4bd1f71e49310ce7f90e9bac8d511c33d1e67fd67b0bb598430e2ec9d11` | 14719 | 37 | 0 | 30 | 17 | no |
 | Any | union of the five | | | 40 | 0 | 30 | 14 | no |
 
 | Row | Name | Class | LBN | Pure | Mixed | Upgr | Euler | Any | Findings | Evidence |

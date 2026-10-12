@@ -189,3 +189,22 @@ def test_hits_are_camera_holds_and_nothing_plays_slow():
     assert "HIT_HOLD" in fired(text.replace("2.50 impact: hold with", "2.50 impact: cut to", 1))
     assert "PLAYBACK_RAMP" in fired(text.replace("normal x1; shows A foot deflect kunai", "slow x0.25; shows A foot "
                                                  "deflect kunai", 1))
+
+
+def test_the_printed_camera_rules_follow_o92():
+    """F-160 (RV-60, owner O92): no example prints a camera rule that puts a close-up on a hit or slows the playback, and
+    a prompt whose "Camera rules:" line does is refused (HIT_HOLD, PLAYBACK_RAMP)."""
+    for name in ("reference_fight", "wizard_vs_acrobat", "live_action_standoff", "ugc_glasses_demo"):
+        envelope, render = load(ROOT / "examples" / name)
+        for variant, prose in render["prose"].items():
+            found = {f["code"] for f in prompt_validator.check(prose["text"], envelope, variant)}
+            assert not {"HIT_HOLD", "PLAYBACK_RAMP"} & found, (name, variant)
+    envelope, render = load(ROOT / "examples" / "reference_fight")
+    text = render["prose"]["mixed"]["text"]
+
+    def fired(rule):
+        prompt = text.replace("Camera rules: ", f"Camera rules: {rule} ", 1)
+        return {f["code"] for f in prompt_validator.check(prompt, envelope, "mixed")}
+    assert "HIT_HOLD" in fired("Cut close on the receiver after a blow lands.")
+    assert "PLAYBACK_RAMP" in fired("Slow motion only around the peak of an action.")
+    assert not {"HIT_HOLD", "PLAYBACK_RAMP"} & fired("Hold on the frame of impact so the hit reads.")

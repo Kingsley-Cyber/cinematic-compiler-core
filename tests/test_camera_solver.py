@@ -4,13 +4,14 @@ import copy
 import json
 
 import pytest
+import yaml
 from conftest import ROOT
 from scenes import courtyard, courtyard_plans
 
 from compiler.passes.derived import p16_camera
 from kernel.canonical import canonical_json
 from solver import camera_geometry as geometry
-from validators import camera_validator
+from validators import camera_validator, prompt_validator
 from validators.layer_dependency_validator import check_pass_writes
 from validators.schema_validator import validate_schema
 
@@ -85,6 +86,22 @@ def unframe_acrobat(plan):
 ])
 def test_each_rule_rejects_its_violation(code, change):
     assert code in codes(change)
+
+
+def test_no_camera_card_slows_playback_or_puts_a_close_up_on_a_hit():
+    """F-160 (RV-60, owner O92): every camera convention card plays at normal speed only, and no convention or idiom
+    asks for slowed playback or a close-up or an insert on a hit (read as the prompt's printed rules are)."""
+    for path in sorted((ROOT / "library" / "camera_conventions").glob("*.yaml")):
+        card = yaml.safe_load(path.read_text())
+        assert card["playback"] == ["normal"], path.name
+        assert [p for c in card["conventions"] for p in prompt_validator.camera_rule_problems(c["statement"])] == [], path.name
+    for path in sorted((ROOT / "library" / "camera_idioms").glob("*.yaml")):
+        idioms = yaml.safe_load(path.read_text())["idioms"]
+        assert [p for i in idioms for p in prompt_validator.camera_rule_problems(f"{i['when']}: {i['prefer']}")] == [], path.name
+    struck = {"Cut close on the receiver after a blow lands.": "HIT_HOLD", "Insert on the point of contact, then cut wide.":
+              "HIT_HOLD", "Slow motion only around the peak of an action.": "PLAYBACK_RAMP"}
+    assert {rule: [code for code, _ in prompt_validator.camera_rule_problems(rule)] for rule in struck} == {
+        rule: [code] for rule, code in struck.items()}
 
 
 def test_genre_card_rules_apply_scene_wide():

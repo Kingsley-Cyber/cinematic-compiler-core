@@ -6,6 +6,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The camera cards follow O92 (RV-60, F-160, S-059): no close-up after a blow, no insert on a landing blade and no
+  slowed playback in the draft cards (every convention card plays normal only); the prompt's printed camera rules are
+  checked for both (HIT_HOLD, PLAYBACK_RAMP), so twelve prose prompts lose one sentence each.
 - The authoring instructions follow the code (RV-48b, F-135, F-137, F-162, S-058): the S04 instructions teach the rules
   S04 to S07 apply to a beat plan today, each by its code, and the S08 ones S08's; a test fails when a step's
   instructions miss one of its codes. S08 refuses a named support hand that neither holds nor touches its object.

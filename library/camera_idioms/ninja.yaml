@@ -1,11 +1,10 @@
 card_id: ninja
 kind: camera_idiom
-card_version: 1
+card_version: 2
 status: draft
 archetype: ninja
 idioms:
   - {id: ninja_reveal_from_cover, when: "the ninja appears", prefer: "Reveal from behind cover with a slow push, the figure already in place."}
-  - {id: ninja_blade_insert, when: "a blade or thrown weapon lands", prefer: "Insert on the point of contact, then cut wide."}
 provenance:
   authored_by: claude-code
   date: "2026-10-10"

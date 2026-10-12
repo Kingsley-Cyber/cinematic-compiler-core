@@ -71,7 +71,7 @@ B halt and steel ⇢ A face off: The knight will not advance and the wizard will
 2.50–4.50 cut to medium_close on A: The wizard raises a hand with a one-sided smirk; elevation 3, azimuth -140, roll 0; 50 mm normal; static: held on the wizard's smirk; normal x1; shows A raise hand smirk; motivated by narrative intent b01 causes b02.
 4.50–6.50 cut to close on B: Fear flickers on the knight's face, then the jaw sets; elevation 0, azimuth -30, roll 0; 85 mm telephoto; static: tight on the knight's face; normal x1; shows B halt and steel; motivated by narrative intent b02 causes b03.
 6.50–8.00 cut to wide on B, A: The two hold the stand-off across the hall; elevation 5, azimuth -90, roll 0; 24 mm wide; static: side-on two-shot of the stand-off; normal x1; shows A face off; motivated by spatial geometry stone wall.
-Camera rules: Establish the space before the action needs it. Cut during the movement and match it across the cut. Slow motion only around the peak of an action. Shots last 0.4-10 s. Crossing the action axis is allowed when a cut declares it.
+Camera rules: Establish the space before the action needs it. Cut during the movement and match it across the cut. Shots last 0.4-10 s. Crossing the action axis is allowed when a cut declares it.
 
 [LIVE ACTION]
 Impact frames: none.

@@ -30,7 +30,7 @@
 # Anchors are line numbers in the frozen copy (§2.2 = Mermaid block, §2.3 = node catalogue).
 # X1-X41 (§3.5) are findings about specific prompts, not rules, and are not mapped.
 
-version: 9
+version: 10
 status: draft
 basis: "Mapped by Claude 2026-10-11 against the repo at 9c9fd98 (layer_order 1.7); owner decisions O1-O4 recorded
   2026-10-11 (docs/plans/M8_DAG_PROSE.md); O13-O14 (checklist scope, not-applicable rulings) 2026-10-11; owner
@@ -709,12 +709,19 @@ rows:
          test: tests/test_prose_render.py::test_hits_are_camera_holds_and_nothing_plays_slow}
       - {file: validators/prompt_validator.py, check: _camera_checks, code: PLAYBACK_RAMP,
          test: tests/test_prose_render.py::test_hits_are_camera_holds_and_nothing_plays_slow}
+      - {file: validators/prompt_validator.py, check: camera_rule_problems, code: HIT_HOLD,
+         test: tests/test_prose_render.py::test_the_printed_camera_rules_follow_o92}
+      - {file: validators/prompt_validator.py, check: camera_rule_problems, code: PLAYBACK_RAMP,
+         test: tests/test_prose_render.py::test_the_printed_camera_rules_follow_o92}
+      - {file: validators/prompt_validator.py, check: camera_rule_problems, code: HIT_HOLD,
+         test: tests/test_camera_solver.py::test_no_camera_card_slows_playback_or_puts_a_close_up_on_a_hit}
       - {file: validators/camera_validator.py, check: _motivation, code: CAMERA_MOTIVATION,
          test: tests/test_camera_solver.py::test_each_rule_rejects_its_violation}
     note: "Genre cards set shot length (anime 0.25-6.0 s), crossing and roll; every shot is motivated. RV-09 (owner
       O92, F-083): a hit (a hold on an impact frame) is a static camera hold with every body present in frame, no
       close-up or insert (HIT_HOLD at S17 and in the prompt), and every shot plays at normal x1 (PLAYBACK_RAMP at S16
-      and in the prompt). Not encoded:
+      and in the prompt). RV-60 (F-160): the camera cards follow O92 (no close-up after a blow, no insert on a landing
+      blade, playback normal only), and the prompt's printed camera rules are read for both codes. Not encoded:
       the six rules (eye-level medium at most 1.2 s, height change every 2 s, low angles in aerial dominance,
       parallax, orbit on spins, push through Z) and three forbidden shots; F4's relational speed (match_subject)."
 

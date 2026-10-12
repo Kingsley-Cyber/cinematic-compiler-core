@@ -98,6 +98,10 @@ a support hand counts as holding when it holds the object at one of the interact
 contact on it in one; S04's instructions answer for S05, S06 and S07's codes too, since those passes read only the
 beat plan; RV-20's prompt part needs no layer-order ADR (F-095 names only the layer order as its block), so it became
 RV-65.
+Added in S-059 (RV-60, validators/prompt_validator.py, library/camera_conventions, library/camera_idioms/ninja.yaml):
+the words that make a camera rule ask for slowed playback (slow motion, slowed, ramp, freeze) or a close-up on a hit
+(close or insert with blow, hit, impact, strike or contact); a blade landing in a body is one of O92's hits, so the
+ninja's insert on it went; the UGC card plays normal only, following PLAYBACK_RAMP's reach to every scene.
 
 ## Impact
 Waits on the owner.

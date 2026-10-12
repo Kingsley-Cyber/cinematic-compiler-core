@@ -113,7 +113,7 @@ B land guard → B hold guard: The acrobat lands on both feet out of the flip, s
 8.60–9.00 cut to full on B: The acrobat springs into a backflip over the bolt's path; elevation -8, azimuth 68.7, roll 0; 28 mm wide; crane: cranes up with the backflip; normal x1; shows B dodge flip; motivated by effort quality acrobat@b12-b13.
 9.00–10.00 cut to wide on B, A: Inverted at the apex, the acrobat lands in a crouched guard; scorch, crack and cut bamboo stand behind; elevation 15, azimuth 43.7, roll 0; 24 mm wide; static: held tableau of the courtyard; normal x1; shows B dodge flip, B land guard, B hold guard; motivated by narrative intent b12 causes b13.
 Holds on hits: 3.60 impact: hold with BOTH bodies in frame (B and A), no close-up; 5.20 impact: hold with BOTH bodies in frame (B and A), no close-up.
-Camera rules: Open on a wide that sets the arena geometry before the first exchange. Hold on the frame of impact so the hit reads. A fast body move is followed by a tracking or whip move with speedlines on the moving limb. Cut close on the receiver after a blow lands. Shots last 0.25-6 s. Crossing the action axis is allowed when a cut declares it.
+Camera rules: Open on a wide that sets the arena geometry before the first exchange. Hold on the frame of impact so the hit reads. A fast body move is followed by a tracking or whip move with speedlines on the moving limb. Shots last 0.25-6 s. Crossing the action axis is allowed when a cut declares it.
 
 [ANIME]
 Impact frames: 3.60, 5.20.

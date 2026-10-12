@@ -126,3 +126,4 @@ RV-64 and RV-13, then the rest in backlog order.
 - 2026-10-12 — RV-48 split; RV-48a done (S-057): S04's latent checks; the 6.6 throw on its pose; the log's swap.
 - 2026-10-12 — RV-48b done (S-058): S08's support hand; the S04 and S08 instructions name every rule their plans
   must meet (tests/test_instructions.py); RV-20 split: its prompt part for S11 to S17 is RV-65.
+- 2026-10-12 — RV-60 done (S-059): the camera cards follow O92; the printed camera rules are checked.
