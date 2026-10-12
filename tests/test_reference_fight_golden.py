@@ -32,7 +32,9 @@ PREFACE_RECOUNTED = {"k_preface_03": "TWO fighters, FIVE props (kunai, rope dart
 GROUNDED_RULES = {"k_rules_18": "ROPE DART REGRAPPLE at 7.5 from a crouch,left hand throws rope dart,rope dart wraps B right "
                                 "shoulder,A pulled toward B,this is a GRAPPLE NOT a strike",
                   "k_rules_27": "kunai picked up from ground at 8.0,A crouched by it"}
-REWORDED = {**PREFACE_RECOUNTED, **GROUNDED_RULES}
+# Owner O79 (F-067, backlog M9-09f): O21 wins, A starts at y=10, so the query and its reference item say so.
+START_HEIGHT = {"k_preface_04": "A starts ABOVE the frame, falling from y=10"}
+REWORDED = {**PREFACE_RECOUNTED, **GROUNDED_RULES, **START_HEIGHT}
 
 
 def test_every_kernel_and_reference_item_is_in_the_render():

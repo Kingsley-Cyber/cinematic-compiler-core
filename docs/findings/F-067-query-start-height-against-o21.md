@@ -12,7 +12,7 @@ low
 L0
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -51,4 +51,5 @@ ADR-O79
 - F-016
 
 ## Resolution
-Open.
+Owner O79: the reference query reads "falling from y=10" (M9-09f, S-025); the golden test records the rewording
+of reference item k_preface_04. The verbatim source (kernel/sources/lbn-2.3-adv.txt) is unchanged.

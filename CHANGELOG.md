@@ -6,6 +6,8 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The reference query says A falls from y=10 (M9-09f, owner O79, S-025); the golden test records the rewording of
+  k_preface_04. F-067 resolved.
 - The kunai reverses to -Z at the deflect (M9-09d, owner O77, S-023): the source's v_post [0.5, -4.0, -3.0]; it lands
   at 2.7 on [0.6, 0, 4.0], where A takes it at 8.0. F-064 resolved.
 - The owner's rulings (S-019): ADR-O72 (the root is the pelvis; contacts within 0.15 m), O73 (SHAPE_DIRECTION refuses
