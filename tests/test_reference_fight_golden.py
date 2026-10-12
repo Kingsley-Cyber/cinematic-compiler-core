@@ -62,11 +62,13 @@ ROOT_TURNS = ((5.1, 0, -360), (6.3, 2, -360))
 # literal p/v (e.g. kunai thrown at 0.5 toward -Z, yet at +Z 5.0 at 2.0) are not copied, as they disagree with gravity.
 
 
+# The two pickup roots re-rooted in S-029 (O72, O82, O85): the soles on the ground under the anime body, hips read from
+# the trunk (O84); 0.6 before.
 GROUNDED_PICKUPS = {  # O18: A's rows at the two pickups, crouched on the ground (from A's own crouches at 5.9 and 9.5)
-    7.5: [7.5, "rope_dart_regrapple", [-0.1, 0.6, 3.2], [-330, 30, -360],
+    7.5: [7.5, "rope_dart_regrapple", [-0.1, 0.86, 3.2], [-330, 30, -360],
           {"Sp": [50, 0, 0], "LUL": [-120, 0, 0], "RUL": [-120, 0, 0], "LL": [90, 0, 0], "RL": [90, 0, 0], "LA": [-30, 0, 0],
            "RA": [-45, 0, 0], "LFA": [-10, 0, 0], "RFA": [-45, 0, 0], "HD": [-10, 0, 0], "NK": [0, 0, 0]}],
-    8.0: [8.0, "pull_b_toward_pillar", [-0.2, 0.6, 5.1], [-330, 90, -360],
+    8.0: [8.0, "pull_b_toward_pillar", [-0.2, 0.81, 5.1], [-330, 90, -360],
           {"Sp": [45, 0, 0], "LUL": [-110, 0, 0], "RUL": [-110, 0, 0], "LL": [80, 0, 0], "RL": [80, 0, 0], "LA": [-60, 0, 0],
            "RA": [-30, 0, 0], "LFA": [-30, 0, 0], "RFA": [-10, 0, 0], "HD": [-10, 0, 0], "NK": [0, 0, 0]}],
 }
@@ -84,8 +86,9 @@ GROUNDED_DESCRIPTIONS = {
 
 
 # Owner O21 (audit X7, backlog M9-08a): the pillar keeps its 8 m top, so A starts above the frame at root y=10 and lands
-# with the feet on the top at y=8, root 8.5; the source's rows start A at 7.5 and land it at 7.2, under the top.
-OPENING = {0: [0, 10, 3.5], 0.6: [0, 8.5, 5.8]}
+# with the feet on the top at y=8, root 8.5; the source's rows start A at 7.5 and land it at 7.2, under the top. S-029
+# (O72, O82, O85): the landing root re-rooted to 8.71 so the soles meet the top under the anime body (O84).
+OPENING = {0: [0, 10, 3.5], 0.6: [0, 8.71, 5.8]}
 OPENING_WORDS = {0.6: ("both feet on pillar top y=7.2", "both feet on pillar top y=8")}
 
 

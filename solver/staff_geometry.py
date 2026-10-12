@@ -2,11 +2,12 @@
 
 Derived only; these are the atoms the structured-prose renderer writes into each staff line. Frame: the Q6
 convention (kernel/conventions.yaml): +Y up, the performer faces +Z, +X is the performer's left, Euler intrinsic XYZ
-in degrees, joints local to their parent. Chain: root -> Sp -> (NK -> HD, LA -> LFA, RA -> RFA) and root ->
-(LUL -> LL, RUL -> RL); at rest the body is upright and every limb hangs straight down.
+in degrees, joints local to their parent. Chain: root -> Sp -> (NK -> HD, LA -> LFA, RA -> RFA, LUL -> LL,
+RUL -> RL), the hips read from the trunk (owner O84, rule R-35); at rest the body is upright and every limb hangs
+straight down.
 
-- Arms are read in the chest frame and legs in the pelvis frame (gesture directions are relative to the body's
-  front), so a joint's own rotation gives its direction. The head is read in the chest frame through NK and HD.
+- Arms and legs are read in the trunk's frame (gesture directions are relative to the body's front; the legs since
+  O84), so a joint's own rotation gives its direction. The head is read in the chest frame through NK and HD.
 - The body (trunk) is read against gravity around the performer's heading, so a lean from the root or from the
   spine reads the same: "forward-high (30 lean)".
 - Direction: the nearest of the eight horizontal directions (45-degree sectors around the front). Level follows the

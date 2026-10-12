@@ -6,26 +6,25 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 3.0; backlog 7.
+Layer order 1.7; rules 3.1; backlog 7.
 
 ## Last sessions
 
-- S-026 (applied): M9-09g: the face's heading reads the whole chain (O76, R-34)
 - S-027 (applied): M9-06a: forward kinematics, roots at the pelvis, printed world points, the miss report (F5.1; O72, O81)
 - S-028 (applied): Bootstrap before a compaction: the owner's review of the miss list (O82, O83)
+- S-029 (applied): M9-06c: legs read from the trunk, the segment card calibrated to the source's grounded A rows, re-root (O82)
 
 ## Next slices
 
-- M9-06c (next, step motion): Calibrate library/body_segments.yaml to the source's grounded A rows; re-root (O82)
-- M9-06b (ready, step motion): F5.2 CONTACT_WORLD refuses a contact over 0.15 m (O72, O82; scope ADR-O83)
+- M9-06b (next, step motion): F5.2 CONTACT_WORLD refuses a contact over 0.15 m (O72, O82; scope ADR-O83)
 - M9-10 (ready, step effort): F4.3/F4.4 B's active keys and the idle-fighter check
 - M9-11 (ready, step render): FR.7 genre cards; FR.6 money-shot frame parts; FR.2 limb paths
+- M9-12 (ready, step render): O19 D9-style staff lines
 
-M9: 19 of 36 slices done, 17 left (M9-03a blocked; 1 the owner's own).
+M9: 20 of 36 slices done, 16 left (M9-03a blocked; 1 the owner's own).
 
 ## Waiting on the owner
 
-- ADR-O83 (proposed): What CONTACT_WORLD refuses: repo misses re-blocked, source misses kept as exceptions, artefacts exempt
 - F-051 (low): Draft library cards await owner review
 - F-052 (low): Kernel scope numbers await owner review
 - F-053 (medium): Claude's interpretations await owner review
@@ -57,4 +56,4 @@ M9: 19 of 36 slices done, 17 left (M9-03a blocked; 1 the owner's own).
 
 ## Next free IDs
 
-Decision ADR-O84, finding F-071, session S-029, render R20.
+Decision ADR-O86, finding F-071, session S-030, render R20.

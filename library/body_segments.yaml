@@ -1,10 +1,19 @@
 # Body segments for S13 forward kinematics (owner O24: world contact points are computed from the pose; O72: the root
-# is the pelvis). Draft by Claude for owner review: one adult of about 1.75 m, standing pelvis 0.98 m above the soles
-# (thigh + shin + ankle); every archetype uses it until the owner asks for per-archetype bodies. Rounded from common
-# anthropometric proportions, not measured from a source.
+# is the pelvis; O84: the hips are read from the trunk; O85: anime bodies get the leg fitted to the owner's source).
+# Draft by Claude for owner review. A genre no body lists uses `default`.
 library_id: body_segments
-version: 1
+version: 2
 status: draft
-basis: "Owner O24 and O72; one adult body, about 1.75 m tall, drafted by Claude from common anthropometric proportions."
-metres: {hip: 0.10, thigh: 0.45, shin: 0.45, ankle: 0.08, spine: 0.50, torso_point: 0.8, shoulder: 0.18, upper_arm: 0.30,
-         forearm: 0.35, neck: 0.10, head: 0.11}
+basis: "Owner O24, O72, O84 and O85; PLAN-003 F5.1 (segment lengths per archetype or body mode)."
+default: adult
+bodies:
+  adult:
+    basis: "S-027 draft: one adult of about 1.75 m, standing pelvis 0.98 m above the soles (thigh + shin + ankle), rounded from common anthropometric proportions, not measured from a source."
+    genres: []
+    metres: {hip: 0.10, thigh: 0.45, shin: 0.45, ankle: 0.08, spine: 0.50, torso_point: 0.8, shoulder: 0.18,
+             upper_arm: 0.30, forearm: 0.35, neck: 0.10, head: 0.11}
+  anime:
+    basis: "S-029 (O82, O85): the adult with its leg scaled x1.25 (standing pelvis 1.22 m), the one scale that best puts the soles of the source's grounded A rows (kernel/sources/lbn-2.3-adv.txt, support=both feet on the ground) on the ground with the hips read from the trunk (O84); the upper body is the adult's."
+    genres: [anime]
+    metres: {hip: 0.10, thigh: 0.56, shin: 0.56, ankle: 0.10, spine: 0.50, torso_point: 0.8, shoulder: 0.18,
+             upper_arm: 0.30, forearm: 0.35, neck: 0.10, head: 0.11}

@@ -31,9 +31,9 @@ items:
      codes: [ROTATION_PATH_UNSTATED, ROTATION_INCOMPLETE, ROTATION_NOT_MONOTONIC, INVERSION_MISSING]}
   - {id: M9-06a, title: "F5.1 forward kinematics, pelvis roots (O72), printed world points, the miss report (O81)",
      status: done, step: motion, plan: PLAN-003, depends_on: [M9-02], findings: [F-025, F-028, F-062], codes: []}
-  - {id: M9-06c, title: "Calibrate library/body_segments.yaml to the source's grounded A rows; re-root (O82)", status: next,
+  - {id: M9-06c, title: "Calibrate library/body_segments.yaml to the source's grounded A rows; re-root (O82)", status: done,
      step: motion, plan: PLAN-003, depends_on: [M9-06a], findings: [F-070], codes: []}
-  - {id: M9-06b, title: "F5.2 CONTACT_WORLD refuses a contact over 0.15 m (O72, O82; scope ADR-O83)", status: ready,
+  - {id: M9-06b, title: "F5.2 CONTACT_WORLD refuses a contact over 0.15 m (O72, O82; scope ADR-O83)", status: next,
      step: motion, plan: PLAN-003, depends_on: [M9-06c], findings: [F-025, F-070], codes: [CONTACT_WORLD]}
   - {id: M9-07a, title: "F4.1 combat verbs on contacts (O22; split from M9-07)", status: done, step: temporal,
      plan: PLAN-003, depends_on: [M9-02], findings: [], codes: [CONTACT_VERB]}

@@ -52,6 +52,12 @@ Added in S-026 (solver/quaternion.py): a face within FACE_LEVEL 0.2 of vertical 
 Added in S-027 (solver/forward_kinematics.py, library/body_segments.yaml, validators/contact_world_report.py): the
 draft segment lengths; where each contact part's point is; the pelvis re-rooting rule; a touch on a non-floor surface
 is a face; the miss report's likely causes.
+Added in S-029 (M9-06c; solver/forward_kinematics.py, library/body_segments.yaml, planner/dynamic_beat_validator.py,
+validators/contact_world_report.py): the hip joints sit on the pelvis while the thighs turn with the trunk (O84 sets
+the trunk reading, not where the joint sits); the anime leg is one scale of the adult's (x1.25, rounded to thigh 0.56,
+shin 0.56, ankle 0.10) fitted to the 17 grounded source feet other than 3.00's right; SURFACE_HEIGHT's bound is the
+body's standing leg, 0.05 m either way; A's rows at 0.6, 7.5 and 8.0 count as repo-authored roots (O21, O18) and
+were re-rooted.
 
 ## Impact
 Waits on the owner.

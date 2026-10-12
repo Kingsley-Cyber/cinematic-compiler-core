@@ -81,6 +81,7 @@ Full table: [docs/layer_order.md](docs/layer_order.md).
 - **R-16** The repo is model-agnostic and built for Seedance: no model cards; models arrive later as adapters (M7).
 - **R-17** Where the golden contradicts its own words or the DAG, fix the golden as a recorded deviation; where a new check fails on internally consistent golden content, fix the check.
 - **R-18** Bodies and props obey the scene's physics: no teleport above 25 m/s except a declared substitution; props follow gravity unless a float is declared (anime only).
+- **R-35** Hip angles are read from the trunk (the root, then Sp) in every key, genre and example: forward kinematics hangs the legs from the spine, and every authored key writes its hips that way.
 - **R-19** A prompt is a deliverable only when every applicable DAG-map row passes on it, shown per prompt; NOT CHECKED is not a pass.
 - **R-20** The format comes from the DAG's own instances (D6, D9, D10).
 - **R-21** No hold, freeze or pause is written in frames; a hit gets a camera hold with the bodies in frame and no close-up.
@@ -100,10 +101,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 3.0; backlog 7.
-- Last session: S-028 (2026-10-11, applied): Bootstrap before a compaction: the owner's review of the miss list (O82, O83).
-- Next slice: M9-06c Calibrate library/body_segments.yaml to the source's grounded A rows; re-root (O82) (step motion).
-- Open findings: 35; decisions: 110 (1 proposed).
+- Layer order 1.7; rules 3.1; backlog 7.
+- Last session: S-029 (2026-10-11, applied): M9-06c: legs read from the trunk, the segment card calibrated to the source's grounded A rows, re-root (O82).
+- Next slice: M9-06b F5.2 CONTACT_WORLD refuses a contact over 0.15 m (O72, O82; scope ADR-O83) (step motion).
+- Open findings: 35; decisions: 112 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
@@ -112,7 +113,6 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 ## 7. Open rulings
 
 <!-- BEGIN GENERATED: rulings -->
-- ADR-O83 (proposed): What CONTACT_WORLD refuses: repo misses re-blocked, source misses kept as exceptions, artefacts exempt
 - F-051 (low): Draft library cards await owner review
 - F-052 (low): Kernel scope numbers await owner review
 - F-053 (medium): Claude's interpretations await owner review

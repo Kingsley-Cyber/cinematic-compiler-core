@@ -35,7 +35,7 @@ def test_courtyard_damage_persists_and_every_subject_is_present_at_every_beat():
 
 def test_pos_is_authoritative_from_the_beat_and_otherwise_labelled_carried():
     by_id = states(courtyard("state"))
-    assert by_id["acrobat@b01"]["pos_source"] == "beat" and by_id["acrobat@b01"]["pos"] == [0, 0.77, 0]  # pelvis, O72
+    assert by_id["acrobat@b01"]["pos_source"] == "beat" and by_id["acrobat@b01"]["pos"] == [0, 0.96, 0]  # anime pelvis, O72, O85
     assert by_id["acrobat@b09"]["pos_source"] == "carried"
     assert by_id["acrobat@b09"]["pos"] == by_id["acrobat@b08"]["pos"]
     assert by_id["wizard@b01"]["pos"] is None and by_id["wizard@b01"]["pos_source"] is None

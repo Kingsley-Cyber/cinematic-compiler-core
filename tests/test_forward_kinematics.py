@@ -1,4 +1,5 @@
-"""Forward kinematics (owners O24, O72; backlog M9-06a): world points from the pelvis root, and the contact misses."""
+"""Forward kinematics (owners O24, O72, O84, O85; backlog M9-06a, M9-06c): world points from the pelvis root, the hips
+read from the trunk, one body per genre group, and the contact misses."""
 
 import json
 
@@ -8,7 +9,8 @@ from conftest import ROOT
 from solver import contact_world, forward_kinematics
 
 pytestmark = pytest.mark.unit
-METRES = forward_kinematics.segments()
+METRES = forward_kinematics.segments("live_action")                          # the adult (O85)
+ANIME = forward_kinematics.segments("anime")
 REST = {j: [0, 0, 0] for j in ("Sp", "LUL", "RUL", "LL", "RL", "LA", "RA", "LFA", "RFA", "HD", "NK")}
 
 
@@ -28,6 +30,45 @@ def test_a_bent_hip_and_knee_carry_the_foot_forward_and_up():
     assert foot == [0.1, 0.45, 0.45]
 
 
+def test_each_genre_takes_its_body():
+    """ADR-O85: anime bodies have the leg fitted to the source; live action and UGC keep the 0.98 m adult."""
+    assert forward_kinematics.standing_leg(ANIME) == 1.22 and forward_kinematics.standing_leg(METRES) == 0.98
+    assert forward_kinematics.segments("ugc_ad") == METRES and ANIME["spine"] == METRES["spine"]
+
+
+def test_a_lean_in_the_spine_carries_the_legs():
+    """ADR-O84 (rule R-35): the hips are read from the trunk, so a lean in Sp swings the legs with it unless the hips
+    flex by the same angle."""
+    lean = {**REST, "Sp": [30, 0, 0]}
+    swung = forward_kinematics.points({"pos": [0, 0.98, 0], "rot": [0, 0, 0], "bones": lean}, METRES)["left_foot"]
+    assert swung[2] < -0.4 and swung[1] > 0.1                                  # the foot swings back and up
+    planted = {**lean, "LUL": [-30, 0, 0]}
+    foot = forward_kinematics.points({"pos": [0, 0.98, 0], "rot": [0, 0, 0], "bones": planted}, METRES)["left_foot"]
+    assert foot == [0.1, 0.0, 0.0]                                             # the hip at -30 keeps it under the body
+
+
+# The source's grounded A rows (kernel/sources/lbn-2.3-adv.txt, support=both feet on the ground) that still miss under
+# the trunk reading and the anime body: recorded exceptions (ADR-O83 point 2), each with its reason.
+SOURCE_EXCEPTIONS = {(3.0, "right"): "RUL +90 swings the thigh back, against the row's own 'R: leg fwd mid'",
+                     (4.0, "right"): "the root at y 0.9 where the same pose stands at 1.1 (3.4, 4.4); not drawn (O18)",
+                     (5.9, "left"): "the slide: the body tipped 80 degrees with the legs folded under",
+                     (5.9, "right"): "the slide: the body tipped 80 degrees with the legs folded under"}
+
+
+def test_the_source_grounded_rows_meet_the_ground_under_the_anime_body():
+    """ADR-O82, O84, O85: the card is calibrated to the source's own grounded rows (knees at +|X|, O7)."""
+    text = (ROOT / "kernel" / "sources" / "lbn-2.3-adv.txt").read_text(encoding="utf-8")
+    grounded = (r for r in json.loads(text[text.index("{"):])["A"] if r[0] >= 3)          # 0.6 and 1.1: the pillar
+    rows = [r for r in grounded if r[5].split("support=")[1].startswith("both feet;")]
+    soles = {}
+    for t, _, pos, rot, bones, _ in rows:
+        bones = {j: [abs(v[0]), *v[1:]] if j in ("LL", "RL") else v for j, v in bones.items()}
+        points = forward_kinematics.points({"pos": pos, "rot": rot, "bones": bones}, ANIME)
+        soles |= {(t, side): points[f"{side}_foot"][1] for side in ("left", "right")}
+    assert len(soles) == 18
+    assert {k for k, y in soles.items() if abs(y) > contact_world.TOLERANCE_M} == set(SOURCE_EXCEPTIONS)
+
+
 def test_repo_authored_roots_stand_at_the_pelvis():
     """ADR-O72: a repo-authored key on its feet has its lowest supporting sole on the ground (the source's A rows are
     kept as written, ADR-O81)."""
@@ -40,6 +81,9 @@ def test_repo_authored_roots_stand_at_the_pelvis():
                 continue
             lowest = min(key["points"][p][1] for p in feet)
             assert -0.01 <= lowest <= 0.05 or key["id"] == "acrobat@b08", (name, key["id"], lowest)
+    a_rows = {k["t"]: k for k in _envelope("reference_fight")["nodes"]["motion"]["items"] if k["entity"] == "ninja_lean"}
+    for t, top in ((0.6, 8.0), (7.5, 0.0), (8.0, 0.0)):                    # A's repo-authored roots (O21, O18), S-029
+        assert abs(min(a_rows[t]["points"][f"{side}_foot"][1] for side in ("left", "right")) - top) <= 0.01
 
 
 def test_the_miss_list_names_the_kunai_pickup_and_its_cause():

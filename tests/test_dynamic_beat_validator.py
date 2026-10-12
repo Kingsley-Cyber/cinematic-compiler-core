@@ -188,18 +188,20 @@ def test_a_throw_leaves_its_prop_moving():
 
 
 def test_a_landing_stands_on_the_top_it_lands_on():
-    """SURFACE_HEIGHT (owner O21, audit X7): the root lies between the top and a leg above it (interpretation)."""
+    """SURFACE_HEIGHT (owner O21, audit X7): the root lies between the top and the body's standing leg above it (owner O85;
+    the range is an interpretation)."""
     from planner.dynamic_beat_validator import _surface_heights
     feet = [{"contact_type": "support", "a": {"kind": "entity", "id": "a", "part": part},
              "b": {"kind": "surface", "id": "pillar", "part": None}, "at": "start"} for part in ("left_foot", "right_foot")]
 
-    def codes(root_y):
+    def codes(root_y, leg=1.22):                                              # the anime body (O85)
         beat = {"id": "b02", "t": 0.6, "dur": 0.5, "pos": {"a": [0, root_y, 5.8]}, "contacts": feet}
-        return [f["code"] for f in _surface_heights([beat], {"pillar": 8.0})]
+        return [f["code"] for f in _surface_heights([beat], {"pillar": 8.0}, leg)]
 
     assert codes(8.5) == []                                                   # O21: feet on the 8 m top, root 8.5
     assert codes(7.2) == ["SURFACE_HEIGHT", "SURFACE_HEIGHT"]                  # the source's 7.2: under the top
     assert codes(9.5) == ["SURFACE_HEIGHT", "SURFACE_HEIGHT"]                  # floating over it
+    assert codes(9.2) == [] and codes(9.2, leg=0.98) == ["SURFACE_HEIGHT", "SURFACE_HEIGHT"]  # the bound is the body's leg
 
 
 def test_a_resting_prop_has_something_under_it():

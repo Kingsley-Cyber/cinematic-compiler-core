@@ -1,16 +1,32 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:body_segments:1.0",
+  "$id": "urn:cinematic-compiler:schema:body_segments:2.0",
   "title": "Body segments (S13 forward kinematics)",
-  "description": "Segment lengths in metres for forward kinematics from the pelvis root (owner O24, O72): the chain root, Sp, NK, HD, LA, LFA, RA, RFA, LUL, LL, RUL, RL of the Q6 convention.",
+  "description": "Segment lengths in metres for forward kinematics from the pelvis root (owner O24, O72), one body per genre group (owner O85): the chain root -> Sp -> (NK -> HD, LA -> LFA, RA -> RFA, LUL -> LL, RUL -> RL) of the Q6 convention, the hips read from the trunk (owner O84).",
   "type": "object",
   "additionalProperties": false,
-  "required": ["library_id", "version", "status", "basis", "metres"],
+  "required": ["library_id", "version", "status", "basis", "default", "bodies"],
   "properties": {
     "library_id": {"const": "body_segments"},
     "version": {"type": "integer", "minimum": 1},
     "status": {"enum": ["draft", "approved"]},
     "basis": {"type": "string", "minLength": 1},
+    "default": {"type": "string", "minLength": 1, "description": "the body of every genre no body lists"},
+    "bodies": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["basis", "genres", "metres"],
+        "properties": {
+          "basis": {"type": "string", "minLength": 1},
+          "genres": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+          "metres": {"$ref": "#/$defs/metres"}
+        }
+      }
+    }
+  },
+  "$defs": {
     "metres": {
       "type": "object",
       "additionalProperties": false,

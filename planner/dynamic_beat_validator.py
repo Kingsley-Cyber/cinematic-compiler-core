@@ -18,8 +18,9 @@ moving prop follows gravity from the first sample's velocity to the second posit
 Surface height (owner O21, audit X7, SURFACE_HEIGHT): when a foot starts bearing weight on a surface whose top is known
 (its world card's geometry text, "from y=0 to y=8"; a floor without one sits at the convention's ground), the
 performer's root (its anchor at that instant; a landing between two keys has none and is not judged) lies between
-the top, less 0.05 m, and 1.2 m above it. Interpretation (Claude's, for owner review): the range; the root is the
-pelvis (ADR-O72).
+the top and the standing leg of the genre's body above it (the packet's `standing_leg_m`: thigh, shin and ankle of
+library/body_segments.yaml, owner O85), within 0.05 m either way. Interpretation (Claude's, for owner review): the
+range (1.2 m above the top before S-029); the root is the pelvis (ADR-O72).
 Prop support (owner O78, PROP_SUPPORT): a free prop at rest lies on a surface's top (within 0.1 m of its height),
 or a fact since its last hold places it (a location, or worn: yes on its wearer). Interpretation (Claude's, for owner
 review): the height alone stands for "on the top" (surfaces have no extent), and a card's worn state is the wearer's
@@ -47,7 +48,7 @@ BEFORE = 1e-6  # a pre sample's holder is read this long before its contact
 TOP = re.compile(r"to y=(-?\d+(?:\.\d+)?)")
 GROUND = re.compile(r"y=(-?\d+(?:\.\d+)?)")
 # interpretation (Claude's, for owner review): a root's height over its supporting top; a resting prop on a top
-SURFACE_SLACK_M, LEG_M, SUPPORT_M = 0.05, 1.2, 0.1
+SURFACE_SLACK_M, SUPPORT_M = 0.05, 0.1
 TELEPORT_MPS = 25.0  # owner O12: anything faster between keys is a teleport (human sprint ~12, anime ~15, strikes ~20)
 
 
@@ -139,7 +140,8 @@ def validate(plan, packet):
                 findings.append(_finding("MODE_TRANSITION", "A mode change needs a beat that causes it", bid, [entity, mode]))
             last_mode[entity] = mode
     return (findings + _teleports(beats) + _vanished(beats) + _prop_kinematics(beats, props, packet["scene"]["genre"])
-            + _thrown(beats) + _surface_heights(beats, _tops(packet)) + _prop_support(beats, _tops(packet)))
+            + _thrown(beats) + _surface_heights(beats, _tops(packet), packet["standing_leg_m"])
+            + _prop_support(beats, _tops(packet)))
 
 
 def _prop_support(beats, tops):
@@ -183,8 +185,9 @@ def surface_tops(surfaces, ground_text):
     return tops
 
 
-def _surface_heights(beats, tops):
-    """SURFACE_HEIGHT (owner O21): at a foot support's onset on a surface with a known top, the root stands on it."""
+def _surface_heights(beats, tops, leg):
+    """SURFACE_HEIGHT (owner O21): at a foot support's onset on a surface with a known top, the root stands on it,
+    no higher than the body's standing leg (owner O85)."""
     findings = []
     anchors = sorted((b["t"], entity, pos) for b in beats for entity, pos in b["pos"].items() if pos is not None)
     for beat in beats:
@@ -195,7 +198,7 @@ def _surface_heights(beats, tops):
                 continue
             t = _at(beat, contact)  # judged on the pose at the onset; a landing between keys has none (S-027)
             root = next((pos for at, who, pos in reversed(anchors) if who == entity and abs(at - t) <= EPSILON), None)
-            if root is not None and not tops[surface] - SURFACE_SLACK_M <= root[1] <= tops[surface] + LEG_M:
+            if root is not None and not tops[surface] - SURFACE_SLACK_M <= root[1] <= tops[surface] + leg + SURFACE_SLACK_M:
                 findings.append(_finding("SURFACE_HEIGHT", f"{entity} stands on {surface} (top y={tops[surface]:g}) at "
                                          f"{t} with the root at y={root[1]:g}", beat["id"], contact))
     return findings

@@ -30,7 +30,6 @@ done only when every row that applies passes. Claude never renders; you render, 
 ## What waits for you
 
 <!-- BEGIN GENERATED: owner_rulings -->
-- ADR-O83 (proposed): What CONTACT_WORLD refuses: repo misses re-blocked, source misses kept as exceptions, artefacts exempt
 - F-051 (low): Draft library cards await owner review
 - F-052 (low): Kernel scope numbers await owner review
 - F-053 (medium): Claude's interpretations await owner review

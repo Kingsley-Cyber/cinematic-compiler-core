@@ -3,25 +3,27 @@
 <!-- docs-version: 1.0 -->
 
 ## Status
-proposed
+accepted
 
 ## Date
 2026-10-11
 
 ## Decided By
-owner_default
+owner
 
 ## Scope
 L4c
 
 ## Decision
-Proposed by the agent for M9-06b; the owner said "start M9-06b" without ruling on these three points:
-1. The repo-authored keys that miss are re-blocked to meet within 0.15 m (rule R-33; the agent recommended this).
-2. The source's A rows that miss stay as written and are listed as recorded exceptions in the golden test (ADR-O72
-   "update the repo-authored keys to match the source", ADR-O81 "do not rewrite the source"); CONTACT_WORLD does not
-   refuse them. The agent gave no recommendation here; this is the default that keeps the owner's rows.
-3. A contact flagged as a measurement artefact (the actor airborne or turning, or the prop moving at the instant) is
-   reported, not refused (the agent recommended this).
+Owner, in chat, 2026-10-11: "Then proceed with M9-06b: re-block the repo-authored misses, keep the source misses as
+exceptions (calibrated to the trunk reading), exempt the artifacts, and push."
+
+The three points as the agent proposed them, now ruled:
+1. The repo-authored keys that miss are re-blocked to meet within 0.15 m (rule R-33).
+2. The source's A rows that still miss under the trunk reading (ADR-O84) and the anime body (ADR-O85) stay as
+   written and are listed as recorded exceptions in the golden test; CONTACT_WORLD does not refuse them.
+3. A contact flagged as a measurement artefact (the actor airborne or turning, or the prop moving at the instant)
+   is reported, not refused.
 
 ## Context
 F-070's miss list; ADR-O82 (calibrate first). These points decide how much of the examples M9-06b rewrites.

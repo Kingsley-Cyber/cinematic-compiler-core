@@ -1,12 +1,15 @@
 """Forward kinematics for S13 key poses (owner O24: world contact points come from the pose; O72: the root is the pelvis).
 
-The Q6 chain (kernel/conventions.yaml; solver/staff_geometry.py): root -> Sp -> (NK -> HD, LA -> LFA, RA -> RFA) and
-root -> (LUL -> LL, RUL -> RL), each joint's Euler rotation local to its parent; at rest the body is upright and every
-limb hangs straight down; +X is the performer's left. Segment lengths come from library/body_segments.yaml (draft).
-`points` gives each key's named world points; `part_point` maps a contact's body part onto one of them.
-Interpretation (Claude's, for owner review): a foot's point is its sole, below the ankle along the shin; a hand's is
-the palm's centre at the end of the forearm; a leg's is the knee and an arm's the elbow; the torso's lies at
-`torso_point` of the spine from the pelvis; the head's at its centre.
+The Q6 chain with the hips read from the trunk (owner O84, rule R-35): root -> Sp -> (NK -> HD, LA -> LFA, RA -> RFA,
+LUL -> LL, RUL -> RL), each joint's Euler rotation local to its parent; at rest the body is upright and every limb
+hangs straight down; +X is the performer's left. The hip joints sit on the pelvis (the root's frame) and the thighs
+turn with the trunk, as the owner's source writes its crouches (S-029). Segment lengths come from
+library/body_segments.yaml (draft), one body per genre group (owner O85). `points` gives each key's named world
+points; `part_point` maps a contact's body part onto one of them.
+Interpretation (Claude's, for owner review): the hip joints sit on the pelvis while the thighs turn with the trunk
+(O84 sets the trunk reading, not where the joint sits); a foot's point is its sole, below the ankle along the shin; a
+hand's is the palm's centre at the end of the forearm; a leg's is the knee and an arm's the elbow; the torso's lies
+at `torso_point` of the spine from the pelvis; the head's at its centre.
 """
 
 import json
@@ -21,11 +24,22 @@ POINTS = ("pelvis", "torso", "head", "left_arm", "left_hand", "right_arm", "righ
           "right_leg", "right_foot")
 
 
-def segments():
-    """library/body_segments.yaml, validated; the metres by name."""
+def _card():
     card = yaml.safe_load((ROOT / "library" / "body_segments.yaml").read_text(encoding="utf-8"))
     validate_schema(card, json.loads((ROOT / "schemas" / "cards" / "body_segments.schema.json").read_text(encoding="utf-8")))
-    return card["metres"]
+    return card
+
+
+def segments(genre):
+    """The metres of the body the genre uses (owner O85): the body that lists it, else the card's default."""
+    card = _card()
+    name = next((name for name, body in card["bodies"].items() if genre in body["genres"]), card["default"])
+    return card["bodies"][name]["metres"]
+
+
+def standing_leg(metres):
+    """The pelvis's height over the soles with the legs straight (thigh, shin and ankle)."""
+    return round(metres["thigh"] + metres["shin"] + metres["ankle"], 6)
 
 
 def _turn(chain, vector):
@@ -42,11 +56,12 @@ def points(key, metres):
     """{name: [x, y, z]} in the scene frame for one key (root position and rotation, joints in `bones`)."""
     root, bones, pelvis = key["rot"], key["bones"], list(key["pos"])
     out = {"pelvis": [float(v) for v in pelvis]}
+    trunk = [root, bones["Sp"]]  # owner O84: the hips are read from the trunk
     for side, sign, upper, lower in (("left", 1, "LUL", "LL"), ("right", -1, "RUL", "RL")):
-        hip = _at(pelvis, [root], (sign * metres["hip"], 0.0, 0.0))
-        out[f"{side}_leg"] = knee = _at(hip, [root, bones[upper]], (0.0, -metres["thigh"], 0.0))
-        ankle = _at(knee, [root, bones[upper], bones[lower]], (0.0, -metres["shin"], 0.0))
-        out[f"{side}_foot"] = _at(ankle, [root, bones[upper], bones[lower]], (0.0, -metres["ankle"], 0.0))
+        hip = _at(pelvis, [root], (sign * metres["hip"], 0.0, 0.0))  # the hip joint sits on the pelvis
+        out[f"{side}_leg"] = knee = _at(hip, [*trunk, bones[upper]], (0.0, -metres["thigh"], 0.0))
+        ankle = _at(knee, [*trunk, bones[upper], bones[lower]], (0.0, -metres["shin"], 0.0))
+        out[f"{side}_foot"] = _at(ankle, [*trunk, bones[upper], bones[lower]], (0.0, -metres["ankle"], 0.0))
     chest = _at(pelvis, [root, bones["Sp"]], (0.0, metres["spine"], 0.0))
     out["torso"] = _at(pelvis, [root, bones["Sp"]], (0.0, metres["torso_point"] * metres["spine"], 0.0))
     for side, sign, upper, lower in (("left", 1, "LA", "LFA"), ("right", -1, "RA", "RFA")):

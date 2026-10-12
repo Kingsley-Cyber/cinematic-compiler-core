@@ -5,6 +5,7 @@ from kernel import kernel_files
 from planner import library_vocab, modality
 from planner.dependency_graph import ROOT
 from planner.vocabulary import resolve
+from solver import forward_kinematics
 
 PROMPT = ROOT / "planner" / "prompts" / "beat_planning.txt"
 SCHEMA_ID = "urn:cinematic-compiler:schema:beat_plan:1.5"
@@ -39,6 +40,7 @@ def prepare(envelope):
         "vocabulary": resolve(entities, props, surfaces, kernel_files.load("state_vocabulary")),
         "contact_types": ["touch", "possess", "support", "release"],
         "combat_verbs": {kind: rule["values"] for kind, rule in library_vocab.load("combat_verbs")["fields"].items()},
+        "standing_leg_m": forward_kinematics.standing_leg(forward_kinematics.segments(scene["genre"])),  # O85
         "event_types": ["action", "hold", "transition", "substitution"]}
     if scene.get("chained_from"):  # M5.5: what this clip continues (end states, open contacts, unresolved causes)
         packet["chained_from"] = scene["chained_from"]

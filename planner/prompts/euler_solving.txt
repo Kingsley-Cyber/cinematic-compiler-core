@@ -16,6 +16,9 @@ S13 motion (L4c). For every slot write one key pose: the body at the slot's beat
   (LUL/RUL, LL/RL, LA/RA, LFA/RFA): +X swings them backward, -X forward (hip and shoulder flexion are -X, knee
   flexion is +X, elbow flexion is -X); +Z raises a left limb out to the left, -Z raises a right limb to the right.
   Segments that point up (Sp, NK, HD): +X tips forward, +Y turns left, +Z tilts to the right.
+- Hip angles are read from the trunk (owner O84, rule R-35): LUL and RUL turn with the root and Sp, as the arms do,
+  so a lean in Sp carries the legs with it. Feet that stay under a body leaning +X degrees in Sp need hips flexed
+  by the same X (Sp [30,0,0] standing straight: LUL and RUL [-30,0,0]).
 - Every joint's local Euler components stay inside packet.joint_limits (degrees per axis; "NK+HD" bounds the
   sum of the neck and head). Outside them the key is refused (JOINT_LIMIT).
 - Read each slot's kinematic and Bartenieff nodes: the pose shows that support, loading and initiation.

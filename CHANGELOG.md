@@ -6,6 +6,14 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- Hip angles are read from the trunk in every key (M9-06c, owner O84, rule R-35, S-029): the source's crouches put
+  their soles on the ground only that way. The 43 repo-authored keys that lean through the spine have their hips
+  re-expressed so no point of a body moves; 47 printed leg words change (R-33 deviations,
+  tests/test_leg_frame_rewrites.py). The authoring prompt says so. Rules 3.1.
+- The segment card holds two bodies (owner O85, schema 2.0, card version 2): anime bodies get the leg fitted to the
+  source's grounded A rows (x1.25, standing pelvis 1.22 m); live action and UGC keep the 0.98 m adult. The anime
+  examples' repo-authored roots re-rooted (+0.14 to +0.26 m), A's three repo-authored roots too; SURFACE_HEIGHT's
+  bound is the body's standing leg. The miss list (F-070): 13 of 33 within 0.15 m, from 9. ADR-O83 accepted.
 - The owner reviewed the contact-miss list (ADR-O82): calibrate the segment card first (backlog M9-06c), then
   CONTACT_WORLD (M9-06b, scope proposed in ADR-O83). Lesson L-22.
 - The face's heading reads the whole chain, root, spine, neck and head (M9-09g, owner O76, rule R-34, S-026); a face

@@ -45,8 +45,8 @@ def prepare(envelope):
     return seal({"step_id": STEP, "band": "L4c", "kind": "motion_plan", "schema": "urn:cinematic-compiler:schema:motion_plan:1.0",
                  "instructions": PROMPT.read_text(encoding="utf-8"), "rotation_convention": convention,
                  "joints": euler_solver.kernel_joints(load_kernel("invariants")),
-                 "joint_limits": joint_limits(envelope["scene"]["genre"]), "segments": forward_kinematics.segments(),
-                 "slots": view})
+                 "joint_limits": joint_limits(envelope["scene"]["genre"]),
+                 "segments": forward_kinematics.segments(envelope["scene"]["genre"]), "slots": view})  # owner O85
 
 
 def _keys(document, packet):
