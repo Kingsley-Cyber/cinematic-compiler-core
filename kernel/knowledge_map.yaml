@@ -30,7 +30,7 @@
 # Anchors are line numbers in the frozen copy (§2.2 = Mermaid block, §2.3 = node catalogue).
 # X1-X41 (§3.5) are findings about specific prompts, not rules, and are not mapped.
 
-version: 31
+version: 32
 status: draft
 basis: "Mapped by Claude 2026-10-11 against the repo at 9c9fd98 (layer_order 1.7); owner decisions O1-O4 recorded
   2026-10-11 (docs/plans/M8_DAG_PROSE.md); O13-O14 (checklist scope, not-applicable rulings) 2026-10-11; owner
@@ -1051,8 +1051,8 @@ rows:
       - {file: kernel/conventions.yaml}
     note: "kernel/conventions.yaml declares +Y up, +Z forward, ground y=0, intrinsic XYZ in degrees, right-handed,
       +X = performer's left and the turn axes, copied into every scene.ax (settles the DAG's open handedness, §3.8 #2).
-      The prose [SPATIAL ANCHORS] (M8.3) also declares the joint parenting (root -> Sp -> arms, NK -> HD; root -> legs),
-      which the solver uses and LBN-2.4 does not state."
+      The prose [SPATIAL ANCHORS] (M8.3) also declares the joint parenting (root -> Sp -> arms, legs, NK -> HD; the hips
+      sit on the pelvis), which forward kinematics uses (ADR-O84, R-35; RV-113) and LBN-2.4 does not state."
 
   - id: C30
     name: Span constraint

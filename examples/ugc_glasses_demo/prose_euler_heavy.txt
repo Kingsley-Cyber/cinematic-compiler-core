@@ -42,7 +42,7 @@ Density (measured): 0 dense gaps under 0.6 s, 0 medium from 0.6 to 0.9 s, 3 spar
 Explicit = the staff lines; implied = everything between them (IMPLIED GUIDANCE).
 
 [SPATIAL ANCHORS]
-Frame: up +Y, forward +Z, ground y=0, units m; Euler XYZ intrinsic, right-handed, degrees; +X = the performer's left; joints local to their parent (root -> Sp -> arms, NK -> HD; root -> legs), root in the scene frame.
+Frame: up +Y, forward +Z, ground y=0, units m; Euler XYZ intrinsic, right-handed, degrees; +X = the performer's left; joints local to their parent (root -> Sp -> arms, legs, NK -> HD; the hips sit on the pelvis), root in the scene frame.
 Axes: Y_up, A faces +Z, ground y=0.
 tabletop (tabletop): Flat surface where the product rests between interactions; solid.
 backdrop (backdrop): Plain background behind the hands and product; solid.

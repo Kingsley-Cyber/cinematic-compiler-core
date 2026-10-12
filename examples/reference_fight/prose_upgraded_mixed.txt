@@ -116,7 +116,7 @@ In-between keys (no beat, no contact): the interpolation passes through each pos
 8.75 B: tipping back | L arm left-mid, lower arm folded 30, L leg forward-low, lower leg folded 45, body back-high (40 lean) | R arm right-low, lower arm straight, R leg forward-low, lower leg folded 30 · Root [1.02375, 0.59, 5.2725] EulerXYZ [-90, -45, -90] · Joints {Sp: [3.542, -1.405209, 3.981], LUL: [-40.222, 3.152234, 9.750914], RUL: [-34.515356, 3.480597, -5.538], LL: [40.55, 0, 0], RL: [32, 0, 0], LA: [-20, -1.767619, 60], RA: [10, -0.877097, -40], LFA: [-25, 0, 0], RFA: [-10, 0, 0], HD: [-6.05, 0, 0], NK: [-3.4, 0, 0]}
 
 [SPATIAL ANCHORS]
-Frame: up +Y, forward +Z, ground y=0, units m; Euler XYZ intrinsic, right-handed, degrees; +X = the performer's left; joints local to their parent (root -> Sp -> arms, NK -> HD; root -> legs), root in the scene frame.
+Frame: up +Y, forward +Z, ground y=0, units m; Euler XYZ intrinsic, right-handed, degrees; +X = the performer's left; joints local to their parent (root -> Sp -> arms, legs, NK -> HD; the hips sit on the pelvis), root in the scene frame.
 Axes: Y_up, A faces +Z, B faces -Z, ground y=0.
 ground (floor): Flat courtyard ground at y=0; solid.
 wooden pillar (obstacle): Tall wooden pillar at the back of the courtyard; pillar at z=6 from y=0 to y=8; solid.

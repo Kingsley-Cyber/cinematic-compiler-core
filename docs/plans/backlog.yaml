@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 42
+version: 43
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -180,9 +180,9 @@ items:
      step: motion, plan: PLAN-007, depends_on: [RV-59f, RV-108], findings: [F-089, F-220, F-225], codes: []}
   # Principal review 8 (S-099) and ADR-O110 (owner, 2026-10-12): only what changes what a prompt tells the renderer,
   # or a check this run loosened, is built now (RV-113, RV-59j, RV-59k, RV-59l, RV-99c); then the owner renders.
-  - {id: RV-113, title: "Every prose prompt's legend hangs the legs from the spine as forward kinematics does (ADR-O84): root -> Sp -> arms, legs and NK -> HD; C29's note follows", status: next,
+  - {id: RV-113, title: "Every prose prompt's legend hangs the legs from the spine as forward kinematics does (ADR-O84): root -> Sp -> arms, legs and NK -> HD; C29's note follows", status: done,
      step: render, plan: PLAN-007, depends_on: [], findings: [F-231], codes: []}
-  - {id: RV-59j, title: "S13 refuses an in-between of a grounded body with none of its keys' claimed supports on its surface; the solver's --floor holds the repo's keys over the floor with no allowance; B's 6.45, 6.7 and 8.75 re-solved, every in-between's words from its measured pose", status: ready,
+  - {id: RV-59j, title: "S13 refuses an in-between of a grounded body with none of its keys' claimed supports on its surface; the solver's --floor holds the repo's keys over the floor with no allowance; B's 6.45, 6.7 and 8.75 re-solved, every in-between's words from its measured pose", status: next,
      step: motion, plan: PLAN-007, depends_on: [RV-59e, RV-59c], findings: [F-230], codes: [INBETWEEN_SUPPORT]}
   - {id: RV-59k, title: "An in-between line inside its body's declared turn prints its root as mid-turn, and ROTATION_ANGLES_PRINTED reads the in-between lines", status: ready,
      step: render, plan: PLAN-007, depends_on: [RV-59i], findings: [F-232], codes: []}

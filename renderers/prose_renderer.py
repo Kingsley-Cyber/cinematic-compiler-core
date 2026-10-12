@@ -636,8 +636,8 @@ def _spatial(envelope, lines, labels, rows):
     c = scene["ax"]["rotation_convention"]
     out = [f"Frame: up {scene['ax']['up']}, forward {scene['ax']['forward']}, ground {scene['ax']['ground']}, units "
            f"{scene['ax'].get('unit', 'm')}; Euler {c['euler_order']} {c['kind']}, {c['handedness']}-handed, {c['units']}; "
-           f"+X = the performer's left; joints local to their parent (root -> Sp -> arms, NK -> HD; root -> legs), "
-           f"root in the scene frame.",
+           f"+X = the performer's left; joints local to their parent (root -> Sp -> arms, legs, NK -> HD; the hips sit on "
+           f"the pelvis), root in the scene frame.",
            "Axes: " + ", ".join(t for s, t, _, _ in rows if s == "ax") + "."]
     for surface in _items(envelope, "nodes", "surfaces"):
         out.append(f"{_words(surface['id'])} ({surface['kind']}): {surface['description'].rstrip('.')}"

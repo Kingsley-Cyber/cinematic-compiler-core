@@ -6,20 +6,20 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 7.2; backlog 42.
+Layer order 1.7; rules 7.2; backlog 43.
 
 ## Last sessions
 
-- S-097 (applied): RV-59e: no body through another at any frame between keys
 - S-098 (applied): RV-59c: no body under the floor at any frame between keys
 - S-099 (applied): Principal review 8: does the finished work match the plan?
+- S-100 (applied): RV-113: every prose prompt's legend hangs the legs from the spine (ADR-O84)
 
 ## Next slices
 
-- RV-113 (next, step render): Every prose prompt's legend hangs the legs from the spine as forward kinematics does (ADR-O84): root -> Sp -> arms, legs and NK -> HD; C29's note follows
+- RV-59j (next, step motion): S13 refuses an in-between of a grounded body with none of its keys' claimed supports on its surface; the solver's --floor holds the repo's keys over the floor with no allowance; B's 6.45, 6.7 and 8.75 re-solved, every in-between's words from its measured pose
 - RV-35b (ready, step all): The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools
-- RV-59j (ready, step motion): S13 refuses an in-between of a grounded body with none of its keys' claimed supports on its surface; the solver's --floor holds the repo's keys over the floor with no allowance; B's 6.45, 6.7 and 8.75 re-solved, every in-between's words from its measured pose
 - RV-59k (ready, step render): An in-between line inside its body's declared turn prints its root as mid-turn, and ROTATION_ANGLES_PRINTED reads the in-between lines
+- RV-59l (ready, step motion): Between keys a body standing on its keys' claimed supports is not airborne (a landing still never is): RV-59h's loosening undone
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -90,7 +90,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 146
+## Open findings: 145
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -136,9 +136,8 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-216 (high, L1.1): Repo-authored fight defects outside the owner's questions
 - F-221 (high, L4c): Open supports are not checked between keys: a supporting part lifts far off its surface before its release
 - F-230 (high, L4c): B's in-between keys lift it off the ground, sink its crash and name motions they do not make
-- F-231 (high, L6): Every prompt's legend hangs the legs from the root; the poses hang them from the spine (O84)
 - F-233 (high, all): Two checks this run loosened: a standing body reads airborne between keys; a negation swallows a hit
 
 ## Next free IDs
 
-Decision ADR-O111, finding F-234, session S-100, render R20.
+Decision ADR-O111, finding F-234, session S-101, render R20.

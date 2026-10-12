@@ -101,10 +101,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.2; backlog 42.
-- Last session: S-099 (2026-10-12, applied): Principal review 8: does the finished work match the plan?.
-- Next slice: RV-113 Every prose prompt's legend hangs the legs from the spine as forward kinematics does (ADR-O84): root -> Sp -> arms, legs and NK -> HD; C29's note follows (step render).
-- Open findings: 146; decisions: 137 (0 proposed, 7 owner_default awaiting the owner).
+- Layer order 1.7; rules 7.2; backlog 43.
+- Last session: S-100 (2026-10-12, applied): RV-113: every prose prompt's legend hangs the legs from the spine (ADR-O84).
+- Next slice: RV-59j S13 refuses an in-between of a grounded body with none of its keys' claimed supports on its surface; the solver's --floor holds the repo's keys over the floor with no allowance; B's 6.45, 6.7 and 8.75 re-solved, every in-between's words from its measured pose (step motion).
+- Open findings: 145; decisions: 137 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

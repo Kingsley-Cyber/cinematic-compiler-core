@@ -6,6 +6,8 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- Every prose prompt's legend hangs the legs from the spine as forward kinematics does (RV-113, F-231, S-100):
+  "root -> Sp -> arms, legs, NK -> HD; the hips sit on the pelvis" (ADR-O84); before, it parented the legs on the root.
 - Principal review 8 (S-099): partially, no tampering. B's in-between keys float it at 6.45-6.7 and sink its crash
   0.14 m (F-230), every prompt's legend parents the legs on the root against ADR-O84 (F-231), in-between lines print
   raw angles mid-turn (F-232), and RV-59h and RV-99b each loosened a check (F-233). The owner narrows the run to

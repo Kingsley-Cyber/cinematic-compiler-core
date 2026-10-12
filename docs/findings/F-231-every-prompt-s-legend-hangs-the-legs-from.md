@@ -12,7 +12,7 @@ high
 L6
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -51,4 +51,6 @@ ADR-O84
 - RV-113
 
 ## Resolution
-open
+Resolved by RV-113 (S-100): the [SPATIAL ANCHORS] frame line says "joints local to their parent (root -> Sp ->
+arms, legs, NK -> HD; the hips sit on the pelvis)", as forward kinematics composes them; C29's note follows (map 32).
+The 16 prose prompts change in that line only.
