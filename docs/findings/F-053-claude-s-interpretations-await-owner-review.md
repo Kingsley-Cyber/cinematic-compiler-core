@@ -173,6 +173,8 @@ shared X and Z turn is read back as X; frames at the scene's fps, a vanished bod
 source's when both its keys are the owner's rows.
 Added in S-088 (RV-59d, solver/contact_world.py): between keys the actor is airborne (ADR-O104) when the key before
 claims no support, and turning when that key declares a turn; nothing else states the support between keys.
+Superseded in S-091 (RV-59h, F-222): airborne only when no support of its own is open just before the contact, and
+never at a landing.
 Added in S-084 (RV-100): the repo's own examples (all but the reference fight) carry no typed deviations; F-200 asks
 the owner.
 Added in S-087 (RV-59b, solver/reblock.py): a re-block holds at its start point every part the key's contacts and S11

@@ -102,9 +102,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 7.2; backlog 38.
-- Last session: S-090 (2026-10-12, applied): Principal review 7: does the finished work match the plan?.
-- Next slice: RV-59h A support onset is never airborne at its own instant: an interpolated contact's exemption reads the support in force just before it, never a landing's (step motion).
-- Open findings: 149; decisions: 136 (0 proposed, 7 owner_default awaiting the owner).
+- Last session: S-091 (2026-10-12, applied): RV-59h: a landing is never airborne at its own instant.
+- Next slice: RV-99b The camera floor's hit words from what the scene's contacts and planner/hits.py name (the knee, the elbow, the palm, the drive), a negation read in every floor word, the cards and O92's own sentences run against it (step camera).
+- Open findings: 148; decisions: 136 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

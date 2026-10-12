@@ -9,8 +9,9 @@ the owner whether O72's point measure or this one holds). Flags mark the conditi
 artefact: the actor airborne, the actor's key turning, the prop moving at the instant. An actor or a body target with
 no key at the contact's instant but keys on both sides is posed there along the declared interpolation
 (solver/interpolation.py), and a prop with no sample there but samples on both sides runs straight between them; the
-row is then `interpolated` (RV-59d), its actor airborne when the key before claims no support and turning when that
-key declares a turn (interpretation, Claude's: nothing else states the support between keys). A contact outside its
+row is then `interpolated` (RV-59d), its actor airborne there only when no support of its own is open just before the
+contact (S07's intervals: a support's onset opens a part on a surface, its release closes it) and never at a landing,
+a support's own onset (RV-59h, F-222), and turning when the key before declares a turn. A contact outside its
 actor's keys or its prop's samples, or on a surface with no top (a wall, a pillar's face; a touch on any surface but
 a floor), is not measurable. `measure` reads an envelope (the report, the prose);
 `measure_plan` reads S13's packet and its authored keys (the check). CONTACT_WORLD (ADR-O83, O89) refuses a
@@ -133,21 +134,40 @@ def _prop_at(samples, prop, t):
     return [{"p": point, "v": None}], a["p"] != b["p"] or moves((a, b)), True
 
 
+def _open_supports(ordered, actor, t):
+    """The parts the actor has on a surface just before instant t, from the contacts in time order (S07's intervals: a
+    support's onset opens a part, its release closes it)."""
+    parts = set()
+    for c in ordered:
+        if c["t"] > t - 1e-9:
+            break
+        if c["a"]["id"] == actor and c["b"]["kind"] == "surface":
+            if c["contact_type"] == "support":
+                parts.add(c["body_part"])
+            elif c["contact_type"] == "release":
+                parts.discard(c["body_part"])
+    return parts
+
+
 def _rows(keys, support, tops, floors, prop_samples, contacts, radii, floor=None, metres=None):
     samples = {}
     for sample in prop_samples:
         samples.setdefault((sample["prop"], round(sample["t"], 6)), []).append(sample)
     rows = []
-    for c in sorted(contacts, key=lambda c: (c["t"], c["id"])):
+    ordered = sorted(contacts, key=lambda c: (c["t"], c["id"]))
+    for c in ordered:
         if c["contact_type"] not in MEASURED or (c["contact_type"] == "release" and c["b"]["kind"] != "prop"):
             continue  # RV-02b (F-075): a release lets a prop go from the hand; a foot leaving a surface is a takeoff
         t, b = round(c["t"], 6), c["b"]
         key, before = _between(keys, c["a"]["id"], t, metres, radii)
-        decides = before or key  # between keys the key before says whether the span starts in the air (RV-59d)
+        if before is None:
+            airborne = bool(key) and not support.get(key["id"])
+        else:  # RV-59h (F-222): no support of its own open just before, and a landing (a support's onset) never
+            airborne = c["contact_type"] != "support" and not _open_supports(ordered, c["a"]["id"], t)
         row = {"id": c["id"], "t": c["t"], "actor": c["a"]["id"], "part": c["body_part"], "kind": KINDS[b["kind"]],
                "target": f"{_words(b['id'])}" + (f" {_words(b['part'])}" if b.get("part") else ""),
                "actor_point": None, "target_point": None, "distance": None, "measurable": False, "reason": "",
-               "airborne": bool(key) and not support.get(decides["id"]), "rotating": bool(key) and decides["turn"] != "none",
+               "airborne": airborne, "rotating": bool(key) and (before or key)["turn"] != "none",
                "prop_moving": False, "interpolated": before is not None}
         rows.append(row)
         if key is None:

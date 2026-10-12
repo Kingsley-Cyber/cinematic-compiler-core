@@ -134,8 +134,8 @@ def test_contact_world_spares_a_listed_exception_and_an_artefact():
 def test_a_contact_between_keys_is_measured_on_the_interpolated_pose():
     """F-089 (RV-59d, ADR-O104): a contact with no key at its instant but keys on both sides is measured on the pose the
     declared interpolation gives there. The wizard example's landing, back at 6.4 (between the pillar brace at 5.2 and
-    the lunge at 6.6, S-088), misses the ground and is refused: the span starts braced on the pillar, not in the air.
-    Starting the span in the air makes the same miss an artefact."""
+    the lunge at 6.6, S-088), misses the ground and is refused: the torso is still on the pillar. Emptying the 5.2
+    key's claim no longer excuses it: a landing is never airborne (RV-59h, F-222; S-088 had excused it)."""
     from solver import contact_world
     packet = copy.deepcopy(PACKET)
     for contact in packet["contact_world"]["contacts"]:
@@ -149,7 +149,28 @@ def test_a_contact_between_keys_is_measured_on_the_interpolated_pose():
     assert {f["contact"] for f in p13_motion.check(PLAN, packet) if f["code"] == "CONTACT_WORLD"} == {"b08_c2", "b08_c3"}
     slots["acrobat@b08"]["kinematic"]["support"] = []
     rows = contact_world.measure_plan({k["slot"]: k for k in PLAN["keys"]}, slots, packet)
-    assert contact_world.refusals([r for r in rows if r["id"] in ("b08_c2", "b08_c3")], {}) == []
+    assert {f["contact"] for f in contact_world.refusals([r for r in rows if r["id"] in ("b08_c2", "b08_c3")], {})} == \
+        {"b08_c2", "b08_c3"}
+
+
+def test_a_touch_in_the_air_between_keys_is_excused_and_a_landing_never_is():
+    """F-222 (RV-59h, ADR-O104, O89): between keys the actor is airborne only when no support of its own is open just
+    before the contact, and a support's onset (a landing) never is. Planted on the wizard example with the pillar let
+    go at 5.2: a touch of the ground at 5.3, 1.16 m off it, is excused as airborne; the landings there are refused."""
+    from solver import contact_world
+    packet = copy.deepcopy(PACKET)
+    contacts = packet["contact_world"]["contacts"]
+    for contact in contacts:
+        if contact["id"] == "b08_c1":  # the torso's release from the pillar
+            contact["t"] = 5.2
+        if contact["id"] in ("b08_c2", "b08_c3"):
+            contact["t"] = 5.3
+    contacts.append({**next(c for c in contacts if c["id"] == "b08_c2"), "id": "b08_c9", "contact_type": "touch"})
+    slots = {s["slot"]: s for s in packet["slots"]}
+    rows = {r["id"]: r for r in contact_world.measure_plan({k["slot"]: k for k in PLAN["keys"]}, slots, packet)}
+    assert rows["b08_c9"]["airborne"] and rows["b08_c9"]["distance"] > 1.0 and contact_world.artefact(rows["b08_c9"])
+    assert not rows["b08_c2"]["airborne"] and not rows["b08_c3"]["airborne"]
+    assert {f["contact"] for f in contact_world.refusals(list(rows.values()), {})} == {"b08_c2", "b08_c3"}
 
 
 def test_a_prop_between_its_samples_runs_straight_and_moves_when_its_samples_differ():

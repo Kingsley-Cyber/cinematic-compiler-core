@@ -12,7 +12,7 @@ high
 L4c
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -52,4 +52,8 @@ none needed (ADR-O104, O89)
 - RV-59h
 
 ## Resolution
-Open.
+Resolved in S-091 (RV-59h): between keys the actor is airborne only when no support of its own is open just before the
+contact (S07's intervals), and a support's onset, a landing, never is. The landing planted at 5.3 is refused whether
+or not the span's key claims a support; a touch of the ground at 5.3 after the pillar is let go stays excused
+(tests/test_motion_solver.py). The S13 instructions say so; S-088's test, which pinned the loose rule, follows this
+finding.

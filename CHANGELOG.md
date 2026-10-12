@@ -6,6 +6,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- A landing between keys is never excused as airborne (RV-59h, F-222, S-091): between keys the actor is airborne only
+  when no support of its own is open just before the contact, and a support's onset never is; S-088's rule, which
+  read the key before, excused a landing 1.2 m up. The S13 instructions say so and every motion plan re-bound.
 - Principal review 7 (S-090): five read-only reviewers, verdict partially, no test tampering
   (docs/reports/2026-10-12-principal-review-7.md). F-221 to F-229 filed; F-210 reopened with F-187 and F-160; F-220's
   evidence corrected and its option a answered by ADR-O109 (owner_default: in-between keys on the repo's side, from

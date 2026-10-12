@@ -10,16 +10,16 @@ Layer order 1.7; rules 7.2; backlog 38.
 
 ## Last sessions
 
-- S-088 (applied): RV-59d: a contact with no key at its instant measured on the interpolated pose
 - S-089 (applied): RV-59c: the floor between keys measured; B's crash needs a key mid-fall (F-220)
 - S-090 (applied): Principal review 7: does the finished work match the plan?
+- S-091 (applied): RV-59h: a landing is never airborne at its own instant
 
 ## Next slices
 
-- RV-59h (next, step motion): A support onset is never airborne at its own instant: an interpolated contact's exemption reads the support in force just before it, never a landing's
+- RV-99b (next, step camera): The camera floor's hit words from what the scene's contacts and planner/hits.py name (the knee, the elbow, the palm, the drive), a negation read in every floor word, the cards and O92's own sentences run against it
 - RV-35b (ready, step all): The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools
-- RV-99b (ready, step camera): The camera floor's hit words from what the scene's contacts and planner/hits.py name (the knee, the elbow, the palm, the drive), a negation read in every floor word, the cards and O92's own sentences run against it
 - RV-95b (ready, step motion): The pickups judged as drawn: the lean by the trunk vector and the twist against the limit (R-34), the knee and head bounds without slack, the ankle bound restored or asked, the words in the legend's frame, S-078's values pinned as hand choices
+- RV-59f (ready, step motion): In-between keys (ADR-O109): one entity's pose at an instant between two of its keys, checked like a key, printed with its instant, placed by the re-block solver
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -90,7 +90,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 149
+## Open findings: 148
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -138,8 +138,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-216 (high, L1.1): Repo-authored fight defects outside the owner's questions
 - F-220 (high, L4c): By a contact the declared interpolation draws one body through the other, and B's crash through the floor
 - F-221 (high, L4c): Open supports are not checked between keys: a supporting part lifts far off its surface before its release
-- F-222 (high, L4c): A landing between keys is excused as airborne
 
 ## Next free IDs
 
-Decision ADR-O110, finding F-230, session S-091, render R20.
+Decision ADR-O110, finding F-230, session S-092, render R20.

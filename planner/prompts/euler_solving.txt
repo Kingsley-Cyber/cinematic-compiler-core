@@ -25,8 +25,9 @@ S13 motion (L4c). For every slot write one key pose: the body at the slot's beat
 - The world is measured by forward kinematics (packet segments, the body card's radii; owner O72's 0.15 m): a touch,
   hold or support meets its target at its instant (CONTACT_WORLD; the owner's exceptions come from the kernel list,
   never from this plan), and a contact between two of the actor's keys is measured on the pose the declared
-  interpolation gives there (joints slerped, the root straight), its miss excused only while the span starts in the
-  air (the key before claims no support) or its prop moves (ADR-O104); every support a slot's kinematic node claims meets its surface at that key, the part on the
+  interpolation gives there (joints slerped, the root straight), its miss excused only while the actor has no support
+  of its own open just before it, never at a landing (a support's onset), or while its prop moves (ADR-O104); every
+  support a slot's kinematic node claims meets its surface at that key, the part on the
   top its open support contact names or on the floor (CONTACT_WORLD, RV-14a); no two bodies overlap at a key they
   share (BODY_OVERLAP); no body point lies more than 0.15 m under the floor (packet floor_y) at any key
   (FLOOR_PENETRATION). Meet them with the bones; the root stays the slot's pos.
