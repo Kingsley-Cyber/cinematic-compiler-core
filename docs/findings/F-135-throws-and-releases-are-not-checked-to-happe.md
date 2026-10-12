@@ -12,7 +12,7 @@ medium
 L1.1
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -46,4 +46,5 @@ ADR-O23
 - F-095
 
 ## Resolution
-Open in part: RELEASE_AT_POSE is built (RV-48a, S-057); the S04 prompt waits for RV-48b.
+RELEASE_AT_POSE (RV-48a, S-057) refuses a throw, or a release of a prop or a body, off its actor's key; the S04
+instructions teach today's timing, prop samples, PROP_SUPPORT, SURFACE_HEIGHT and `standing_leg_m` (RV-48b, S-058).

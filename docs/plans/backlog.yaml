@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 24
+version: 25
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -98,9 +98,9 @@ items:
      step: docs, plan: PLAN-007, depends_on: [], findings: [F-130, F-140, F-166, F-154], codes: []}
   - {id: RV-48a, title: "S04's latent checks: throws and releases on their actor's key (the 6.6 throw), a vanished body untouched, a resting prop moved only at a sample (the log's swap), the first place", status: done,
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-135, F-136, F-138, F-139, F-158], codes: [RELEASE_AT_POSE]}
-  - {id: RV-48b, title: "S08's support hand holds or touches its object; the S04 instructions rewritten to today's rules", status: next,
+  - {id: RV-48b, title: "S08's support hand holds or touches its object; the S04 instructions rewritten to today's rules", status: done,
      step: hand_role, plan: PLAN-007, depends_on: [RV-48a], findings: [F-137, F-135, F-162], codes: []}
-  - {id: RV-60, title: "The camera cards' rules follow O92: no close-up after a blow, no slowed playback; the printed camera rules checked", status: ready,
+  - {id: RV-60, title: "The camera cards' rules follow O92: no close-up after a blow, no slowed playback; the printed camera rules checked", status: next,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-160], codes: []}
   - {id: RV-61, title: "S10 reads the state before the beat's own effects; S09 carries each change's instant", status: ready,
      step: affordance, plan: PLAN-007, depends_on: [], findings: [F-161], codes: []}
@@ -129,9 +129,11 @@ items:
      step: contact, plan: PLAN-007, depends_on: [], findings: [F-092, F-134], codes: [PROP_TWO_HOLDERS]}
   - {id: RV-19, title: "Replans reach the step that owns the fix", status: ready,
      step: all, plan: PLAN-007, depends_on: [], findings: [F-094], codes: []}
-  - {id: RV-20, title: "Authoring prompts teach their steps' checks; external_inputs complete", status: blocked,
+  - {id: RV-20, title: "external_inputs complete: the layer order states what each step depends on", status: blocked,
      blocked_by: "an accepted ADR for the layer-order edit (R-09)",
      step: all, plan: PLAN-007, depends_on: [], findings: [F-095], codes: []}
+  - {id: RV-65, title: "The instructions of S11 to S17 name every rule their plans must meet (tests/test_instructions.py)", status: ready,
+     step: all, plan: PLAN-007, depends_on: [RV-48b], findings: [F-095], codes: []}
   - {id: RV-21, title: "A map row passes only when its codes cover the whole DAG row; contests read every render finding", status: ready,
      step: render, plan: PLAN-007, depends_on: [RV-01], findings: [F-096, F-003, F-010, F-141], codes: []}
   - {id: RV-22, title: "The pillar has a radius and faces; landings and face contacts measured", status: ready,

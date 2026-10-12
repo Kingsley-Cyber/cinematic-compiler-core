@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The authoring instructions follow the code (RV-48b, F-135, F-137, F-162, S-058): the S04 instructions teach the rules
+  S04 to S07 apply to a beat plan today, each by its code, and the S08 ones S08's; a test fails when a step's
+  instructions miss one of its codes. S08 refuses a named support hand that neither holds nor touches its object.
+  RV-20's prompt part for S11 to S17 is RV-65.
 - S04's latent checks (RV-48a, O23, F-135, F-136, F-138, F-139, F-158, S-057): a throw or release happens on its
   actor's key (RELEASE_AT_POSE), so B throws A at 6.6, on the catch's pose, as the source flashes it; nobody touches a
   vanished body and a touched body is in its beat; a contact between two samples moves a resting prop only by taking

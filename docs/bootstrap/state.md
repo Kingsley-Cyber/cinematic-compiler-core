@@ -6,20 +6,20 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 7.0; backlog 24.
+Layer order 1.7; rules 7.0; backlog 25.
 
 ## Last sessions
 
-- S-055 (applied): RV-45: each slice's records: a self-audit section, typed deviation IDs, interpretations labelled
 - S-056 (applied): RV-46: the stale and overclaimed records corrected; the owner's waiting list complete
 - S-057 (applied): RV-48a: releases at their pose, a vanished body untouched, a resting prop moved only at a sample, a first place
+- S-058 (applied): RV-48b: the support hand holds or touches its object; the S04 and S08 instructions follow the code
 
 ## Next slices
 
-- RV-48b (next, step hand_role): S08's support hand holds or touches its object; the S04 instructions rewritten to today's rules
-- RV-60 (ready, step camera): The camera cards' rules follow O92: no close-up after a blow, no slowed playback; the printed camera rules checked
+- RV-60 (next, step camera): The camera cards' rules follow O92: no close-up after a blow, no slowed playback; the printed camera rules checked
 - RV-61 (ready, step affordance): S10 reads the state before the beat's own effects; S09 carries each change's instant
 - RV-62 (ready, step render): The vanishing actor's line prints no support into the vanish; the volley is drawn into B's hand before 5.5
+- RV-57 (ready, step camera): Hits found from the contacts are camera holds on every body present, at S16 and in the prompt, whatever S17 holds (O92)
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -56,7 +56,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-168 (low): The pre-commit gate waits for the owner's `make hooks`
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog RV-13b blocked: Every prompt fits the caps (O97) — the owner's answers in F-088
-- Backlog RV-20 blocked: Authoring prompts teach their steps' checks; external_inputs complete — an accepted ADR for the layer-order edit (R-09)
+- Backlog RV-20 blocked: external_inputs complete: the layer order states what each step depends on — an accepted ADR for the layer-order edit (R-09)
 - Backlog RV-24 blocked: The launch check per O80's words: the prior beat, every launch — the owner's ruling on A's 5.1 backflip in F-099
 - Backlog RV-26 blocked: Momentum at the true takeoff; the opening fall judged; each span re-timed or hung — the owner's span-by-span answer in F-101
 - Backlog RV-36 blocked: Limb and head words read in one declared frame — the owner's answer in F-111
@@ -68,7 +68,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 98
+## Open findings: 95
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -99,4 +99,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-169, session S-058, render R20.
+Decision ADR-O109, finding F-169, session S-059, render R20.

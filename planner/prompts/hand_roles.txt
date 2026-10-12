@@ -1,6 +1,15 @@
-S08 hand roles (L2.5). Write one interaction for every functional verb a hand performs on an object: the verb (one
-of the object card's affordances), the object, the actor, the consecutive beats it spans, the agent hand (the hand
-that does the verb) and the support hand (the hand that steadies or helps, or none), each hand's grip (from the grip
-types and the object's own grips; none for no support hand) and a role template. The roles are locked: inside the
-interaction only those two hands touch the object, the agent hand must act on it, and the same hand never serves two
-overlapping interactions. Copy packet_sha256.
+S08 hand roles (L2.5). Write one interaction for every functional verb a hand performs on an object: the verb, the
+object, the actor, the consecutive beats it spans, the agent hand (the hand that does the verb) and the support hand
+(the hand that steadies or helps, or none), each hand's grip and a role template. Copy packet_sha256.
+
+- The object is a declared prop and the actor a declared entity; the verb is one of the object card's affordances;
+  interaction ids are unique (HAND_ROLE_OBJECT).
+- The beats exist, are consecutive and in time order, and each lists the actor and the object (HAND_ROLE_BEATS).
+- The agent and support hands are two different hands of the actor, and the role template agrees with having a
+  support hand or none (HAND_ROLE_HANDS).
+- Each hand's grip is one of the grip types and of the object's own grips; no support hand means support_grip none
+  (HAND_ROLE_GRIP).
+- The roles are locked (HAND_ROLE_SWAP): inside the interaction only those two of the actor's hands touch the object;
+  the agent hand holds it at the start of one of the beats or makes a contact on it in one, and so does a named support
+  hand (it holds or touches the object).
+- The same hand never serves two of the actor's interactions that overlap in time (HAND_ROLE_OVERLAP).

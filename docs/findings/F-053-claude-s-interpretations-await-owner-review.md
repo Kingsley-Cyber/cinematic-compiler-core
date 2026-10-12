@@ -93,6 +93,11 @@ Added in S-057 (RV-48a, planner/dynamic_beat_validator.py, compiler/passes/manda
 its pose when its actor has a key at that instant (a beat's start that lists it); a contact between two samples
 may move a resting prop only by taking hold of it; a substitution swaps a prop it changes into its new place at
 its start, with no hand on it, and S07 lets it change that prop without a contact.
+Added in S-058 (RV-48b, compiler/passes/derived/p08_hand_role.py, tests/test_instructions.py, docs/plans/backlog.yaml):
+a support hand counts as holding when it holds the object at one of the interaction's beat starts or makes any
+contact on it in one; S04's instructions answer for S05, S06 and S07's codes too, since those passes read only the
+beat plan; RV-20's prompt part needs no layer-order ADR (F-095 names only the layer order as its block), so it became
+RV-65.
 
 ## Impact
 Waits on the owner.

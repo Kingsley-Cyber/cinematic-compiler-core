@@ -12,7 +12,7 @@ low
 L2.5
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -44,4 +44,6 @@ none needed
 - PLAN-007
 
 ## Resolution
-Open.
+RV-48b (S-058): a named support hand holds the object at the start of one of the interaction's beats or makes a
+contact on it in one, as the agent hand must (HAND_ROLE_SWAP, compiler/passes/derived/p08_hand_role.py;
+tests/test_hand_role.py::test_the_support_hand_holds_or_touches_its_object); the S08 instructions say so.

@@ -12,7 +12,7 @@ medium
 L1.1
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -47,4 +47,9 @@ none needed
 - RV-20
 
 ## Resolution
-Open.
+RV-48b (S-058): planner/prompts/beat_planning.txt teaches the rules S04 to S07 apply to a beat plan today (an
+effect's and a contact's `at`, a change of hands at its possess or release, a catch and a throw on a prop or a body,
+releases on a key, the vanished body, prop samples, the decoy's swap, first places) and names each one's code;
+tests/test_instructions.py fails when a code S04 to S07 emit, or one S08 emits, is missing from its step's
+instructions. C21's note follows the code (knowledge map 9). RV-20's prompt part for S11 to S17 is RV-65; RV-20 keeps
+external_inputs.

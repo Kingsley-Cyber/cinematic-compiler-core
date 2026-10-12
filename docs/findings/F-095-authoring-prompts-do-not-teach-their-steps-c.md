@@ -35,7 +35,8 @@ Authors learn their step's rules only by failing them, and the layer order under
 Slower, blinder authoring; a library change can move a step's output unannounced.
 
 ## Proposed Fix
-Backlog RV-20 (blocked: the layer-order edit needs an accepted ADR, R-09).
+Backlog RV-65: the instructions of S11 to S17 name every rule their plans must meet (the S04 and S08 ones do since
+RV-48b). Backlog RV-20 (blocked: the layer-order edit needs an accepted ADR, R-09): external_inputs complete.
 
 ## Owner Ruling
 needs an ADR for the layer-order change
@@ -44,4 +45,5 @@ needs an ADR for the layer-order change
 - PLAN-007
 
 ## Resolution
-Open.
+Open in part: S04 and S08 teach their checks (RV-48b, S-058; tests/test_instructions.py); S11 to S17 are RV-65
+(ready); external_inputs wait for the layer-order ADR (RV-20, blocked).

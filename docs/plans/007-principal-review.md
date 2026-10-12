@@ -124,3 +124,5 @@ RV-64 and RV-13, then the rest in backlog order.
 - 2026-10-12 — RV-45 done (S-055): self-audit sections enforced; typed deviations DEV-01 to DEV-28.
 - 2026-10-12 — RV-46 done (S-056): the stale and overclaimed records corrected.
 - 2026-10-12 — RV-48 split; RV-48a done (S-057): S04's latent checks; the 6.6 throw on its pose; the log's swap.
+- 2026-10-12 — RV-48b done (S-058): S08's support hand; the S04 and S08 instructions name every rule their plans
+  must meet (tests/test_instructions.py); RV-20 split: its prompt part for S11 to S17 is RV-65.

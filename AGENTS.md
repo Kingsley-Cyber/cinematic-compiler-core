@@ -101,10 +101,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.0; backlog 24.
-- Last session: S-057 (2026-10-12, applied): RV-48a: releases at their pose, a vanished body untouched, a resting prop moved only at a sample, a first place.
-- Next slice: RV-48b S08's support hand holds or touches its object; the S04 instructions rewritten to today's rules (step hand_role).
-- Open findings: 98; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
+- Layer order 1.7; rules 7.0; backlog 25.
+- Last session: S-058 (2026-10-12, applied): RV-48b: the support hand holds or touches its object; the S04 and S08 instructions follow the code.
+- Next slice: RV-60 The camera cards' rules follow O92: no close-up after a blow, no slowed playback; the printed camera rules checked (step camera).
+- Open findings: 95; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
@@ -144,7 +144,7 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - F-168 (low): The pre-commit gate waits for the owner's `make hooks`
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog RV-13b blocked: Every prompt fits the caps (O97) — the owner's answers in F-088
-- Backlog RV-20 blocked: Authoring prompts teach their steps' checks; external_inputs complete — an accepted ADR for the layer-order edit (R-09)
+- Backlog RV-20 blocked: external_inputs complete: the layer order states what each step depends on — an accepted ADR for the layer-order edit (R-09)
 - Backlog RV-24 blocked: The launch check per O80's words: the prior beat, every launch — the owner's ruling on A's 5.1 backflip in F-099
 - Backlog RV-26 blocked: Momentum at the true takeoff; the opening fall judged; each span re-timed or hung — the owner's span-by-span answer in F-101
 - Backlog RV-36 blocked: Limb and head words read in one declared frame — the owner's answer in F-111

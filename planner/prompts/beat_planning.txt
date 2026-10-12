@@ -1,25 +1,87 @@
-S04 beat planning (LLM call #1). Write the beat plan for this packet as JSON matching the beat_plan schema.
+S04 beat planning (LLM call #1). Write the beat plan for this packet as JSON matching the beat_plan schema. Copy
+packet_sha256 into the plan and respect every constraint listed. Use only the ids, parts, properties and values the
+packet gives; never invent one. Each rule below names the code that refuses a plan breaking it: S04 checks the plan,
+and S05 (causes), S06 (states) and S07 (contacts) read only this plan, so their refusals are this plan's to fix.
 
-- Use only the entities, props and surfaces in the packet, by id; parts only from each item's parts.
-- One actor per beat (an entity), plus participants it acts on. Times in seconds: t is the start, dur the length.
-- Fit every beat inside the given duration, or inside the duration budget if none is given.
-- For every entity in a beat (actor and entity participants) give root pos [x, y, z] and facing [x, y, z] in the
-  scene axes at the beat start t (the key-pose time); these are authoritative for later steps.
-- requires are read at t; effects and contacts commit at t + dur. Use only vocabulary properties and values.
-- Contact types: touch (instant), possess (held or carried), support (bears weight), release (ends an earlier
-  possess or support of the same pair).
-- verb (optional, owner O22): the combat action a contact performs, from `combat_verbs` (the verbs each contact type
-  takes: strike, deflect, throw ...); the Laban effort keeps its own words. A thrown prop has a sample with velocity at
-  the throw; catch, throw and disarm name a prop (CONTACT_VERB).
-- causes link this beat to a later beat it makes happen: hard (the later beat needs this beat's effect) or soft.
-- First states (PROP_FIRST_STATE): the first beat's requires give every prop's holder and card states at the start
-  (e.g. kunai holder B, line coiled, deployment hidden); a prop already in a hand at the start gets its possess contact
-  with "at": "start". A contact otherwise happens at its beat's end.
+Beats
+- Beat ids are unique (BEAT_ID). Times in seconds: t is the start, dur the length. Every beat ends inside the given
+  duration, or inside the duration budget if none is given, and a hold has a positive duration (BEAT_TIME).
+- One actor per beat, a declared entity (BEAT_ACTOR), plus the participants it acts on: declared entities, props or
+  surfaces, each listed once and never the actor (BEAT_PARTICIPANT).
+- event_type: action, hold, transition or substitution. No filler: a beat that is not a hold changes state, makes or
+  ends a contact, or causes or is caused by another beat (FILLER_BEAT).
+- modes: an entity's mode is one of its card modes (MODE_COHERENCE); a beat where an entity's mode changes is caused
+  by another beat (MODE_TRANSITION).
+
+Poses
+- For every entity in a beat (actor and entity participants) give root pos [x, y, z] and a non-zero facing [x, y, z]
+  in the scene axes at the beat start t, the key-pose time; pos and facing name only declared entities
+  (BEAT_POSE_ANCHOR). They are authoritative for later steps.
+- A body moves at most 25 m/s between the anchors of two of its consecutive beats (TELEPORT, owner O12), unless the
+  earlier beat is its own substitution, which must change a prop's state (the decoy revealed, a smoke burst).
+- event_type substitution: the actor swaps itself for a decoy and reappears elsewhere (kawarimi). It is gone from the
+  substitution's start until its next beat as actor: no other beat lists it, anchors it or has it make a contact,
+  no contact touches it, and it lets go of every support and hold as it vanishes (VANISHED_BODY, owners O18, O90).
+- When a foot starts bearing weight on a surface whose top is known (its geometry text "to y=..."; a floor without one
+  sits at the convention's ground), the performer's anchor at that instant, if it has one, lies between the top and
+  the top plus `standing_leg_m` (the genre body's standing leg), within 0.05 m (SURFACE_HEIGHT, owners O21, O85).
+
+States
+- requires and effects use only vocabulary subjects, properties and values (BEAT_STATE).
+- requires are read at t, before the beat's own effects, and must hold there when the plan is replayed
+  (REPLAY_REQUIRES). An effect takes effect at t + dur, or at t when marked "at": "start" (owner O91); a change of
+  hands (a prop's holder, an entity's possession) takes effect at its possess or release instead (F-061). Two effects
+  never set one property to different values at the same instant (STATE_CONFLICT).
+- A property starts at the value its first requirement asserts, when that comes before any effect; otherwise it is
+  unknown. A chained clip starts from chained_from's end values, and a first requirement must agree with them.
+- First states (PROP_FIRST_STATE): at the first beat every prop's holder and card states are known, and its location
+  too unless it starts held or carried on a body as the brief declares (e.g. kunai holder B, line coiled, deployment
+  hidden); a prop already in a hand at the start gets its possess contact with "at": "start".
+- An entity's possession and its prop's holder agree at every beat and at the end (POSSESSION_MISMATCH). S06 also
+  keeps every subject present once at every beat and gives every state change its triggering beat
+  (CONTINUITY_PRESENCE, CONTINUITY_TRIGGER).
+
+Contacts
+- Contact types: touch (instant), possess (held or carried), support (bears weight), release (ends an earlier possess
+  or support of the same pair). Side a is a declared entity part; side b is a declared entity, prop or surface, with
+  a part from its parts or null; a touched body is in the beat, as actor or participant (BEAT_CONTACT).
+- A contact happens at its beat's end, t + dur, or at its start, t, when marked "at": "start".
+- A release needs an open possess or support of the same pair (CONTACT_RELEASE); an open pair is not made again
+  (CONTACT_DUPLICATE); a hand possesses one thing at a time (CONTACT_HAND). A prop's holder has an open possess
+  contact on it, and a possessed prop has a holder (HOLDER_CONTACT). Every change of a prop's state has a contact on
+  the prop in its beat or an open one, except a substitution's change of its own decoy (PROP_CHANGE_CONTACT).
+- verb (optional, owner O22): the combat action a contact performs, one its contact type takes in `combat_verbs`
+  (strike, deflect, throw ...); the Laban effort keeps its own words. A disarm names a prop, a catch and a throw a prop
+  or a body, never a surface (owner O93); a thrown prop has a sample with velocity at the throw (CONTACT_VERB).
+- A throw, or a release of a prop or a body, happens on its actor's key: an instant where a beat that lists the actor
+  starts (RELEASE_AT_POSE, owner O23). Mark it "at": "start", or end its beat where such a beat starts.
+
+Prop samples (owner O8)
+- prop_samples give a prop's position p at a time t inside its beat, with its velocity v at throws, releases and
+  deflects (v null while held), in metres and metres per second in the scene frame; float true marks a stylised
+  float with no gravity, anime only.
+- PROP_KINEMATICS: samples name declared props and sit inside their beat; a held prop stays within 2 m of its
+  holder's anchor; between two samples of a free prop with no contact on it in between, a moving prop follows gravity
+  from the first sample's velocity to the second position within 0.25 m, and a prop at rest does not move unless a
+  contact on it at the second sample picks it up or knocks it down. A contact between two samples moves a resting
+  prop only by taking hold of it (it is held at the second sample); any other move needs a sample at the contact's
+  instant. Two samples share a time only as a "pre" and a "post" pair at one position on a contact on that prop at
+  that instant; a free prop moving into a contact needs the pair (gravity is checked into the pre sample and out of
+  the post one). A substitution's decoy appears in its new place at the substitution's start (owners O12, O48): give
+  it a sample there.
+- A free prop at rest lies on a surface's top, within 0.1 m of its height, or a fact since its last hold places it (a
+  location, or worn: yes) (PROP_SUPPORT, owner O78).
+
+Causes
+- causes link this beat to another declared beat at the same time or later that it makes happen (BEAT_CAUSE,
+  CAUSE_TARGET); causes form no cycle (CAUSE_CYCLE); while causality is linear a beat has at most one outgoing cause
+  (CAUSE_BRANCHING).
+- hard: the later beat needs this beat's effect, so it starts at or after this beat ends (CAUSE_TIMING) and one of this
+  beat's effects matches one of its requirements: the same subject, property and value (CAUSE_EFFECT). soft: the later
+  beat starts at or after this beat starts (CAUSE_TIMING).
 - why: one sentence saying why the later beat follows (the threat, the purpose or the physical result), naming the
   performers or props involved; never a timeline ("leads into the next exchange") and never a label (CAUSE_REASON).
-- No filler: a beat that is not a hold must change state, make or end a contact, or cause or be caused by another beat.
-- event_type substitution: the actor swaps itself for a decoy and reappears elsewhere (kawarimi). Only a
-  substitution beat may move its actor faster than 25 m/s to its next position, and it must change a prop's
-  state (the decoy revealed, a smoke burst). Any other body faster than 25 m/s between beats is a teleport.
-- modes: an entity's mode must be one of its card modes; a mode change needs a beat that causes it.
-- Respect every constraint listed. Copy packet_sha256 into the plan. Do not invent ids, values or parts.
+
+Later steps measure what this plan places: S13 refuses two bodies that overlap at a shared key (BODY_OVERLAP) and a
+contact whose two points lie over 0.15 m apart (CONTACT_WORLD); S17 wants every strike on an impact frame
+(IMPACT_CONTACT_SYNC). Place the bodies and time the contacts with them in mind.

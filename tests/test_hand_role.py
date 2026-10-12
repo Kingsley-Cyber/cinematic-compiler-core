@@ -55,6 +55,15 @@ def test_each_rule_rejects_its_violation(code, change):
     assert code in codes(change)
 
 
+def test_the_support_hand_holds_or_touches_its_object():
+    beats = {b["id"]: b for b in PACKET["beats"]}
+    assert ["ugc_creator", "left_hand", "glasses"] not in beats["b03"]["held_at_start"]  # i02's support hand only touches
+    packet = copy.deepcopy(PACKET)
+    next(b for b in packet["beats"] if b["id"] == "b02")["held_at_start"].remove(["ugc_creator", "right_hand", "glasses"])
+    findings = p08_hand_role.check(PLAN, packet)  # F-137: i01's support hand now holds nothing and touches nothing
+    assert [(f["code"], f["slot"]) for f in findings] == [("HAND_ROLE_SWAP", "i01")] and "support hand" in findings[0]["message"]
+
+
 @pytest.mark.integration
 def test_s08_graph_scope_and_determinism(order):
     before = glasses("contact")
