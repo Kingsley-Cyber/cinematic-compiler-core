@@ -12,7 +12,7 @@ medium
 L5.5
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -65,3 +65,8 @@ Resolved again in RV-71b (S-070): the word lists gave way to the cards' structur
 Resolved again in RV-85 (S-073): the cards' words are read against their fields (F-187).
 Open in part again (S-090, principal review 7): the hit words F-210's fix built miss the fight's own hits (knee,
 elbow, palm, drive) and the floor refuses O92's own sentences; RV-99b carries it.
+Resolved again in S-092 (RV-99b): a rule speaks of a hit when it names a contact noun, a combat verb of
+library/combat_verbs.yaml (a throw aside), an attack on a body, or a striking part or a blade meeting something (the
+fight's palm, knee, elbow and kunai drive among them), and every floor word and camera term is read outside a
+negation, so O92's own sentences pass; review 7's phrasings and new ones of the class are refused and the library's
+cards pass (tests/test_camera_solver.py).

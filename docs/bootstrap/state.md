@@ -10,16 +10,16 @@ Layer order 1.7; rules 7.2; backlog 38.
 
 ## Last sessions
 
-- S-089 (applied): RV-59c: the floor between keys measured; B's crash needs a key mid-fall (F-220)
 - S-090 (applied): Principal review 7: does the finished work match the plan?
 - S-091 (applied): RV-59h: a landing is never airborne at its own instant
+- S-092 (applied): RV-99b: the camera floor finds a hit by what strikes, and reads a negation in every word
 
 ## Next slices
 
-- RV-99b (next, step camera): The camera floor's hit words from what the scene's contacts and planner/hits.py name (the knee, the elbow, the palm, the drive), a negation read in every floor word, the cards and O92's own sentences run against it
+- RV-95b (next, step motion): The pickups judged as drawn: the lean by the trunk vector and the twist against the limit (R-34), the knee and head bounds without slack, the ankle bound restored or asked, the words in the legend's frame, S-078's values pinned as hand choices
 - RV-35b (ready, step all): The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools
-- RV-95b (ready, step motion): The pickups judged as drawn: the lean by the trunk vector and the twist against the limit (R-34), the knee and head bounds without slack, the ankle bound restored or asked, the words in the legend's frame, S-078's values pinned as hand choices
 - RV-59f (ready, step motion): In-between keys (ADR-O109): one entity's pose at an instant between two of its keys, checked like a key, printed with its instant, placed by the re-block solver
+- RV-108 (ready, step motion): A declared turn drawn about its own axis by its net angle between keys (B's 8.5 tip), F-053's straight-Euler reading revised, the between-keys report re-measured
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -90,7 +90,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 148
+## Open findings: 145
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -126,14 +126,12 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-178 (high, all): No prompt can become deliverable: thirty checklist rows have no way to pass
 - F-179 (high, all): The done-gate has conditions no slice reaches
 - F-185 (high, L1.2): CAUSE_REASON passes sentences that state no cause
-- F-187 (high, L5.5): The camera check reads the cards' labels, not the words the prompt prints
 - F-189 (high, L1.1): The decoy is guessed by distance and may come from nowhere
 - F-196 (high, all): The substitution's decoy: who declares it, where it stands, who may substitute
 - F-197 (high, all): Hits and holds: what counts, how long, how wide, and which cuts hold
 - F-198 (high, all): Which checklist rows must pass for a prompt to be a deliverable
 - F-208 (high, L5.5): A static shot is framed at its keys only and loses the hit holds' bodies between them
 - F-209 (high, L5.5): VERTICAL_FRAMING refuses O21's opening, A above the frame
-- F-210 (high, L5.5): The camera rule check lets through what RV-60's word lists refused
 - F-215 (high, L4c): May a body point sit up to 0.15 m under the floor, or only by its radius?
 - F-216 (high, L1.1): Repo-authored fight defects outside the owner's questions
 - F-220 (high, L4c): By a contact the declared interpolation draws one body through the other, and B's crash through the floor
@@ -141,4 +139,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O110, finding F-230, session S-092, render R20.
+Decision ADR-O110, finding F-230, session S-093, render R20.

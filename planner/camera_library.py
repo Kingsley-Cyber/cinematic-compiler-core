@@ -59,28 +59,75 @@ TERMS = [
     ("playback", "freeze", r"\bfreeze(?:[- ]?frames?)?\b|\bfreezes\b|\bfrozen\b"),
     ("playback", "fast", r"\bfast[- ](?:motion|forward)\b|\bspeed(?:s|ed)? up\b|\bsped up\b|\bundercrank(?:ed|ing)?\b"),
 ]
-# F-210 (RV-99): a rule speaks of a hit when its words name what planner/hits.py counts as one: the nouns, the striking
-# verbs of the contacts' combat verbs (strike, deflect, parry; a catch of a body) and the attacks that land on a body
-# (interpretation, Claude's, for owner review: the list); "between hits" and a kick-off are not hits.
-HIT_WORDS = re.compile(r"\b(?:blows?|hits?|impacts?|strikes?|struck|contacts?|deflect(?:s|ed|ing)?|parr(?:y|ies|ied)|"
-                       r"catch(?:es)?|caught|kicks?(?![- ]off)|punch(?:es)?|slash(?:es)?|stabs?|chops?|jabs?|headbutts?)\b", re.I)
+# F-210 (RV-99b; owner O92): a rule speaks of a hit when its words name what planner/hits.py counts as one: a contact
+# noun, a combat verb of library/combat_verbs.yaml (a throw aside: it lets go), an attack on a body, or a striking part
+# or a blade meeting something (interpretation, Claude's, for owner review: the parts, the blades and the words of
+# meeting); "between hits" and a kick-off are not hits.
+CONTACT_NOUNS = r"blows?|hits?|impacts?|strikes?|struck|contacts?"
+ATTACKS = r"kicks?(?![- ]off)|punch(?:es)?|slash(?:es)?|stabs?|chops?|jabs?|headbutts?|uppercuts?"
+STRIKERS = (r"knees?|elbows?|palms?|fists?|knuckles|heels?|shins?|forearms?|kunai|blades?|knife|knives|swords?|daggers?|"
+            r"darts?|spears?|shuriken")
+MEETS = (r"lands?|landing|connect(?:s|ing|ed)?|meet(?:s|ing)?|drives?|driving|drove|sinks?|sinking|sank|slam(?:s|ming|med)?|"
+         r"smash(?:es|ing|ed)?|ram(?:s|ming|med)?|bur(?:y|ies|ying|ied)|plung(?:e|es|ing|ed)|pierc(?:e|es|ing|ed)|"
+         r"embed(?:s|ding|ded)?")
+BODY = r"spine|back|chest|ribs?|gut|stomach|belly|face|jaw|chin|shoulders?|side|body|head|neck|torso|throat|temple"
 BETWEEN_HITS = re.compile(r"\bbetween (?:blows|hits|impacts|strikes|contacts|exchanges|kicks|punches)\b", re.I)
-# F-210 (RV-99; owner O92): RV-60's word lists, kept as a floor under the fields on every rule a card prints (CAMERA_RULES
-# prints the card's rules word for word): slowed playback anywhere, a close-up or an insert on a hit.
+# F-210 (RV-99, RV-99b; owner O92): RV-60's word lists, kept as a floor under the fields on every rule a card prints
+# (CAMERA_RULES prints the card's rules word for word): slowed playback anywhere, a close-up or an insert on a hit.
 SLOWED = re.compile(r"\b(?:slow?[- ]?(?:motion|mo)|slowed|slows? down|slowing down|time slows|ramp(?:s|ed|ing)?|"
-                    r"freeze[- ]?frames?|freezes?|frozen|bullet[- ]time|half[- ]speed|overcrank(?:ed|ing)?)\b", re.I)
+                    r"freeze[- ]?frames?|freezes?|frozen|bullet[- ]time|(?:half|quarter|third)[- ]speed|"
+                    r"overcrank(?:ed|ing)?)\b", re.I)
 CLOSE = re.compile(r"\b(?:close[- ]?ups?|close|tight|ECUs?|macro|inserts?|detail shots?)\b", re.I)
-# a hit holds every body present, still (owner O92): words that frame one body or shake the camera; a negation ("no shaky
-# texture") is read as one
-SINGLE = re.compile(r"\b(?:alone|solely)\b|\bonly (?:on )?the (?:receiver|attacker|striker|defender|target|victim)\b|"
+# a hit holds every body present, still (owner O92): words that frame one body or shake the camera
+SINGLE = re.compile(r"\b(?:alone|solely)\b|\b(?:only|just) (?:on )?the (?:receiver|attacker|striker|defender|target|victim)\b|"
                     r"\bon the (?:receiver|attacker|striker|defender|target|victim)\b(?! and\b)", re.I)
-SHAKE = re.compile(r"(?<!\bno )(?<!\bnot )(?<!\bnever )(?<!\bwithout )\b(?:hand-?held|shak(?:e|es|y|ing)|jitter\w*|"
-                   r"wobbl\w*|judder\w*)\b", re.I)
+SHAKE = re.compile(r"\b(?:hand-?held|shak(?:e|es|y|ing)|jitter\w*|wobbl\w*|judder\w*|trembl\w*|rattl\w*|quak\w*)\b", re.I)
+# F-210 (RV-99b): a word is said unless a negation governs it: no, not, never, without, nor, avoid or "instead of"
+# before it in its clause (a clause ends at a comma, a stop, a colon, a semicolon or "but"), so O92's "No playback
+# ramps." and "Hits are holds, not inserts" ask for neither.
+NEGATION = re.compile(r"\b(?:no|not|never|without|nor|avoid(?:s|ed|ing)?|instead of)\b", re.I)
+CLAUSE = re.compile(r"[,.;:!?]|\bbut\b", re.I)
+
+
+def _forms(verb):
+    """A combat verb's forms ('parry': parry, parries, parried, parrying); 'bound' is left out (Laban's bound flow)."""
+    irregular = {"strike": ["struck"], "catch": ["caught"]}
+    if verb.endswith("y"):
+        forms = [verb, verb[:-1] + "ies", verb[:-1] + "ied", verb + "ing"]
+    elif verb.endswith("e"):
+        forms = [verb, verb + "s", verb + "d", verb[:-1] + "ing"]
+    elif verb.endswith(("ch", "sh")):
+        forms = [verb, verb + "es", verb + "ed", verb + "ing"]
+    elif re.search(r"[^aeiou][aeiou][bdgmnprt]$", verb) and len(verb) <= 4:
+        forms = [verb, verb + "s", verb + verb[-1] + "ed", verb + verb[-1] + "ing"]
+    else:
+        forms = [verb, verb + "s", verb + "ed", verb + "ing"]
+    return [form for form in forms + irregular.get(verb, []) if form not in ("binded", "striked", "catched")]
+
+
+@cache
+def hit_words():
+    """The pattern that finds a hit in a rule's words (F-210, RV-99b)."""
+    fields = library_vocab.load("combat_verbs")["fields"]
+    verbs = sorted({verb for field in fields.values() for verb in field["values"]} - {"throw"})
+    combat = "|".join(form for verb in verbs for form in _forms(verb))
+    return re.compile(rf"\b(?:{CONTACT_NOUNS}|{ATTACKS}|{combat})\b|\b(?:{STRIKERS})\b(?:\W+\w+){{0,3}}?\W+(?:{MEETS})\b|"
+                      rf"\b(?:{STRIKERS})\b(?:\W+\w+){{0,3}}?\W+into\W+(?:\w+\W+){{0,2}}?(?:{BODY})\b", re.I)
+
+
+def said(pattern, words):
+    """The first match of `pattern` (a pattern or its text) in `words` that no negation governs, else None."""
+    pattern = re.compile(pattern, re.I) if isinstance(pattern, str) else pattern
+    for found in pattern.finditer(words):
+        start = max((c.end() for c in CLAUSE.finditer(words, 0, found.start())), default=0)
+        if not NEGATION.search(words, start, found.start()):
+            return found
+    return None
 
 
 def terms(words):
-    """{(field, value)} the words ask for, read with TERMS (F-187)."""
-    return {(field, value) for field, value, pattern in TERMS if re.search(pattern, words, re.I)}
+    """{(field, value)} the words ask for, read with TERMS (F-187) outside a negation (RV-99b)."""
+    return {(field, value) for field, value, pattern in TERMS if said(pattern, words)}
 
 
 def rule_problems(rule, playback=("normal",)):
@@ -95,21 +142,22 @@ def rule_problems(rule, playback=("normal",)):
              "playback": fields["playback.treatment"]["values"]}
     impact = next(r["in"] for r in grammar()["intents"]["impact"] if r["field"] == "framing.scale")
     asks, problems = rule["asks"], []
-    said = rule.get("statement") or rule.get("prefer", "")  # what the prompt prints, or what the S16 author reads
-    for field, value in sorted(terms(said)):  # F-187 (RV-85): the words ask only what the fields ask
+    words_said = rule.get("statement") or rule.get("prefer", "")  # what the prompt prints, or what the S16 author reads
+    for field, value in sorted(terms(words_said)):  # F-187 (RV-85): the words ask only what the fields ask
         if value not in asks.get(field, []):
             problems.append(f"{rule['id']}: its words ask for {value} ({field}), which its fields do not")
     named = BETWEEN_HITS.sub("", " ".join(rule.get(key, "") for key in ("statement", "when", "prefer")))
-    on_a_hit = rule["trigger"] == "hit" or bool(HIT_WORDS.search(named))
-    if HIT_WORDS.search(named) and rule["trigger"] != "hit":  # a rule about a hit is held to O92 whatever its label
+    names_a_hit = bool(said(hit_words(), named))
+    on_a_hit = rule["trigger"] == "hit" or names_a_hit
+    if names_a_hit and rule["trigger"] != "hit":  # a rule about a hit is held to O92 whatever its label
         problems.append(f"{rule['id']}: its words speak of a hit, so its trigger is hit")
-    if SLOWED.search(said):  # F-210 (RV-99): RV-60's floor, whatever the fields say
+    if said(SLOWED, words_said):  # F-210 (RV-99, RV-99b): RV-60's floor, whatever the fields say
         problems.append(f"{rule['id']}: its words ask for slowed playback, which owner O92 struck (normal speed only)")
-    if on_a_hit and CLOSE.search(said):
+    if on_a_hit and said(CLOSE, words_said):
         problems.append(f"{rule['id']}: its words put a close-up or an insert on a hit, which owner O92 struck")
-    if on_a_hit and SINGLE.search(said):
+    if on_a_hit and said(SINGLE, words_said):
         problems.append(f"{rule['id']}: its words frame one body on a hit; a hit holds every body present (owner O92)")
-    if on_a_hit and SHAKE.search(said):
+    if on_a_hit and said(SHAKE, words_said):
         problems.append(f"{rule['id']}: its words shake the camera on a hit; a hit's hold is still (owner O92)")
     for key, known in words.items():
         problems += [f"{rule['id']}: {value} is no {key} of the grammar" for value in asks.get(key, []) if value not in known]

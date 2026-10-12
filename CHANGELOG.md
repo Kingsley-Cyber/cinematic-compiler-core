@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The camera floor finds a hit by what strikes (RV-99b, F-210, F-187, F-160, S-092): a combat verb of
+  library/combat_verbs.yaml, an attack, or a striking part or a blade meeting something (the fight's palm, knee,
+  elbow and kunai drive), and every floor word and camera term is read outside a negation, so O92's own sentences
+  ("No playback ramps.", "Hits are holds, not inserts.") pass; the library's cards pass unchanged.
 - A landing between keys is never excused as airborne (RV-59h, F-222, S-091): between keys the actor is airborne only
   when no support of its own is open just before the contact, and a support's onset never is; S-088's rule, which
   read the key before, excused a landing 1.2 m up. The S13 instructions say so and every motion plan re-bound.

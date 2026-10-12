@@ -167,6 +167,13 @@ be over the floor, the sole being the contact point (the foot is the shin's exte
 Added in S-085 (RV-99, planner/camera_library.py): the hit words (the nouns, the striking verbs, the attacks on a body),
 the words that frame one body (alone, solely, only or on the receiver, attacker, striker, defender, target, victim) and
 that shake a camera (handheld, shake, jitter, wobble, judder), a negation (no, not, never, without) read as one.
+Superseded in S-092 (RV-99b): a hit by a combat verb of library/combat_verbs.yaml (a throw aside), an attack (kick,
+punch, slash, stab, chop, jab, headbutt, uppercut), or a striking part or a blade (knee, elbow, palm, fist, knuckles,
+heel, shin, forearm; kunai, blade, knife, sword, dagger, dart, spear, shuriken) followed within three words by a word
+of meeting (lands, connects, meets, drives, sinks, slams, smashes, rams, buries, plunges, pierces, embeds) or by
+"into" and a body part; a negation (no, not, never, without, nor, avoid, instead of) governs the rest of its clause
+(to a comma, a stop, a colon, a semicolon or "but"); the slowed fractions, the trembling and rattling frame and
+"just the receiver" join the floor.
 Added in S-086 (RV-59a, solver/interpolation.py): the root runs straight between keys (its positions exact only
 there), the joints slerp as the source says, a declared turn's root angles run straight; at Y = 90 or -90 degrees the
 shared X and Z turn is read back as X; frames at the scene's fps, a vanished body's window left out; a span is the

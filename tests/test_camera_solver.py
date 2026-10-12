@@ -177,6 +177,50 @@ def test_a_negated_shake_is_read_as_one():
                                                    "still (owner O92)"]
 
 
+def test_the_floor_finds_a_hit_by_what_strikes():
+    """F-210 (RV-99b, owner O92): a rule speaks of a hit when a combat verb of library/combat_verbs.yaml, an attack, or a
+    striking part or a blade meeting something is named, so the fight's own hits (the palm, the knee, the elbow, the
+    kunai's drive) and phrasings of the same class are held to O92; RV-60's floor reads any slowed fraction, a
+    trembling frame and "just the receiver"."""
+    from planner import camera_library
+    rules = [("fast_move", "Cut to a close-up of the face as the knee lands on the spine.", {"scale": ["close"]}),
+             ("fast_move", "Cut to a close-up as the elbow drives into the chest.", {"scale": ["close"]}),
+             ("fast_move", "Go tight on the face as the palm connects.", {"scale": ["close"]}),
+             ("fast_move", "Cut to an insert of the kunai as it drives into the shoulder.", {"scale": ["insert"]}),
+             ("fast_move", "Cut to a close-up as the shuriken volley lands.", {"scale": ["close"]}),
+             ("fast_move", "Cut close as the fist sinks into the gut.", {"scale": ["close"]}),
+             ("fast_move", "An insert of the heel as it slams into the ribs.", {"scale": ["insert"]}),
+             ("fast_move", "Detail shot of a blade burying itself in the shoulder.", {"scale": ["insert"]}),
+             ("fast_move", "Push in as B parries the blade.", {"movement": ["dolly_in"]}),
+             ("any_cut", "Quarter-speed playback on the finishing move.", {}),
+             ("hit", "Hold medium on both fighters; the frame trembles on impact.",
+              {"scale": ["medium"], "movement": ["static"], "subjects": "all_present"}),
+             ("hit", "Hold medium with just the receiver in frame.", {"scale": ["medium"], "movement": ["static"],
+                                                                      "subjects": "all_present"})]
+    for trigger, statement, asks in rules:
+        assert camera_library.rule_problems({"id": "probe", "trigger": trigger, "statement": statement, "asks": asks}), statement
+    calm = [("fast_move", "Frontal medium on the palms, the ward filling the foreground plane.", {"scale": ["medium"]}),
+            ("fast_move", "Track the flyer as it lands on both feet.", {"movement": ["tracking"]})]
+    for trigger, statement, asks in calm:
+        assert camera_library.rule_problems({"id": "calm", "trigger": trigger, "statement": statement, "asks": asks}) == []
+
+
+def test_o92_s_own_words_pass_the_floor():
+    """F-210 (RV-99b, owner O92): a negation governs its clause, so O92's own sentences ask for no ramp and no insert and
+    pass as a hit rule's words; a negation does not reach past its clause."""
+    from planner import camera_library
+    o92 = {"id": "o92", "trigger": "hit", "statement": "Camera hold with both bodies in frame. No playback ramps. Hits are "
+           "holds, not inserts.", "asks": {"movement": ["static"], "subjects": "all_present"}}
+    assert camera_library.rule_problems(o92) == []
+    never = {"id": "never", "trigger": "hit", "statement": "Never cut to a close-up on a hit; no slow motion.",
+             "asks": {"movement": ["static"], "subjects": "all_present"}}
+    assert camera_library.rule_problems(never) == []
+    past_the_clause = {"id": "p", "trigger": "hit", "statement": "Cut to a close-up on each hit, no shake.",
+                       "asks": {"scale": ["close"], "movement": ["static"], "subjects": "all_present"}}
+    assert "p: its words put a close-up or an insert on a hit, which owner O92 struck" in \
+        camera_library.rule_problems(past_the_clause)
+
+
 def test_a_hit_from_the_contacts_is_a_camera_hold_at_s16():
     """F-155 (RV-57, owner O92): S16 sees the contacts, so the shot covering each hit holds still on every body present:
     the acrobat's kick lands on the wizard at 3.6 (HIT_HOLD)."""

@@ -102,9 +102,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 7.2; backlog 38.
-- Last session: S-091 (2026-10-12, applied): RV-59h: a landing is never airborne at its own instant.
-- Next slice: RV-99b The camera floor's hit words from what the scene's contacts and planner/hits.py name (the knee, the elbow, the palm, the drive), a negation read in every floor word, the cards and O92's own sentences run against it (step camera).
-- Open findings: 148; decisions: 136 (0 proposed, 7 owner_default awaiting the owner).
+- Last session: S-092 (2026-10-12, applied): RV-99b: the camera floor finds a hit by what strikes, and reads a negation in every word.
+- Next slice: RV-95b The pickups judged as drawn: the lean by the trunk vector and the twist against the limit (R-34), the knee and head bounds without slack, the ankle bound restored or asked, the words in the legend's frame, S-078's values pinned as hand choices (step motion).
+- Open findings: 145; decisions: 136 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

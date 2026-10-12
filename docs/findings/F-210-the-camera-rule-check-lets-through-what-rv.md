@@ -12,7 +12,7 @@ high
 L5.5
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -66,3 +66,8 @@ drives into the chest." pass, while the fight's own hits are the palm at 3.4, th
 the drive at 8.5 (planner/hits.py). The floor also refuses O92's own words ("No playback ramps.", "Hits are holds, not
 inserts"): a negation is read only for the shaking words. The proposed fix said "not a noun list". RV-99b carries it
 (with F-187 and F-160).
+Resolved again in S-092 (RV-99b): a rule speaks of a hit when it names a contact noun, a combat verb of
+library/combat_verbs.yaml (a throw aside), an attack on a body, or a striking part or a blade meeting something (the
+fight's palm, knee, elbow and kunai drive among them), and every floor word and camera term is read outside a
+negation, so O92's own sentences pass; review 7's phrasings and new ones of the class are refused and the library's
+cards pass (tests/test_camera_solver.py).
