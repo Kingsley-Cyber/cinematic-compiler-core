@@ -55,3 +55,6 @@ part's surface to the target's (tests/test_forward_kinematics.py::test_a_strike_
 B was re-blocked at 3.4, 3.7, 4.4, 4.7, 6.6, 8.5, 9.0 and 9.5, and the acrobat's kick at 3.6 in the wizard example
 (tests/test_forward_kinematics.py::test_every_example_keeps_its_bodies_apart). The second item, a body through a prop
 between keys, needs props to have an extent: F-151 (RV-54).
+Corrected in RV-46 (S-056, review 3): resolved for the key instants only; between keys the bodies still overlap
+(F-159, RV-59), and the surface measure sets aside O72's point measure without a ruling (F-152, the owner's
+question).

@@ -72,7 +72,8 @@ Predictions, made before the change:
   Level: covered (named with its slice).
 
 ## Duration
-about 1 hour
+about 12 minutes by the commit times (02:17 to 02:29); it read "about 1 hour" until RV-46
+(S-056) corrected it (F-166)
 
 ## Changes
 - examples/reference_fight/plans/temporal.json (b17: 6.6-6.8, catch and throw; b21: the kunai embedded at 8.5; the

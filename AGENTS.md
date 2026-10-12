@@ -1,6 +1,6 @@
 # AGENTS.md — The Agent Operating Manual
 
-<!-- docs-version: 2.3 -->
+<!-- docs-version: 2.4 -->
 
 > Before every session, read `AGENTS.md` fully — it is the map of this repo, not a suggestion — and follow its
 > nine-step session protocol exactly: read the five indexes, run `scripts/verify.sh`, pick one gap, confirm its layer
@@ -102,9 +102,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 7.0; backlog 23.
-- Last session: S-055 (2026-10-12, applied): RV-45: each slice's records: a self-audit section, typed deviation IDs, interpretations labelled.
-- Next slice: RV-46 Stale records corrected; F-015, F-052 and F-054 assigned; the track test keeps its claim (step docs).
-- Open findings: 104; decisions: 135 (0 proposed).
+- Last session: S-056 (2026-10-12, applied): RV-46: the stale and overclaimed records corrected; the owner's waiting list complete.
+- Next slice: RV-48 Latent checks: throws and releases at their pose, a vanished body never touched, a resting prop moved only with a sample, the first location, S08's support hand; the S04 prompt rewritten; the 6.6 throw on its pose (step temporal).
+- Open findings: 102; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
@@ -113,6 +113,12 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 ## 7. Open rulings
 
 <!-- BEGIN GENERATED: rulings -->
+- ADR-O67 (owner_default, confirm or strike): Docs-plane defaults
+- ADR-O103 (owner_default, confirm or strike): At 0.6 A's hips keep the crouch: O88's flip there would break its own row
+- ADR-O104 (owner_default, confirm or strike): "Genuine airborne or prop-moving misses" are contacts measured between keys or samples
+- ADR-O105 (owner_default, confirm or strike): B's kunai leaves the hand once, at the 2.0 throw
+- ADR-O106 (owner_default, confirm or strike): Version bumps follow docs/versioning.md as written
+- ADR-O108 (owner_default, confirm or strike): The deflected kunai goes down to the ground on B's side, not at B
 - F-051 (low): Draft library cards await owner review
 - F-052 (low): Kernel scope numbers await owner review
 - F-053 (medium): Claude's interpretations await owner review
@@ -135,6 +141,7 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - F-152 (high): O72's point measure and BODY_OVERLAP cannot both hold for body contacts
 - F-153 (high): No compile can ever emit: render.txt cannot pass the Master Template rows
 - F-154 (medium): Owner_default ADRs taken under O101 are counted as rulings the owner has not seen
+- F-168 (low): The pre-commit gate waits for the owner's `make hooks`
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog RV-13b blocked: Every prompt fits the caps (O97) — the owner's answers in F-088
 - Backlog RV-20 blocked: Authoring prompts teach their steps' checks; external_inputs complete — an accepted ADR for the layer-order edit (R-09)
@@ -266,12 +273,14 @@ When `scripts/verify.sh` fails:
 - [ ] `scripts/verify.sh` and `make golden` pass; predictions reported
 - [ ] Backlog, findings, CHANGELOG and session file updated; `make docs` run
 - [ ] Self-audit run (`/self-audit`); its verdict, evidence and wrong claims reported to the owner
-- [ ] One commit, `[S-NNN]` in the message; nothing pushed without the owner
+- [ ] One commit, `[S-NNN]` in the message; nothing pushed without the owner's word (a finish run the owner started
+      has it for each slice that clears its gate, its self-audit and the hygiene scan, R-03)
 
 ## 18. Anti reward hacking
 
 The owner's clause, word for word (ADR-O100, 2026-10-11). It binds every session alongside the no-shortcuts
-principle (docs/prompts/no_shortcuts.md). How it meets rule R-33 is an open question for the owner (F-119).
+principle (docs/prompts/no_shortcuts.md). How it meets rule R-33 the owner answered (F-119): a test changes only
+where a ruling or the plan's intent moves the data it pins, each change recorded (ADR-O102, confirmed in ADR-O107).
 
 ```text
 <anti_reward_hacking>

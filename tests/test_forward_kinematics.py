@@ -146,7 +146,8 @@ def test_no_body_passes_through_another():
 
 
 def test_every_example_keeps_its_bodies_apart():
-    """RV-49 (F-144): after the re-blocks no two bodies overlap at any instant in any example."""
+    """RV-49 (F-144): after the re-blocks no two bodies overlap at an instant where both have a key, in any example;
+    between keys they still do (F-159, RV-59)."""
     for name in ("wizard_vs_acrobat", "live_action_standoff", "ugc_glasses_demo", "reference_fight"):
         envelope = _envelope(name)
         genre = envelope["scene"]["genre"]

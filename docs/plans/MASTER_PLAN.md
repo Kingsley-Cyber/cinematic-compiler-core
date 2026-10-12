@@ -174,7 +174,8 @@ P3.2-6 PRESERVE_AXIS (S16's 180-degree rule) is settled: the rule stays (ADR-O53
 - [x] S06.2 `schemas/graphs/state_graph.schema.json`: entity-state node per entity per beat
   `{id, subject, beat, t, pos, facing, conditions{property: value|unknown}}` (pos/facing copied from S04); transition
   `{id, from_state, to_state, trigger_event}`. Log.
-- [x] S06.3 `solver/prop_state_machine.py`: replay — `requires` read at `t`, `effects` commit at `t + dur`;
+- [x] S06.3 `solver/prop_state_machine.py`: replay — `requires` read at `t`, `effects` commit at `t + dur` (since
+  RV-08 a change of hands at its possess or release, since RV-07 an effect marked `at: start` at `t`);
   initial value only from a first `requires`, else `unknown`; same-time conflicting effects rejected.
 - [x] S06.4 `compiler/passes/mandatory/p06_state.py` + `validators/continuity_validator.py`: no teleport (location
   changes only through an effect), no clone, no disappearance. Tests: each failure.

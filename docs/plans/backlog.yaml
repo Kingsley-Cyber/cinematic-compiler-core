@@ -94,9 +94,9 @@ items:
      step: render, plan: PLAN-007, depends_on: [], findings: [F-087], codes: []}
   - {id: RV-45, title: "Each slice's records: a self-audit section, interpretations labelled, typed deviation IDs, commit IDs", status: done,
      step: docs, plan: PLAN-007, depends_on: [], findings: [F-128, F-166], codes: []}
-  - {id: RV-46, title: "Stale records corrected; F-015, F-052 and F-054 assigned; the track test keeps its claim", status: next,
+  - {id: RV-46, title: "Stale records corrected; F-015, F-052 and F-054 assigned; the track test keeps its claim", status: done,
      step: docs, plan: PLAN-007, depends_on: [], findings: [F-130, F-140, F-166, F-154], codes: []}
-  - {id: RV-48, title: "Latent checks: throws and releases at their pose, a vanished body never touched, a resting prop moved only with a sample, the first location, S08's support hand; the S04 prompt rewritten; the 6.6 throw on its pose", status: ready,
+  - {id: RV-48, title: "Latent checks: throws and releases at their pose, a vanished body never touched, a resting prop moved only with a sample, the first location, S08's support hand; the S04 prompt rewritten; the 6.6 throw on its pose", status: next,
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-135, F-136, F-137, F-138, F-139, F-158, F-162], codes: [RELEASE_AT_POSE]}
   - {id: RV-60, title: "The camera cards' rules follow O92: no close-up after a blow, no slowed playback; the printed camera rules checked", status: ready,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-160], codes: []}

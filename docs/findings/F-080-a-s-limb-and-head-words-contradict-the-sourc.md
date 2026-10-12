@@ -50,3 +50,5 @@ ADR-O88
 RV-05 (S-038, O88): 19 limb flips and 13 head flips in A's rows; A's printed limb words agree with the source's
 fwd/back on 86 of 88 and no A line prints a head tipped back; the two hips at 0.6 keep their crouch (ADR-O103); each
 flip recorded in tests/test_reference_fight_golden.py (WORD_FLIPS, HEAD_FLIPS).
+Corrected in RV-46 (S-056, review 3): the 13 head flips are in the numbers, but every A head line prints
+"forward-high" (F-129), and the frame head and limb words are read in waits for the owner (F-111, with ADR-O103).

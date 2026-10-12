@@ -54,3 +54,7 @@ performer holds); B's hands take A's left arm at 6.6 (possess, catch) and let go
 6.6-6.8. Neither prints as an instant strike (tests/test_reference_fight_golden.py
 ::test_the_kunai_drive_holds_the_kunai_in_b_and_the_catch_grasps_then_throws). A's right hand stays 0.6 to 0.7 m above
 the kunai at 8.5 and 9.0-10 under the source's own arm numbers: F-148, the owner's question.
+Corrected in RV-46 (S-056, review 3): "A's right hand keeps it" holds for the holder only: the hand is 0.66, 0.70
+and 0.87 m from the kunai at 8.5, 9.0 and 9.5 under the source's own arm numbers (F-148, the owner's question), and the
+kunai sits on B's torso point, 0.21 m from the right shoulder joint, where the measure reads it (F-165, RV-27). The
+catch's release at 6.8 sits off its pose against O23 (F-158, RV-48).

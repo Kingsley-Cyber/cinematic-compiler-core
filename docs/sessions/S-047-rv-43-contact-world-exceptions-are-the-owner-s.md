@@ -54,7 +54,8 @@ Predictions, made before the change:
 - D4 — Every example re-bound: S13's packet now carries the list (empty outside the reference fight). Level: covered.
 
 ## Duration
-about 40 minutes
+about 6 minutes by the commit times (01:02 to 01:07); it read "about 40 minutes" until RV-46
+(S-056) corrected it (F-166)
 
 ## Changes
 - kernel/contact_world_exceptions.yaml (new; kernel log); kernel/schema_log.py (the kernel log covers it)

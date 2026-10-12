@@ -1,9 +1,9 @@
 # The owner's CONTACT_WORLD exceptions (ADR-O83 point 2; F-123, RV-43): a contact whose miss over 0.15 m S13 does not
 # refuse because both its sides are the owner's source rows. Only the owner's rulings add entries; the S13 author
 # cannot list one (schemas/graphs/motion_plan.schema.json 2.0). A scene is named by the sha256 of its query.
-version: 1
+version: 2
 status: draft
-basis: "Owner ADR-O83 point 2 and the owner's M9-06b words (S-030): 'keep the source misses as exceptions (calibrated to the anime body)'."
+basis: "Owner ADR-O83 point 2 and the owner's M9-06b words (S-030): 'keep the source misses as exceptions (calibrated to the trunk reading)'."
 exceptions:
   - scene: reference_fight
     query_sha256: "082ea619e0226b5bd0d008e19c18164920c00e50cff47bddeecc85d9cad58865"

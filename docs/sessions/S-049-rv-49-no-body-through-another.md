@@ -75,7 +75,8 @@ kind F-128 names):
   version is not reused); this slice's 22 is for RV-54's new item. Level: covered.
 
 ## Duration
-about 2 hours (the re-block solves took about 10 minutes of it)
+about 33 minutes by the commit times (01:25 to 01:59); it read "about 2 hours (the re-block solves took about 10 minutes of it)" until RV-46
+(S-056) corrected it (F-166)
 
 ## Changes
 - library/body_segments.yaml 5 (radii), schemas/cards/body_segments.schema.json 3.1; solver/forward_kinematics.py

@@ -12,7 +12,7 @@ low
 all
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -44,4 +44,6 @@ none needed (ADR-O102)
 - F-077
 
 ## Resolution
-Open.
+RV-46 (S-056): tests/test_prop_track.py::test_a_place_set_before_a_hold_does_not_outlive_it shows its claim again
+on the reference kunai (at rest on the ground 2.72-8.0, then held by A, while S06 still names the ground); the glasses'
+pins moved to their own test.

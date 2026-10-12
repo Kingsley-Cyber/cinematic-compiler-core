@@ -85,7 +85,8 @@ def markdown(all_rows):
              "library/body_segments.yaml (draft). A miss is a distance over 0.15 m between the actor's point and the target's",
              "at the contact's instant; CONTACT_WORLD (S13) refuses it unless it is a genuine artefact (a point interpolated",
              "between keys or samples while the actor is airborne or the prop moves: O89, ADR-O104; reported) or a source row",
-             "the motion plan lists with its reason (ADR-O83). A's rows at 0.6, 7.5 and 8.0 count as repo-authored (their roots",
+             "the owner's exception list keeps with its reason (kernel/contact_world_exceptions.yaml; ADR-O83, RV-43).",
+             "A's rows at 0.6, 7.5 and 8.0 count as repo-authored (their roots",
              "are the repo's: O21, O18). Likely causes are a heuristic (validators/contact_world_report.py).", "",
              f"Measured {len(measured)} contacts: {len(measured) - len(misses)} within 0.15 m, {len(misses)} misses; "
              f"{len(all_rows) - len(measured)} not measurable.", ""]

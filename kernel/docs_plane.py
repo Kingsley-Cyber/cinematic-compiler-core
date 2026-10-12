@@ -315,9 +315,13 @@ def blocks(root=ROOT):
     decisions = items("decisions", root)
     findings = items("findings", root)
     proposed = [d for d in decisions if value(d, "Status") == "proposed"]
+    # RV-46 (F-154): an owner_default ADR the owner has not confirmed waits for him too (R-06, R-28)
+    unconfirmed = [d for d in decisions if value(d, "Status") == "accepted" and value(d, "Decided By") == "owner_default"]
     questions = [f for f in findings if value(f, "Type") == "question" and value(f, "Status") not in CLOSED]
     blocked = [i for i in data["items"] if i["status"] == "blocked"]
     rulings = ([f"- {d['id']} (proposed): {d['title']}" for d in proposed]
+               + [f"- {d['id']} (owner_default, confirm or strike): {d['title']}"
+                  for d in sorted(unconfirmed, key=lambda d: _sort_key(d["id"]))]
                + [f"- {f['id']} ({value(f, 'Severity')}): {f['title']}" for f in questions]
                + [f"- Backlog {i['id']} blocked: {i['title']} — {i.get('blocked_by', 'see the item')}" for i in blocked])
     state = [f"- Layer order {order['version']}; rules {rules['version']}; backlog {data['version']}.",
@@ -325,7 +329,7 @@ def blocks(root=ROOT):
              if last else "- No session recorded yet.",
              "- Next slice: " + ("; ".join(f"{i['id']} {i['title']} (step {i['step']})" for i in nxt) or "none") + ".",
              f"- Open findings: {sum(value(f, 'Status') not in CLOSED for f in findings)}; decisions: {len(decisions)} "
-             f"({len(proposed)} proposed)."]
+             f"({len(proposed)} proposed, {len(unconfirmed)} owner_default awaiting the owner)."]
     return {
         "layer_order": f"{chain}\n\nFull table: [docs/layer_order.md](docs/layer_order.md).\n",
         "rules": "\n".join(f"- **{r['id']}** {r['rule']}" for r in rules["rules"]) + "\n\nWith sources and enforcement: "

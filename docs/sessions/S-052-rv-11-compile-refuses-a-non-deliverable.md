@@ -53,7 +53,8 @@ Predictions, made before the change:
 - D5 — R-19 takes O94 (rules 7.0) and names cli/main.py among its enforcers. Level: covered (owner O94).
 
 ## Duration
-about 30 minutes
+about 6 minutes by the commit times (02:29 to 02:36); it read "about 30 minutes" until RV-46
+(S-056) corrected it (F-166)
 
 ## Changes
 - validators/checklist.py (excluded rows N/A, `judge_prompts`, `refusals`), cli/main.py (exit 5)

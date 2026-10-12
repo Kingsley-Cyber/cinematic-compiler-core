@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The records corrected (RV-46, F-130, F-140, F-166, S-056): the owner lists name every owner_default ADR awaiting
+  confirmation and the pre-commit hook (F-168); overclaims and stale lines corrected at their files (this CHANGELOG's
+  RV-09, RV-10 and RV-42 lines among them); the sessions' Duration by the commit times; the track test shows its claim
+  again.
 - Each slice's records (RV-45, F-128, S-055): from S-055 an applied session records its self-audit or the docs plane
   refuses it; the session template (3.0) asks for the predictions' clock time and labels choices no ruling makes as
   interpretations, which F-053 lists; the golden's records are typed deviations DEV-01 to DEV-28, each with its ADRs
@@ -18,12 +22,15 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
   and the checklist on every prompt it emits and exits 5, writing nothing, unless all five are deliverables; a row the
   DAG excludes is N/A unless a code checks it. R-19 says so (rules 7.0). No prompt is a deliverable yet.
 - The kunai drive and the catch (RV-10, O93, F-084, S-051): from 8.5 the kunai is embedded in B's shoulder to the end,
-  its samples on B's torso point, while A's right hand keeps it; B's hands take A's left arm at 6.6 and throw A at 6.8.
+  its samples on B's torso point (the shoulder has no part of its own; F-165), while A stays its holder, though A's
+  right hand is 0.66-0.87 m off it under the source's own arm numbers (F-148); B's hands take A's left arm at 6.6 and
+  throw A at 6.8, off its pose against O23 (F-158; corrected in RV-48).
   Neither prints as an instant strike: a body struck by a blade another holds is not striking, and a catch's hold
   counts as the contact on its impact frame (IMPACT_CONTACT_SYNC at S17 and in the prompt). CONTACT_VERB lets a catch
   and a throw name a body (combat verbs 2).
 - Hits are camera holds (RV-09, O92, F-083, F-005, S-050): the hits at 2.5, 4.7 and 8.5 are static holds with both
-  fighters in frame at 35 mm, no insert, no slow motion; no shot changes playback speed. S16 refuses a slowed shot
+  fighters named in frame at 35 mm (checked across the frame only: the camera aims above them, F-090, RV-15; and only
+  where S17 placed a hold, F-155), no insert, no slow motion; no shot changes playback speed. S16 refuses a slowed shot
   (PLAYBACK_RAMP), S17 a hit that is no camera hold on the bodies (HIT_HOLD), and the prompt checks both. The camera
   grammar's impact intent follows O92 (2); R-21 adds it (rules 6.0). The source's lenses are kept (fov45 at 0; the push
   in at fov35 from 9.5, its own shot). The wizard example's kick and landing are holds too.
@@ -42,7 +49,8 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
   `contact_world_exceptions` field (motion_plan 2.0), so an authored exception fails the schema. Every example re-bound.
 - The deflect has one reading (RV-42, ADR-O108, F-122, S-046): the deflected kunai goes down to the ground on B's
   side, not at B; a prop track names a goal only where the prop's path reaches that performer; PROMPT_CONTRADICTION
-  refuses "toward X" where the prompt says "NOT toward X". S-043's records corrected.
+  refuses "toward X" in a prop's track where the prompt says "NOT toward X" (render.txt's A row at 2.5 still keeps the
+  source's "(toward B and ground)", F-166). S-043's records corrected.
 - Principal review 2 (S-045, finish.md section 6): five read-only reviewers, verdict "partially"; their gaps filed as
   F-120 to F-150 with slices RV-42 to RV-53. The owner confirmed ADR-O102 and per-slice pushes (ADR-O107); rules 5.0
   (R-03, R-06, R-30) and finish.md 2.0 record it, and a question that would set aside an owner ruling or invariant now

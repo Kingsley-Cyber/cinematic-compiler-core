@@ -60,3 +60,6 @@ lenses are kept: fov45 at 0 and the slow push in at fov35 from 9.5, now its own 
 tests/test_render.py::test_a_hit_is_a_camera_hold_on_the_bodies,
 tests/test_prose_render.py::test_hits_are_camera_holds_and_nothing_plays_slow,
 tests/test_reference_fight_golden.py::test_the_hits_are_held_and_the_source_lenses_kept.
+Corrected in RV-46 (S-056, review 3): HIT_HOLD judges only the holds S17 placed (F-155, RV-57); "both fighters in
+frame" is checked across the frame only, with the camera aimed above them (F-090, RV-15); the camera cards still print
+"cut close" and "slow motion" (F-160, RV-60).

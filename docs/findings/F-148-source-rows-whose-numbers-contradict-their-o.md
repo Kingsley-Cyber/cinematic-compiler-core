@@ -38,7 +38,7 @@ Question: bring these rows' numbers to their words, as O18 did for the pickups, 
 The prompt tells the model two things at once on these rows.
 
 ## Proposed Fix
-Waits for the owner (it sets aside the source's numbers, R-06); then RV-51.
+Waits for the owner (it sets aside the source's numbers, R-06); then RV-53.
 
 ## Owner Ruling
 the question open

@@ -1,6 +1,6 @@
 # For the owner: this repo in plain English
 
-<!-- docs-version: 1.0 -->
+<!-- docs-version: 1.1 -->
 
 You don't need to read code to audit this repo. This page explains what it does, where every answer lives, what each
 technical word means, and what is waiting for you.
@@ -22,7 +22,7 @@ done only when every row that applies passes. Claude never renders; you render, 
 | What is being built, in what order? | [plan.md](plan.md) (the work queue) and [index/plans.md](index/plans.md) |
 | What did each session do? | [index/sessions.md](index/sessions.md) |
 | What did each render show? | [index/renders.md](index/renders.md): your words, Claude's notes kept apart |
-| What are the rules? | [rules.md](rules.md): 30 rules, each with the ruling it comes from |
+| What are the rules? | [rules.md](rules.md): every rule, each with the ruling it comes from |
 | In what order are the layers built? | [layer_order.md](layer_order.md) |
 | How do agents work here? | [AGENTS.md](../AGENTS.md) |
 | Who may change what? | [ownership.md](ownership.md) |
@@ -30,6 +30,12 @@ done only when every row that applies passes. Claude never renders; you render, 
 ## What waits for you
 
 <!-- BEGIN GENERATED: owner_rulings -->
+- ADR-O67 (owner_default, confirm or strike): Docs-plane defaults
+- ADR-O103 (owner_default, confirm or strike): At 0.6 A's hips keep the crouch: O88's flip there would break its own row
+- ADR-O104 (owner_default, confirm or strike): "Genuine airborne or prop-moving misses" are contacts measured between keys or samples
+- ADR-O105 (owner_default, confirm or strike): B's kunai leaves the hand once, at the 2.0 throw
+- ADR-O106 (owner_default, confirm or strike): Version bumps follow docs/versioning.md as written
+- ADR-O108 (owner_default, confirm or strike): The deflected kunai goes down to the ground on B's side, not at B
 - F-051 (low): Draft library cards await owner review
 - F-052 (low): Kernel scope numbers await owner review
 - F-053 (medium): Claude's interpretations await owner review
@@ -52,6 +58,7 @@ done only when every row that applies passes. Claude never renders; you render, 
 - F-152 (high): O72's point measure and BODY_OVERLAP cannot both hold for body contacts
 - F-153 (high): No compile can ever emit: render.txt cannot pass the Master Template rows
 - F-154 (medium): Owner_default ADRs taken under O101 are counted as rulings the owner has not seen
+- F-168 (low): The pre-commit gate waits for the owner's `make hooks`
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog RV-13b blocked: Every prompt fits the caps (O97) — the owner's answers in F-088
 - Backlog RV-20 blocked: Authoring prompts teach their steps' checks; external_inputs complete — an accepted ADR for the layer-order edit (R-09)
@@ -105,7 +112,7 @@ changes one, and the lists above update. You can also write the ADR yourself fro
 | Envelope | The one data file the compiler builds for a scene, holding every step's output. |
 | Euler angles | A rotation written as three angles (X, Y, Z) in degrees. Flips turn about X, spins about Y, cartwheels about Z. |
 | Finding | Something discovered (a bug, gap, question...), one file each in docs/findings/. |
-| Forward kinematics | Working out where a hand or foot is in the world from the joint angles. Planned (backlog M9-06). |
+| Forward kinematics | Working out where a hand or foot is in the world from the joint angles. Built at S13 (M9-06, S-027). |
 | Gate / verifier | `scripts/verify.sh`: lint, tests, logs, examples, docs. It runs before every commit and in CI. |
 | Golden | The reference fight that must compile exactly from your LBN reference prompt, apart from recorded deviations you approved. |
 | graft / graphify | Code-map tools the agent uses before reading files, to save time and tokens. |

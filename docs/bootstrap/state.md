@@ -10,21 +10,27 @@ Layer order 1.7; rules 7.0; backlog 23.
 
 ## Last sessions
 
-- S-053 (applied): RV-12: the 6.3 cartwheel is a full turn in the words too (O96)
 - S-054 (applied): Principal review 3: five read-only reviewers, their gaps filed as F-152 to F-167
 - S-055 (applied): RV-45: each slice's records: a self-audit section, typed deviation IDs, interpretations labelled
+- S-056 (applied): RV-46: the stale and overclaimed records corrected; the owner's waiting list complete
 
 ## Next slices
 
-- RV-46 (next, step docs): Stale records corrected; F-015, F-052 and F-054 assigned; the track test keeps its claim
-- RV-48 (ready, step temporal): Latent checks: throws and releases at their pose, a vanished body never touched, a resting prop moved only with a sample, the first location, S08's support hand; the S04 prompt rewritten; the 6.6 throw on its pose
+- RV-48 (next, step temporal): Latent checks: throws and releases at their pose, a vanished body never touched, a resting prop moved only with a sample, the first location, S08's support hand; the S04 prompt rewritten; the 6.6 throw on its pose
 - RV-60 (ready, step camera): The camera cards' rules follow O92: no close-up after a blow, no slowed playback; the printed camera rules checked
 - RV-61 (ready, step affordance): S10 reads the state before the beat's own effects; S09 carries each change's instant
+- RV-62 (ready, step render): The vanishing actor's line prints no support into the vanish; the volley is drawn into B's hand before 5.5
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
 ## Waiting on the owner
 
+- ADR-O67 (owner_default, confirm or strike): Docs-plane defaults
+- ADR-O103 (owner_default, confirm or strike): At 0.6 A's hips keep the crouch: O88's flip there would break its own row
+- ADR-O104 (owner_default, confirm or strike): "Genuine airborne or prop-moving misses" are contacts measured between keys or samples
+- ADR-O105 (owner_default, confirm or strike): B's kunai leaves the hand once, at the 2.0 throw
+- ADR-O106 (owner_default, confirm or strike): Version bumps follow docs/versioning.md as written
+- ADR-O108 (owner_default, confirm or strike): The deflected kunai goes down to the ground on B's side, not at B
 - F-051 (low): Draft library cards await owner review
 - F-052 (low): Kernel scope numbers await owner review
 - F-053 (medium): Claude's interpretations await owner review
@@ -47,6 +53,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-152 (high): O72's point measure and BODY_OVERLAP cannot both hold for body contacts
 - F-153 (high): No compile can ever emit: render.txt cannot pass the Master Template rows
 - F-154 (medium): Owner_default ADRs taken under O101 are counted as rulings the owner has not seen
+- F-168 (low): The pre-commit gate waits for the owner's `make hooks`
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog RV-13b blocked: Every prompt fits the caps (O97) — the owner's answers in F-088
 - Backlog RV-20 blocked: Authoring prompts teach their steps' checks; external_inputs complete — an accepted ADR for the layer-order edit (R-09)
@@ -61,7 +68,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 104
+## Open findings: 102
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -92,4 +99,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-168, session S-056, render R20.
+Decision ADR-O109, finding F-169, session S-057, render R20.

@@ -61,7 +61,8 @@ medium_wide and the torso (8.5) a medium; the checklist moves only where a promp
   resolved; F-015 (the deflect's wording) stays open. Level: covered.
 
 ## Duration
-about 1.5 hours
+about 18 minutes by the commit times (01:59 to 02:17); it read "about 1.5 hours" until RV-46
+(S-056) corrected it (F-166)
 
 ## Changes
 - validators/camera_validator.py (PLAYBACK_RAMP), compiler/passes/derived/p17_render.py (HIT_HOLD),

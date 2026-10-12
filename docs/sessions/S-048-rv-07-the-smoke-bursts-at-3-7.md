@@ -64,7 +64,8 @@ Predictions, made before the change:
   by B R hand". Level: covered (no change).
 
 ## Duration
-about 50 minutes
+about 18 minutes by the commit times (01:07 to 01:25); it read "about 50 minutes" until RV-46
+(S-056) corrected it (F-166)
 
 ## Changes
 - schemas/beat.schema.json 1.3 (Effect), embedded in beat_plan 1.6 and temporal_graph 1.6 (kernel/shared_schemas.py,

@@ -60,3 +60,6 @@ two points lie over 0.15 m apart (solver/contact_world.py `refusals`), except an
 row the motion plan lists with its reason; the prompt prints both points (validators/prompt_validator.py
 `_world_checks`). The repo-authored side of each real miss was re-blocked (R-33): 24 of 33 meet, one source miss is
 excepted (3.00, A's right foot), eight artefacts are reported (docs/reports/2026-10-11-contact-world-after-m9-06b.md).
+Since: 31 of 33 meet after RV-02a (S-039), the two left are the owner's list (kernel/contact_world_exceptions.yaml,
+RV-43), no contact is exempt as an artefact at an exact instant (ADR-O104), and since RV-49 (S-049) a contact
+between two bodies is measured surface to surface (F-152, the owner's question). Corrected in RV-46 (S-056).

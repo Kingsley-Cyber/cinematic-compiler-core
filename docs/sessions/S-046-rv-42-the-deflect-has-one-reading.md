@@ -58,7 +58,8 @@ Predictions, made before the change:
   per code. Level: covered.
 
 ## Duration
-about 40 minutes
+about 6 minutes by the commit times (00:55 to 01:02); it read "about 40 minutes" until RV-46
+(S-056) corrected it (F-166)
 
 ## Changes
 - renderers/prop_samples.py (`bodies`, `reaches`, `motion_words`), validators/prompt_validator.py (the NOT-toward check)

@@ -22,6 +22,7 @@ F-083: the hits at 2.5, 4.7 and 8.5 were 85 mm slow-motion smash-cut inserts and
 
 ## Consequences
 - Backlog RV-09: the three hits are camera holds framing both bodies; no playback speed change in the clip; S16 checks HIT_HOLD and PLAYBACK_RAMP.
+- As built (S-050): PLAYBACK_RAMP at S16 and in the prompt; HIT_HOLD at S17 and in the prompt, judging the holds S17 places on impact frames; F-155 (RV-57) moves it to the hits found from the contacts, at S16 (RV-46, S-056).
 
 ## Alternatives Considered
 - —

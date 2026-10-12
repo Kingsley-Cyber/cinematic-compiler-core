@@ -25,6 +25,17 @@ def test_the_kunai_is_somewhere_every_moment():
 
 
 def test_a_place_set_before_a_hold_does_not_outlive_it():
+    """F-140 (RV-46): the kunai rests on the ground from 2.72 (its location set at 3.0) and A holds it from 8.0; the track
+    says the hold from 8.0, not the ground S06 still names (F-106, RV-31)."""
+    envelope = _envelope("reference_fight")
+    spans = prop_samples.track(envelope, envelope["nodes"]["render"]["items"][0]["labels"], "kunai")
+    assert spans[-2] == (2.72, 8.0, "rest", "at rest on the ground at [1.4, 0, 3.77]")
+    assert spans[-1] == (8.0, 10, "held", "held by A R hand")
+    states = {s["id"]: s["conditions"] for s in envelope["nodes"]["states"]["items"]}
+    assert states["kunai@b21"]["location"] == "ground"
+
+
+def test_the_glasses_are_held_from_the_first_frame_and_worn_at_the_end():
     envelope = _envelope("ugc_glasses_demo")
     spans = prop_samples.track(envelope, envelope["nodes"]["render"]["items"][0]["labels"], "glasses")
     assert spans[0][3] == "held by A R hand"            # taken on the tabletop at the first frame (RV-03, F-077, R-17)

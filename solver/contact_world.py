@@ -4,8 +4,9 @@ For each touch, hold and support: the actor's point (the S13 key at the contact'
 kinematics) and the target's point (a prop's sample at that instant; a surface's top, vertically; another body's
 surface, from its own key: the nearest point of the named part's capsules, the torso when none is named), and the
 distance between them; between two bodies it runs from surface to surface, the actor's part carrying its segment's
-radius (RV-49, F-144: a strike is measured to the target's surface, and BODY_OVERLAP refuses one inside it). Flags mark
-the owner's measurement artefacts: the actor airborne, the actor's key turning, the prop moving at the instant. A
+radius (RV-49, F-144: a strike is measured to the target's surface, and BODY_OVERLAP refuses one inside it; F-152 asks
+the owner whether O72's point measure or this one holds). Flags mark the conditions ADR-O83 named for a measurement
+artefact: the actor airborne, the actor's key turning, the prop moving at the instant. A
 contact with no key at its instant, a prop with no sample there, or a surface with no top (a wall, a pillar's face; a
 touch on any surface but a floor) is not measurable. `measure` reads an envelope (the report, the prose);
 `measure_plan` reads S13's packet and its authored keys (the check). CONTACT_WORLD (ADR-O83, O89) refuses a

@@ -43,4 +43,5 @@ none needed
 - docs/reports/2026-10-11-renders-and-dag-adherence.md section 3
 
 ## Resolution
-Open: no code catches it yet.
+Open: no code catches it yet. Assigned to RV-57 (hits found from the contacts: the limb and its target in
+frame) in RV-46 (S-056).

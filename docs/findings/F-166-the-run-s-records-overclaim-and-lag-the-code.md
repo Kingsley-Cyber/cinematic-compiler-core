@@ -12,7 +12,7 @@ medium
 docs
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -51,4 +51,10 @@ none needed
 - RV-46
 
 ## Resolution
-Open.
+RV-45 and RV-46 (S-055, S-056): the self-audit is recorded from S-055 (the docs plane refuses an applied session
+without it); F-053 lists the run's interpretations and F-127 S-049's re-blocks; the CHANGELOG's RV-09, RV-10 and RV-42
+lines say what holds; F-084, F-144, F-080 and F-083 say what remains and where; S-046 to S-053 carry their Duration by
+the commit times; AGENTS.md, ADR-O92, PLAN-007, F-148, docs/for_the_owner.md, the exceptions file's quote of ADR-O83
+(and F-124's) and validators/contact_world_report.py are corrected; the owner lists name every owner_default ADR and
+the hook (F-168). Kernel log seq 59 keeps its decided_by "owner" (a log line is never edited); seq 64 records the
+file's version 2 as agent_fix.

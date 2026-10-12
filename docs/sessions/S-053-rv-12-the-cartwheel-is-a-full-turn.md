@@ -40,7 +40,8 @@ Predictions, made before the change:
   covered.
 
 ## Duration
-about 15 minutes
+about 3 minutes by the commit times (02:36 to 02:39); it read "about 15 minutes" until RV-46
+(S-056) corrected it (F-166)
 
 ## Changes
 - examples/reference_fight/plans/motion.json (A@b16's description); the plans after S13 re-bound; render.txt and the

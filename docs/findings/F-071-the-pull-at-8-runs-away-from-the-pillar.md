@@ -57,3 +57,5 @@ ADR-O86 (move B)
 M9-09h (S-032, O86): B's 8.0 anchor and key moved along z to [1.4, 1.18, 3.7], pose and facing kept, the dart on its
 torso with it; the rope from B to A's hand points about 20 degrees toward the pillar and B is dragged 1.3 m toward it
 by 8.5 (tests/test_reference_fight_golden.py PULL_ANCHOR).
+Since: B's 8.0 anchor is [2.2, 1.18, 3.47] after the kunai's landing moved the tableau (S-039). Corrected in RV-46
+(S-056).

@@ -42,4 +42,4 @@ none yet
 - PLAN-001
 
 ## Resolution
-Open.
+Open: the owner's review, RV-38 (assigned in RV-46, S-056).
