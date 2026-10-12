@@ -39,7 +39,23 @@ done only when every row that applies passes. Claude never renders; you render, 
 - F-059 (low): Reference-fight deviations from its own data await review
 - F-060 (low): What is a motif?
 - F-066 (high): What is a key's root position: the pelvis or the ground point?
+- F-088 (high): Every prompt is over the length caps; fitting them needs the owner's call on what goes
+- F-108 (medium): B's track departs from the source
+- F-111 (medium): Limb words mix frames against the legend
+- F-114 (medium): Do R-21, R-23 and R-25 bind render.txt?
+- F-116 (medium): Rebinding re-stamps hashes instead of forcing re-authoring
+- F-117 (low): F-013 and F-014 cannot close
+- F-118 (low): O37 and the genre_profile schema disagree on where genre values live
+- F-119 (high): The anti-reward-hacking clause and R-33: does a recorded deviation count as the owner's ask?
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
+- Backlog RV-13b blocked: Every prompt fits the caps (O97) — the owner's answers in F-088
+- Backlog RV-20 blocked: Authoring prompts teach their steps' checks; external_inputs complete — an accepted ADR for the layer-order edit (R-09)
+- Backlog RV-24 blocked: The launch check per O80's words: the prior beat, every launch — the owner's ruling on A's 5.1 backflip in F-099
+- Backlog RV-26 blocked: Momentum at the true takeoff; the opening fall judged; each span re-timed or hung — the owner's span-by-span answer in F-101
+- Backlog RV-33 blocked: B's track follows the source — the owner's answer in F-108
+- Backlog RV-36 blocked: Limb and head words read in one declared frame — the owner's answer in F-111
+- Backlog RV-40 blocked: Rebinding forces re-authoring — the owner's answer in F-116
+- Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 <!-- END GENERATED: owner_rulings -->
 
 To rule, tell the agent in chat. The agent writes it up as a decision file (an ADR), cites it in the rules if it

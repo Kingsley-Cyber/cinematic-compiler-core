@@ -6,6 +6,13 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The first principal review (S-035, owner O99): the work matches the plan only partially. Its gaps are filed as
+  F-074 to F-119 with PLAN-007 (slices RV-01 to RV-41); the owner's answers are ADR-O88 to O97; the gate's six
+  conditions are in CLAUDE.md (O98); the anti-reward-hacking clause is in CLAUDE.md and AGENTS.md section 18 (O100,
+  AGENTS.md 2.3); the owner's review prompt and no-shortcuts principle are kept in docs/prompts/. PLAN-006 corrected
+  before its first commit. No code, data or test changes.
+- The owner's ten asymmetric things per beat (ADR-O87, S-034): mapped against the repo and planned as PLAN-006
+  (slices AS-01 to AS-06, with M9-14a and M9-14b amended); findings F-072 and F-073. No code changes.
 - body_type lives in the genre profile cards (M9-06e, owner O85 as clarified, O65, S-033): one card per genre,
   `library/genre_profiles/<genre>.yaml` (draft), on `schemas/genre_profile.schema.json` 0.2 (body_type required);
   `planner/genre_profile.py` loads them and forward kinematics reads them; the modality schemas drop the field

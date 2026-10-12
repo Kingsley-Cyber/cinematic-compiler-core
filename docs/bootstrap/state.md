@@ -6,22 +6,22 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 3.1; backlog 9.
+Layer order 1.7; rules 3.1; backlog 11.
 
 ## Last sessions
 
-- S-031 (applied): M9-06d: the genre profiles name each genre's body type; the card holds two bodies (O85 as clarified)
-- S-032 (applied): M9-09h: at 8.0 B moves to A's far side, so the rope dart's pull runs toward the pillar (F-071, O86)
 - S-033 (applied): M9-06e: body_type lives in the genre profile cards (schemas/genre_profile.schema.json), not the modality schemas
+- S-034 (applied): The owner's ten asymmetric things per beat: ADR-O87, the map against the repo, PLAN-006 and its slices
+- S-035 (applied): The first principal review, and its gaps filed: rulings O88-O100, findings F-074-F-119, PLAN-007
 
 ## Next slices
 
-- M9-10 (next, step effort): F4.3/F4.4 B's active keys and the idle-fighter check
-- M9-11 (ready, step render): FR.7 genre cards; FR.6 money-shot frame parts; FR.2 limb paths
-- M9-12 (ready, step render): O19 D9-style staff lines
-- M9-13 (ready, step camera): C10 camera in V5's wording, FR.5 arc, F8.1-F8.3
+- RV-01 (next, step render): C12 loses CONTACT_WORLD and is NOT CHECKED until AS-06 (F-074)
+- RV-02 (ready, step motion): CONTACT_WORLD per O89: no exact-instant exemption; B's throw, the palm on the log and the vault hand re-blocked; releases measured
+- RV-03 (ready, step temporal): The UGC pickup on the table; no resting-prop jump at a pickup; UGC poses agree with their words
+- RV-04 (ready, step docs): Records: rules 4.0, version bumps checked, layer_order.yaml logged, the hook active, stale docs and findings closed
 
-M9: 24 of 39 slices done, 15 left (M9-03a blocked; 1 the owner's own).
+M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
 ## Waiting on the owner
 
@@ -34,9 +34,25 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked; 1 the owner's own).
 - F-059 (low): Reference-fight deviations from its own data await review
 - F-060 (low): What is a motif?
 - F-066 (high): What is a key's root position: the pelvis or the ground point?
+- F-088 (high): Every prompt is over the length caps; fitting them needs the owner's call on what goes
+- F-108 (medium): B's track departs from the source
+- F-111 (medium): Limb words mix frames against the legend
+- F-114 (medium): Do R-21, R-23 and R-25 bind render.txt?
+- F-116 (medium): Rebinding re-stamps hashes instead of forcing re-authoring
+- F-117 (low): F-013 and F-014 cannot close
+- F-118 (low): O37 and the genre_profile schema disagree on where genre values live
+- F-119 (high): The anti-reward-hacking clause and R-33: does a recorded deviation count as the owner's ask?
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
+- Backlog RV-13b blocked: Every prompt fits the caps (O97) — the owner's answers in F-088
+- Backlog RV-20 blocked: Authoring prompts teach their steps' checks; external_inputs complete — an accepted ADR for the layer-order edit (R-09)
+- Backlog RV-24 blocked: The launch check per O80's words: the prior beat, every launch — the owner's ruling on A's 5.1 backflip in F-099
+- Backlog RV-26 blocked: Momentum at the true takeoff; the opening fall judged; each span re-timed or hung — the owner's span-by-span answer in F-101
+- Backlog RV-33 blocked: B's track follows the source — the owner's answer in F-108
+- Backlog RV-36 blocked: Limb and head words read in one declared frame — the owner's answer in F-111
+- Backlog RV-40 blocked: Rebinding forces re-authoring — the owner's answer in F-116
+- Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 34
+## Open findings: 82
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -52,7 +68,23 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked; 1 the owner's own).
 - F-031 (critical, L6): Render wording the model does not follow
 - F-036 (high, L6): Aerial timing is not followed: takeoffs come late
 - F-066 (high, L4c): What is a key's root position: the pelvis or the ground point?
+- F-074 (high, L6): C12 passes on a check that does not measure stylisation
+- F-075 (high, L4c): CONTACT_WORLD exempts exact-instant misses as artefacts, and never measures a release
+- F-080 (high, L4c): A's limb and head words contradict the source's own words
+- F-081 (high, L1.1): The vanish is half-checked: A keeps supports and a hold while gone
+- F-082 (high, L1.1): O78 was applied backwards: the smoke bursts on landing at 4.0
+- F-083 (high, L5.5): Hits are slow-motion close-up inserts, and most of the source's holds are not printed
+- F-084 (high, L1.1): The kunai drive and the catch print as instant strikes, and the kunai floats over the downed B
+- F-085 (high, L6): Prompt checks never run at compile, and no prompt can be a deliverable
+- F-086 (high, L4c): Mirror-symmetric keys are not refused on strikes and action beats
+- F-088 (high, L6): Every prompt is over the length caps; fitting them needs the owner's call on what goes
+- F-089 (high, L4c): Bodies and held props are checked only at contact onsets, never against the floor
+- F-090 (high, L5.5): The camera aims about 1 m too high since O72, and vertical framing is unchecked
+- F-091 (high, L6): render.txt's laban chains mix both fighters' moves
+- F-096 (high, L6): PASS cells are inflated: rows pass on codes that cover part of the row
+- F-115 (high, all): Two gate conditions have no check: soul_check_passes, fight_works
+- F-119 (high, all): The anti-reward-hacking clause and R-33: does a recorded deviation count as the owner's ask?
 
 ## Next free IDs
 
-Decision ADR-O87, finding F-072, session S-034, render R20.
+Decision ADR-O101, finding F-120, session S-036, render R20.

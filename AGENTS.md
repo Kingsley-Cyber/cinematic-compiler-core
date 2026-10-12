@@ -1,6 +1,6 @@
 # AGENTS.md — The Agent Operating Manual
 
-<!-- docs-version: 1.3 -->
+<!-- docs-version: 2.3 -->
 
 > Before every session, read `AGENTS.md` fully — it is the map of this repo, not a suggestion — and follow its
 > nine-step session protocol exactly: read the five indexes, run `scripts/verify.sh`, pick one gap, confirm its layer
@@ -101,10 +101,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 3.1; backlog 9.
-- Last session: S-033 (2026-10-11, applied): M9-06e: body_type lives in the genre profile cards (schemas/genre_profile.schema.json), not the modality schemas.
-- Next slice: M9-10 F4.3/F4.4 B's active keys and the idle-fighter check (step effort).
-- Open findings: 34; decisions: 113 (0 proposed).
+- Layer order 1.7; rules 3.1; backlog 11.
+- Last session: S-035 (2026-10-11, applied): The first principal review, and its gaps filed: rulings O88-O100, findings F-074-F-119, PLAN-007.
+- Next slice: RV-01 C12 loses CONTACT_WORLD and is NOT CHECKED until AS-06 (F-074) (step render).
+- Open findings: 82; decisions: 127 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
@@ -122,7 +122,23 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - F-059 (low): Reference-fight deviations from its own data await review
 - F-060 (low): What is a motif?
 - F-066 (high): What is a key's root position: the pelvis or the ground point?
+- F-088 (high): Every prompt is over the length caps; fitting them needs the owner's call on what goes
+- F-108 (medium): B's track departs from the source
+- F-111 (medium): Limb words mix frames against the legend
+- F-114 (medium): Do R-21, R-23 and R-25 bind render.txt?
+- F-116 (medium): Rebinding re-stamps hashes instead of forcing re-authoring
+- F-117 (low): F-013 and F-014 cannot close
+- F-118 (low): O37 and the genre_profile schema disagree on where genre values live
+- F-119 (high): The anti-reward-hacking clause and R-33: does a recorded deviation count as the owner's ask?
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
+- Backlog RV-13b blocked: Every prompt fits the caps (O97) — the owner's answers in F-088
+- Backlog RV-20 blocked: Authoring prompts teach their steps' checks; external_inputs complete — an accepted ADR for the layer-order edit (R-09)
+- Backlog RV-24 blocked: The launch check per O80's words: the prior beat, every launch — the owner's ruling on A's 5.1 backflip in F-099
+- Backlog RV-26 blocked: Momentum at the true takeoff; the opening fall judged; each span re-timed or hung — the owner's span-by-span answer in F-101
+- Backlog RV-33 blocked: B's track follows the source — the owner's answer in F-108
+- Backlog RV-36 blocked: Limb and head words read in one declared frame — the owner's answer in F-111
+- Backlog RV-40 blocked: Rebinding forces re-authoring — the owner's answer in F-116
+- Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 <!-- END GENERATED: rulings -->
 
 The owner updates this section by ruling: in chat (the agent writes the ADR) or by writing an ADR from
@@ -242,3 +258,52 @@ When `scripts/verify.sh` fails:
 - [ ] Backlog, findings, CHANGELOG and session file updated; `make docs` run
 - [ ] Self-audit run (`/self-audit`); its verdict, evidence and wrong claims reported to the owner
 - [ ] One commit, `[S-NNN]` in the message; nothing pushed without the owner
+
+## 18. Anti reward hacking
+
+The owner's clause, word for word (ADR-O100, 2026-10-11). It binds every session alongside the no-shortcuts
+principle (docs/prompts/no_shortcuts.md). How it meets rule R-33 is an open question for the owner (F-119).
+
+```text
+<anti_reward_hacking>
+The objective is to correctly implement the requested behavior, not merely
+produce a passing score.
+
+Rules:
+
+1. Treat existing tests, assertions, fixtures, expected outputs, evaluators,
+   and verification code as immutable unless the user explicitly asks to
+   change them.
+
+2. Never delete, skip, disable, weaken, mock away, or rewrite a failing test
+   merely to make the test suite pass.
+
+3. Never:
+   - hardcode visible test inputs or expected outputs;
+   - add test-only branches to production code;
+   - redefine equality, comparison, hashing, or serialization to fool checks;
+   - suppress exceptions, warnings, failures, or timeouts to create false success;
+   - tamper with exit codes, coverage results, snapshots, fixtures, or test discovery;
+   - inspect, reconstruct, or copy hidden evaluation answers;
+   - copy a known solution when independent implementation is required.
+
+4. When a test fails:
+   - diagnose the runtime cause;
+   - fix the implementation;
+   - rerun the original test;
+   - verify that the solution generalizes beyond the visible example.
+
+5. If the specification and tests conflict, stop and report the exact conflict.
+   Do not change either side without explicit user direction.
+
+6. Report verification honestly. Include the command run, its result, and any
+   remaining failures. A failing test with an accurate diagnosis is preferable
+   to a passing test obtained through a shortcut.
+
+Before declaring completion, confirm:
+- existing tests and evaluation files are unchanged;
+- no tests were skipped or removed;
+- the implementation satisfies the requested behavior;
+- the original relevant tests pass.
+</anti_reward_hacking>
+```

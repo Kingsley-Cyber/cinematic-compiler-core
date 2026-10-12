@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 9
+version: 11
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -66,17 +66,123 @@ items:
      plan: PLAN-003, depends_on: [M9-09a], findings: [], codes: []}
   - {id: M9-09h, title: "F-071: B moves to A's far side at 8.0, so the pull runs toward the pillar (O86)", status: done,
      step: temporal, plan: PLAN-003, depends_on: [M9-06b], findings: [F-071], codes: []}
-  - {id: M9-10, title: "F4.3/F4.4 B's active keys and the idle-fighter check", status: next, step: effort,
+  - {id: RV-01, title: "C12 loses CONTACT_WORLD and is NOT CHECKED until AS-06 (F-074)", status: next,
+     step: render, plan: PLAN-007, depends_on: [], findings: [F-074], codes: []}
+  - {id: RV-02, title: "CONTACT_WORLD per O89: no exact-instant exemption; B's throw, the palm on the log and the vault hand re-blocked; releases measured", status: ready,
+     step: motion, plan: PLAN-007, depends_on: [M9-06b], findings: [F-075, F-076, F-079], codes: []}
+  - {id: RV-03, title: "The UGC pickup on the table; no resting-prop jump at a pickup; UGC poses agree with their words", status: ready,
+     step: temporal, plan: PLAN-007, depends_on: [], findings: [F-077], codes: []}
+  - {id: RV-04, title: "Records: rules 4.0, version bumps checked, layer_order.yaml logged, the hook active, stale docs and findings closed", status: ready,
+     step: docs, plan: PLAN-007, depends_on: [], findings: [F-078, F-063, F-066, F-028, F-015], codes: []}
+  - {id: RV-05, title: "A's limb and head words follow the source's words (O88)", status: ready,
+     step: motion, plan: PLAN-007, depends_on: [], findings: [F-080], codes: []}
+  - {id: RV-06, title: "The vanish (O90): A's supports and holds end at 3.7; the rope dart on the ground until 7.5", status: ready,
+     step: temporal, plan: PLAN-007, depends_on: [], findings: [F-081], codes: []}
+  - {id: RV-08, title: "A state change commits at its contact's instant, not the beat's end (F-061)", status: ready,
+     step: state, plan: PLAN-007, depends_on: [], findings: [F-061], codes: []}
+  - {id: RV-07, title: "The smoke bursts at 3.7 at A's body; the spent pellet falls and rests (O91)", status: ready,
+     step: temporal, plan: PLAN-007, depends_on: [RV-08], findings: [F-082], codes: []}
+  - {id: RV-09, title: "Hits are camera holds framing both bodies, no playback ramps; the source's camera directives (O92)", status: ready,
+     step: camera, plan: PLAN-007, depends_on: [], findings: [F-083, F-005], codes: [HIT_HOLD, PLAYBACK_RAMP]}
+  - {id: RV-10, title: "The kunai drive holds the kunai in B's right shoulder; the catch is a grasp plus a throw (O93)", status: ready,
+     step: temporal, plan: PLAN-007, depends_on: [], findings: [F-084], codes: []}
+  - {id: RV-11, title: "DAG-excluded rows are N/A; cinematic compile refuses a non-deliverable prompt (O94)", status: ready,
+     step: render, plan: PLAN-007, depends_on: [], findings: [F-085], codes: []}
+  - {id: RV-12, title: "The 6.3 cartwheel is a full turn in render.txt (O96)", status: ready,
+     step: render, plan: PLAN-007, depends_on: [], findings: [F-087], codes: []}
+  - {id: RV-13, title: "PROMPT_LENGTH: 3,500 characters for Runway, 1,000 words for BytePlus (O97)", status: ready,
+     step: render, plan: PLAN-007, depends_on: [], findings: [F-088], codes: [PROMPT_LENGTH]}
+  - {id: RV-13b, title: "Every prompt fits the caps (O97)", status: blocked,
+     blocked_by: "the owner's answers in F-088",
+     step: render, plan: PLAN-007, depends_on: [RV-13], findings: [F-088], codes: []}
+  - {id: RV-14, title: "Every-key body checks: no body under the floor; supports at every key; held and embedded props at their holder", status: ready,
+     step: motion, plan: PLAN-007, depends_on: [M9-06b], findings: [F-089, F-062], codes: [FLOOR_PENETRATION]}
+  - {id: RV-15, title: "The camera aims at the body and an insert at its detail; vertical framing checked", status: ready,
+     step: camera, plan: PLAN-007, depends_on: [], findings: [F-090], codes: [VERTICAL_FRAMING]}
+  - {id: RV-16, title: "One laban chain per fighter in render.txt", status: ready,
+     step: render, plan: PLAN-007, depends_on: [], findings: [F-091], codes: []}
+  - {id: RV-17, title: "One possession model for S04 and S07; PROP_TWO_HOLDERS", status: ready,
+     step: contact, plan: PLAN-007, depends_on: [], findings: [F-092], codes: [PROP_TWO_HOLDERS]}
+  - {id: RV-18, title: "Declared validators run (S02 coherence); the envelope records what ran", status: ready,
+     step: brief, plan: PLAN-007, depends_on: [], findings: [F-093], codes: []}
+  - {id: RV-19, title: "Replans reach the step that owns the fix", status: ready,
+     step: all, plan: PLAN-007, depends_on: [], findings: [F-094], codes: []}
+  - {id: RV-20, title: "Authoring prompts teach their steps' checks; external_inputs complete", status: blocked,
+     blocked_by: "an accepted ADR for the layer-order edit (R-09)",
+     step: all, plan: PLAN-007, depends_on: [], findings: [F-095], codes: []}
+  - {id: RV-21, title: "A map row passes only when its codes cover the whole DAG row; contests read every render finding", status: ready,
+     step: render, plan: PLAN-007, depends_on: [RV-01], findings: [F-096, F-003, F-010], codes: []}
+  - {id: RV-22, title: "The pillar has a radius and faces; landings and face contacts measured", status: ready,
+     step: motion, plan: PLAN-007, depends_on: [RV-14], findings: [F-097], codes: []}
+  - {id: RV-23, title: "SHAPE_DIRECTION per O76 (the lean only in flight, world points); F9.1's dropped checks", status: ready,
+     step: effort, plan: PLAN-007, depends_on: [], findings: [F-098], codes: []}
+  - {id: RV-24, title: "The launch check per O80's words: the prior beat, every launch", status: blocked,
+     blocked_by: "the owner's ruling on A's 5.1 backflip in F-099",
+     step: motion, plan: PLAN-007, depends_on: [], findings: [F-099], codes: []}
+  - {id: RV-25, title: "Hip limits read the hip against the pelvis (O84 with O11)", status: ready,
+     step: motion, plan: PLAN-007, depends_on: [], findings: [F-100], codes: []}
+  - {id: RV-26, title: "Momentum at the true takeoff; the opening fall judged; each span re-timed or hung", status: blocked,
+     blocked_by: "the owner's span-by-span answer in F-101",
+     step: kinematic, plan: PLAN-007, depends_on: [], findings: [F-101, F-036], codes: []}
+  - {id: RV-27, title: "Prop paths and times follow the source (R-17)", status: ready,
+     step: temporal, plan: PLAN-007, depends_on: [], findings: [F-102, F-059], codes: []}
+  - {id: RV-28, title: "Per-span Efforts keep each fighter's source signature", status: ready,
+     step: effort, plan: PLAN-007, depends_on: [], findings: [F-103], codes: [EFFORT_SIGNATURE]}
+  - {id: RV-29, title: "Smears follow the source's subjects and windows", status: ready,
+     step: render, plan: PLAN-007, depends_on: [], findings: [F-104], codes: []}
+  - {id: RV-30, title: "Start states and the kunai's grip from the source", status: ready,
+     step: brief, plan: PLAN-007, depends_on: [], findings: [F-105], codes: []}
+  - {id: RV-31, title: "S06 carries prop positions (O8); held or worn locations clear; continuity checks can fire", status: ready,
+     step: state, plan: PLAN-007, depends_on: [], findings: [F-106], codes: []}
+  - {id: RV-32, title: "Reference-cast rules filled per scene at S03", status: ready,
+     step: constraint, plan: PLAN-007, depends_on: [], findings: [F-107], codes: []}
+  - {id: RV-33, title: "B's track follows the source", status: blocked,
+     blocked_by: "the owner's answer in F-108",
+     step: temporal, plan: PLAN-007, depends_on: [], findings: [F-108], codes: []}
+  - {id: RV-34, title: "R-14 checked in code", status: ready,
+     step: all, plan: PLAN-007, depends_on: [], findings: [F-109], codes: []}
+  - {id: RV-35, title: "Pickups crouch on the feet with a hand down; the support names the hand", status: ready,
+     step: motion, plan: PLAN-007, depends_on: [RV-02], findings: [F-110], codes: []}
+  - {id: RV-36, title: "Limb and head words read in one declared frame", status: blocked,
+     blocked_by: "the owner's answer in F-111",
+     step: render, plan: PLAN-007, depends_on: [], findings: [F-111], codes: []}
+  - {id: RV-37, title: "One strike definition at S04; S17's impact frames agree with it", status: ready,
+     step: temporal, plan: PLAN-007, depends_on: [], findings: [F-112], codes: []}
+  - {id: RV-38, title: "The owner's review: draft values calibrated, F-053's interpretations ruled", status: ready,
+     step: owner, plan: PLAN-007, depends_on: [], findings: [F-113, F-051, F-053, F-056], codes: []}
+  - {id: RV-39, title: "soul_check_passes and fight_works in the gate (O98)", status: ready,
+     step: all, plan: PLAN-007, depends_on: [RV-11], findings: [F-115], codes: []}
+  - {id: RV-40, title: "Rebinding forces re-authoring", status: blocked,
+     blocked_by: "the owner's answer in F-116",
+     step: all, plan: PLAN-007, depends_on: [], findings: [F-116], codes: []}
+  - {id: RV-41, title: "Literal starts, counts and anchors from the query (F-016)", status: ready,
+     step: intent, plan: PLAN-007, depends_on: [], findings: [F-016], codes: [START_LITERAL]}
+  - {id: AS-01, title: "O87 item 6: the striking surface on contacts (F3.1)", status: ready, step: temporal,
+     plan: PLAN-006, depends_on: [RV-37], findings: [F-025], codes: [CONTACT_SURFACE]}
+  - {id: AS-02, title: "O87 item 9: hand shape, foot set and the palm's facing from the forearm's twist", status: ready,
+     step: motion, plan: PLAN-006, depends_on: [AS-01], findings: [F-072], codes: [HAND_FOOT_ORIENTATION]}
+  - {id: AS-03, title: "O87 item 5: the trail limb (S12 counterbalance) against the lead (OPPOSITION)", status: ready,
+     step: motion, plan: PLAN-006, depends_on: [M9-06b], findings: [], codes: [OPPOSITION]}
+  - {id: AS-04, title: "O87 item 2 (O95): the derived asymmetry flag; no mirrored key on a strike or action beat", status: ready, step: motion,
+     plan: PLAN-006, depends_on: [AS-03], findings: [F-086], codes: [SYMMETRY_UNSTATED, MIRRORED_ACTION]}
+  - {id: AS-05, title: "O87 item 4: a path for every travelling limb (FR.2 widened)", status: ready, step: motion,
+     plan: PLAN-006, depends_on: [M9-05], findings: [], codes: [LIMB_PATH]}
+  - {id: AS-06, title: "O87 items 7-8: smear on limbs only, speedlines per limb (F8.3)", status: ready, step: render,
+     plan: PLAN-006, depends_on: [M9-02], findings: [F-073], codes: []}
+  - {id: AS-07, title: "O87 item 10: post_contact on strike contacts (C21), set at S04, checked against the striking limb at S13", status: ready,
+     step: motion, plan: PLAN-006, depends_on: [RV-37], findings: [], codes: [FOLLOW_THROUGH_MISSING]}
+  - {id: M9-10, title: "F4.3/F4.4 B's active keys, the idle-fighter check and O73's 24 parked Shape intervals", status: ready, step: effort,
      plan: PLAN-003, depends_on: [M9-09a], findings: [F-029], codes: [IDLE_FIGHTER]}
-  - {id: M9-11, title: "FR.7 genre cards; FR.6 money-shot frame parts; FR.2 limb paths", status: ready, step: render,
+  - {id: M9-11, title: "FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05)", status: blocked,
+     blocked_by: "the owner's answer in F-118 (O37 or the genre profile)", step: render,
      plan: PLAN-003, depends_on: [M9-05], findings: [], codes: [MONEY_SHOT]}
   - {id: M9-12, title: "O19 D9-style staff lines", status: ready, step: render, plan: PLAN-003, depends_on: [M9-02],
      findings: [F-006, F-031], codes: [LINE_DENSITY]}
-  - {id: M9-13, title: "C10 camera in V5's wording, FR.5 arc, F8.1-F8.3", status: ready, step: camera, plan: PLAN-003,
+  - {id: M9-13, title: "C10 camera in V5's wording, FR.5 arc, F8.1-F8.2 (F8.3 moved to AS-06)", status: ready, step: camera, plan: PLAN-003,
      depends_on: [M9-02, M9-05], findings: [F-004, F-005, F-030, F-039], codes: [SHOT_TRANSITION_MISSING]}
-  - {id: M9-14a, title: "F4.5 timed kinetic chain", status: ready, step: motion, plan: PLAN-003, depends_on: [M9-06a],
+  - {id: M9-14a, title: "F4.5 timed kinetic chain, from the support to the striking limb (O87 item 3)", status: ready, step: motion, plan: PLAN-003, depends_on: [M9-06a],
      findings: [], codes: [CHAIN_ORDER]}
-  - {id: M9-14b, title: "F9.3 anticipation and F9.4 reaction", status: ready, step: effort, plan: PLAN-003,
+  - {id: M9-14b, title: "F9.3 anticipation and F9.4 reaction (the striker's post_contact moved to AS-07)", status: ready, step: effort, plan: PLAN-003,
      depends_on: [M9-02], findings: [], codes: [ANTICIPATION_MISSING, POST_CONTACT_MISSING]}
   - {id: M9-14c, title: "F4.6 the five callbacks (O50)", status: ready, step: temporal, plan: PLAN-003,
      depends_on: [M9-03], findings: [], codes: []}
