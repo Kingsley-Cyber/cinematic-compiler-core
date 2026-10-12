@@ -67,7 +67,8 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 | RV-18 to RV-41 | various | medium-low | open | F-093 to F-116 and F-016, one slice each (docs/plans/backlog.yaml) |
 | RV-42 to RV-54 | various | high-low | RV-42, RV-43, RV-49, RV-45, RV-46, RV-48a, RV-48b done (S-046, S-047, S-049, S-055 to S-058); the rest open | the second review's gaps, F-122 to F-150 (docs/reports/2026-10-12-principal-review-2.md), and F-151 (a body through a prop, RV-54) |
 | RV-55 to RV-65 | various | high-medium | RV-57, RV-60, RV-61, RV-62 done (S-059 to S-062); the rest open (RV-55, RV-56, RV-63, RV-64b wait for the owner) | the third review's gaps, F-152 to F-167 (docs/reports/2026-10-12-principal-review-3.md), and RV-65 (RV-20's prompt part) |
-| RV-66 to RV-84 | various | high-medium | open | the fourth review's gaps, F-169 to F-186 (docs/reports/2026-10-12-principal-review-4.md) |
+| RV-66 to RV-84 | various | high-medium | RV-66 to RV-72 done (S-064 to S-071); the rest open | the fourth review's gaps, F-169 to F-186 (docs/reports/2026-10-12-principal-review-4.md) |
+| RV-85 to RV-93, RV-82b | various | high-low | open (RV-82b waits for the owner) | the fifth review's gaps, F-187 to F-195 (docs/reports/2026-10-12-principal-review-5.md); its questions F-196 to F-203 |
 
 ## Dependencies
 - RV-02a after RV-05 (A's final poses); RV-02b after RV-02a, RV-03 and RV-06; RV-07 after RV-08; RV-13b after RV-13 and
@@ -92,6 +93,7 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 - F-055, F-057 and F-060: open since before the run
 - From review 4 (S-063): whether a substitution may move or change props other than its decoy without a hand (F-169); what counts as a hit beyond a thrown or held blade (F-175); whether a smash cut, a whip onto the impact frame or a shaky handheld shot is a camera hold (F-177); which checklist rows must pass for a deliverable (F-178, with F-153 and F-117); a declared turn plane against the 180-degree side (F-184); O23's `at: start` read literally or as any key of the actor; O93's grasp and throw on one instant at 6.6; whether the source counts as a ruling under R-06 (O105, O108); whether a deviation's ruling must be an owner ADR in force; R-21's reach to every genre; partly fixed findings reopened (S-063) or kept resolved (S-056 D2); `decided_by: owner` (R-28); O103 sets aside two of O88's flips, which R-06 now leaves to the owner
 - F-124 (the 5.9 slide's exception) and F-133 (the scene_reference rules; RV-64b waits for it)
+- From review 5 (S-072), filed as question findings: F-196 to F-203; RV-27 and RV-64b wait too
 - RV-20: an ADR for the layer-order edit; RV-38: the owner's review of draft values and F-053
 
 ## Critical Path
@@ -106,6 +108,9 @@ RV-64 and RV-13, then the rest in backlog order.
 After review 4 (S-063): the builder's own shortcuts and overclaims first, RV-66, RV-67, RV-68, RV-69, RV-70, RV-71a,
 RV-71b, RV-72, RV-73, RV-74, RV-75, RV-76, RV-77; then RV-58, RV-18, RV-64, RV-13; then the fight-breakers RV-15, RV-14,
 RV-16, RV-37, RV-35, RV-59, RV-22; then RV-78 to RV-84 and the rest in backlog order.
+After review 5 (S-072): RV-85 and RV-86 (the builder's own shortcuts), then RV-13, then the fight-breakers
+RV-15, RV-14, RV-16, RV-35, RV-59, RV-37, RV-22, then RV-88, RV-89, RV-92, RV-73, RV-87, RV-90, RV-91,
+RV-93, RV-75, RV-76, RV-77, RV-58, RV-18, RV-64 and the rest in backlog order (backlog 28).
 6. Waiting on the owner: RV-13b, RV-20, RV-24, RV-26, RV-36, RV-40, RV-52, RV-53, RV-55, RV-56, RV-63 (and RV-33, which
    follows RV-52); the owner's own: RV-38
 
@@ -145,3 +150,4 @@ RV-16, RV-37, RV-35, RV-59, RV-22; then RV-78 to RV-84 and the rest in backlog o
 - 2026-10-12 — RV-71 split; RV-71a done (S-069): a hit's hold on a still rig, naming its bodies; ninja idioms reach the fight.
 - 2026-10-12 — RV-71b done (S-070): the camera cards' rules as structured fields; the prompt prints them word for word.
 - 2026-10-12 — RV-72 done (S-071): S08 reads the holds; S09 credits a release only at the change.
+- 2026-10-12 — Review 5 (S-072): verdict partially; F-187 to F-195 with RV-85 to RV-93, questions F-196 to F-203; the queue rebalanced toward the fight.

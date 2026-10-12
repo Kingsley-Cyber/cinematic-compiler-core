@@ -55,3 +55,4 @@ prop alone, and the S04 instructions say so. The reviewers' probes are refused
 (tests/test_dynamic_beat_validator.py::test_a_substitution_swaps_only_its_decoy,
 tests/test_contact_pass.py::test_a_substitution_changes_only_its_decoy_with_no_hand). Whether a substitution may move or
 change other props without a hand stays listed for the owner.
+Review 5 (S-072): TELEPORT's own exemption and the decoy's declaration are F-188 (RV-86) and F-189 (RV-87).

@@ -46,3 +46,4 @@ none needed (O78)
 
 ## Resolution
 Open.
+Review 5 (S-072): a height check as written would refuse the golden's standing log (y 1.0 on the ground) and the volley embedded in the pillar (y 2.0); RV-74 now follows RV-54 (prop extents) and RV-22 (the pillar's faces).

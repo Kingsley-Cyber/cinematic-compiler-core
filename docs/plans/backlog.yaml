@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 27
+version: 28
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -124,10 +124,42 @@ items:
      step: camera, plan: PLAN-007, depends_on: [RV-71a], findings: [F-177, F-160], codes: []}
   - {id: RV-72, title: "S08 refuses an undeclared hand holding the object; S09 credits a release only at the change", status: done,
      step: hand_role, plan: PLAN-007, depends_on: [], findings: [F-173, F-137, F-161], codes: []}
-  - {id: RV-73, title: "S04 refuses a contact by a vanished body inside its window, and a contact by a body outside its beat", status: next,
+  - {id: RV-85, title: "A camera rule's words ask only what its fields ask; the word lists stay as a floor on the printed rules; R-21 lists the checks", status: next,
+     step: camera, plan: PLAN-007, depends_on: [], findings: [F-187, F-160, F-177], codes: []}
+  - {id: RV-86, title: "TELEPORT's exemption needs a decoy in the actor's place", status: ready,
+     step: temporal, plan: PLAN-007, depends_on: [], findings: [F-188], codes: []}
+  - {id: RV-13, title: "PROMPT_LENGTH: 3,500 characters for Runway, 1,000 words for BytePlus (O97)", status: ready,
+     step: render, plan: PLAN-007, depends_on: [], findings: [F-088], codes: [PROMPT_LENGTH]}
+  - {id: RV-15, title: "The camera aims at the body and an insert at its detail; vertical framing checked", status: ready,
+     step: camera, plan: PLAN-007, depends_on: [], findings: [F-090, F-145], codes: [VERTICAL_FRAMING]}
+  - {id: RV-14, title: "Every-key body checks: no body under the floor; supports at every key; held and embedded props at their holder", status: ready,
+     step: motion, plan: PLAN-007, depends_on: [M9-06b], findings: [F-089, F-062], codes: [FLOOR_PENETRATION]}
+  - {id: RV-16, title: "One laban chain per fighter in render.txt", status: ready,
+     step: render, plan: PLAN-007, depends_on: [], findings: [F-091], codes: []}
+  - {id: RV-35, title: "Pickups crouch on the feet with a hand down; the support names the hand", status: ready,
+     step: motion, plan: PLAN-007, depends_on: [RV-02a], findings: [F-110, F-127], codes: []}
+  - {id: RV-59, title: "BODY_OVERLAP along the declared interpolation between keys; the paths re-blocked", status: ready,
+     step: motion, plan: PLAN-007, depends_on: [RV-35], findings: [F-159], codes: []}
+  - {id: RV-37, title: "One strike definition at S04; S17's impact frames agree with it", status: ready,
+     step: temporal, plan: PLAN-007, depends_on: [], findings: [F-112], codes: []}
+  - {id: RV-22, title: "The pillar has a radius and faces; landings and face contacts measured", status: ready,
+     step: motion, plan: PLAN-007, depends_on: [RV-14], findings: [F-097], codes: []}
+  - {id: RV-88, title: "S09's trigger is the interaction's hand on the object at the change's instant", status: ready,
+     step: object_state, plan: PLAN-007, depends_on: [], findings: [F-190, F-173], codes: []}
+  - {id: RV-89, title: "A thrown prop is a hit only in flight", status: ready,
+     step: camera, plan: PLAN-007, depends_on: [], findings: [F-191], codes: []}
+  - {id: RV-92, title: "The S08 and S16 instructions teach RV-69's, RV-71a's and RV-72's rules", status: ready,
+     step: all, plan: PLAN-007, depends_on: [], findings: [F-195], codes: []}
+  - {id: RV-73, title: "S04 refuses a contact by a vanished body inside its window, the actor's own beat inside it, and a contact by a body outside its beat", status: ready,
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-172, F-136], codes: []}
-  - {id: RV-74, title: "PROP_SUPPORT: a location on a surface with a known top puts the resting prop at that top", status: ready,
-     step: temporal, plan: PLAN-007, depends_on: [], findings: [F-171], codes: []}
+  - {id: RV-87, title: "The substitution's decoy is declared, stands in the scene from the first beat, and is measured where the actor stood; a substitution needs the capability", status: ready,
+     step: temporal, plan: PLAN-007, depends_on: [RV-86], findings: [F-189], codes: []}
+  - {id: RV-90, title: "HIT_HOLD's scale follows the grammar's impact scales; S16 refuses a gone subject and VANISHED_BODY reads [CAMERA]; the impact rule speaks of hits", status: ready,
+     step: camera, plan: PLAN-007, depends_on: [], findings: [F-192], codes: []}
+  - {id: RV-91, title: "A vanish that never returns: S15 refuses an Effort across a vanish; no end state or reappearance for a body gone to the end; a compiled test scene", status: ready,
+     step: render, plan: PLAN-007, depends_on: [], findings: [F-193], codes: []}
+  - {id: RV-93, title: "S07: a prop's change needs a contact on it in its beat, or a hold by a body of that beat (MASTER_PLAN S07.3)", status: ready,
+     step: contact, plan: PLAN-007, depends_on: [], findings: [F-130], codes: []}
   - {id: RV-75, title: "CAUSE_REASON asks that a reason state a cause", status: ready,
      step: causal, plan: PLAN-007, depends_on: [], findings: [F-185, F-001, F-002], codes: []}
   - {id: RV-76, title: "The checklist: unselected menus N/A (O14); a step-enforced row judged by its step codes", status: ready,
@@ -143,17 +175,11 @@ items:
   - {id: RV-64b, title: "The S04 packet carries the scene_reference rules", status: blocked,
      blocked_by: "the owner's answer in F-133",
      step: temporal, plan: PLAN-007, depends_on: [RV-64], findings: [F-133, F-167], codes: []}
-  - {id: RV-13, title: "PROMPT_LENGTH: 3,500 characters for Runway, 1,000 words for BytePlus (O97)", status: ready,
-     step: render, plan: PLAN-007, depends_on: [], findings: [F-088], codes: [PROMPT_LENGTH]}
   - {id: RV-13b, title: "Every prompt fits the caps (O97)", status: blocked,
      blocked_by: "the owner's answers in F-088",
      step: render, plan: PLAN-007, depends_on: [RV-13], findings: [F-088], codes: []}
-  - {id: RV-14, title: "Every-key body checks: no body under the floor; supports at every key; held and embedded props at their holder", status: ready,
-     step: motion, plan: PLAN-007, depends_on: [M9-06b], findings: [F-089, F-062], codes: [FLOOR_PENETRATION]}
-  - {id: RV-15, title: "The camera aims at the body and an insert at its detail; vertical framing checked", status: ready,
-     step: camera, plan: PLAN-007, depends_on: [], findings: [F-090, F-145], codes: [VERTICAL_FRAMING]}
-  - {id: RV-16, title: "One laban chain per fighter in render.txt", status: ready,
-     step: render, plan: PLAN-007, depends_on: [], findings: [F-091], codes: []}
+  - {id: RV-74, title: "PROP_SUPPORT: a location on a surface with a known top puts the resting prop at that top", status: ready,
+     step: temporal, plan: PLAN-007, depends_on: [RV-54, RV-22], findings: [F-171], codes: []}
   - {id: RV-17, title: "One possession model for S04 and S07; PROP_TWO_HOLDERS", status: ready,
      step: contact, plan: PLAN-007, depends_on: [], findings: [F-092, F-134], codes: [PROP_TWO_HOLDERS]}
   - {id: RV-19, title: "Replans reach the step that owns the fix", status: ready,
@@ -171,16 +197,17 @@ items:
      step: render, plan: PLAN-007, depends_on: [], findings: [F-179, F-015, F-117], codes: []}
   - {id: RV-81, title: "A launch ends its support at the launching key and prints the takeoff there", status: ready,
      step: render, plan: PLAN-007, depends_on: [], findings: [F-183], codes: []}
-  - {id: RV-82, title: "Surfaces carry footprints; S16 refuses a line to a subject through a solid; a declared turn's shot looks along its axis", status: ready,
+  - {id: RV-82, title: "Surfaces carry footprints; S16 refuses a line to a subject through a solid", status: ready,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-184], codes: []}
+  - {id: RV-82b, title: "A shot on a declared turn looks along the turn's axis", status: blocked,
+     blocked_by: "the owner's answer in F-202 (a turn plane against the 180-degree side)",
+     step: camera, plan: PLAN-007, depends_on: [RV-82], findings: [F-184, F-202], codes: []}
   - {id: RV-83, title: "Each unsliced DAG row gets a slice, or goes on the list for the owner's N/A ruling", status: ready,
      step: all, plan: PLAN-007, depends_on: [], findings: [F-178, F-117], codes: []}
   - {id: RV-84, title: "Each printed line follows the source or a typed deviation (the smoke, the opening fall, the deflect, the kunai at B's shoulder, B's opening steps)", status: ready,
      step: render, plan: PLAN-007, depends_on: [], findings: [F-186], codes: []}
   - {id: RV-21, title: "A map row passes only when its codes cover the whole DAG row; contests read every render finding", status: ready,
      step: render, plan: PLAN-007, depends_on: [RV-01], findings: [F-096, F-003, F-010, F-141], codes: []}
-  - {id: RV-22, title: "The pillar has a radius and faces; landings and face contacts measured", status: ready,
-     step: motion, plan: PLAN-007, depends_on: [RV-14], findings: [F-097], codes: []}
   - {id: RV-23, title: "SHAPE_DIRECTION per O76 (the lean only in flight, world points); F9.1's dropped checks", status: ready,
      step: effort, plan: PLAN-007, depends_on: [], findings: [F-098], codes: []}
   - {id: RV-24, title: "The launch check per O80's words: the prior beat, every launch", status: blocked,
@@ -209,13 +236,9 @@ items:
      step: temporal, plan: PLAN-007, depends_on: [RV-52], findings: [F-108, F-150], codes: []}
   - {id: RV-34, title: "R-14 checked in code", status: ready,
      step: all, plan: PLAN-007, depends_on: [], findings: [F-109], codes: []}
-  - {id: RV-35, title: "Pickups crouch on the feet with a hand down; the support names the hand", status: ready,
-     step: motion, plan: PLAN-007, depends_on: [RV-02a], findings: [F-110, F-127], codes: []}
   - {id: RV-36, title: "Limb and head words read in one declared frame", status: blocked,
      blocked_by: "the owner's answer in F-111",
      step: render, plan: PLAN-007, depends_on: [], findings: [F-111, F-129], codes: []}
-  - {id: RV-37, title: "One strike definition at S04; S17's impact frames agree with it", status: ready,
-     step: temporal, plan: PLAN-007, depends_on: [], findings: [F-112], codes: []}
   - {id: RV-38, title: "The owner's review: draft values calibrated, F-053's interpretations ruled", status: ready,
      step: owner, plan: PLAN-007, depends_on: [], findings: [F-113, F-051, F-053, F-056, F-052, F-054], codes: []}
   - {id: RV-39, title: "The gate checks the owner's six conditions (O98), soul_check_passes and fight_works among them", status: ready,
@@ -239,8 +262,6 @@ items:
      step: motion, plan: PLAN-007, depends_on: [RV-14], findings: [F-131], codes: []}
   - {id: RV-54, title: "No body through a prop: each prop card gives an extent; S13 refuses a body through a prop at its samples (and between, with RV-47)", status: ready,
      step: motion, plan: PLAN-007, depends_on: [RV-47], findings: [F-151], codes: [PROP_OVERLAP]}
-  - {id: RV-59, title: "BODY_OVERLAP along the declared interpolation between keys; the paths re-blocked", status: ready,
-     step: motion, plan: PLAN-007, depends_on: [RV-35], findings: [F-159], codes: []}
   - {id: RV-44, title: "Each file whose version also labels older bytes takes one new version; the bump cutoff goes", status: ready,
      step: docs, plan: PLAN-007, depends_on: [], findings: [F-126], codes: []}
   - {id: RV-52, title: "The Euler convention: the source's turned leans and its backflip (ADR-Q6)", status: blocked,

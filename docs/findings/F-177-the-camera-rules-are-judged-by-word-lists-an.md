@@ -12,7 +12,7 @@ medium
 L5.5
 
 ## Status
-resolved
+open
 
 ## Reported
 2026-10-12
@@ -48,7 +48,8 @@ whether a smash cut or a whip onto the impact frame, or a shaky handheld shot, i
 - ADR-O92
 
 ## Resolution
-RV-71a (S-069): a hit's hold is static on a locked or smooth rig at S16 and S17; the prompt's hold names its bodies;
+Open in part (review 5, S-072): the hold's rig and bodies and the cards' fields are checked; the fields are not tied to the printed words (F-187, RV-85), the hold has no duration and its scale disagrees with the card (F-192, RV-90), and the owner's questions stand (F-197).
+Before: RV-71a (S-069): a hit's hold is static on a locked or smooth rig at S16 and S17; the prompt's hold names its bodies;
 archetype cards name their idiom card (ninja_lean, ninja_broad). RV-71b (S-070): each convention and idiom carries its
 trigger and asks (camera_convention_card 1.1, camera_idiom_card 1.1), which planner/camera_library.py checks against the
 grammar and owner O92 (CAMERA_CARD); the prompt prints the genre card's rules word for word (CAMERA_RULES), in place of

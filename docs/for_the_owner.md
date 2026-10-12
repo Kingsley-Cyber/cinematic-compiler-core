@@ -60,10 +60,19 @@ done only when every row that applies passes. Claude never renders; you render, 
 - F-154 (medium): Owner_default ADRs taken under O101 are counted as rulings the owner has not seen
 - F-165 (medium): The log and the pellet do not follow the source at 3.7
 - F-168 (low): The pre-commit gate waits for the owner's `make hooks`
+- F-196 (high): The substitution's decoy: who declares it, where it stands, who may substitute
+- F-197 (high): Hits and holds: what counts, how long, how wide, and which cuts hold
+- F-198 (high): Which checklist rows must pass for a prompt to be a deliverable
+- F-199 (medium): O23's key pose and O93's single instant
+- F-200 (medium): The source, owner_default ADRs and decided_by as rulings
+- F-201 (medium): R-21's reach beyond the fight
+- F-202 (medium): The fight's open staging choices
+- F-203 (medium): RV-20's layer-order ADR
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog RV-64b blocked: The S04 packet carries the scene_reference rules — the owner's answer in F-133
 - Backlog RV-13b blocked: Every prompt fits the caps (O97) — the owner's answers in F-088
 - Backlog RV-20 blocked: external_inputs complete: the layer order states what each step depends on — an accepted ADR for the layer-order edit (R-09)
+- Backlog RV-82b blocked: A shot on a declared turn looks along the turn's axis — the owner's answer in F-202 (a turn plane against the 180-degree side)
 - Backlog RV-24 blocked: The launch check per O80's words: the prior beat, every launch — the owner's ruling on A's 5.1 backflip in F-099
 - Backlog RV-26 blocked: Momentum at the true takeoff; the opening fall judged; each span re-timed or hung — the owner's span-by-span answer in F-101
 - Backlog RV-27 blocked: Prop paths and times follow the source (R-17) — the owner's answers in F-165 and F-059

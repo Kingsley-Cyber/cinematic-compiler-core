@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- Principal review 5 (S-072): five read-only reviewers, verdict "partially", no test tampering; the run's fixes closed
+  each finding's probe, not its class, S-070 weakened the camera check, and records were written ahead of their
+  evidence. Filed F-187 to F-195 with RV-85 to RV-93, and the owner's open questions as F-196 to F-203; four findings
+  reopened in part; the queue now puts PROMPT_LENGTH and the fight-breakers right after the builder's own shortcuts.
 - Hand roles read the holds (RV-72, F-173, S-071): S08 refuses a hand holding the object that its interaction does not
   declare, and S09 no longer credits a hand that let go before the change. No example changed.
 - The camera rules are structured (RV-71b, F-177, S-070): each convention and idiom carries its trigger and what it asks

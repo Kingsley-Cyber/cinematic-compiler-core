@@ -6,20 +6,20 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 7.0; backlog 27.
+Layer order 1.7; rules 7.0; backlog 28.
 
 ## Last sessions
 
-- S-069 (applied): RV-71a: a hit's hold is still on a steady rig and names its bodies; idiom cards reach the scene's archetypes
 - S-070 (applied): RV-71b: the camera cards' rules as structured fields, checked where they are written
 - S-071 (applied): RV-72: S08 refuses an undeclared hand holding the object; S09 credits a release only at the change
+- S-072 (applied): Principal review 5: does the finished work match the plan?
 
 ## Next slices
 
-- RV-73 (next, step temporal): S04 refuses a contact by a vanished body inside its window, and a contact by a body outside its beat
-- RV-74 (ready, step temporal): PROP_SUPPORT: a location on a surface with a known top puts the resting prop at that top
-- RV-75 (ready, step causal): CAUSE_REASON asks that a reason state a cause
-- RV-76 (ready, step all): The checklist: unselected menus N/A (O14); a step-enforced row judged by its step codes
+- RV-85 (next, step camera): A camera rule's words ask only what its fields ask; the word lists stay as a floor on the printed rules; R-21 lists the checks
+- RV-86 (ready, step temporal): TELEPORT's exemption needs a decoy in the actor's place
+- RV-13 (ready, step render): PROMPT_LENGTH: 3,500 characters for Runway, 1,000 words for BytePlus (O97)
+- RV-15 (ready, step camera): The camera aims at the body and an insert at its detail; vertical framing checked
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -55,10 +55,19 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-154 (medium): Owner_default ADRs taken under O101 are counted as rulings the owner has not seen
 - F-165 (medium): The log and the pellet do not follow the source at 3.7
 - F-168 (low): The pre-commit gate waits for the owner's `make hooks`
+- F-196 (high): The substitution's decoy: who declares it, where it stands, who may substitute
+- F-197 (high): Hits and holds: what counts, how long, how wide, and which cuts hold
+- F-198 (high): Which checklist rows must pass for a prompt to be a deliverable
+- F-199 (medium): O23's key pose and O93's single instant
+- F-200 (medium): The source, owner_default ADRs and decided_by as rulings
+- F-201 (medium): R-21's reach beyond the fight
+- F-202 (medium): The fight's open staging choices
+- F-203 (medium): RV-20's layer-order ADR
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog RV-64b blocked: The S04 packet carries the scene_reference rules — the owner's answer in F-133
 - Backlog RV-13b blocked: Every prompt fits the caps (O97) — the owner's answers in F-088
 - Backlog RV-20 blocked: external_inputs complete: the layer order states what each step depends on — an accepted ADR for the layer-order edit (R-09)
+- Backlog RV-82b blocked: A shot on a declared turn looks along the turn's axis — the owner's answer in F-202 (a turn plane against the 180-degree side)
 - Backlog RV-24 blocked: The launch check per O80's words: the prior beat, every launch — the owner's ruling on A's 5.1 backflip in F-099
 - Backlog RV-26 blocked: Momentum at the true takeoff; the opening fall judged; each span re-timed or hung — the owner's span-by-span answer in F-101
 - Backlog RV-27 blocked: Prop paths and times follow the source (R-17) — the owner's answers in F-165 and F-059
@@ -72,7 +81,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 107
+## Open findings: 128
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -108,7 +117,13 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-178 (high, all): No prompt can become deliverable: thirty checklist rows have no way to pass
 - F-179 (high, all): The done-gate has conditions no slice reaches
 - F-185 (high, L1.2): CAUSE_REASON passes sentences that state no cause
+- F-187 (high, L5.5): The camera check reads the cards' labels, not the words the prompt prints
+- F-188 (high, L1.1): TELEPORT's exemption reads any prop change, not the decoy
+- F-189 (high, L1.1): The decoy is guessed by distance and may come from nowhere
+- F-196 (high, all): The substitution's decoy: who declares it, where it stands, who may substitute
+- F-197 (high, all): Hits and holds: what counts, how long, how wide, and which cuts hold
+- F-198 (high, all): Which checklist rows must pass for a prompt to be a deliverable
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-187, session S-072, render R20.
+Decision ADR-O109, finding F-204, session S-073, render R20.
