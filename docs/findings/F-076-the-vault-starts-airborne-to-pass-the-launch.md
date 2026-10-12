@@ -12,7 +12,7 @@ medium
 L4c
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -48,4 +48,8 @@ ADR-O89 ("re-block ... the vault hand")
 - F-075
 
 ## Resolution
-Open.
+RV-02a (S-039, O89, O80): the hand plant is a support at the vault's first key (1.2, `at: start`), released at 1.6;
+the acrobat dives onto the planted right hand with the feet off the ground (pelvis 0.56 m, spine 75 degrees, the
+hand 0.065 m over the ground); the run-in ends grounded and the vault beat requires it; the launch check accepts a
+first key that stands on the hands alone and still refuses one on a foot
+(tests/test_motion_solver.py::test_a_vault_launches_from_its_planted_hand); the artefact test is re-pinned.

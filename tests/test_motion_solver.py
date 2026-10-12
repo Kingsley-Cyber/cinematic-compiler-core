@@ -106,8 +106,10 @@ def test_each_rule_rejects_its_violation(code, change):
 
 
 def test_contact_world_spares_a_listed_exception_and_an_artefact():
-    """ADR-O83: a miss the plan lists with its reason is not refused; the acrobat's hand on the ground at 2.0 misses by
-    1.8 m while airborne and turning (an artefact: reported, not refused)."""
+    """ADR-O83: a miss the plan lists with its reason is not refused. Owner O89 (ADR-O104), re-pinned in S-039: a miss at
+    an exact instant is never an artefact, airborne, turning or not; only a point interpolated between keys or samples
+    while the actor is airborne or the prop moves is. The acrobat's hand plant (b02_c1), this test's artefact since
+    S-030 (1.8 m off the ground at 2.0), is a support at the vault's first key and meets the ground (F-076)."""
     def kick(plan):
         key(plan, "acrobat@b06")["bones"].update(RUL=[-40, 0, -15], RL=[15, 0, 0])
         plan["contact_world_exceptions"] = {"b05_c2": "kept for the test"}
@@ -115,7 +117,22 @@ def test_contact_world_spares_a_listed_exception_and_an_artefact():
     from solver import contact_world
     rows = {r["id"]: r for r in contact_world.measure_plan({k["slot"]: k for k in PLAN["keys"]},
                                                            {s["slot"]: s for s in PACKET["slots"]}, PACKET)}
-    assert rows["b02_c1"]["distance"] > 1.5 and contact_world.artefact(rows["b02_c1"]) and codes(lambda p: None) == set()
+    assert rows["b02_c1"]["distance"] <= contact_world.TOLERANCE_M and codes(lambda p: None) == set()
+    miss = dict(rows["b02_c1"], distance=1.0, airborne=True, rotating=True, prop_moving=True)
+    assert not contact_world.artefact(miss) and contact_world.refusals([miss], {})       # an exact instant: refused
+    assert contact_world.refusals([dict(miss, interpolated=True)], {}) == []             # between keys: an artefact
+    assert contact_world.refusals([dict(miss, interpolated=True, airborne=False, prop_moving=False)], {})  # a turn alone
+
+
+def test_a_vault_launches_from_its_planted_hand():
+    """Owner O80 with O89's vault hand (F-076, S-039): the vault's flip starts on the planted right hand alone and leaves
+    the ground after it; a first key that also stands on a foot turns on the ground before its launch (F-058)."""
+    slots = {s["slot"]: s for s in PACKET["slots"]}
+    assert slots["acrobat@b02"]["kinematic"]["support"] == ["right_hand"] and codes(lambda p: None) == set()
+    for support in (["right_hand", "left_foot"], ["left_foot", "right_foot"]):
+        packet = copy.deepcopy(PACKET)
+        next(s for s in packet["slots"] if s["slot"] == "acrobat@b02")["kinematic"]["support"] = support
+        assert "AIRBORNE_WITHOUT_LAUNCH" in {f["code"] for f in p13_motion.check(PLAN, packet)}, support
 
 
 @pytest.mark.integration

@@ -71,21 +71,23 @@ ROOT_TURNS = ((5.1, 0, -360), (6.3, 2, -360))
 
 # The two pickup roots re-rooted in S-029 (O72, O82, O85): the soles on the ground under the anime body, hips read from
 # the trunk (O84); 0.6 before. Re-blocked in S-030 (CONTACT_WORLD, ADR-O83, R-33): the left hand reaches the rope dart
-# on the ground at 7.5 and A crouches at the kunai, which lands at [0.6, 0, 4.0] since O77, the right hand on it at 8.0
-# (each within 0.15 m; the least change of root, crouch and arm, both soles on the ground).
+# on the ground at 7.5 and A crouches at the kunai, the right hand on it at 8.0 (each within 0.15 m; the least change
+# of root, crouch and arm, both soles on the ground). O89 (S-039): the kunai is deflected at A's right foot, so it lands
+# at [1.4, 0, 3.77] (O77's v_post), and the 8.0 crouch moves with it, pose kept (+0.8 x, -0.23 z).
 GROUNDED_PICKUPS = {  # O18: A's rows at the two pickups, crouched on the ground (from A's own crouches at 5.9 and 9.5)
     7.5: [7.5, "rope_dart_regrapple", [-0.07, 0.57, 3.51], [-330, 30, -360],
           {"Sp": [59.6, 0, 0], "LUL": [-110.2, 0, 0], "RUL": [-108.5, 0, 0], "LL": [104.6, 0, 0], "RL": [108, 0, 0],
            "LA": [-65.1, -4, 0], "RA": [-45, 0, 0], "LFA": [-27, 0, 0], "RFA": [-45, 0, 0], "HD": [10, 0, 0], "NK": [0, 0, 0]}],
-    8.0: [8.0, "pull_b_toward_pillar", [0.11, 0.59, 4.23], [-330, 90, -360],
+    8.0: [8.0, "pull_b_toward_pillar", [0.91, 0.59, 4.0], [-330, 90, -360],
           {"Sp": [85.6, 0, 0], "LUL": [-104.1, 0, 0], "RUL": [-100.6, 0, 0], "LL": [89.8, 0, 0], "RL": [97.5, 0, 0],
            "LA": [-60, 0, 0], "RA": [-68.2, 14.8, 0], "LFA": [-30, 0, 0], "RFA": [-27.9, 0, 0], "HD": [10, 0, 0],
            "NK": [0, 0, 0]}],
 }
 # ADR-O83 point 2 kept the source's one real miss (b06_c3, A's right foot 1.5 m over the ground at 3.0) as an
-# exception; O88's flip of that hip to the row's own "R: leg fwd mid" puts the foot on the ground (S-038), so no
-# contact is excepted.
-CONTACT_EXCEPTIONS = set()
+# exception; O88's flip of that hip to the row's own "R: leg fwd mid" puts the foot on the ground (S-038). O89 (S-039):
+# a turn exempts nothing, so the source's slide at 5.9 (both soles 0.35-0.55 m over the ground, the source's root and
+# legs) is listed with its reason, as the owner's M9-06b ruling keeps the source's misses.
+CONTACT_EXCEPTIONS = {"b14_c2", "b14_c3"}
 
 
 GROUNDED_DESCRIPTIONS = {
@@ -127,12 +129,18 @@ def normalised(row):
 # S-030 (CONTACT_WORLD, ADR-O83, R-33): the repo-authored side of each real miss moved. The rope dart's sample at 3.0 sits
 # in A's left hand (the source's pose); at 8.0 it is the dart, wrapped on B since 7.6, so it sits on B's torso while A
 # keeps the rope's end; B steps in and straightens to catch A's elbow at 6.6 with both hands, re-blocked in S-038 when
-# O88 turned A's left arm forward (B leans back 23 degrees to the elbow).
-REBLOCKED_SAMPLES = {("rope_dart", 3.0): [0.85, 0.74, 4.55], ("rope_dart", 8.0): [1.6, 1.53, 3.7]}  # 8.0: with B, O86
+# O88 turned A's left arm forward (B leans back 23 degrees to the elbow). Owner O89 (S-039, no exact-instant miss is
+# an artefact): the kunai is deflected at A's right foot and lands where O77's v_post takes it; the pellet leaves A's
+# right hand at 3.7; the volley leaves B's right hand at 5.5; B's palm reaches the log at 4.0 (a step to the side, the
+# lean eased to 20 degrees, the arm extended); B rises on straighter legs to meet A's knee at 4.7.
+REBLOCKED_SAMPLES = {("rope_dart", 3.0): [0.85, 0.74, 4.55], ("rope_dart", 8.0): [2.4, 1.53, 3.47],  # 8.0: with B, O86
+                     ("kunai", 2.5): [1.29, 1.13, 4.44], ("kunai", 2.72): [1.4, 0.0, 3.77],
+                     ("shuriken_volley", 5.5): [-1.12, 2.74, 4.83]}
 CATCH_ROOT = [0.07, 1.03, 4.8]
+REBLOCKED_ROOTS = {"ninja_broad@b10": [1.0, 1.09, 5.0], "ninja_broad@b12": [-0.2, 1.2, 4.44]}
 # Owner O86 (F-071, S-032): at 8.0 B stands on A's far side from the pillar (z 6), pose and facing kept, so the rope from
-# B to A's hand pulls toward the pillar and B is dragged that way to 8.5.
-PULL_ANCHOR = [1.4, 1.18, 3.7]
+# B to A's hand pulls toward the pillar and B is dragged that way to 8.5; with the kunai's landing since O89 (S-039).
+PULL_ANCHOR = [2.2, 1.18, 3.47]
 
 
 def test_the_pull_at_8_runs_toward_the_pillar():
@@ -146,6 +154,7 @@ def test_the_re_blocked_samples_and_the_catch_are_recorded():
     assert {k: samples[k] for k in REBLOCKED_SAMPLES} == REBLOCKED_SAMPLES
     keys = {k["id"]: k for k in ENVELOPE["nodes"]["motion"]["items"]}
     assert keys["ninja_broad@b17"]["pos"] == CATCH_ROOT
+    assert {slot: keys[slot]["pos"] for slot in REBLOCKED_ROOTS} == REBLOCKED_ROOTS
 
 
 def test_contact_world_excepts_only_the_source_miss():
@@ -218,9 +227,10 @@ def test_strikes_throws_and_releases_happen_at_their_pose():
 # Plan F2.2 (backlog M9-04a under owner O61's build order; ADR-O71 rule 1, covered): a deflect is instantaneous, so
 # the kunai carries a pre-contact sample at 2.5 (the 2.0 throw under gravity for 0.5 s) beside the golden's own sample,
 # now marked post-contact. Owner O77 (F-064): the golden is right, the kunai reverses from +Z to -Z: the post velocity
-# is the source's own v_post [0.5,-4.0,-3.0], so the kunai lands at 2.7 on [0.6,0,4.0] and A takes it there at 8.0.
-DEFLECT_PAIR = ["2.5 pre-contact p[0.5,1,4.6] v[-1.4,-3.46,0.2] moving down along -X",
-                "2.5 post-contact p[0.5,1,4.6] v[0.5,-4,-3] moving down along -Z"]
+# is the source's own v_post [0.5,-4.0,-3.0]. Owner O89 (S-039): the pair sits at A's right foot, the throw arrives
+# along +Z, and the kunai lands at 2.72 on [1.4,0,3.77], where A takes it at 8.0.
+DEFLECT_PAIR = ["2.5 pre-contact p[1.29,1.13,4.44] v[0.18,-3.2,0.28] moving down along +Z",
+                "2.5 post-contact p[1.29,1.13,4.44] v[0.5,-4,-3] moving down along -Z"]
 
 
 def test_the_kunai_deflect_is_a_pre_and_post_pair():
@@ -259,8 +269,9 @@ def test_the_aerial_spans_declare_their_hang_time():
 
 
 # Owner O78 (F-065, backlog M9-09e): the smoke pellet does not rest in the air; A's hand throws it down at 3.7 and it
-# bursts on the ground at 4.0 (the source's burst time) and stays there.
-PELLET = [(3.7, [0.4, 1.1, 4.7], [0, -2.2, 0]), (4.0, [0.4, 0.0, 4.7], [0, 0, 0])]
+# bursts on the ground at 4.0 (the source's burst time) and stays there. Owner O89 (S-039): it leaves A's right hand
+# (O91 moves the burst to 3.7 in RV-07).
+PELLET = [(3.7, [1.18, 0.99, 4.85], [0, -1.83, 0]), (4.0, [1.18, 0.0, 4.85], [0, 0, 0])]
 
 
 def test_the_smoke_pellet_falls_and_bursts_on_the_ground():

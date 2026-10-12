@@ -3,7 +3,7 @@
 <!-- docs-version: 1.0 -->
 
 ## Status
-not started
+in progress
 
 ## Owner
 Kingsley (owner); Claude executes
@@ -42,16 +42,16 @@ CLAUDE.md).
 | ADR-O100 | The anti-reward-hacking clause | F-119 |
 
 The builder reads O89's "genuine airborne or prop-moving misses" as contacts measured between keys or samples (an
-interpolated instant); RV-02a carries that reading for the owner to confirm.
+interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 
 ## Gaps
 | Gap | Layer | Severity | Status | Fix |
 |-----|-------|----------|--------|-----|
-| RV-01 | L6 | high | open | C12 off CONTACT_WORLD (F-074) |
-| RV-02a, RV-02b | L4c | high | open | CONTACT_WORLD per O89 (re-blocks, the vault's hand plant, test hygiene), then releases measured (F-075, F-076, F-079) |
+| RV-01 | L6 | high | done (S-037) | C12 off CONTACT_WORLD (F-074) |
+| RV-02a, RV-02b | L4c | high | RV-02a done (S-039); RV-02b open | CONTACT_WORLD per O89 (re-blocks, the vault's hand plant, test hygiene), then releases measured (F-075, F-076, F-079) |
 | RV-03 | L1.1 | medium | open | the UGC pickup and poses (F-077) |
 | RV-04 | docs | medium | open | records: versions, logs, hook, stale docs and findings (F-078) |
-| RV-05 | L4c | high | open | A's words follow the source (F-080) |
+| RV-05 | L4c | high | done (S-038) | A's words follow the source (F-080) |
 | RV-06 | L1.1 | high | open | the vanish (F-081) |
 | RV-07, RV-08 | L1.1, L2.1 | high | open | the smoke at 3.7 after commits at the contact's instant (F-082, F-061) |
 | RV-09 | L5.5 | high | open | hits as camera holds (F-083, F-005) |
@@ -100,3 +100,5 @@ interpolated instant); RV-02a carries that reading for the owner to confirm.
 ## Changelog
 - 2026-10-11 — Created from the first principal review (S-035) and the owner's rulings O88 to O100.
 - 2026-10-11 — RV-02 split into RV-02a and RV-02b; RV-05 moved ahead of them (S-038).
+- 2026-10-11 — RV-01, RV-05 and RV-02a done (S-037 to S-039); ADR-O104 answers O89's "genuine"; RV-02b also re-stages
+  B's kunai throw (S-039).

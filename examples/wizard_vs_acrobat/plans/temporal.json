@@ -65,14 +65,6 @@
      },
      "property": "posture",
      "value": "crouching"
-    },
-    {
-     "subject": {
-      "kind": "entity",
-      "id": "acrobat"
-     },
-     "property": "support",
-     "value": "airborne"
     }
    ],
    "contacts": [],
@@ -103,7 +95,7 @@
    "pos": {
     "acrobat": [
      0,
-     0.89,
+     0.56,
      2.4
     ]
    },
@@ -130,7 +122,7 @@
       "id": "acrobat"
      },
      "property": "support",
-     "value": "airborne"
+     "value": "grounded"
     }
    ],
    "effects": [
@@ -153,7 +145,7 @@
    ],
    "contacts": [
     {
-     "contact_type": "touch",
+     "contact_type": "support",
      "a": {
       "kind": "entity",
       "id": "acrobat",
@@ -163,7 +155,8 @@
       "kind": "surface",
       "id": "ground",
       "part": null
-     }
+     },
+     "at": "start"
     }
    ],
    "causes": [
@@ -239,7 +232,22 @@
      "value": "scorched"
     }
    ],
-   "contacts": [],
+   "contacts": [
+    {
+     "contact_type": "release",
+     "a": {
+      "kind": "entity",
+      "id": "acrobat",
+      "part": "right_hand"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     },
+     "at": "start"
+    }
+   ],
    "causes": [
     {
      "to": "b04",

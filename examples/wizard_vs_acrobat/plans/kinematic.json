@@ -1,7 +1,7 @@
 {
  "step_id": "S11",
  "band": "L4a",
- "packet_sha256": "sha256:fe6fab733beede06f5c767734659beccbbc3277a35fca42ef39cae0c4df96977",
+ "packet_sha256": "sha256:1b467bc0ce3e9b4b270e37b057277546a8631c66672a8cede34bdf5bc9175a1e",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -28,7 +28,9 @@
   },
   {
    "slot": "acrobat@b02",
-   "support": [],
+   "support": [
+    "right_hand"
+   ],
    "balance": "stable",
    "loading": "loaded",
    "bracing": "none",
@@ -39,7 +41,7 @@
    "strain": "none",
    "restraint": "none",
    "breathing": "held",
-   "reads": "Coiled crouch, weight pitched over the front foot, arms swinging forward for the plant."
+   "reads": "Weight pitched onto the planted right hand, the feet leaving the stone as the body tips into the vault."
   },
   {
    "slot": "wizard@b03",

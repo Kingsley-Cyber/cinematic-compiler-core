@@ -12,7 +12,7 @@ low
 L4c
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -46,4 +46,6 @@ none needed
 - ADR-O83
 
 ## Resolution
-Open.
+RV-02a (S-039): the calibration test is labelled a regression pin; SOURCE_EXCEPTIONS says what the repo does with
+each source miss (3.0 flipped by O88, 4.0 not drawn, the 5.9 slide listed as b14_c2 and b14_c3); the dead
+`acrobat@b08` clause is gone.

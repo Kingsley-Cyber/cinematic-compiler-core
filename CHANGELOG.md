@@ -6,6 +6,13 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- CONTACT_WORLD per O89 (RV-02a, ADR-O104, S-039): only a point interpolated between keys or samples, with the actor
+  airborne or the prop moving, is an artefact; no exact-instant miss is exempt and a turn alone never is. The repo side
+  of each such miss is re-blocked: the kunai is deflected at A's right foot and lands at [1.4, 0, 3.77] (O77's
+  v_post), and A's 8.0 crouch, B's 8.0 anchor and the dart move with it; the pellet leaves A's hand at 3.7; the volley
+  leaves B's hand at 5.5; B's palm reaches the log at 4.0; B rises to A's knee at 4.7; the wizard's vault plants the
+  right hand at its first key and the launch check accepts a hand launch (F-076). The source's slide at 5.9 is listed
+  (ADR-O83 point 2). F-076 and F-079 resolved; F-075 open for RV-02b (releases; B's throw re-staged).
 - A's limb and head words follow the source's words (RV-05, O88, S-038): 19 limb and 13 head flips in A's rows, each a
   recorded deviation; the hips at 0.6 keep their crouch (ADR-O103); A's 3.0 right foot now meets the ground, so
   CONTACT_WORLD needs no exception; B's catch at 6.6 re-blocked to A's moved elbow. RV-02 split into RV-02a and

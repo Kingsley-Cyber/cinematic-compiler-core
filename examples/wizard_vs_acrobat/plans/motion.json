@@ -1,7 +1,7 @@
 {
  "step_id": "S13",
  "band": "L4c",
- "packet_sha256": "sha256:4d10bacc2f48882470c691afa4edfddeea8798764cdbb601e171e917e6064118",
+ "packet_sha256": "sha256:f3b37032d036cfc9d2064c8a79249bdfcd33b21d23f19a7aa955c1e858385dae",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -87,7 +87,7 @@
    "name": "crouch_hand_plant",
    "pos": [
     0,
-    0.89,
+    0.56,
     2.4
    ],
    "rot": [
@@ -97,27 +97,27 @@
    ],
    "bones": {
     "Sp": [
-     45,
+     75,
      0,
      0
     ],
     "LUL": [
-     -140,
+     -136.1,
      0,
      8
     ],
     "RUL": [
-     -145,
+     -142.8,
      0,
      -8
     ],
     "LL": [
-     120,
+     136.6,
      0,
      0
     ],
     "RL": [
-     125,
+     138,
      0,
      0
     ],
@@ -127,9 +127,9 @@
      15
     ],
     "RA": [
-     -110,
-     0,
-     -5
+     -91.1,
+     -0.8,
+     -2.4
     ],
     "LFA": [
      -20,
@@ -137,7 +137,7 @@
      0
     ],
     "RFA": [
-     -5,
+     0,
      0,
      0
     ],
@@ -154,7 +154,7 @@
    },
    "turn": "flip",
    "axis_declaration": "X",
-   "description": "Deep crouch folding forward over the knees, right arm reaching long to plant the hand ahead."
+   "description": "Deep crouch pitched forward over the knees, the right hand planted on the ground ahead, the feet leaving it."
   },
   {
    "slot": "acrobat@b03",

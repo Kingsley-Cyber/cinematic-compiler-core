@@ -20,8 +20,8 @@ Root [x, y, z] is the scene position in metres; EulerXYZ and joints are degrees.
 FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship | path/notes
 
 [LABAN STAFF – MIXED MODE]
-0.00 B: SUPPORT both feet place-low [f:both] | L arm forward-mid, lower arm folded 75, L leg forward-low, lower leg folded 45, body forward-high (25 lean), head back-high | R arm back-low, lower arm folded 60, R leg forward-mid, lower leg folded 75 | - | path: forward 2.4 m; Acrobat sprints across the flagstones toward the wizard, low and quick, gathering into a crouch · Root [0, 0.96, 0] EulerXYZ [0, 0, 0]
-1.20 B: SUPPORT NO SUPPORT | L arm left-forward-low, lower arm folded 15, L leg forward-high, lower leg folded 120, body forward-high (45 lean), head back-high | R arm forward-mid, lower arm straight, R leg forward-high, lower leg folded 120 | contact bow: R hand > ground at 2.00 | path: forward 0.6 m, rising 1.2 m; ONE front flip about the side-to-side axis (sagittal plane), 1.20–2.60; takeoff 1.20, landing 2.60; Acrobat plants the right hand and vaults forward, body inverting overhead. NOT a jump straight up
+0.00 B: SUPPORT both feet place-low [f:both] | L arm forward-mid, lower arm folded 75, L leg forward-low, lower leg folded 45, body forward-high (25 lean), head back-high | R arm back-low, lower arm folded 60, R leg forward-mid, lower leg folded 75 | - | path: forward 2.4 m, dropping 0.4 m; Acrobat sprints across the flagstones toward the wizard, low and quick, gathering into a crouch · Root [0, 0.96, 0] EulerXYZ [0, 0, 0]
+1.20 B: SUPPORT RIGHT hand place-low [h:R] | L arm left-forward-low, lower arm folded 15, L leg forward-high, lower leg folded 135, body forward-mid (75 lean), head back-high | R arm forward-mid, lower arm straight, R leg forward-high, lower leg folded 135 | - | path: forward 0.6 m, rising 1.5 m; ONE front flip about the side-to-side axis (sagittal plane), 1.20–2.60; takeoff 1.60, landing 2.60; Acrobat plants the right hand and vaults forward, body inverting overhead. NOT a jump straight up
 1.60 A: SUPPORT both feet place-mid [f:both] | L arm left-forward-low, lower arm folded 60, L leg forward-low, lower leg folded 15 | R arm forward-mid, lower arm straight, R leg place-low, lower leg straight | - | Wizard extends the right hand and fires a bolt at the vaulting acrobat; it misses and scorches the flagstones · Root [0, 1.19, 6] EulerXYZ [0, 180, 0]
 1.60 B: SUPPORT NO SUPPORT | L arm forward-high, lower arm straight, L leg forward-low, lower leg straight, body forward-mid (80 lean), head back-high | R arm right-forward-high, lower arm straight, R leg place-low, lower leg straight | - | path: left-forward 1.0 m, dropping 0.2 m; continues the front flip begun at 1.20
 2.00 B: SUPPORT NO SUPPORT | L arm left-forward-mid, lower arm folded 30, L leg forward-mid, lower leg folded 105, body forward-low (150 lean), head forward-high | R arm right-forward-mid, lower arm folded 30, R leg forward-mid, lower leg folded 105 | - | path: forward 0.6 m, dropping 1.0 m; continues the front flip begun at 1.20; Acrobat lands to the wizard's left in a deep crouch, both feet on the stone
@@ -61,7 +61,7 @@ FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship |
 - A 3.60–5.20 (1.6 s without a line): carry 'staggered double palm' through; weight transfer backward, breathing gasp, tension high.
 - A 7.60–10.00 (2.4 s without a line): hold the final pose with micro-motion; weight transfer rotating, breathing exhale, tension high.
 - B after the 2.60 strike: one instant contact, the limb does not stay on the target (R16), then a short natural recovery before the next phrase.
-- B airborne 1.20–2.60: a realistic trajectory and rotation from the takeoff at 1.20 to the landing at 2.60.
+- B airborne 1.60–2.60: a realistic trajectory and rotation from the takeoff at 1.60 to the landing at 2.60.
 - B airborne 4.60–5.20: a realistic trajectory and rotation from the takeoff at 4.60 to the landing at 5.20.
 - B airborne 8.60–9.80: a realistic trajectory and rotation from the takeoff at 8.60 to the landing at 9.80.
 
@@ -78,7 +78,7 @@ bamboo wall (boundary): Dense bamboo stalks around the courtyard edge; solid.
 stone pillar (obstacle): Weathered stone pillar inside the courtyard; solid.
 B starts at [0, 0.96, 0].
 A starts at [0, 1.19, 6].
-Height used: y 0.72 to 2.3 m; depth used: z 0 to 6 m.
+Height used: y 0.56 to 2.3 m; depth used: z 0 to 6 m.
 
 [CAUSAL LINKS]
 → hard cause (the effect starts after the cause ends); ⇢ soft cause (it may start while the cause runs).
@@ -146,7 +146,7 @@ Ink: heavy on silhouettes,broken in smears,clean on holds,smear follows ONLY the
 - From 9.80 to the end, B keeps support grounded.
 - End state: A at [0, 1.18, 5.8], condition ok, support both feet place-mid.
 - End state: B at [-1.1, 0.72, 5.3], condition ok, location ground, posture crouching, support grounded.
-- B hangs in the air 1.20–2.60, longer than a real jump (stylised anime hang time).
+- B hangs in the air 1.60–2.60, longer than a real jump (stylised anime hang time).
 - B hangs in the air 4.60–5.20, longer than a real jump (stylised anime hang time).
 - B hangs in the air 8.60–9.80, longer than a real jump (stylised anime hang time).
 

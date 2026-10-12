@@ -58,8 +58,10 @@ def test_a_lean_in_the_spine_carries_the_legs():
     assert foot == [0.1, 0.0, 0.0]                                             # the hip at -30 keeps it under the body
 
 
-# The source's grounded A rows (kernel/sources/lbn-2.3-adv.txt, support=both feet on the ground) that still miss under
-# the trunk reading and the anime body: recorded exceptions (ADR-O83 point 2), each with its reason.
+# The source's own grounded A rows (kernel/sources/lbn-2.3-adv.txt, support=both feet on the ground, numbers as written)
+# that miss the ground under the trunk reading and the anime body, and what the repo does with each (F-079): 3.0 right
+# is flipped to the row's own words by O88 (S-038), so the repo's foot meets; 4.0 is not drawn (O18); the 5.9 slide is
+# listed in the reference motion plan's contact_world_exceptions (b14_c2, b14_c3; ADR-O83 point 2, S-039).
 SOURCE_EXCEPTIONS = {(3.0, "right"): "RUL +90 swings the thigh back, against the row's own 'R: leg fwd mid'",
                      (4.0, "right"): "the root at y 0.9 where the same pose stands at 1.1 (3.4, 4.4); not drawn (O18)",
                      (5.9, "left"): "the slide: the body tipped 80 degrees with the legs folded under",
@@ -67,7 +69,8 @@ SOURCE_EXCEPTIONS = {(3.0, "right"): "RUL +90 swings the thigh back, against the
 
 
 def test_the_source_grounded_rows_meet_the_ground_under_the_anime_body():
-    """ADR-O82, O84, O85: the card is calibrated to the source's own grounded rows (knees at +|X|, O7)."""
+    """ADR-O82, O84, O85, as a regression pin (F-079): the anime body was fitted to these very rows (S-029), so the test
+    fails only when the card or the trunk reading moves; it is not independent evidence that the fit is right."""
     text = (ROOT / "kernel" / "sources" / "lbn-2.3-adv.txt").read_text(encoding="utf-8")
     grounded = (r for r in json.loads(text[text.index("{"):])["A"] if r[0] >= 3)          # 0.6 and 1.1: the pillar
     rows = [r for r in grounded if r[5].split("support=")[1].startswith("both feet;")]
@@ -91,16 +94,18 @@ def test_repo_authored_roots_stand_at_the_pelvis():
             if name == "reference_fight" and key["entity"] == "ninja_lean" or not feet or set(support[key["id"]]) - set(feet):
                 continue
             lowest = min(key["points"][p][1] for p in feet)
-            assert -0.01 <= lowest <= 0.05 or key["id"] == "acrobat@b08", (name, key["id"], lowest)
+            assert -0.01 <= lowest <= 0.05, (name, key["id"], lowest)
     a_rows = {k["t"]: k for k in _envelope("reference_fight")["nodes"]["motion"]["items"] if k["entity"] == "ninja_lean"}
     for t, top in ((0.6, 8.0), (7.5, 0.0), (8.0, 0.0)):                    # A's repo-authored roots (O21, O18), S-029
         assert abs(min(a_rows[t]["points"][f"{side}_foot"][1] for side in ("left", "right")) - top) <= 0.01
 
 
 def test_the_kunai_pickup_meets_since_its_re_block():
+    """O89 (S-039): the deflect sits at A's right foot, so O77's v_post lands the kunai at [1.4, 0, 3.77], and A crouches
+    there at 8.0 (S-030 had it at [0.6, 0, 4.0], 1.33 m from A's hand before that)."""
     rows = {r["id"]: r for r in contact_world.measure(_envelope("reference_fight"))}
-    pickup = rows["b19_c2"]                                     # A takes the kunai at 8.0 (1.33 m apart before S-030)
-    assert pickup["measurable"] and pickup["distance"] <= contact_world.TOLERANCE_M and pickup["target_point"] == [0.6, 0.0, 4.0]
+    pickup = rows["b19_c2"]                                     # A takes the kunai at 8.0
+    assert pickup["measurable"] and pickup["distance"] <= contact_world.TOLERANCE_M and pickup["target_point"] == [1.4, 0.0, 3.77]
     assert rows["b01_c1"]["distance"] <= contact_world.TOLERANCE_M          # A lands on the pillar's top (O21)
     assert not rows["b18_c1"]["measurable"]                                   # the pillar's face has no top to meet
 
@@ -110,13 +115,13 @@ def test_the_prompt_prints_both_points_of_each_contact():
     point the prompt is refused."""
     envelope = _envelope("reference_fight")
     text = (ROOT / "examples" / "reference_fight" / "prose_mixed.txt").read_text(encoding="utf-8")
-    assert ", kunai handle at [0.6, 0, 4]" in text
-    broken = text.replace(", kunai handle at [0.6, 0, 4]", "", 1)
+    assert ", kunai handle at [1.4, 0, 3.77]" in text                       # the landing since O89 (S-039)
+    broken = text.replace(", kunai handle at [1.4, 0, 3.77]", "", 1)
     assert "CONTACT_WORLD" in {f["code"] for f in prompt_validator.check(broken, envelope, "mixed")}
 
 
 def test_every_example_passes_contact_world():
-    """ADR-O83: after the re-blocks no example holds a real miss; the reference fight lists its one source miss."""
+    """ADR-O83, O89: after the re-blocks no example holds a real miss; the reference fight lists the source's slide."""
     for name in ("wizard_vs_acrobat", "live_action_standoff", "ugc_glasses_demo", "reference_fight"):
         plan = json.loads((ROOT / "examples" / name / "plans" / "motion.json").read_text(encoding="utf-8"))
         assert contact_world.refusals(contact_world.measure(_envelope(name)), plan.get("contact_world_exceptions", {})) == []

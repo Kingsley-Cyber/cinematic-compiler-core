@@ -1,7 +1,7 @@
 {
  "step_id": "S13",
  "band": "L4c",
- "packet_sha256": "sha256:99cb48aba2eb47f0afc2ee709c28514196750e4226cc916bcb1f8a44e864de6d",
+ "packet_sha256": "sha256:5e028fb72c8c6dc1450ea23fb510fdb136a26e041f8846713b2691a691182322",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -1196,9 +1196,9 @@
    "slot": "ninja_broad@b10",
    "name": "palm_hits_log",
    "pos": [
-    0.9,
-    1.07,
-    4.7
+    1.0,
+    1.09,
+    5.0
    ],
    "rot": [
     0,
@@ -1207,8 +1207,8 @@
    ],
    "bones": {
     "Sp": [
-     35,
-     0,
+     20,
+     5.1,
      0
     ],
     "LUL": [
@@ -1237,9 +1237,9 @@
      40
     ],
     "RA": [
-     -70,
-     0,
-     -40
+     -54.2,
+     -1.3,
+     -16.3
     ],
     "LFA": [
      -20,
@@ -1247,7 +1247,7 @@
      0
     ],
     "RFA": [
-     -20,
+     -15,
      0,
      0
     ],
@@ -1492,9 +1492,9 @@
    "slot": "ninja_broad@b12",
    "name": "spine_struck_launched",
    "pos": [
-    -0.3,
-    1.11,
-    4.5
+    -0.2,
+    1.2,
+    4.44
    ],
    "rot": [
     0,
@@ -1503,27 +1503,27 @@
    ],
    "bones": {
     "Sp": [
-     -25,
+     -12.6,
      0,
      0
     ],
     "LUL": [
-     15,
+     7.6,
      0,
      10
     ],
     "RUL": [
-     35,
+     8,
      0,
      -10
     ],
     "LL": [
-     40,
+     10.4,
      0,
      0
     ],
     "RL": [
-     60,
+     28.2,
      0,
      0
     ],
@@ -2528,9 +2528,9 @@
    "slot": "ninja_lean@b20",
    "name": "pull_b_toward_pillar",
    "pos": [
-    0.11,
+    0.91,
     0.59,
-    4.23
+    4.0
    ],
    "rot": [
     -330,
@@ -2602,9 +2602,9 @@
    "slot": "ninja_broad@b20",
    "name": "dragged_toward_pillar",
    "pos": [
-    1.4,
+    2.2,
     1.18,
-    3.7
+    3.47
    ],
    "rot": [
     0,
@@ -3116,5 +3116,9 @@
    "turn": "none",
    "axis_declaration": "none"
   }
- ]
+ ],
+ "contact_world_exceptions": {
+  "b14_c2": "The owner's source pose at 5.9 (root y 0.6, both legs folded under, 'support=both feet') holds A's left sole 0.55 m over the ground under the anime body; both sides are the source's (ADR-O83 point 2; not an artefact under O89).",
+  "b14_c3": "The owner's source pose at 5.9 (root y 0.6, both legs folded under, 'support=both feet') holds A's right sole 0.35 m over the ground under the anime body; both sides are the source's (ADR-O83 point 2; not an artefact under O89)."
+ }
 }

@@ -48,4 +48,9 @@ ADR-O89
 - F-070
 
 ## Resolution
-Open.
+In part. RV-02a (S-039, O89, ADR-O104): only a point interpolated between keys or samples, with the actor airborne or
+the prop moving, is an artefact, and no contact measured today is one; B's throw, the palm on the log, the vault hand,
+the kunai's deflect, the pellet and B at A's knee are re-blocked on their repo-authored side; the source's slide at
+5.9 is listed (ADR-O83 point 2). Open for RV-02b: releases are not measured, and the kunai's 2.0 sample still sits off
+B's hand; there B's hand is on A's side of A's 2.5 foot, so a throw from it would fly back toward B: B's throw needs
+re-staging with B's track (F-108, RV-33).

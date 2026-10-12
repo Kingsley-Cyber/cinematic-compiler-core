@@ -6,10 +6,12 @@ surface's top, vertically), and the distance between them. Flags mark the owner'
 airborne, the actor's key turning, the prop moving at the instant. A contact with no key at its instant, a prop with
 no sample there, or a surface with no top (a wall, a pillar's face; a touch on any surface but a floor) is not
 measurable. `measure` reads an envelope (the report, the prose); `measure_plan` reads S13's packet and its authored
-keys (the check). CONTACT_WORLD (ADR-O83) refuses a measurable miss over 0.15 m (O72) unless it is an artefact
-(reported, not refused) or the motion plan lists it in `contact_world_exceptions` with its reason (the source's own
-rows, recorded in the golden test); an exception that names anything but such a miss is refused, so the list stays
-true.
+keys (the check). CONTACT_WORLD (ADR-O83, O89) refuses a measurable miss over 0.15 m (O72) unless it is a genuine
+artefact, or the motion plan lists it in `contact_world_exceptions` with its reason (the owner's source rows, ADR-O83
+point 2, recorded in the golden test); an exception that names anything but such a miss is refused, so the list stays
+true. A genuine artefact (ADR-O104) is a contact measured between keys or samples (an interpolated point) while its
+actor is airborne or its prop moves; at an exact instant nothing is exempt, and a turn alone never is (O89). Every
+contact measured today sits at an exact instant (`interpolated` is false).
 """
 
 import math
@@ -72,7 +74,7 @@ def _rows(keys, support, tops, floors, prop_samples, contacts):
                "target": f"{_words(b['id'])}" + (f" {_words(b['part'])}" if b.get("part") else ""),
                "actor_point": None, "target_point": None, "distance": None, "measurable": False, "reason": "",
                "airborne": bool(key) and not support.get(key["id"]), "rotating": bool(key) and key["turn"] != "none",
-               "prop_moving": False}
+               "prop_moving": False, "interpolated": False}
         rows.append(row)
         if key is None:
             row["reason"] = "no key at the contact's instant"
@@ -109,8 +111,9 @@ def _rows(keys, support, tops, floors, prop_samples, contacts):
 
 
 def artefact(row):
-    """The owner's measurement artefacts (O81, O83): the actor airborne or turning, or the prop moving."""
-    return row["airborne"] or row["rotating"] or row["prop_moving"]
+    """A genuine measurement artefact (O89, ADR-O104): a point interpolated between keys or samples while the actor is
+    airborne or the prop moves. An exact-instant miss never is."""
+    return row["interpolated"] and (row["airborne"] or row["prop_moving"])
 
 
 def refusals(rows, exceptions):

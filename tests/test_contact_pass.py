@@ -30,13 +30,15 @@ def test_courtyard_lifecycle_links_every_release_to_what_it_ends():
     edges = envelope["edges"]["contact"]["items"]
     validate_schema({"contacts": list(events.values()), "contact": edges}, SCHEMA)
     releases = [e for e in edges if e["relation"] == "releases"]
-    assert len(releases) == sum(e["contact_type"] == "release" for e in events.values()) == 5
+    assert len(releases) == sum(e["contact_type"] == "release" for e in events.values()) == 6  # +the vault hand, S-039
     for edge in releases:
         release, opened = events[edge["from"]], events[edge["to"]]
         assert p07_contact._pair(release) == p07_contact._pair(opened) and opened["t"] <= release["t"]
     beats = {b["id"]: b for b in envelope["nodes"]["beats"]["items"]}
     at_start = {i for i, e in events.items() if e["t"] == beats[e["beat"]]["t"]}
-    assert at_start == {"b12_c1", "b12_c2"}  # the dodge flip leaves the ground at its start (owner O80, S-022)
+    # the dodge flip leaves the ground at its start (owner O80, S-022); the vault plants the hand at its start and lifts
+    # it at 1.6 (O89's vault hand, F-076, S-039)
+    assert at_start == {"b02_c1", "b03_c1", "b12_c1", "b12_c2"}
     assert all(e["t"] == round(beats[e["beat"]]["t"] + beats[e["beat"]]["dur"], 6) for i, e in events.items()
                if i not in at_start)
 

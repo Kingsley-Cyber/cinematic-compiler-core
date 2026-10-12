@@ -22,8 +22,9 @@
   (INVERSION_MISSING; derived and checked, not printed, W3). Interpretation (Claude's, for owner review): a whole turn
   is within 30 degrees of a multiple of 360, and the inversion is read on linear Euler interpolation (FR.1's spacing).
 - launch (plan FR.4, owner O80): a flip or cartwheel run that goes airborne starts at its takeoff: its first key has
-  no support, and the performer was on grounded support at a key before it (AIRBORNE_WITHOUT_LAUNCH). A run that
-  starts turning on the ground and leaves it later turns before its launch (F-058).
+  no support, or stands on the hands alone (a vault or a handspring launches from its planted hands, O89's vault
+  hand), and the performer was on grounded support at a key before it (AIRBORNE_WITHOUT_LAUNCH). A run that starts
+  turning on its feet and leaves the ground later turns before its launch (F-058).
 A mismatch is a finding (the step fails and is re-authored); nothing is corrected silently.
 """
 
@@ -185,16 +186,25 @@ def run_findings(keys, slots, turns):
     return findings
 
 
+HANDS = frozenset({"left_hand", "right_hand"})
+
+
 def _supported(slot):
     return bool(slot.get("kinematic", {}).get("support"))
 
 
+def _hand_launch(slot):
+    """A vault or a handspring: the run's first key stands on the planted hands alone (O89's vault hand)."""
+    support = set(slot.get("kinematic", {}).get("support") or [])
+    return bool(support) and support <= HANDS
+
+
 def _launch_findings(run, first, keys, slots):
-    """AIRBORNE_WITHOUT_LAUNCH (plan FR.4, owner O80): an airborne flip or cartwheel launches at its first key from
-    grounded support before it."""
+    """AIRBORNE_WITHOUT_LAUNCH (plan FR.4, owner O80): an airborne flip or cartwheel launches at its first key, in the
+    air or from the planted hands, from grounded support before it."""
     if all(_supported(slots[s]) for s in run["slots"]):
         return []  # a turn on the ground (a tip, a roll): no launch to check
-    if _supported(slots[first]):
+    if _supported(slots[first]) and not _hand_launch(slots[first]):
         return [{"code": "AIRBORNE_WITHOUT_LAUNCH", "message": f"The {run['turn']} starts turning on the ground and leaves it "
                  "later: take off at its first key (owner O80)", "slot": first}]
     own = sequences(keys, slots)[run["entity"]]

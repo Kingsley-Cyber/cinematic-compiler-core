@@ -20,8 +20,8 @@ def test_the_kunai_is_somewhere_every_moment():
     envelope = _envelope("reference_fight")
     spans = prop_samples.track(envelope, envelope["nodes"]["render"]["items"][0]["labels"], "kunai")
     assert [(start, stop, kind) for start, stop, kind, _ in spans] == [
-        (0.0, 2.0, "held"), (2.0, 2.5, "flight"), (2.5, 2.7, "flight"), (2.7, 8.0, "rest"), (8.0, 10.0, "held")]
-    assert spans[3][3] == "at rest on the ground at [0.6, 0, 4]"         # F6.2: one rest from 2.70 until the pickup (O77)
+        (0.0, 2.0, "held"), (2.0, 2.5, "flight"), (2.5, 2.72, "flight"), (2.72, 8.0, "rest"), (8.0, 10.0, "held")]
+    assert spans[3][3] == "at rest on the ground at [1.4, 0, 3.77]"      # F6.2: one rest from 2.72 to the pickup (O77, O89)
 
 
 def test_a_place_set_before_a_hold_does_not_outlive_it():
@@ -34,7 +34,7 @@ def test_a_place_set_before_a_hold_does_not_outlive_it():
 def test_a_flight_without_its_physics_is_refused():
     envelope = _envelope("reference_fight")
     text = envelope["nodes"]["render"]["items"][0]["prose"]["mixed"]["text"]
-    broken = text.replace("2.50-2.70 ballistic under gravity from", "2.50-2.70 flies from")
+    broken = text.replace("2.50-2.72 ballistic under gravity from", "2.50-2.72 flies from")  # lands at 2.72 since O89
     assert "PROP_PHYSICS_UNSTATED" in {f["code"] for f in prompt_validator.check(broken, envelope, "mixed")}
     assert "PROP_PHYSICS_UNSTATED" not in {f["code"] for f in prompt_validator.check(text, envelope, "mixed")}
 

@@ -46,3 +46,5 @@ F-070's miss list; ADR-O82 (calibrate first). These points decide how much of th
 - ADR-O81
 - ADR-O82
 - F-070
+- ADR-O89
+- ADR-O104

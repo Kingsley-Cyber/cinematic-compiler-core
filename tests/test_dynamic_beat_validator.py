@@ -58,7 +58,7 @@ def test_courtyard_plan_passes():
     ("BEAT_CONTACT", lambda p: beat(p, "b05")["contacts"][1]["b"].update(part="wing")),
     ("BEAT_CAUSE", lambda p: beat(p, "b05")["causes"].append({"to": "b01", "causal_strength": "soft", "why": "x"})),
     ("BEAT_CAUSE", lambda p: beat(p, "b05")["causes"].append({"to": "b05", "causal_strength": "soft", "why": "x"})),
-    ("FILLER_BEAT", lambda p: beat(p, "b03").update(effects=[], causes=[])),
+    ("FILLER_BEAT", lambda p: beat(p, "b03").update(effects=[], causes=[], contacts=[])),  # b03 lifts the vault hand (O89)
     ("MODE_COHERENCE", lambda p: beat(p, "b01")["modes"].update(acrobat="calm_casting")),
     ("MODE_TRANSITION", lambda p: beat(p, "b03")["modes"].update(acrobat="focused")),
 ])
@@ -171,8 +171,8 @@ def test_the_rows_print_the_pair_pre_before_post():
     envelope = json.loads((ROOT / "examples" / "reference_fight" / "envelope.json").read_text(encoding="utf-8"))
     rows = [text for _, text in prop_samples.rows(envelope, {"ninja_lean": "A", "ninja_broad": "B"}, "kunai", False)]
     at = [text for text in rows if text.startswith("2.50")]
-    assert at == ["2.50 pre-contact p[0.5, 1, 4.6] v[-1.4, -3.46, 0.2] moving down along -X",
-                  "2.50 post-contact p[0.5, 1, 4.6] v[0.5, -4, -3] moving down along -Z"]  # owner O77
+    assert at == ["2.50 pre-contact p[1.29, 1.13, 4.44] v[0.18, -3.2, 0.28] moving down along +Z",
+                  "2.50 post-contact p[1.29, 1.13, 4.44] v[0.5, -4, -3] moving down along -Z"]  # owners O77, O89
 
 
 def test_a_throw_leaves_its_prop_moving():

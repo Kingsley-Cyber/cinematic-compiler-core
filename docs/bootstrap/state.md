@@ -6,20 +6,20 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 3.1; backlog 13.
+Layer order 1.7; rules 3.1; backlog 14.
 
 ## Last sessions
 
-- S-036 (applied): The finish run: a prompt that works until the repo is done (O101)
 - S-037 (applied): RV-01: C12 loses CONTACT_WORLD and is NOT CHECKED until AS-06 (F-074)
 - S-038 (applied): RV-05: A's limb and head words follow the source's words (O88)
+- S-039 (applied): RV-02a: CONTACT_WORLD per O89, the repo side of each miss re-blocked
 
 ## Next slices
 
-- RV-02a (next, step motion): CONTACT_WORLD per O89: no exact-instant exemption; the repo side of each miss re-blocked (the palm on the log, B's throw, the vault hand, the kunai's arc, the pellet, B at the knee); the slide excepted
-- RV-02b (ready, step motion): CONTACT_WORLD measures releases (a thrown or dropped prop leaves the hand where the hand is)
-- RV-03 (ready, step temporal): The UGC pickup on the table; no resting-prop jump at a pickup; UGC poses agree with their words
+- RV-03 (next, step temporal): The UGC pickup on the table; no resting-prop jump at a pickup; UGC poses agree with their words
+- RV-02b (ready, step motion): CONTACT_WORLD measures releases (a thrown or dropped prop leaves the hand where the hand is); B's kunai throw re-staged, since B's 2.0 hand is on A's side of A's 2.5 foot (S-039)
 - RV-04 (ready, step docs): Records: rules 4.0, version bumps checked, layer_order.yaml logged, the hook active, stale docs and findings closed
+- RV-06 (ready, step temporal): The vanish (O90): A's supports and holds end at 3.7; the rope dart on the ground until 7.5
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -51,7 +51,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-40 blocked: Rebinding forces re-authoring — the owner's answer in F-116
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 79
+## Open findings: 77
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -83,4 +83,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O104, finding F-120, session S-039, render R20.
+Decision ADR-O105, finding F-120, session S-040, render R20.
