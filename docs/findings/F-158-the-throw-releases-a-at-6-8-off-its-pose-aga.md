@@ -12,7 +12,7 @@ medium
 L1.1
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -35,7 +35,7 @@ The catch's throw sits between poses.
 The model reads a throw at an instant no pose shows.
 
 ## Proposed Fix
-Backlog RV-48 (RELEASE_AT_POSE): b17 back to 6.6-7.0 and the throw released at its start, 6.6, with the catch, as the source flashes it.
+Backlog RV-48a (RELEASE_AT_POSE): b17 back to 6.6-7.0 and the throw released at its start, 6.6, with the catch, as the source flashes it.
 
 ## Owner Ruling
 none needed (O23, O93)
@@ -45,7 +45,9 @@ none needed (O23, O93)
 - F-084
 - F-135
 - ADR-O23
-- RV-48
+- RV-48a
 
 ## Resolution
-Open.
+RV-48a (S-057): RELEASE_AT_POSE refuses a throw or release off its actor's key; b17 runs 6.6-7.0 again and B
+throws A on the catch's pose, 6.6, as the source flashes it
+(tests/test_dynamic_beat_validator.py::test_a_throw_or_release_happens_on_its_actors_key).

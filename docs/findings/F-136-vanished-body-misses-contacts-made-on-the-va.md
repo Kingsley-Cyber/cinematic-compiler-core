@@ -12,7 +12,7 @@ medium
 L1.1
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -35,7 +35,7 @@ A body that is gone can still be struck.
 The substitution can be contradicted by the plan.
 
 ## Proposed Fix
-Backlog RV-48: also refuse a contact whose target is the vanished body, and require a touched entity to be a participant.
+Backlog RV-48a: also refuse a contact whose target is the vanished body, and require a touched entity to be a participant.
 
 ## Owner Ruling
 ADR-O18, ADR-O90
@@ -45,4 +45,6 @@ ADR-O18, ADR-O90
 - F-081
 
 ## Resolution
-Open.
+RV-48a (S-057): VANISHED_BODY refuses a contact on a vanished body inside its window, and BEAT_CONTACT a touch on a
+body its beat does not list (planner/dynamic_beat_validator.py;
+tests/test_dynamic_beat_validator.py::test_nobody_touches_a_vanished_body_and_a_touched_body_is_in_its_beat).

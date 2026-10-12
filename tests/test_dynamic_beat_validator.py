@@ -261,3 +261,60 @@ def test_a_vanished_body_lets_go_of_its_supports_and_holds():
         return [(f["code"], f["beat"]) for f in _vanished(beats)]
     assert plan(1.0) == []                                       # lets go as it vanishes, stands again at 2.0
     assert ("VANISHED_BODY", "b02") in plan(3.0)                  # the foot stays on the ground while x is gone
+
+
+FIGHT = ROOT / "examples" / "reference_fight"
+
+
+def fight_codes(change):
+    """S04's findings on the reference fight's beat plan after one change (RV-48a)."""
+    request = json.loads((FIGHT / "request.json").read_text(encoding="utf-8"))
+    plan = json.loads((FIGHT / "plans" / "temporal.json").read_text(encoding="utf-8"))
+    packet = prepare(pipeline.run(request["query"], genre=request.get("genre"), duration_s=request.get("duration_s"),
+                                  until="constraint"))
+    change({b["id"]: b for b in plan["beats"]})
+    return {f["code"] for f in validate(plan, packet)}
+
+
+def test_a_throw_or_release_happens_on_its_actors_key():
+    """RELEASE_AT_POSE (owner O23, F-135, F-158): the catch's throw lets go at 6.6, B's key; at its beat's end, 7.0,
+    B has no key and S04 refuses it."""
+    assert "RELEASE_AT_POSE" not in fight_codes(lambda b: None)
+
+    def at_end(beats):
+        for contact in beats["b17"]["contacts"]:
+            if contact["contact_type"] == "release":
+                contact.pop("at")
+    assert "RELEASE_AT_POSE" in fight_codes(at_end)
+
+
+def test_nobody_touches_a_vanished_body_and_a_touched_body_is_in_its_beat():
+    """VANISHED_BODY and BEAT_CONTACT (F-136): B's palm on A's torso at 4.0, while A is gone (3.7-4.4), is refused,
+    and so is a touch on a body its beat does not list."""
+    def palm_on_a(beats):
+        beats["b10"]["contacts"].append({"contact_type": "touch", "at": "start",
+                                         "a": {"kind": "entity", "id": "ninja_broad", "part": "right_hand"},
+                                         "b": {"kind": "entity", "id": "ninja_lean", "part": "torso"}})
+    found = fight_codes(palm_on_a)
+    assert {"VANISHED_BODY", "BEAT_CONTACT"} <= found
+
+
+def test_a_contact_between_two_samples_does_not_move_a_resting_prop():
+    """PROP_KINEMATICS (F-138): a touch between two samples cannot carry a resting prop elsewhere; a substitution that
+    changes the prop swaps it into its new place at the substitution's start (the decoy, O12, O48); an action cannot."""
+    from planner.dynamic_beat_validator import _prop_kinematics
+
+    def messages(event_type, touch_between, swap_sample):
+        touch = {"contact_type": "touch", "a": {"kind": "entity", "id": "a", "part": "right_hand"},
+                 "b": {"kind": "prop", "id": "k", "part": None}, "at": "start"}
+        rest = {"prop": "k", "t": 0.0, "p": [0, 1, 0], "v": None, "float": False}
+        moved = {"prop": "k", "t": 0.4 if swap_sample else 1.0, "p": [0.6, 1, 0], "v": None, "float": False}
+        beats = [{"id": "b01", "t": 0.0, "dur": 0.4, "pos": {}, "contacts": [], "effects": [], "event_type": "action",
+                  "prop_samples": [rest]},
+                 {"id": "b02", "t": 0.4, "dur": 0.6, "pos": {}, "contacts": [touch] if touch_between else [],
+                  "event_type": event_type, "prop_samples": [moved],
+                  "effects": [{"subject": {"kind": "prop", "id": "k"}, "property": "x", "value": "y"}]}]
+        return [f["message"] for f in _prop_kinematics(beats, {"k": {}}, "anime")]
+    assert any("give it a sample at the contact" in m for m in messages("action", True, False))
+    assert messages("substitution", False, True) == []
+    assert any("moves between" in m for m in messages("action", False, True))

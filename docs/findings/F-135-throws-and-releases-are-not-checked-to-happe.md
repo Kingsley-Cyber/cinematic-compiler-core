@@ -35,7 +35,7 @@ An author following the prompt writes the timing the checks were built to remove
 Throws can leave a prop at the wrong instant; new scenes repeat old mistakes.
 
 ## Proposed Fix
-Backlog RV-48: S04 refuses a throw or a prop release that is not at its pose; the S04 prompt rewritten to today's rules (it needs no layer-order ADR, so it leaves RV-20).
+Backlog RV-48a and RV-48b: S04 refuses a throw or a prop release that is not at its pose; the S04 prompt rewritten to today's rules (it needs no layer-order ADR, so it leaves RV-20).
 
 ## Owner Ruling
 ADR-O23
@@ -46,4 +46,4 @@ ADR-O23
 - F-095
 
 ## Resolution
-Open.
+Open in part: RELEASE_AT_POSE is built (RV-48a, S-057); the S04 prompt waits for RV-48b.

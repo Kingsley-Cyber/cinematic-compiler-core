@@ -993,20 +993,6 @@
      "at": "start"
     },
     {
-     "contact_type": "touch",
-     "a": {
-      "kind": "entity",
-      "id": "ninja_lean",
-      "part": "right_hand"
-     },
-     "b": {
-      "kind": "prop",
-      "id": "substitution_log",
-      "part": "log"
-     },
-     "at": "start"
-    },
-    {
      "contact_type": "release",
      "a": {
       "kind": "entity",
@@ -1115,6 +1101,17 @@
       0,
       0
      ],
+     "float": false
+    },
+    {
+     "prop": "substitution_log",
+     "t": 3.7,
+     "p": [
+      0.4,
+      1.0,
+      4.7
+     ],
+     "v": null,
      "float": false
     }
    ]
@@ -1802,7 +1799,7 @@
   {
    "id": "b17",
    "t": 6.6,
-   "dur": 0.2,
+   "dur": 0.4,
    "event_type": "action",
    "actor": "ninja_broad",
    "label": "catch_elbow_throw",
@@ -1885,7 +1882,8 @@
       "id": "ninja_lean",
       "part": "left_arm"
      },
-     "verb": "throw"
+     "verb": "throw",
+     "at": "start"
     },
     {
      "contact_type": "release",
@@ -1899,7 +1897,8 @@
       "id": "ninja_lean",
       "part": "left_arm"
      },
-     "verb": "throw"
+     "verb": "throw",
+     "at": "start"
     }
    ],
    "causes": [

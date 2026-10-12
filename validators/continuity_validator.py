@@ -37,14 +37,16 @@ def check(snapshots, transitions, subjects, beat_ids):
     return findings
 
 
-def first_states(snapshots, beat_ids):
-    """PROP_FIRST_STATE: at the first beat each prop's holder and card states are known (its location may be unknown
-    while it is held or hidden). They come from first requirements, a chained clip's end states and contacts at start."""
+def first_states(snapshots, beat_ids, carried=frozenset()):
+    """PROP_FIRST_STATE: at the first beat each prop's holder and card states are known, and its location too unless it
+    is held or carried on a body (`carried`: S02's carried_by; F-139). They come from first requirements, a chained clip's
+    end states and contacts at start."""
     first = beat_ids[0] if beat_ids else None
     findings = []
     for node in snapshots:
         if node["beat"] == first and node["subject"]["kind"] == "prop":
-            gaps = sorted(k for k, v in node["conditions"].items() if v == UNKNOWN and k != "location")
+            held = node["conditions"].get("holder") not in (UNKNOWN, "none", None) or node["subject"]["id"] in carried
+            gaps = sorted(k for k, v in node["conditions"].items() if v == UNKNOWN and (k != "location" or not held))
             if gaps:
                 findings.append(_finding("PROP_FIRST_STATE", f"{node['subject']['id']}: {', '.join(gaps)} unknown at the "
                                          "first beat", [first, node["subject"]["id"]]))

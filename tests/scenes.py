@@ -33,7 +33,9 @@ def cup_plan(envelope):
         {"id": "b01", "t": 0.0, "dur": 1.5, "event_type": "action", "actor": "wizard", "label": "lift_cup",
          "participants": [cup], "modes": {"wizard": "calm_casting"}, **copy.deepcopy(anchor),
          "action": "Wizard lifts the cup by its handle.", "requires": [_fact("prop", "coffee_cup", "holder", "none"),
-                                                                     _fact("prop", "coffee_cup", "fill", "full")],
+                                                                     _fact("prop", "coffee_cup", "fill", "full"),
+                                                                     # F-139 (RV-48a): a free prop starts somewhere
+                                                                     _fact("prop", "coffee_cup", "location", "ground")],
          "effects": [_fact("prop", "coffee_cup", "holder", "wizard"), _fact("entity", "wizard", "possession", "coffee_cup")],
          "contacts": [{"contact_type": "possess", "a": hand, "b": {**cup, "part": "handle"}}],
          "causes": [{"to": "b02", "causal_strength": "hard", "why": "Holding the cup lets the wizard sip."}]},
@@ -46,9 +48,11 @@ def cup_plan(envelope):
          "participants": [cup, {"kind": "surface", "id": "ground"}], "modes": {"wizard": "calm_casting"},
          **copy.deepcopy(anchor), "action": "Wizard sets the cup on the ground and lets go.",
          "requires": [_fact("prop", "coffee_cup", "holder", "wizard")],
-         "effects": [_fact("prop", "coffee_cup", "holder", "none"), _fact("prop", "coffee_cup", "location", "ground"),
+         "effects": [_fact("prop", "coffee_cup", "holder", "none"),
+                     {**_fact("prop", "coffee_cup", "location", "ground"), "at": "start"},
                      _fact("entity", "wizard", "possession", "none")],
-         "contacts": [{"contact_type": "release", "a": hand, "b": {**cup, "part": "handle"}},
+         # O23 (RV-48a, F-135): the release happens on the beat's key pose, its start, with the cup on the ground
+         "contacts": [{"contact_type": "release", "a": hand, "b": {**cup, "part": "handle"}, "at": "start"},
                       {"contact_type": "support", "a": {"kind": "entity", "id": "wizard", "part": "right_foot"},
                        "b": {"kind": "surface", "id": "ground", "part": None}}],
          "causes": []}]

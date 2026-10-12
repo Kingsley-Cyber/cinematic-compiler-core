@@ -47,3 +47,4 @@ none needed
 
 ## Resolution
 Open.
+RV-48a (S-057): b09_c2 (A's hand on the log at 3.7) went with the log's swap, so one of the seven is gone.

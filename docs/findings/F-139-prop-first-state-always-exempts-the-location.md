@@ -12,7 +12,7 @@ low
 L2.1
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -35,7 +35,7 @@ A free prop can start nowhere.
 The prompt cannot say where it is at the start.
 
 ## Proposed Fix
-Backlog RV-48: exempt the location only while the prop is held or carried.
+Backlog RV-48a: exempt the location only while the prop is held or carried.
 
 ## Owner Ruling
 none needed
@@ -44,4 +44,6 @@ none needed
 - PLAN-007
 
 ## Resolution
-Open.
+RV-48a (S-057): PROP_FIRST_STATE exempts a prop's unknown first location only while it is held or carried
+(validators/continuity_validator.py; tests/test_state_pass.py::test_a_free_prop_starts_somewhere); the test scene's
+cup starts on the ground.

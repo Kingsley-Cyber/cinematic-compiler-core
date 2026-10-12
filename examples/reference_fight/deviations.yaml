@@ -42,3 +42,4 @@ deviations:
   - {id: DEV-26, record: HANG_SPANS, type: added, rulings: [ADR-O74], what: "the aerial spans declare their anime hang"}
   - {id: DEV-27, record: PELLET, type: retimed, rulings: [ADR-O91, ADR-O78], what: "the smoke bursts at 3.7 at A's body; the spent pellet falls and rests"}
   - {id: DEV-28, record: PELLET_STATES, type: retimed, rulings: [ADR-O91], what: "the burst at 3.7, the landing at 4.0"}
+  - {id: DEV-29, record: LOG_SWAP, type: added, rulings: [ADR-O48, ADR-O12], what: "the log swapped into A's former place at 3.7; A's hand touch of it went"}

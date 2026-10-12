@@ -101,10 +101,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.0; backlog 23.
-- Last session: S-056 (2026-10-12, applied): RV-46: the stale and overclaimed records corrected; the owner's waiting list complete.
-- Next slice: RV-48 Latent checks: throws and releases at their pose, a vanished body never touched, a resting prop moved only with a sample, the first location, S08's support hand; the S04 prompt rewritten; the 6.6 throw on its pose (step temporal).
-- Open findings: 102; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
+- Layer order 1.7; rules 7.0; backlog 24.
+- Last session: S-057 (2026-10-12, applied): RV-48a: releases at their pose, a vanished body untouched, a resting prop moved only at a sample, a first place.
+- Next slice: RV-48b S08's support hand holds or touches its object; the S04 instructions rewritten to today's rules (step hand_role).
+- Open findings: 98; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

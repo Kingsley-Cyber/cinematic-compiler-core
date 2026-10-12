@@ -35,7 +35,7 @@ The packet's instructions contradict the code.
 The next S04 author is taught the old rules.
 
 ## Proposed Fix
-Backlog RV-48 ("the S04 prompt rewritten"): the instructions and notes follow the code; RV-20 keeps only its layer-order part.
+Backlog RV-48b ("the S04 prompt rewritten"): the instructions and notes follow the code; RV-20 keeps only its layer-order part.
 
 ## Owner Ruling
 none needed
@@ -43,7 +43,7 @@ none needed
 ## Related
 - PLAN-007
 - F-135
-- RV-48
+- RV-48b
 - RV-20
 
 ## Resolution

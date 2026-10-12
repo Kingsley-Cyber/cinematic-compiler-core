@@ -98,7 +98,7 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 3. The fight-breakers that need no ruling: RV-14, RV-15, RV-16, RV-17, RV-37, RV-35, RV-22
 4. The rest in backlog order: RV-18, RV-19, RV-21, RV-23, RV-25, RV-27 to RV-32, RV-34, RV-39, RV-41
 5. Then PLAN-006 (AS-01 to AS-07) and PLAN-003's remaining M9 slices
-After review 3 (S-054): RV-45 and RV-46 (the records) first, then RV-48, RV-60, RV-61, RV-62, RV-57, RV-58, RV-18,
+After review 3 (S-054): RV-45 and RV-46 (the records) first, then RV-48a, RV-48b, RV-60, RV-61, RV-62, RV-57, RV-58, RV-18,
 RV-64 and RV-13, then the rest in backlog order.
 6. Waiting on the owner: RV-13b, RV-20, RV-24, RV-26, RV-36, RV-40, RV-52, RV-53, RV-55, RV-56, RV-63 (and RV-33, which
    follows RV-52); the owner's own: RV-38
@@ -123,3 +123,4 @@ RV-64 and RV-13, then the rest in backlog order.
 - 2026-10-12 — Principal review 3 (S-054): verdict partially; F-152 to F-167, RV-55 to RV-64.
 - 2026-10-12 — RV-45 done (S-055): self-audit sections enforced; typed deviations DEV-01 to DEV-28.
 - 2026-10-12 — RV-46 done (S-056): the stale and overclaimed records corrected.
+- 2026-10-12 — RV-48 split; RV-48a done (S-057): S04's latent checks; the 6.6 throw on its pose; the log's swap.

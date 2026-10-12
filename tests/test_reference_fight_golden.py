@@ -307,11 +307,12 @@ CONTACT_VERBS = {"b05_c1": "throw", "b06_c1": "deflect", "b10_c1": "strike", "b1
 
 
 def test_the_kunai_drive_holds_the_kunai_in_b_and_the_catch_grasps_then_throws():
-    """Owner O93 (RV-10, F-084): from 8.5 the kunai is embedded in B's shoulder (the torso point) to the end while A's
-    right hand keeps it; B's hands take A's left arm at 6.6 and let go at 6.8."""
+    """Owner O93 (RV-10, F-084): from 8.5 the kunai is embedded in B's shoulder (the torso point) to the end while A is
+    its holder; B's hands take A's left arm at 6.6 and throw A on that pose (O23, RV-48a)."""
     contacts = {c["id"]: c for c in ENVELOPE["nodes"]["contacts"]["items"]}
+    # O23 (RV-48a, F-158): the throw lets go on the catch's pose, at 6.6, as the source flashes it
     assert [(contacts[i]["contact_type"], contacts[i]["t"]) for i in ("b17_c1", "b17_c2", "b17_c3", "b17_c4")] == [
-        ("possess", 6.6), ("possess", 6.6), ("release", 6.8), ("release", 6.8)]
+        ("possess", 6.6), ("possess", 6.6), ("release", 6.6), ("release", 6.6)]
     keys = {k["id"]: k for k in ENVELOPE["nodes"]["motion"]["items"]}
     samples = {s["t"]: s["p"] for b in ENVELOPE["nodes"]["beats"]["items"] for s in b.get("prop_samples", [])
                if s["prop"] == "kunai" and s["t"] >= 8.5}
@@ -367,6 +368,21 @@ def test_the_smoke_bursts_at_a_s_body_and_the_spent_pellet_falls_and_rests():
 
 def test_render_txt_is_the_render_node():
     assert (FOLDER / "render.txt").read_text(encoding="utf-8") == TEXT + "\n"
+
+
+# RV-48a (F-138, F-165; owner O12, O48): the substitution swaps the log into A's former place at its start, 3.7, as the
+# source deploys it "at A former position"; the swap needs no hand, so A's touch of the log at 3.7 went (it missed by
+# 0.8 m once the log had a sample there).
+LOG_SWAP = (3.7, [0.4, 1.0, 4.7])
+
+
+def test_the_log_takes_a_s_place_at_the_swap():
+    samples = {s["t"]: s["p"] for b in ENVELOPE["nodes"]["beats"]["items"] for s in b.get("prop_samples", [])
+               if s["prop"] == "substitution_log"}
+    assert samples[LOG_SWAP[0]] == LOG_SWAP[1] and samples[0.0] == [0.4, 1.0, 5.3]
+    assert REFERENCE["substitution_log"][1].startswith("3.7 A deploys substitution log at A former position")
+    assert not any(c["a"]["id"] == "ninja_lean" and c["b"]["id"] == "substitution_log"
+                   for c in ENVELOPE["nodes"]["contacts"]["items"])
 
 
 def test_every_recorded_deviation_is_typed_and_ruled():

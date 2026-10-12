@@ -6,6 +6,11 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- S04's latent checks (RV-48a, O23, F-135, F-136, F-138, F-139, F-158, S-057): a throw or release happens on its
+  actor's key (RELEASE_AT_POSE), so B throws A at 6.6, on the catch's pose, as the source flashes it; nobody touches a
+  vanished body and a touched body is in its beat; a contact between two samples moves a resting prop only by taking
+  hold of it, and a substitution swaps its decoy into its new place, so the log takes A's former place at 3.7 with no
+  hand on it; a free prop starts somewhere.
 - The records corrected (RV-46, F-130, F-140, F-166, S-056): the owner lists name every owner_default ADR awaiting
   confirmation and the pre-commit hook (F-168); overclaims and stale lines corrected at their files (this CHANGELOG's
   RV-09, RV-10 and RV-42 lines among them); the sessions' Duration by the commit times; the track test shows its claim

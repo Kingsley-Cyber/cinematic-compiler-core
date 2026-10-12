@@ -47,4 +47,4 @@ the question open (the pellet's point)
 - RV-27
 
 ## Resolution
-Open.
+Open in part: the log takes A's former place at 3.7 (RV-48a, S-057); the pellet's point waits for the owner.

@@ -53,9 +53,12 @@ def test_cup_possession_matches_holder():
     ("CONTACT_RELEASE", lambda p: p["beats"][0]["contacts"].clear()),
     ("HOLDER_CONTACT", lambda p: p["beats"][0]["contacts"].clear()),
     ("CONTACT_DUPLICATE", lambda p: p["beats"][1]["contacts"].append(copy.deepcopy(p["beats"][0]["contacts"][0]))),
+    # the knight joins the beat, since a touched body must be in its beat (F-136, RV-48a)
     ("CONTACT_HAND", lambda p: p["beats"][1]["contacts"].append({
         "contact_type": "possess", "a": {"kind": "entity", "id": "wizard", "part": "right_hand"},
-        "b": {"kind": "entity", "id": "knight", "part": "torso"}})),
+        "b": {"kind": "entity", "id": "knight", "part": "torso"}}) or p["beats"][1]["participants"].append(
+        {"kind": "entity", "id": "knight"}) or p["beats"][1]["pos"].update(knight=[1, 0, 0]) or p["beats"][1][
+        "facing"].update(knight=[0, 0, -1])),
 ])
 def test_each_contact_rule_rejects_its_violation(code, edit):
     assert code in failure_codes(edit)

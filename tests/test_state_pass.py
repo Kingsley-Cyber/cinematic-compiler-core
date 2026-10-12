@@ -44,8 +44,17 @@ def test_pos_is_authoritative_from_the_beat_and_otherwise_labelled_carried():
 def test_starting_values_come_only_from_a_first_requirement():
     by_id = states(cup("state"))
     assert by_id["coffee_cup@b01"]["conditions"]["fill"] == "full"
-    assert by_id["coffee_cup@b01"]["conditions"]["location"] == "unknown"
+    # a free prop must start somewhere since RV-48a (F-139), so the property without a first requirement is the wizard's
+    assert by_id["wizard@b01"]["conditions"]["possession"] == "unknown"
     assert by_id["coffee_cup@end"]["conditions"] == {"fill": "partly_full", "holder": "none", "location": "ground"}
+
+
+def test_a_free_prop_starts_somewhere():
+    """PROP_FIRST_STATE (F-139, RV-48a): a prop that nobody holds or carries needs its first place; the cup without its
+    first location is refused."""
+    with pytest.raises(ContractError) as error:
+        cup("state", edit=lambda p: p["beats"][0]["requires"].pop())
+    assert error.value.code == "GATE_FAILED" and error.value.path[0]["code"] == "PROP_FIRST_STATE"
 
 
 def test_every_prop_state_is_known_at_the_first_beat():
@@ -60,8 +69,10 @@ def test_every_prop_state_is_known_at_the_first_beat():
 def test_transitions_name_their_triggering_beats():
     envelope = cup("state")
     edges = {e["to_state"]: e for e in envelope["edges"]["state_transition"]["items"]}
-    assert edges["coffee_cup@b03"]["trigger_event"] == ["b02"]
-    assert {c["property"] for c in edges["coffee_cup@end"]["changes"]} == {"holder", "location"}
+    # O23 (RV-48a): the cup is let go on b03's key pose, its start, so b03 joins the transition into b03
+    assert edges["coffee_cup@b03"]["trigger_event"] == ["b02", "b03"]
+    assert {c["property"] for c in edges["coffee_cup@b03"]["changes"]} == {"fill", "holder"}
+    assert "coffee_cup@end" not in edges                       # it already lay on the ground (F-139: it starts there)
 
 
 def test_a_change_of_hands_takes_effect_at_its_contact():

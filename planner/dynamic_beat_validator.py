@@ -9,11 +9,16 @@ Teleport (owner O12): a body faster than 25 m/s between the anchors of two of it
 (TELEPORT), unless the earlier beat is a substitution with that body as actor and the substitution changes a prop's
 state (the decoy revealed; the owner's rule also names the smoke pellet and the log, generalised here to any prop).
 Vanished body (owner O18, audit X9, VANISHED_BODY): from a substitution's start until its actor's next beat as actor,
-no other beat lists, anchors or touches with that actor.
+no other beat lists, anchors or touches with that actor, and no contact touches it (F-136); a touched body is in its
+beat (BEAT_CONTACT).
+Release at its pose (owner O23, RELEASE_AT_POSE, F-135): a throw, or a release of a prop or a body, happens at an
+instant where its actor has a key, the start of a beat that lists it.
 Prop kinematics (owner O8, PROP_KINEMATICS): a beat's prop samples sit inside the beat and name declared props; a held
 prop stays within 2 m of its holder's anchor; between two samples of a free prop with no contact on it in between, a
 moving prop follows gravity from the first sample's velocity to the second position within 0.25 m, and a prop at rest
-(v null or zero) does not move unless a contact on it at the second sample picks it up or knocks it down. A float
+(v null or zero) does not move unless a contact on it at the second sample picks it up or knocks it down, and a contact
+between two samples moves it only by taking hold of it (it is held at the second sample); any other needs a sample at
+its instant (F-138); the substitution's decoy appears in its new place at the substitution's start (O12, O48). A float
 (stylised, no gravity) is allowed in anime only. The 2 m reach and the 0.25 m tolerance are Claude's interpretation.
 Surface height (owner O21, audit X7, SURFACE_HEIGHT): when a foot starts bearing weight on a surface whose top is known
 (its world card's geometry text, "from y=0 to y=8"; a floor without one sits at the convention's ground), the
@@ -116,6 +121,8 @@ def validate(plan, packet):
                 findings.append(_finding("BEAT_CONTACT", "Contact side a needs a declared entity part", bid, a))
             if b["id"] not in known[b["kind"]]:
                 findings.append(_finding("BEAT_CONTACT", "Contact side b is not declared", bid, b))
+            elif b["kind"] == "entity" and b["id"] not in bodies:  # F-136 (RV-48): the touched body is in the beat
+                findings.append(_finding("BEAT_CONTACT", "A touched body is not in its beat", bid, b))
             elif b["part"] is not None and b["part"] not in known[b["kind"]][b["id"]].get("parts", []):
                 findings.append(_finding("BEAT_CONTACT", "Contact side b part is not declared", bid, b))
             verb = contact.get("verb")
@@ -141,7 +148,8 @@ def validate(plan, packet):
             if entity in last_mode and last_mode[entity] != mode and not incoming.get(bid):
                 findings.append(_finding("MODE_TRANSITION", "A mode change needs a beat that causes it", bid, [entity, mode]))
             last_mode[entity] = mode
-    return (findings + _teleports(beats) + _vanished(beats) + _prop_kinematics(beats, props, packet["scene"]["genre"])
+    return (findings + _teleports(beats) + _vanished(beats) + _release_at_pose(beats)
+            + _prop_kinematics(beats, props, packet["scene"]["genre"])
             + _thrown(beats) + _surface_heights(beats, _tops(packet), packet["standing_leg_m"])
             + _prop_support(beats, _tops(packet)))
 
@@ -225,6 +233,24 @@ def _thrown(beats):
     return findings
 
 
+def _release_at_pose(beats):
+    """RELEASE_AT_POSE (owner O23, F-135, F-158): a throw, or a release of a prop or a body, happens at an instant where
+    its actor has a key (the start of a beat that lists it), so the bow and the pose share one time."""
+    poses = {}
+    for beat in beats:
+        for entity in [beat["actor"]] + [p["id"] for p in beat["participants"] if p["kind"] == "entity"]:
+            poses.setdefault(entity, set()).add(beat["t"])
+    findings = []
+    for beat in beats:
+        for contact in beat["contacts"]:
+            if contact.get("verb") == "throw" or (contact["contact_type"] == "release" and contact["b"]["kind"] != "surface"):
+                at = _at(beat, contact)
+                if not any(abs(at - t) <= EPSILON for t in poses.get(contact["a"]["id"], ())):
+                    findings.append(_finding("RELEASE_AT_POSE", f"{contact['a']['id']} lets go of {contact['b']['id']} at "
+                                             f"{at:g}, where it has no key (owner O23)", beat["id"], contact))
+    return findings
+
+
 def _teleports(beats):
     findings, last = [], {}
     for beat in sorted(beats, key=lambda b: (b["t"], b["id"])):
@@ -270,6 +296,11 @@ def _vanished(beats):
             if inside and beat["actor"] != actor and (actor in beat["pos"] or any(
                     p["id"] == actor for p in beat["participants"]) or any(c["a"]["id"] == actor for c in beat["contacts"])):
                 findings.append(_finding("VANISHED_BODY", "A substituted body appears before it reappears", beat["id"], actor))
+            for contact in beat["contacts"]:  # F-136 (RV-48): nobody touches the body while it is gone
+                at = _at(beat, contact)
+                if contact["b"]["id"] == actor and start + EPSILON < at and (back is None or at < back - EPSILON):
+                    findings.append(_finding("VANISHED_BODY", f"{contact['a']['id']} touches {actor} at {at:g} while it is gone",
+                                             beat["id"], contact))
         for part, target, opened, closed in _open_contacts(beats, actor):
             if opened < (math.inf if back is None else back) - EPSILON and (closed is None or closed > start + EPSILON):
                 findings.append(_finding("VANISHED_BODY", f"{actor}'s {part} stays on {target} while it is gone (owner O90)",
@@ -352,9 +383,14 @@ def _prop_kinematics(beats, props, genre):
             span = second["t"] - first["t"]
             if span <= EPSILON or holder_of(prop, first) or first["float"]:
                 continue
-            if any(first["t"] + EPSILON < t < second["t"] - EPSILON for t in touches.get(prop, [])):
-                continue  # a contact changes the flight between the two samples
             moving = first["v"] is not None and any(abs(x) > EPSILON for x in first["v"])
+            between = [t for t in touches.get(prop, []) if first["t"] + EPSILON < t < second["t"] - EPSILON]
+            if between:  # a contact changes the flight between the two samples, or takes the prop
+                if not moving and not holder_of(prop, second) and math.dist(first["p"], second["p"]) > KINEMATIC_TOLERANCE_M:
+                    findings.append(_finding("PROP_KINEMATICS", f"{prop} at rest is moved by a contact at {between[0]:g}, "
+                                             f"between its samples at {first['t']:g} and {second['t']:g}: give it a sample "
+                                             "at the contact (F-138)", beat_id, [first["t"], second["t"]]))
+                continue
             if moving:
                 expected = [first["p"][i] + first["v"][i] * span - (0.5 * GRAVITY * span * span if i == 1 else 0)
                             for i in range(3)]
@@ -368,12 +404,20 @@ def _prop_kinematics(beats, props, genre):
                     findings.append(_finding("PROP_KINEMATICS", f"{prop} from {first['t']} would arrive at {second['t']} "
                                              f"with v {[round(x, 2) for x in velocity]}, not {second['v']}",
                                              beat_id, [first["t"], second["t"]]))
-            elif math.dist(first["p"], second["p"]) > KINEMATIC_TOLERANCE_M:
+            elif math.dist(first["p"], second["p"]) > KINEMATIC_TOLERANCE_M and not _swapped(beats, prop, second["t"]):
                 # F-077 (RV-03): a contact at the second sample takes or strikes the prop where it rests, so the prop
                 # is still there at that instant; only a contact between the two samples moves it.
                 findings.append(_finding("PROP_KINEMATICS", f"{prop} at rest moves between {first['t']} and {second['t']} "
                                          "with no contact before it", beat_id, [first["t"], second["t"]]))
     return findings
+
+
+def _swapped(beats, prop, t):
+    """The substitution's decoy (owner O12, O48; F-138): a substitution that changes the prop's state swaps it into its
+    new place at the substitution's start (the log takes A's place at 3.7). Interpretation (Claude's, for owner review):
+    the swap moves only a prop the substitution itself changes, and needs no hand on it."""
+    return any(b.get("event_type") == "substitution" and abs(b["t"] - t) <= EPSILON
+               and any(e["subject"] == {"kind": "prop", "id": prop} for e in b["effects"]) for b in beats)
 
 
 def _moving(sample):

@@ -6,17 +6,17 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 7.0; backlog 23.
+Layer order 1.7; rules 7.0; backlog 24.
 
 ## Last sessions
 
-- S-054 (applied): Principal review 3: five read-only reviewers, their gaps filed as F-152 to F-167
 - S-055 (applied): RV-45: each slice's records: a self-audit section, typed deviation IDs, interpretations labelled
 - S-056 (applied): RV-46: the stale and overclaimed records corrected; the owner's waiting list complete
+- S-057 (applied): RV-48a: releases at their pose, a vanished body untouched, a resting prop moved only at a sample, a first place
 
 ## Next slices
 
-- RV-48 (next, step temporal): Latent checks: throws and releases at their pose, a vanished body never touched, a resting prop moved only with a sample, the first location, S08's support hand; the S04 prompt rewritten; the 6.6 throw on its pose
+- RV-48b (next, step hand_role): S08's support hand holds or touches its object; the S04 instructions rewritten to today's rules
 - RV-60 (ready, step camera): The camera cards' rules follow O92: no close-up after a blow, no slowed playback; the printed camera rules checked
 - RV-61 (ready, step affordance): S10 reads the state before the beat's own effects; S09 carries each change's instant
 - RV-62 (ready, step render): The vanishing actor's line prints no support into the vanish; the volley is drawn into B's hand before 5.5
@@ -68,7 +68,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 102
+## Open findings: 98
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -99,4 +99,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-169, session S-057, render R20.
+Decision ADR-O109, finding F-169, session S-058, render R20.

@@ -89,6 +89,10 @@ S-051: b17 cut to 6.6-6.8 (F-158); the kunai on B's torso point and its lodging 
 prop is no strike, and any possess counts on an impact frame (F-157). S-052: an excluded row with a code keeps its
 verdict; the compiler judges without the render findings (F-156).
 Added in S-055 (RV-45, examples/reference_fight/deviations.yaml): the deviation registry's seven types.
+Added in S-057 (RV-48a, planner/dynamic_beat_validator.py, compiler/passes/mandatory/p07_contact.py): a release is on
+its pose when its actor has a key at that instant (a beat's start that lists it); a contact between two samples
+may move a resting prop only by taking hold of it; a substitution swaps a prop it changes into its new place at
+its start, with no hand on it, and S07 lets it change that prop without a contact.
 
 ## Impact
 Waits on the owner.

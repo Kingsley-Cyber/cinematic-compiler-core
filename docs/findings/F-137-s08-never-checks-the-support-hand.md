@@ -35,7 +35,7 @@ A two-handed interaction may name a support hand that holds nothing.
 Hand roles can contradict the contacts.
 
 ## Proposed Fix
-Backlog RV-48: the support hand holds or touches the object during its interaction.
+Backlog RV-48b: the support hand holds or touches the object during its interaction.
 
 ## Owner Ruling
 none needed
