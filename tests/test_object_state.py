@@ -72,6 +72,18 @@ def test_a_change_carries_its_instant_and_a_hand_arriving_after_it_is_no_trigger
     assert {f["code"] for f in p09_object_state.build(unheld)[1]} == {"OBJECT_STATE_TRIGGER"}
 
 
+def test_a_release_before_the_change_is_no_trigger():
+    """F-173 (RV-72): a hand that let go of the glasses at 3.5 is not on them when they become worn at 5.5; with no other
+    hand there, S09 refuses the change (OBJECT_STATE_TRIGGER)."""
+    early = copy.deepcopy(BEFORE)
+    for beat in early["nodes"]["beats"]["items"]:
+        if beat["id"] == "b03":
+            beat["contacts"] = [dict(c, at="start") for c in beat["contacts"] if c["contact_type"] == "release"]
+    early["nodes"]["contacts"]["items"] = [dict(c, t=3.5) if c["id"] == "b03_c3" else c
+                                           for c in early["nodes"]["contacts"]["items"] if c["id"] not in ("b03_c1", "b03_c2")]
+    assert [f["code"] for f in p09_object_state.build(early)[1]] == ["OBJECT_STATE_TRIGGER"]
+
+
 @pytest.mark.integration
 def test_s09_scope(order):
     after = p09_object_state.run(copy.deepcopy(BEFORE), order=order)

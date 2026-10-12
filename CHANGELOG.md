@@ -6,6 +6,8 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- Hand roles read the holds (RV-72, F-173, S-071): S08 refuses a hand holding the object that its interaction does not
+  declare, and S09 no longer credits a hand that let go before the change. No example changed.
 - The camera rules are structured (RV-71b, F-177, S-070): each convention and idiom carries its trigger and what it asks
   of the shot, checked against the grammar and owner O92 where it is written (CAMERA_CARD), and the prompt must print
   the genre card's rules word for word (CAMERA_RULES, new), in place of RV-60's word lists. The knight's shield hit is a

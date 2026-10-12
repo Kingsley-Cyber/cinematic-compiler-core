@@ -3,8 +3,8 @@
 Checks: the verb is an affordance of the object card; beats are consecutive and contain the actor and the object;
 hands are the actor's own, distinct, and match the role template; grips come from library/grip_types.yaml and the
 object card; roles hold across the interaction (only the declared hands touch the object, the agent hand acts on it,
-and a support hand holds or touches it, F-137); no hand serves two overlapping interactions. Derived: span, duration,
-role invariant, next_interaction edges.
+and a support hand holds or touches it, F-137; no other hand of the actor touches or holds it, F-173); no hand serves
+two overlapping interactions. Derived: span, duration, role invariant, next_interaction edges.
 """
 
 import json
@@ -105,6 +105,10 @@ def check(document, packet):
         for c in inside:
             if c["part"] in HANDS and c["part"] not in allowed:
                 add("HAND_ROLE_SWAP", f"{c['part']} touches {i['object']} in {c['beat']} but holds no role", i)
+        for b in i["beats"]:  # F-173 (RV-72): a hand holding the object is on it too
+            for who, hand, obj in beats[b]["held_at_start"]:
+                if who == actor and obj == i["object"] and hand in HANDS and hand not in allowed:
+                    add("HAND_ROLE_SWAP", f"{hand} holds {i['object']} at {b}'s start but holds no role", i)
         if not _on(i["agent_hand"], i, beats, inside):
             add("HAND_ROLE_SWAP", "The agent hand never acts on the object during the interaction", i)
         if i["support_hand"] != "none" and not _on(i["support_hand"], i, beats, inside):

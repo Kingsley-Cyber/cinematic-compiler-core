@@ -12,7 +12,7 @@ low
 L2.5
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -48,3 +48,4 @@ Open in part (review 4, S-063): the support hand's contacts are checked; an unde
 Before: RV-48b (S-058): a named support hand holds the object at the start of one of the interaction's beats or makes a
 contact on it in one, as the agent hand must (HAND_ROLE_SWAP, compiler/passes/derived/p08_hand_role.py;
 tests/test_hand_role.py::test_the_support_hand_holds_or_touches_its_object); the S08 instructions say so.
+Resolved again in RV-72 (S-071): the holds and the release's instant follow (F-173).

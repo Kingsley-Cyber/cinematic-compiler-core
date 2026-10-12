@@ -102,9 +102,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 7.0; backlog 27.
-- Last session: S-070 (2026-10-12, applied): RV-71b: the camera cards' rules as structured fields, checked where they are written.
-- Next slice: RV-72 S08 refuses an undeclared hand holding the object; S09 credits a release only at the change (step hand_role).
-- Open findings: 110; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
+- Last session: S-071 (2026-10-12, applied): RV-72: S08 refuses an undeclared hand holding the object; S09 credits a release only at the change.
+- Next slice: RV-73 S04 refuses a contact by a vanished body inside its window, and a contact by a body outside its beat (step temporal).
+- Open findings: 107; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

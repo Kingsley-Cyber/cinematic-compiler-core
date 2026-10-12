@@ -3,8 +3,8 @@
 Internal states are the object card's own state properties (holder and location stay in S06); a state keeps S06's
 `before_own_effects` for them (the values before its beat's own at-start effects) and each change its instant (F-161,
 RV-61). Checks: every internal change has a hand contact on the object in its triggering beat at or before the
-change's instant, or a hand holding it at that instant (the trigger contact); and happens inside an S08 interaction
-on that object (the verb that changes it).
+change's instant (a release only at that instant, F-173), or a hand holding it at that instant (the trigger contact);
+and happens inside an S08 interaction on that object (the verb that changes it).
 """
 
 import copy
@@ -63,7 +63,8 @@ def build(envelope):
             instant = min((c["t"] for c in changes if start - EPSILON <= c["t"] <= end + EPSILON),
                           default=min(c["t"] for c in changes))  # F-161: the hand is on the object by then
             hand = [c["id"] for c in contacts if c["beat"] == beat and c["b"]["kind"] == "prop" and c["b"]["id"] == obj
-                    and c["body_part"] in HANDS and c["t"] <= instant + EPSILON]
+                    and c["body_part"] in HANDS and c["t"] <= instant + EPSILON
+                    and (c["contact_type"] != "release" or c["t"] >= instant - EPSILON)]  # F-173: let go before it
             held = [f"{pair[0]}.{pair[1]}" for pair, kind, t0, t1 in intervals if kind == "possess" and pair[1] in HANDS
                     and pair[2:4] == ("prop", obj) and t0 <= instant + EPSILON and (t1 is None or instant < t1 - EPSILON)]
             trigger = (hand or [f"held:{h}" for h in held] or [None])[0]

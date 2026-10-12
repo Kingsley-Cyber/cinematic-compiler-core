@@ -77,6 +77,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-068 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-70 (PLAN-007); findings F-17… | applied | the commit whose message names [S-068] | about 4 minutes by the clock (05:44 to 05:48) | — | [S-068-rv-70-the-vanished-body-everywhere.md](../sessions/S-068-rv-70-the-vanished-body-everywhere.md) |
 | S-069 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-71 (split: RV-71a here, RV-7… | applied | the commit whose message names [S-069] | about 5 minutes by the clock (05:51 to 05:56) | — | [S-069-rv-71a-the-hold-its-rig-and-its-bodies.md](../sessions/S-069-rv-71a-the-hold-its-rig-and-its-bodies.md) |
 | S-070 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-71b (PLAN-007); findings F-1… | applied | the commit whose message names [S-070] | about 5 minutes by the clock (05:58 to 06:03) | — | [S-070-rv-71b-structured-camera-rules.md](../sessions/S-070-rv-71b-structured-camera-rules.md) |
+| S-071 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-72 (PLAN-007); findings F-17… | applied | the commit whose message names [S-071] | about 2 minutes by the clock (06:05 to 06:07) | — | [S-071-rv-72-hands-hold-what-their-roles-say.md](../sessions/S-071-rv-72-hands-hold-what-their-roles-say.md) |
 
 ## Status values
 

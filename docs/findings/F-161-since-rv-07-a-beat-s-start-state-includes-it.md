@@ -12,7 +12,7 @@ medium
 L2.2
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -55,3 +55,4 @@ S10 reads preconditions and postconditions before the own effects of the beat st
 (tests/test_state_pass.py::test_a_beat_s_own_start_effects_are_kept_apart_in_its_state,
 tests/test_object_state.py::test_a_change_carries_its_instant_and_a_hand_arriving_after_it_is_no_trigger,
 tests/test_affordance.py::test_conditions_are_read_before_the_beat_s_own_effects).
+Resolved again in RV-72 (S-071): the holds and the release's instant follow (F-173).

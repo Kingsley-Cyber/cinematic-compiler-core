@@ -122,9 +122,9 @@ items:
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-177], codes: []}
   - {id: RV-71b, title: "The camera cards' rules as structured fields checked against the grammar, in place of the word lists", status: done,
      step: camera, plan: PLAN-007, depends_on: [RV-71a], findings: [F-177, F-160], codes: []}
-  - {id: RV-72, title: "S08 refuses an undeclared hand holding the object; S09 credits a release only at the change", status: next,
+  - {id: RV-72, title: "S08 refuses an undeclared hand holding the object; S09 credits a release only at the change", status: done,
      step: hand_role, plan: PLAN-007, depends_on: [], findings: [F-173, F-137, F-161], codes: []}
-  - {id: RV-73, title: "S04 refuses a contact by a vanished body inside its window, and a contact by a body outside its beat", status: ready,
+  - {id: RV-73, title: "S04 refuses a contact by a vanished body inside its window, and a contact by a body outside its beat", status: next,
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-172, F-136], codes: []}
   - {id: RV-74, title: "PROP_SUPPORT: a location on a surface with a known top puts the resting prop at that top", status: ready,
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-171], codes: []}

@@ -64,6 +64,15 @@ def test_the_support_hand_holds_or_touches_its_object():
     assert [(f["code"], f["slot"]) for f in findings] == [("HAND_ROLE_SWAP", "i01")] and "support hand" in findings[0]["message"]
 
 
+def test_an_undeclared_hand_may_not_hold_the_object():
+    """F-173 (RV-72): a one_hand unfold whose other hand holds the glasses at the beat's start breaks the role lock
+    (library/role_templates.yaml: the other hand stays off the object), and S08 refuses it (HAND_ROLE_SWAP)."""
+    plan = copy.deepcopy(PLAN)
+    interaction(plan, "i01").update(support_hand="none", support_grip="none", role_template="one_hand")
+    found = [f for f in p08_hand_role.check(plan, PACKET) if f["code"] == "HAND_ROLE_SWAP"]
+    assert [f["message"] for f in found] == ["right_hand holds glasses at b02's start but holds no role"]
+
+
 @pytest.mark.integration
 def test_s08_graph_scope_and_determinism(order):
     before = glasses("contact")
