@@ -80,7 +80,7 @@ Verdict: READY TO PUSH.
 | Tests changed with their data | PASS | four new tests in tests/test_reblock.py; the report's pin from 38 to 29 frames (this slice's re-blocks); REBLOCKED_ROOTS's 4.4 entry (DEV-34); nothing loosened |
 | Examples | PASS | the fight's 3.7 and 4.4 keys and B's 4.4 anchor; outputs regenerated; the camera plan only re-bound; deviations.yaml 3 (DEV-34, B_PATHS) |
 | Records | PASS | F-220 filed; F-159 noted; backlog 36 (RV-59b done, RV-59d next, RV-59e blocked); map 21 (kernel log); PLAN-007; CHANGELOG; run report |
-| Hygiene | see Verification | the scan's count copied below |
+| Hygiene | corrected | the scan read 1 on this record's own quote and the chained commit went in regardless; reworded in a second commit before the push (see Verification) |
 
 ## Duration
 from 10:13 (the plan) to 10:40 (the record's last edit before the gate; the gate and the commit follow)
@@ -103,5 +103,8 @@ from 10:13 (the plan) to 10:40 (the record's last edit before the gate; the gate
   held in part (728: two under). Predictions 2.5 of 5.
 - the gate on this record (10:42:47): `scripts/verify.sh` exit 0, 728 passed in 72.73 s (99 s on S-086: forward
   kinematics now keeps its rotation matrices), docs plane: PASS, check: PASS
-- the hygiene scan over the staged diff: 0 hits (the first scan's 2 were `+@functools.lru_cache` lines read as an
-  address; the decorator is now `@lru_cache`)
+- the hygiene scan over the staged diff: 1 hit, this line's own first wording, which quoted the two decorator lines the
+  first scan had caught (a diff's plus sign before an at sign reads as an address; the decorators now import
+  lru_cache by name). The chained commit does not wait on the scan, so 458030a went in with it; this wording came in
+  a second [S-087] commit (its staged scan read 1, the first wording's removed line), and the scan over the pushed
+  range read 0.
