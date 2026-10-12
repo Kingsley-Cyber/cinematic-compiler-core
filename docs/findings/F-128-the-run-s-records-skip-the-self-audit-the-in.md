@@ -12,7 +12,7 @@ low
 all
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -45,4 +45,11 @@ none needed
 - PLAN-007
 
 ## Resolution
-Open.
+RV-45 (S-055): from S-055 an applied session records its self-audit, or the docs plane refuses it
+(kernel/docs_plane.py `_session_problems`; tests/test_docs_plane.py's "records its self-audit" break); the session
+template asks for the clock time of the predictions and labels a choice no ruling makes "interpretation", to be listed
+in F-053, which now carries the run's interpretations; the golden's records are typed deviations DEV-01 to DEV-28 with
+their ADRs (examples/reference_fight/deviations.yaml;
+tests/test_reference_fight_golden.py::test_every_recorded_deviation_is_typed_and_ruled); commit messages name the gap,
+layer, rule, slice and deviation from S-055 on. The eight sessions before (S-046 to S-053) stay without a self-audit:
+review 3 recorded it (F-166).

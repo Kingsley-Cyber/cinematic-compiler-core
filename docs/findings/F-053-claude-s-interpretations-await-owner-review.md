@@ -67,6 +67,28 @@ Added in S-031 (M9-06d), superseded in S-033: body_type lived in the per-genre m
 genre profile cards (`library/genre_profiles/<genre>.yaml`; the folder name is Claude's), whose schema the owner asked
 for in O65.
 Added in S-032 (M9-09h): B's 8.0 move is 1.0 m along z, about 20 degrees of pull toward the pillar.
+Added in the finish run (RV-45, S-055, from the sessions' decisions; several were labelled "covered" though no ruling
+made them, F-166): S-034: hands and feet as orientation words at S13; the kinetic chain from the support (or the core
+in the air) to the striking limb; the trail limb authored at S12. S-038: the 0.6 hips keep their numbers (ADR-O103); a
+hip flipped past the anime limit held at +60. S-039: the deflect pair at A's right foot; the 8.0 tableau moved with the
+kunai's landing; B's palm meets the log's own point; the pellet leaves A's right hand and rests beneath it; the volley's
+velocity solved to its 5.9 sample; B rises on straighter legs to A's knee; the vault's hand plant as a support at its
+first key. S-040: a beat's requirements read before its own effects; each transition's `t`. S-041: the UGC glasses held
+from the first frame on the creator's right; the keys by the scratch solver; the put-on's left hand on the left temple.
+S-042: the rope dart drops at 2.25 m/s to land at 4.0 (F-164); A reappears on both feet; the 7.5 crouch moves with the
+dart; c10 becomes a full shot. S-043: a release is measured, a takeoff is not; B re-staged on A's -Z side (yaw 340,
+347, 320); the kunai's 2.0 velocity solved to A's foot. S-044: the bump check's cutoffs; the library log reads
+`version`. S-046: "toward X" needs the free flight within 0.3 m of X and 0.1 m nearer (ADR-O108's thresholds); the
+contradiction check reads every section. S-048: an effect may take effect at its beat's start; RULES read each
+property's last S06 change; same-instant items keep state, contact, sample order. S-049: the capsule radii; BODY_OVERLAP
+at shared key instants only, no depth, a body's own segments and props left out (F-159, F-151); body contacts measured
+surface to surface (F-152, for the owner); the re-blocks' 0.01 m clearance and B lying 0.18 m aside. S-050: a hit is a
+hold on an impact frame (F-155); a camera hold is a static shot on every body present; PLAYBACK_RAMP for every scene;
+the hit shots' scales, distances and azimuths; 43.46 mm and 57.09 mm for fov45 and fov35; 9.0-10.0 split at 9.5.
+S-051: b17 cut to 6.6-6.8 (F-158); the kunai on B's torso point and its lodging a touch; a touch on another's held
+prop is no strike, and any possess counts on an impact frame (F-157). S-052: an excluded row with a code keeps its
+verdict; the compiler judges without the render findings (F-156).
+Added in S-055 (RV-45, examples/reference_fight/deviations.yaml): the deviation registry's seven types.
 
 ## Impact
 Waits on the owner.

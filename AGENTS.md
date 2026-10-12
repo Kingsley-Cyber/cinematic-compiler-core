@@ -102,9 +102,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 7.0; backlog 23.
-- Last session: S-054 (2026-10-12, applied): Principal review 3: five read-only reviewers, their gaps filed as F-152 to F-167.
-- Next slice: RV-45 Each slice's records: a self-audit section, interpretations labelled, typed deviation IDs, commit IDs (step docs).
-- Open findings: 105; decisions: 135 (0 proposed).
+- Last session: S-055 (2026-10-12, applied): RV-45: each slice's records: a self-audit section, typed deviation IDs, interpretations labelled.
+- Next slice: RV-46 Stale records corrected; F-015, F-052 and F-054 assigned; the track test keeps its claim (step docs).
+- Open findings: 104; decisions: 135 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

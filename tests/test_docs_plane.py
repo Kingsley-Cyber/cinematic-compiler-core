@@ -58,6 +58,9 @@ BREAKS = [
                                       '"enum": [\n            "tap",')),
     ("depends on unknown", _edit("docs/plans/backlog.yaml", "depends_on: [M9-02], findings: [F-022",
                                  "depends_on: [M9-99], findings: [F-022")),
+    ("records its self-audit", _add_file("docs/sessions/S-099-x.md", "# S-099 — x\n\n## Date\n2026-10-12\n\n## Agent\n"
+                                         "x\n\n## Gap\nx\n\n## Layer\ndocs\n\n## Status\napplied\n\n## Commit\nx\n\n"
+                                         "## Plan\nx\n")),  # RV-45 (F-128)
 ]
 
 

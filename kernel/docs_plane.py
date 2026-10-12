@@ -430,6 +430,7 @@ def problems(root=ROOT):
     found += _rule_problems(root, every["decisions"])
     found += _backlog_problems(root, every)
     found += _finding_problems(every["findings"])
+    found += _session_problems(every["sessions"])
     found += _freeze_problems(root)
     found += _schema_problems(root)
     from kernel.build_docs import step_modules  # noqa: F401  (layer labels cover every node)
@@ -511,6 +512,16 @@ def _backlog_problems(root, every):
         if item.get("plan") not in plans:
             found.append(f"backlog {item['id']}: plan {item.get('plan')} has no file")
     return found
+
+
+SELF_AUDIT_FROM = 55  # RV-45 (F-128, F-166): from S-055 an applied session records its self-audit (R-03, R-31)
+
+
+def _session_problems(sessions):
+    """RV-45: an applied or reverted session from S-055 on has a Self-audit section with content (R-03, R-31)."""
+    return [f"{s['path'].name}: an applied session from S-{SELF_AUDIT_FROM:03d} records its self-audit (R-03, R-31)"
+            for s in sessions if int(s["id"][2:]) >= SELF_AUDIT_FROM and value(s, "Status") in ("applied", "reverted")
+            and not value(s, "Self-audit")]
 
 
 def _finding_problems(findings):

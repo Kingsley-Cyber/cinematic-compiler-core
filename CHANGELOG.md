@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- Each slice's records (RV-45, F-128, S-055): from S-055 an applied session records its self-audit or the docs plane
+  refuses it; the session template (3.0) asks for the predictions' clock time and labels choices no ruling makes as
+  interpretations, which F-053 lists; the golden's records are typed deviations DEV-01 to DEV-28, each with its ADRs
+  (examples/reference_fight/deviations.yaml), and a test refuses one without.
 - Principal review 3 (S-054, finish.md section 6): five read-only reviewers, verdict "partially"; their gaps filed as
   F-152 to F-167 with slices RV-55 to RV-64 (three wait for the owner). The records come first (RV-45, RV-46).
 - The 6.3 cartwheel is a full turn in the words too (RV-12, O96, F-087, S-053): A's 6.3 row says "one full turn", as its

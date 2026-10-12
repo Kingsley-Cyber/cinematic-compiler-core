@@ -3,6 +3,7 @@ contains every kernel and reference-fight item, carries A's reference roots exac
 deviations (owner O7/O10/O11), and keeps its anime directives."""
 
 import json
+from pathlib import Path
 
 import pytest
 from conftest import ROOT
@@ -366,3 +367,25 @@ def test_the_smoke_bursts_at_a_s_body_and_the_spent_pellet_falls_and_rests():
 
 def test_render_txt_is_the_render_node():
     assert (FOLDER / "render.txt").read_text(encoding="utf-8") == TEXT + "\n"
+
+
+def test_every_recorded_deviation_is_typed_and_ruled():
+    """RV-45 (F-128, R-17, R-33; docs/prompts/no_shortcuts.md): each of this test's records is a typed deviation in
+    examples/reference_fight/deviations.yaml, and each names rulings that exist as ADR files."""
+    import re
+
+    import yaml
+    registry = yaml.safe_load((FOLDER / "deviations.yaml").read_text(encoding="utf-8"))
+    own = Path(__file__).read_text(encoding="utf-8")
+    records = set(re.findall(r"(?m)^([A-Z][A-Z_]+) = ", own)) - {"FOLDER", "ENVELOPE", "RENDER", "TEXT", "SPEC", "SOURCE",
+                                                                    "REFERENCE"}
+    entries = {d["record"]: d for d in registry["deviations"]}
+    assert records == set(entries) | set(registry["aggregates"])
+    assert len({d["id"] for d in registry["deviations"]}) == len(registry["deviations"])
+    decisions = {p.name.split("-", 2)[0] + "-" + p.name.split("-", 2)[1] for p in (ROOT / "docs" / "decisions").glob("ADR-*.md")}
+    for entry in registry["deviations"]:
+        assert entry["type"] in registry["types"] and entry["rulings"], entry["id"]
+        assert set(entry["rulings"]) <= decisions, (entry["id"], set(entry["rulings"]) - decisions)
+    known = {d["id"] for d in registry["deviations"]}
+    assert all(set(ids) <= known for ids in registry["aggregates"].values())
+

@@ -1,0 +1,44 @@
+# The reference fight's recorded deviations from its source (kernel/sources/lbn-2.3-adv.txt), typed and numbered
+# (rules R-17 and R-33; docs/prompts/no_shortcuts.md: a fix that changes an example records a typed deviation, and every
+# deviation matches its ADR). One entry per record in tests/test_reference_fight_golden.py, which refuses a record with
+# no entry, a type not listed here, or a ruling with no ADR file. Deviations the golden test does not yet record (the
+# camera's re-authoring, B's joints, the props' points) are RV-51's (F-147).
+version: 1
+types:
+  reworded: the source's words changed
+  renumbered: the source's own numbers changed (A's rows)
+  re-blocked: a repo-authored number moved so a check holds (B, the props)
+  added: data the source does not give, authored by the repo
+  retimed: an event moved in time
+  dropped: something the source gives is left out
+  kept: a real miss the owner keeps as the source wrote it
+aggregates: {REWORDED: [DEV-01, DEV-02, DEV-03, DEV-04], WORDS: [DEV-13, DEV-14, DEV-15]}
+deviations:
+  - {id: DEV-01, record: PREFACE_RECOUNTED, type: reworded, rulings: [ADR-O17], what: "the query counts the substitution log, the fifth prop"}
+  - {id: DEV-02, record: GROUNDED_RULES, type: reworded, rulings: [ADR-O18], what: "the pickups' rules say A lands crouched by the rope dart and takes the kunai from the ground"}
+  - {id: DEV-03, record: START_HEIGHT, type: reworded, rulings: [ADR-O79, ADR-O21], what: "A starts above the frame, falling from y=10"}
+  - {id: DEV-04, record: VANISH_RULE, type: reworded, rulings: [ADR-O90], what: "the rope dart is left on the ground at the vanish, taken again at 7.5"}
+  - {id: DEV-05, record: WORD_FLIPS, type: renumbered, rulings: [ADR-O88, ADR-O7, ADR-O10, ADR-O11], what: "A's limb numbers flipped to the source's own words; knees read +|x|; two hips held at the anime limit"}
+  - {id: DEV-06, record: HEAD_FLIPS, type: renumbered, rulings: [ADR-O88], what: "A's head pitch flipped to the source's words"}
+  - {id: DEV-07, record: VANISHED, type: dropped, rulings: [ADR-O18], what: "A's 4.0 row is not drawn: A is gone from 3.7 to 4.4"}
+  - {id: DEV-08, record: ROOT_TURNS, type: renumbered, rulings: [ADR-O18], what: "angles stay continuous after the backflip and the cartwheel"}
+  - {id: DEV-09, record: GROUNDED_PICKUPS, type: renumbered, rulings: [ADR-O18, ADR-O83, ADR-O89], what: "A's rows at the two pickups crouch on the ground and reach the props"}
+  - {id: DEV-10, record: GROUNDED_DESCRIPTIONS, type: reworded, rulings: [ADR-O18], what: "the pickup rows' words say what their numbers do"}
+  - {id: DEV-11, record: CONTACT_EXCEPTIONS, type: kept, rulings: [ADR-O83], what: "the source's slide at 5.9 keeps its two misses (the owner's list)"}
+  - {id: DEV-12, record: OPENING, type: renumbered, rulings: [ADR-O21], what: "A starts at y=10 and lands on the 8 m top"}
+  - {id: DEV-13, record: OPENING_WORDS, type: reworded, rulings: [ADR-O21], what: "the 0.6 row lands on the top at y=8"}
+  - {id: DEV-14, record: ROPE_DART_WORDS, type: reworded, rulings: [ADR-O90], what: "A's rows hold no rope dart from 3.7 to 7.5"}
+  - {id: DEV-15, record: CARTWHEEL_WORDS, type: reworded, rulings: [ADR-O96], what: "the 6.3 cartwheel is a full turn"}
+  - {id: DEV-16, record: REBLOCKED_SAMPLES, type: re-blocked, rulings: [ADR-O83, ADR-O89, ADR-O86], what: "the props' samples moved to the hands and bodies that touch them"}
+  - {id: DEV-17, record: CATCH_ROOT, type: re-blocked, rulings: [ADR-O83, ADR-O88], what: "B's root at the 6.6 catch"}
+  - {id: DEV-18, record: REBLOCKED_ROOTS, type: re-blocked, rulings: [ADR-O89, ADR-O105, ADR-O12], what: "B's roots moved to meet contacts and clear A's body (R-18, RV-49; its measure is F-152's question)"}
+  - {id: DEV-19, record: PULL_ANCHOR, type: re-blocked, rulings: [ADR-O86], what: "B at 8.0 on A's far side from the pillar"}
+  - {id: DEV-20, record: FX_REWORDED, type: reworded, rulings: [ADR-O10], what: "two fx rings read as bursts"}
+  - {id: DEV-21, record: SUBSTITUTION_POST, type: added, rulings: [ADR-O48, ADR-O91], what: "the log stands as a post from 0.0 and deploys at 3.7"}
+  - {id: DEV-22, record: CONTACTS_AT_POSE, type: retimed, rulings: [ADR-O23], what: "strikes, throws and releases at their key pose"}
+  - {id: DEV-23, record: DEFLECT_PAIR, type: added, rulings: [ADR-O71, ADR-O108, ADR-O89], what: "the deflect's pre and post samples; the kunai goes down on B's side"}
+  - {id: DEV-24, record: CONTACT_VERBS, type: added, rulings: [ADR-O22, ADR-O93], what: "the named contacts carry their combat verbs"}
+  - {id: DEV-25, record: SHAPE_REWRITES, type: reworded, rulings: [ADR-O73], what: "six Shape qualities name what the body does"}
+  - {id: DEV-26, record: HANG_SPANS, type: added, rulings: [ADR-O74], what: "the aerial spans declare their anime hang"}
+  - {id: DEV-27, record: PELLET, type: retimed, rulings: [ADR-O91, ADR-O78], what: "the smoke bursts at 3.7 at A's body; the spent pellet falls and rests"}
+  - {id: DEV-28, record: PELLET_STATES, type: retimed, rulings: [ADR-O91], what: "the burst at 3.7, the landing at 4.0"}
