@@ -7,19 +7,32 @@ airborne, the actor's key turning, the prop moving at the instant. A contact wit
 no sample there, or a surface with no top (a wall, a pillar's face; a touch on any surface but a floor) is not
 measurable. `measure` reads an envelope (the report, the prose); `measure_plan` reads S13's packet and its authored
 keys (the check). CONTACT_WORLD (ADR-O83, O89) refuses a measurable miss over 0.15 m (O72) unless it is a genuine
-artefact, or the motion plan lists it in `contact_world_exceptions` with its reason (the owner's source rows, ADR-O83
-point 2, recorded in the golden test); an exception that names anything but such a miss is refused, so the list stays
-true. A genuine artefact (ADR-O104) is a contact measured between keys or samples (an interpolated point) while its
-actor is airborne or its prop moves; at an exact instant nothing is exempt, and a turn alone never is (O89). Every
-contact measured today sits at an exact instant (`interpolated` is false).
+artefact, or the owner's list keeps it with its reason (kernel/contact_world_exceptions.yaml, read through S13's packet,
+never from an authored plan: the owner's source rows, ADR-O83 point 2, F-123); an exception that names anything but
+such a miss is refused, so the list stays true. A genuine artefact (ADR-O104) is a contact measured between keys or
+samples (an interpolated point) while its actor is airborne or its prop moves; at an exact instant nothing is exempt,
+and a turn alone never is (O89). Every contact measured today sits at an exact instant (`interpolated` is false).
 """
 
+import hashlib
 import math
+from pathlib import Path
+
+import yaml
 
 from planner.dynamic_beat_validator import surface_tops
 from solver.forward_kinematics import part_point, points
 
 TOLERANCE_M = 0.15  # owner O72
+EXCEPTIONS = Path(__file__).resolve().parents[1] / "kernel" / "contact_world_exceptions.yaml"
+
+
+def owner_exceptions(query):
+    """{contact id: reason} the owner keeps for the scene whose query this is (ADR-O83 point 2, F-123): read from
+    kernel/contact_world_exceptions.yaml, never from an authored plan."""
+    key = hashlib.sha256(query.encode("utf-8")).hexdigest()
+    entries = yaml.safe_load(EXCEPTIONS.read_text(encoding="utf-8"))["exceptions"]
+    return {e["contact"]: f"{e['reason']} [{e['ruling']}]" for e in entries if e["query_sha256"] == key}
 KINDS = {"surface": "foot or body on a surface", "prop": "limb to prop", "entity": "limb to body"}
 MEASURED = ("touch", "possess", "support", "release")  # a release only of a prop: it leaves the hand where the hand is
 
@@ -48,7 +61,8 @@ def packet_view(envelope):
                          for c in envelope["nodes"]["contacts"]["items"] if c["contact_type"] in MEASURED],
             "prop_samples": [{k: s[k] for k in ("prop", "t", "p", "v")} for beat in envelope["nodes"]["beats"]["items"]
                              for s in beat.get("prop_samples", [])],
-            "surface_tops": dict(sorted(tops.items())), "floors": sorted(s["id"] for s in surfaces if s["kind"] == "floor")}
+            "surface_tops": dict(sorted(tops.items())), "floors": sorted(s["id"] for s in surfaces if s["kind"] == "floor"),
+            "exceptions": owner_exceptions(envelope["provenance"]["source_prompt"])}
 
 
 def measure_plan(keys, slots, packet):
@@ -122,7 +136,7 @@ def refusals(rows, exceptions):
     findings = [{"code": "CONTACT_WORLD", "contact": cid, "message": f"{row['actor']} {_words(row['part'])} misses "
                  f"{row['target']} by {row['distance']:g} m at {row['t']:g} (over {TOLERANCE_M:g} m, owner O72)"}
                 for cid, row in real.items() if cid not in exceptions]
-    findings += [{"code": "CONTACT_WORLD", "contact": cid, "message": "contact_world_exceptions lists a contact that is "
+    findings += [{"code": "CONTACT_WORLD", "contact": cid, "message": "the owner's exception list names a contact that is "
                   "not a real miss (it meets its target, is an artefact or is not measured)"}
                  for cid in sorted(exceptions) if cid not in real]
     return findings

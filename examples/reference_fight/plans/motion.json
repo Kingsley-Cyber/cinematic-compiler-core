@@ -1,7 +1,7 @@
 {
  "step_id": "S13",
  "band": "L4c",
- "packet_sha256": "sha256:ed822c1ec3d47515447bf3c3d109e74ac3dccd42264960e6a804be1d8e99487f",
+ "packet_sha256": "sha256:1bd0ed80712a0295950df7158220727717ffaec802f1daf7a48593dc933e1125",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -3116,9 +3116,5 @@
    "turn": "none",
    "axis_declaration": "none"
   }
- ],
- "contact_world_exceptions": {
-  "b14_c2": "The owner's source pose at 5.9 (root y 0.6, both legs folded under, 'support=both feet') holds A's left sole 0.55 m over the ground under the anime body; both sides are the source's (ADR-O83 point 2; not an artefact under O89).",
-  "b14_c3": "The owner's source pose at 5.9 (root y 0.6, both legs folded under, 'support=both feet') holds A's right sole 0.35 m over the ground under the anime body; both sides are the source's (ADR-O83 point 2; not an artefact under O89)."
- }
+ ]
 }

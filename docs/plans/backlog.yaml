@@ -82,7 +82,7 @@ items:
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-081], codes: []}
   - {id: RV-08, title: "A state change commits at its contact's instant, not the beat's end (F-061)", status: done,
      step: state, plan: PLAN-007, depends_on: [], findings: [F-061], codes: []}
-  - {id: RV-07, title: "The smoke bursts at 3.7 at A's body; the spent pellet falls and rests (O91)", status: ready,
+  - {id: RV-07, title: "The smoke bursts at 3.7 at A's body; the spent pellet falls and rests (O91)", status: next,
      step: temporal, plan: PLAN-007, depends_on: [RV-08], findings: [F-082, F-132], codes: []}
   - {id: RV-09, title: "Hits are camera holds framing both bodies, no playback ramps; the source's camera directives (O92)", status: ready,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-083, F-005, F-015], codes: [HIT_HOLD, PLAYBACK_RAMP]}
@@ -160,7 +160,7 @@ items:
      step: intent, plan: PLAN-007, depends_on: [], findings: [F-016], codes: [START_LITERAL]}
   - {id: RV-42, title: "The deflect has one reading (down to the ground on B's side, not at B); a track says 'toward X' only where the path reaches X; a prompt never prints 'toward X' beside 'NOT toward X'", status: done,
      step: render, plan: PLAN-007, depends_on: [], findings: [F-122], codes: []}
-  - {id: RV-43, title: "CONTACT_WORLD exceptions come only from an owner-held, logged list", status: next,
+  - {id: RV-43, title: "CONTACT_WORLD exceptions come only from an owner-held, logged list", status: done,
      step: motion, plan: PLAN-007, depends_on: [], findings: [F-123], codes: []}
   - {id: RV-49, title: "No body through another: an overlap check at S13, strikes measured to the target's surface, the failing poses re-blocked", status: ready,
      step: motion, plan: PLAN-007, depends_on: [RV-43], findings: [F-144], codes: [BODY_OVERLAP]}

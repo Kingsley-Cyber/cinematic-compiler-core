@@ -41,8 +41,7 @@ def rows():
     out = []
     for name in sorted(p.name for p in EXAMPLES.iterdir() if (p / "request.json").exists()):
         envelope = json.loads((EXAMPLES / name / "envelope.json").read_text(encoding="utf-8"))
-        excepted = json.loads((EXAMPLES / name / "plans" / "motion.json").read_text(encoding="utf-8")).get(
-            "contact_world_exceptions", {})
+        excepted = contact_world.owner_exceptions(envelope["provenance"]["source_prompt"])  # the owner's list (F-123)
         labels = envelope["nodes"]["render"]["items"][0]["labels"]
         pelvis = {(k["entity"], round(k["t"], 6)): k["pos"] for k in envelope["nodes"]["motion"]["items"]}
         for row in contact_world.measure(envelope):

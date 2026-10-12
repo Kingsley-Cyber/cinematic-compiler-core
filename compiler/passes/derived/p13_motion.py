@@ -42,7 +42,7 @@ def prepare(envelope):
     view = [{**{k: s[k] for k in SLOT_FIELDS}, "allowed_postures": values_in_progress(envelope, s, "posture"),
              "kinematic": _body(kinematic[s["slot"]]),
              "bartenieff": _body(bartenieff[s["slot"]])} for s in slots(envelope)]
-    return seal({"step_id": STEP, "band": "L4c", "kind": "motion_plan", "schema": "urn:cinematic-compiler:schema:motion_plan:1.1",
+    return seal({"step_id": STEP, "band": "L4c", "kind": "motion_plan", "schema": "urn:cinematic-compiler:schema:motion_plan:2.0",
                  "instructions": PROMPT.read_text(encoding="utf-8"), "rotation_convention": convention,
                  "joints": euler_solver.kernel_joints(load_kernel("invariants")),
                  "joint_limits": joint_limits(envelope["scene"]["genre"]),
@@ -72,7 +72,7 @@ def check(document, packet):
     if any(f["code"] == "MOTION_JOINTS" for f in findings):
         return findings  # forward kinematics needs every joint
     rows = contact_world.measure_plan(keys, by_id, packet)  # CONTACT_WORLD (plan F5.2, owners O72, O83)
-    return findings + contact_world.refusals(rows, document.get("contact_world_exceptions", {}))
+    return findings + contact_world.refusals(rows, packet["contact_world"]["exceptions"])  # the owner's list (F-123)
 
 
 def build(envelope, document, packet):

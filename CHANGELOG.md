@@ -6,6 +6,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- CONTACT_WORLD exceptions are the owner's alone (RV-43, F-123, S-047): kernel/contact_world_exceptions.yaml (kernel
+  log) holds them by the scene's query hash; S13 reads them through its packet; the motion plan loses its
+  `contact_world_exceptions` field (motion_plan 2.0), so an authored exception fails the schema. Every example re-bound.
 - The deflect has one reading (RV-42, ADR-O108, F-122, S-046): the deflected kunai goes down to the ground on B's
   side, not at B; a prop track names a goal only where the prop's path reaches that performer; PROMPT_CONTRADICTION
   refuses "toward X" where the prompt says "NOT toward X". S-043's records corrected.

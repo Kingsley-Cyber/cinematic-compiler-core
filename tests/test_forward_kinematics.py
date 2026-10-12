@@ -61,7 +61,7 @@ def test_a_lean_in_the_spine_carries_the_legs():
 # The source's own grounded A rows (kernel/sources/lbn-2.3-adv.txt, support=both feet on the ground, numbers as written)
 # that miss the ground under the trunk reading and the anime body, and what the repo does with each (F-079): 3.0 right
 # is flipped to the row's own words by O88 (S-038), so the repo's foot meets; 4.0 is not drawn (O18); the 5.9 slide is
-# listed in the reference motion plan's contact_world_exceptions (b14_c2, b14_c3; ADR-O83 point 2, S-039).
+# kept in the owner's list, kernel/contact_world_exceptions.yaml (b14_c2, b14_c3; ADR-O83 point 2, S-039, RV-43).
 SOURCE_EXCEPTIONS = {(3.0, "right"): "RUL +90 swings the thigh back, against the row's own 'R: leg fwd mid'",
                      (4.0, "right"): "the root at y 0.9 where the same pose stands at 1.1 (3.4, 4.4); not drawn (O18)",
                      (5.9, "left"): "the slide: the body tipped 80 degrees with the legs folded under",
@@ -123,8 +123,9 @@ def test_the_prompt_prints_both_points_of_each_contact():
 def test_every_example_passes_contact_world():
     """ADR-O83, O89: after the re-blocks no example holds a real miss; the reference fight lists the source's slide."""
     for name in ("wizard_vs_acrobat", "live_action_standoff", "ugc_glasses_demo", "reference_fight"):
-        plan = json.loads((ROOT / "examples" / name / "plans" / "motion.json").read_text(encoding="utf-8"))
-        assert contact_world.refusals(contact_world.measure(_envelope(name)), plan.get("contact_world_exceptions", {})) == []
+        envelope = _envelope(name)
+        kept = contact_world.owner_exceptions(envelope["provenance"]["source_prompt"])   # the owner's list (RV-43)
+        assert contact_world.refusals(contact_world.measure(envelope), kept) == []
 
 
 def test_a_release_leaves_the_prop_where_the_hand_is():

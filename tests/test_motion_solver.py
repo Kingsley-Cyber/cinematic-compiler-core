@@ -99,21 +99,21 @@ def test_courtyard_keys_pass_and_the_joints_come_from_the_kernel():
     ("JOINT_LIMIT", lambda p: key(p, "wizard@b03")["bones"].update(NK=[40, 0, 0], HD=[40, 0, 0])),  # neck 80 > 45 + 30
     # F5.2, owners O72, O83: the kick's pose before S-030 leaves the foot 1.2 m under the wizard's torso
     ("CONTACT_WORLD", lambda p: key(p, "acrobat@b06")["bones"].update(RUL=[-40, 0, -15], RL=[15, 0, 0])),
-    ("CONTACT_WORLD", lambda p: p.update(contact_world_exceptions={"b04_c1": "a landing that meets the ground"})),
 ])
 def test_each_rule_rejects_its_violation(code, change):
     assert code in codes(change)
 
 
 def test_contact_world_spares_a_listed_exception_and_an_artefact():
-    """ADR-O83: a miss the plan lists with its reason is not refused. Owner O89 (ADR-O104), re-pinned in S-039: a miss at
-    an exact instant is never an artefact, airborne, turning or not; only a point interpolated between keys or samples
-    while the actor is airborne or the prop moves is. The acrobat's hand plant (b02_c1), this test's artefact since
-    S-030 (1.8 m off the ground at 2.0), is a support at the vault's first key and meets the ground (F-076)."""
-    def kick(plan):
-        key(plan, "acrobat@b06")["bones"].update(RUL=[-40, 0, -15], RL=[15, 0, 0])
-        plan["contact_world_exceptions"] = {"b05_c2": "kept for the test"}
-    assert "CONTACT_WORLD" not in codes(kick)
+    """ADR-O83: a miss the owner's list keeps with its reason (read through S13's packet since RV-43, F-123) is not
+    refused. Owner O89 (ADR-O104), re-pinned in S-039: a miss at an exact instant is never an artefact, airborne,
+    turning or not; only a point interpolated between keys or samples while the actor is airborne or the prop moves is.
+    The acrobat's hand plant (b02_c1), this test's artefact since S-030 (1.8 m off the ground at 2.0), is a support at the
+    vault's first key and meets the ground (F-076)."""
+    plan, packet = copy.deepcopy(PLAN), copy.deepcopy(PACKET)
+    key(plan, "acrobat@b06")["bones"].update(RUL=[-40, 0, -15], RL=[15, 0, 0])
+    packet["contact_world"]["exceptions"] = {"b05_c2": "kept for the test"}
+    assert "CONTACT_WORLD" not in {f["code"] for f in p13_motion.check(plan, packet)}
     from solver import contact_world
     rows = {r["id"]: r for r in contact_world.measure_plan({k["slot"]: k for k in PLAN["keys"]},
                                                            {s["slot"]: s for s in PACKET["slots"]}, PACKET)}
@@ -122,6 +122,18 @@ def test_contact_world_spares_a_listed_exception_and_an_artefact():
     assert not contact_world.artefact(miss) and contact_world.refusals([miss], {})       # an exact instant: refused
     assert contact_world.refusals([dict(miss, interpolated=True)], {}) == []             # between keys: an artefact
     assert contact_world.refusals([dict(miss, interpolated=True, airborne=False, prop_moving=False)], {})  # a turn alone
+
+
+def test_contact_world_exceptions_are_the_owners_alone():
+    """F-123 (RV-43): a motion plan that lists its own CONTACT_WORLD exception fails S13's schema (motion_plan 2.0); an
+    owner's exception that names a contact that meets is refused, so the owner's list stays true."""
+    plan = copy.deepcopy(PLAN)
+    plan["contact_world_exceptions"] = {"b05_c2": "the author's own"}
+    with pytest.raises(ContractError):
+        p13_motion.run(courtyard("bartenieff"), plan)
+    packet = copy.deepcopy(PACKET)
+    packet["contact_world"]["exceptions"] = {"b04_c1": "a landing that meets the ground"}
+    assert "CONTACT_WORLD" in {f["code"] for f in p13_motion.check(PLAN, packet)}
 
 
 def test_a_vault_launches_from_its_planted_hand():

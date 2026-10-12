@@ -188,9 +188,13 @@ def test_the_re_blocked_samples_and_the_catch_are_recorded():
 
 
 def test_contact_world_excepts_only_the_source_miss():
+    from solver import contact_world
+
+    # the owner's list, not the authored plan (F-123, RV-43)
     plan = json.loads((ROOT / "examples" / "reference_fight" / "plans" / "motion.json").read_text(encoding="utf-8"))
-    assert set(plan.get("contact_world_exceptions", {})) == CONTACT_EXCEPTIONS
-    assert all("O83" in reason for reason in plan.get("contact_world_exceptions", {}).values())
+    kept = contact_world.owner_exceptions(ENVELOPE["provenance"]["source_prompt"])
+    assert set(kept) == CONTACT_EXCEPTIONS and "contact_world_exceptions" not in plan
+    assert all("O83" in reason for reason in kept.values())
 
 
 def test_a_roots_and_joints_are_the_reference_rows_with_the_recorded_deviations():

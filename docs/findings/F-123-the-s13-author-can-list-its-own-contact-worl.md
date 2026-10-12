@@ -12,7 +12,7 @@ high
 L4c
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -47,4 +47,7 @@ ADR-O83 (point 2: only the owner's source rows)
 - ADR-O89
 
 ## Resolution
-Open.
+RV-43 (S-047): the exceptions live in kernel/contact_world_exceptions.yaml (kernel log; each entry names the scene's
+query sha256, the contact, the ruling and the reason) and reach CONTACT_WORLD only through S13's packet; the motion plan
+lost its field (motion_plan 2.0), so an authored exception fails S13's schema
+(tests/test_motion_solver.py::test_contact_world_exceptions_are_the_owners_alone).

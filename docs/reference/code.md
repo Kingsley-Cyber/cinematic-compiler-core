@@ -103,7 +103,7 @@ flowchart LR
 | `renderers.prose_renderer` | `compiler.passes.derived.p11_kinematic`, `compiler.passes.mandatory.p07_contact`, `planner.camera_library`, `planner.dynamic_beat_validator`, `planner.scene_view`, `renderers.anime_renderer`, `renderers.prop_samples`, `renderers.ugc_renderer`, `solver.contact_world`, `solver.euler_solver`, `solver.staff_geometry` | hashlib |
 | `renderers.ugc_renderer` | `renderers.anime_renderer` | — |
 | `solver.camera_geometry` | — | math |
-| `solver.contact_world` | `planner.dynamic_beat_validator`, `solver.forward_kinematics` | math |
+| `solver.contact_world` | `planner.dynamic_beat_validator`, `solver.forward_kinematics` | hashlib, math, pathlib, yaml |
 | `solver.euler_solver` | `solver.quaternion` | — |
 | `solver.forward_kinematics` | `planner.dependency_graph`, `planner.genre_profile`, `solver.quaternion`, `validators.schema_validator` | json, yaml |
 | `solver.prop_state_machine` | — | — |
