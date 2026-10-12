@@ -1,6 +1,9 @@
 """S06 replay: states of every entity, prop and surface at each beat start and at the scene end.
 
-requires are read at t; effects commit at t + dur (a beat starting when another ends sees its effects).
+requires are read at t, before the beat's own effects; effects commit at t + dur (a beat starting when another ends
+sees its effects), except a change of hands (F-061, RV-08): a prop's holder change commits at the instant of its
+beat's possess (to the new holder) or release (to none) of that prop, and an entity's possession change at its own
+possess or release, so a throw that lets go at its pose (`at: start`, O23) frees the prop at that instant.
 A property's starting value is the value its first requirement asserts when that comes before any effect;
 otherwise it is "unknown". A chained clip (M5.5) starts from the previous clip's end values instead, and a first
 requirement must then agree with them. Conflicting effects committing at the same time are refused.
@@ -18,11 +21,30 @@ def _key(fact):
     return fact["subject"]["kind"], fact["subject"]["id"], fact["property"]
 
 
+def _contact_time(beat, contact):
+    return beat["t"] + (0 if contact.get("at") == "start" else beat["dur"])
+
+
+def commit_time(beat, fact):
+    """When an effect commits: at the possess or release that hands its prop over (F-061), else at the beat's end."""
+    kind, sid, prop = _key(fact)
+    for contact in beat.get("contacts", []):
+        if contact["contact_type"] not in ("possess", "release") or contact["b"]["kind"] != "prop":
+            continue
+        to = contact["a"]["id"] if contact["contact_type"] == "possess" else "none"
+        if (kind, prop) == ("prop", "holder") and contact["b"]["id"] == sid and fact["value"] == to:
+            return _contact_time(beat, contact)
+        gives = contact["b"]["id"] if contact["contact_type"] == "possess" else "none"
+        if (kind, prop) == ("entity", "possession") and contact["a"]["id"] == sid and fact["value"] == gives:
+            return _contact_time(beat, contact)
+    return beat["t"] + beat["dur"]
+
+
 def replay(beats, subjects, tables, end_time, carried=None):
     """subjects: [(kind, id)]; tables: {(kind, id): [property, ...]}. Returns (snapshots, transitions, findings)."""
     findings = []
     ordered = sorted(beats, key=lambda b: (b["t"], b["id"]))
-    commits = sorted(((b["t"] + b["dur"], b["id"], _key(f), f["value"]) for b in ordered for f in b["effects"]),
+    commits = sorted(((commit_time(b, f), b["id"], _key(f), f["value"]) for b in ordered for f in b["effects"]),
                      key=lambda c: (c[0], c[1]))
     by_time = {}
     for time, beat_id, key, value in commits:
@@ -37,19 +59,19 @@ def replay(beats, subjects, tables, end_time, carried=None):
             key = _key(fact)
             if key in initial:
                 continue
-            earlier_commit = any(c[2] == key and c[0] <= beat["t"] + EPSILON for c in commits)
+            earlier_commit = any(c[2] == key and c[0] <= beat["t"] + EPSILON and c[1] != beat["id"] for c in commits)
             initial[key] = UNKNOWN if earlier_commit else fact["value"]
 
-    def value_at(key, time, inclusive=True):
+    def value_at(key, time, inclusive=True, before=None):
         value = initial.get(key, UNKNOWN)
-        for commit_time, _, commit_key, commit_value in commits:
-            if commit_key == key and (commit_time <= time + EPSILON if inclusive else commit_time < time - EPSILON):
+        for at, beat_id, commit_key, commit_value in commits:
+            if commit_key == key and beat_id != before and (at <= time + EPSILON if inclusive else at < time - EPSILON):
                 value = commit_value
         return value
 
     for beat in ordered:
         for fact in beat["requires"]:
-            actual = value_at(_key(fact), beat["t"])
+            actual = value_at(_key(fact), beat["t"], before=beat["id"])  # before the beat's own effects
             if actual != fact["value"]:
                 findings.append(_finding("REPLAY_REQUIRES", "A requirement does not hold at the beat start", beat["id"],
                                          [list(_key(fact)), fact["value"], actual]))
@@ -76,9 +98,9 @@ def replay(beats, subjects, tables, end_time, carried=None):
                 changes = [{"property": p, "from": prior["conditions"][p], "to": conditions[p]}
                            for p in tables[(kind, sid)] if prior["conditions"][p] != conditions[p]]
                 if changes:
-                    triggers = sorted({c[1] for c in commits if prior["t"] + EPSILON < c[0] <= time + EPSILON
-                                       and c[2][:2] == (kind, sid)})
+                    landed = [c for c in commits if prior["t"] + EPSILON < c[0] <= time + EPSILON and c[2][:2] == (kind, sid)]
                     transitions.append({"id": f"{prior['id']}__{node['id']}", "from_state": prior["id"],
-                                        "to_state": node["id"], "trigger_event": triggers, "changes": changes})
+                                        "to_state": node["id"], "trigger_event": sorted({c[1] for c in landed}),
+                                        "t": round(max((c[0] for c in landed), default=time), 6), "changes": changes})
             last[(kind, sid)] = node
     return snapshots, transitions, findings

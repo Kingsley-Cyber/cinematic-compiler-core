@@ -64,6 +64,27 @@ def test_transitions_name_their_triggering_beats():
     assert {c["property"] for c in edges["coffee_cup@end"]["changes"]} == {"holder", "location"}
 
 
+def test_a_change_of_hands_takes_effect_at_its_contact():
+    """F-061 (RV-08): a possess at its beat's start hands the prop over at that instant, while the beat's own
+    requirement (nobody holds it) still holds; a release at a beat's start frees it then; any other effect waits for
+    the beat's end; each transition records the instant its changes take effect."""
+    hand, cup_ = {"kind": "entity", "id": "a", "part": "right_hand"}, {"kind": "prop", "id": "cup", "part": None}
+    take = {"subject": {"kind": "prop", "id": "cup"}, "property": "holder", "value": "a"}
+    beats = [{"id": "b01", "t": 0, "dur": 1, "pos": {}, "facing": {}, "requires": [dict(take, value="none")],
+              "effects": [take, dict(take, property="fill", value="empty")],
+              "contacts": [{"contact_type": "possess", "a": hand, "b": cup_, "at": "start"}]},
+             {"id": "b02", "t": 1, "dur": 1, "pos": {}, "facing": {}, "requires": [take],
+              "effects": [dict(take, value="none")],
+              "contacts": [{"contact_type": "release", "a": hand, "b": cup_, "at": "start"}]}]
+    snapshots, transitions, findings = replay(beats, [("prop", "cup")], {("prop", "cup"): ["fill", "holder"]}, 3)
+    by_id = {s["id"]: s["conditions"] for s in snapshots}
+    assert findings == [] and by_id["cup@b01"] == {"fill": "unknown", "holder": "a"}
+    assert by_id["cup@b02"] == {"fill": "empty", "holder": "none"}
+    assert [(e["to_state"], e["t"]) for e in transitions] == [("cup@b02", 1.0)]
+    late = [dict(b, contacts=[dict(c, at="end") for c in b["contacts"]]) for b in beats]
+    snapshots, _, findings = replay(late, [("prop", "cup")], {("prop", "cup"): ["fill", "holder"]}, 3)
+    assert findings == [] and {s["id"]: s["conditions"]["holder"] for s in snapshots}["cup@b01"] == "none"
+
 def test_unmet_requirement_and_same_time_conflict_are_refused():
     with pytest.raises(ContractError) as error:
         cup("state", edit=lambda p: p["beats"][2]["requires"].__setitem__(0, {

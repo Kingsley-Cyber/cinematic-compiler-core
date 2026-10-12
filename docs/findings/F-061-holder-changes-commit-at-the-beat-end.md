@@ -12,7 +12,7 @@ low
 L2.1
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -47,4 +47,7 @@ none needed (follows O23)
 - PLAN-003
 
 ## Resolution
-Open.
+RV-08 (S-040): S06 commits a prop's holder change at its possess or release and an entity's possession change at its
+own, every other effect at the beat's end; each state transition records `t`, its instant (state_graph 1.1), and the
+renderers print that; S07's special case for an at-start release is gone. The kunai's holder change prints at 2.00
+with its release (tests/test_state_pass.py::test_a_change_of_hands_takes_effect_at_its_contact).

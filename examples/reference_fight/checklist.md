@@ -6,11 +6,11 @@ Genre: anime. LBN-2.4 is read against the DAG's Master Template (O13), so many o
 
 | Prompt | File | sha256 | Bytes | PASS | FAIL | NOT CHECKED | N/A | Deliverable |
 |---|---|---|---|---|---|---|---|---|
-| LBN | `render.txt` | `28e15c0d4d4cd2e72f21bfbe079df07ec9ebf4f8488613cce051447b01180d83` | 70527 | 3 | 49 | 26 | 6 | no |
-| Pure | `prose_pure_staff.txt` | `a075c6486e24c6c85f0a8708e5b386950c7ab091a79dc08d48eabc4e49146a6e` | 46035 | 31 | 0 | 47 | 6 | no |
-| Mixed | `prose_mixed.txt` | `f289489899fc8eb4cc4fc2ed379b956ba0d3d2d84421c51cbe82401ede0629e6` | 46602 | 31 | 0 | 47 | 6 | no |
-| Upgr | `prose_upgraded_mixed.txt` | `92293ac03fb2afb1f5797c3cbbb3b5efc0735acd7a66a9a41f122a47070b19fd` | 48099 | 31 | 0 | 47 | 6 | no |
-| Euler | `prose_euler_heavy.txt` | `e43a2d30b6df3ed8cd432ca96baac27aa7cd04fdc0784ed5605ab6851e684391` | 56770 | 31 | 0 | 47 | 6 | no |
+| LBN | `render.txt` | `74a67fa5d3fabb6327706931d470d388c13d2f74ccad7d528e3f01f951ae8802` | 70525 | 3 | 49 | 26 | 6 | no |
+| Pure | `prose_pure_staff.txt` | `768837fea07210cd232d0f079d465c90bcc5df136bb223558451efc84c956311` | 46035 | 31 | 0 | 47 | 6 | no |
+| Mixed | `prose_mixed.txt` | `37e0fb1450c7addfbaa98dcab69f747199dc848628d6f709a1804f9eaedba633` | 46602 | 31 | 0 | 47 | 6 | no |
+| Upgr | `prose_upgraded_mixed.txt` | `ff179bf9db19299c661797d3f358e2b487266aef1e2749281dc29b8960f6a435` | 48099 | 31 | 0 | 47 | 6 | no |
+| Euler | `prose_euler_heavy.txt` | `069b2a2ceb2bdb3f492ed610ef3784dde69b0fca02b6f8857d9bc8ed458b0952` | 56770 | 31 | 0 | 47 | 6 | no |
 | Any | union of the five | | | 34 | 0 | 47 | 3 | no |
 
 | Row | Name | Class | LBN | Pure | Mixed | Upgr | Euler | Any | Findings | Evidence |

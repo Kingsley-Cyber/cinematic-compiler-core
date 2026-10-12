@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- A change of hands takes effect at its contact (RV-08, F-061, S-040): S06 commits a holder change at its possess or
+  release, not the beat's end; each state transition records its instant `t` (state_graph 1.1) and the renderers print
+  it, so the kunai is free at 2.00 with its release; S07 drops its special case. RV-03 now depends on RV-08 (the UGC
+  creator takes the glasses at the first frame).
 - CONTACT_WORLD per O89 (RV-02a, ADR-O104, S-039): only a point interpolated between keys or samples, with the actor
   airborne or the prop moving, is an artefact; no exact-instant miss is exempt and a turn alone never is. The repo side
   of each such miss is re-blocked: the kunai is deflected at A's right foot and lands at [1.4, 0, 3.77] (O77's

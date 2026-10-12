@@ -1,6 +1,7 @@
 """S07 pass (band L2): contact events from the beat plan, their lifecycle, and cross-checks with S06.
 
-Lifecycle: touch is instant; possess/support become active at their beat end and stay active until a release
+Lifecycle: touch is instant; possess/support become active at their instant (the beat's end, or its start when marked
+`at: start`) and stay active until a release
 of the same pair (entity part ↔ target part); a release needs an active contact; a pair is not acquired twice;
 a hand possesses one thing at a time. Cross-checks: a prop's holder matches an active possess contact, and every
 prop state change has a contact event in its triggering beat or an active contact on the prop.
@@ -101,11 +102,7 @@ def cross_check(events, intervals, states, transitions, beats):
         if node["subject"]["kind"] != "prop":
             continue
         holder = node["conditions"].get("holder", "unknown")
-        holders = _active_possessors(intervals, node["subject"]["id"], node["t"])
-        # A release at its own beat's start (O23: a throw lets go at its pose) ends the possess at the instant the beat
-        # begins; at that instant the prop is still in the hand (S06 commits the holder change at the beat's end).
-        holders |= {e["a"]["id"] for e in events if e["contact_type"] == "release" and e["beat"] == node.get("beat")
-                    and e["b"]["kind"] == "prop" and e["b"]["id"] == node["subject"]["id"] and abs(e["t"] - node["t"]) <= EPSILON}
+        holders = _active_possessors(intervals, node["subject"]["id"], node["t"])  # S06 changes hands at the contact (F-061)
         if holder not in ("unknown", "none") and holder not in holders:
             findings.append(_finding("HOLDER_CONTACT", "The prop's holder has no active possess contact", node["id"]))
         if holder == "none" and holders:

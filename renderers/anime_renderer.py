@@ -293,11 +293,9 @@ def _face_words(face, labels):
 
 
 def _subject_rows(envelope, kind, identity, states, labels, cover):
-    """Initial conditions, then each change at the end of the beat that caused it, then contacts on this subject."""
+    """Initial conditions, then each change at the instant S06 commits it, then contacts on this subject."""
     own = sorted((s for s in states if s["subject"] == {"kind": kind, "id": identity}), key=lambda s: (s["t"], s["id"]))
-    ends = {b["id"]: round(b["t"] + b["dur"], 6) for b in _items(envelope, "nodes", "beats")}
-    caused = {e["to_state"]: max(ends[b] for b in e["trigger_event"]) for e in _items(envelope, "edges", "state_transition")
-              if e["trigger_event"]}
+    caused = {e["to_state"]: e["t"] for e in _items(envelope, "edges", "state_transition")}  # S06's instant (F-061)
     rows = []
     previous = None
     for snapshot in own:

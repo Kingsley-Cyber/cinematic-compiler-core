@@ -99,8 +99,8 @@ def test_s07_writes_only_its_paths_and_is_deterministic(order):
     assert error.value.code == "MISSING_INPUT"
 
 
-def _held_then_released(release_beat):
-    """x holds prop k from 0.0; the release at 1.0 belongs to `release_beat`; b2 starts at 1.0 with holder x."""
+def _held_then_released(release_beat, holder):
+    """x holds prop k from 0.0; the release at 1.0 belongs to `release_beat`; b2 starts at 1.0 with `holder`."""
     hand = {"kind": "entity", "id": "x"}, {"kind": "prop", "id": "k", "part": "handle"}
     events = [{"id": "b1_c1", "t": 0.0, "beat": "b1", "contact_type": "possess", "body_part": "right_hand", "a": hand[0],
                "b": hand[1]},
@@ -108,13 +108,15 @@ def _held_then_released(release_beat):
                "body_part": "right_hand", "a": hand[0], "b": hand[1]}]
     _, findings, intervals = p07_contact.lifecycle(events)
     assert findings == []
-    state = {"id": "k@b2", "beat": "b2", "t": 1.0, "subject": {"kind": "prop", "id": "k"}, "conditions": {"holder": "x"}}
+    state = {"id": "k@b2", "beat": "b2", "t": 1.0, "subject": {"kind": "prop", "id": "k"}, "conditions": {"holder": holder}}
     beats = [{"id": "b1", "t": 0.0, "dur": 1.0}, {"id": "b2", "t": 1.0, "dur": 0.5}]
     return p07_contact.cross_check(events, intervals, [state], [], beats)
 
 
-def test_a_release_at_its_own_beats_start_still_holds_at_that_instant():
-    """O23 (M9-02): a throw lets go at its pose (`at: start`), so at the beat's first instant the prop is still in the
-    hand; a release that ended the hold in the previous beat does not count (the holder there must be none)."""
-    assert _held_then_released("b2") == []
-    assert [f["code"] for f in _held_then_released("b1")] == ["HOLDER_CONTACT"]
+def test_a_release_at_its_own_beats_start_frees_the_prop_at_that_instant():
+    """O23 (M9-02): a throw lets go at its pose (`at: start`). Since RV-08 (F-061) S06 frees the prop at the release's
+    instant, so at that instant the holder is none wherever the release sits, and a holder kept past it is refused
+    (before RV-08 S07 let the holder stand at an at-start release, as S06 committed only at the beat's end)."""
+    assert _held_then_released("b2", "none") == [] and _held_then_released("b1", "none") == []
+    assert [f["code"] for f in _held_then_released("b2", "x")] == ["HOLDER_CONTACT"]
+    assert [f["code"] for f in _held_then_released("b1", "x")] == ["HOLDER_CONTACT"]

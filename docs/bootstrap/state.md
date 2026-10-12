@@ -6,13 +6,13 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 3.1; backlog 14.
+Layer order 1.7; rules 3.1; backlog 15.
 
 ## Last sessions
 
-- S-037 (applied): RV-01: C12 loses CONTACT_WORLD and is NOT CHECKED until AS-06 (F-074)
 - S-038 (applied): RV-05: A's limb and head words follow the source's words (O88)
 - S-039 (applied): RV-02a: CONTACT_WORLD per O89, the repo side of each miss re-blocked
+- S-040 (applied): RV-08: a holder change commits at its contact's instant, not the beat's end
 
 ## Next slices
 
@@ -51,7 +51,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-40 blocked: Rebinding forces re-authoring — the owner's answer in F-116
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 77
+## Open findings: 76
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -83,4 +83,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O105, finding F-120, session S-040, render R20.
+Decision ADR-O105, finding F-120, session S-041, render R20.

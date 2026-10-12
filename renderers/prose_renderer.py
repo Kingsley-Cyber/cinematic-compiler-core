@@ -474,9 +474,7 @@ def first_states(envelope, labels):
     which part, where it rests, or who carries it (S02 carried_by, O63) when it is neither held nor anywhere known, and
     each card state with the time it first changes ('line coiled until 8.00')."""
     states = _items(envelope, "nodes", "states")
-    ends = {b["id"]: round(b["t"] + b["dur"], 6) for b in _items(envelope, "nodes", "beats")}
-    caused = {e["to_state"]: max(ends[b] for b in e["trigger_event"])
-              for e in _items(envelope, "edges", "state_transition") if e["trigger_event"]}
+    caused = {e["to_state"]: e["t"] for e in _items(envelope, "edges", "state_transition")}  # S06's instant (F-061)
     out = {}
     for prop in _items(envelope, "nodes", "props"):
         own = sorted((s for s in states if s["subject"] == {"kind": "prop", "id": prop["id"]}), key=lambda s: (s["t"], s["id"]))
@@ -611,9 +609,7 @@ def _spatial(envelope, lines, labels, rows):
 def _props(envelope, labels):
     blocks = []
     states = _items(envelope, "nodes", "states")
-    ends = {b["id"]: round(b["t"] + b["dur"], 6) for b in _items(envelope, "nodes", "beats")}
-    caused = {e["to_state"]: max(ends[b] for b in e["trigger_event"])
-              for e in _items(envelope, "edges", "state_transition") if e["trigger_event"]}
+    caused = {e["to_state"]: e["t"] for e in _items(envelope, "edges", "state_transition")}  # S06's instant (F-061)
 
     def who(value):
         return labels.get(value, _words(str(value)))

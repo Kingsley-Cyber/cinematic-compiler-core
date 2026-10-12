@@ -101,10 +101,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 3.1; backlog 14.
-- Last session: S-039 (2026-10-11, applied): RV-02a: CONTACT_WORLD per O89, the repo side of each miss re-blocked.
+- Layer order 1.7; rules 3.1; backlog 15.
+- Last session: S-040 (2026-10-11, applied): RV-08: a holder change commits at its contact's instant, not the beat's end.
 - Next slice: RV-03 The UGC pickup on the table; no resting-prop jump at a pickup; UGC poses agree with their words (step temporal).
-- Open findings: 77; decisions: 131 (0 proposed).
+- Open findings: 76; decisions: 131 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
