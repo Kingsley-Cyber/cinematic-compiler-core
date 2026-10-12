@@ -28,7 +28,7 @@ FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship |
 
 [IMPLIED GUIDANCE]
 - Between lines every performer keeps the declared Effort below, preserves momentum and a clear weight transfer, and travels through space between positions.
-- A 0.00–1.50: maintain light weight, sustained time, direct space, free flow (glide quality); shape advancing, directional spoke; mid reach.
+- A 0.00–1.50: maintain light weight, sustained time, direct space, free flow (glide quality); shape retreating, directional spoke; mid reach.
 - A 1.50–5.50: maintain light weight, sustained time, direct space, bound flow (glide quality); shape enclosing, directional arc; near reach.
 - A 5.50–8.00: maintain light weight, sustained time, indirect space, free flow (float quality); shape spreading, shape flow; near reach.
 - A: secondary motion of the hair and clothing lags the body slightly.

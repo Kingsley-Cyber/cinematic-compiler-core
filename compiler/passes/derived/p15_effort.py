@@ -14,6 +14,7 @@ from compiler.authoring import run_authored, seal
 from planner import library_vocab
 from planner.dependency_graph import ROOT, load
 from planner.scene_view import slots
+from solver import shape_direction
 from validators.schema_validator import validate_schema
 
 NODE, STEP = "effort", "S15"
@@ -46,7 +47,7 @@ def prepare(envelope):
     view = [{**{k: s[k] for k in ("slot", "entity", "beat", "t", "dur", "role", "label", "action")},
              "mode": beats[s["beat"]]["modes"].get(s["entity"]),
              "kinematic": _body(groups["kinematic"][s["slot"]]), "bartenieff": _body(groups["bartenieff"][s["slot"]]),
-             "motion": _body(groups["motion"][s["slot"]], ("id", "entity", "beat", "t", "pos", "quat", "bones", "heading_basis"))}
+             "motion": _body(groups["motion"][s["slot"]], ("id", "entity", "beat", "t", "quat", "heading_basis"))}
             for s in slots(envelope)]
     modes = {k: {f: v[f] for f in ("description", "intensity", "tendencies")} for k, v in effort_modes().items()}
     return seal({"step_id": STEP, "band": "L5", "kind": "effort_plan", "schema": "urn:cinematic-compiler:schema:effort_plan:1.0",
@@ -92,6 +93,12 @@ def check(document, packet):
         expected = ACTIONS.get((effort["weight"], effort["time"], effort["space"]), "none")
         if interval["effort_action"] != expected:
             findings.append({"code": "EFFORT_ACTION", "message": f"weight, time and space make {expected}", "slot": label})
+        span = ids + sequence[interval["actor"]][positions[-1] + 1:positions[-1] + 2]
+        quality = interval["shape"]["quality"]
+        if len(span) > 1 and quality in shape_direction.OPPOSITE and shape_direction.judge(
+                quality, [by_id[i]["motion"] for i in span], [by_id[i]["kinematic"]["support"] for i in span]) == "contradicted":
+            findings.append({"code": "SHAPE_DIRECTION", "message": f"The body shows the opposite of shape {quality} "
+                             "(owner O31, O73)", "slot": label})
         mode = packet["effort_modes"].get(interval["effort_mode"])
         if mode is not None and not mode["intensity"][0] <= interval["intensity"] <= mode["intensity"][1]:
             findings.append({"code": "EFFORT_MODE", "message": f"Intensity is outside the {interval['effort_mode']} range",

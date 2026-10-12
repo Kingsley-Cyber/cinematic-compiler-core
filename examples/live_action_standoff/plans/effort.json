@@ -1,7 +1,7 @@
 {
  "step_id": "S15",
  "band": "L5",
- "packet_sha256": "sha256:d49f09b3f91ef91c96428fb9a51f67f47768106376aa2851f644f4d6b895f9a0",
+ "packet_sha256": "sha256:c56ede7a7cb9f043c4e1ea4e2f229f272edcc8e43a3921b1548969b9c8cf7e80",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -73,7 +73,7 @@
    },
    "effort_action": "punch",
    "shape": {
-    "quality": "retreating",
+    "quality": "advancing",
     "mode": "shape_flow"
    },
    "space": {

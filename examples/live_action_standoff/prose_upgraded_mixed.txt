@@ -34,7 +34,7 @@ FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship |
 - Between lines every performer keeps the declared Effort below, preserves momentum and a clear weight transfer, and travels through space between positions.
 - A 0.00–8.00: maintain light weight, sustained time, indirect space, free flow (float quality); shape rising, shape flow; near reach.
 - B 0.00–2.50: maintain strong weight, sustained time, direct space, bound flow (press quality); shape advancing, directional spoke; mid reach.
-- B 2.50–6.50: maintain strong weight, sudden time, direct space, bound flow (thrust quality); shape retreating, shape flow; near reach.
+- B 2.50–6.50: maintain strong weight, sudden time, direct space, bound flow (thrust quality); shape advancing, shape flow; near reach.
 - B 6.50–8.00: maintain strong weight, sustained time, direct space, bound flow (press quality); shape enclosing, shape flow; near reach.
 - A: secondary motion of the robe and sleeves and hem and hood lags the body slightly.
 - B: secondary motion of the hair and clothing lags the body slightly.

@@ -10,18 +10,18 @@ Layer order 1.7; rules 3.0; backlog 5.
 
 ## Last sessions
 
-- S-017 (not started): M9-09a parked: Shape qualities contradict the motion in every example
 - S-018 (not started): M9-09b parked: the examples' airborne spans leave the gravity arc
 - S-019 (applied): The owner's rulings O72-O80, rules R-33 and R-34
+- S-020 (applied): M9-09a: SHAPE_DIRECTION refuses a Shape quality the body contradicts (F9.1; O31, O73, O76)
 
 ## Next slices
 
-- M9-09a (next, step effort): F9.1 Laban direction against path and form (O73, O76)
+- M9-09b (next, step kinematic): F9.2 airborne momentum under gravity (O74)
 - M9-06 (ready, step motion): F5.1/F5.2 world contact points by forward kinematics; roots at the pelvis (O72)
-- M9-09b (ready, step kinematic): F9.2 airborne momentum under gravity (O74)
 - M9-09c (ready, step motion): FR.4 launch before an aerial turn; a launch needs grounded support before it (O80)
+- M9-09d (ready, step temporal): F-064: the kunai reverses to -Z at the deflect (O77)
 
-M9: 11 of 33 slices done, 22 left (M9-03a blocked; 1 the owner's own).
+M9: 12 of 34 slices done, 22 left (M9-03a blocked; 1 the owner's own).
 
 ## Waiting on the owner
 
@@ -34,11 +34,10 @@ M9: 11 of 33 slices done, 22 left (M9-03a blocked; 1 the owner's own).
 - F-059 (low): Reference-fight deviations from its own data await review
 - F-060 (low): What is a motif?
 - F-066 (high): What is a key's root position: the pelvis or the ground point?
-- F-068 (medium): Twelve Effort intervals declare a Shape quality their motion contradicts
 - F-069 (medium): Nine airborne spans hang longer than gravity allows
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 
-## Open findings: 41
+## Open findings: 40
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -58,4 +57,4 @@ M9: 11 of 33 slices done, 22 left (M9-03a blocked; 1 the owner's own).
 
 ## Next free IDs
 
-Decision ADR-O81, finding F-070, session S-020, render R20.
+Decision ADR-O81, finding F-070, session S-021, render R20.

@@ -183,5 +183,16 @@ def test_the_named_contacts_carry_their_combat_verbs():
     assert {c["id"]: c["verb"] for c in ENVELOPE["nodes"]["contacts"]["items"] if c.get("verb")} == CONTACT_VERBS
 
 
+# Owner O73 (backlog M9-09a; rule R-33): the Shape quality of six intervals contradicted their bodies' path and form;
+# each now names what the body does (the five airborne turns are not judged, O76).
+SHAPE_REWRITES = {"ninja_broad@b06-b07": "rising", "ninja_broad@b15-b16": "rising", "ninja_lean@b15": "rising",
+                  "ninja_broad@b17": "spreading", "ninja_lean@b18": "retreating", "ninja_broad@b19-b21": "advancing"}
+
+
+def test_six_shape_qualities_follow_their_bodies():
+    shapes = {e["id"]: e["shape"]["quality"] for e in ENVELOPE["nodes"]["efforts"]["items"]}
+    assert {i: shapes[i] for i in SHAPE_REWRITES} == SHAPE_REWRITES
+
+
 def test_render_txt_is_the_render_node():
     assert (FOLDER / "render.txt").read_text(encoding="utf-8") == TEXT + "\n"

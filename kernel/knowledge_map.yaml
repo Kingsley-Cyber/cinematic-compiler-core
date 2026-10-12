@@ -118,9 +118,13 @@ rows:
     class: required
     step: S15
     status: partial
-    codes: [EFFORT_UNDECLARED]
+    codes: [EFFORT_UNDECLARED, SHAPE_DIRECTION]
     gaps: [PHRASING_MISSING]
     enforced_by:
+      - {file: compiler/passes/derived/p15_effort.py, check: check, code: SHAPE_DIRECTION,
+         test: tests/test_effort_solver.py::test_each_rule_rejects_its_violation}
+      - {file: validators/prompt_validator.py, check: _shape_checks, code: SHAPE_DIRECTION,
+         test: tests/test_effort_solver.py::test_a_printed_shape_against_the_motion_is_refused}
       - {file: compiler/passes/derived/p15_effort.py, check: check, code: EFFORT_VOCABULARY,
          test: tests/test_effort_solver.py::test_each_rule_rejects_its_violation}
       - {file: compiler/passes/derived/p15_effort.py, check: check, code: EFFORT_COVERAGE,
@@ -443,7 +447,7 @@ rows:
     class: mandatory
     step: S15
     status: partial
-    codes: [EFFORT_UNDECLARED]
+    codes: [EFFORT_UNDECLARED, SHAPE_DIRECTION]
     gaps: [PHRASING_MISSING]
     enforced_by:
       - {file: compiler/passes/derived/p15_effort.py, check: check, code: EFFORT_VOCABULARY,

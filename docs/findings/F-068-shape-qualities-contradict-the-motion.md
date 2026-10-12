@@ -12,7 +12,7 @@ medium
 L5
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -60,4 +60,6 @@ ADR-O73
 - PLAN-003
 
 ## Resolution
-Open.
+SHAPE_DIRECTION (S15 and the prompt; M9-09a, S-020) refuses a contradicted interval. Under O76 three of the twelve
+are airborne turns and are not judged; the other nine were rewritten (R-33, O73). The intervals that show neither
+wait for M9-10 (O73).

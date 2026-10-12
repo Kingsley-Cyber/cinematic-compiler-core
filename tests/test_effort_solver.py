@@ -49,6 +49,8 @@ def test_eight_basic_effort_actions_cover_every_weight_time_space_combination():
     ("EFFORT_VOCABULARY", lambda p: interval(p, "wizard", "b06").update(effort_mode="frantic")),
     ("EFFORT_ACTION", lambda p: interval(p, "acrobat", "b02").update(effort_action="slash")),
     ("EFFORT_ACTION", lambda p: interval(p, "acrobat", "b01").update(effort_action="dab")),
+    # plan F9.1, owner O73: the acrobat's spin spreads its arms; 'enclosing' (the plan before O73) contradicts it
+    ("SHAPE_DIRECTION", lambda p: interval(p, "acrobat", "b05")["shape"].update(quality="enclosing")),
     ("EFFORT_MODE", lambda p: interval(p, "wizard", "b05").update(intensity=0.95)),
 ])
 def test_each_rule_rejects_its_violation(code, change):
@@ -71,3 +73,21 @@ def test_derived_spans_overlaps_scope_and_determinism(order):
         assert (edge["start"], edge["end"]) == (max(left["t"], right["t"]), min(left["end"], right["end"]))
     assert ("acrobat@b06-b07", "wizard@b06") in {(e["from"], e["to"]) for e in edges}
     assert canonical_json(after) == canonical_json(p15_effort.run(courtyard("motion"), PLAN, order=order)[0])
+
+
+def test_shape_direction_skips_a_flight_and_judges_the_ground():
+    """Owner O76: an airborne turn is a flight (the spine's tuck is not a lean); a grounded body is judged (O73)."""
+    assert "SHAPE_DIRECTION" not in codes(lambda p: interval(p, "acrobat", "b12")["shape"].update(quality="advancing"))
+    assert "SHAPE_DIRECTION" in codes(lambda p: interval(p, "acrobat", "b05")["shape"].update(quality="enclosing"))
+
+
+def test_a_printed_shape_against_the_motion_is_refused():
+    """SHAPE_DIRECTION in the prompt: B is dragged forward toward the pillar from 7.50, so 'retreating' contradicts it."""
+    from validators import prompt_validator
+    envelope = json.loads((ROOT / "examples" / "reference_fight" / "envelope.json").read_text(encoding="utf-8"))
+    text = envelope["nodes"]["render"]["items"][0]["prose"]["mixed"]["text"]
+    line = "- B 7.50–9.00: maintain sudden time, bound flow; shape advancing"
+    assert line in text
+    broken = text.replace(line, line.replace("advancing", "retreating"))
+    assert "SHAPE_DIRECTION" in {f["code"] for f in prompt_validator.check(broken, envelope, "mixed")}
+

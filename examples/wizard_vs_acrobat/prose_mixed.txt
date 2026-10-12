@@ -49,7 +49,7 @@ FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship |
 - A 7.60–8.60: maintain strong weight, sudden time, indirect space, free flow (slash quality); shape spreading, carving; far reach.
 - B 0.00–1.20: maintain sudden time, direct space, free flow; shape advancing, directional spoke; mid reach.
 - B 1.20–2.60: maintain light weight, sudden time, indirect space, free flow (flick quality); shape rising, carving; far reach.
-- B 2.60–3.60: maintain strong weight, sudden time, direct space, bound flow (thrust quality); shape enclosing, carving; far reach.
+- B 2.60–3.60: maintain strong weight, sudden time, direct space, bound flow (thrust quality); shape spreading, carving; far reach.
 - B 3.60–5.20: maintain sudden time, free flow; shape retreating, shape flow; near reach.
 - B 5.20–6.40: maintain strong weight, sustained time, direct space, bound flow (press quality); shape sinking, directional spoke; near reach.
 - B 6.60–7.80: maintain light weight, sudden time, direct space, bound flow (dab quality); shape advancing, directional spoke; mid reach.

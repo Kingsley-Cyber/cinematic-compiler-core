@@ -16,6 +16,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
   quality)" for punch and "(press quality)" and so on; S15's data and LBN-2.4 keep the Laban vocabulary.
 
 ### Added
+- SHAPE_DIRECTION (M9-09a, plan F9.1, owners O31, O73, O76, S-020): S15 and the prompt refuse a Shape quality the
+  body's path and form contradict (`solver/shape_direction.py`; airborne turns are not judged); nine intervals across
+  the four examples rewritten (R-33); the single-joint audit finds one defect, the face's heading (M9-09g).
 - ENTRANCE_UNSTATED (M9-08b, probe V6, owner O51, S-016): a performer who starts in the air above a raised top gets
   V6's rule (its feet touch the top at the landing, not earlier) and negative (not standing on it at the start); F10
   is caught.

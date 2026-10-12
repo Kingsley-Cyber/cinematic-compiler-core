@@ -15,7 +15,7 @@ from planner import dynamic_beat_validator
 from planner.scene_view import slots
 from renderers import prop_samples, prose_renderer
 from renderers.anime_renderer import constraint_rows
-from solver import euler_solver, staff_geometry
+from solver import euler_solver, shape_direction, staff_geometry
 from validators import cause_reason
 
 CODES = {
@@ -61,6 +61,8 @@ CODES = {
     "ROTATION_PATH_UNSTATED": "a turn run, named or not (a spin too), is not written once on its first line by axis, "
                               "plane and count with its takeoff and landing, or not continued on its later lines (FR.1 "
                               "as amended by W3)",
+    "SHAPE_DIRECTION": "a printed Shape quality is the opposite of what the body's path and form show (plan F9.1, owner "
+                       "O31, O73; airborne turns are not judged, O76)",
     "ENTRANCE_UNSTATED": "a performer who starts in the air above a raised top lacks the rule that its feet touch the "
                          "top at the landing, not earlier, or the negative against standing on it at the start "
                          "(probe V6, R19; F10)",
@@ -102,7 +104,7 @@ READS = {
     "BODY_HOLD_FRAMES": (), "EMPTY_HAND_UNSTATED": (STAFF,), "ROTATION_ANGLES_PRINTED": (), "HIDDEN_PHRASING": (),
     "IMPACT_CONTACT_SYNC": (STAFF, "[ANIME]", "[UGC]", "[LIVE ACTION]"), "AIRBORNE_PICKUP": (STAFF,),
     "PROP_PHYSICS_UNSTATED": (PROPS,), "PROP_VISIBILITY": (PROPS,), "ROTATION_PATH_UNSTATED": (STAFF,),
-    "ENTRANCE_UNSTATED": (RULES, NEGATIVES),
+    "ENTRANCE_UNSTATED": (RULES, NEGATIVES), "SHAPE_DIRECTION": ("[IMPLIED GUIDANCE]",),
     "CAUSAL_LIST_MISSING": ("[CAUSAL LINKS]",), "CAUSE_REASON": ("[CAUSAL LINKS]",),
     "REACTION_WITHOUT_CAUSE": (),
     "CAUSAL_RULE_MISSING": (RULES,), "CONSERVATION_RULE_MISSING": (RULES,), "SPAN_RULE_MISSING": (STAFF, RULES),
@@ -204,6 +206,7 @@ def check(text, envelope, mode):
     _props_and_causes(envelope, parts, labels, mode, add)
     _where_checks(envelope, parts, labels, add)
     _entrance_checks(envelope, parts, labels, add)
+    _shape_checks(envelope, parts, labels, add)
     _first_state_checks(envelope, parts, labels, add)
     _line_and_word_checks(envelope, text, parts, labels, add)
     _count_checks(envelope, text, add)
@@ -628,6 +631,25 @@ def _props_and_causes(envelope, parts, labels, mode, add):
     for word in ("ring", "halo", "full circle"):
         if f"no {word}" in negatives and re.search(rf"\b{word}\b", fx):
             add("PROMPT_CONTRADICTION", f"FX draws a {word} while NEGATIVES forbid it (audit X29)")
+
+
+def _shape_checks(envelope, parts, labels, add):
+    """SHAPE_DIRECTION (plan F9.1, owner O73): the Shape quality each IMPLIED GUIDANCE line prints is not contradicted
+    by its performer's path and form over the interval (solver/shape_direction.py)."""
+    printed = {(m.group(1), m.group(2)): m.group(3) for m in re.finditer(
+        r"^- ([A-Z]) (\d+\.\d\d)–\d+\.\d\d: maintain [^;]*; shape (\w+)", _body(parts, "[IMPLIED GUIDANCE]"), re.M)}
+    support = {k["id"]: k["support"] for k in envelope["nodes"]["kinematic"]["items"]}
+    keys = sorted(envelope["nodes"]["motion"]["items"], key=lambda k: k["t"])
+    for interval in envelope["nodes"]["efforts"]["items"]:
+        quality = printed.get((labels.get(interval["actor"]), f"{interval['t']:.2f}"))
+        own = [k for k in keys if k["entity"] == interval["actor"]]
+        ids = [f"{interval['actor']}@{b}" for b in interval["beats"]]
+        inside = [i for i, k in enumerate(own) if k["id"] in ids]
+        span = own[inside[0]:inside[-1] + 2] if inside else []
+        if quality in shape_direction.OPPOSITE and len(span) > 1 and shape_direction.judge(
+                quality, span, [support[k["id"]] for k in span]) == "contradicted":
+            add("SHAPE_DIRECTION", f"{labels.get(interval['actor'])} {interval['t']:.2f}: shape {quality} is the opposite "
+                                   "of what the body does")
 
 
 def _entrance_checks(envelope, parts, labels, add):
