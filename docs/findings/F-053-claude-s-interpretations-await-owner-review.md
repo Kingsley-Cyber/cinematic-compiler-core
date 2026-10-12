@@ -150,6 +150,11 @@ is not measured until RV-22 gives that surface its faces.
 Added in S-079 (RV-16, renderers/anime_renderer.py): a fighter's own beats are the beats it acts in; its side of the
 other's beats ("caught by B" in the 2.4 source) is left out, since no node words it; a fighter that acts in none
 prints "none".
+Added in S-080 (RV-35a, solver/reblock.py): a re-block's cost is the sum of the squared degree changes plus 1e8 per
+square metre of goal miss, searched by pattern steps from 16 to 0.125 degrees; a pickup "crouches with one hand down"
+when both soles are within 0.03 m of the floor, the grasping hand within 0.03 m of it, the other hand 0.3 m or more
+over it, the head 0.2 m or more over the pelvis and the trunk (root and spine) under 80 degrees; A's crouch at 0.40 m
+is the repo's reading of O18's "crouched on the ground", and a hand on the floor at a pickup bears weight (a support).
 
 ## Impact
 Waits on the owner.

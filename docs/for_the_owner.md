@@ -68,6 +68,7 @@ done only when every row that applies passes. Claude never renders; you render, 
 - F-201 (medium): R-21's reach beyond the fight
 - F-202 (medium): The fight's open staging choices
 - F-203 (medium): RV-20's layer-order ADR
+- F-205 (medium): The anime body's arms reach the floor only with the trunk leaning 58 to 75 degrees
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog RV-15c blocked: A strike's limb and a facing head point at their target, checked at S13; B's keys re-aimed — the owner's answer in F-148 (A's source facings: the check would refuse the golden's own rows, O10)
 - Backlog RV-14b blocked: A held or embedded prop at its holder at every sample (a rope dart's dart within its line of the hand) — the owner's answer in F-148 (the climax: A's source right hand is 0.65-0.87 m from the kunai the source keeps in B's shoulder at 8.5-9.5)

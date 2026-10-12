@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 31
+version: 32
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -144,10 +144,12 @@ items:
      step: motion, plan: PLAN-007, depends_on: [RV-14a], findings: [F-089, F-062, F-084], codes: []}
   - {id: RV-16, title: "One laban chain per fighter in render.txt", status: done,
      step: render, plan: PLAN-007, depends_on: [], findings: [F-091], codes: []}
-  - {id: RV-35, title: "Pickups crouch on the feet with a hand down; the support names the hand", status: next,
+  - {id: RV-35a, title: "Pickups crouch on the feet with a hand down; the support names the hand; the re-block solver committed", status: done,
      step: motion, plan: PLAN-007, depends_on: [RV-02a], findings: [F-110, F-127], codes: []}
-  - {id: RV-59, title: "BODY_OVERLAP and CONTACT_WORLD along the declared interpolation between keys; the paths re-blocked", status: ready,
-     step: motion, plan: PLAN-007, depends_on: [RV-35], findings: [F-159, F-089], codes: []}
+  - {id: RV-35b, title: "The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools", status: ready,
+     step: all, plan: PLAN-007, depends_on: [RV-35a], findings: [F-127], codes: []}
+  - {id: RV-59, title: "BODY_OVERLAP and CONTACT_WORLD along the declared interpolation between keys; the paths re-blocked", status: next,
+     step: motion, plan: PLAN-007, depends_on: [RV-35a], findings: [F-159, F-089], codes: []}
   - {id: RV-37, title: "One strike definition at S04; S17's impact frames agree with it", status: ready,
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-112], codes: []}
   - {id: RV-22, title: "The pillar has a radius and faces; landings and face contacts measured", status: ready,

@@ -6,18 +6,18 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 7.1; backlog 31.
+Layer order 1.7; rules 7.1; backlog 32.
 
 ## Last sessions
 
-- S-077 (applied): RV-15b: an insert aims at its detail, a framed prop is in frame, and the camera schemas name the aim
 - S-078 (applied): RV-14: every key keeps its bodies above the floor, its supports on their surfaces and its props in hand
 - S-079 (applied): RV-16: each fighter's laban chain in render.txt lists its own moves
+- S-080 (applied): RV-35a: A's pickups crouch on the feet with one hand down, re-blocked by a committed solver
 
 ## Next slices
 
-- RV-35 (next, step motion): Pickups crouch on the feet with a hand down; the support names the hand
-- RV-59 (ready, step motion): BODY_OVERLAP and CONTACT_WORLD along the declared interpolation between keys; the paths re-blocked
+- RV-59 (next, step motion): BODY_OVERLAP and CONTACT_WORLD along the declared interpolation between keys; the paths re-blocked
+- RV-35b (ready, step all): The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools
 - RV-37 (ready, step temporal): One strike definition at S04; S17's impact frames agree with it
 - RV-22 (ready, step motion): The pillar has a radius and faces; landings and face contacts measured
 
@@ -63,6 +63,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-201 (medium): R-21's reach beyond the fight
 - F-202 (medium): The fight's open staging choices
 - F-203 (medium): RV-20's layer-order ADR
+- F-205 (medium): The anime body's arms reach the floor only with the trunk leaning 58 to 75 degrees
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog RV-15c blocked: A strike's limb and a facing head point at their target, checked at S13; B's keys re-aimed — the owner's answer in F-148 (A's source facings: the check would refuse the golden's own rows, O10)
 - Backlog RV-14b blocked: A held or embedded prop at its holder at every sample (a rope dart's dart within its line of the hand) — the owner's answer in F-148 (the climax: A's source right hand is 0.65-0.87 m from the kunai the source keeps in B's shoulder at 8.5-9.5)
@@ -124,4 +125,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-205, session S-080, render R20.
+Decision ADR-O109, finding F-206, session S-081, render R20.

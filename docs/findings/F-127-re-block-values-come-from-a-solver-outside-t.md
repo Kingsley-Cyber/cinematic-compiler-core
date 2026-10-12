@@ -51,4 +51,8 @@ none needed
 - F-110
 
 ## Resolution
-Open.
+Open in part: solver/reblock.py (RV-35a, S-080) is the committed solver: the least squared change to the listed joint
+components that meets stated goals inside stated bounds, with a CLI; it re-derives S-078's three re-blocks from their
+goals (within 0.125 degrees) and derived S-080's pickups. Open: the re-blocks recorded from S-030 to S-049 and the
+camera values chosen by trial in S-050 and S-076 (S-076's search lives in a scratch file), re-derived with committed
+tools (RV-35b).

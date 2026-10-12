@@ -6,6 +6,11 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- A's pickups crouch on the feet with one hand down (RV-35a, F-110, S-080): at 7.5 and 8.0 A no longer crawls; the
+  pelvis sits at 0.40 m, one hand takes the prop from the floor and is named as a support (S04, S11, the staff), the
+  other hand is up, and the trunk leans 58 and 75 degrees instead of past flat. The values come from the committed
+  re-block solver, solver/reblock.py (F-127), which also re-derives S-078's re-blocks. The prose changes on A's 7.0,
+  7.5 and 8.0 lines. The anime arm's length goes to the owner (F-205).
 - Each fighter's laban chain in render.txt lists its own moves (RV-16, F-091, S-079): the beats it acts in, in time
   order, then its efforts; the reference fight's B chain no longer opens with A's fall, nor A's carries B's throw.
   Only render.txt's laban field changed.

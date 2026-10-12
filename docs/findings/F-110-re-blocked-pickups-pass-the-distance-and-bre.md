@@ -12,7 +12,7 @@ medium
 L4c
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -45,4 +45,8 @@ none needed
 - F-075
 
 ## Resolution
-Open.
+Resolved by RV-35a (S-080): A crouches deeper at both pickups (pelvis 0.40 m, from 0.57 and 0.59) on planted soles,
+one hand on its prop and the other off the floor (0.50 and 0.65 m), the head 0.36 and 0.27 m over the pelvis, the
+trunk leaning 58 and 75 degrees (from 90 and 116); S04 gives each hand a support contact on the ground for its beat,
+so S11 names it and the staff prints "both feet place-low + LEFT hand place-low" and "+ RIGHT hand". The values come
+from solver/reblock.py with the goals S-080 records. A shallower lean needs longer arms (F-205, the owner's).

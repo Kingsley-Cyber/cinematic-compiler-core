@@ -101,9 +101,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.1; backlog 31.
-- Last session: S-079 (2026-10-12, applied): RV-16: each fighter's laban chain in render.txt lists its own moves.
-- Next slice: RV-35 Pickups crouch on the feet with a hand down; the support names the hand (step motion).
+- Layer order 1.7; rules 7.1; backlog 32.
+- Last session: S-080 (2026-10-12, applied): RV-35a: A's pickups crouch on the feet with one hand down, re-blocked by a committed solver.
+- Next slice: RV-59 BODY_OVERLAP and CONTACT_WORLD along the declared interpolation between keys; the paths re-blocked (step motion).
 - Open findings: 124; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
@@ -151,6 +151,7 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - F-201 (medium): R-21's reach beyond the fight
 - F-202 (medium): The fight's open staging choices
 - F-203 (medium): RV-20's layer-order ADR
+- F-205 (medium): The anime body's arms reach the floor only with the trunk leaning 58 to 75 degrees
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog RV-15c blocked: A strike's limb and a facing head point at their target, checked at S13; B's keys re-aimed — the owner's answer in F-148 (A's source facings: the check would refuse the golden's own rows, O10)
 - Backlog RV-14b blocked: A held or embedded prop at its holder at every sample (a rope dart's dart within its line of the hand) — the owner's answer in F-148 (the climax: A's source right hand is 0.65-0.87 m from the kunai the source keeps in B's shoulder at 8.5-9.5)

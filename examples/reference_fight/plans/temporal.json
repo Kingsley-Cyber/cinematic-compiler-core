@@ -2165,7 +2165,7 @@
    "pos": {
     "ninja_lean": [
      0.71,
-     0.57,
+     0.4,
      4.22
     ],
     "ninja_broad": [
@@ -2241,6 +2241,33 @@
       "id": "kunai",
       "part": "handle"
      }
+    },
+    {
+     "contact_type": "support",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "left_hand"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     },
+     "at": "start"
+    },
+    {
+     "contact_type": "release",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "left_hand"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
     }
    ],
    "causes": [
@@ -2287,7 +2314,7 @@
    "pos": {
     "ninja_lean": [
      0.91,
-     0.59,
+     0.4,
      4.0
     ],
     "ninja_broad": [
@@ -2348,6 +2375,33 @@
       "kind": "entity",
       "id": "ninja_lean",
       "part": "right_foot"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     }
+    },
+    {
+     "contact_type": "support",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "right_hand"
+     },
+     "b": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     },
+     "at": "start"
+    },
+    {
+     "contact_type": "release",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "right_hand"
      },
      "b": {
       "kind": "surface",

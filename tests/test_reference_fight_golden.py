@@ -81,15 +81,19 @@ ROOT_TURNS = ((5.1, 0, -360), (6.3, 2, -360))
 # of root, crouch and arm, both soles on the ground). O89 (S-039): the kunai is deflected at A's right foot, so it lands
 # at [1.4, 0, 3.77] (O77's v_post), and the 8.0 crouch moves with it, pose kept (+0.8 x, -0.23 z). O90 (S-042): the
 # rope dart drops from A's left hand at the substitution and rests at [1.18, 0, 4.51], so the 7.5 crouch moves with
-# it, pose and facing kept (+0.78 x, +0.71 z).
-GROUNDED_PICKUPS = {  # O18: A's rows at the two pickups, crouched on the ground (from A's own crouches at 5.9 and 9.5)
-    7.5: [7.5, "rope_dart_regrapple", [0.71, 0.57, 4.22], [-330, 30, -360],
-          {"Sp": [59.6, 0, 0], "LUL": [-110.2, 0, 0], "RUL": [-108.5, 0, 0], "LL": [104.6, 0, 0], "RL": [108, 0, 0],
-           "LA": [-65.1, -4, 0], "RA": [-45, 0, 0], "LFA": [-27, 0, 0], "RFA": [-45, 0, 0], "HD": [10, 0, 0], "NK": [0, 0, 0]}],
-    8.0: [8.0, "pull_b_toward_pillar", [0.91, 0.59, 4.0], [-330, 90, -360],
-          {"Sp": [85.6, 0, 0], "LUL": [-104.1, 0, 0], "RUL": [-100.6, 0, 0], "LL": [89.8, 0, 0], "RL": [97.5, 0, 0],
-           "LA": [-60, 0, 0], "RA": [-68.2, 14.8, 0], "LFA": [-30, 0, 0], "RFA": [-27.9, 0, 0], "HD": [10, 0, 0],
-           "NK": [0, 0, 0]}],
+# it, pose and facing kept (+0.78 x, +0.71 z). RV-35a (F-110, S-080): that re-block made A crawl (trunk past flat, head at
+# the pelvis, both hands down), so A crouches deeper (pelvis 0.40) on planted feet with one hand on the prop and the
+# other off the floor, the trunk leaning 58 and 75 degrees with a twist; the values come from solver/reblock.py with
+# the goals S-080 records, and S04 and S11 name the hand's support on the ground.
+GROUNDED_PICKUPS = {  # O18: A's rows at the two pickups, crouched on the ground
+    7.5: [7.5, "rope_dart_regrapple", [0.71, 0.4, 4.22], [-330, 30, -360],
+          {"Sp": [28.375, -19.25, -13.125], "LUL": [-82.325, 0, 45.0], "RUL": [-80.0, 0, 30.0], "LL": [118.475, 0, 0],
+           "RL": [124.0, 0, 0], "LA": [-60.85, 32.125, 12.25], "RA": [-103.375, 0, -0.5], "LFA": [-16.0, 0, 0],
+           "RFA": [-45.375, 0, 0], "HD": [10, 0, 0], "NK": [0, 0, 0]}],
+    8.0: [8.0, "pull_b_toward_pillar", [0.91, 0.4, 4.0], [-330, 90, -360],
+          {"Sp": [45.0, 45.0, 15.25], "LUL": [-69.975, 0, -23.5], "RUL": [-65.975, 0, -14.0], "LL": [102.05, 0, 0],
+           "RL": [109.375, 0, 0], "LA": [-60.0, 0, 0.0], "RA": [-56.2, -10.575, -24.875], "LFA": [-30.0, 0, 0],
+           "RFA": [-3.275, 0, 0], "HD": [10, 0, 0], "NK": [0, 0, 0]}],
 }
 # ADR-O83 point 2 kept the source's one real miss (b06_c3, A's right foot 1.5 m over the ground at 3.0) as an
 # exception; O88's flip of that hip to the row's own "R: leg fwd mid" puts the foot on the ground (S-038). O89 (S-039):
