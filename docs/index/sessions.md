@@ -29,6 +29,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-020 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog M9-09a (PLAN-003 F9.1); finding… | applied | the commit whose message names [S-020] | about 60 minutes | M9-09b (MOMENTUM_MISSING with anime hang time, O74). | [S-020-m9-09a-shape-direction.md](../sessions/S-020-m9-09a-shape-direction.md) |
 | S-021 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog M9-09b (PLAN-003 F9.2); finding… | applied | the commit whose message names [S-021] | about 45 minutes | M9-09c (FR.4 launch; F-058, O80). | [S-021-m9-09b-airborne-momentum.md](../sessions/S-021-m9-09b-airborne-momentum.md) |
 | S-022 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog M9-09c (PLAN-003 FR.4); finding… | applied | the commit whose message names [S-022] | about 40 minutes | M9-09d (F-064: the kunai reverses to -Z, O77). | [S-022-m9-09c-launch-before-a-turn.md](../sessions/S-022-m9-09c-launch-before-a-turn.md) |
+| S-023 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog M9-09d; finding F-064; ruling O… | applied | the commit whose message names [S-023] | about 20 minutes | M9-09e (F-065: a prop at rest has support; the pellet falls… | [S-023-m9-09d-kunai-reverses-to-minus-z.md](../sessions/S-023-m9-09d-kunai-reverses-to-minus-z.md) |
 
 ## Status values
 

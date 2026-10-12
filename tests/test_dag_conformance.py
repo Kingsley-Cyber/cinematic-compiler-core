@@ -182,7 +182,7 @@ BREAKS = [
         "turns to the left 90 degrees about the vertical axis (transverse plane), 1.60", "turns left, 1.60")),
     ("PROP_PHYSICS_UNSTATED", "reference_fight", "mixed", _replace("2.00-2.50 ballistic under gravity from",
                                                                    "2.00-2.50 moving from")),
-    ("PROP_VISIBILITY", "reference_fight", "mixed", _replace(" · 2.90-8.00 at rest on the ground at [0.3, 0, 5.3]", "")),
+    ("PROP_VISIBILITY", "reference_fight", "mixed", _replace(" · 2.70-8.00 at rest on the ground at [0.6, 0, 4]", "")),
     ("CAUSAL_LIST_MISSING", "wizard_vs_acrobat", "mixed", _drop_causal_threads),
     ("CAUSE_REASON", "wizard_vs_acrobat", "mixed", _replace(": The crouch loads the legs for the vault.", ": It goes on.")),
     ("REACTION_WITHOUT_CAUSE", "ugc_glasses_demo", "mixed", _react_early),

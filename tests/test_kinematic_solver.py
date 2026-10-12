@@ -95,7 +95,7 @@ def test_airborne_pickup_needs_a_supported_body_within_reach():
     far = copy.deepcopy(packet)
     next(s for s in far["slots"] if s["slot"] == "ninja_lean@b20")["pos"] = [-3.0, 0.6, 5.1]
     assert [f["message"] for f in p11_kinematic.pickup_findings(document, far, envelope)] == [
-        "ninja_lean takes kunai at 8.0 from 3.36 m away"]
+        "ninja_lean takes kunai at 8.0 from 3.81 m away"]  # the kunai rests on [0.6, 0, 4.0] since O77
 
 
 def test_hang_time_is_anime_only_and_said_in_the_prompt():

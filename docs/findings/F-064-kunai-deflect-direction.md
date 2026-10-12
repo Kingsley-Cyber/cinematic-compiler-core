@@ -12,7 +12,7 @@ medium
 L1.1
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -52,4 +52,6 @@ ADR-O77
 - ADR-O71
 
 ## Resolution
-Open.
+Owner O77: the golden is right. The kunai leaves A's foot at 2.5 with the source's v_post [0.5, -4.0, -3.0]
+(reversing +Z to -Z), lands at 2.7 on [0.6, 0, 4.0] and rests there until A takes it at 8.0 (M9-09d, S-023; the
+golden test records it).

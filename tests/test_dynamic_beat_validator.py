@@ -172,7 +172,7 @@ def test_the_rows_print_the_pair_pre_before_post():
     rows = [text for _, text in prop_samples.rows(envelope, {"ninja_lean": "A", "ninja_broad": "B"}, "kunai", False)]
     at = [text for text in rows if text.startswith("2.50")]
     assert at == ["2.50 pre-contact p[0.5, 1, 4.6] v[-1.4, -3.46, 0.2] moving down along -X",
-                  "2.50 post-contact p[0.5, 1, 4.6] v[-0.5, -0.54, 1.75] moving down along +Z"]
+                  "2.50 post-contact p[0.5, 1, 4.6] v[0.5, -4, -3] moving down along -Z"]  # owner O77
 
 
 def test_a_throw_leaves_its_prop_moving():

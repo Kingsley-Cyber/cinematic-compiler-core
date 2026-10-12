@@ -6,6 +6,8 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The kunai reverses to -Z at the deflect (M9-09d, owner O77, S-023): the source's v_post [0.5, -4.0, -3.0]; it lands
+  at 2.7 on [0.6, 0, 4.0], where A takes it at 8.0. F-064 resolved.
 - The owner's rulings (S-019): ADR-O72 (the root is the pelvis; contacts within 0.15 m), O73 (SHAPE_DIRECTION refuses
   contradictions only), O74 (anime declares hang time), O75 (slices rewrite the examples for their own checks, rule
   R-33; supersedes O71), O76 (whole-body checks read the whole body, rule R-34), O77-O80 (the kunai reverses to -Z,

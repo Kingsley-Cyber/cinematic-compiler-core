@@ -49,9 +49,9 @@ items:
   - {id: M9-09c, title: "FR.4 launch before an aerial turn; a launch needs grounded support before it (O80)", status: done,
      step: motion, plan: PLAN-003,
      depends_on: [M9-05], findings: [F-028, F-058], codes: [AIRBORNE_WITHOUT_LAUNCH]}
-  - {id: M9-09d, title: "F-064: the kunai reverses to -Z at the deflect (O77)", status: next, step: temporal,
+  - {id: M9-09d, title: "F-064: the kunai reverses to -Z at the deflect (O77)", status: done, step: temporal,
      plan: PLAN-003, depends_on: [M9-04a], findings: [F-064], codes: []}
-  - {id: M9-09e, title: "F-065: a prop at rest has support; the smoke pellet falls (O78)", status: ready, step: temporal,
+  - {id: M9-09e, title: "F-065: a prop at rest has support; the smoke pellet falls (O78)", status: next, step: temporal,
      plan: PLAN-003, depends_on: [M9-04b], findings: [F-065], codes: [PROP_SUPPORT]}
   - {id: M9-09f, title: "F-067: the reference query says A falls from y=10 (O79)", status: ready, step: intent,
      plan: PLAN-003, depends_on: [M9-08b], findings: [F-067], codes: []}

@@ -165,9 +165,10 @@ def test_strikes_throws_and_releases_happen_at_their_pose():
 
 # Plan F2.2 (backlog M9-04a under owner O61's build order; ADR-O71 rule 1, covered): a deflect is instantaneous, so
 # the kunai carries a pre-contact sample at 2.5 (the 2.0 throw under gravity for 0.5 s) beside the golden's own sample,
-# now marked post-contact. The golden's post velocity keeps +Z against its rule's '+Z to -Z' (finding F-064).
+# now marked post-contact. Owner O77 (F-064): the golden is right, the kunai reverses from +Z to -Z: the post velocity
+# is the source's own v_post [0.5,-4.0,-3.0], so the kunai lands at 2.7 on [0.6,0,4.0] and A takes it there at 8.0.
 DEFLECT_PAIR = ["2.5 pre-contact p[0.5,1,4.6] v[-1.4,-3.46,0.2] moving down along -X",
-                "2.5 post-contact p[0.5,1,4.6] v[-0.5,-0.54,1.75] moving down along +Z"]
+                "2.5 post-contact p[0.5,1,4.6] v[0.5,-4,-3] moving down along -Z"]
 
 
 def test_the_kunai_deflect_is_a_pre_and_post_pair():

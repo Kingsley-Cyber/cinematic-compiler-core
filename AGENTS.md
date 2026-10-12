@@ -101,9 +101,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 3.0; backlog 5.
-- Last session: S-022 (2026-10-11, applied): M9-09c: an airborne turn launches at its first key from grounded support (FR.4, O80).
-- Next slice: M9-09d F-064: the kunai reverses to -Z at the deflect (O77) (step temporal).
-- Open findings: 37; decisions: 107 (0 proposed).
+- Last session: S-023 (2026-10-11, applied): M9-09d: the kunai reverses to -Z at the deflect (F-064, O77).
+- Next slice: M9-09e F-065: a prop at rest has support; the smoke pellet falls (O78) (step temporal).
+- Open findings: 36; decisions: 107 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
