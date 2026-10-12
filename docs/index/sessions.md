@@ -57,6 +57,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-048 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-07 (PLAN-007); findings F-08… | applied | the commit whose message names [S-048] | about 50 minutes | RV-49 (no body through another). | [S-048-rv-07-the-smoke-bursts-at-3-7.md](../sessions/S-048-rv-07-the-smoke-bursts-at-3-7.md) |
 | S-049 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-49 (PLAN-007); findings F-14… | applied | the commit whose message names [S-049] | about 2 hours (the re-block solves took about 10 minutes of it) | RV-09 (hits as camera holds, O92). | [S-049-rv-49-no-body-through-another.md](../sessions/S-049-rv-49-no-body-through-another.md) |
 | S-050 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-09 (PLAN-007); findings F-08… | applied | the commit whose message names [S-050] | about 1.5 hours | RV-10 (the kunai drive and the catch, O93). | [S-050-rv-09-hits-are-camera-holds.md](../sessions/S-050-rv-09-hits-are-camera-holds.md) |
+| S-051 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-10 (PLAN-007); findings F-08… | applied | the commit whose message names [S-051] | about 1 hour | RV-11 (compile refuses non-deliverables, O94). | [S-051-rv-10-the-kunai-drive-and-the-catch.md](../sessions/S-051-rv-10-the-kunai-drive-and-the-catch.md) |
 
 ## Status values
 

@@ -27,7 +27,8 @@ agent
 - the second principal review, S-045 (docs/reports/2026-10-12-principal-review-2.md)
 - the pillar run at 1.1, 1.6 and 7.0 puts A's head inside the pillar (z 6.50, 6.15, 6.54; F-097)
 - the 4.7 knee leads with the foot; A's facings at 1.6, 2.0, 5.5-6.3 and 7.0 point away from what the words face
-- the 5.9 slide's numbers lift the soles 0.35-0.55 m off the ground under "support=both feet" (F-124); "arm fwd high" on B's shoulder at 9.0 while B lies flat
+- the 5.9 slide's numbers lift the soles 0.35-0.55 m off the ground under "support=both feet" (F-124); "arm fwd high" on B's shoulder at 9.0 while B lies flat; at 8.5 too, A's right hand is 0.65 m from the kunai it drives
+  into B's shoulder (RV-10, S-051)
 - ADR-O18 brought the pickups' numbers to their words; R-17 asks the repo to follow the source
 
 ## Description

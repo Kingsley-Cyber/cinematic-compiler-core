@@ -60,13 +60,13 @@ def _event(subject, t0, t1, packet):
 
 
 def impact_sync(envelope, impacts):
-    """IMPACT_CONTACT_SYNC (owner O23, backlog M9-02): one time per hit. Every impact frame has a touch, or a support
-    that starts, on that frame (a body hitting a surface counts: interpretation, e.g. a crash or a slam into a pillar);
-    every strike (prose_renderer.strike_contacts) lands on an impact frame. The fix is upstream: the contact's `at` in
-    the S04 plan, or the impact frame here."""
+    """IMPACT_CONTACT_SYNC (owner O23, backlog M9-02): one time per hit. Every impact frame has a touch, or a support or
+    possess that starts, on that frame (a body hitting a surface counts: interpretation, e.g. a crash or a slam into a
+    pillar; so does a catch or a blade lodging, O93); every strike (prose_renderer.strike_contacts) lands on an impact
+    frame. The fix is upstream: the contact's `at` in the S04 plan, or the impact frame here."""
     fps = envelope["scene"]["fps"]
     contacts = envelope["nodes"]["contacts"]["items"]
-    onsets = [c["t"] for c in contacts if c["contact_type"] in ("touch", "support")]
+    onsets = [c["t"] for c in contacts if c["contact_type"] in ("touch", "support", "possess")]
     findings = [{"code": "IMPACT_CONTACT_SYNC", "message": f"Impact at {t} has no touch or support onset on that frame"}
                 for t in impacts if not any(_near(t, x, fps) for x in onsets)]
     strikes = prose_renderer.strike_contacts(envelope, impacts)

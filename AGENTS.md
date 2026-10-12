@@ -102,9 +102,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 6.0; backlog 22.
-- Last session: S-050 (2026-10-12, applied): RV-09: hits are camera holds with both bodies in frame; no playback ramps (O92).
-- Next slice: RV-10 The kunai drive holds the kunai in B's right shoulder; the catch is a grasp plus a throw (O93) (step temporal).
-- Open findings: 92; decisions: 135 (0 proposed).
+- Last session: S-051 (2026-10-12, applied): RV-10: the kunai drive holds the kunai in B's shoulder; the catch is a grasp plus a throw (O93).
+- Next slice: RV-11 DAG-excluded rows are N/A; cinematic compile refuses a non-deliverable prompt (O94) (step render).
+- Open findings: 91; decisions: 135 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

@@ -12,7 +12,7 @@ high
 L1.1
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -47,4 +47,10 @@ ADR-O93
 - ADR-O22
 
 ## Resolution
-Open.
+RV-10 (S-051, O93): from 8.5 the kunai is embedded (an effect at the drive's start) and its samples sit at B's torso
+point (the shoulder has no part of its own) at 8.5, 9.0, 9.5 and 10.0, while A's right hand keeps it (holder A to the
+end); B's torso meets the blade at 8.5, which no longer counts as B's strike (a body struck by a blade another
+performer holds); B's hands take A's left arm at 6.6 (possess, catch) and let go at 6.8 (release, throw), so b17 runs
+6.6-6.8. Neither prints as an instant strike (tests/test_reference_fight_golden.py
+::test_the_kunai_drive_holds_the_kunai_in_b_and_the_catch_grasps_then_throws). A's right hand stays 0.6 to 0.7 m above
+the kunai at 8.5 and 9.0-10 under the source's own arm numbers: F-148, the owner's question.

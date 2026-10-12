@@ -295,8 +295,27 @@ def test_the_kunai_deflect_is_a_pre_and_post_pair():
 
 
 # Owner O22 (plan F4.1, backlog M9-07a; ADR-O71 rule 1): the contacts the golden's own words name carry their combat
-# verb ('B THROWS KUNAI', 'FOOT DEFLECT', 'palm hits log', 'knee strike', 'throw shuriken volley').
-CONTACT_VERBS = {"b05_c1": "throw", "b06_c1": "deflect", "b10_c1": "strike", "b12_c1": "strike", "b14_c1": "throw"}
+# verb ('B THROWS KUNAI', 'FOOT DEFLECT', 'palm hits log', 'knee strike', 'throw shuriken volley'). Owner O93 (RV-10):
+# 'B CATCHES A LEFT ELBOW ... B throws A toward pillar' is a grasp with both hands at 6.6 and a throw that lets go at 6.8.
+CONTACT_VERBS = {"b05_c1": "throw", "b06_c1": "deflect", "b10_c1": "strike", "b12_c1": "strike", "b14_c1": "throw",
+                 "b17_c1": "catch", "b17_c2": "catch", "b17_c3": "throw", "b17_c4": "throw"}
+
+
+def test_the_kunai_drive_holds_the_kunai_in_b_and_the_catch_grasps_then_throws():
+    """Owner O93 (RV-10, F-084): from 8.5 the kunai is embedded in B's shoulder (the torso point) to the end while A's
+    right hand keeps it; B's hands take A's left arm at 6.6 and let go at 6.8."""
+    contacts = {c["id"]: c for c in ENVELOPE["nodes"]["contacts"]["items"]}
+    assert [(contacts[i]["contact_type"], contacts[i]["t"]) for i in ("b17_c1", "b17_c2", "b17_c3", "b17_c4")] == [
+        ("possess", 6.6), ("possess", 6.6), ("release", 6.8), ("release", 6.8)]
+    keys = {k["id"]: k for k in ENVELOPE["nodes"]["motion"]["items"]}
+    samples = {s["t"]: s["p"] for b in ENVELOPE["nodes"]["beats"]["items"] for s in b.get("prop_samples", [])
+               if s["prop"] == "kunai" and s["t"] >= 8.5}
+    assert sorted(samples) == [8.5, 9.0, 9.5, 10.0]
+    for t, slot in ((8.5, "ninja_broad@b21"), (9.0, "ninja_broad@b22"), (9.5, "ninja_broad@b23"), (10.0, "ninja_broad@b23")):
+        assert samples[t] == [round(v, 2) for v in keys[slot]["points"]["torso"]]
+    states = {s["id"]: s["conditions"] for s in ENVELOPE["nodes"]["states"]["items"] if s["subject"]["id"] == "kunai"}
+    assert states["kunai@b22"]["embedded"] == "embedded" and states["kunai@end"]["holder"] == "ninja_lean"
+    assert "kunai stays in B shoulder NOT released" in SOURCE and "B catches A left elbow with both hands" in SOURCE
 
 
 def test_the_named_contacts_carry_their_combat_verbs():

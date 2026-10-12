@@ -86,9 +86,9 @@ items:
      step: temporal, plan: PLAN-007, depends_on: [RV-08], findings: [F-082, F-132], codes: []}
   - {id: RV-09, title: "Hits are camera holds framing both bodies, no playback ramps; the source's camera directives (O92)", status: done,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-083, F-005, F-015], codes: [HIT_HOLD, PLAYBACK_RAMP]}
-  - {id: RV-10, title: "The kunai drive holds the kunai in B's right shoulder; the catch is a grasp plus a throw (O93)", status: next,
+  - {id: RV-10, title: "The kunai drive holds the kunai in B's right shoulder; the catch is a grasp plus a throw (O93)", status: done,
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-084], codes: []}
-  - {id: RV-11, title: "DAG-excluded rows are N/A; cinematic compile refuses a non-deliverable prompt (O94)", status: ready,
+  - {id: RV-11, title: "DAG-excluded rows are N/A; cinematic compile refuses a non-deliverable prompt (O94)", status: next,
      step: render, plan: PLAN-007, depends_on: [], findings: [F-085], codes: []}
   - {id: RV-12, title: "The 6.3 cartwheel is a full turn in render.txt (O96)", status: ready,
      step: render, plan: PLAN-007, depends_on: [], findings: [F-087], codes: []}

@@ -1802,7 +1802,7 @@
   {
    "id": "b17",
    "t": 6.6,
-   "dur": 0.4,
+   "dur": 0.2,
    "event_type": "action",
    "actor": "ninja_broad",
    "label": "catch_elbow_throw",
@@ -1844,7 +1844,7 @@
    "effects": [],
    "contacts": [
     {
-     "contact_type": "touch",
+     "contact_type": "possess",
      "a": {
       "kind": "entity",
       "id": "ninja_broad",
@@ -1855,10 +1855,11 @@
       "id": "ninja_lean",
       "part": "left_arm"
      },
-     "at": "start"
+     "at": "start",
+     "verb": "catch"
     },
     {
-     "contact_type": "touch",
+     "contact_type": "possess",
      "a": {
       "kind": "entity",
       "id": "ninja_broad",
@@ -1869,7 +1870,36 @@
       "id": "ninja_lean",
       "part": "left_arm"
      },
-     "at": "start"
+     "at": "start",
+     "verb": "catch"
+    },
+    {
+     "contact_type": "release",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_broad",
+      "part": "left_hand"
+     },
+     "b": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "left_arm"
+     },
+     "verb": "throw"
+    },
+    {
+     "contact_type": "release",
+     "a": {
+      "kind": "entity",
+      "id": "ninja_broad",
+      "part": "right_hand"
+     },
+     "b": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "left_arm"
+     },
+     "verb": "throw"
     }
    ],
    "causes": [
@@ -2327,7 +2357,8 @@
       "id": "kunai"
      },
      "property": "embedded",
-     "value": "embedded"
+     "value": "embedded",
+     "at": "start"
     },
     {
      "subject": {
@@ -2421,9 +2452,9 @@
      "prop": "kunai",
      "t": 8.5,
      "p": [
-      0.8,
-      1.4,
-      5.0
+      0.89,
+      1.42,
+      5.01
      ],
      "v": null,
      "float": false
@@ -2486,9 +2517,9 @@
      "prop": "kunai",
      "t": 9.0,
      "p": [
-      1.0,
-      1.3,
-      5.2
+      1.36,
+      0.1,
+      5.48
      ],
      "v": [
       0,
@@ -2546,6 +2577,21 @@
    "causes": [],
    "prop_samples": [
     {
+     "prop": "kunai",
+     "t": 9.5,
+     "p": [
+      1.36,
+      0.1,
+      5.48
+     ],
+     "v": [
+      0,
+      0,
+      0
+     ],
+     "float": false
+    },
+    {
      "prop": "rope_dart",
      "t": 9.5,
      "p": [
@@ -2554,6 +2600,21 @@
       5.2
      ],
      "v": null,
+     "float": false
+    },
+    {
+     "prop": "kunai",
+     "t": 10.0,
+     "p": [
+      1.36,
+      0.1,
+      5.48
+     ],
+     "v": [
+      0,
+      0,
+      0
+     ],
      "float": false
     }
    ]

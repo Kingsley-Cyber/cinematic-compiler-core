@@ -278,8 +278,9 @@ def _numbers(values):
 
 
 def strike_contacts(envelope, impacts):
-    """{contact id}: the strikes. A strike is a touch in a beat that holds an S17 impact frame, on anything but a prop
-    the performer holds (touching your own held prop is handling, e.g. a throw, not a hit). Shared by the staff's
+    """{contact id}: the strikes. A strike is a touch in a beat that holds an S17 impact frame, on anything but a held
+    prop (touching your own held prop is handling, e.g. a throw, not a hit; a body that meets a prop another performer
+    holds is struck by that blade, not striking with it: the kunai driven into B at 8.5, O93). Shared by the staff's
     DOUBLE BOW and IMPACT_CONTACT_SYNC (S17 and the prompt)."""
     tolerance = 0.5 / envelope["scene"]["fps"] + 1e-9
     beats = {b["id"]: b for b in _items(envelope, "nodes", "beats")}
@@ -287,7 +288,8 @@ def strike_contacts(envelope, impacts):
     out = set()
     for c in _items(envelope, "nodes", "contacts"):
         beat = beats.get(c["beat"])
-        if beat is None or c["contact_type"] != "touch" or holders.get(f"{c['b']['id']}@{c['beat']}") == c["a"]["id"]:
+        if beat is None or c["contact_type"] != "touch" or (
+                c["b"]["kind"] == "prop" and holders.get(f"{c['b']['id']}@{c['beat']}") not in (None, "unknown", "none")):
             continue
         if any(beat["t"] - tolerance <= t <= beat["t"] + beat["dur"] + tolerance for t in impacts):
             out.add(c["id"])

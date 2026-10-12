@@ -26,8 +26,9 @@ or a fact since its last hold places it (a location, or worn: yes on its wearer)
 review): the height alone stands for "on the top" (surfaces have no extent), and a card's worn state is the wearer's
 support.
 Combat verbs (owner O22, plan F4.1, CONTACT_VERB): a contact's optional verb is one its contact type takes in the
-packet's `combat_verbs` (library/combat_verbs.yaml); catch, throw and disarm name a prop, and a thrown prop has a sample
-with velocity at the throw (interpretation: a throw sends the prop off moving, so a touch may throw).
+packet's `combat_verbs` (library/combat_verbs.yaml); a disarm names a prop, a catch and a throw a prop or a body (owner
+O93: B catches A's elbow and throws A), never a surface; a thrown prop has a sample with velocity at the throw
+(interpretation: a throw sends the prop off moving, so a touch may throw; a thrown body's flight is its own keys).
 Contact pairs (plan F2.2): two samples of a prop share a time only as a `pre` and a `post` on a contact on that prop at
 that instant, at one position (the contact is instantaneous); gravity is checked into the pre sample, velocity too,
 and out of the post sample. Interpretation (Claude's, for owner review): a free prop moving into a contact needs the
@@ -121,8 +122,9 @@ def validate(plan, packet):
             if verb is not None and verb not in packet["combat_verbs"].get(contact["contact_type"], []):
                 findings.append(_finding("CONTACT_VERB", f"A {contact['contact_type']} contact does not take the verb "
                                          f"{verb}", bid, contact))
-            elif verb in ("catch", "throw", "disarm") and b["kind"] != "prop":
-                findings.append(_finding("CONTACT_VERB", f"A {verb} names a prop", bid, contact))
+            elif (verb == "disarm" and b["kind"] != "prop") or (verb in ("catch", "throw") and b["kind"] == "surface"):
+                findings.append(_finding("CONTACT_VERB", f"A {verb} names a prop" + ("" if verb == "disarm" else " or a body"),
+                                         bid, contact))
         for cause in beat["causes"]:
             target = by_id.get(cause["to"])
             if target is None or cause["to"] == bid:

@@ -6,6 +6,11 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The kunai drive and the catch (RV-10, O93, F-084, S-051): from 8.5 the kunai is embedded in B's shoulder to the end,
+  its samples on B's torso point, while A's right hand keeps it; B's hands take A's left arm at 6.6 and throw A at 6.8.
+  Neither prints as an instant strike: a body struck by a blade another holds is not striking, and a catch's hold
+  counts as the contact on its impact frame (IMPACT_CONTACT_SYNC at S17 and in the prompt). CONTACT_VERB lets a catch
+  and a throw name a body (combat verbs 2).
 - Hits are camera holds (RV-09, O92, F-083, F-005, S-050): the hits at 2.5, 4.7 and 8.5 are static holds with both
   fighters in frame at 35 mm, no insert, no slow motion; no shot changes playback speed. S16 refuses a slowed shot
   (PLAYBACK_RAMP), S17 a hit that is no camera hold on the bodies (HIT_HOLD), and the prompt checks both. The camera

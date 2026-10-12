@@ -428,8 +428,9 @@ VERB_MARK = re.compile(r"^[A-Z]{3,} (?=\[|contact bow)")  # owner O22: 'DEFLECT 
 
 def _impact_checks(envelope, parts, mode, add):
     """IMPACT_CONTACT_SYNC (owner O23, backlog M9-02): the prompt prints one time per hit. Every strike bow sits on a
-    printed impact frame; every printed impact frame has a bow on it, or a support onset in the envelope (a body hitting
-    a surface; surface supports are not printed as bows)."""
+    printed impact frame; every printed impact frame has a bow on it (a strike, a contact, or a hold that starts there:
+    a catch, O93), or a support onset in the envelope (a body hitting a surface; surface supports are not printed as
+    bows)."""
     genre = _body(parts, GENRE_TITLES.get(envelope["scene"]["genre"], "[GENRE]"))
     line = next((x for x in genre.splitlines() if x.startswith("Impact frames:")), "")
     impacts = [float(x) for x in re.findall(r"\d+\.\d\d", line)]
@@ -439,7 +440,8 @@ def _impact_checks(envelope, parts, mode, add):
         if len(row["columns"]) != 5:
             continue
         for item in (VERB_MARK.sub("", x) for x in row["columns"][3].split("; ")):
-            if item.startswith(("[DOUBLE BOW + accent:", "contact bow:")):
+            if item.startswith(("[DOUBLE BOW + accent:", "contact bow:")) or (item.startswith("[contact:")
+                                                                             and item.endswith(" retained]")):
                 match = BOW_TIME.search(item)
                 t = float(match.group(1)) if match else row["t"]
                 bows.append(t)

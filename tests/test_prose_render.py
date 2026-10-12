@@ -91,7 +91,9 @@ def test_reference_strikes_are_the_impacts_on_other_bodies_and_free_props():
     _, render = load(ROOT / "examples" / "reference_fight")
     strikes = [line.split(" | ")[0].split(":")[0] for line in staff(render["prose"]["pure_staff"]["text"])
                if "[DOUBLE BOW + accent:" in line]
-    assert {"2.50 A", "4.70 A", "6.60 B", "8.50 B"} <= set(strikes)
+    assert {"2.50 A", "4.70 A"} <= set(strikes)
+    # O93 (RV-10): the catch at 6.6 is a grasp plus a throw, and at 8.5 B is struck by A's kunai: neither is B's strike
+    assert not {"6.60 B", "8.50 B"} & set(strikes)
     text = render["prose"]["pure_staff"]["text"]
     assert "[DOUBLE BOW + accent: R foot > kunai blade]" in text  # at its pose (O23, M9-02)
     assert "chain " in next(line for line in staff(text) if line.startswith("2.50 A"))
@@ -162,7 +164,7 @@ def test_reference_rules_bound_lasting_effects_spans_and_separate_strikes():
     _, render = load(ROOT / "examples" / "reference_fight")
     rules = render["prose"]["pure_staff"]["text"].split("[RULES]")[1].split("[NEGATIVES]")[0]
     assert "- From 9.00 to the end, B keeps condition down." in rules
-    assert "- From 9.00 to the end, kunai stays embedded." in rules
+    assert "- From 8.50 to the end, kunai stays embedded." in rules  # the drive lodges it at 8.5 (O93, RV-10)
     assert "- A L foot stays on the wooden pillar from 0.60 to 1.60: one continuous contact" in rules
     assert "- TWO SEPARATE STRIKES: A R foot > kunai blade and R leg > B torso" in rules
     # the pelvis lying (O72, S-027), 0.18 m aside since RV-49 (S-049) so A's feet stand clear of B's legs
