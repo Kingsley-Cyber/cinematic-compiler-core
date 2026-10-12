@@ -101,9 +101,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.2; backlog 45.
-- Last session: S-102 (2026-10-12, applied): RV-59k: an in-between inside a declared turn prints its root as mid-turn.
-- Next slice: RV-59l Between keys a body standing on its keys' claimed supports is not airborne (a landing still never is): RV-59h's loosening undone (step motion).
+- Layer order 1.7; rules 7.2; backlog 46.
+- Last session: S-103 (2026-10-12, applied): RV-59l: between keys a body stands on what its last key claims, as S07 changes it.
+- Next slice: RV-99c The camera floor's negation governs only the phrase it heads (the four rules RV-99b let through refused again, O92's own sentences passing) and the feet are striking parts (step camera).
 - Open findings: 145; decisions: 137 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 

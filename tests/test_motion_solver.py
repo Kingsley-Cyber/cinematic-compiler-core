@@ -173,6 +173,27 @@ def test_a_touch_in_the_air_between_keys_is_excused_and_a_landing_never_is():
     assert {f["contact"] for f in contact_world.refusals(list(rows.values()), {})} == {"b08_c2", "b08_c3"}
 
 
+def test_a_body_standing_on_its_claimed_supports_is_not_airborne_between_keys():
+    """F-233 (RV-59l, ADR-O104): between keys, and at an in-between's own instant, an actor stands on what its last key
+    claims (S11; an in-between takes its key's) as S07 changes it since, so a body standing on claimed feet with no
+    support contact of its own is not airborne: the wizard's touch of the acrobat's torso at 4.0, about 0.97 m off, is
+    refused, as before RV-59h; the acrobat touching the wizard at its 3.7 in-between stands on the left foot its 3.6
+    key claims."""
+    from solver import contact_world
+    packet = copy.deepcopy(PACKET)
+    packet["contact_world"]["contacts"] += [
+        {"id": "planted", "t": 4.0, "contact_type": "touch", "body_part": "right_hand",
+         "a": {"kind": "entity", "id": "wizard"}, "b": {"kind": "entity", "id": "acrobat", "part": "torso"}},
+        {"id": "at_between", "t": 3.7, "contact_type": "touch", "body_part": "right_hand",
+         "a": {"kind": "entity", "id": "acrobat"}, "b": {"kind": "entity", "id": "wizard", "part": "torso"}}]
+    slots = {s["slot"]: s for s in packet["slots"]}
+    rows = {r["id"]: r for r in contact_world.measure_plan({k["slot"]: k for k in PLAN["keys"]}, slots, packet,
+                                                           PLAN["inbetweens"])}
+    assert rows["planted"]["interpolated"] and not rows["planted"]["airborne"] and rows["planted"]["distance"] > 0.9
+    assert "planted" in {f["contact"] for f in contact_world.refusals(list(rows.values()), {})}
+    assert not rows["at_between"]["airborne"]
+
+
 def test_a_prop_between_its_samples_runs_straight_and_moves_when_its_samples_differ():
     """RV-59d (ADR-O104): a prop with no sample at a contact's instant but samples on both sides is read straight between
     them, moving when the samples differ or carry a velocity; outside its samples it is not measured."""

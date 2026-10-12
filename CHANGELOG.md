@@ -6,6 +6,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- Between keys a body stands on what its last key claims, as S07's onsets and releases change it (RV-59l, F-233,
+  S-103): a standing body's between-keys miss is no longer excused as airborne (RV-59h had read S07 alone); a landing
+  still never is.
 - An in-between inside a declared turn prints its root as mid-turn, as the staff rows do (RV-59k, F-232, S-102):
   B@8.75 and the acrobat@3.55 no longer print angles the body only passes through; ROTATION_ANGLES_PRINTED reads the
   in-between lines.

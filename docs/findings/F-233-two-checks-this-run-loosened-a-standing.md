@@ -12,7 +12,7 @@ high
 all
 
 ## Status
-open
+in progress
 
 ## Reported
 2026-10-12
@@ -63,4 +63,7 @@ ADR-O104, O92
 - RV-99c
 
 ## Resolution
-open
+In part by RV-59l (S-103): between keys, and at an in-between's instant, an actor stands on what its last key claims
+(S11; an in-between takes its key's) with S07's onsets added and releases taken away since, so a standing body is not
+airborne; both planted touches are refused again (B's at 8.25, 1.112 m; the wizard's at 4.0, 0.966 m), and RV-59h's
+landing and pillar-release cases hold. Left: the camera floor (RV-99c).

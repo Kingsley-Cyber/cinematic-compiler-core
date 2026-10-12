@@ -6,20 +6,20 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 7.2; backlog 45.
+Layer order 1.7; rules 7.2; backlog 46.
 
 ## Last sessions
 
-- S-100 (applied): RV-113: every prose prompt's legend hangs the legs from the spine (ADR-O84)
 - S-101 (applied): RV-59j: an in-between keeps its keys' supports; B's in-betweens stand, and its crash stays over the floor
 - S-102 (applied): RV-59k: an in-between inside a declared turn prints its root as mid-turn
+- S-103 (applied): RV-59l: between keys a body stands on what its last key claims, as S07 changes it
 
 ## Next slices
 
-- RV-59l (next, step motion): Between keys a body standing on its keys' claimed supports is not airborne (a landing still never is): RV-59h's loosening undone
+- RV-99c (next, step camera): The camera floor's negation governs only the phrase it heads (the four rules RV-99b let through refused again, O92's own sentences passing) and the feet are striking parts
 - RV-35b (ready, step all): The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools
-- RV-99c (ready, step camera): The camera floor's negation governs only the phrase it heads (the four rules RV-99b let through refused again, O92's own sentences passing) and the feet are striking parts
 - RV-59g (ready, step motion): CONTACT_WORLD on every open support at every frame between keys (the DAG's 'respect support'), the examples' takeoffs placed where the motion leaves its surface
+- RV-107 (ready, step temporal): The wizard example's push-off at the pillar's release and its landing keyed where the fall ends; c06 and c08 re-authored; beat_planning.txt teaches RV-59d's measure
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -141,4 +141,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O111, finding F-234, session S-103, render R20.
+Decision ADR-O111, finding F-234, session S-104, render R20.

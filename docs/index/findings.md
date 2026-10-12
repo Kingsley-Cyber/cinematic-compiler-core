@@ -238,7 +238,7 @@ Every finding: a bug, gap, contradiction, drift, question, risk or opportunity f
 | F-230 | B's in-between keys lift it off the ground, sink its crash and name m… | bug | high | L4c | in progress | — | - Principal review 8 (S-099), measured by the bui… | 2026-10-12 | [F-230-b-s-in-between-keys-lift-it-off-the-ground.md](../findings/F-230-b-s-in-between-keys-lift-it-off-the-ground.md) |
 | F-231 | Every prompt's legend hangs the legs from the root; the poses hang th… | contradiction | high | L6 | resolved | — | - renderers/prose_renderer.py, the [SPATIAL ANCHO… | 2026-10-12 | [F-231-every-prompt-s-legend-hangs-the-legs-from.md](../findings/F-231-every-prompt-s-legend-hangs-the-legs-from.md) |
 | F-232 | In-between lines print raw angles inside a declared turn; an in-betwe… | gap | medium | L6 | in progress | — | - Principal review 8 (S-099, layers S10-S18): the… | 2026-10-12 | [F-232-in-between-lines-print-raw-angles-inside-a.md](../findings/F-232-in-between-lines-print-raw-angles-inside-a.md) |
-| F-233 | Two checks this run loosened: a standing body reads airborne between… | bug | high | all | open | — | - RV-59h (S-091): between keys `airborne` now rea… | 2026-10-12 | [F-233-two-checks-this-run-loosened-a-standing.md](../findings/F-233-two-checks-this-run-loosened-a-standing.md) |
+| F-233 | Two checks this run loosened: a standing body reads airborne between… | bug | high | all | in progress | — | - RV-59h (S-091): between keys `airborne` now rea… | 2026-10-12 | [F-233-two-checks-this-run-loosened-a-standing.md](../findings/F-233-two-checks-this-run-loosened-a-standing.md) |
 
 ## Type values
 

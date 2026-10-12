@@ -9,9 +9,10 @@ the owner whether O72's point measure or this one holds). Flags mark the conditi
 artefact: the actor airborne, the actor's key turning, the prop moving at the instant. An actor or a body target with
 no key at the contact's instant but keys on both sides is posed there along the declared interpolation
 (solver/interpolation.py), and a prop with no sample there but samples on both sides runs straight between them; the
-row is then `interpolated` (RV-59d), its actor airborne there only when no support of its own is open just before the
-contact (S07's intervals: a support's onset opens a part on a surface, its release closes it) and never at a landing,
-a support's own onset (RV-59h, F-222), and turning when the key before declares a turn. A contact outside its
+row is then `interpolated` (RV-59d), its actor airborne there only when it stands on nothing just before the contact
+(what its last key claims, an in-between taking its key's, with S07's onsets added and releases taken away since:
+RV-59l, F-233) and never at a landing, a support's own onset (RV-59h, F-222), and turning when the key before declares
+a turn. A contact outside its
 actor's keys or its prop's samples, or on a surface with no top (a wall, a pillar's face; a touch on any surface but
 a floor), is not measurable. `measure` reads an envelope (the report, the prose);
 `measure_plan` reads S13's packet and its authored keys (the check). CONTACT_WORLD (ADR-O83, O89) refuses a
@@ -172,13 +173,20 @@ def _prop_at(samples, prop, t):
     return [{"p": point, "v": None}], a["p"] != b["p"] or moves((a, b)), True
 
 
-def _open_supports(ordered, actor, t):
-    """The parts the actor has on a surface just before instant t, from the contacts in time order (S07's intervals: a
-    support's onset opens a part, its release closes it)."""
-    parts = set()
+def _supported(keys, support, ordered, actor, t):
+    """The parts the actor stands on just before instant t (RV-59h, RV-59l; F-222, F-233): what its last key before t
+    claims (S11; an in-between, which claims nothing of its own, takes its key's), with S07's onsets added and its
+    releases taken away from that key's instant on (a support's onset opens a part, its release closes it)."""
+    claimed = [(s, body) for (entity, s), body in keys.items() if entity == actor and s < t - 1e-9 and body["id"] in support]
+    start, parts = None, set()
+    if claimed:
+        start, body = max(claimed, key=lambda item: item[0])
+        parts = set(support[body["id"]] or [])
     for c in ordered:
         if c["t"] > t - 1e-9:
             break
+        if start is not None and c["t"] < start - 1e-9:
+            continue
         if c["a"]["id"] == actor and c["b"]["kind"] == "surface":
             if c["contact_type"] == "support":
                 parts.add(c["body_part"])
@@ -198,10 +206,12 @@ def _rows(keys, support, tops, floors, prop_samples, contacts, radii, floor=None
             continue  # RV-02b (F-075): a release lets a prop go from the hand; a foot leaving a surface is a takeoff
         t, b = round(c["t"], 6), c["b"]
         key, before = _between(keys, c["a"]["id"], t, metres, radii)
-        if before is None:
-            airborne = bool(key) and not support.get(key["id"])
-        else:  # RV-59h (F-222): no support of its own open just before, and a landing (a support's onset) never
-            airborne = c["contact_type"] != "support" and not _open_supports(ordered, c["a"]["id"], t)
+        if before is None and key and key["id"] in support:  # at a key: what it claims
+            airborne = not support[key["id"]]
+        elif key:  # between keys or at an in-between (RV-59h, RV-59l): nothing stood on just before, a landing never
+            airborne = c["contact_type"] != "support" and not _supported(keys, support, ordered, c["a"]["id"], t)
+        else:
+            airborne = False
         row = {"id": c["id"], "t": c["t"], "actor": c["a"]["id"], "part": c["body_part"], "kind": KINDS[b["kind"]],
                "target": f"{_words(b['id'])}" + (f" {_words(b['part'])}" if b.get("part") else ""),
                "actor_point": None, "target_point": None, "distance": None, "measurable": False, "reason": "",
