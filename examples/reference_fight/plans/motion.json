@@ -1,7 +1,7 @@
 {
  "step_id": "S13",
  "band": "L4c",
- "packet_sha256": "sha256:30f66b7ea82545e2add847e442d97630f5fe263b8ea74e34220d76b79b1648d9",
+ "packet_sha256": "sha256:7266674b06b2816088689c08cb8705300a7dbb4abe0bb28a38a9f202cd5cfbbc",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -3194,11 +3194,11 @@
   {
    "entity": "ninja_broad",
    "t": 6.45,
-   "name": "guard_opening",
+   "name": "hands_up_guard",
    "pos": [
-    -0.4625,
+    -0.465,
     1.03,
-    4.51125
+    4.28875
    ],
    "rot": [
     0.0,
@@ -3207,47 +3207,47 @@
    ],
    "bones": {
     "Sp": [
-     -25.346,
+     -1.345915,
      1.54346,
-     16.523
+     -0.601618
     ],
     "LUL": [
-     -48.52638,
-     -3.928451,
+     -47.401,
+     -2.678,
      1.680751
     ],
     "RUL": [
-     -40.544524,
-     -9.971951,
+     -44.92,
+     -4.972,
      -14.144746
     ],
     "LL": [
-     47.2,
+     45.45,
      0.0,
      -0.0
     ],
     "RL": [
-     30.9,
+     39.4,
      0.0,
      -0.0
     ],
     "LA": [
-     -85.743,
-     -27.854,
-     12.724
+     -28.243,
+     -52.354,
+     0.0
     ],
     "RA": [
-     -86.708,
-     18.017286,
-     -20.05913
+     -70.583,
+     16.392,
+     -18.184
     ],
     "LFA": [
-     -69.5,
+     -72.125,
      0.0,
      0.0
     ],
     "RFA": [
-     -67.7,
+     -60.2,
      0.0,
      0.0
     ],
@@ -3262,16 +3262,16 @@
      -0.0
     ]
    },
-   "description": "B's guard lifts and opens as A's cartwheel elbow comes in."
+   "description": "B stands on both feet, upright, both hands raised high as A's cartwheel elbow passes."
   },
   {
    "entity": "ninja_broad",
    "t": 6.7,
-   "name": "throw_follow_through",
+   "name": "arms_overhead",
    "pos": [
-    0.61944,
+    0.41319,
     1.043333,
-    4.78597
+    4.75972
    ],
    "rot": [
     -0.0,
@@ -3280,39 +3280,39 @@
    ],
    "bones": {
     "Sp": [
-     -50.722,
+     -21.846593,
      4.505814,
-     -20.08
+     -3.205
     ],
     "LUL": [
-     -24.244361,
-     -12.199101,
-     -4.767045
+     -24.119,
+     -5.699,
+     -5.017
     ],
     "RUL": [
-     -14.746486,
-     -19.344596,
+     -18.496,
+     -0.22,
      -11.891271
     ],
     "LL": [
-     33.911111,
+     49.911,
      0.0,
      -0.0
     ],
     "RL": [
-     10.488889,
+     38.364,
      0.0,
      -0.0
     ],
     "LA": [
-     -122.347518,
-     -30.498,
-     12.301
+     -156.473,
+     -32.373,
+     34.926
     ],
     "RA": [
-     -137.509,
-     35.375,
-     -11.849
+     -178.384,
+     37.375,
+     0.0
     ],
     "LFA": [
      -47.333333,
@@ -3320,7 +3320,7 @@
      0.0
     ],
     "RFA": [
-     -51.481,
+     -105.356,
      0.0,
      0.0
     ],
@@ -3335,12 +3335,85 @@
      -0.0
     ]
    },
-   "description": "B's arms follow through the throw, clear of A's flying legs."
+   "description": "B stands on both feet, leaning back 22 degrees with both arms raised overhead, clear of A's flying legs."
+  },
+  {
+   "entity": "ninja_broad",
+   "t": 7.375,
+   "name": "steps_past_a",
+   "pos": [
+    1.32269,
+    1.133333,
+    4.99371
+   ],
+   "rot": [
+    -0.0,
+    24.607222,
+    -0.0
+   ],
+   "bones": {
+    "Sp": [
+     -16.047797,
+     13.336686,
+     -0.423836
+    ],
+    "LUL": [
+     -1.246,
+     -13.69,
+     7.961
+    ],
+    "RUL": [
+     -9.386,
+     -13.242,
+     -12.927
+    ],
+    "LL": [
+     39.611,
+     0.0,
+     -0.0
+    ],
+    "RL": [
+     38.994,
+     0.0,
+     -0.0
+    ],
+    "LA": [
+     -41.457,
+     -2.243,
+     36.962
+    ],
+    "RA": [
+     -11.402083,
+     13.217528,
+     -65.865629
+    ],
+    "LFA": [
+     -32.708333,
+     0.0,
+     0.0
+    ],
+    "RFA": [
+     -24.899375,
+     0.0,
+     0.0
+    ],
+    "HD": [
+     7.916667,
+     0.0,
+     -0.0
+    ],
+    "NK": [
+     4.305556,
+     0.0,
+     -0.0
+    ]
+   },
+   "description": "B steps on with both feet on the floor, leaning back 16 degrees, its right thigh clear of A's lowered head."
   },
   {
    "entity": "ninja_broad",
    "t": 8.45,
-   "name": "shoulders_turning",
+   "name": "crouched_shift",
    "pos": [
     1.44225,
     1.09,
@@ -3408,7 +3481,7 @@
      0.0
     ]
    },
-   "description": "B's shoulders turn as A's kunai arm drives in."
+   "description": "B crouches, hunched forward, shifted 0.3 m aside from A's driving kunai arm."
   },
   {
    "entity": "ninja_broad",

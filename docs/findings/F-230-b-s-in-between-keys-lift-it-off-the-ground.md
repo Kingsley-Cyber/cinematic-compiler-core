@@ -12,7 +12,7 @@ high
 L4c
 
 ## Status
-open
+in progress
 
 ## Reported
 2026-10-12
@@ -70,4 +70,10 @@ none needed (ADR-O109's Decision, O72, R-35)
 - RV-59j
 
 ## Resolution
-open
+In part by RV-59j (S-101): S13 refuses an in-between off the supports its keys on both sides claim
+(INBETWEEN_SUPPORT); B's 6.45 and 6.7 are re-solved with both soles held where the declared interpolation puts them
+(upright, and 22 degrees back), and an in-between at 7.375 clears the one frame (7.417) the 6.7 solve leaves; every
+in-between's name and description is written from its measured pose. Left: the crash's 0.14 m under the floor between
+keys, which a no-allowance solve trades for B's legs flung up at 8.75 (RV-59m, waiting for F-215 and the owner's
+renders; the records that said "over the floor" are corrected); the acrobat's 3.55 inside S07's open support
+(RV-59g); B's root at 9.68 m/s from 8.45 to 8.5 (listed, ADR-O110).

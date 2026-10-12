@@ -202,6 +202,12 @@ Added in S-094 (RV-59f, compiler/passes/derived/p13_motion.py; ADR-O109): an in-
 other in-between holds; it carries the turn of its entity's key before it; its root keeps TELEPORT's 25 m/s to its
 neighbours (owner O12's figure, for anchors); it is judged against the other bodies as the declared interpolation
 poses them at its instant; a performer whose keys the source gives row by row takes none (the instructions).
+
+Added in S-101 (RV-59j, compiler/passes/derived/p13_motion.py; ADR-O109): an in-between's "supports" are the
+supports both its keys claim (S11), and one of them within O72's 0.15 m of its surface is enough, so a body may step
+between its keys; an in-between whose keys share no claimed support is not judged for one. B's in-betweens at 6.45,
+6.7 and 7.375 hold both soles where the declared interpolation puts them (the solver's goals), so the soles slide as
+the interpolation slides them.
 ## Impact
 Waits on the owner.
 

@@ -1,7 +1,7 @@
 {
  "step_id": "S13",
  "band": "L4c",
- "packet_sha256": "sha256:ae248facf16400d8bdd59509c2131af17248b9e5a8ec6dc1279372f55a96b506",
+ "packet_sha256": "sha256:4c09b709616cf08378a4134464b655236c64e73804c4d07764bb24f1c97616aa",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -1419,7 +1419,7 @@
   {
    "entity": "acrobat",
    "t": 3.55,
-   "name": "kick_chambered",
+   "name": "leg_rising_high",
    "pos": [
     0.62,
     1.1225,
@@ -1487,12 +1487,12 @@
      0.031098
     ]
    },
-   "description": "The kicking heel rises outside the wizard's body before it lands."
+   "description": "The acrobat's straight right leg rises high outside the wizard's body, the left foot planted, the trunk leaning back."
   },
   {
    "entity": "acrobat",
    "t": 3.7,
-   "name": "kick_recoil",
+   "name": "kick_extended",
    "pos": [
     0.74,
     1.256,
@@ -1560,7 +1560,7 @@
      -0.0
     ]
    },
-   "description": "The kicking leg recoils off the wizard's chest."
+   "description": "The straight right leg stays at chest height after the kick lands, the left foot leaving the floor."
   }
  ]
 }

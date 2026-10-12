@@ -108,6 +108,27 @@ def inbetween_bodies(inbetweens, packet, keys=None):
     return out
 
 
+def inbetween_claims(inbetweens, keys, slots, packet):
+    """{in-between id: [row]} (ADR-O109, RV-59j): for each in-between whose keys on both sides claim a common support
+    (S11), each such part measured to its surface as a key's claims are (`_claims`): its open support contact's surface,
+    else the floor."""
+    view, bodies, out = packet["contact_world"], plan_bodies(keys, slots, packet), {}
+    for between in inbetweens:
+        own = sorted(((t, body) for (entity, t), body in bodies.items() if entity == between["entity"]),
+                     key=lambda item: item[0])
+        before, after = [b for t, b in own if t < between["t"]], [b for t, b in own if t > between["t"]]
+        if not (before and after):
+            continue
+        common = [part for part in slots[before[-1]["id"]]["kinematic"]["support"]
+                  if part in slots[after[0]["id"]]["kinematic"]["support"]]
+        if common:
+            here = inbetween_bodies([between], packet, bodies)
+            body = next(iter(here.values()))
+            out[body["id"]] = _claims(here, {body["id"]: common}, view["surface_tops"], set(view["floors"]),
+                                      view["contacts"], packet.get("floor_y"))
+    return out
+
+
 def measure_plan(keys, slots, packet, inbetweens=()):
     """The same rows from S13's packet and its authored keys ({slot: key}) and in-betweens, the points by forward
     kinematics."""

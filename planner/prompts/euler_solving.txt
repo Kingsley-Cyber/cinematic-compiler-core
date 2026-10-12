@@ -38,6 +38,7 @@ S13 motion (L4c). For every slot write one key pose: the body at the slot's beat
   one entity at an instant strictly between two of its consecutive keys, on a frame no key or other in-between holds:
   entity, t, name, pos, rot, bones (the kernel joints), description. It has no beat, contact or anchor; its root moves
   no faster than 25 m/s to its neighbours (TELEPORT); it is checked like a key (INBETWEEN_SPAN, JOINT_LIMIT, the floor,
-  the bodies at its instant). Densest around impacts and support changes, never every frame; a performer whose keys
-  the source gives row by row takes none.
+  the bodies at its instant) and keeps one of the supports its keys on both sides claim within 0.15 m of its surface
+  (INBETWEEN_SUPPORT). Densest around impacts and support changes, never every frame; a performer whose keys the
+  source gives row by row takes none. Name and describe it from the pose it has, not the one meant.
 - name: a short snake_case pose name; description: one sentence. Copy packet_sha256.

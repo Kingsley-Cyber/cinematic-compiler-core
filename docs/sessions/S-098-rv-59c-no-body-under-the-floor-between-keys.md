@@ -73,3 +73,9 @@ from 12:50 (the plan) to 12:52 (the record's last edit before the gate; the gate
 - the gate on this record (12:52:08): `scripts/verify.sh` exit 0, 750 passed in 107.33 s, docs plane: PASS, check:
   PASS
 - the hygiene scan over the staged diff's added lines: 0 hits (run first in the chained commit)
+
+## Correction (S-101, principal review 8)
+"S-097's in-between at 8.75 held it over the floor" (Plan) and the CHANGELOG's "keeps B's crash over the floor" are
+wrong: with the in-between B's right sole is 0.140 m under the floor at 8.625, within FLOOR_PENETRATION's 0.15 m
+(F-230). A re-solve with no allowance clears it but flings B's legs 1.2 to 1.5 m up at 8.75 with the trunk past
+horizontal, so it waits for F-215 (RV-59m).

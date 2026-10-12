@@ -101,9 +101,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.2; backlog 43.
-- Last session: S-100 (2026-10-12, applied): RV-113: every prose prompt's legend hangs the legs from the spine (ADR-O84).
-- Next slice: RV-59j S13 refuses an in-between of a grounded body with none of its keys' claimed supports on its surface; the solver's --floor holds the repo's keys over the floor with no allowance; B's 6.45, 6.7 and 8.75 re-solved, every in-between's words from its measured pose (step motion).
+- Layer order 1.7; rules 7.2; backlog 44.
+- Last session: S-101 (2026-10-12, applied): RV-59j: an in-between keeps its keys' supports; B's in-betweens stand, and its crash stays over the floor.
+- Next slice: RV-59k An in-between line inside its body's declared turn prints its root as mid-turn, and ROTATION_ANGLES_PRINTED reads the in-between lines (step render).
 - Open findings: 145; decisions: 137 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
@@ -159,6 +159,7 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog RV-15c blocked: A strike's limb and a facing head point at their target, checked at S13 (B's keys re-aimed in RV-103b) — the owner's answer in F-148 (A's source facings: the check would refuse the golden's own rows, O10)
 - Backlog RV-14b blocked: A held or embedded prop at its holder at every sample (the rope dart's line in RV-14c) — the owner's answer in F-148 (the climax: A's source right hand is 0.65-0.87 m from the kunai the source keeps in B's shoulder at 8.5-9.5)
+- Backlog RV-59m blocked: B's crash held over the floor with no allowance for the repo's keys: the measured solve flings B's legs 1.2-1.5 m up at 8.75 with the trunk past horizontal, so it waits for F-215 and the owner's renders — F-215 (the floor's allowance) and the owner's renders (ADR-O110)
 - Backlog RV-87 blocked: The substitution's decoy is declared, stands in the scene from the first beat, and is measured where the actor stood; a substitution needs the capability — the owner's answers in F-196 (Q1-Q3: who declares the decoy, whether it stands from the first frame, who may substitute)
 - Backlog RV-90b blocked: HIT_HOLD's scale follows the grammar's impact scales — the owner's answer in F-197 (Q3: may a hit be held at a wide scale)
 - Backlog RV-64b blocked: The S04 packet carries the scene_reference rules — the owner's answer in F-133

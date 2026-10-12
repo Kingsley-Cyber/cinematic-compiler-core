@@ -439,11 +439,13 @@ REAUTHORED_SHOTS = {"c02": {"framing.scale": "extreme_wide", "position.distance_
 # (typed as DEV-33, RV-100).
 B_LUNGE = {"ninja_broad@b08": {"LUL": [-70.17, 1.29, 22.95]}, "ninja_broad@b09": {"LUL": [-65.7, 2.7, 23.3]}}
 # RV-59e (S-097, ADR-O109): B's in-between keys by the contacts, from recorded commands (tests/test_inbetweens.py):
-# their root positions and rotations.
+# their root positions and rotations; RV-59j (S-101, DEV-35) re-solved 6.45 and 6.7 with both soles held and added
+# 7.375.
 B_INBETWEENS = {
                 4.75: [[-0.5725, 1.3125, 4.44], [-0.0, -90.0, 0.0]],
-                6.45: [[-0.4625, 1.03, 4.51125], [0.0, 90.0, 0.0]],
-                6.7: [[0.61944, 1.043333, 4.78597], [-0.0, 81.562222, -0.0]],
+                6.45: [[-0.465, 1.03, 4.28875], [0.0, 90.0, 0.0]],
+                6.7: [[0.41319, 1.043333, 4.75972], [-0.0, 81.562222, -0.0]],
+                7.375: [[1.32269, 1.133333, 4.99371], [-0.0, 24.607222, -0.0]],
                 8.45: [[1.44225, 1.09, 4.7285], [-0.0, -90.0, 0.0]],
                 8.75: [[1.02375, 0.59, 5.2725], [-90.0, -45.0, -90.0]]}
 B_PATHS = {"ninja_broad@b09": {"LA": [-8.95, 1.2, 37.5], "LFA": [-25.95, 0, 0]},

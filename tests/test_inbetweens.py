@@ -65,10 +65,12 @@ def test_a_clean_in_between_passes_and_the_graph_carries_it():
     ({"pos": "x + 30"}, "TELEPORT"),                      # 30 m in 0.4 s
     ({"pos": "y - 1.5"}, "FLOOR_PENETRATION"),
     ({"pos": "at the wizard"}, "BODY_OVERLAP"),
+    ({"pos": "y + 0.5"}, "INBETWEEN_SUPPORT"),            # off the left foot both its keys stand on (RV-59j)
 ])
 def test_an_in_between_is_checked_like_a_key(change, code):
-    """ADR-O109 (RV-59f): its span, the kernel joints and their limits, its root's speed to its neighbours (owner O12),
-    the floor (owner O72) and the other bodies at its instant (R-18): each fails alone."""
+    """ADR-O109 (RV-59f, RV-59j): its span, the kernel joints and their limits, its root's speed to its neighbours
+    (owner O12), the floor (owner O72), the other bodies at its instant (R-18) and the supports its keys on both sides
+    claim (owner O72): each fails alone."""
     between = _between()
     if "t" in change:
         between = _between(**change) if change["t"] < 10 else {**between, "t": change["t"]}
@@ -80,6 +82,8 @@ def test_an_in_between_is_checked_like_a_key(change, code):
         between["pos"] = [between["pos"][0] + 30, between["pos"][1], between["pos"][2]]
     elif change.get("pos") == "y - 1.5":
         between["pos"] = [between["pos"][0], between["pos"][1] - 1.5, between["pos"][2]]
+    elif change.get("pos") == "y + 0.5":
+        between["pos"] = [between["pos"][0], between["pos"][1] + 0.5, between["pos"][2]]
     else:
         wizard = next(k for k in PLAN["keys"] if k["slot"] == "wizard@b05")
         between["pos"] = list(wizard["pos"])
@@ -174,20 +178,30 @@ def test_s13_refuses_a_body_through_another_between_keys():
 
 
 # RV-59e (F-159, F-220, ADR-O109; S-097): the commands that placed the in-between keys, run in order from each plan as it
-# stood before them (no in-betweens), every component inside the joint limits (O11), no contact moved.
+# stood before them (no in-betweens), every component inside the joint limits (O11), no contact moved. RV-59j (F-230,
+# S-101): B at 6.45 and 6.7 holds both soles where the declared interpolation puts them, the legs free, and 7.375
+# clears the frame at 7.417 the 6.7 solve leaves (B's right thigh 0.01 m into A's head).
 ARMS = "LA.x,LA.y,LA.z,LFA.x,RA.x,RA.y,RA.z,RFA.x,Sp.x,Sp.z,pos.x,pos.z"
 BODY = "Sp.x,Sp.z,LA.x,LA.y,LA.z,LFA.x,RA.x,RA.y,RA.z,RFA.x,pos.x,pos.y,pos.z"
 LEGS = "LUL.x,LUL.y,LUL.z,RUL.x,RUL.y,RUL.z,LL.x,RL.x"
 KICK = "RUL.x,RUL.y,RUL.z,RL.x,LUL.x,LUL.z,LL.x,Sp.x,Sp.y,Sp.z,pos.x,pos.y,pos.z"
 INBETWEEN_COMMANDS = {
-    "reference_fight": [["ninja_broad@6.45", "--free", ARMS, "--clear", "ninja_lean"],
-                        ["ninja_broad@6.7", "--free", ARMS, "--clear", "ninja_lean"],
+    "reference_fight": [["ninja_broad@6.45", "--free", ARMS + "," + LEGS, "--goal", "left_foot=-0.006,0,4.136",
+                         "--goal", "right_foot=-0.014,0,4.612", "--clear", "ninja_lean"],
+                        ["ninja_broad@6.7", "--free", ARMS + "," + LEGS, "--goal", "left_foot=0.765,0,4.814",
+                         "--goal", "right_foot=0.737,0,5.197", "--clear", "ninja_lean"],
+                        ["ninja_broad@7.375", "--free", ARMS + "," + LEGS, "--goal", "left_foot=1.513,0,4.814",
+                         "--goal", "right_foot=1.072,0,5.189", "--clear", "ninja_lean"],
                         ["ninja_broad@4.75", "--free", BODY, "--clear", "ninja_lean"],
                         ["ninja_broad@8.45", "--free", BODY, "--clear", "ninja_lean"],
                         ["ninja_broad@8.75", "--free", BODY + "," + LEGS, "--clear", "ninja_lean", "--floor"]],
     "wizard_vs_acrobat": [["acrobat@3.55", "--free", KICK, "--clear", "wizard"],
                           ["acrobat@3.7", "--free", KICK, "--clear", "wizard"]],
 }
+# What each command leaves, pinned as printed (DEV-35): the held soles within 5 mm of their goals at 6.45, 6.7 and 7.375,
+# 7.375 inside the clearance's 0.01 m margin but clear of A, and at 6.7 the frame at 7.417 that 7.375 then clears;
+# S13 refuses nothing with them (the golden's check).
+INBETWEEN_MISSES = {"ninja_broad@6.45": 1.7e-05, "ninja_broad@6.7": 0.000473, "ninja_broad@7.375": 6e-05}
 
 
 @pytest.mark.parametrize("example", sorted(INBETWEEN_COMMANDS))
@@ -202,7 +216,7 @@ def test_the_in_betweens_re_derive_from_their_recorded_commands(example, tmp_pat
         path.write_text(json.dumps(plan), encoding="utf-8")
         assert reblock.main([example, command[0], "--plan", str(path), *command[1:]]) == 0
         out = json.loads(capsys.readouterr().out)
-        assert out["misses_m2"] == 0.0, command[0]
+        assert out["misses_m2"] == INBETWEEN_MISSES.get(command[0], 0.0), command[0]
         plan["inbetweens"].append({k: out[k] for k in ("entity", "t", "pos", "rot", "bones")} | {"name": "x", "description": "."})
     assert {(b["entity"], b["t"]): (b["pos"], b["rot"], b["bones"]) for b in plan["inbetweens"]} == committed
 

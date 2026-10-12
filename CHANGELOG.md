@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- An in-between keeps one of the supports its keys on both sides claim (RV-59j, F-230, S-101): S13 refuses one off
+  them (INBETWEEN_SUPPORT); B's in-betweens at 6.45 and 6.7, which floated 0.22 to 0.5 m with the trunk bent back 55
+  degrees, are re-solved with both soles held (upright, and 22 degrees back), and one at 7.375 clears the frame that
+  leaves; every in-between's name and description now says what its pose does.
 - Every prose prompt's legend hangs the legs from the spine as forward kinematics does (RV-113, F-231, S-100):
   "root -> Sp -> arms, legs, NK -> HD; the hips sit on the pelvis" (ADR-O84); before, it parented the legs on the root.
 - Principal review 8 (S-099): partially, no tampering. B's in-between keys float it at 6.45-6.7 and sink its crash
@@ -18,8 +22,8 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 - No body through another at any frame between keys (RV-59e, F-159, F-220, S-097): S13 refuses two bodies overlapping
   between keys, each posed by the declared interpolation through its keys and in-betweens. Five in-between keys of
   B's (4.75, 6.45, 6.7, 8.45, 8.75; DEV-35) and two of the acrobat's (3.55, 3.7), placed from recorded commands with
-  nothing on A's rows, clear every span the fight and the wizard example had; the 8.75 one also keeps B's crash over
-  the floor. The prose prints the in-betweens inside [MOTION CONTROL] (a section of their own failed the Master
+  nothing on A's rows, clear every span the fight and the wizard example had; the 8.75 one also keeps B's crash within 0.15 m
+  of the floor (0.14 m under at 8.625; corrected in S-101). The prose prints the in-betweens inside [MOTION CONTROL] (a section of their own failed the Master
   Template). F-159 and F-220 resolved.
 - A declared turn under a half turn is drawn as that turn (RV-108, F-225, S-096): between keys its root is slerped,
   and only a turn of a half turn or more about its axis keeps its Euler angles straight (S13's edge `interpolation`,

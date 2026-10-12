@@ -8,7 +8,8 @@ the floor, each posed by the declared interpolation through its keys and in-betw
 FLOOR_PENETRATION, RV-59c). An in-between key (ADR-O109,
 RV-59f) is checked like a key: its span
 (INBETWEEN_SPAN), the kernel joints and their limits, its root's speed to its neighbours (TELEPORT, owner O12), the
-floor and the other bodies at its instant, posed as the declared interpolation has them.
+floor and the other bodies at its instant, posed as the declared interpolation has them, and the supports its keys on
+both sides claim, one of them on its surface within 0.15 m (INBETWEEN_SUPPORT, RV-59j, owner O72).
 Derived: root quaternion per key (solver/quaternion.py) and per-entity follows edges with the Euler delta,
 interpolation and root trajectory (solver/trajectory.py).
 """
@@ -152,6 +153,21 @@ def _inbetween_world(standing, keys, by_id, packet):
     return findings
 
 
+def _inbetween_supports(standing, keys, by_id, packet):
+    """INBETWEEN_SUPPORT (ADR-O109, RV-59j): an in-between whose keys on both sides claim a common support keeps one of
+    those parts within O72's 0.15 m of its surface. Interpretation (Claude's, for owner review): "its supports" are
+    the supports both its keys claim, and one of them is enough, so a body may step between its keys."""
+    findings = []
+    for ident, rows in contact_world.inbetween_claims(standing, keys, by_id, packet).items():
+        if rows and min(row["distance"] for row in rows) > contact_world.TOLERANCE_M:
+            entity, t = ident.split("@")
+            findings.append({"code": "INBETWEEN_SUPPORT", "slot": ident, "message": f"{_words(entity)}'s "
+                             f"{' and '.join(_words(row['part']) for row in rows)}, which its keys on both sides stand on, "
+                             f"are all over {contact_world.TOLERANCE_M:g} m from their surfaces at the in-between key {t} "
+                             f"(nearest {min(row['distance'] for row in rows):g} m; ADR-O109, owner O72)"})
+    return findings
+
+
 def _words(text):
     return text.replace("_", " ")
 
@@ -245,6 +261,7 @@ def check(document, packet):
             + body_overlap.refusals(bodies)  # RV-49 (F-144, R-18)
             + floor_penetration.refusals(bodies, packet["floor_y"])  # RV-14a (F-089, owner O72)
             + between_findings + _inbetween_world(standing, keys, by_id, packet)  # ADR-O109 (RV-59f)
+            + _inbetween_supports(standing, keys, by_id, packet)  # ADR-O109 (RV-59j, owner O72)
             + _between_keys(frames, packet)  # RV-59e (F-159, R-18)
             + _floor_between_keys(frames, packet))  # RV-59c (F-089, owner O72)
 
