@@ -6,6 +6,8 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- TELEPORT's exemption reads the decoy (RV-86, F-188, S-074): an actor may jump after its substitution only when the
+  substitution leaves its decoy in its place, the rule S04's swap and S07 read since RV-66. No prompt changed.
 - A camera rule's words are checked against its fields (RV-85, F-187, S-073): each camera term a card's rule prints, in
   the grammar's words or a common synonym (tight, ECU, crash zoom, slow-mo, half speed, bullet time ...), must be one its
   fields allow, and a rule that speaks of a hit is held to O92's hold whatever its label; R-21 names the checks (rules

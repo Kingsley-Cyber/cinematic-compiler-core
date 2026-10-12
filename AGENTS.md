@@ -102,9 +102,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 7.1; backlog 28.
-- Last session: S-073 (2026-10-12, applied): RV-85: a camera rule's words ask only what its fields ask, and a rule about a hit is a hit rule.
-- Next slice: RV-86 TELEPORT's exemption needs a decoy in the actor's place (step temporal).
-- Open findings: 126; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
+- Last session: S-074 (2026-10-12, applied): RV-86: TELEPORT's exemption needs a decoy in the actor's place.
+- Next slice: RV-13 PROMPT_LENGTH: 3,500 characters for Runway, 1,000 words for BytePlus (O97) (step render).
+- Open findings: 125; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

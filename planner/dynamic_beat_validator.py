@@ -6,8 +6,8 @@ beat's end, or its start when marked `at: start`, O91); contacts use declared ty
 beat's end, or its start when marked `at: start`); causes point at real later-or-same-time beats; no filler beats;
 modes come from the archetype card (mode_coherence) and a mode change needs a beat that causes it (mode_transition).
 Teleport (owner O12): a body faster than 25 m/s between the anchors of two of its consecutive beats is refused
-(TELEPORT), unless the earlier beat is a substitution with that body as actor and the substitution changes a prop's
-state (the decoy revealed; the owner's rule also names the smoke pellet and the log, generalised here to any prop).
+(TELEPORT), unless the earlier beat is a substitution with that body as actor that leaves its decoy in its place
+(`decoy`: the prop it changes and places at its actor's anchor; the decoy revealed, O12, O48; F-188).
 Vanished body (owner O18, audit X9, VANISHED_BODY): from a substitution's start until its actor's next beat as actor,
 no other beat lists, anchors or touches with that actor, and no contact touches it (F-136); a touched body is in its
 beat (BEAT_CONTACT).
@@ -265,9 +265,9 @@ def _teleports(beats):
                 speed = math.inf if dt <= EPSILON and distance > EPSILON else (distance / dt if dt > EPSILON else 0.0)
                 if speed > TELEPORT_MPS + EPSILON:
                     exempt = before["event_type"] == "substitution" and before["actor"] == entity
-                    if exempt and not any(e["subject"]["kind"] == "prop" for e in before["effects"]):
-                        findings.append(_finding("TELEPORT", "A substitution must reveal a decoy (change a prop's state)",
-                                                 before["id"], entity))
+                    if exempt and decoy(before) is None:  # F-188 (RV-86): the same decoy the swap and S07 read
+                        findings.append(_finding("TELEPORT", "A substitution must leave its decoy in its actor's place "
+                                                 "(owners O12, O48)", before["id"], entity))
                     elif not exempt:
                         findings.append(_finding("TELEPORT", f"{entity} moves {distance:.2f} m in {dt:.2f} s "
                                                  f"({speed:.1f} m/s > {TELEPORT_MPS:g}) without a declared substitution",

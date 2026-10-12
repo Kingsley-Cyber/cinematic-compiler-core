@@ -18,7 +18,7 @@ Poses
   in the scene axes at the beat start t, the key-pose time; pos and facing name only declared entities
   (BEAT_POSE_ANCHOR). They are authoritative for later steps.
 - A body moves at most 25 m/s between the anchors of two of its consecutive beats (TELEPORT, owner O12), unless the
-  earlier beat is its own substitution, which must change a prop's state (the decoy revealed, a smoke burst).
+  earlier beat is its own substitution, which leaves its decoy in its place (the decoy revealed, below).
 - event_type substitution: the actor swaps itself for a decoy and reappears elsewhere (kawarimi). It is gone from the
   substitution's start until its next beat as actor: no other beat lists it, anchors it or has it make a contact,
   no contact touches it, and it lets go of every support and hold as it vanishes (VANISHED_BODY, owners O18, O90).

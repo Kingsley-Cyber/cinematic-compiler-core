@@ -10,16 +10,16 @@ Layer order 1.7; rules 7.1; backlog 28.
 
 ## Last sessions
 
-- S-071 (applied): RV-72: S08 refuses an undeclared hand holding the object; S09 credits a release only at the change
 - S-072 (applied): Principal review 5: does the finished work match the plan?
 - S-073 (applied): RV-85: a camera rule's words ask only what its fields ask, and a rule about a hit is a hit rule
+- S-074 (applied): RV-86: TELEPORT's exemption needs a decoy in the actor's place
 
 ## Next slices
 
-- RV-86 (next, step temporal): TELEPORT's exemption needs a decoy in the actor's place
-- RV-13 (ready, step render): PROMPT_LENGTH: 3,500 characters for Runway, 1,000 words for BytePlus (O97)
+- RV-13 (next, step render): PROMPT_LENGTH: 3,500 characters for Runway, 1,000 words for BytePlus (O97)
 - RV-15 (ready, step camera): The camera aims at the body and an insert at its detail; vertical framing checked
 - RV-14 (ready, step motion): Every-key body checks: no body under the floor; supports at every key; held and embedded props at their holder
+- RV-16 (ready, step render): One laban chain per fighter in render.txt
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -81,7 +81,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 126
+## Open findings: 125
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -117,7 +117,6 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-178 (high, all): No prompt can become deliverable: thirty checklist rows have no way to pass
 - F-179 (high, all): The done-gate has conditions no slice reaches
 - F-185 (high, L1.2): CAUSE_REASON passes sentences that state no cause
-- F-188 (high, L1.1): TELEPORT's exemption reads any prop change, not the decoy
 - F-189 (high, L1.1): The decoy is guessed by distance and may come from nowhere
 - F-196 (high, all): The substitution's decoy: who declares it, where it stands, who may substitute
 - F-197 (high, all): Hits and holds: what counts, how long, how wide, and which cuts hold
@@ -125,4 +124,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-204, session S-074, render R20.
+Decision ADR-O109, finding F-204, session S-075, render R20.

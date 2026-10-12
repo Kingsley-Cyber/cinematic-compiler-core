@@ -126,9 +126,9 @@ items:
      step: hand_role, plan: PLAN-007, depends_on: [], findings: [F-173, F-137, F-161], codes: []}
   - {id: RV-85, title: "A camera rule's words ask only what its fields ask; the word lists stay as a floor on the printed rules; R-21 lists the checks", status: done,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-187, F-160, F-177], codes: []}
-  - {id: RV-86, title: "TELEPORT's exemption needs a decoy in the actor's place", status: next,
+  - {id: RV-86, title: "TELEPORT's exemption needs a decoy in the actor's place", status: done,
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-188], codes: []}
-  - {id: RV-13, title: "PROMPT_LENGTH: 3,500 characters for Runway, 1,000 words for BytePlus (O97)", status: ready,
+  - {id: RV-13, title: "PROMPT_LENGTH: 3,500 characters for Runway, 1,000 words for BytePlus (O97)", status: next,
      step: render, plan: PLAN-007, depends_on: [], findings: [F-088], codes: [PROMPT_LENGTH]}
   - {id: RV-15, title: "The camera aims at the body and an insert at its detail; vertical framing checked", status: ready,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-090, F-145], codes: [VERTICAL_FRAMING]}

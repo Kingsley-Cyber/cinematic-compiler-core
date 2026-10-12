@@ -12,7 +12,7 @@ high
 L1.1
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -47,4 +47,7 @@ none needed to narrow it (O12's words); listed with F-196
 - ADR-O48
 
 ## Resolution
-Open.
+RV-86 (S-074): TELEPORT exempts an actor's jump only when its substitution leaves its decoy in its place (`decoy`, the
+rule S04's swap and S07 read); the validator's docstring and the S04 instructions say so
+(tests/test_dynamic_beat_validator.py::test_teleport_threshold_and_the_substitution_exemption, its far-decoy case).
+A substitution with no decoy that does not jump is F-189's (RV-87).
