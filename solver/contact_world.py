@@ -21,7 +21,7 @@ from solver.forward_kinematics import part_point, points
 
 TOLERANCE_M = 0.15  # owner O72
 KINDS = {"surface": "foot or body on a surface", "prop": "limb to prop", "entity": "limb to body"}
-MEASURED = ("touch", "possess", "support")
+MEASURED = ("touch", "possess", "support", "release")  # a release only of a prop: it leaves the hand where the hand is
 
 
 def _words(text):
@@ -30,7 +30,7 @@ def _words(text):
 
 def measure(envelope):
     """[{id, t, actor, part, target, kind, actor_point, target_point, distance, airborne, rotating, prop_moving,
-    measurable, reason}] for every touch, possess and support contact, in time order."""
+    measurable, reason}] for every touch, possess and support contact and every release of a prop, in time order."""
     keys = {(k["entity"], round(k["t"], 6)): k for k in envelope["nodes"]["motion"]["items"]}
     support = {k["id"]: k["support"] for k in envelope["nodes"]["kinematic"]["items"]}
     surfaces = envelope["nodes"]["surfaces"]["items"]
@@ -66,8 +66,8 @@ def _rows(keys, support, tops, floors, prop_samples, contacts):
         samples.setdefault((sample["prop"], round(sample["t"], 6)), []).append(sample)
     rows = []
     for c in sorted(contacts, key=lambda c: (c["t"], c["id"])):
-        if c["contact_type"] not in MEASURED:
-            continue
+        if c["contact_type"] not in MEASURED or (c["contact_type"] == "release" and c["b"]["kind"] != "prop"):
+            continue  # RV-02b (F-075): a release lets a prop go from the hand; a foot leaving a surface is a takeoff
         t, b = round(c["t"], 6), c["b"]
         key = keys.get((c["a"]["id"], t))
         row = {"id": c["id"], "t": c["t"], "actor": c["a"]["id"], "part": c["body_part"], "kind": KINDS[b["kind"]],

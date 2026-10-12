@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- CONTACT_WORLD measures a prop's release (RV-02b, ADR-O105, F-075, S-043): a thrown or dropped prop leaves the hand
+  where the hand is. F-108 answered: B's kunai leaves the hand once, at the 2.0 throw. B throws from A's -Z side, so
+  the kunai rises toward A, arrives along +Z and is deflected back down toward B, as the source's rule says. Every S13
+  packet carries the releases (the examples re-bound).
 - The vanish lets go (RV-06, O90, F-081, S-042): at the substitution A's feet and left hand let go; the rope dart drops
   and lies on the ground until A takes it at 7.5 (the 5.9 release goes); A reappears on both feet at 4.4; VANISHED_BODY
   refuses a vanished body's open supports and holds; A's rows 4.4-6.3 and the slide's rule stop holding the dart

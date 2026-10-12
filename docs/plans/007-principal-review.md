@@ -48,12 +48,12 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 | Gap | Layer | Severity | Status | Fix |
 |-----|-------|----------|--------|-----|
 | RV-01 | L6 | high | done (S-037) | C12 off CONTACT_WORLD (F-074) |
-| RV-02a, RV-02b | L4c | high | RV-02a done (S-039); RV-02b open | CONTACT_WORLD per O89 (re-blocks, the vault's hand plant, test hygiene), then releases measured (F-075, F-076, F-079) |
-| RV-03 | L1.1 | medium | open | the UGC pickup and poses (F-077) |
+| RV-02a, RV-02b | L4c | high | done (S-039, S-043) | CONTACT_WORLD per O89 (re-blocks, the vault's hand plant, test hygiene), then releases measured (F-075, F-076, F-079) |
+| RV-03 | L1.1 | medium | done (S-041) | the UGC pickup and poses (F-077) |
 | RV-04 | docs | medium | open | records: versions, logs, hook, stale docs and findings (F-078) |
 | RV-05 | L4c | high | done (S-038) | A's words follow the source (F-080) |
-| RV-06 | L1.1 | high | open | the vanish (F-081) |
-| RV-07, RV-08 | L1.1, L2.1 | high | open | the smoke at 3.7 after commits at the contact's instant (F-082, F-061) |
+| RV-06 | L1.1 | high | done (S-042) | the vanish (F-081) |
+| RV-07, RV-08 | L1.1, L2.1 | high | RV-08 done (S-040); RV-07 open | the smoke at 3.7 after commits at the contact's instant (F-082, F-061) |
 | RV-09 | L5.5 | high | open | hits as camera holds (F-083, F-005) |
 | RV-10 | L1.1 | high | open | the kunai drive and the catch (F-084) |
 | RV-11 | L6 | high | open | compile refuses non-deliverables; excluded rows N/A (F-085) |
@@ -74,7 +74,7 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 - F-088: the caps (which prompts carry them, what a capped prompt drops, whether O97 amends R-16)
 - F-099: A's backflip at 5.1 launched from the air (O80's "prior beat")
 - F-101: which anime spans keep a declared hang and which are re-timed
-- F-108: which of B's two kunai releases is real
+- F-108: which of B's two kunai releases is real (answered: ADR-O105, the 2.0 throw)
 - F-111: the frame limb and head words are read in
 - F-114: whether R-21, R-23 and R-25 bind render.txt
 - F-116: whether a moved packet forces re-authoring
@@ -102,3 +102,4 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 - 2026-10-11 — RV-02 split into RV-02a and RV-02b; RV-05 moved ahead of them (S-038).
 - 2026-10-11 — RV-01, RV-05 and RV-02a done (S-037 to S-039); ADR-O104 answers O89's "genuine"; RV-02b also re-stages
   B's kunai throw (S-039).
+- 2026-10-12 — RV-08, RV-03, RV-06 and RV-02b done (S-040 to S-043); ADR-O105 answers F-108.

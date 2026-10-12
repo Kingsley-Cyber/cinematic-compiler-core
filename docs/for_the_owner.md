@@ -51,7 +51,6 @@ done only when every row that applies passes. Claude never renders; you render, 
 - Backlog RV-20 blocked: Authoring prompts teach their steps' checks; external_inputs complete — an accepted ADR for the layer-order edit (R-09)
 - Backlog RV-24 blocked: The launch check per O80's words: the prior beat, every launch — the owner's ruling on A's 5.1 backflip in F-099
 - Backlog RV-26 blocked: Momentum at the true takeoff; the opening fall judged; each span re-timed or hung — the owner's span-by-span answer in F-101
-- Backlog RV-33 blocked: B's track follows the source — the owner's answer in F-108
 - Backlog RV-36 blocked: Limb and head words read in one declared frame — the owner's answer in F-111
 - Backlog RV-40 blocked: Rebinding forces re-authoring — the owner's answer in F-116
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)

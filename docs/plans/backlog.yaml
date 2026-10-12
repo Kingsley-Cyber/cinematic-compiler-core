@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 17
+version: 18
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -70,11 +70,11 @@ items:
      step: render, plan: PLAN-007, depends_on: [], findings: [F-074], codes: []}
   - {id: RV-02a, title: "CONTACT_WORLD per O89: no exact-instant exemption; the repo side of each miss re-blocked (the palm on the log, B's throw, the vault hand, the kunai's arc, the pellet, B at the knee); the slide excepted", status: done,
      step: motion, plan: PLAN-007, depends_on: [M9-06b, RV-05], findings: [F-075, F-076, F-079], codes: []}
-  - {id: RV-02b, title: "CONTACT_WORLD measures releases (a thrown or dropped prop leaves the hand where the hand is); B's kunai throw re-staged, since B's 2.0 hand is on A's side of A's 2.5 foot (S-039)", status: next,
+  - {id: RV-02b, title: "CONTACT_WORLD measures releases (a thrown or dropped prop leaves the hand where the hand is); B's kunai throw re-staged, since B's 2.0 hand is on A's side of A's 2.5 foot (S-039)", status: done,
      step: motion, plan: PLAN-007, depends_on: [RV-02a, RV-03, RV-06], findings: [F-075, F-108], codes: []}
   - {id: RV-03, title: "The UGC pickup on the table; no resting-prop jump at a pickup; UGC poses agree with their words", status: done,
      step: temporal, plan: PLAN-007, depends_on: [RV-08], findings: [F-077], codes: []}
-  - {id: RV-04, title: "Records: rules 4.0, version bumps checked, layer_order.yaml logged, the hook active, stale docs and findings closed", status: ready,
+  - {id: RV-04, title: "Records: rules 4.0, version bumps checked, layer_order.yaml logged, the hook active, stale docs and findings closed", status: next,
      step: docs, plan: PLAN-007, depends_on: [], findings: [F-078, F-063, F-066, F-028, F-015], codes: []}
   - {id: RV-05, title: "A's limb and head words follow the source's words (O88)", status: done,
      step: motion, plan: PLAN-007, depends_on: [], findings: [F-080], codes: []}
@@ -138,8 +138,7 @@ items:
      step: state, plan: PLAN-007, depends_on: [], findings: [F-106], codes: []}
   - {id: RV-32, title: "Reference-cast rules filled per scene at S03", status: ready,
      step: constraint, plan: PLAN-007, depends_on: [], findings: [F-107], codes: []}
-  - {id: RV-33, title: "B's track follows the source", status: blocked,
-     blocked_by: "the owner's answer in F-108",
+  - {id: RV-33, title: "B's track follows the source (F-108's question answered by ADR-O105)", status: ready,
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-108], codes: []}
   - {id: RV-34, title: "R-14 checked in code", status: ready,
      step: all, plan: PLAN-007, depends_on: [], findings: [F-109], codes: []}

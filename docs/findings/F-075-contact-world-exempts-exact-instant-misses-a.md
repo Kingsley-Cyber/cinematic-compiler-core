@@ -12,7 +12,7 @@ high
 L4c
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -48,9 +48,8 @@ ADR-O89
 - F-070
 
 ## Resolution
-In part. RV-02a (S-039, O89, ADR-O104): only a point interpolated between keys or samples, with the actor airborne or
-the prop moving, is an artefact, and no contact measured today is one; B's throw, the palm on the log, the vault hand,
-the kunai's deflect, the pellet and B at A's knee are re-blocked on their repo-authored side; the source's slide at
-5.9 is listed (ADR-O83 point 2). Open for RV-02b: releases are not measured, and the kunai's 2.0 sample still sits off
-B's hand; there B's hand is on A's side of A's 2.5 foot, so a throw from it would fly back toward B: B's throw needs
-re-staging with B's track (F-108, RV-33).
+RV-02a (S-039, O89, ADR-O104): only a point interpolated between keys or samples, with the actor airborne or the prop
+moving, is an artefact; the repo side of each exact-instant miss is re-blocked and the source's slide is listed.
+RV-02b (S-043, ADR-O105): CONTACT_WORLD measures a prop's release
+(tests/test_forward_kinematics.py::test_a_release_leaves_the_prop_where_the_hand_is); B throws the kunai from A's -Z
+side, from B's right hand at 2.0, so it arrives along +Z and goes back down toward B, as the source's rule says.

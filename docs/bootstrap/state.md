@@ -6,20 +6,20 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 3.1; backlog 17.
+Layer order 1.7; rules 3.1; backlog 18.
 
 ## Last sessions
 
-- S-040 (applied): RV-08: a holder change commits at its contact's instant, not the beat's end
 - S-041 (applied): RV-03: the UGC pickup on the table, no resting-prop jump, the UGC poses agree with their words
 - S-042 (applied): RV-06: the vanish: A's supports and holds end at 3.7; the rope dart lies on the ground until 7.5
+- S-043 (applied): RV-02b: CONTACT_WORLD measures releases; B's kunai throw re-staged
 
 ## Next slices
 
-- RV-02b (next, step motion): CONTACT_WORLD measures releases (a thrown or dropped prop leaves the hand where the hand is); B's kunai throw re-staged, since B's 2.0 hand is on A's side of A's 2.5 foot (S-039)
-- RV-04 (ready, step docs): Records: rules 4.0, version bumps checked, layer_order.yaml logged, the hook active, stale docs and findings closed
+- RV-04 (next, step docs): Records: rules 4.0, version bumps checked, layer_order.yaml logged, the hook active, stale docs and findings closed
 - RV-07 (ready, step temporal): The smoke bursts at 3.7 at A's body; the spent pellet falls and rests (O91)
 - RV-09 (ready, step camera): Hits are camera holds framing both bodies, no playback ramps; the source's camera directives (O92)
+- RV-10 (ready, step temporal): The kunai drive holds the kunai in B's right shoulder; the catch is a grasp plus a throw (O93)
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -46,12 +46,11 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-20 blocked: Authoring prompts teach their steps' checks; external_inputs complete — an accepted ADR for the layer-order edit (R-09)
 - Backlog RV-24 blocked: The launch check per O80's words: the prior beat, every launch — the owner's ruling on A's 5.1 backflip in F-099
 - Backlog RV-26 blocked: Momentum at the true takeoff; the opening fall judged; each span re-timed or hung — the owner's span-by-span answer in F-101
-- Backlog RV-33 blocked: B's track follows the source — the owner's answer in F-108
 - Backlog RV-36 blocked: Limb and head words read in one declared frame — the owner's answer in F-111
 - Backlog RV-40 blocked: Rebinding forces re-authoring — the owner's answer in F-116
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 74
+## Open findings: 73
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -67,7 +66,6 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-031 (critical, L6): Render wording the model does not follow
 - F-036 (high, L6): Aerial timing is not followed: takeoffs come late
 - F-066 (high, L4c): What is a key's root position: the pelvis or the ground point?
-- F-075 (high, L4c): CONTACT_WORLD exempts exact-instant misses as artefacts, and never measures a release
 - F-082 (high, L1.1): O78 was applied backwards: the smoke bursts on landing at 4.0
 - F-083 (high, L5.5): Hits are slow-motion close-up inserts, and most of the source's holds are not printed
 - F-084 (high, L1.1): The kunai drive and the catch print as instant strikes, and the kunai floats over the downed B
@@ -82,4 +80,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O105, finding F-120, session S-043, render R20.
+Decision ADR-O106, finding F-120, session S-044, render R20.

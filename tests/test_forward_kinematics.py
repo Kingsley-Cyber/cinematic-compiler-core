@@ -125,3 +125,19 @@ def test_every_example_passes_contact_world():
     for name in ("wizard_vs_acrobat", "live_action_standoff", "ugc_glasses_demo", "reference_fight"):
         plan = json.loads((ROOT / "examples" / name / "plans" / "motion.json").read_text(encoding="utf-8"))
         assert contact_world.refusals(contact_world.measure(_envelope(name)), plan.get("contact_world_exceptions", {})) == []
+
+
+def test_a_release_leaves_the_prop_where_the_hand_is():
+    """RV-02b (F-075, O105): CONTACT_WORLD measures a prop's release, the prop's sample against the releasing hand; a
+    foot leaving the ground is a takeoff and is not measured."""
+    import copy
+    envelope = _envelope("reference_fight")
+    rows = {r["id"]: r for r in contact_world.measure(envelope)}
+    assert rows["b05_c1"]["measurable"] and rows["b05_c1"]["distance"] <= contact_world.TOLERANCE_M   # the 2.0 throw
+    assert "b11_c3" not in rows                                                      # A's foot leaves the ground at 4.7
+    moved = copy.deepcopy(envelope)
+    sample = next(s for b in moved["nodes"]["beats"]["items"] for s in b.get("prop_samples", [])
+                  if s["prop"] == "kunai" and s["t"] == 2.0)
+    sample["p"] = [1.2, 1.5, 4.3]                                                    # where S-039 left it
+    assert [(f["code"], f["contact"]) for f in contact_world.refusals(contact_world.measure(moved), {})
+            if f["contact"].startswith("b05")] == [("CONTACT_WORLD", "b05_c1")]

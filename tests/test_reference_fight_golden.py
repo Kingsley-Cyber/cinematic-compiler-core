@@ -161,10 +161,13 @@ def normalised(row):
 # right hand at 3.7; the volley leaves B's right hand at 5.5; B's palm reaches the log at 4.0 (a step to the side, the
 # lean eased to 20 degrees, the arm extended); B rises on straighter legs to meet A's knee at 4.7.
 REBLOCKED_SAMPLES = {("rope_dart", 3.0): [0.85, 0.74, 4.55], ("rope_dart", 8.0): [2.4, 1.53, 3.47],  # 8.0: with B, O86
-                     ("kunai", 2.5): [1.29, 1.13, 4.44], ("kunai", 2.72): [1.4, 0.0, 3.77],
-                     ("shuriken_volley", 5.5): [-1.12, 2.74, 4.83]}
+                     ("kunai", 2.0): [1.19, 1.88, 3.45], ("kunai", 2.5): [1.29, 1.13, 4.44],
+                     ("kunai", 2.72): [1.4, 0.0, 3.77], ("shuriken_volley", 5.5): [-1.12, 2.74, 4.83]}
 CATCH_ROOT = [0.07, 1.03, 4.8]
-REBLOCKED_ROOTS = {"ninja_broad@b10": [1.0, 1.09, 5.0], "ninja_broad@b12": [-0.2, 1.2, 4.44]}
+# O105 (S-043): the kunai leaves B's right hand at 2.0 (CONTACT_WORLD measures releases), and B throws from A's -Z side.
+REBLOCKED_ROOTS = {"ninja_broad@b10": [1.0, 1.09, 5.0], "ninja_broad@b12": [-0.2, 1.2, 4.44],
+                   "ninja_broad@b04": [1.4, 1.19, 3.3], "ninja_broad@b05": [1.77, 1.14, 2.97],
+                   "ninja_broad@b06": [1.77, 1.19, 3.0]}
 # Owner O86 (F-071, S-032): at 8.0 B stands on A's far side from the pillar (z 6), pose and facing kept, so the rope from
 # B to A's hand pulls toward the pillar and B is dragged that way to 8.5; with the kunai's landing since O89 (S-039).
 PULL_ANCHOR = [2.2, 1.18, 3.47]
@@ -254,9 +257,10 @@ def test_strikes_throws_and_releases_happen_at_their_pose():
 # the kunai carries a pre-contact sample at 2.5 (the 2.0 throw under gravity for 0.5 s) beside the golden's own sample,
 # now marked post-contact. Owner O77 (F-064): the golden is right, the kunai reverses from +Z to -Z: the post velocity
 # is the source's own v_post [0.5,-4.0,-3.0]. Owner O89 (S-039): the pair sits at A's right foot, the throw arrives
-# along +Z, and the kunai lands at 2.72 on [1.4,0,3.77], where A takes it at 8.0.
-DEFLECT_PAIR = ["2.5 pre-contact p[1.29,1.13,4.44] v[0.18,-3.2,0.28] moving down along +Z",
-                "2.5 post-contact p[1.29,1.13,4.44] v[0.5,-4,-3] moving down along -Z"]
+# along +Z, and the kunai lands at 2.72 on [1.4,0,3.77], where A takes it at 8.0. O105 (S-043): B throws it from A's
+# -Z side, so it leaves B's hand toward A and goes back down toward B, as the source's rule says.
+DEFLECT_PAIR = ["2.5 pre-contact p[1.29,1.13,4.44] v[0.2,-3.96,1.98] moving down along +Z",
+                "2.5 post-contact p[1.29,1.13,4.44] v[0.5,-4,-3] moving down toward B"]
 
 
 def test_the_kunai_deflect_is_a_pre_and_post_pair():

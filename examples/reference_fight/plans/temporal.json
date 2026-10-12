@@ -403,9 +403,9 @@
      5.5
     ],
     "ninja_broad": [
-     1.2,
+     1.4,
      1.19,
-     4.6
+     3.3
     ]
    },
    "facing": {
@@ -415,9 +415,9 @@
      0.744
     ],
     "ninja_broad": [
-     -0.555,
+     -0.342,
      0,
-     0.832
+     0.94
     ]
    },
    "action": "KICKS OFF PILLAR at 1.6, both feet push hard and A arcs away from the pillar toward B, NOT still touching pillar",
@@ -459,9 +459,9 @@
      5.0
     ],
     "ninja_broad": [
-     1.4,
+     1.77,
      1.14,
-     4.6
+     2.97
     ]
    },
    "facing": {
@@ -471,9 +471,9 @@
      0.464
     ],
     "ninja_broad": [
-     -0.914,
+     -0.225,
      0,
-     0.406
+     0.974
     ]
    },
    "action": "B THROWS KUNAI at 2.0 toward A, upward at A mid-descent",
@@ -526,14 +526,14 @@
      "prop": "kunai",
      "t": 2.0,
      "p": [
-      1.2,
-      1.5,
-      4.3
+      1.19,
+      1.88,
+      3.45
      ],
      "v": [
-      0.18,
-      1.71,
-      0.28
+      0.2,
+      0.95,
+      1.98
      ],
      "float": false
     },
@@ -546,9 +546,9 @@
       4.44
      ],
      "v": [
-      0.18,
-      -3.2,
-      0.28
+      0.2,
+      -3.96,
+      1.98
      ],
      "float": false,
      "phase": "pre"
@@ -590,9 +590,9 @@
      4.5
     ],
     "ninja_broad": [
-     1.4,
+     1.77,
      1.19,
-     4.6
+     3.0
     ]
    },
    "facing": {
@@ -602,9 +602,9 @@
      0.0
     ],
     "ninja_broad": [
-     -0.994,
+     -0.643,
      0,
-     -0.11
+     0.766
     ]
    },
    "action": "FOOT DEFLECT KINDS: kunai REVERSES from +Z to -Z and downward at 2.5,kunai STAYS IN FRAME,NOT toward B; the right foot sole strikes the kunai, NOT a kick; A lands on both feet at 3.0 holding the rope dart in the left hand",

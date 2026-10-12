@@ -171,8 +171,8 @@ def test_the_rows_print_the_pair_pre_before_post():
     envelope = json.loads((ROOT / "examples" / "reference_fight" / "envelope.json").read_text(encoding="utf-8"))
     rows = [text for _, text in prop_samples.rows(envelope, {"ninja_lean": "A", "ninja_broad": "B"}, "kunai", False)]
     at = [text for text in rows if text.startswith("2.50")]
-    assert at == ["2.50 pre-contact p[1.29, 1.13, 4.44] v[0.18, -3.2, 0.28] moving down along +Z",
-                  "2.50 post-contact p[1.29, 1.13, 4.44] v[0.5, -4, -3] moving down along -Z"]  # owners O77, O89
+    assert at == ["2.50 pre-contact p[1.29, 1.13, 4.44] v[0.2, -3.96, 1.98] moving down along +Z",
+                  "2.50 post-contact p[1.29, 1.13, 4.44] v[0.5, -4, -3] moving down toward B"]  # owners O77, O89, O105
 
 
 def test_a_throw_leaves_its_prop_moving():

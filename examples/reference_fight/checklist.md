@@ -6,11 +6,11 @@ Genre: anime. LBN-2.4 is read against the DAG's Master Template (O13), so many o
 
 | Prompt | File | sha256 | Bytes | PASS | FAIL | NOT CHECKED | N/A | Deliverable |
 |---|---|---|---|---|---|---|---|---|
-| LBN | `render.txt` | `2fa5dc90d8f67ffb4a56e67fad14dde1dc26ba35661e3c366d1b50246bf342ef` | 70780 | 3 | 49 | 26 | 6 | no |
-| Pure | `prose_pure_staff.txt` | `5be420aaaff0e0b1bc1d92cacbfd8204333e91d499825ee3f91594646f67959d` | 46202 | 31 | 0 | 47 | 6 | no |
-| Mixed | `prose_mixed.txt` | `14a35b6e0175e87d5241f1895a5ae0006e95baed2cf0af57fcac488d8deba968` | 46769 | 31 | 0 | 47 | 6 | no |
-| Upgr | `prose_upgraded_mixed.txt` | `fafbcfc40e96b9295a4bf81e4bf6cdcc6b54245cb89f3ad02f63578aedf429fb` | 48266 | 31 | 0 | 47 | 6 | no |
-| Euler | `prose_euler_heavy.txt` | `b7c6ea56b7631a862a1231d74c299c7af1ae27294e8111da6f19edf3aaf3b53c` | 56937 | 31 | 0 | 47 | 6 | no |
+| LBN | `render.txt` | `cea9f939a04e74629f8c92d63b35f8c97c5ec30caa7199de438b3b060f358028` | 70782 | 3 | 49 | 26 | 6 | no |
+| Pure | `prose_pure_staff.txt` | `64ab36f599d3603449543d7d23cdedbd2b81ff3c32d91b8b2f138ded61a21354` | 46395 | 31 | 0 | 47 | 6 | no |
+| Mixed | `prose_mixed.txt` | `48b70c58a29fc55140ba7d357a28af5f286e6003b3f4ad3c944da1b275d53d6d` | 46962 | 31 | 0 | 47 | 6 | no |
+| Upgr | `prose_upgraded_mixed.txt` | `6d1013cb60198c7741cc4521a2436eafe83ea5fe1b209b31b5c96a3beecf73ef` | 48459 | 31 | 0 | 47 | 6 | no |
+| Euler | `prose_euler_heavy.txt` | `778e87c828badec41ce7e89187ad06e0601f6c68fd8faf506de1721f2087ad34` | 57122 | 31 | 0 | 47 | 6 | no |
 | Any | union of the five | | | 34 | 0 | 47 | 3 | no |
 
 | Row | Name | Class | LBN | Pure | Mixed | Upgr | Euler | Any | Findings | Evidence |
@@ -61,7 +61,7 @@ Genre: anime. LBN-2.4 is read against the DAG's Master Template (O13), so many o
 | C18 | Precision tags | projection | FAIL | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | **LBN:** STAFF_FORMAT ×1: cannot pass: the prompt has no [LABAN STAFF – EULER-HEAVY] — **Pure, Mixed, Upgr, Euler:** pass: STAFF_FORMAT; not checked: LBN-2.4 writes contacts as 'CONTACT:touch right_foot->kunai.blade at 3'. |
 | C19 | Master Template | style | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** SECTION_MISSING ×16: [SCENE] is missing; SECTION_ORDER ×2: cannot pass: the prompt has no [SCENE]; STACKED_GRAPHS ×1: LBN-2.4 embeds the laban, A, B, cam graphs as JSON fields; the DAG stacks two (causal links, prop state) — **Pure, Mixed, Upgr, Euler:** pass: SECTION_MISSING, SECTION_ORDER, STACKED_GRAPHS |
 | C20 | Attention tags | projection | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | not checked: No per-beat priority tags. |
-| C21 | Contact contract | mandatory | FAIL | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | F1 | **LBN:** IMPACT_CONTACT_SYNC ×1: cannot pass: the prompt has no [LABAN STAFF – EULER-HEAVY], [ANIME]; CONTACT_WORLD ×13: cannot pass: the prompt has no [LABAN STAFF – EULER-HEAVY] — **Pure, Mixed, Upgr, Euler:** pass: REACTION_WITHOUT_CAUSE, IMPACT_CONTACT_SYNC, CONTACT_WORLD; not built: POST_CONTACT_MISSING |
+| C21 | Contact contract | mandatory | FAIL | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | F1 | **LBN:** IMPACT_CONTACT_SYNC ×1: cannot pass: the prompt has no [LABAN STAFF – EULER-HEAVY], [ANIME]; CONTACT_WORLD ×15: cannot pass: the prompt has no [LABAN STAFF – EULER-HEAVY] — **Pure, Mixed, Upgr, Euler:** pass: REACTION_WITHOUT_CAUSE, IMPACT_CONTACT_SYNC, CONTACT_WORLD; not built: POST_CONTACT_MISSING |
 | C22 | End state per entity | required | FAIL | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | **LBN:** END_STATE_MISSING ×3: cannot pass: the prompt has no [RULES]; MOMENTUM_MISSING ×6: cannot pass: the prompt has no [RULES] — **Pure, Mixed, Upgr, Euler:** pass: END_STATE_MISSING, MOMENTUM_MISSING; not checked: S06 writes every subject's end state and chaining carries it. |
 | C23 | Anchor phrase | required | FAIL | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | F9 (caught), F13 | **LBN:** ANCHOR_PHRASE_MISSING ×3: cannot pass: the prompt has no [SCENE]; PROP_FIRST_STATE ×6: cannot pass: the prompt has no [SCENE], [PROP STATE MACHINE – kunai] (+4 more); PROP_VISIBILITY ×1: cannot pass: the prompt has no [PROP STATE MACHINE – kunai], [PROP STATE MACHINE – rope dart] (+3 more) — **Pure, Mixed, Upgr, Euler:** pass: ANCHOR_PHRASE_MISSING, PROP_FIRST_STATE, PROP_VISIBILITY, but render finding F13 contradicts it and no code here checks what it saw |
 | C24 | CUSTODY invariant | mandatory | FAIL | PASS | PASS | PASS | PASS | PASS | F11 (caught) | **LBN:** CUSTODY_RULE_MISSING ×1: cannot pass: the prompt has no [PROP STATE MACHINE – kunai], [PROP STATE MACHINE – rope dart] (+3 more); PROP_FIRST_STATE ×6: cannot pass: the prompt has no [SCENE], [PROP STATE MACHINE – kunai] (+4 more) — **Pure, Mixed, Upgr, Euler:** pass: CUSTODY_RULE_MISSING, PROP_FIRST_STATE |

@@ -101,10 +101,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 3.1; backlog 17.
-- Last session: S-042 (2026-10-11, applied): RV-06: the vanish: A's supports and holds end at 3.7; the rope dart lies on the ground until 7.5.
-- Next slice: RV-02b CONTACT_WORLD measures releases (a thrown or dropped prop leaves the hand where the hand is); B's kunai throw re-staged, since B's 2.0 hand is on A's side of A's 2.5 foot (S-039) (step motion).
-- Open findings: 74; decisions: 131 (0 proposed).
+- Layer order 1.7; rules 3.1; backlog 18.
+- Last session: S-043 (2026-10-12, applied): RV-02b: CONTACT_WORLD measures releases; B's kunai throw re-staged.
+- Next slice: RV-04 Records: rules 4.0, version bumps checked, layer_order.yaml logged, the hook active, stale docs and findings closed (step docs).
+- Open findings: 73; decisions: 132 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
@@ -134,7 +134,6 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - Backlog RV-20 blocked: Authoring prompts teach their steps' checks; external_inputs complete — an accepted ADR for the layer-order edit (R-09)
 - Backlog RV-24 blocked: The launch check per O80's words: the prior beat, every launch — the owner's ruling on A's 5.1 backflip in F-099
 - Backlog RV-26 blocked: Momentum at the true takeoff; the opening fall judged; each span re-timed or hung — the owner's span-by-span answer in F-101
-- Backlog RV-33 blocked: B's track follows the source — the owner's answer in F-108
 - Backlog RV-36 blocked: Limb and head words read in one declared frame — the owner's answer in F-111
 - Backlog RV-40 blocked: Rebinding forces re-authoring — the owner's answer in F-116
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)

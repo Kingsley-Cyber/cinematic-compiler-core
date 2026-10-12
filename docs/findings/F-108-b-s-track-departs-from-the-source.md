@@ -38,10 +38,11 @@ B's actions read differently from the owner's fight.
 Backlog RV-33 (blocked on the question); the rest follows the source under R-17.
 
 ## Owner Ruling
-the question open
+ADR-O105 (owner_default) answers the question; the rest needs no ruling (R-17)
 
 ## Related
 - PLAN-007
 
 ## Resolution
-Open.
+In part. Its question is answered (ADR-O105, owner_default, S-043): the kunai leaves B's hand once, at the 2.0 throw;
+the 0.5 line is the windup. The rest, B's rows following the source's words, is RV-33 (now ready).
