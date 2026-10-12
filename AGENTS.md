@@ -99,9 +99,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 2.2; backlog 4.
-- Last session: S-017 (2026-10-11, not started): M9-09a parked: Shape qualities contradict the motion in every example.
-- Next slice: M9-09b F9.2 airborne momentum under gravity (step kinematic).
-- Open findings: 40; decisions: 100 (2 proposed).
+- Last session: S-018 (2026-10-11, not started): M9-09b parked: the examples' airborne spans leave the gravity arc.
+- Next slice: M9-09c FR.4 launch before an aerial turn (step motion).
+- Open findings: 41; decisions: 101 (3 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
@@ -112,6 +112,7 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 <!-- BEGIN GENERATED: rulings -->
 - ADR-O72 (proposed): A key's root is the pelvis, and a touch's two points meet within 0.15 m
 - ADR-O73 (proposed): SHAPE_DIRECTION refuses only a Shape quality the motion contradicts
+- ADR-O74 (proposed): Anime bodies declare their hang time; other genres follow the arc
 - F-051 (low): Draft library cards await owner review
 - F-052 (low): Kernel scope numbers await owner review
 - F-053 (medium): Claude's interpretations await owner review
@@ -122,9 +123,11 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - F-060 (low): What is a motif?
 - F-066 (high): What is a key's root position: the pelvis or the ground point?
 - F-068 (medium): Twelve Effort intervals declare a Shape quality their motion contradicts
+- F-069 (medium): Nine airborne spans hang longer than gravity allows
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog M9-06 blocked: F5.1/F5.2 world contact points by forward kinematics — ADR-O72 (proposed): what a key's root position is, and the contact tolerance (F-066)
 - Backlog M9-09a blocked: F9.1 Laban direction against path and form — ADR-O73 (proposed): SHAPE_DIRECTION refuses contradictions only; twelve intervals re-authored (F-068)
+- Backlog M9-09b blocked: F9.2 airborne momentum under gravity — ADR-O74 (proposed): anime bodies declare hang time; nine spans re-authored (F-069)
 <!-- END GENERATED: rulings -->
 
 The owner updates this section by ruling: in chat (the agent writes the ADR) or by writing an ADR from

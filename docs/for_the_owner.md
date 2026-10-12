@@ -32,6 +32,7 @@ done only when every row that applies passes. Claude never renders; you render, 
 <!-- BEGIN GENERATED: owner_rulings -->
 - ADR-O72 (proposed): A key's root is the pelvis, and a touch's two points meet within 0.15 m
 - ADR-O73 (proposed): SHAPE_DIRECTION refuses only a Shape quality the motion contradicts
+- ADR-O74 (proposed): Anime bodies declare their hang time; other genres follow the arc
 - F-051 (low): Draft library cards await owner review
 - F-052 (low): Kernel scope numbers await owner review
 - F-053 (medium): Claude's interpretations await owner review
@@ -42,9 +43,11 @@ done only when every row that applies passes. Claude never renders; you render, 
 - F-060 (low): What is a motif?
 - F-066 (high): What is a key's root position: the pelvis or the ground point?
 - F-068 (medium): Twelve Effort intervals declare a Shape quality their motion contradicts
+- F-069 (medium): Nine airborne spans hang longer than gravity allows
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog M9-06 blocked: F5.1/F5.2 world contact points by forward kinematics — ADR-O72 (proposed): what a key's root position is, and the contact tolerance (F-066)
 - Backlog M9-09a blocked: F9.1 Laban direction against path and form — ADR-O73 (proposed): SHAPE_DIRECTION refuses contradictions only; twelve intervals re-authored (F-068)
+- Backlog M9-09b blocked: F9.2 airborne momentum under gravity — ADR-O74 (proposed): anime bodies declare hang time; nine spans re-authored (F-069)
 <!-- END GENERATED: owner_rulings -->
 
 To rule, tell the agent in chat. The agent writes it up as a decision file (an ADR), cites it in the rules if it

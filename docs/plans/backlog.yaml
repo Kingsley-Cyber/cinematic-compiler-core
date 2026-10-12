@@ -44,9 +44,11 @@ items:
      blocked_by: "ADR-O73 (proposed): SHAPE_DIRECTION refuses contradictions only; twelve intervals re-authored (F-068)",
      step: effort, plan: PLAN-003,
      depends_on: [M9-05], findings: [F-029], codes: [SHAPE_DIRECTION]}
-  - {id: M9-09b, title: "F9.2 airborne momentum under gravity", status: next, step: kinematic, plan: PLAN-003,
+  - {id: M9-09b, title: "F9.2 airborne momentum under gravity", status: blocked,
+     blocked_by: "ADR-O74 (proposed): anime bodies declare hang time; nine spans re-authored (F-069)", step: kinematic,
+     plan: PLAN-003,
      depends_on: [M9-05], findings: [F-026], codes: [MOMENTUM_MISSING]}
-  - {id: M9-09c, title: "FR.4 launch before an aerial turn", status: ready, step: motion, plan: PLAN-003,
+  - {id: M9-09c, title: "FR.4 launch before an aerial turn", status: next, step: motion, plan: PLAN-003,
      depends_on: [M9-05], findings: [F-028, F-058], codes: [AIRBORNE_WITHOUT_LAUNCH]}
   - {id: M9-10, title: "F4.3/F4.4 B's active keys and the idle-fighter check", status: ready, step: effort,
      plan: PLAN-003, depends_on: [M9-09a], findings: [F-029], codes: [IDLE_FIGHTER]}
