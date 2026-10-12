@@ -132,6 +132,11 @@ zoom, slow-mo, half speed, bullet time, overcrank, speed up, fast motion, push, 
 hit (blow, hit, impact, strike, struck; "between hits" excepted); the knight's heavy blow read as a hit.
 Added in S-075 (RV-13, validators/prompt_length.py): O97's cap read as a delivery refusal beside O10's conformance; a
 prompt with no named target must fit either cap; a word is a run of non-space characters.
+Added in S-076 (RV-15a, validators/camera_validator.py): a shot aims at the middle of the extent (not the mean) of the
+points its scale shows; "in frame" is each part's point (forward kinematics' head, torso, elbow, hand, knee, sole)
+inside the frame, so a part may be cropped at its edge; the grammar's visible_parts decide what a scale shows, so a
+medium close-up holds both hands (the library's rule, unchanged); a subject's screen side is its pelvis's (O72's
+root); a static shot is checked at every beat it lists, a moving one at its first beat.
 
 ## Impact
 Waits on the owner.

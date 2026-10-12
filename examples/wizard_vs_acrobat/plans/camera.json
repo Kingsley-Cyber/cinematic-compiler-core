@@ -1,7 +1,7 @@
 {
  "step_id": "S16",
  "band": "L5.5",
- "packet_sha256": "sha256:426dd28b2ea19080f3ab169dc0ddd8af7f0932e693aa1bb12fec15912eb2d660",
+ "packet_sha256": "sha256:37bc9ac5116e0638bbd26bfb783886219073dc92f45cfe70be3e4a538e75232d",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -117,11 +117,11 @@
    },
    "position": {
     "target": "midpoint",
-    "distance_m": 3.0,
+    "distance_m": 4.2,
     "side": "left"
    },
    "lens": {
-    "focal_length_mm": 24,
+    "focal_length_mm": 32,
     "perspective": "wide"
    },
    "focus": {
@@ -436,13 +436,13 @@
     "visible_action": "The acrobat comes off the cracked pillar onto both feet; the wizard regroups across the courtyard."
    },
    "angle": {
-    "elevation_deg": 0,
+    "elevation_deg": 12,
     "azimuth_deg": 82.6,
     "roll_deg": 0
    },
    "position": {
     "target": "midpoint",
-    "distance_m": 4.4,
+    "distance_m": 4.66,
     "side": "left"
    },
    "lens": {

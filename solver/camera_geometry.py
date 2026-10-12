@@ -2,8 +2,9 @@
 
 Kernel frame: +Y up; +X is the performer's left when facing +Z. Azimuth is the world heading from the aim point to
 the camera (degrees from +Z toward +X); elevation lifts the camera above the aim point; roll (dutch) is ignored for
-placement. Entity positions are the S06 positions at the shot's first beat (or the entity's first anchor when it is
-not placed yet), so a shot is placed from where the action starts.
+placement. Screen coordinates run -1 .. +1 from edge to edge, x to the right and y up (`screen_xy`, F-090). Entity
+positions are the S06 positions at the shot's first beat (or the entity's first anchor when it is not placed yet), so
+a shot is placed from where the action starts.
 """
 
 import math
@@ -33,6 +34,8 @@ def rounded(values):
 
 
 def aim(target, positions, axis, height):
+    """`height` above the target's root (the axis pair's midpoint for `midpoint`): S16's aim only where it has no body
+    points to aim at, an insert until RV-15b (validators/camera_validator.derive aims at the body, F-090)."""
     if target == "midpoint":
         base = [(a + b) / 2 for a, b in zip(positions[axis[0]], positions[axis[1]], strict=True)]
     else:
@@ -64,6 +67,20 @@ def fov_degrees(focal_mm, sensor_mm):
 
 def frame_height(distance, focal_mm, sensor_mm):
     return round(sensor_mm[1] * distance / focal_mm, 6)
+
+
+def screen_xy(camera, aim_point, point, focal_mm, sensor_mm):
+    """(x, y) on screen, each -1 .. +1 at the frame's edges (x right, y up); None when the point is behind the camera
+    (F-090, RV-15a: the vertical as well as the horizontal)."""
+    forward = _unit(_sub(aim_point, camera))
+    right = _unit(_cross(forward, UP))
+    up = _cross(right, forward)
+    offset = _sub(point, camera)
+    depth = _dot(offset, forward)
+    if depth <= 0:
+        return None
+    return (round(_dot(offset, right) / (depth * sensor_mm[0] / 2 / focal_mm), 6) + 0.0,
+            round(_dot(offset, up) / (depth * sensor_mm[1] / 2 / focal_mm), 6) + 0.0)
 
 
 def screen_x(camera, aim_point, point, focal_mm, sensor_mm):

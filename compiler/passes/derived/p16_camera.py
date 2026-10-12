@@ -2,13 +2,16 @@
 
 The packet carries the scene facts a camera answers to (beats, positions, contact onsets, effort intervals, causal
 edges, surfaces) and the camera library (subdivision vocabulary, grammar, tempo, the genre's conventions, the
-archetypes' idioms). Checks: validators/camera_validator.py. Derived: camera position, side, field of view, frame
-height and screen x per subject (solver/camera_geometry.py), and `cuts_to` edges between consecutive shots.
+archetypes' idioms), and each performer's body points at every beat (F-090, RV-15a). Checks:
+validators/camera_validator.py. Derived: the aim (the middle of the parts the scale shows), camera position, side,
+field of view, frame height and screen x per subject (solver/camera_geometry.py), and `cuts_to` edges between
+consecutive shots.
 """
 
 from compiler.authoring import run_authored, seal
 from planner import camera_library, hits, library_vocab
 from planner.dependency_graph import ROOT, load
+from solver import forward_kinematics
 from solver.camera_geometry import azimuth_change
 from solver.quaternion import head_heading
 from validators import camera_validator
@@ -25,6 +28,23 @@ def _positions(envelope, beats, entities):
                for e in entities}
     return {b["id"]: {e: states[f"{e}@{b['id']}"]["pos"] or anchors[e] for e in entities if anchors[e] is not None}
             for b in beats}
+
+
+def _points(envelope, beats, entities):
+    """{beat: {entity: {part: [x, y, z]}}}: each entity's body points at its key in each beat (forward kinematics of the
+    S13 keys), carried from its last key, and from its first before it has one, as `_positions` carries the anchors
+    (F-090, RV-15a: the camera aims at the body it frames)."""
+    metres = forward_kinematics.segments(envelope["scene"]["genre"])
+    keys = {k["id"]: k for k in envelope["nodes"]["motion"]["items"]}
+    bodies = {(e, b["id"]): {part: [round(v, 4) + 0.0 for v in point]
+                             for part, point in forward_kinematics.points(keys[f"{e}@{b['id']}"], metres).items()}
+              for b in beats for e in entities if f"{e}@{b['id']}" in keys}
+    last = {e: next((bodies[e, b["id"]] for b in beats if (e, b["id"]) in bodies), None) for e in entities}
+    out = {}
+    for b in beats:
+        last |= {e: bodies[e, b["id"]] for e in entities if (e, b["id"]) in bodies}
+        out[b["id"]] = {e: last[e] for e in sorted(entities) if last[e] is not None}
+    return out
 
 
 def prepare(envelope):
@@ -44,6 +64,7 @@ def prepare(envelope):
         "entities": entities, "props": sorted(p["id"] for p in envelope["nodes"]["props"]["items"]),
         "surfaces": sorted(s["id"] for s in envelope["nodes"]["surfaces"]["items"]),
         "axis": ids[:2] if len(ids) >= 2 else [], "positions": _positions(envelope, beats, ids),
+        "points": _points(envelope, beats, ids),
         "contacts": [{"id": c["id"], "t": c["t"], "beat": c["beat"], "contact_type": c["contact_type"], "entity": c["a"]["id"],
                       "part": c["body_part"], "other": c["b"]["id"]}
                      for c in envelope["nodes"]["contacts"]["items"]

@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 28
+version: 29
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -130,8 +130,13 @@ items:
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-188], codes: []}
   - {id: RV-13, title: "PROMPT_LENGTH: 3,500 characters for Runway, 1,000 words for BytePlus (O97)", status: done,
      step: render, plan: PLAN-007, depends_on: [], findings: [F-088], codes: [PROMPT_LENGTH]}
-  - {id: RV-15, title: "The camera aims at the body and an insert at its detail; vertical framing checked", status: next,
-     step: camera, plan: PLAN-007, depends_on: [], findings: [F-090, F-145], codes: [VERTICAL_FRAMING]}
+  - {id: RV-15a, title: "The camera aims at the body it frames; every part its scale shows is in frame, up and down", status: done,
+     step: camera, plan: PLAN-007, depends_on: [], findings: [F-090], codes: [VERTICAL_FRAMING]}
+  - {id: RV-15b, title: "An insert aims at its detail and a framed prop is in frame; the camera schemas' position text names the aim", status: next,
+     step: camera, plan: PLAN-007, depends_on: [RV-15a], findings: [F-090], codes: []}
+  - {id: RV-15c, title: "A strike's limb and a facing head point at their target, checked at S13; B's keys re-aimed", status: blocked,
+     blocked_by: "the owner's answer in F-148 (A's source facings: the check would refuse the golden's own rows, O10)",
+     step: motion, plan: PLAN-007, depends_on: [], findings: [F-145], codes: []}
   - {id: RV-14, title: "Every-key body checks: no body under the floor; supports at every key; held and embedded props at their holder", status: ready,
      step: motion, plan: PLAN-007, depends_on: [M9-06b], findings: [F-089, F-062], codes: [FLOOR_PENETRATION]}
   - {id: RV-16, title: "One laban chain per fighter in render.txt", status: ready,

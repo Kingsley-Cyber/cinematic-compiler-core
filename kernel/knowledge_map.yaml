@@ -30,7 +30,7 @@
 # Anchors are line numbers in the frozen copy (§2.2 = Mermaid block, §2.3 = node catalogue).
 # X1-X41 (§3.5) are findings about specific prompts, not rules, and are not mapped.
 
-version: 14
+version: 16
 status: draft
 basis: "Mapped by Claude 2026-10-11 against the repo at 9c9fd98 (layer_order 1.7); owner decisions O1-O4 recorded
   2026-10-11 (docs/plans/M8_DAG_PROSE.md); O13-O14 (checklist scope, not-applicable rulings) 2026-10-11; owner
@@ -729,6 +729,8 @@ rows:
          test: tests/test_prose_render.py::test_the_prompt_owes_a_hold_at_every_hit_whatever_s17_holds}
       - {file: validators/camera_validator.py, check: _motivation, code: CAMERA_MOTIVATION,
          test: tests/test_camera_solver.py::test_each_rule_rejects_its_violation}
+      - {file: validators/camera_validator.py, check: _framing, code: VERTICAL_FRAMING,
+         test: tests/test_camera_solver.py::test_every_part_a_shot_shows_is_in_frame_up_and_down}
     note: "Genre cards set shot length (anime 0.25-6.0 s), crossing and roll; every shot is motivated. RV-09 (owner
       O92, F-083): a hit (a hold on an impact frame) is a static camera hold with every body present in frame, no
       close-up or insert (HIT_HOLD at S17 and in the prompt), and every shot plays at normal x1 (PLAYBACK_RAMP at S16
@@ -737,7 +739,9 @@ rows:
       grammar and O92 where it is written (CAMERA_CARD), and the prompt prints the genre card's rules word for word
       (CAMERA_RULES), in place of RV-60's word lists. RV-57 (F-155): the
       hits come from the contacts (planner/hits.py), so S16 holds the camera on each, as S17 and the prompt do,
-      whatever S17 holds; the vertical framing is RV-15's. Not encoded:
+      whatever S17 holds. RV-15a (F-090): a shot aims at the middle of the parts its scale shows of its target, and
+      every such part is in frame, up and down, at every beat a static shot lists (VERTICAL_FRAMING); an insert's
+      detail and a framed prop are RV-15b's. Not encoded:
       the six rules (eye-level medium at most 1.2 s, height change every 2 s, low angles in aerial dominance,
       parallax, orbit on spins, push through Z) and three forbidden shots; F4's relational speed (match_subject)."
 

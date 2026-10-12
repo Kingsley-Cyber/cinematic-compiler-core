@@ -69,6 +69,7 @@ done only when every row that applies passes. Claude never renders; you render, 
 - F-202 (medium): The fight's open staging choices
 - F-203 (medium): RV-20's layer-order ADR
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
+- Backlog RV-15c blocked: A strike's limb and a facing head point at their target, checked at S13; B's keys re-aimed — the owner's answer in F-148 (A's source facings: the check would refuse the golden's own rows, O10)
 - Backlog RV-64b blocked: The S04 packet carries the scene_reference rules — the owner's answer in F-133
 - Backlog RV-13b blocked: Every prompt fits the caps (O97) — the owner's answers in F-088
 - Backlog RV-20 blocked: external_inputs complete: the layer order states what each step depends on — an accepted ADR for the layer-order edit (R-09)

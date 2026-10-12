@@ -44,6 +44,8 @@ with F-148 for the source rows
 - PLAN-007
 - F-090
 - F-148
+- RV-15c (S-076 split RV-15: the camera's part is RV-15a and RV-15b; this finding's S13 check is RV-15c, blocked on
+  F-148 since it would refuse the golden's own rows, O10)
 
 ## Resolution
 Open.

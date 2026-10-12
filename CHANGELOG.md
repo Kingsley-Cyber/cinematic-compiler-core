@@ -6,6 +6,11 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The camera aims at the body it frames (RV-15a, F-090, owner O72, S-076): a shot aims at the middle of the parts its
+  scale shows, not 1 m above the pelvis, and VERTICAL_FRAMING refuses a shown part outside the frame, up and down as
+  well as across, at every beat a static shot lists. Sixteen shots across the four examples were re-authored
+  (distance, lens, angle, placement; two wider scales); render.txt prints the new cameras and the prose changes only
+  where a printed field did. No measured contact moment now falls outside its shot's frame.
 - The prompt length is capped (RV-13, owner O97, F-088, S-075): a prompt over 3,500 characters (Runway) and over 1,000
   words (BytePlus) is not delivered (PROMPT_LENGTH: the checklist's deliverable column and `cinematic compile`); the
   checklists print each prompt's words and the caps it fits. Every prompt today is over both; fitting them waits for

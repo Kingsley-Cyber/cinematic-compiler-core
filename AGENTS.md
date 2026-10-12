@@ -101,9 +101,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.1; backlog 28.
-- Last session: S-075 (2026-10-12, applied): RV-13: PROMPT_LENGTH: a prompt over 3,500 characters for Runway or 1,000 words for BytePlus is not delivered.
-- Next slice: RV-15 The camera aims at the body and an insert at its detail; vertical framing checked (step camera).
+- Layer order 1.7; rules 7.1; backlog 29.
+- Last session: S-076 (2026-10-12, applied): RV-15a: the camera aims at the body it frames, and every visible part is in frame vertically.
+- Next slice: RV-15b An insert aims at its detail and a framed prop is in frame; the camera schemas' position text names the aim (step camera).
 - Open findings: 125; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
@@ -152,6 +152,7 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - F-202 (medium): The fight's open staging choices
 - F-203 (medium): RV-20's layer-order ADR
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
+- Backlog RV-15c blocked: A strike's limb and a facing head point at their target, checked at S13; B's keys re-aimed — the owner's answer in F-148 (A's source facings: the check would refuse the golden's own rows, O10)
 - Backlog RV-64b blocked: The S04 packet carries the scene_reference rules — the owner's answer in F-133
 - Backlog RV-13b blocked: Every prompt fits the caps (O97) — the owner's answers in F-088
 - Backlog RV-20 blocked: external_inputs complete: the layer order states what each step depends on — an accepted ADR for the layer-order edit (R-09)

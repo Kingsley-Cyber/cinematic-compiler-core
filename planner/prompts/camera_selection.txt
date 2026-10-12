@@ -3,12 +3,17 @@ beats it shows. Every shot fills all 13 subdivisions plus motivation; nothing is
 - Motivation: one of beat_type (a shown beat id), entity_focus (a framed entity), contact_event (a contact id in
   the shot), effort_quality (an effort interval overlapping the shot), spatial_geometry (a surface or prop),
   narrative_intent (a causal edge touching a shown beat), genre_convention (a convention id of the genre card).
-- Geometry is checked: the camera sits distance_m from the aim point (target position at the shot's first beat
-  + aim height) at azimuth (heading from aim to camera, from +Z toward +X) and elevation. position.side must equal
+- Geometry is checked: the camera sits distance_m from the aim point at azimuth (heading from aim to camera, from +Z
+  toward +X) and elevation. The aim point is the middle of the extent of the parts the shot's scale shows (the
+  grammar's visible_parts) of its target at the shot's first beat, both axis performers for midpoint, read from the
+  packet's `points` (the S13 keys); an insert aims aim_height_m above its target's pelvis. position.side must equal
   the derived side of the action axis; a cut that switches sides declares editing.axis cross.
 - Show what matters: every shown beat's actor is framed; every contact onset in the shot is visible at the scale
-  (the grammar's visible_parts, or the insert detail); every subject projects inside the frame; composition
-  placement agrees with the projected screen side; frame height (24 mm x distance / focal) fits the scale.
+  (the grammar's visible_parts, or the insert detail); every part the scale shows of each subject projects inside
+  the frame, up and down as well as across, at every beat a static shot lists and at a moving shot's first beat
+  (VERTICAL_FRAMING); composition placement agrees with the screen side of each subject's pelvis; frame height
+  (24 mm x distance / focal) fits the scale. A body nearer the camera than the aim looks larger: fit tall or
+  spread action with the distance (within the scale's frame height), a longer lens or the angle.
 - Hits (owner O92, R-21, HIT_HOLD): the packet's `hits` are the contacts that hit (a touch on another performer's
   body; a strike, deflect or parry on a prop another performer holds or threw; a catch of a body; a body touched by a
   blade another performer holds). The shot covering each is static, with every body the hit lists among its subjects,

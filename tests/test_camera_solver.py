@@ -30,6 +30,9 @@ def test_geometry_follows_the_kernel_frame():
     assert geometry.side([0.1, 1, -4], [0, 0, 0], [0, 0, 6], 0.3) == "on_axis"
     assert geometry.screen_x(camera, aim, [0, 1, 2], 50, [36, 24]) > 0   # toward -Z is screen right from +X
     assert geometry.frame_height(2, 48, [36, 24]) == 1.0 and geometry.azimuth_change(350, 10) == 20
+    # F-090 (RV-15a): up as well as across; 0.25 m above the aim at 2 m is half way to the top of a 1 m frame
+    assert geometry.screen_xy(camera, aim, [0, 1.25, 3], 48, [36, 24]) == (0.0, 0.5)
+    assert geometry.screen_xy(camera, aim, [3, 1, 3], 48, [36, 24]) is None   # behind the camera
 
 
 def test_plan_schema_embeds_the_camera_node_schema():
@@ -161,6 +164,33 @@ def test_a_hit_s_hold_is_on_a_still_rig_and_idioms_reach_their_archetypes():
     from planner import camera_library
     found = camera_library.idioms(["ninja_broad", "ninja_lean"])
     assert sorted(found) == ["ninja_broad", "ninja_lean"] and found["ninja_lean"] == found["ninja_broad"] != []
+
+
+def test_the_camera_aims_at_the_middle_of_the_body_it_frames():
+    """F-090 (RV-15a, owner O72): a shot aims at the middle of the extent of the parts its scale shows of its target, at
+    its first beat's keys (both axis performers for `midpoint`), never aim_height_m above the pelvis; a close-up aims
+    at the head."""
+    points, grammar = PACKET["points"], PACKET["grammar"]
+    assert camera_validator.derive(shot(PLAN, "c07"), PACKET)["aim"] == points["b09"]["wizard"]["head"]  # the close-up
+    body = [points["b06"][e][part] for e in ("acrobat", "wizard") for part in grammar["visible_parts"]["full"]]
+    middle = [(min(p[i] for p in body) + max(p[i] for p in body)) / 2 for i in range(3)]
+    assert camera_validator.derive(shot(PLAN, "c04"), PACKET)["aim"] == geometry.rounded(middle)
+    pelvis = PACKET["positions"]["b06"]["wizard"]
+    assert middle[1] < pelvis[1] + grammar["aim_height_m"] - 0.5  # the old aim sat over the heads
+
+
+def test_every_part_a_shot_shows_is_in_frame_up_and_down():
+    """F-090 (RV-15a): every part a shot's scale shows of each subject projects inside the frame, up and down as well
+    as across (VERTICAL_FRAMING), at every beat a static shot lists. c06 as authored before S-076 (eye level at 4.4 m)
+    loses the airborne acrobat's head above the frame; a head raised at c11's last beat is out of the static wide."""
+    assert "VERTICAL_FRAMING" not in codes(lambda p: None)
+    assert "VERTICAL_FRAMING" in codes(lambda p: (shot(p, "c06")["angle"].update(elevation_deg=0),
+                                                  shot(p, "c06")["position"].update(distance_m=4.4)))
+    packet = copy.deepcopy(PACKET)
+    body = packet["points"]["b14"]["acrobat"]
+    packet["points"]["b14"]["acrobat"] = {**body, "head": [body["head"][0], body["head"][1] + 6, body["head"][2]]}
+    found = [f for f in p16_camera.check(PLAN, packet) if f["code"] == "VERTICAL_FRAMING"]
+    assert [(f["slot"], f["message"].split(" is ")[0]) for f in found] == [("c11", "At b14, acrobat's head")]
 
 
 def test_genre_card_rules_apply_scene_wide():

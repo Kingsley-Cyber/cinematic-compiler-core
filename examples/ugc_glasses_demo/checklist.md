@@ -6,7 +6,7 @@ Genre: ugc_ad. LBN-2.4 is read against the DAG's Master Template (O13), so many 
 
 | Prompt | File | sha256 | Bytes | Words | Fits a cap | PASS | FAIL | NOT CHECKED | N/A | Deliverable |
 |---|---|---|---|---|---|---|---|---|---|---|
-| LBN | `render.txt` | `410665daa89d1eb983a283081e8f768a53a63fd00a633b067bc98fbec3d3333c` | 11464 | 1085 | none | 3 | 50 | 15 | 16 | no |
+| LBN | `render.txt` | `a9800bf21ddfe136f98444d0739a3d86060de922d84bec487f7da3587e6c13a7` | 11469 | 1085 | none | 3 | 50 | 15 | 16 | no |
 | Pure | `prose_pure_staff.txt` | `7e154b7b45596fe7c959a31e11f60ab30c8830bfbf70bc5b3ee58ce79d7bd687` | 12430 | 2082 | none | 38 | 0 | 30 | 16 | no |
 | Mixed | `prose_mixed.txt` | `f2276d3212f18bff39a0e558bd689934811bee3899c4a81bb6103e512535a47a` | 12672 | 2130 | none | 38 | 0 | 30 | 16 | no |
 | Upgr | `prose_upgraded_mixed.txt` | `9850af721fad6bdeb40093326861d6f81c9b84b79e71b658862abdc85751129f` | 12948 | 2173 | none | 38 | 0 | 30 | 16 | no |
