@@ -7,6 +7,7 @@ through every layer, requires zero findings, and proves each code fires on a pro
 Codes whose atoms the repo does not have yet are listed in the map as `gaps`, never emitted here.
 """
 
+import math
 import re
 
 from compiler.passes.derived import p11_kinematic
@@ -110,7 +111,7 @@ READS = {
     "PROP_TRACK_MISSING": (PROPS,), "PROP_STATE_ORDER": (PROPS,), "PROP_INVARIANT_MISSING": (PROPS,),
     "CUSTODY_RULE_MISSING": (PROPS,), "PROP_FIRST_STATE": ("[SCENE]", PROPS), "PROP_LINE_MISSING": (PROPS,),
     "DOUBLED_WORD": (), "COUNT_CONTRADICTION": (),
-    "VANISHED_BODY": (STAFF, RULES), "TURN_LABEL": (STAFF,),
+    "VANISHED_BODY": (STAFF, RULES, "[IMPLIED GUIDANCE]"), "TURN_LABEL": (STAFF,),
     "BODY_HOLD_FRAMES": (), "EMPTY_HAND_UNSTATED": (STAFF,), "ROTATION_ANGLES_PRINTED": (), "HIDDEN_PHRASING": (),
     "IMPACT_CONTACT_SYNC": (STAFF, "[ANIME]", "[UGC]", "[LIVE ACTION]"), "AIRBORNE_PICKUP": (STAFF,),
     "PROP_PHYSICS_UNSTATED": (PROPS,), "PROP_VISIBILITY": (PROPS,), "ROTATION_PATH_UNSTATED": (STAFF,),
@@ -510,8 +511,15 @@ def _vanish_checks(envelope, parts, labels, mode, add):
                 add("VANISHED_BODY", f"{row['label']} has a staff line at {row['t']:.2f} while gone")
             elif row["label"] == labels.get(actor) and abs(row["t"] - start) <= EPSILON and (  # owner O90, F-163 (RV-62)
                     f"then none: {row['label']} vanishes here" not in row["columns"][0]
+                    or row["columns"][0].startswith("SUPPORT steps ")  # F-176 (RV-70): a support that travels
                     or (len(row["columns"]) > 4 and "path: " in row["columns"][4])):
                 add("VANISHED_BODY", f"{row['label']}'s line at {row['t']:.2f} carries its support or a path into the vanish")
+        label = labels.get(actor)
+        for line in _body(parts, "[IMPLIED GUIDANCE]").splitlines():  # F-176 (RV-70): nor does the guidance move it
+            span = re.match(rf"- {re.escape(label or '')} (\d+\.\d\d)–(\d+\.\d\d)\b", line) if label else None
+            if span and float(span.group(1)) < (back if back is not None else math.inf) - EPSILON \
+                    and float(span.group(2)) > start + EPSILON:
+                add("VANISHED_BODY", f"The guidance moves {label} {span.group(1)}–{span.group(2)} while it is gone")
 
 
 def _turn_checks(envelope, parts, labels, mode, add):

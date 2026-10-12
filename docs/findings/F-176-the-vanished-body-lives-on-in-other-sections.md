@@ -12,7 +12,7 @@ medium
 L6
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -48,4 +48,9 @@ none needed (O90, O18)
 - ADR-O18
 
 ## Resolution
-Open.
+RV-70 (S-068): the guidance prints the vanish's own Effort at its instant ("A at 3.70: vanishes with light weight, sudden
+time, indirect space, free flow (flick quality), in place; gone until 4.40", the source's "in-place dissolve") and clips
+any other interval at a vanish; the "travels through space" sentence excepts a gone performer; a vanish that never
+returns says so and holds no sign or final pose (renderers/prose_renderer.py `vanish_note`); VANISHED_BODY reads the
+guidance and refuses a vanish line whose support steps
+(tests/test_prose_render.py::test_the_vanished_body_is_gone_from_the_guidance).

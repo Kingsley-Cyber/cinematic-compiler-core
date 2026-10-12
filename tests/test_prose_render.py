@@ -240,3 +240,26 @@ def test_the_prompt_owes_a_hold_at_every_hit_whatever_s17_holds():
     assert dropped != text and "HIT_HOLD" not in {f["code"] for f in prompt_validator.check(text, unheld, "mixed")}
     assert "HIT_HOLD" in {f["code"] for f in prompt_validator.check(dropped, unheld, "mixed")}
 
+
+def test_the_vanished_body_is_gone_from_the_guidance():
+    """Owners O18, O90 (F-176, RV-70): the guidance prints the vanish's own Effort at its instant (LBN-2.4's "in-place
+    dissolve") and keeps nothing of A moving while it is gone; a prompt that does, or a vanish line whose support
+    steps, is refused (VANISHED_BODY); a vanish that never returns says so and holds no sign."""
+    envelope, render = load(ROOT / "examples" / "reference_fight")
+    for prose in render["prose"].values():
+        assert "- A at 3.70: vanishes with light weight, sudden time, indirect space, free flow (flick quality), in place; " \
+               "gone until 4.40." in prose["text"] and "- A 3.70–4.00" not in prose["text"]
+        assert "travels through space between positions, except while it is gone after a substitution" in prose["text"]
+    text = render["prose"]["mixed"]["text"]
+
+    def fired(prompt):
+        return {f["code"] for f in prompt_validator.check(prompt, envelope, "mixed")}
+    assert "VANISHED_BODY" not in fired(text)
+    moving = text.replace("- A at 3.70: vanishes with", "- A 3.70–4.00: maintain", 1)
+    assert moving != text and "VANISHED_BODY" in fired(moving)
+    stepping = text.replace("3.70 A: SUPPORT both feet place-mid [f:both], then none", "3.70 A: SUPPORT steps left "
+                            "alternating [f:alt], then none", 1)
+    assert stepping != text and "VANISHED_BODY" in fired(stepping)
+    assert prose_renderer.vanish_note(None) == "SUBSTITUTION: the decoy takes this place and the body does not return"
+    assert "reappears at its next line" in prose_renderer.vanish_note(4.4)
+

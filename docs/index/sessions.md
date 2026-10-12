@@ -74,6 +74,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-065 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-67 (PLAN-007); findings F-17… | applied | the commit whose message names [S-065] | about 1 minutes by the clock (05:30 to 05:31) | — | [S-065-rv-67-the-s04-instructions-teach-f-077.md](../sessions/S-065-rv-67-the-s04-instructions-teach-f-077.md) |
 | S-066 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-68 (PLAN-007); findings F-18… | applied | the commit whose message names [S-066] | about 3 minutes by the clock (05:34 to 05:37) | — | [S-066-rv-68-the-draw-measured-at-the-pouch.md](../sessions/S-066-rv-68-the-draw-measured-at-the-pouch.md) |
 | S-067 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-69 (PLAN-007); finding F-175… | applied | the commit whose message names [S-067] | about 1 minutes by the clock (05:40 to 05:41) | — | [S-067-rv-69-a-thrown-prop-landing-is-a-hit.md](../sessions/S-067-rv-69-a-thrown-prop-landing-is-a-hit.md) |
+| S-068 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-70 (PLAN-007); findings F-17… | applied | the commit whose message names [S-068] | about 4 minutes by the clock (05:44 to 05:48) | — | [S-068-rv-70-the-vanished-body-everywhere.md](../sessions/S-068-rv-70-the-vanished-body-everywhere.md) |
 
 ## Status values
 

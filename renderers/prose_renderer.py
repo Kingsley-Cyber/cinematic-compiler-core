@@ -372,11 +372,10 @@ def staff_lines(envelope, frame_parts, labels):
         if slot["role"] == "actor":
             notes.append(slot["action"].rstrip("."))
         if slot["role"] == "actor" and slot["event_type"] == "substitution":
-            notes.append("SUBSTITUTION: the decoy takes this place and the body reappears at its next line (teleport "
-                         "allowed here only)")
+            notes.append(vanish_note(gone.get((entity, slot["beat"]))))
         if slot["slot"] in facial:
             notes.append(_face_words(facial[slot["slot"]], labels))
-        if following is None:
+        if following is None and not vanishing:  # F-176 (RV-70): a body that never returns holds no sign
             notes.append("hold sign to the end")
         ends = ""
         if vanishing:  # owner O90 (F-163, RV-62): the support ends as the body vanishes; the legend would carry it on
@@ -386,9 +385,16 @@ def staff_lines(envelope, frame_parts, labels):
         text = (f"{_time(slot['t'])} {labels[entity]}: SUPPORT {support['words']}"
                 f"{' ' + support['tags'] if support['tags'] else ''}{ends} | {left} | {right} | "
                 f"{'; '.join(relationship) or '-'} | {'; '.join(notes) or '-'}")
-        lines.append({"text": text, "strike": strike, "key": key, "entity": entity, "kin": kin,
+        lines.append({"text": text, "strike": strike, "key": key, "entity": entity, "kin": kin, "vanishing": vanishing,
                       "first": index == 0, "last": following is None, "mid_turn": slot["slot"] in mids})
     return lines
+
+
+def vanish_note(back):
+    """The substitution's note on its actor's line (owner O18, O90; F-176): where the body comes back, if it does."""
+    if back is None:
+        return "SUBSTITUTION: the decoy takes this place and the body does not return"
+    return "SUBSTITUTION: the decoy takes this place and the body reappears at its next line (teleport allowed here only)"
 
 
 def _euler(line, mode):
@@ -538,11 +544,20 @@ def _active(effort):
 
 def _implied(envelope, lines, labels):
     duration = envelope["scene"]["duration_s"]
+    gone = dynamic_beat_validator.vanish_windows(_items(envelope, "nodes", "beats"))
     out = ["Between lines every performer keeps the declared Effort below, preserves momentum and a clear weight "
-           "transfer, and travels through space between positions."]
+           "transfer, and travels through space between positions"
+           + (", except while it is gone after a substitution (RULES)." if gone else ".")]
     for e in sorted(_items(envelope, "nodes", "efforts"), key=lambda e: (labels[e["actor"]], e["t"])):
         action = "" if e["effort_action"] == "none" else f" ({LABAN_WORDS.get(e['effort_action'], e['effort_action'])} quality)"
-        out.append(f"{labels[e['actor']]} {_time(e['t'])}–{_time(e['end'])}: maintain {_active(e)}{action}; shape "
+        label, own = labels[e["actor"]], [(start, back) for actor, _, start, back in gone if actor == e["actor"]]
+        vanish = next((back for start, back in own if abs(start - e["t"]) <= EPSILON), False)
+        if vanish is not False:  # owner O90 (F-176): the Effort of the vanish itself, at its instant, then nothing
+            out.append(f"{label} at {_time(e['t'])}: vanishes with {_active(e)}{action}, in place; "
+                       + (f"gone until {_time(vanish)}." if vanish is not None else "gone to the end."))
+            continue
+        end = min([e["end"]] + [start for start, _ in own if e["t"] < start < e["end"]])  # clipped at a vanish
+        out.append(f"{label} {_time(e['t'])}–{_time(end)}: maintain {_active(e)}{action}; shape "
                    f"{e['shape']['quality']}, {_words(e['shape']['mode'])}; {e['space']['kinesphere']} reach.")
     for entity in _items(envelope, "nodes", "entities"):
         text = f"{entity['silhouette']} {entity['costume']}".lower()
@@ -570,7 +585,7 @@ def _implied(envelope, lines, labels):
                 span = None
         for a, b in zip(own, own[1:] + [None], strict=False):
             t0, t1 = a["key"]["t"], b["key"]["t"] if b else duration
-            if t1 - t0 > GAP_S + EPSILON:
+            if t1 - t0 > GAP_S + EPSILON and not a["vanishing"]:  # F-176: a gone body carries nothing through
                 kin = a["kin"]
                 what = "hold the final pose with micro-motion" if b is None else f"carry '{_words(a['key']['name'])}' through"
                 out.append(f"{label} {_time(t0)}–{_time(t1)} ({t1 - t0:.1f} s without a line): {what}; weight transfer "

@@ -10,16 +10,16 @@ Layer order 1.7; rules 7.0; backlog 26.
 
 ## Last sessions
 
-- S-065 (applied): RV-67: the S04 instructions and the validator teach F-077's rule and O48's standing log
 - S-066 (applied): RV-68: the holstered volley rests at the thigh pouch, and the draw is measured against it
 - S-067 (applied): RV-69: a body touched by a prop another performer threw is a hit, whatever the verb
+- S-068 (applied): RV-70: a vanished body is gone from every section of the prompt, and VANISHED_BODY reads them
 
 ## Next slices
 
-- RV-70 (next, step render): A vanished body is gone from every section (S15's coverage, the guidance, a vanish that never returns), and VANISHED_BODY reads them
-- RV-71 (ready, step camera): Camera rules as structured card fields; a hold is static on a locked or smooth rig; the prompt's hold names its bodies; idiom cards keyed to the scenes' archetypes
+- RV-71 (next, step camera): Camera rules as structured card fields; a hold is static on a locked or smooth rig; the prompt's hold names its bodies; idiom cards keyed to the scenes' archetypes
 - RV-72 (ready, step hand_role): S08 refuses an undeclared hand holding the object; S09 credits a release only at the change
 - RV-73 (ready, step temporal): S04 refuses a contact by a vanished body inside its window, and a contact by a body outside its beat
+- RV-74 (ready, step temporal): PROP_SUPPORT: a location on a surface with a known top puts the resting prop at that top
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -72,7 +72,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 114
+## Open findings: 112
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -111,4 +111,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-187, session S-068, render R20.
+Decision ADR-O109, finding F-187, session S-069, render R20.

@@ -122,6 +122,8 @@ Added in S-066 (RV-68, examples/reference_fight): the thigh pouch sits on the th
 from the hip, where B's hand can reach it while airborne at 5.1.
 Added in S-067 (RV-69, planner/hits.py): a fifth kind of hit, a touch between a performer and a prop another performer
 threw and no one holds, whatever the verb and whichever side names the body.
+Added in S-068 (RV-70, renderers/prose_renderer.py): the source's Effort on the substitution row is the vanish's own
+quality, printed at its instant ("vanishes with ... in place"), not maintained over the beat.
 
 ## Impact
 Waits on the owner.

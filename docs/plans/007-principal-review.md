@@ -141,3 +141,4 @@ RV-16, RV-37, RV-35, RV-59, RV-22; then RV-78 to RV-84 and the rest in backlog o
 - 2026-10-12 — RV-67 done (S-065): the S04 instructions and the validator teach F-077's rule and O48's log.
 - 2026-10-12 — RV-68 done (S-066): the volley waits at the thigh pouch; the draw is measured at 0.045 m.
 - 2026-10-12 — RV-69 done (S-067): a prop another performer threw is a hit when it touches a body, whatever the verb.
+- 2026-10-12 — RV-70 done (S-068): the vanished body is gone from the guidance too; VANISHED_BODY reads it.

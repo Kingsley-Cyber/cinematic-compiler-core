@@ -6,6 +6,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The vanished body is gone from every section (RV-70, F-176, S-068): the guidance prints A's dissolve at its instant
+  ("A at 3.70: vanishes with ... in place; gone until 4.40") instead of "maintain" over 3.70-4.00, excepts a gone
+  performer from "travels through space", and a vanish that never returns says so; VANISHED_BODY reads the guidance.
 - A thrown weapon landing in a body is a hit (RV-69, F-175, S-067): a touch between a performer and a prop another
   performer threw owes a camera hold whatever its verb and whichever side names the body; the rest of what counts as
   a hit waits for the owner. No example changed.
