@@ -21,6 +21,9 @@
   a cartwheel passes 180 + 360k degrees, the root interpolated linearly between its keys is upside down
   (INVERSION_MISSING; derived and checked, not printed, W3). Interpretation (Claude's, for owner review): a whole turn
   is within 30 degrees of a multiple of 360, and the inversion is read on linear Euler interpolation (FR.1's spacing).
+- launch (plan FR.4, owner O80): a flip or cartwheel run that goes airborne starts at its takeoff: its first key has
+  no support, and the performer was on grounded support at a key before it (AIRBORNE_WITHOUT_LAUNCH). A run that
+  starts turning on the ground and leaves it later turns before its launch (F-058).
 A mismatch is a finding (the step fails and is re-authored); nothing is corrected silently.
 """
 
@@ -178,7 +181,27 @@ def run_findings(keys, slots, turns):
                              "slot": first, "detail": angles})
         if run["turn"] in ("flip", "cartwheel"):
             findings.extend(_inversion_findings(run, first, deltas))
+            findings.extend(_launch_findings(run, first, keys, slots))
     return findings
+
+
+def _supported(slot):
+    return bool(slot.get("kinematic", {}).get("support"))
+
+
+def _launch_findings(run, first, keys, slots):
+    """AIRBORNE_WITHOUT_LAUNCH (plan FR.4, owner O80): an airborne flip or cartwheel launches at its first key from
+    grounded support before it."""
+    if all(_supported(slots[s]) for s in run["slots"]):
+        return []  # a turn on the ground (a tip, a roll): no launch to check
+    if _supported(slots[first]):
+        return [{"code": "AIRBORNE_WITHOUT_LAUNCH", "message": f"The {run['turn']} starts turning on the ground and leaves it "
+                 "later: take off at its first key (owner O80)", "slot": first}]
+    own = sequences(keys, slots)[run["entity"]]
+    if not any(_supported(slots[s]) for s in own[:own.index(first)]):
+        return [{"code": "AIRBORNE_WITHOUT_LAUNCH", "message": f"The {run['turn']} is in the air with no grounded support "
+                 "before it (owner O80)", "slot": first}]
+    return []
 
 
 def _inversion_findings(run, first, deltas):

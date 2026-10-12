@@ -12,7 +12,7 @@ medium
 L4c
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -46,4 +46,6 @@ ADR-O80
 - PLAN-001
 
 ## Resolution
-Open.
+AIRBORNE_WITHOUT_LAUNCH (S13; M9-09c, S-022, owner O80): an airborne flip or cartwheel launches at its first key
+from grounded support before it. The acrobat's vault and dodge flip now take off at 1.20 and 8.60 (run_in and the
+slicing bolt end with the acrobat airborne; R-33).

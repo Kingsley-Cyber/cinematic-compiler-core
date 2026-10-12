@@ -243,11 +243,11 @@ Ink: heavy on A,broken in smears,clean on holds,smear follows ONLY the declared 
 - TWO SEPARATE STRIKES: B L hand > A left arm and torso > kunai blade; do not merge them or swap the limbs.
 - A is gone from 3.70 until A reappears at 4.40 (substitution): no A body, pose or support in between.
 - A starts in the air above the wooden pillar, drops in feet first, and A's feet touch the wooden pillar top at 0.60, not earlier.
-- A hangs in the air 1.10–3.00, longer than a real jump (stylised anime hang time).
-- A hangs in the air 4.40–5.90, longer than a real jump (stylised anime hang time).
-- A hangs in the air 5.90–7.50, longer than a real jump (stylised anime hang time).
-- A hangs in the air 8.00–9.00, longer than a real jump (stylised anime hang time).
-- B hangs in the air 4.70–6.30, longer than a real jump (stylised anime hang time).
+- A hangs in the air 1.60–3.00, longer than a real jump (stylised anime hang time).
+- A hangs in the air 4.70–5.90, longer than a real jump (stylised anime hang time).
+- A hangs in the air 6.30–7.50, longer than a real jump (stylised anime hang time).
+- A hangs in the air 8.50–9.00, longer than a real jump (stylised anime hang time).
+- B hangs in the air 5.10–6.30, longer than a real jump (stylised anime hang time).
 
 [NEGATIVES]
 no missing limbs; no missing arms; no missing hands; no headless body; no faceless head; no extra fighters beyond A and B; no cloned A; no cloned B; no duplicated kunai; no duplicated rope dart; no duplicated smoke pellet; no duplicated shuriken beyond the declared volley of 3; no duplicated substitution log; no extra weapons; no full circle; no ring; no halo; no scarf covering head; no scarf covering head or face; no scarf physics errors; no floating limbs; no inverted gravity errors; no substitution log as a separate fighter; substitution log is a wooden block NOT a fighter; no A standing on the wooden pillar at the start

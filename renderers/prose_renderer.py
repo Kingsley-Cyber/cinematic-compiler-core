@@ -843,7 +843,7 @@ def hang_rules(envelope, labels):
 
     nodes = {n["id"]: n for n in _items(envelope, "nodes", "kinematic")}
     view = {s["slot"]: s for s in slots(envelope) if s["slot"] in nodes}
-    return [f"{labels[entity]} hangs in the air {_time(takeoff['t'])}–{_time(landing['t'])}, longer than a real jump "
+    return [f"{labels[entity]} hangs in the air {_time(airborne[0]['t'])}–{_time(landing['t'])}, longer than a real jump "
             "(stylised anime hang time)." for entity, takeoff, airborne, landing in float_spans(nodes, view)
             if any(nodes[s["slot"]].get("float") for s in airborne)]
 

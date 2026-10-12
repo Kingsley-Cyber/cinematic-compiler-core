@@ -92,6 +92,8 @@ def test_courtyard_keys_pass_and_the_joints_come_from_the_kernel():
     ("ROTATION_INCOMPLETE", lambda p: key(p, "acrobat@b13").update(turn="none", axis_declaration="none")),
     ("ROTATION_NOT_MONOTONIC", lambda p: key(p, "acrobat@b13").update(rot=[420, -389.055, 0])),
     ("INVERSION_MISSING", lambda p: key(p, "acrobat@b13").update(rot=[180, -389.055, 180])),
+    # FR.4, owner O80: the dodge flip declared from the grounded 7.60 key turns before its 8.60 launch (F-058)
+    ("AIRBORNE_WITHOUT_LAUNCH", lambda p: key(p, "acrobat@b11").update(turn="flip", axis_declaration="X")),
     ("JOINT_LIMIT", lambda p: key(p, "wizard@b03")["bones"].update(LL=[-30, 0, 0])),   # knee hyperextension (O7)
     ("JOINT_LIMIT", lambda p: key(p, "wizard@b03")["bones"].update(LFA=[-170, 0, 0])),  # elbow past 150, no anime allowance
     ("JOINT_LIMIT", lambda p: key(p, "wizard@b03")["bones"].update(NK=[40, 0, 0], HD=[40, 0, 0])),  # neck 80 > 45 + 30

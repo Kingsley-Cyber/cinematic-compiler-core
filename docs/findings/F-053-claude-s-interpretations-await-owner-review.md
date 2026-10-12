@@ -44,6 +44,8 @@ renderers/prose_renderer.py): an entrance is a first line in the air and a first
 Added in S-019: rule R-34 scoped to whole-body checks (ADR-O76 keeps the owner's wider sentence). Added in S-020
 (solver/shape_direction.py): SHAPE_DIRECTION's thresholds and span; nine rewrites, not twelve (three are flights). Added in S-021
 (compiler/passes/derived/p11_kinematic.py): MOMENTUM_MISSING's arc and 0.3 m; the hang said once per span in RULES.
+Added in S-022 (solver/euler_solver.py): a turn that stays on the ground (a tip) needs no launch; the takeoff
+effects of the wizard's two flips sit on the beats before them (run_in, the slicing bolt).
 
 ## Impact
 Waits on the owner.

@@ -53,8 +53,14 @@ def test_each_rule_rejects_its_violation(code, change):
 
 
 def test_a_support_change_in_progress_allows_either_side():
-    # b03 declares the flip's hang time (O74, S-021); a supported key cannot float, so the float goes with the support
-    assert codes(lambda p: node(p, "acrobat@b03").update(support=["left_foot"], float=False)) == set()
+    """S11 allows either side of a support change a beat has in progress at the slot. Since O80 (S-022) no wizard slot
+    has one, so the test gives acrobat@b03 an airborne-to-grounded change in progress."""
+    packet = copy.deepcopy(PACKET)
+    next(s for s in packet["slots"] if s["slot"] == "acrobat@b03")["allowed_support_states"] = ["airborne", "grounded"]
+    for support in ([], ["left_foot"]):
+        plan = copy.deepcopy(PLAN)
+        node(plan, "acrobat@b03").update(support=support, float=False)
+        assert not [f for f in p11_kinematic.check(plan, packet) if f["code"] == "KINEMATIC_SUPPORT"]
 
 
 @pytest.mark.integration

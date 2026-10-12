@@ -34,9 +34,11 @@ def test_courtyard_lifecycle_links_every_release_to_what_it_ends():
     for edge in releases:
         release, opened = events[edge["from"]], events[edge["to"]]
         assert p07_contact._pair(release) == p07_contact._pair(opened) and opened["t"] <= release["t"]
-    assert all(e["t"] == round(next(b for b in envelope["nodes"]["beats"]["items"] if b["id"] == e["beat"])["t"] +
-                               next(b for b in envelope["nodes"]["beats"]["items"] if b["id"] == e["beat"])["dur"], 6)
-               for e in events.values())
+    beats = {b["id"]: b for b in envelope["nodes"]["beats"]["items"]}
+    at_start = {i for i, e in events.items() if e["t"] == beats[e["beat"]]["t"]}
+    assert at_start == {"b12_c1", "b12_c2"}  # the dodge flip leaves the ground at its start (owner O80, S-022)
+    assert all(e["t"] == round(beats[e["beat"]]["t"] + beats[e["beat"]]["dur"], 6) for i, e in events.items()
+               if i not in at_start)
 
 
 def test_cup_possession_matches_holder():

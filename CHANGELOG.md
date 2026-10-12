@@ -16,6 +16,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
   quality)" for punch and "(press quality)" and so on; S15's data and LBN-2.4 keep the Laban vocabulary.
 
 ### Added
+- AIRBORNE_WITHOUT_LAUNCH (M9-09c, plan FR.4, owner O80, S-022): S13 refuses an airborne flip or cartwheel that
+  starts turning on the ground or has no grounded support before it; the wizard's vault and dodge flip take off at
+  1.20 and 8.60 (R-33); hang lines start at the first airborne key. F-058 resolved.
 - MOMENTUM_MISSING (M9-09b, plan F9.2, owner O74, S-021): S11 holds an airborne span to the gravity arc through its
   takeoff and landing roots unless, in anime, its keys declare hang time (`float`; kinematic_plan and kinematic_graph
   1.1); the prompts say each hang once in RULES; the eight anime spans that hung declare it (R-33).

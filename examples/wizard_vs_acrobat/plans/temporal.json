@@ -65,6 +65,14 @@
      },
      "property": "posture",
      "value": "crouching"
+    },
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "support",
+     "value": "airborne"
     }
    ],
    "contacts": [],
@@ -122,7 +130,7 @@
       "id": "acrobat"
      },
      "property": "support",
-     "value": "grounded"
+     "value": "airborne"
     }
    ],
    "effects": [
@@ -938,6 +946,14 @@
      },
      "property": "damage",
      "value": "cut"
+    },
+    {
+     "subject": {
+      "kind": "entity",
+      "id": "acrobat"
+     },
+     "property": "support",
+     "value": "airborne"
     }
    ],
    "contacts": [],
@@ -987,7 +1003,7 @@
       "id": "acrobat"
      },
      "property": "support",
-     "value": "grounded"
+     "value": "airborne"
     }
    ],
    "effects": [
@@ -1020,7 +1036,8 @@
       "kind": "surface",
       "id": "ground",
       "part": null
-     }
+     },
+     "at": "start"
     },
     {
      "contact_type": "release",
@@ -1033,7 +1050,8 @@
       "kind": "surface",
       "id": "ground",
       "part": null
-     }
+     },
+     "at": "start"
     }
    ],
    "causes": [

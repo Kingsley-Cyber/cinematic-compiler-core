@@ -163,6 +163,8 @@ rows:
     codes: [SUPPORT_MISMATCH, AIRBORNE_UNBOOKENDED, AIRBORNE_PICKUP, MOMENTUM_MISSING]
     gaps: [WEIGHT_TRAVEL, OPPOSITION]
     enforced_by:
+      - {file: solver/euler_solver.py, check: _launch_findings, code: AIRBORNE_WITHOUT_LAUNCH,
+         test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
       - {file: compiler/passes/derived/p11_kinematic.py, check: momentum_findings, code: MOMENTUM_MISSING,
          test: tests/test_kinematic_solver.py::test_each_rule_rejects_its_violation}
       - {file: validators/prompt_validator.py, check: check, code: MOMENTUM_MISSING,

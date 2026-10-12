@@ -10,18 +10,18 @@ Layer order 1.7; rules 3.0; backlog 5.
 
 ## Last sessions
 
-- S-019 (applied): The owner's rulings O72-O80, rules R-33 and R-34
 - S-020 (applied): M9-09a: SHAPE_DIRECTION refuses a Shape quality the body contradicts (F9.1; O31, O73, O76)
 - S-021 (applied): M9-09b: airborne spans follow the gravity arc; anime declares hang time (F9.2, O74)
+- S-022 (applied): M9-09c: an airborne turn launches at its first key from grounded support (FR.4, O80)
 
 ## Next slices
 
-- M9-09c (next, step motion): FR.4 launch before an aerial turn; a launch needs grounded support before it (O80)
+- M9-09d (next, step temporal): F-064: the kunai reverses to -Z at the deflect (O77)
 - M9-06 (ready, step motion): F5.1/F5.2 world contact points by forward kinematics; roots at the pelvis (O72)
-- M9-09d (ready, step temporal): F-064: the kunai reverses to -Z at the deflect (O77)
 - M9-09e (ready, step temporal): F-065: a prop at rest has support; the smoke pellet falls (O78)
+- M9-09f (ready, step intent): F-067: the reference query says A falls from y=10 (O79)
 
-M9: 13 of 34 slices done, 21 left (M9-03a blocked; 1 the owner's own).
+M9: 14 of 34 slices done, 20 left (M9-03a blocked; 1 the owner's own).
 
 ## Waiting on the owner
 
@@ -36,7 +36,7 @@ M9: 13 of 34 slices done, 21 left (M9-03a blocked; 1 the owner's own).
 - F-066 (high): What is a key's root position: the pelvis or the ground point?
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 
-## Open findings: 38
+## Open findings: 37
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -55,4 +55,4 @@ M9: 13 of 34 slices done, 21 left (M9-03a blocked; 1 the owner's own).
 
 ## Next free IDs
 
-Decision ADR-O81, finding F-070, session S-022, render R20.
+Decision ADR-O81, finding F-070, session S-023, render R20.
