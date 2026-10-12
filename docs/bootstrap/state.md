@@ -6,13 +6,13 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 3.1; backlog 11.
+Layer order 1.7; rules 3.1; backlog 12.
 
 ## Last sessions
 
-- S-033 (applied): M9-06e: body_type lives in the genre profile cards (schemas/genre_profile.schema.json), not the modality schemas
 - S-034 (applied): The owner's ten asymmetric things per beat: ADR-O87, the map against the repo, PLAN-006 and its slices
 - S-035 (applied): The first principal review, and its gaps filed: rulings O88-O100, findings F-074-F-119, PLAN-007
+- S-036 (applied): The finish run: a prompt that works until the repo is done (O101)
 
 ## Next slices
 
@@ -87,4 +87,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O101, finding F-120, session S-036, render R20.
+Decision ADR-O102, finding F-120, session S-037, render R20.

@@ -6,6 +6,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The finish run (owner O101, S-036): docs/prompts/finish.md and `/finish` work slice after slice, each committed and
+  pushed, until the gate's six conditions hold; open questions are answered from the plan's own sources; the
+  bootstrap (3.0) resumes a running finish run after a compaction.
 - The first principal review (S-035, owner O99): the work matches the plan only partially. Its gaps are filed as
   F-074 to F-119 with PLAN-007 (slices RV-01 to RV-41); the owner's answers are ADR-O88 to O97; the gate's six
   conditions are in CLAUDE.md (O98); the anti-reward-hacking clause is in CLAUDE.md and AGENTS.md section 18 (O100,

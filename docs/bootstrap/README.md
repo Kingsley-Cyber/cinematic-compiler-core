@@ -1,6 +1,6 @@
 # Bootstrap: resume work on this repo
 
-<!-- docs-version: 2.0 -->
+<!-- docs-version: 3.0 -->
 
 Read this first after a context compaction, in a new session, or whenever you are unsure where the work stands. It
 holds no state of its own: [state.md](state.md) is generated from the repo, and everything else points at the repo's
@@ -23,9 +23,11 @@ own records (owner O69). In Claude Code, `/bootstrap` opens it.
    [lessons.md](lessons.md) (gotchas already paid for once).
 5. **Run the gate and keep its exit code:** `rm -f gate.log; scripts/verify.sh > gate.log 2>&1; echo "exit=$?"`. A
    `gate.log` you did not just write is not evidence (lessons L-02).
-6. **An autopilot run in progress?** If a `docs/reports/*-autopilot-*.md` says Status `running`, read it and
-   [../prompts/autopilot.md](../prompts/autopilot.md) and continue the run where the report says (its section 9):
-   the owner started it, and its grant still holds (ADR-O70). Otherwise go to step 7.
+6. **A run in progress?** If a `docs/reports/*-finish-*.md` says Status `running`, read it and
+   [../prompts/finish.md](../prompts/finish.md) and continue the run where the report says (its section 8): the owner
+   started it, and its grant holds until the repo is done (ADR-O101). If a `docs/reports/*-autopilot-*.md` says
+   Status `running`, do the same with [../prompts/autopilot.md](../prompts/autopilot.md) (its section 9; ADR-O70).
+   Otherwise go to step 7.
 7. **Refresh the graphs** (`make graphs`), take the `next` slice in [../plan.md](../plan.md), open its session file
    from [../sessions/_template.md](../sessions/_template.md) with your predictions, and build it (AGENTS.md section 8).
 

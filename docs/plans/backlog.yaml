@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 11
+version: 12
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -222,3 +222,5 @@ items:
      step: docs, plan: PLAN-005, depends_on: [D-08], findings: [], codes: []}
   - {id: D-10, title: "Bootstrap before a compaction: the owner's review of the miss list (O82), M9-06b's scope (O83)",
      status: done, step: docs, plan: PLAN-005, depends_on: [D-09], findings: [], codes: []}
+  - {id: D-11, title: "The finish run (docs/prompts/finish.md, /finish) until the repo is done (O101)", status: done,
+     step: docs, plan: PLAN-005, depends_on: [D-10], findings: [], codes: []}

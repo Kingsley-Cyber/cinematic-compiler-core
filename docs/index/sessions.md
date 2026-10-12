@@ -42,6 +42,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-033 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog M9-06e (added this session); ru… | applied | the commit whose message names [S-033] | about 25 minutes | The owner's ten asymmetric things per beat (ADR-O87, a plan… | [S-033-m9-06e-body-type-in-the-genre-profile-cards.md](../sessions/S-033-m9-06e-body-type-in-the-genre-profile-cards.md) |
 | S-034 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog AS-01 to AS-06 (added this sess… | applied | the commit whose message names [S-034] | about 40 minutes | AS-01 (the striking surface on contacts), unless the owner… | [S-034-plan-the-ten-asymmetric-things.md](../sessions/S-034-plan-the-ten-asymmetric-things.md) |
 | S-035 | 2026-10-11 | Claude Code (Opus 5.5), with five independent read-only reviewers | Backlog RV-01 to RV-41 (added this sess… | applied | the commit whose message names [S-035] | about 3 hours (the review, its verification and the filing) | Wait for the owner's "go" before step 3 (RV-01). The owner… | [S-035-principal-review-filed.md](../sessions/S-035-principal-review-filed.md) |
+| S-036 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog D-11 (added this session); ruli… | applied | the commit whose message names [S-036] | about 30 minutes | Run `/finish` (or "Read docs/bootstrap/README.md, then run… | [S-036-the-finish-run-prompt.md](../sessions/S-036-the-finish-run-prompt.md) |
 
 ## Status values
 

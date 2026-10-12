@@ -101,10 +101,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 3.1; backlog 11.
-- Last session: S-035 (2026-10-11, applied): The first principal review, and its gaps filed: rulings O88-O100, findings F-074-F-119, PLAN-007.
+- Layer order 1.7; rules 3.1; backlog 12.
+- Last session: S-036 (2026-10-11, applied): The finish run: a prompt that works until the repo is done (O101).
 - Next slice: RV-01 C12 loses CONTACT_WORLD and is NOT CHECKED until AS-06 (F-074) (step render).
-- Open findings: 82; decisions: 127 (0 proposed).
+- Open findings: 82; decisions: 128 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
