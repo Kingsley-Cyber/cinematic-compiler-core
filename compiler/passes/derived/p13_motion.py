@@ -3,8 +3,9 @@
 Authored: root pos/rot, the kernel joints, turn and axis declarations. Checked by solver/euler_solver.py, by
 CONTACT_WORLD (solver/contact_world.py; a support on a floor at every key it spans, RV-14a), by BODY_OVERLAP
 (solver/body_overlap.py: no body through another, RV-49) and by FLOOR_PENETRATION (solver/floor_penetration.py: no
-body under the floor at any key, RV-14a), and at every frame between keys no body passes through another, each posed
-by the declared interpolation through its keys and in-betweens (BODY_OVERLAP, RV-59e). An in-between key (ADR-O109,
+body under the floor at any key, RV-14a), and at every frame between keys no body passes through another or sinks under
+the floor, each posed by the declared interpolation through its keys and in-betweens (BODY_OVERLAP, RV-59e;
+FLOOR_PENETRATION, RV-59c). An in-between key (ADR-O109,
 RV-59f) is checked like a key: its span
 (INBETWEEN_SPAN), the kernel joints and their limits, its root's speed to its neighbours (TELEPORT, owner O12), the
 floor and the other bodies at its instant, posed as the declared interpolation has them.
@@ -155,41 +156,68 @@ def _words(text):
     return text.replace("_", " ")
 
 
-def _between_keys(keys, by_id, standing, packet):
-    """BODY_OVERLAP at every frame between keys (RV-59e, R-18): each body posed by the declared interpolation through
-    its keys and in-betweens, a vanished body left out; an instant where every body stands at a key or an in-between is
-    judged there. One refusal per pair of spans, at its deepest frame, naming both spans."""
+def _frames(keys, by_id, standing, packet):
+    """[(t, {entity: (pose, key before, key after)})] for every frame of the scene's fps strictly inside the keys'
+    range, each body posed by the declared interpolation through its keys and in-betweens, a vanished body left out."""
     fps, sequences = packet["fps"], interpolation.sequences(_timeline(keys, by_id), standing)
     times = [k["t"] for own in sequences.values() for k in own]
-    worst = {}
+    out = []
     for frame in range(math.floor(min(times) * fps) + 1, math.ceil(max(times) * fps)):
-        t, bodies, spans = round(frame / fps, 6), {}, {}
+        t, here = round(frame / fps, 6), {}
         for entity, own in sequences.items():
             gone = any(e == entity and start - 1e-9 <= t and (back is None or t < back - 1e-9)
                        for e, start, back in packet["vanished"])
             pose = None if gone else _posed(own, t)
-            if pose is None:
-                continue
-            before = max((k for k in own if k["t"] <= t + 1e-9), key=lambda k: k["t"])
-            after = min((k for k in own if k["t"] >= t - 1e-9), key=lambda k: k["t"])
-            spans[entity] = (before, after)
-            bodies[(entity, t)] = {"id": entity, "capsules": forward_kinematics.capsules(pose, packet["segments"],
-                                                                                        packet["radii"])}
-        if all(a is b for a, b in spans.values()):
+            if pose is not None:
+                here[entity] = (pose, max((k for k in own if k["t"] <= t + 1e-9), key=lambda k: k["t"]),
+                                min((k for k in own if k["t"] >= t - 1e-9), key=lambda k: k["t"]))
+        out.append((t, here))
+    return out
+
+
+def _slot(key):
+    return key.get("id") or f"{key['entity']}@{key['t']:g}"
+
+
+def _between_keys(frames, packet):
+    """BODY_OVERLAP at every frame between keys (RV-59e, R-18); a frame where every body stands at a key or an
+    in-between is judged there. One refusal per pair of spans, at its deepest frame, naming both spans."""
+    worst = {}
+    for t, here in frames:
+        if all(before is after for _, before, after in here.values()):
             continue  # every body at a key or an in-between: judged there
+        bodies = {(entity, t): {"id": entity, "capsules": forward_kinematics.capsules(pose, packet["segments"],
+                                                                                     packet["radii"])}
+                  for entity, (pose, _, _) in here.items()}
         for _, first, second, depth, one, two in body_overlap.overlaps(bodies):
             pair = (first[0], second[0])
-            span = tuple((spans[e][0]["t"], spans[e][1]["t"]) for e in pair)
+            span = tuple((here[e][1]["t"], here[e][2]["t"]) for e in pair)
             if depth > worst.get((pair, span), (0.0,))[0]:
-                worst[(pair, span)] = (depth, t, one, two, spans[first[0]][0])
-    findings = []
-    for (pair, span), (depth, t, one, two, before) in sorted(worst.items(), key=lambda item: item[1][1]):
-        slot = before.get("id") or f"{before['entity']}@{before['t']:g}"
-        findings.append({"code": "BODY_OVERLAP", "slot": slot, "message": f"{_words(pair[0])} {_words(one)} and "
-                         f"{_words(pair[1])} {_words(two)} overlap by {depth:g} m at {t:g} between keys ({_words(pair[0])} "
-                         f"{span[0][0]:g}-{span[0][1]:g}, {_words(pair[1])} {span[1][0]:g}-{span[1][1]:g}; R-18: no body "
-                         f"through another)"})
-    return findings
+                worst[(pair, span)] = (depth, t, one, two, here[first[0]][1])
+    return [{"code": "BODY_OVERLAP", "slot": _slot(before), "message": f"{_words(pair[0])} {_words(one)} and "
+             f"{_words(pair[1])} {_words(two)} overlap by {depth:g} m at {t:g} between keys ({_words(pair[0])} "
+             f"{span[0][0]:g}-{span[0][1]:g}, {_words(pair[1])} {span[1][0]:g}-{span[1][1]:g}; R-18: no body through "
+             f"another)"} for (pair, span), (depth, t, one, two, before) in sorted(worst.items(), key=lambda i: i[1][1])]
+
+
+def _floor_between_keys(frames, packet):
+    """FLOOR_PENETRATION at every frame between keys (RV-59c, owner O72): a body's lowest point more than 0.15 m under
+    the floor; a body at a key or an in-between is judged there. One refusal per body and span, at its deepest frame."""
+    if packet["floor_y"] is None:
+        return []
+    worst = {}
+    for t, here in frames:
+        for entity, (pose, before, after) in here.items():
+            if before is after:
+                continue
+            part, point = min(forward_kinematics.points(pose, packet["segments"]).items(), key=lambda i: (i[1][1], i[0]))
+            depth = round(packet["floor_y"] - point[1], 3)
+            if depth > floor_penetration.TOLERANCE_M and depth > worst.get((entity, before["t"]), (0.0,))[0]:
+                worst[(entity, before["t"])] = (depth, t, part, before, after)
+    return [{"code": "FLOOR_PENETRATION", "slot": _slot(before), "message": f"{_words(entity)}'s {_words(part)} is "
+             f"{depth:g} m under the floor at {t:g} between keys ({before['t']:g}-{after['t']:g}; over "
+             f"{floor_penetration.TOLERANCE_M:g} m, owner O72)"}
+            for (entity, _), (depth, t, part, before, after) in sorted(worst.items(), key=lambda i: i[1][1])]
 
 
 def _posed(sequence, t):
@@ -210,13 +238,15 @@ def check(document, packet):
     if any(f["code"] == "MOTION_JOINTS" for f in findings):
         return findings  # forward kinematics needs every joint
     between_findings, standing = _inbetweens(document, keys, by_id, packet)
+    frames = _frames(keys, by_id, standing, packet)
     rows = contact_world.measure_plan(keys, by_id, packet, standing)  # CONTACT_WORLD (plan F5.2, owners O72, O83)
     bodies = contact_world.plan_bodies(keys, by_id, packet)
     return (findings + contact_world.refusals(rows, packet["contact_world"]["exceptions"])  # the owner's list (F-123)
             + body_overlap.refusals(bodies)  # RV-49 (F-144, R-18)
             + floor_penetration.refusals(bodies, packet["floor_y"])  # RV-14a (F-089, owner O72)
             + between_findings + _inbetween_world(standing, keys, by_id, packet)  # ADR-O109 (RV-59f)
-            + _between_keys(keys, by_id, standing, packet))  # RV-59e (F-159, R-18)
+            + _between_keys(frames, packet)  # RV-59e (F-159, R-18)
+            + _floor_between_keys(frames, packet))  # RV-59c (F-089, owner O72)
 
 
 def build(envelope, document, packet):

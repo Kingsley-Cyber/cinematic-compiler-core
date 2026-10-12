@@ -10,16 +10,16 @@ Layer order 1.7; rules 7.2; backlog 41.
 
 ## Last sessions
 
-- S-095 (applied): RV-59i: every prompt prints the in-between keys
 - S-096 (applied): RV-108: a declared turn under a half turn is drawn as the turn it is
 - S-097 (applied): RV-59e: no body through another at any frame between keys
+- S-098 (applied): RV-59c: no body under the floor at any frame between keys
 
 ## Next slices
 
-- RV-59c (next, step motion): FLOOR_PENETRATION at every frame between keys; B's crash cleared with a key mid-fall (ADR-O109) after RV-108 draws its tip
+- RV-59g (next, step motion): CONTACT_WORLD on every open support at every frame between keys (the DAG's 'respect support'), the examples' takeoffs placed where the motion leaves its surface
 - RV-35b (ready, step all): The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools
-- RV-59g (ready, step motion): CONTACT_WORLD on every open support at every frame between keys (the DAG's 'respect support'), the examples' takeoffs placed where the motion leaves its surface
 - RV-107 (ready, step temporal): The wizard example's push-off at the pillar's release and its landing keyed where the fall ends; c06 and c08 re-authored; beat_planning.txt teaches RV-59d's measure
+- RV-95c (ready, step motion): The pickup rows worded in the printed legend's frame, and A's head at 7.5 aimed at B by a facing goal in the re-block solver (or its words dropped)
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -137,4 +137,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O110, finding F-230, session S-098, render R20.
+Decision ADR-O110, finding F-230, session S-099, render R20.

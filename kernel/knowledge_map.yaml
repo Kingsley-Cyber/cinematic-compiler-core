@@ -30,7 +30,7 @@
 # Anchors are line numbers in the frozen copy (§2.2 = Mermaid block, §2.3 = node catalogue).
 # X1-X41 (§3.5) are findings about specific prompts, not rules, and are not mapped.
 
-version: 30
+version: 31
 status: draft
 basis: "Mapped by Claude 2026-10-11 against the repo at 9c9fd98 (layer_order 1.7); owner decisions O1-O4 recorded
   2026-10-11 (docs/plans/M8_DAG_PROSE.md); O13-O14 (checklist scope, not-applicable rulings) 2026-10-11; owner
@@ -575,6 +575,8 @@ rows:
          test: tests/test_inbetweens.py::test_s13_refuses_a_body_through_another_between_keys}
       - {file: solver/floor_penetration.py, check: refusals, code: FLOOR_PENETRATION,
          test: tests/test_motion_solver.py::test_no_body_sinks_into_the_floor_at_any_key}
+      - {file: compiler/passes/derived/p13_motion.py, check: _floor_between_keys, code: FLOOR_PENETRATION,
+         test: tests/test_inbetweens.py::test_s13_refuses_a_body_under_the_floor_between_keys}
       - {file: solver/contact_world.py, check: refusals, code: CONTACT_WORLD,
          test: tests/test_motion_solver.py::test_every_claimed_support_meets_its_surface_at_every_key}
     note: "Identity, contact before effect (props), rotation continuity and the teleport ban hold in the pipeline: S04
@@ -586,8 +588,8 @@ rows:
       surface there (CONTACT_WORLD). Between keys the bodies are posed along the declared interpolation and measured
       (validators/between_keys_report.py, RV-59a), and a re-blocked key keeps its spans clear of another body and over
       the floor (solver/reblock.py's clearance, RV-59b, RV-59c); S13 refuses two bodies overlapping at any frame there
-      (BODY_OVERLAP, RV-59e), the repo's in-between keys clearing its side (ADR-O109); RV-59c refuses the floor there
-      and RV-59g measures open supports.
+      (BODY_OVERLAP, RV-59e) or a body point more than 0.15 m under the floor there (FLOOR_PENETRATION, RV-59c), the
+      repo's in-between keys clearing its side (ADR-O109); RV-59g measures open supports there.
       Momentum (gap), a body through a prop (F-151) and a held prop at every sample (RV-14b, F-148) have no check."
 
   - id: T11

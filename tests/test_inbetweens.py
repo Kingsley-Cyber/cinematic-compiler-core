@@ -205,3 +205,16 @@ def test_the_in_betweens_re_derive_from_their_recorded_commands(example, tmp_pat
         assert out["misses_m2"] == 0.0, command[0]
         plan["inbetweens"].append({k: out[k] for k in ("entity", "t", "pos", "rot", "bones")} | {"name": "x", "description": "."})
     assert {(b["entity"], b["t"]): (b["pos"], b["rot"], b["bones"]) for b in plan["inbetweens"]} == committed
+
+
+def test_s13_refuses_a_body_under_the_floor_between_keys():
+    """F-089 (RV-59c, owner O72): S13 refuses a body point more than 0.15 m under the floor at any frame between keys;
+    without B's in-between at 8.75 the crash sinks B's right sole 0.209 m at 8.708, and with it S13 refuses nothing."""
+    envelope = json.loads((ROOT / "examples" / "reference_fight" / "envelope.json").read_text(encoding="utf-8"))
+    plan = json.loads((ROOT / "examples" / "reference_fight" / "plans" / "motion.json").read_text(encoding="utf-8"))
+    packet = p13_motion.prepare(envelope)
+    bare = {**plan, "inbetweens": [b for b in plan["inbetweens"] if b["t"] != 8.75]}
+    sinks = [f for f in p13_motion.check(bare, packet) if f["code"] == "FLOOR_PENETRATION"]
+    assert [(f["slot"], "0.209 m under the floor at 8.70833 between keys" in f["message"]) for f in sinks] == \
+        [("ninja_broad@b21", True)]
+    assert p13_motion.check(plan, packet) == []

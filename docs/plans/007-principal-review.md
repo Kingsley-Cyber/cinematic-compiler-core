@@ -184,3 +184,4 @@ backlog order (backlog 33).
 - 2026-10-12 — RV-59i done (S-095): every prompt prints the in-between keys at their instants (render.txt's rows, the prose's block, the density); RV-108 next.
 - 2026-10-12 — RV-108 done (S-096): a declared turn under a half turn is slerped between keys; B's crash is the printed tip (0.209 m under, not 0.385); F-225 resolved; RV-59e next.
 - 2026-10-12 — RV-59e done (S-097): S13 refuses a body through another at any frame between keys; five in-betweens of B's and two of the acrobat's clear every span; F-159 and F-220 resolved; RV-59c next.
+- 2026-10-12 — RV-59c done (S-098): S13 refuses a body under the floor at any frame between keys; the examples pass; RV-59g next.

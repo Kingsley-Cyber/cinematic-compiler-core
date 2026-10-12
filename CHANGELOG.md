@@ -6,6 +6,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- No body under the floor at any frame between keys (RV-59c, F-089, S-098): S13 refuses a body point more than 0.15 m
+  under the floor between keys, each body posed by the declared interpolation through its keys and in-betweens, on
+  the frame walk BODY_OVERLAP's check shares; the examples pass (B's crash held by its in-between at 8.75).
 - No body through another at any frame between keys (RV-59e, F-159, F-220, S-097): S13 refuses two bodies overlapping
   between keys, each posed by the declared interpolation through its keys and in-betweens. Five in-between keys of
   B's (4.75, 6.45, 6.7, 8.45, 8.75; DEV-35) and two of the acrobat's (3.55, 3.7), placed from recorded commands with

@@ -176,9 +176,9 @@ items:
      step: motion, plan: PLAN-007, depends_on: [RV-59a], findings: [F-225], codes: []}
   - {id: RV-59e, title: "BODY_OVERLAP refused at every frame between keys: B's 7.5 root re-blocked (the descent, no contact), the spans by a contact cleared with B's in-between keys (ADR-O109); what only A's rows could clear stays F-220's", status: done,
      step: motion, plan: PLAN-007, depends_on: [RV-59f, RV-59i], findings: [F-159, F-220], codes: []}
-  - {id: RV-59c, title: "FLOOR_PENETRATION at every frame between keys; B's crash cleared with a key mid-fall (ADR-O109) after RV-108 draws its tip", status: next,
+  - {id: RV-59c, title: "FLOOR_PENETRATION at every frame between keys; B's crash cleared with a key mid-fall (ADR-O109) after RV-108 draws its tip", status: done,
      step: motion, plan: PLAN-007, depends_on: [RV-59f, RV-108], findings: [F-089, F-220, F-225], codes: []}
-  - {id: RV-59g, title: "CONTACT_WORLD on every open support at every frame between keys (the DAG's 'respect support'), the examples' takeoffs placed where the motion leaves its surface", status: ready,
+  - {id: RV-59g, title: "CONTACT_WORLD on every open support at every frame between keys (the DAG's 'respect support'), the examples' takeoffs placed where the motion leaves its surface", status: next,
      step: motion, plan: PLAN-007, depends_on: [RV-59f], findings: [F-221], codes: []}
   - {id: RV-107, title: "The wizard example's push-off at the pillar's release and its landing keyed where the fall ends; c06 and c08 re-authored; beat_planning.txt teaches RV-59d's measure", status: ready,
      step: temporal, plan: PLAN-007, depends_on: [RV-59f], findings: [F-227], codes: []}

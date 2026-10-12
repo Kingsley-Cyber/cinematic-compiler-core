@@ -102,8 +102,8 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 7.2; backlog 41.
-- Last session: S-097 (2026-10-12, applied): RV-59e: no body through another at any frame between keys.
-- Next slice: RV-59c FLOOR_PENETRATION at every frame between keys; B's crash cleared with a key mid-fall (ADR-O109) after RV-108 draws its tip (step motion).
+- Last session: S-098 (2026-10-12, applied): RV-59c: no body under the floor at any frame between keys.
+- Next slice: RV-59g CONTACT_WORLD on every open support at every frame between keys (the DAG's 'respect support'), the examples' takeoffs placed where the motion leaves its surface (step motion).
 - Open findings: 141; decisions: 136 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 

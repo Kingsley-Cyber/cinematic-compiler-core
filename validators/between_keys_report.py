@@ -1,8 +1,8 @@
 """The between-keys report (RV-59a; F-159, F-089): every frame of the four examples strictly between an entity's keys,
 posed along the declared interpolation (solver/interpolation.py: joints slerped, the root straight), measured the way
 S13 measures its keys: two bodies whose capsules overlap (BODY_OVERLAP's measure, no depth allowed) and a body point
-more than 0.15 m under the floor (FLOOR_PENETRATION's). S13 refuses an overlap at any frame between keys (RV-59e); the
-floor between keys is RV-59c's to refuse.
+more than 0.15 m under the floor (FLOOR_PENETRATION's). S13 refuses both at any frame between keys (RV-59e,
+RV-59c); this report shows what they would find.
 
     python -m validators.between_keys_report > docs/reports/<date>-between-keys.md
 """
