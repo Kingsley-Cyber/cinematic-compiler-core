@@ -151,3 +151,4 @@ RV-93, RV-75, RV-76, RV-77, RV-58, RV-18, RV-64 and the rest in backlog order (b
 - 2026-10-12 — RV-71b done (S-070): the camera cards' rules as structured fields; the prompt prints them word for word.
 - 2026-10-12 — RV-72 done (S-071): S08 reads the holds; S09 credits a release only at the change.
 - 2026-10-12 — Review 5 (S-072): verdict partially; F-187 to F-195 with RV-85 to RV-93, questions F-196 to F-203; the queue rebalanced toward the fight.
+- 2026-10-12 — RV-85 done (S-073): a camera rule's words ask only what its fields ask; a rule about a hit is a hit rule.

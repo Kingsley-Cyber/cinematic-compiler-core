@@ -82,7 +82,7 @@ flowchart LR
 | `kernel_extraction.control_inventory` | `kernel.canonical`, `planner.dependency_graph` | hashlib, json, re, sys, yaml |
 | `planner.archetype_resolver` | — | — |
 | `planner.beat_planner` | `compiler.authoring`, `kernel.kernel_files`, `planner.dependency_graph`, `planner.library_vocab`, `planner.modality`, `planner.vocabulary`, `solver.forward_kinematics` | — |
-| `planner.camera_library` | `kernel.canonical`, `planner.dependency_graph`, `planner.library_vocab`, `validators.schema_validator` | functools, json, yaml |
+| `planner.camera_library` | `kernel.canonical`, `planner.dependency_graph`, `planner.library_vocab`, `validators.schema_validator` | functools, json, re, yaml |
 | `planner.card_loader` | `kernel.canonical`, `planner.dependency_graph`, `validators.schema_validator` | json, re, yaml |
 | `planner.chaining` | `compiler.passes.mandatory.p07_contact`, `kernel.canonical`, `kernel.kernel_files` | — |
 | `planner.dependency_graph` | `kernel.canonical` | pathlib, yaml |

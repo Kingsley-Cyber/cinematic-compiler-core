@@ -12,7 +12,7 @@ high
 L5.5
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -48,4 +48,10 @@ whether a card's rule is its printed words or its fields (listed, F-197)
 - ADR-O92
 
 ## Resolution
-Open.
+RV-85 (S-073): planner/camera_library.py reads each rule's words (a convention's statement, an idiom's prefer) in the
+grammar's camera terms and their common synonyms (TERMS), and refuses a term its fields do not allow; a rule whose words
+name a blow, hit, impact or strike (other than "between hits") is a hit rule, held to O92's hold (CAMERA_CARD, raised
+when S16 loads the card, before any rule is printed); the prompt prints the card's rules word for word (CAMERA_RULES);
+R-21 names both (rules 7.1). The knight's heavy-blow idiom became a hit rule
+(tests/test_camera_solver.py::test_a_card_rule_s_words_ask_only_what_its_fields_ask,
+test_a_rule_that_speaks_of_a_hit_is_a_hit_rule).

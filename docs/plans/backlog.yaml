@@ -124,9 +124,9 @@ items:
      step: camera, plan: PLAN-007, depends_on: [RV-71a], findings: [F-177, F-160], codes: []}
   - {id: RV-72, title: "S08 refuses an undeclared hand holding the object; S09 credits a release only at the change", status: done,
      step: hand_role, plan: PLAN-007, depends_on: [], findings: [F-173, F-137, F-161], codes: []}
-  - {id: RV-85, title: "A camera rule's words ask only what its fields ask; the word lists stay as a floor on the printed rules; R-21 lists the checks", status: next,
+  - {id: RV-85, title: "A camera rule's words ask only what its fields ask; the word lists stay as a floor on the printed rules; R-21 lists the checks", status: done,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-187, F-160, F-177], codes: []}
-  - {id: RV-86, title: "TELEPORT's exemption needs a decoy in the actor's place", status: ready,
+  - {id: RV-86, title: "TELEPORT's exemption needs a decoy in the actor's place", status: next,
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-188], codes: []}
   - {id: RV-13, title: "PROMPT_LENGTH: 3,500 characters for Runway, 1,000 words for BytePlus (O97)", status: ready,
      step: render, plan: PLAN-007, depends_on: [], findings: [F-088], codes: [PROMPT_LENGTH]}

@@ -101,10 +101,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.0; backlog 28.
-- Last session: S-072 (2026-10-12, applied): Principal review 5: does the finished work match the plan?.
-- Next slice: RV-85 A camera rule's words ask only what its fields ask; the word lists stay as a floor on the printed rules; R-21 lists the checks (step camera).
-- Open findings: 128; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
+- Layer order 1.7; rules 7.1; backlog 28.
+- Last session: S-073 (2026-10-12, applied): RV-85: a camera rule's words ask only what its fields ask, and a rule about a hit is a hit rule.
+- Next slice: RV-86 TELEPORT's exemption needs a decoy in the actor's place (step temporal).
+- Open findings: 126; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

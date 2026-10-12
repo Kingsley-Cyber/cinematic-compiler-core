@@ -56,3 +56,4 @@ grammar and owner O92 (CAMERA_CARD); the prompt prints the genre card's rules wo
 the word lists; the knight's shield hit is a hold on both fighters and anime's speed rule applies between hits
 (tests/test_camera_solver.py::test_no_camera_card_slows_playback_or_puts_a_close_up_on_a_hit,
 tests/test_prose_render.py::test_the_printed_camera_rules_follow_o92).
+RV-85 (S-073): the words are tied to the fields (F-187 resolved); the hold's duration and scale (F-192, RV-90) and the owner's questions (F-197) remain.

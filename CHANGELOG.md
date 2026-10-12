@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- A camera rule's words are checked against its fields (RV-85, F-187, S-073): each camera term a card's rule prints, in
+  the grammar's words or a common synonym (tight, ECU, crash zoom, slow-mo, half speed, bullet time ...), must be one its
+  fields allow, and a rule that speaks of a hit is held to O92's hold whatever its label; R-21 names the checks (rules
+  7.1). The knight's heavy-blow idiom is now a hold on both fighters. No prompt changed.
 - Principal review 5 (S-072): five read-only reviewers, verdict "partially", no test tampering; the run's fixes closed
   each finding's probe, not its class, S-070 weakened the camera check, and records were written ahead of their
   evidence. Filed F-187 to F-195 with RV-85 to RV-93, and the owner's open questions as F-196 to F-203; four findings

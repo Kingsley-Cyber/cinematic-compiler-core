@@ -112,6 +112,35 @@ def test_no_camera_card_slows_playback_or_puts_a_close_up_on_a_hit():
     assert refused.value.code == "CAMERA_CARD"
 
 
+def test_a_card_rule_s_words_ask_only_what_its_fields_ask():
+    """F-187 (RV-85, owner O92): the words a rule prints are read in the grammar's camera terms and their common
+    synonyms, and each must be one its fields allow, so a struck rule cannot pass under a compliant or empty label."""
+    from planner import camera_library
+    said = {"Go tight on the face.": "close", "An ECU of the eyes.": "extreme_close", "A detail shot of the blade.": "insert",
+            "Crash zoom in.": "zoom", "Play it slow-mo.": "slow", "Run it at half speed.": "slow", "Bullet time.": "slow",
+            "Overcrank the fall.": "slow", "Speed up the run.": "fast", "Fast motion through the crowd.": "fast",
+            "A slow push in.": "dolly_in", "Hold on both.": "static", "A whip pan.": "whip_pan"}
+    assert {words: sorted(v for _, v in camera_library.terms(words)) for words in said} == {
+        words: [value] for words, value in said.items()}
+    struck = [{"id": "a", "statement": "Cut close on the receiver after a blow lands.", "trigger": "hit",
+               "asks": {"scale": ["medium"], "movement": ["static"], "subjects": "all_present"}},
+              {"id": "b", "statement": "Slow motion around the peak of every move.", "trigger": "fast_move", "asks": {}},
+              {"id": "c", "statement": "Crash zoom to an ECU of the face.", "trigger": "fast_move", "asks": {}}]
+    assert [any("its words ask for" in p for p in camera_library.rule_problems(rule)) for rule in struck] == [True] * 3
+
+
+def test_a_rule_that_speaks_of_a_hit_is_a_hit_rule():
+    """F-187 (RV-85, owner O92): a rule whose words name a blow, hit, impact or strike carries the hit trigger, so O92's
+    hold applies to it whatever its label; "between hits" does not name one."""
+    from planner import camera_library
+    heavy = {"id": "knight_weight_low", "when": "a heavy blow or charge", "prefer": "Low, steady frame.",
+             "trigger": "heavy_move", "asks": {}}
+    assert camera_library.rule_problems(heavy) == ["knight_weight_low: its words speak of a hit, so its trigger is hit"]
+    between = {"id": "follow", "statement": "A fast body move between hits is followed by a tracking or whip move.",
+               "trigger": "fast_move", "asks": {"movement": ["tracking", "whip_pan"]}}
+    assert camera_library.rule_problems(between) == []
+
+
 def test_a_hit_from_the_contacts_is_a_camera_hold_at_s16():
     """F-155 (RV-57, owner O92): S16 sees the contacts, so the shot covering each hit holds still on every body present:
     the acrobat's kick lands on the wizard at 3.6 (HIT_HOLD)."""

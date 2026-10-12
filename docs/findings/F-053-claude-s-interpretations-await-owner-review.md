@@ -127,6 +127,9 @@ quality, printed at its instant ("vanishes with ... in place"), not maintained o
 Added in S-069 (RV-71a): a hold is a static shot on a locked or smooth rig. Added in S-070 (RV-71b,
 library/camera_conventions, library/camera_idioms): each rule's trigger and asks read from its words; anime's speed
 rule applies "between hits"; the knight's shield hit becomes a medium-wide hold on both fighters.
+Added in S-073 (RV-85, planner/camera_library.py): the synonyms read as camera terms (TERMS: tight, ECU, detail shot, crash
+zoom, slow-mo, half speed, bullet time, overcrank, speed up, fast motion, push, whip, track, hold); the words that name a
+hit (blow, hit, impact, strike, struck; "between hits" excepted); the knight's heavy blow read as a hit.
 
 ## Impact
 Waits on the owner.
