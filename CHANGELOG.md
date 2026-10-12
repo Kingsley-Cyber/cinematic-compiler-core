@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The re-block solver re-derives a re-block from its record (RV-96, F-207, S-082): solver/reblock.py takes the best
+  move among all free joints at each step, so their order cannot change its answer; the genre's joint limits bound
+  every free joint; its command takes the start key from a plan file or a git revision, the root's height, weighted
+  goals and the free set, and prints itself with the result. No example changed.
 - Principal review 6 (S-081): five read-only reviewers, verdict "partially", no test tampering; the run's fixes again
   closed their probes, not their classes, and S-080 put a knee in the floor and the pickup hands on it through a throw
   and a leap. Filed F-206 to F-218 with RV-95 to RV-105; reopened F-090, F-110, F-187, F-160 and F-091 in part; corrected

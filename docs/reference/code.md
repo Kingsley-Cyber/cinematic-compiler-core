@@ -111,7 +111,7 @@ flowchart LR
 | `solver.forward_kinematics` | `planner.dependency_graph`, `planner.genre_profile`, `solver.quaternion`, `validators.schema_validator` | json, math, yaml |
 | `solver.prop_state_machine` | — | — |
 | `solver.quaternion` | `kernel.canonical` | math |
-| `solver.reblock` | `solver.forward_kinematics` | argparse, copy, json, pathlib, sys |
+| `solver.reblock` | `solver.euler_solver`, `solver.forward_kinematics` | argparse, copy, json, pathlib, shlex, subprocess, sys, yaml |
 | `solver.shape_direction` | `solver.quaternion`, `solver.staff_geometry` | math |
 | `solver.staff_geometry` | `solver.quaternion` | math |
 | `solver.trajectory` | — | math |

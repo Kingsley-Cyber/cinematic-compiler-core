@@ -148,9 +148,9 @@ items:
      step: motion, plan: PLAN-007, depends_on: [RV-02a], findings: [F-110, F-127], codes: []}
   - {id: RV-35b, title: "The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools", status: ready,
      step: all, plan: PLAN-007, depends_on: [RV-35a], findings: [F-127], codes: []}
-  - {id: RV-96, title: "The re-block solver re-derives a re-block from its record: order-independent, joint limits, weighted goals and a start key in the CLI", status: next,
+  - {id: RV-96, title: "The re-block solver re-derives a re-block from its record: order-independent, joint limits, weighted goals and a start key in the CLI", status: done,
      step: motion, plan: PLAN-007, depends_on: [RV-35a], findings: [F-207, F-127], codes: []}
-  - {id: RV-95, title: "The pickups re-blocked with RV-96's solver: every body point above the floor, the hand on it only at the pickup, the words re-written to the numbers", status: ready,
+  - {id: RV-95, title: "The pickups re-blocked with RV-96's solver: every body point above the floor, the hand on it only at the pickup, the words re-written to the numbers", status: next,
      step: motion, plan: PLAN-007, depends_on: [RV-96], findings: [F-206, F-110], codes: []}
   - {id: RV-100, title: "S-076's, S-078's and S-080's example rewrites typed in deviations.yaml; DEV-09 updated; R-19 cites O97", status: ready,
      step: docs, plan: PLAN-007, depends_on: [], findings: [F-212], codes: []}

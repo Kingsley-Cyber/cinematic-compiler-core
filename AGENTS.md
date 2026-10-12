@@ -102,8 +102,8 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 7.1; backlog 33.
-- Last session: S-081 (2026-10-12, applied): Principal review 6: does the finished work match the plan?.
-- Next slice: RV-96 The re-block solver re-derives a re-block from its record: order-independent, joint limits, weighted goals and a start key in the CLI (step motion).
+- Last session: S-082 (2026-10-12, applied): RV-96: the re-block solver re-derives a re-block from its record.
+- Next slice: RV-95 The pickups re-blocked with RV-96's solver: every body point above the floor, the hand on it only at the pickup, the words re-written to the numbers (step motion).
 - Open findings: 142; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 

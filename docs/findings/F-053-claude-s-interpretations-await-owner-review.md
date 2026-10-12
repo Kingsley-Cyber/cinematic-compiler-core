@@ -158,6 +158,8 @@ is the repo's reading of O18's "crouched on the ground", and a hand on the floor
 Noted in S-081 (the sixth review): S-074's TELEPORT exemption (a substitution's decoy in the actor's place) answers
 F-196 Q5, which is open; S-080's quote of O18 was wrong (O18 says A "lands beside the rope dart and the kunai before
 picking them up"), and its crouch height and hand supports are reopened (F-206).
+Added in S-082 (RV-96, solver/reblock.py): the search is a steepest descent with ties broken by the components'
+sorted names; a sum limit (NK+HD) is not enforced, so the neck and the head are not freed together.
 
 ## Impact
 Waits on the owner.

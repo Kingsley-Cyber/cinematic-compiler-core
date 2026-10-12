@@ -10,16 +10,16 @@ Layer order 1.7; rules 7.1; backlog 33.
 
 ## Last sessions
 
-- S-079 (applied): RV-16: each fighter's laban chain in render.txt lists its own moves
 - S-080 (applied): RV-35a: A's pickups crouch on the feet with one hand down, re-blocked by a committed solver
 - S-081 (applied): Principal review 6: does the finished work match the plan?
+- S-082 (applied): RV-96: the re-block solver re-derives a re-block from its record
 
 ## Next slices
 
-- RV-96 (next, step motion): The re-block solver re-derives a re-block from its record: order-independent, joint limits, weighted goals and a start key in the CLI
+- RV-95 (next, step motion): The pickups re-blocked with RV-96's solver: every body point above the floor, the hand on it only at the pickup, the words re-written to the numbers
 - RV-35b (ready, step all): The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools
-- RV-95 (ready, step motion): The pickups re-blocked with RV-96's solver: every body point above the floor, the hand on it only at the pickup, the words re-written to the numbers
 - RV-100 (ready, step docs): S-076's, S-078's and S-080's example rewrites typed in deviations.yaml; DEV-09 updated; R-19 cites O97
+- RV-99 (ready, step camera): Camera card rules: RV-60's word lists restored as a floor; a hit rule found from what a contact means; subject and rig words read
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -139,4 +139,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-219, session S-082, render R20.
+Decision ADR-O109, finding F-219, session S-083, render R20.

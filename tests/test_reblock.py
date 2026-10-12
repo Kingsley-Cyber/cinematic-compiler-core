@@ -7,7 +7,7 @@ import pytest
 from conftest import ROOT
 
 from solver import forward_kinematics
-from solver.reblock import solve
+from solver.reblock import limits, main, solve
 
 pytestmark = pytest.mark.unit
 EXAMPLES = ROOT / "examples"
@@ -38,6 +38,49 @@ def test_s078_s_re_blocks_are_re_derived_from_their_goals():
     before = {**key, "bones": {**key["bones"], "LUL": [-85.17, 1.29, 22.95]}}  # the key before S-078
     bones, misses = solve(before, metres, [("left_foot", 0.034)], ["LUL.x"], {})
     assert misses < 1e-6 and abs(bones["LUL"][0] - key["bones"]["LUL"][0]) <= 1
+
+
+def test_the_answer_does_not_depend_on_the_order_of_the_free_joints():
+    """F-207 (RV-96): the search takes the best move among all free components, ties broken by their names, so any
+    order of the free list gives the same bones."""
+    metres = forward_kinematics.segments("anime")
+    key = _key("wizard_vs_acrobat", "acrobat@b11")
+    lifted = {**key, "bones": {**key["bones"], "LL": [110, 0, 0], "LUL": [-80, 0, 8]}}
+    goals = [("left_foot", 0.0), ("left_hand", [1.0, 0.6, 5.2])]
+    free = ["Sp.x", "LUL.x", "LUL.z", "LL.x", "LA.x", "LFA.x"]
+    answers = [solve(lifted, metres, goals, order, {}, (), limits("anime"))
+               for order in (free, list(reversed(free)), free[2:] + free[:2])]
+    assert answers[0] == answers[1] == answers[2]
+
+
+def test_the_genre_s_joint_limits_bound_the_free_joints():
+    """F-207 (RV-96, owner O11): the genre's joint limits bound every free component; a goal past them is left unmet
+    rather than met through a bent-back knee."""
+    metres = forward_kinematics.segments("anime")
+    key = _key("wizard_vs_acrobat", "acrobat@b11")
+    assert limits("anime")["LL.x"] == (0.0, 165.0) and limits("adult")["LL.x"] == (0.0, 135.0)
+    unbound, _ = solve(key, metres, [("left_foot", 1.6)], ["LL.x"])
+    bound, misses = solve(key, metres, [("left_foot", 1.6)], ["LL.x"], None, (), limits("anime"))
+    assert unbound["LL"][0] > 165 and bound["LL"][0] == 165 and misses > 0
+
+
+def test_the_cli_re_derives_a_solve_from_its_start_key_and_weighted_goals(tmp_path, capsys):
+    """F-207 (RV-96): the command takes the start key from a plan file (or a git revision), the root's height, weighted
+    goals and the free set, and prints itself with the result that `solve` gives for the same inputs."""
+    plan = json.loads((EXAMPLES / "wizard_vs_acrobat" / "plans" / "motion.json").read_text(encoding="utf-8"))
+    key = next(k for k in plan["keys"] if k["slot"] == "acrobat@b11")
+    key["bones"]["LL"] = [110, 0, 0]
+    start = tmp_path / "motion.json"
+    start.write_text(json.dumps(plan), encoding="utf-8")
+    argv = ["wizard_vs_acrobat", "acrobat@b11", "--plan", str(start), "--root-y", "1.05", "--free", "LUL.x,LL.x",
+            "--goal", "left_foot.y=0", "--goal", "left_foot=1.29,0,5.12@0.01", "--above", "head.y=1.5"]
+    assert main(argv) == 0
+    printed = json.loads(capsys.readouterr().out)
+    key["pos"] = [key["pos"][0], 1.05, key["pos"][2]]
+    bones, misses = solve(key, forward_kinematics.segments("anime"), [("left_foot", 0.0), ("left_foot", [1.29, 0, 5.12], 0.01)],
+                          ["LUL.x", "LL.x"], {}, [("head", 1.5)], limits("anime"))
+    assert printed["bones"] == bones and printed["misses_m2"] == round(misses, 6)
+    assert printed["command"] == "python -m solver.reblock " + " ".join(argv)
 
 
 def test_the_pickups_crouch_on_the_feet_with_one_hand_down():

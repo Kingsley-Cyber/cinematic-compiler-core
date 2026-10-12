@@ -168,3 +168,4 @@ backlog order (backlog 33).
 - 2026-10-12 — RV-16 done (S-079): each fighter's laban chain lists the beats it acts in; F-091 resolved.
 - 2026-10-12 — RV-35a done (S-080): A's pickups crouch with one hand down; solver/reblock.py committed; F-110 resolved; F-205 (the anime arm) for the owner; RV-35b open.
 - 2026-10-12 — Review 6 (S-081): verdict partially, no tampering; F-206 to F-218 with RV-95 to RV-105; F-090, F-110, F-187, F-160, F-091 reopened in part; RV-96 next.
+- 2026-10-12 — RV-96 done (S-082): the re-block solver is order-independent, bound by the joint limits, and re-derivable from its printed command.

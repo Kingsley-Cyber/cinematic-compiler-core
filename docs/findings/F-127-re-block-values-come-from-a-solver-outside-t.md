@@ -61,3 +61,5 @@ components that meets stated goals inside stated bounds, with a CLI; it re-deriv
 goals (within 0.125 degrees) and derived S-080's pickups. Open: the re-blocks recorded from S-030 to S-049 and the
 camera values chosen by trial in S-050 and S-076 (S-076's search lives in a scratch file), re-derived with committed
 tools (RV-35b).
+Noted in S-082 (RV-96): the solver is now order-independent, bound by the joint limits, and re-derivable from its
+printed command; the pickups (RV-95) and the older re-blocks and camera trials (RV-35b) remain.

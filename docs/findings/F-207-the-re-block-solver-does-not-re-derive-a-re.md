@@ -57,4 +57,9 @@ none needed
 - RV-35b
 
 ## Resolution
-Open.
+Open in part: RV-96 (S-082) makes the search a steepest descent over every free component, ties broken by the
+components' sorted names, so the order of the free list cannot change the answer (a test shuffles it); the genre's
+joint limits bound every free component (a goal past them is left unmet); the CLI takes the start key from a plan file
+or a git revision, the root's height, weighted goals and the free set, and prints the command with its result, which
+`solve` reproduces (a test). S-078's three values are recorded as hand choices (S-078's correction, RV-100). Open:
+S-080's pickups re-blocked from a recorded command with a re-derivation test (RV-95).
