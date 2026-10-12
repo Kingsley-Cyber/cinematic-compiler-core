@@ -6,20 +6,20 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 7.2; backlog 34.
+Layer order 1.7; rules 7.2; backlog 35.
 
 ## Last sessions
 
-- S-083 (applied): RV-95: the pickups re-blocked from a recorded command, every part above the floor
 - S-084 (applied): RV-100: this run's example rewrites typed as deviations; R-19 cites O97
 - S-085 (applied): RV-99: the camera cards' rules keep RV-60's floor, and a hit rule is found from what a contact does
+- S-086 (applied): RV-59a: bodies measured between keys, along the declared interpolation
 
 ## Next slices
 
-- RV-59 (next, step motion): BODY_OVERLAP, CONTACT_WORLD and FLOOR_PENETRATION along the declared interpolation between keys; the paths re-blocked
+- RV-59b (next, step motion): BODY_OVERLAP at every frame between keys, B's paths re-blocked; CONTACT_WORLD at an instant with no key measured on the interpolated pose
 - RV-35b (ready, step all): The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools
+- RV-59c (ready, step motion): FLOOR_PENETRATION at every frame between keys; B's crash given a key between or a declared fall
 - RV-97 (ready, step camera): VERTICAL_FRAMING along a static shot's window, frames on the declared interpolation, a margin by each part's radius; c11 and c20 re-authored
-- RV-98 (ready, step camera): A declared entrance may start outside its shot's frame (O21): c01 opens with A above the frame
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -135,4 +135,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-220, session S-086, render R20.
+Decision ADR-O109, finding F-220, session S-087, render R20.

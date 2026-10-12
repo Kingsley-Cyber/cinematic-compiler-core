@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 34
+version: 35
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -156,10 +156,14 @@ items:
      step: docs, plan: PLAN-007, depends_on: [], findings: [F-212], codes: []}
   - {id: RV-99, title: "Camera card rules: RV-60's word lists restored as a floor; a hit rule found from what a contact means; subject and rig words read", status: done,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-210, F-187, F-160], codes: []}
-  - {id: RV-59, title: "BODY_OVERLAP, CONTACT_WORLD and FLOOR_PENETRATION along the declared interpolation between keys; the paths re-blocked", status: next,
+  - {id: RV-59a, title: "Poses between keys along the declared interpolation (joints slerped, the root straight), measured at every frame and reported", status: done,
      step: motion, plan: PLAN-007, depends_on: [RV-35a], findings: [F-159, F-089], codes: []}
+  - {id: RV-59b, title: "BODY_OVERLAP at every frame between keys, B's paths re-blocked; CONTACT_WORLD at an instant with no key measured on the interpolated pose", status: next,
+     step: motion, plan: PLAN-007, depends_on: [RV-59a], findings: [F-159], codes: []}
+  - {id: RV-59c, title: "FLOOR_PENETRATION at every frame between keys; B's crash given a key between or a declared fall", status: ready,
+     step: motion, plan: PLAN-007, depends_on: [RV-59a], findings: [F-089], codes: []}
   - {id: RV-97, title: "VERTICAL_FRAMING along a static shot's window, frames on the declared interpolation, a margin by each part's radius; c11 and c20 re-authored", status: ready,
-     step: camera, plan: PLAN-007, depends_on: [RV-59], findings: [F-208, F-090], codes: []}
+     step: camera, plan: PLAN-007, depends_on: [RV-59a], findings: [F-208, F-090], codes: []}
   - {id: RV-98, title: "A declared entrance may start outside its shot's frame (O21): c01 opens with A above the frame", status: ready,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-209, F-090], codes: []}
   - {id: RV-101, title: "An insert's detail has a point; a carried prop takes its carrier's point; a prop a shot's action names is framed; a vanished body is no aim", status: ready,

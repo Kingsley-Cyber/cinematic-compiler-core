@@ -6,6 +6,11 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- Bodies are measured between keys (RV-59a, F-159, F-089, S-086): solver/interpolation.py poses each body at every
+  frame along the declared interpolation (joints slerped, the root straight, a declared turn's angles straight), and
+  validators/between_keys_report.py measures overlaps and the floor there (docs/reports/2026-10-12-between-keys.md):
+  the fight's bodies overlap in 38 frames and B's crash sinks a sole 0.385 m. RV-59b and RV-59c refuse them; no
+  example changed.
 - The camera cards' rules keep RV-60's floor (RV-99, F-210, S-085): a rule asking for slowed playback is refused
   whatever its fields, a rule about a hit is found by what a contact does (a kick, a punch, a contact, a parry), and a
   hit's words may not put a close-up on it, frame one body or shake the camera. Every rule review 6 found passing is

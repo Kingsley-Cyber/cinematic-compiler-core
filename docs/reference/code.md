@@ -37,11 +37,11 @@ flowchart LR
   solver -->|1| kernel
   solver -->|4| planner
   solver -->|1| validators
-  validators -->|4| compiler
+  validators -->|5| compiler
   validators -->|4| kernel
-  validators -->|9| planner
+  validators -->|10| planner
   validators -->|3| renderers
-  validators -->|8| solver
+  validators -->|12| solver
 ```
 
 ## Modules
@@ -109,12 +109,14 @@ flowchart LR
 | `solver.euler_solver` | `solver.quaternion` | — |
 | `solver.floor_penetration` | `planner.dynamic_beat_validator` | — |
 | `solver.forward_kinematics` | `planner.dependency_graph`, `planner.genre_profile`, `solver.quaternion`, `validators.schema_validator` | json, math, yaml |
+| `solver.interpolation` | `solver.quaternion` | math |
 | `solver.prop_state_machine` | — | — |
 | `solver.quaternion` | `kernel.canonical` | math |
 | `solver.reblock` | `solver.euler_solver`, `solver.forward_kinematics` | argparse, copy, json, pathlib, shlex, subprocess, sys, yaml |
 | `solver.shape_direction` | `solver.quaternion`, `solver.staff_geometry` | math |
 | `solver.staff_geometry` | `solver.quaternion` | math |
 | `solver.trajectory` | — | math |
+| `validators.between_keys_report` | `compiler.examples`, `planner.dynamic_beat_validator`, `solver.body_overlap`, `solver.floor_penetration`, `solver.forward_kinematics`, `solver.interpolation`, `validators.contact_world_report` | json |
 | `validators.camera_validator` | `planner.library_vocab`, `solver.camera_geometry`, `solver.forward_kinematics` | — |
 | `validators.cause_reason` | — | re |
 | `validators.checklist` | `compiler.examples`, `planner.dependency_graph`, `validators.prompt_length`, `validators.prompt_validator` | hashlib, json, sys, yaml |

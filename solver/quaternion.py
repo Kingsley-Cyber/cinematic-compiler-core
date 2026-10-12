@@ -40,6 +40,12 @@ def quaternion(rot):
     return [round(v, 9) + 0.0 for v in _unit_quaternion(rot)]
 
 
+def unit_quaternion(rot):
+    """[w, x, y, z], w >= 0, unrounded: what a slerp and its read-back need (solver/interpolation.py), since rounding
+    to 9 places blurs an angle at Y = +-90 degrees."""
+    return list(_unit_quaternion(rot))
+
+
 def _unit_quaternion(rot):
     m = matrix(rot)
     trace = m[0][0] + m[1][1] + m[2][2]

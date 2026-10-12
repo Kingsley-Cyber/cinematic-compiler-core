@@ -101,9 +101,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.2; backlog 34.
-- Last session: S-085 (2026-10-12, applied): RV-99: the camera cards' rules keep RV-60's floor, and a hit rule is found from what a contact does.
-- Next slice: RV-59 BODY_OVERLAP, CONTACT_WORLD and FLOOR_PENETRATION along the declared interpolation between keys; the paths re-blocked (step motion).
+- Layer order 1.7; rules 7.2; backlog 35.
+- Last session: S-086 (2026-10-12, applied): RV-59a: bodies measured between keys, along the declared interpolation.
+- Next slice: RV-59b BODY_OVERLAP at every frame between keys, B's paths re-blocked; CONTACT_WORLD at an instant with no key measured on the interpolated pose (step motion).
 - Open findings: 136; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 

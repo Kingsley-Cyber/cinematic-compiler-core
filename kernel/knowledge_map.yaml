@@ -30,7 +30,7 @@
 # Anchors are line numbers in the frozen copy (§2.2 = Mermaid block, §2.3 = node catalogue).
 # X1-X41 (§3.5) are findings about specific prompts, not rules, and are not mapped.
 
-version: 19
+version: 20
 status: draft
 basis: "Mapped by Claude 2026-10-11 against the repo at 9c9fd98 (layer_order 1.7); owner decisions O1-O4 recorded
   2026-10-11 (docs/plans/M8_DAG_PROSE.md); O13-O14 (checklist scope, not-applicable rulings) 2026-10-11; owner
@@ -574,8 +574,9 @@ rows:
       layer (PRESERVE_AXIS left out, P3.2-6). RV-49 (F-144, R-18): S13 refuses two bodies whose segments (capsules with
       the body card's draft radii) overlap at an instant both have a key (BODY_OVERLAP). RV-14a (F-089): no body
       point lies over 0.15 m under the floor at any key (FLOOR_PENETRATION), and every support a key claims meets its
-      surface there (CONTACT_WORLD). Momentum (gap), a body through a prop (F-151), a held prop at every sample
-      (RV-14b, F-148) and points between keys (RV-59) have no check."
+      surface there (CONTACT_WORLD). Between keys the bodies are posed along the declared interpolation and measured
+      (validators/between_keys_report.py, RV-59a); RV-59b and RV-59c refuse there. Momentum (gap), a body through a
+      prop (F-151) and a held prop at every sample (RV-14b, F-148) have no check."
 
   - id: T11
     name: Dual encoding

@@ -55,3 +55,7 @@ Open.
 Noted in S-081 (the sixth review): between keys A and B overlap in 33 frames (deepest 0.149 m at 6.375), A falls
 through B's head at 7.21, and B's left sole goes 0.385 m under the floor at 8.75 (RV-59, its title widened to
 FLOOR_PENETRATION).
+Noted in S-086 (RV-59a): along the declared interpolation (joints slerped, the root straight) the fight's bodies
+overlap in 38 frames over eight spans between keys, deepest 0.149 m at 6.375, every span with B's repo keys at one
+end; the wizard example's in 5 frames over two spans (docs/reports/2026-10-12-between-keys.md). RV-59b refuses them
+and re-blocks B's paths.

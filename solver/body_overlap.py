@@ -4,8 +4,9 @@ At each instant where two bodies both have an S13 key, every capsule of one (for
 axis between its two joints, its radius from the body card, draft) stays out of every capsule of the other: the least
 distance between their axes is at least the sum of their radii. A contact between two bodies meets at their surfaces
 (CONTACT_WORLD measures it there), so it overlaps nothing either.
-Interpretation (Claude's, for owner review): only the keys' exact instants are checked (a point between keys is
-RV-47's); a body's own segments may cross each other; no depth is allowed (ALLOWANCE_M); a prop has no extent yet, so a
+Interpretation (Claude's, for owner review): only the keys' exact instants are checked here; between keys
+validators/between_keys_report.py measures along the declared interpolation (RV-59a) and RV-59b refuses; a body's own
+segments may cross each other; no depth is allowed (ALLOWANCE_M); a prop has no extent yet, so a
 body through a prop is not checked.
 """
 

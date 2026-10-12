@@ -182,3 +182,7 @@ be over the floor, the sole being the contact point (the foot is the shin's exte
 Added in S-085 (RV-99, planner/camera_library.py): the hit words (the nouns, the striking verbs, the attacks on a body),
 the words that frame one body (alone, solely, only or on the receiver, attacker, striker, defender, target, victim) and
 that shake a camera (handheld, shake, jitter, wobble, judder), a negation (no, not, never, without) read as one.
+Added in S-086 (RV-59a, solver/interpolation.py): the root runs straight between keys (its positions exact only
+there), the joints slerp as the source says, a declared turn's root angles run straight; at Y = 90 or -90 degrees the
+shared X and Z turn is read back as X; frames at the scene's fps, a vanished body's window left out; a span is the
+source's when both its keys are the owner's rows.

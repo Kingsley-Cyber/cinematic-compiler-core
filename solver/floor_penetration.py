@@ -5,7 +5,8 @@ read against the floor: the lowest top among the scene's floors, or the conventi
 floor. A point more than 0.15 m under it is refused, the tolerance O72 sets for a contact's two points.
 Interpretation (Claude's, for owner review): a point is the part's centre line, so a part may sink by its radius, as a
 foot's sole meets a surface in CONTACT_WORLD; a body over a raised top is judged against the floor, not the top, until
-RV-22 gives surfaces their faces.
+RV-22 gives surfaces their faces. Only the keys are checked here; between keys validators/between_keys_report.py
+measures along the declared interpolation (RV-59a) and RV-59c refuses.
 """
 
 from planner.dynamic_beat_validator import GROUND, surface_tops

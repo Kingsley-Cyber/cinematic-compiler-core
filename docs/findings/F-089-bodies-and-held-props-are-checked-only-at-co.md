@@ -58,3 +58,5 @@ line); a support on a surface's face (RV-22); a contact between keys (RV-59).
 Noted in S-081 (the sixth review): S-080 put A's right knee 0.109 m in the floor at 7.5, which the 0.15 m allowance
 passes (F-206, F-215); between keys B's left sole goes 0.385 m under the floor at 8.75 (RV-59 now carries
 FLOOR_PENETRATION between keys).
+Noted in S-086 (RV-59a): between keys B's crash (8.5 to 9.0) sinks the left sole 0.385 m under the floor over nine
+frames, the only body more than 0.15 m under it between keys in the four examples (RV-59c refuses it).
