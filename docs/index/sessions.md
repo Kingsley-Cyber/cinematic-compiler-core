@@ -59,6 +59,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-050 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-09 (PLAN-007); findings F-08… | applied | the commit whose message names [S-050] | about 1.5 hours | RV-10 (the kunai drive and the catch, O93). | [S-050-rv-09-hits-are-camera-holds.md](../sessions/S-050-rv-09-hits-are-camera-holds.md) |
 | S-051 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-10 (PLAN-007); findings F-08… | applied | the commit whose message names [S-051] | about 1 hour | RV-11 (compile refuses non-deliverables, O94). | [S-051-rv-10-the-kunai-drive-and-the-catch.md](../sessions/S-051-rv-10-the-kunai-drive-and-the-catch.md) |
 | S-052 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-11 (PLAN-007); finding F-085… | applied | the commit whose message names [S-052] | about 30 minutes | RV-12 (the 6.3 cartwheel is a full turn, O96). | [S-052-rv-11-compile-refuses-a-non-deliverable.md](../sessions/S-052-rv-11-compile-refuses-a-non-deliverable.md) |
+| S-053 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-12 (PLAN-007); finding F-087… | applied | the commit whose message names [S-053] | about 15 minutes | Principal review 3 (eight slices since review 2), then RV-1… | [S-053-rv-12-the-cartwheel-is-a-full-turn.md](../sessions/S-053-rv-12-the-cartwheel-is-a-full-turn.md) |
 
 ## Status values
 

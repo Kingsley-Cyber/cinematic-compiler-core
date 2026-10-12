@@ -6,7 +6,7 @@ Genre: anime. LBN-2.4 is read against the DAG's Master Template (O13), so many o
 
 | Prompt | File | sha256 | Bytes | PASS | FAIL | NOT CHECKED | N/A | Deliverable |
 |---|---|---|---|---|---|---|---|---|
-| LBN | `render.txt` | `f92835d0746976be91526ba6ad4aff1a4e0887eea4149b75c87ccf34a69bd82e` | 71776 | 3 | 50 | 14 | 17 | no |
+| LBN | `render.txt` | `cedc629db443a8b522d624868f639c58cf9c9162c621d8220e4a33ab36992274` | 71773 | 3 | 50 | 14 | 17 | no |
 | Pure | `prose_pure_staff.txt` | `f9eafc9508e246ca43c63ad7f62dc4e34f15bbfe45018f187b3b6d78da5837dc` | 46535 | 31 | 0 | 36 | 17 | no |
 | Mixed | `prose_mixed.txt` | `0e91ce1dc6121b874ff37175151e2190f5e29d92d35d121ea04f67233d3bbbf0` | 47018 | 31 | 0 | 36 | 17 | no |
 | Upgr | `prose_upgraded_mixed.txt` | `51977c86f734674adb828e4016547801edc797b4032a7d5e0499747278261bac` | 48065 | 31 | 0 | 36 | 17 | no |

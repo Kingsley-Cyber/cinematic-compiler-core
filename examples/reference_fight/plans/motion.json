@@ -2076,7 +2076,7 @@
      0
     ]
    },
-   "description": "L:arm fwd high bent4 elbow-driving-up, leg fwd mid bent5, lLeg bent5; R:arm fwd high bent4 elbow-driving-up, leg fwd mid bent5, lLeg bent5; support=none airborne; CARTWHEEL TO RISING ELBOW, A rises from slide into a cartwheel, A body rotates sideways in screen plane one quarter turn, then A DRIVES LEFT ELBOW UPWARD, left elbow cocked and driving up toward B chest, right arm extended back for counter, left hand empty, rope dart on the ground since the substitution, head facing B, this is a CARTWHEEL TO RISING ELBOW combo, left elbow leads",
+   "description": "L:arm fwd high bent4 elbow-driving-up, leg fwd mid bent5, lLeg bent5; R:arm fwd high bent4 elbow-driving-up, leg fwd mid bent5, lLeg bent5; support=none airborne; CARTWHEEL TO RISING ELBOW, A rises from slide into a cartwheel, A body rotates sideways in screen plane one full turn, then A DRIVES LEFT ELBOW UPWARD, left elbow cocked and driving up toward B chest, right arm extended back for counter, left hand empty, rope dart on the ground since the substitution, head facing B, this is a CARTWHEEL TO RISING ELBOW combo, left elbow leads",
    "turn": "cartwheel",
    "axis_declaration": "Z"
   },

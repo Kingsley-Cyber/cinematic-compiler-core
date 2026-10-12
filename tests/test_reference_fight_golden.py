@@ -125,7 +125,11 @@ ROPE_DART_WORDS = {
           ("left hand still holding rope dart", "left hand empty, rope dart on the ground")],
     6.3: [("left hand no longer holding rope dart, rope dart has been released during the slide",
            "left hand empty, rope dart on the ground since the substitution")]}
-WORDS = {t: [pair] for t, pair in OPENING_WORDS.items()} | ROPE_DART_WORDS
+# Owner O96 (F-087, RV-12): the cartwheel at 6.3 is a full turn, as its keys roll it (O18), not the source's quarter turn.
+CARTWHEEL_WORDS = {6.3: [("A body rotates sideways in screen plane one quarter turn",
+                          "A body rotates sideways in screen plane one full turn")]}
+WORDS = {t: [pair] for t, pair in OPENING_WORDS.items()} | {
+    t: ROPE_DART_WORDS.get(t, []) + CARTWHEEL_WORDS.get(t, []) for t in ROPE_DART_WORDS | CARTWHEEL_WORDS}
 
 
 def reworded(t, text):

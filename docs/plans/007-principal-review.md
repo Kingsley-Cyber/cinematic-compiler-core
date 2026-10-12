@@ -58,7 +58,7 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 | RV-09 | L5.5 | high | done (S-050) | hits as camera holds (F-083, F-005) |
 | RV-10 | L1.1 | high | done (S-051) | the kunai drive and the catch (F-084) |
 | RV-11 | L6 | high | done (S-052) | compile refuses non-deliverables; excluded rows N/A (F-085) |
-| RV-12 | L6 | medium | open | the cartwheel's words (F-087) |
+| RV-12 | L6 | medium | done (S-053) | the cartwheel's words (F-087) |
 | RV-13, RV-13b | L6 | high | open | prompt length (F-088) |
 | RV-14 | L4c | high | open | every-key body checks (F-089, F-062) |
 | RV-15 | L5.5 | high | open | the camera's aim and vertical framing (F-090) |
@@ -112,3 +112,4 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 - 2026-10-12 — RV-09 done (S-050): hits are camera holds, no playback ramps.
 - 2026-10-12 — RV-10 done (S-051): the kunai drive holds the kunai in B; the catch grasps then throws.
 - 2026-10-12 — RV-11 done (S-052): excluded rows N/A; cinematic compile refuses non-deliverables.
+- 2026-10-12 — RV-12 done (S-053): the cartwheel is a full turn in the words.

@@ -10,16 +10,16 @@ Layer order 1.7; rules 7.0; backlog 22.
 
 ## Last sessions
 
-- S-050 (applied): RV-09: hits are camera holds with both bodies in frame; no playback ramps (O92)
 - S-051 (applied): RV-10: the kunai drive holds the kunai in B's shoulder; the catch is a grasp plus a throw (O93)
 - S-052 (applied): RV-11: DAG-excluded rows are N/A; `cinematic compile` refuses a prompt that is not a deliverable (O94)
+- S-053 (applied): RV-12: the 6.3 cartwheel is a full turn in the words too (O96)
 
 ## Next slices
 
-- RV-12 (next, step render): The 6.3 cartwheel is a full turn in render.txt (O96)
-- RV-13 (ready, step render): PROMPT_LENGTH: 3,500 characters for Runway, 1,000 words for BytePlus (O97)
+- RV-13 (next, step render): PROMPT_LENGTH: 3,500 characters for Runway, 1,000 words for BytePlus (O97)
 - RV-14 (ready, step motion): Every-key body checks: no body under the floor; supports at every key; held and embedded props at their holder
 - RV-15 (ready, step camera): The camera aims at the body and an insert at its detail; vertical framing checked
+- RV-16 (ready, step render): One laban chain per fighter in render.txt
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -55,7 +55,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-53 blocked: The source rows whose numbers contradict their words; O95 against O88 on two action keys — the owner's answers in F-148 and F-149
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 90
+## Open findings: 89
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -81,4 +81,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-152, session S-053, render R20.
+Decision ADR-O109, finding F-152, session S-054, render R20.

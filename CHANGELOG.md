@@ -6,6 +6,8 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The 6.3 cartwheel is a full turn in the words too (RV-12, O96, F-087, S-053): A's 6.3 row says "one full turn", as its
+  keys roll it; a recorded rewording.
 - `cinematic compile` refuses a prompt that is not a deliverable (RV-11, O94, F-085, S-052): it runs the prompt checks
   and the checklist on every prompt it emits and exits 5, writing nothing, unless all five are deliverables; a row the
   DAG excludes is N/A unless a code checks it. R-19 says so (rules 7.0). No prompt is a deliverable yet.

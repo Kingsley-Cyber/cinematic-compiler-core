@@ -102,9 +102,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 7.0; backlog 22.
-- Last session: S-052 (2026-10-12, applied): RV-11: DAG-excluded rows are N/A; `cinematic compile` refuses a prompt that is not a deliverable (O94).
-- Next slice: RV-12 The 6.3 cartwheel is a full turn in render.txt (O96) (step render).
-- Open findings: 90; decisions: 135 (0 proposed).
+- Last session: S-053 (2026-10-12, applied): RV-12: the 6.3 cartwheel is a full turn in the words too (O96).
+- Next slice: RV-13 PROMPT_LENGTH: 3,500 characters for Runway, 1,000 words for BytePlus (O97) (step render).
+- Open findings: 89; decisions: 135 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

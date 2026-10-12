@@ -12,7 +12,7 @@ medium
 L6
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -46,4 +46,6 @@ ADR-O96
 - ADR-O18
 
 ## Resolution
-Open.
+RV-12 (S-053, O96): A's 6.3 key says "A body rotates sideways in screen plane one full turn", as its keys roll it
+(O18); render.txt prints it, and the golden records the rewording (tests/test_reference_fight_golden.py
+CARTWHEEL_WORDS). The prose prompts never carried the clause.
