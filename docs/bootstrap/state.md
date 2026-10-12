@@ -10,16 +10,16 @@ Layer order 1.7; rules 7.0; backlog 25.
 
 ## Last sessions
 
-- S-059 (applied): RV-60: the camera cards follow O92, and the printed camera rules are checked
 - S-060 (applied): RV-61: "before a beat" read one way: S10 reads the state before the beat's own effects; S09 carries instants
 - S-061 (applied): RV-62: the vanishing actor's line ends its support; B draws the volley before throwing it
+- S-062 (applied): RV-57: hits found from the contacts are camera holds at S16, S17 and in the prompt, whatever S17 holds
 
 ## Next slices
 
-- RV-57 (next, step camera): Hits found from the contacts are camera holds on every body present, at S16 and in the prompt, whatever S17 holds (O92)
-- RV-58 (ready, step render): The compiler judges prompts with the owner's render findings; a possess counts on an impact frame only as a catch; a touch of another's held prop is no strike only for a non-limb part
+- RV-58 (next, step render): The compiler judges prompts with the owner's render findings; a possess counts on an impact frame only as a catch; a touch of another's held prop is no strike only for a non-limb part
 - RV-18 (ready, step brief): Declared validators run (S02 coherence); the envelope records what ran
 - RV-64 (ready, step temporal): The S04 packet carries the query's choreography and the scene_reference rules
+- RV-13 (ready, step render): PROMPT_LENGTH: 3,500 characters for Runway, 1,000 words for BytePlus (O97)
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -68,7 +68,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 92
+## Open findings: 91
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -93,10 +93,9 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-148 (high, L1.1): Source rows whose numbers contradict their own words: fix them or keep them?
 - F-152 (high, L4c): O72's point measure and BODY_OVERLAP cannot both hold for body contacts
 - F-153 (high, L6): No compile can ever emit: render.txt cannot pass the Master Template rows
-- F-155 (high, L5.5): HIT_HOLD reads O92 backwards: only holds the S17 author placed are judged
 - F-159 (high, L4c): Bodies pass through each other between keys
 - F-167 (high, L1.1): The S04 author never sees the query it plans
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-169, session S-062, render R20.
+Decision ADR-O109, finding F-169, session S-063, render R20.

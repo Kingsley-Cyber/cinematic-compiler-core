@@ -16,6 +16,8 @@
 - genre: transition, playback, rig, roll, shot length and required intents per library/camera_conventions/<genre>;
 - playback (owner O92, F-083, PLAYBACK_RAMP): every shot plays at normal speed (x1): the clip has a fixed length, so
   no slow motion, ramp or freeze fits it;
+- hits (owner O92, F-155, RV-57, HIT_HOLD): the shot covering each hit the contacts give (the packet's `hits`,
+  planner/hits.py) holds the camera still, with every body present then among its subjects, at no close-up or insert;
 - coherence: scale vs frame height, lens perspective vs focal length, rig vs movement and stability, playback speed
   vs treatment, camera blur needs movement, insert needs a detail, focus/relation subjects are framed, a following
   relation needs movement;
@@ -64,6 +66,26 @@ def derive(shot, packet):
             "frame_height_m": geometry.frame_height(shot["position"]["distance_m"], focal, sensor), "screen_x": screen}
 
 
+def _hit_holds(shots, packet):
+    """HIT_HOLD (owner O92, F-155, RV-57): each hit from the contacts is a camera hold on every body present then."""
+    fps, out = packet["scene"]["fps"], []
+    for t in sorted({h["t"] for h in packet.get("hits", [])}):
+        bodies = sorted({b for h in packet["hits"] if h["t"] == t for b in h["bodies"]})
+        shot = next((s for s in shots if s["t"] - 0.5 / fps <= t < s["t"] + s["dur"] - 0.5 / fps), None)
+        if shot is None:
+            out.append(("HIT_HOLD", f"The hit at {t:g} has no shot", None))
+            continue
+        problems = [f"{x} is not in frame" for x in bodies if x not in shot["framing"]["subjects"]]
+        if any(word in shot["framing"]["scale"] for word in ("insert", "close")):
+            problems.append(f"a {shot['framing']['scale']} is a close-up")
+        if shot["movement"]["kind"] != "static":
+            problems.append(f"the camera moves ({shot['movement']['kind']})")
+        if problems:
+            out.append(("HIT_HOLD", f"The hit at {t:g} in {shot['id']} is no camera hold on the bodies: "
+                        + "; ".join(problems) + " (owner O92)", shot))
+    return out
+
+
 def check(shots, packet):
     """Returns (findings, derived geometry per shot id)."""
     findings = []
@@ -98,6 +120,8 @@ def check(shots, packet):
         if (shot["playback"]["treatment"], shot["playback"]["speed"]) != ("normal", 1):
             add("PLAYBACK_RAMP", f"Playback {shot['playback']['treatment']} x{shot['playback']['speed']:g} in a fixed-length "
                 "clip (owner O92: no slow motion or ramps)", shot)
+    for code, message, shot in _hit_holds(ordered, packet):
+        add(code, message, shot)
     for previous, shot in zip(ordered, ordered[1:], strict=False):
         if previous["id"] in derived and shot["id"] in derived:
             for code, message in _cut(previous, shot, derived, packet):

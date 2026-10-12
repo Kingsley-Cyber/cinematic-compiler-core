@@ -108,6 +108,9 @@ the next state before that state's beat acts, as a precondition is.
 Added in S-061 (RV-62, renderers/prose_renderer.py, examples/reference_fight): the vanishing actor's line keeps its
 key's support for the instant and ends it there, in words ("then none: A vanishes here until 4.40"); B draws the volley
 at 5.1, its key in A's beat, with the repo's 5.1 arm re-posed to the thigh pouch (0.05 m off the thigh's surface).
+Added in S-062 (RV-57, planner/hits.py): the four kinds of hit, read from F-155's list (a touch on another
+performer's body whatever its verb; a striking verb on a prop another holds or threw; a catch of a body; a body touched
+by a held prop that affords stab); hits are judged in every genre, as PLAYBACK_RAMP is.
 
 ## Impact
 Waits on the owner.

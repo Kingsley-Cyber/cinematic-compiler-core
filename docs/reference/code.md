@@ -18,7 +18,7 @@ flowchart LR
   cli -->|1| kernel
   cli -->|2| validators
   compiler -->|19| kernel
-  compiler -->|44| planner
+  compiler -->|46| planner
   compiler -->|4| renderers
   compiler -->|11| solver
   compiler -->|29| validators
@@ -27,19 +27,19 @@ flowchart LR
   kernel -->|3| validators
   kernel_extraction -->|1| kernel
   kernel_extraction -->|1| planner
-  planner -->|3| compiler
+  planner -->|4| compiler
   planner -->|12| kernel
   planner -->|1| solver
   planner -->|5| validators
   renderers -->|2| compiler
-  renderers -->|5| planner
+  renderers -->|6| planner
   renderers -->|3| solver
   solver -->|1| kernel
   solver -->|3| planner
   solver -->|1| validators
   validators -->|4| compiler
   validators -->|4| kernel
-  validators -->|8| planner
+  validators -->|9| planner
   validators -->|3| renderers
   validators -->|7| solver
 ```
@@ -59,8 +59,8 @@ flowchart LR
 | `compiler.passes.derived.p13_motion` | `compiler.authoring`, `kernel.kernel_files`, `planner.dependency_graph`, `planner.scene_view`, `solver.body_overlap`, `solver.contact_world`, `solver.euler_solver`, `solver.forward_kinematics`, `solver.quaternion`, `solver.trajectory`, `validators.schema_validator` | json, yaml |
 | `compiler.passes.derived.p14_facial` | `compiler.authoring`, `planner.dependency_graph`, `planner.scene_view`, `solver.quaternion`, `validators.facial_validator`, `validators.schema_validator` | functools, json, yaml |
 | `compiler.passes.derived.p15_effort` | `compiler.authoring`, `planner.dependency_graph`, `planner.library_vocab`, `planner.scene_view`, `solver.shape_direction`, `validators.schema_validator` | json, yaml |
-| `compiler.passes.derived.p16_camera` | `compiler.authoring`, `planner.camera_library`, `planner.dependency_graph`, `planner.library_vocab`, `solver.camera_geometry`, `solver.quaternion`, `validators.camera_validator` | — |
-| `compiler.passes.derived.p17_render` | `compiler.authoring`, `planner.dependency_graph`, `planner.dynamic_beat_validator`, `renderers.anime_renderer`, `renderers.live_renderer`, `renderers.prose_renderer`, `renderers.ugc_renderer` | — |
+| `compiler.passes.derived.p16_camera` | `compiler.authoring`, `planner.camera_library`, `planner.dependency_graph`, `planner.hits`, `planner.library_vocab`, `solver.camera_geometry`, `solver.quaternion`, `validators.camera_validator` | — |
+| `compiler.passes.derived.p17_render` | `compiler.authoring`, `planner.dependency_graph`, `planner.dynamic_beat_validator`, `planner.hits`, `renderers.anime_renderer`, `renderers.live_renderer`, `renderers.prose_renderer`, `renderers.ugc_renderer` | — |
 | `compiler.passes.mandatory.p01_intent` | `kernel.canonical`, `planner.dependency_graph`, `planner.intent_parser`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
 | `compiler.passes.mandatory.p02_brief` | `kernel.canonical`, `planner.dependency_graph`, `planner.query_expander`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
 | `compiler.passes.mandatory.p03_constraint` | `kernel.canonical`, `planner.card_loader`, `planner.dependency_graph`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json, yaml |
@@ -89,6 +89,7 @@ flowchart LR
 | `planner.dynamic_beat_validator` | `planner.vocabulary` | math, re |
 | `planner.entity_grounder` | — | — |
 | `planner.genre_profile` | `kernel.canonical`, `planner.dependency_graph`, `validators.schema_validator` | functools, json, yaml |
+| `planner.hits` | `compiler.passes.mandatory.p07_contact`, `planner.dynamic_beat_validator` | — |
 | `planner.intent_parser` | `kernel.canonical` | argparse, re, sys |
 | `planner.library_vocab` | `planner.dependency_graph`, `validators.schema_validator` | functools, json, yaml |
 | `planner.modality` | `kernel.canonical`, `planner.dependency_graph`, `validators.schema_validator` | functools, json |
@@ -100,7 +101,7 @@ flowchart LR
 | `renderers.anime_renderer` | `planner.library_vocab`, `renderers.prop_samples` | hashlib, json, math |
 | `renderers.live_renderer` | `renderers.anime_renderer` | — |
 | `renderers.prop_samples` | `planner.dynamic_beat_validator` | math |
-| `renderers.prose_renderer` | `compiler.passes.derived.p11_kinematic`, `compiler.passes.mandatory.p07_contact`, `planner.camera_library`, `planner.dynamic_beat_validator`, `planner.scene_view`, `renderers.anime_renderer`, `renderers.prop_samples`, `renderers.ugc_renderer`, `solver.contact_world`, `solver.euler_solver`, `solver.staff_geometry` | hashlib |
+| `renderers.prose_renderer` | `compiler.passes.derived.p11_kinematic`, `compiler.passes.mandatory.p07_contact`, `planner.camera_library`, `planner.dynamic_beat_validator`, `planner.hits`, `planner.scene_view`, `renderers.anime_renderer`, `renderers.prop_samples`, `renderers.ugc_renderer`, `solver.contact_world`, `solver.euler_solver`, `solver.staff_geometry` | hashlib |
 | `renderers.ugc_renderer` | `renderers.anime_renderer` | — |
 | `solver.body_overlap` | `solver.forward_kinematics` | itertools |
 | `solver.camera_geometry` | — | math |
@@ -120,5 +121,5 @@ flowchart LR
 | `validators.envelope_validator` | `kernel.kernel_files`, `planner.dependency_graph`, `planner.modality`, `validators.layer_dependency_validator`, `validators.schema_validator` | json |
 | `validators.facial_validator` | — | json, re |
 | `validators.layer_dependency_validator` | `kernel.canonical`, `kernel.version`, `planner.dependency_graph`, `planner.topological_sort` | re |
-| `validators.prompt_validator` | `compiler.passes.derived.p11_kinematic`, `compiler.passes.mandatory.p07_contact`, `planner.dynamic_beat_validator`, `planner.scene_view`, `renderers.anime_renderer`, `renderers.prop_samples`, `renderers.prose_renderer`, `solver.contact_world`, `solver.euler_solver`, `solver.shape_direction`, `solver.staff_geometry`, `validators.cause_reason` | re |
+| `validators.prompt_validator` | `compiler.passes.derived.p11_kinematic`, `compiler.passes.mandatory.p07_contact`, `planner.dynamic_beat_validator`, `planner.hits`, `planner.scene_view`, `renderers.anime_renderer`, `renderers.prop_samples`, `renderers.prose_renderer`, `solver.contact_world`, `solver.euler_solver`, `solver.shape_direction`, `solver.staff_geometry`, `validators.cause_reason` | re |
 | `validators.schema_validator` | `kernel.canonical` | re |

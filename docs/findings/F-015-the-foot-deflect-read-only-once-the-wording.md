@@ -43,5 +43,6 @@ none needed
 - docs/reports/2026-10-11-renders-and-dag-adherence.md section 3
 
 ## Resolution
-Open: no code catches it yet. Assigned to RV-57 (hits found from the contacts: the limb and its target in
-frame) in RV-46 (S-056).
+Open: RV-57 (S-062) makes the 2.5 deflect a hit from the contacts, so its shot holds A and B in frame at S16, S17 and
+in the prompt, and its line still names the limb and its target ("A foot deflect kunai"); whether that reads is a
+render question (R-29).

@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- Hits come from the contacts (RV-57, F-155, S-062): a touch on another performer's body, a strike or deflect on a prop
+  another holds or threw, a catch of a body, or a body touched by another's held blade owes a static camera hold on
+  every body present, checked at S16 (new), at S17 and in the prompt, whatever S17's frame parts hold (owner O92). The
+  examples' hits already were holds; no prompt changed.
 - Two contradictions in the reference prose gone (RV-62, F-163, F-105, S-061): A's 3.70 line ends its support as A
   vanishes and no longer walks A to 4.40 (owner O90), which the prompt's VANISHED_BODY now checks; B draws the shuriken
   volley from the thigh pouch at 5.1 and lets it go with the 5.5 throw, so B no longer throws from an empty hand (the

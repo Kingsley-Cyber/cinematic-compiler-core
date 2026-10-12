@@ -12,7 +12,7 @@ high
 L5.5
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -51,4 +51,11 @@ none needed (O92)
 - RV-15
 
 ## Resolution
-Open.
+RV-57 (S-062): planner/hits.py finds the hits from the contacts (a touch on another performer's body; a strike,
+deflect or parry on a prop another performer holds or threw; a catch of a body; a body touched by a blade another
+performer holds); S16's packet lists them and the camera validator holds the camera on each (HIT_HOLD at S16), and
+S17's `hit_hold`, the prose's holds and the prompt judge them with S17's holds, whatever S17 holds
+(tests/test_hits.py, test_camera_solver.py::test_a_hit_from_the_contacts_is_a_camera_hold_at_s16,
+test_render.py::test_a_hit_from_the_contacts_is_held_whatever_s17_holds,
+test_prose_render.py::test_the_prompt_owes_a_hold_at_every_hit_whatever_s17_holds). The framing is still judged by
+the shot's subjects and the horizontal projection; the vertical framing is RV-15's (F-090).

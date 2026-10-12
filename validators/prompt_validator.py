@@ -11,7 +11,7 @@ import re
 
 from compiler.passes.derived import p11_kinematic
 from compiler.passes.mandatory.p07_contact import events_for, lifecycle
-from planner import dynamic_beat_validator
+from planner import dynamic_beat_validator, hits
 from planner.scene_view import slots
 from renderers import prop_samples, prose_renderer
 from renderers.anime_renderer import constraint_rows
@@ -837,11 +837,8 @@ def _camera_checks(envelope, parts, labels, add):
         for code, message in camera_rule_problems(rule):
             add(code, message)
     held = camera.split("Holds on hits: ", 1)[1].split("\n", 1)[0] if "Holds on hits: " in camera else ""
-    frame_parts, fps = envelope["nodes"]["render"]["items"][0]["frame_parts"], envelope["scene"]["fps"]
-    for hold in frame_parts["holds"]:  # a hit: a hold on an impact frame (owner O92, R-21)
-        t = hold["t"]
-        if not any(abs(t - i) <= 0.5 / fps + 1e-9 for i in frame_parts["impact"]):
-            continue
+    frame_parts = envelope["nodes"]["render"]["items"][0]["frame_parts"]
+    for t in hits.hold_times(envelope, frame_parts):  # every hit, from the contacts or S17's holds (owner O92, F-155)
         shot = next((m for m in map(SHOT.match, lines) if m and float(m.group(1)) - EPSILON <= t < float(m.group(2)) - EPSILON),
                     None)
         if (f"{t:.2f} impact: hold with " not in held or shot is None or "; static: " not in shot.string

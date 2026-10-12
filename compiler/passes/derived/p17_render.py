@@ -12,6 +12,7 @@ knowledge DAG's structured-prose prompts in four movement modes (renderers/prose
 """
 
 from compiler.authoring import run_authored, seal
+from planner import hits
 from planner.dependency_graph import ROOT, load
 from planner.dynamic_beat_validator import vanish_windows
 from renderers import anime_renderer, live_renderer, prose_renderer, ugc_renderer
@@ -78,16 +79,14 @@ def impact_sync(envelope, impacts):
 
 
 def hit_hold(envelope, frame):
-    """HIT_HOLD (owner O92, R-21, F-083): a hold on an impact frame is a hit, and the shot covering it holds the camera
-    still (static) with every body present at that instant in frame (a vanished body is not, O18), at no close-up or
-    insert. The fix is upstream, in the S16 shot; playback is S16's PLAYBACK_RAMP."""
+    """HIT_HOLD (owner O92, R-21, F-083, F-155): every hit from the contacts (planner/hits.py) and every hold on an
+    impact frame is a hit, and the shot covering it holds the camera still (static) with every body present at that
+    instant in frame (a vanished body is not, O18), at no close-up or insert, whatever S17 holds. The fix is upstream,
+    in the S16 shot; playback is S16's PLAYBACK_RAMP."""
     fps = envelope["scene"]["fps"]
     gone = vanish_windows(envelope["nodes"]["beats"]["items"])
     findings = []
-    for hold in frame["holds"]:
-        t = hold["t"]
-        if not any(_near(t, i, fps) for i in frame["impact"]):
-            continue
+    for t in hits.hold_times(envelope, frame):
         shot = next((s for s in envelope["nodes"]["camera"]["items"]
                      if s["t"] - 0.5 / fps <= t < s["t"] + s["dur"] - 0.5 / fps), None)
         present = sorted(e["id"] for e in envelope["nodes"]["entities"]["items"]

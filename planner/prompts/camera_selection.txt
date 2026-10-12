@@ -9,9 +9,11 @@ beats it shows. Every shot fills all 13 subdivisions plus motivation; nothing is
 - Show what matters: every shown beat's actor is framed; every contact onset in the shot is visible at the scale
   (the grammar's visible_parts, or the insert detail); every subject projects inside the frame; composition
   placement agrees with the projected screen side; frame height (24 mm x distance / focal) fits the scale.
-- Hits (owner O92, R-21): a strike, deflect or blade that lands is held by a static camera with every body present
-  in frame, never a close-up or an insert; every shot plays at normal speed x1 (no slow motion, ramp or freeze: the
-  clip has a fixed length).
+- Hits (owner O92, R-21, HIT_HOLD): the packet's `hits` are the contacts that hit (a touch on another performer's
+  body; a strike, deflect or parry on a prop another performer holds or threw; a catch of a body; a body touched by a
+  blade another performer holds). The shot covering each is static, with every body the hit lists among its subjects,
+  never a close-up or an insert. Every shot plays at normal speed x1 (PLAYBACK_RAMP: no slow motion, ramp or freeze;
+  the clip has a fixed length).
 - Respect the grammar (rig movements and stability, lens perspective bands, 30-degree cut rule), the genre card
   (transitions, playback, rigs, roll, shot length) and the intent rules and tempo. Read the motion keys, efforts
   and idioms for what each moment needs. Copy packet_sha256.

@@ -104,6 +104,15 @@ def test_no_camera_card_slows_playback_or_puts_a_close_up_on_a_hit():
         rule: [code] for rule, code in struck.items()}
 
 
+def test_a_hit_from_the_contacts_is_a_camera_hold_at_s16():
+    """F-155 (RV-57, owner O92): S16 sees the contacts, so the shot covering each hit holds still on every body present:
+    the acrobat's kick lands on the wizard at 3.6 (HIT_HOLD)."""
+    assert [(h["t"], h["bodies"]) for h in PACKET["hits"]] == [(3.6, ["acrobat", "wizard"])]
+    assert "HIT_HOLD" not in codes(lambda p: None)
+    assert "HIT_HOLD" in codes(lambda p: shot(p, "c04")["movement"].update(kind="tracking"))
+    assert "HIT_HOLD" in codes(lambda p: shot(p, "c04")["framing"].update(subjects=["acrobat"]))
+
+
 def test_genre_card_rules_apply_scene_wide():
     packet = copy.deepcopy(PACKET)
     packet["convention"]["required_intents"] = ["product"]

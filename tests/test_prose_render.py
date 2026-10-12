@@ -1,6 +1,7 @@
 """M8.2 structured-prose prompts (owner O1-O3): Master Template sections, one staff line per slot, Euler blocks per mode,
 root exact left out of the prose only, every other rule and negative carried."""
 
+import copy
 import json
 import re
 
@@ -225,3 +226,17 @@ def test_the_vanishing_actor_s_line_ends_its_support_and_walks_nowhere():
     assert "VANISHED_BODY" not in fired(text)
     assert "VANISHED_BODY" in fired(text.replace("3.70 A: SUPPORT both feet place-mid [f:both], then none: A vanishes here "
                                                  "until 4.40", "3.70 A: SUPPORT steps left alternating [f:alt]", 1))
+
+
+def test_the_prompt_owes_a_hold_at_every_hit_whatever_s17_holds():
+    """F-155 (RV-57, owner O92): the prompt prints a camera hold at every hit the contacts give, and a prompt that drops
+    one is refused even when S17's frame parts drop that hold too (HIT_HOLD)."""
+    envelope, render = load(ROOT / "examples" / "reference_fight")
+    text = render["prose"]["mixed"]["text"]
+    unheld = copy.deepcopy(envelope)
+    frame = unheld["nodes"]["render"]["items"][0]["frame_parts"]
+    frame["holds"] = [h for h in frame["holds"] if abs(h["t"] - 4.7) > 1e-6]
+    dropped = text.replace("4.70 impact: hold with BOTH bodies in frame (A and B), no close-up; ", "", 1)
+    assert dropped != text and "HIT_HOLD" not in {f["code"] for f in prompt_validator.check(text, unheld, "mixed")}
+    assert "HIT_HOLD" in {f["code"] for f in prompt_validator.check(dropped, unheld, "mixed")}
+

@@ -7,7 +7,7 @@ height and screen x per subject (solver/camera_geometry.py), and `cuts_to` edges
 """
 
 from compiler.authoring import run_authored, seal
-from planner import camera_library, library_vocab
+from planner import camera_library, hits, library_vocab
 from planner.dependency_graph import ROOT, load
 from solver.camera_geometry import azimuth_change
 from solver.quaternion import head_heading
@@ -53,6 +53,7 @@ def prepare(envelope):
         "efforts": [{k: e[k] for k in ("id", "actor", "t", "end", "effort_action", "intensity")}
                     for e in envelope["nodes"]["efforts"]["items"]],
         "causal": [{k: e[k] for k in ("id", "from", "to")} for e in envelope["edges"]["causal"]["items"]],
+        "hits": hits.hits(envelope),  # owner O92 (F-155, RV-57): each owes a camera hold on its bodies
         "motion": motion, "vocabulary": library_vocab.load("camera_subdivisions")["fields"],
         "grammar": camera_library.grammar(), "tempo": camera_library.tempo(),
         "convention": camera_library.convention(scene["genre"]),

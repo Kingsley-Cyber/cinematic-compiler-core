@@ -24,7 +24,7 @@ plane and count, and the lines inside it write 'EulerXYZ mid-turn'; no prop is c
 import hashlib
 
 from compiler.passes.mandatory.p07_contact import events_for, lifecycle
-from planner import camera_library, dynamic_beat_validator
+from planner import camera_library, dynamic_beat_validator, hits
 from planner.scene_view import slots
 from renderers import prop_samples, ugc_renderer
 from renderers.anime_renderer import NUMBERS, _face_words, _items, _num, constraint_rows
@@ -210,14 +210,12 @@ def hit_holds(envelope, frame_parts, labels):
     """W1 (owner O47; probes R10, R11, R14 stretched every hold or freeze given in frames to 0.85-1.75 s; R15 held a hit
     as V5 wrote it): an S17 hold on an impact frame is printed as the camera holding the hit with the bodies in frame,
     never as a body freeze in frames, and only where the shot covering it frames two or more bodies (or the only one)
-    without a close-up; holds elsewhere stay in the graph and in LBN-2.4."""
+    without a close-up; holds elsewhere stay in the graph and in LBN-2.4. Since RV-57 (F-155) every hit the contacts give
+    is printed too, whatever S17 holds (planner/hits.py)."""
     tolerance = 0.5 / envelope["scene"]["fps"] + 1e-9
     entities = [e["id"] for e in _items(envelope, "nodes", "entities")]
     out = []
-    for hold in frame_parts["holds"]:
-        t = hold["t"]
-        if not any(abs(t - i) <= tolerance for i in frame_parts["impact"]):
-            continue
+    for t in hits.hold_times(envelope, frame_parts):
         shot = next((s for s in _items(envelope, "nodes", "camera") if s["t"] - tolerance <= t < s["t"] + s["dur"] - tolerance),
                     None)
         if shot is None or any(word in shot["framing"]["scale"] for word in CLOSE):

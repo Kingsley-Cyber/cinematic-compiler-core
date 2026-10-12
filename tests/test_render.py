@@ -74,6 +74,17 @@ def test_a_hit_is_a_camera_hold_on_the_bodies():
     assert "HIT_HOLD" in codes(lambda f: None, close)
 
 
+def test_a_hit_from_the_contacts_is_held_whatever_s17_holds():
+    """F-155 (RV-57, owner O92): the acrobat's kick lands on the wizard at 3.6, so the shot there owes a camera hold even
+    when S17's frame parts drop the hold (HIT_HOLD)."""
+    moving = copy.deepcopy(BEFORE)
+    next(s for s in moving["nodes"]["camera"]["items"] if s["id"] == "c04")["movement"]["kind"] = "tracking"
+
+    def unheld(frame):
+        frame["holds"][:] = [h for h in frame["holds"] if abs(h["t"] - 3.6) > 1e-6]
+    assert "HIT_HOLD" in codes(unheld, moving)
+
+
 @pytest.mark.parametrize("code, change", [
     ("FRAME_IMPACT", lambda f: f["impact"].append(1.0)),
     ("FRAME_SMEAR", lambda f: f["smear"][0].update(part=None)),
