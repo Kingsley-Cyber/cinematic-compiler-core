@@ -12,7 +12,7 @@ medium
 L1.1
 
 ## Status
-resolved
+open
 
 ## Reported
 2026-10-12
@@ -45,6 +45,7 @@ ADR-O18, ADR-O90
 - F-081
 
 ## Resolution
-RV-48a (S-057): VANISHED_BODY refuses a contact on a vanished body inside its window, and BEAT_CONTACT a touch on a
+Open in part (review 4, S-063): contacts on the vanished body are refused; contacts made by it inside its window are not (F-172, RV-73).
+Before: RV-48a (S-057): VANISHED_BODY refuses a contact on a vanished body inside its window, and BEAT_CONTACT a touch on a
 body its beat does not list (planner/dynamic_beat_validator.py;
 tests/test_dynamic_beat_validator.py::test_nobody_touches_a_vanished_body_and_a_touched_body_is_in_its_beat).

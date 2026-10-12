@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 25
+version: 26
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -108,12 +108,39 @@ items:
      step: render, plan: PLAN-007, depends_on: [], findings: [F-163, F-105], codes: []}
   - {id: RV-57, title: "Hits found from the contacts are camera holds on every body present, at S16 and in the prompt, whatever S17 holds (O92)", status: done,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-155, F-015], codes: []}
-  - {id: RV-58, title: "The compiler judges prompts with the owner's render findings; a possess counts on an impact frame only as a catch; a touch of another's held prop is no strike only for a non-limb part", status: next,
+  - {id: RV-66, title: "A substitution exempts only its decoy, the prop it places at its actor's anchor", status: next,
+     step: temporal, plan: PLAN-007, depends_on: [], findings: [F-169, F-130], codes: []}
+  - {id: RV-67, title: "The S04 instructions and the validator's docstring teach F-077's rule and O48's standing log", status: ready,
+     step: temporal, plan: PLAN-007, depends_on: [], findings: [F-170, F-162], codes: []}
+  - {id: RV-68, title: "The holstered volley rests at the thigh pouch, and the draw is measured against it", status: ready,
+     step: temporal, plan: PLAN-007, depends_on: [], findings: [F-182, F-163], codes: []}
+  - {id: RV-69, title: "A body touched by a prop another performer threw is a hit, whatever the verb", status: ready,
+     step: camera, plan: PLAN-007, depends_on: [], findings: [F-175], codes: []}
+  - {id: RV-70, title: "A vanished body is gone from every section (S15's coverage, the guidance, a vanish that never returns), and VANISHED_BODY reads them", status: ready,
+     step: render, plan: PLAN-007, depends_on: [], findings: [F-176, F-163], codes: []}
+  - {id: RV-71, title: "Camera rules as structured card fields; a hold is static on a locked or smooth rig; the prompt's hold names its bodies; idiom cards keyed to the scenes' archetypes", status: ready,
+     step: camera, plan: PLAN-007, depends_on: [], findings: [F-177, F-160], codes: []}
+  - {id: RV-72, title: "S08 refuses an undeclared hand holding the object; S09 credits a release only at the change", status: ready,
+     step: hand_role, plan: PLAN-007, depends_on: [], findings: [F-173, F-137, F-161], codes: []}
+  - {id: RV-73, title: "S04 refuses a contact by a vanished body inside its window, and a contact by a body outside its beat", status: ready,
+     step: temporal, plan: PLAN-007, depends_on: [], findings: [F-172, F-136], codes: []}
+  - {id: RV-74, title: "PROP_SUPPORT: a location on a surface with a known top puts the resting prop at that top", status: ready,
+     step: temporal, plan: PLAN-007, depends_on: [], findings: [F-171], codes: []}
+  - {id: RV-75, title: "CAUSE_REASON asks that a reason state a cause", status: ready,
+     step: causal, plan: PLAN-007, depends_on: [], findings: [F-185, F-001, F-002], codes: []}
+  - {id: RV-76, title: "The checklist: unselected menus N/A (O14); a step-enforced row judged by its step codes", status: ready,
+     step: all, plan: PLAN-007, depends_on: [], findings: [F-178], codes: []}
+  - {id: RV-77, title: "The records' guards check substance: rulings that decide a deviation, self-audit evidence, decided_by by R-28", status: ready,
+     step: docs, plan: PLAN-007, depends_on: [], findings: [F-180, F-181], codes: []}
+  - {id: RV-58, title: "The compiler judges prompts with the owner's render findings; a possess counts on an impact frame only as a catch; a touch of another's held prop is no strike only for a non-limb part", status: ready,
      step: render, plan: PLAN-007, depends_on: [], findings: [F-156, F-157], codes: []}
   - {id: RV-18, title: "Declared validators run (S02 coherence); the envelope records what ran", status: ready,
      step: brief, plan: PLAN-007, depends_on: [], findings: [F-093, F-142], codes: []}
-  - {id: RV-64, title: "The S04 packet carries the query's choreography and the scene_reference rules", status: ready,
+  - {id: RV-64, title: "The S04 packet carries the query's choreography", status: ready,
      step: temporal, plan: PLAN-007, depends_on: [RV-18], findings: [F-167], codes: []}
+  - {id: RV-64b, title: "The S04 packet carries the scene_reference rules", status: blocked,
+     blocked_by: "the owner's answer in F-133",
+     step: temporal, plan: PLAN-007, depends_on: [RV-64], findings: [F-133, F-167], codes: []}
   - {id: RV-13, title: "PROMPT_LENGTH: 3,500 characters for Runway, 1,000 words for BytePlus (O97)", status: ready,
      step: render, plan: PLAN-007, depends_on: [], findings: [F-088], codes: [PROMPT_LENGTH]}
   - {id: RV-13b, title: "Every prompt fits the caps (O97)", status: blocked,
@@ -134,6 +161,20 @@ items:
      step: all, plan: PLAN-007, depends_on: [], findings: [F-095], codes: []}
   - {id: RV-65, title: "The instructions of S11 to S17 name every rule their plans must meet (tests/test_instructions.py)", status: ready,
      step: all, plan: PLAN-007, depends_on: [RV-48b], findings: [F-095], codes: []}
+  - {id: RV-78, title: "The S04 packet gives each prop's carried_by; the S08 packet gives the affordance entries S10 judges it by", status: ready,
+     step: temporal, plan: PLAN-007, depends_on: [], findings: [F-174], codes: []}
+  - {id: RV-79, title: "A second fight compiled end to end from a new query, through every authored step", status: ready,
+     step: all, plan: PLAN-007, depends_on: [RV-64, RV-78], findings: [F-179], codes: []}
+  - {id: RV-80, title: "Render probes prepared for the owner, F-015's among them; no render (R-29)", status: ready,
+     step: render, plan: PLAN-007, depends_on: [], findings: [F-179, F-015, F-117], codes: []}
+  - {id: RV-81, title: "A launch ends its support at the launching key and prints the takeoff there", status: ready,
+     step: render, plan: PLAN-007, depends_on: [], findings: [F-183], codes: []}
+  - {id: RV-82, title: "Surfaces carry footprints; S16 refuses a line to a subject through a solid; a declared turn's shot looks along its axis", status: ready,
+     step: camera, plan: PLAN-007, depends_on: [], findings: [F-184], codes: []}
+  - {id: RV-83, title: "Each unsliced DAG row gets a slice, or goes on the list for the owner's N/A ruling", status: ready,
+     step: all, plan: PLAN-007, depends_on: [], findings: [F-178, F-117], codes: []}
+  - {id: RV-84, title: "Each printed line follows the source or a typed deviation (the smoke, the opening fall, the deflect, the kunai at B's shoulder, B's opening steps)", status: ready,
+     step: render, plan: PLAN-007, depends_on: [], findings: [F-186], codes: []}
   - {id: RV-21, title: "A map row passes only when its codes cover the whole DAG row; contests read every render finding", status: ready,
      step: render, plan: PLAN-007, depends_on: [RV-01], findings: [F-096, F-003, F-010, F-141], codes: []}
   - {id: RV-22, title: "The pillar has a radius and faces; landings and face contacts measured", status: ready,
@@ -148,7 +189,8 @@ items:
   - {id: RV-26, title: "Momentum at the true takeoff; the opening fall judged; each span re-timed or hung", status: blocked,
      blocked_by: "the owner's span-by-span answer in F-101",
      step: kinematic, plan: PLAN-007, depends_on: [], findings: [F-101, F-036], codes: []}
-  - {id: RV-27, title: "Prop paths and times follow the source (R-17)", status: ready,
+  - {id: RV-27, title: "Prop paths and times follow the source (R-17)", status: blocked,
+     blocked_by: "the owner's answers in F-165 and F-059",
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-102, F-059, F-165], codes: []}
   - {id: RV-28, title: "Per-span Efforts keep each fighter's source signature", status: ready,
      step: effort, plan: PLAN-007, depends_on: [], findings: [F-103], codes: [EFFORT_SIGNATURE]}
@@ -160,7 +202,8 @@ items:
      step: state, plan: PLAN-007, depends_on: [], findings: [F-106], codes: []}
   - {id: RV-32, title: "Reference-cast rules filled per scene at S03", status: ready,
      step: constraint, plan: PLAN-007, depends_on: [], findings: [F-107], codes: []}
-  - {id: RV-33, title: "B's track follows the source (F-108's question answered by ADR-O105)", status: ready,
+  - {id: RV-33, title: "B's track follows the source (F-108's question answered by ADR-O105)", status: blocked,
+     blocked_by: "RV-52, which waits for the owner",
      step: temporal, plan: PLAN-007, depends_on: [RV-52], findings: [F-108, F-150], codes: []}
   - {id: RV-34, title: "R-14 checked in code", status: ready,
      step: all, plan: PLAN-007, depends_on: [], findings: [F-109], codes: []}
@@ -173,8 +216,8 @@ items:
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-112], codes: []}
   - {id: RV-38, title: "The owner's review: draft values calibrated, F-053's interpretations ruled", status: ready,
      step: owner, plan: PLAN-007, depends_on: [], findings: [F-113, F-051, F-053, F-056, F-052, F-054], codes: []}
-  - {id: RV-39, title: "soul_check_passes and fight_works in the gate (O98)", status: ready,
-     step: all, plan: PLAN-007, depends_on: [RV-11], findings: [F-115], codes: []}
+  - {id: RV-39, title: "The gate checks the owner's six conditions (O98), soul_check_passes and fight_works among them", status: ready,
+     step: all, plan: PLAN-007, depends_on: [RV-11], findings: [F-115, F-179], codes: []}
   - {id: RV-40, title: "Rebinding forces re-authoring", status: blocked,
      blocked_by: "the owner's answer in F-116",
      step: all, plan: PLAN-007, depends_on: [], findings: [F-116], codes: []}

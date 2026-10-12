@@ -6,7 +6,7 @@
 question
 
 ## Severity
-low
+high
 
 ## Layer
 L6
@@ -48,3 +48,4 @@ the question open
 
 ## Resolution
 Open.
+Review 4 (S-063): raised to high, since four checklist rows cannot pass while it waits (F-178, RV-83).

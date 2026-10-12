@@ -107,10 +107,15 @@ judged at the earliest instant among the transition's changes inside the trigger
 the next state before that state's beat acts, as a precondition is.
 Added in S-061 (RV-62, renderers/prose_renderer.py, examples/reference_fight): the vanishing actor's line keeps its
 key's support for the instant and ends it there, in words ("then none: A vanishes here until 4.40"); B draws the volley
-at 5.1, its key in A's beat, with the repo's 5.1 arm re-posed to the thigh pouch (0.05 m off the thigh's surface).
+at 5.1, its key in A's beat, with the repo's 5.1 arm re-posed to the thigh pouch (corrected in S-063: 0.028 m
+from the thigh's surface, and the hand's own radius overlaps it by 0.012 m; F-182).
 Added in S-062 (RV-57, planner/hits.py): the four kinds of hit, read from F-155's list (a touch on another
 performer's body whatever its verb; a striking verb on a prop another holds or threw; a catch of a body; a body touched
 by a held prop that affords stab); hits are judged in every genre, as PLAYBACK_RAMP is.
+Added in S-063 (review 4), four choices the sessions made without a ruling: S-055 D3 (DEV-18's rulings name ADR-O12,
+R-18's source, for RV-49's re-blocks, which had no ruling of their own); S-056 D2 (a partly fixed finding kept
+resolved with a "Corrected" line, against F-166's proposed fix; reversed in S-063); S-059 D5 (a camera rule that negates
+the struck words is flagged too); S-061 D5 (the volley's card gains flight `drawn`).
 
 ## Impact
 Waits on the owner.

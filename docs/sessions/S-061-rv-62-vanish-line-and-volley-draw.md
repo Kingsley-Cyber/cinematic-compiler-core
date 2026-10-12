@@ -94,3 +94,7 @@ about 12 minutes by the clock (04:17 to 04:29)
 - Prediction 1 held. Prediction 2 held (one line in each of the four prompts; the check refused all four before).
   Prediction 3 held (0.05 m off the thigh's surface; both contacts measured at 0.00 m; the spans and states as
   predicted). Prediction 4 held (the reference fight alone; verdict counts the same). Prediction 5 held (680).
+- Corrected in S-063 (review 4, F-182): the 0.05 m was measured to the thigh's midpoint; the hand is 0.108 m from the
+  thigh's axis, 0.028 m from its surface, and its own 0.04 m radius overlaps the thigh by 0.012 m; the 0.00 m contacts
+  hold because the samples were placed on the hand. The self-audit also left out C21's CONTACT_WORLD count moving
+  from 15 to 17 (F-180).

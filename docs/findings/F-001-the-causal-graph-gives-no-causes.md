@@ -44,3 +44,4 @@ ADR-O15
 
 ## Resolution
 Caught by CAUSE_REASON (the checklist's caught_by; validators/checklist.py FINDINGS).
+Review 4 (S-063): the golden's reasons state causes, but CAUSE_REASON, which the checklist reads as catching this, would pass a reason that states none ("The weather is nice and B likes tea."); F-185, RV-75.

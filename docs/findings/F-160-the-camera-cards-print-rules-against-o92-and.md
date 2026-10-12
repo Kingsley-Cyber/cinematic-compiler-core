@@ -12,7 +12,7 @@ medium
 L5.5
 
 ## Status
-resolved
+open
 
 ## Reported
 2026-10-12
@@ -48,7 +48,8 @@ none needed (O92; PLAYBACK_RAMP's reach beyond the fight is the builder's readin
 - RV-60
 
 ## Resolution
-RV-60 (S-059): anime's "Cut close on the receiver after a blow lands.", live action's "Slow motion only around the
+Open in part (review 4, S-063): the struck sentences are gone, but the check that replaced them is a word list that misses plain violations and misfires on plain rules; F-177, RV-71.
+Before: RV-60 (S-059): anime's "Cut close on the receiver after a blow lands.", live action's "Slow motion only around the
 peak of an action." and the ninja idiom's insert on a landing blade are struck from the draft cards, and every
 convention card's playback is [normal] (card_version 2, library log); the prompt validator reads the printed "Camera
 rules:" line for both codes (validators/prompt_validator.py camera_rule_problems;

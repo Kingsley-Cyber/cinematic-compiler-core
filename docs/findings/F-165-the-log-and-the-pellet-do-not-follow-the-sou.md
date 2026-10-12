@@ -3,7 +3,7 @@
 <!-- docs-version: 1.0 -->
 
 ## Type
-gap
+question
 
 ## Severity
 medium
@@ -48,3 +48,4 @@ the question open (the pellet's point)
 
 ## Resolution
 Open in part: the log takes A's former place at 3.7 (RV-48a, S-057); the pellet's point waits for the owner.
+Review 4 (S-063): typed as a question, so the owner lists carry it; RV-27 waits for it and F-059.

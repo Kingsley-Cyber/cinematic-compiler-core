@@ -12,7 +12,7 @@ high
 L6
 
 ## Status
-resolved
+open
 
 ## Reported
 2026-10-12
@@ -48,7 +48,8 @@ ADR-O108 (owner_default; the owner confirms or strikes it)
 - ADR-O77
 
 ## Resolution
-RV-42 (S-046, ADR-O108): the deflected kunai goes down to the ground on B's side, not at B, and its line reads "moving
+Open in part (review 4, S-063): the deflect goes down on B's side; render.txt still prints "(toward B and ground)" beside "NOT toward B" (F-186, RV-84).
+Before: RV-42 (S-046, ADR-O108): the deflected kunai goes down to the ground on B's side, not at B, and its line reads "moving
 down along -Z"; a prop track names a goal only where the prop's path reaches that performer's body
 (renderers/prop_samples.py `reaches`; tests/test_prop_track.py::test_a_track_names_a_goal_only_where_the_path_reaches_it);
 PROMPT_CONTRADICTION refuses "toward X" where the prompt says "NOT toward X"

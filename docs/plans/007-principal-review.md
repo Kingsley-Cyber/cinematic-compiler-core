@@ -65,8 +65,9 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 | RV-16 | L6 | high | open | one laban chain per fighter (F-091) |
 | RV-17 | L2.2 | medium | open | one possession model; PROP_TWO_HOLDERS (F-092) |
 | RV-18 to RV-41 | various | medium-low | open | F-093 to F-116 and F-016, one slice each (docs/plans/backlog.yaml) |
-| RV-42 to RV-54 | various | high-low | RV-42, RV-43, RV-49 done (S-046, S-047, S-049); the rest open | the second review's gaps, F-122 to F-150 (docs/reports/2026-10-12-principal-review-2.md), and F-151 (a body through a prop, RV-54) |
-| RV-55 to RV-64 | various | high-medium | open (RV-55, RV-56, RV-63 wait for the owner) | the third review's gaps, F-152 to F-167 (docs/reports/2026-10-12-principal-review-3.md) |
+| RV-42 to RV-54 | various | high-low | RV-42, RV-43, RV-49, RV-45, RV-46, RV-48a, RV-48b done (S-046, S-047, S-049, S-055 to S-058); the rest open | the second review's gaps, F-122 to F-150 (docs/reports/2026-10-12-principal-review-2.md), and F-151 (a body through a prop, RV-54) |
+| RV-55 to RV-65 | various | high-medium | RV-57, RV-60, RV-61, RV-62 done (S-059 to S-062); the rest open (RV-55, RV-56, RV-63, RV-64b wait for the owner) | the third review's gaps, F-152 to F-167 (docs/reports/2026-10-12-principal-review-3.md), and RV-65 (RV-20's prompt part) |
+| RV-66 to RV-84 | various | high-medium | open | the fourth review's gaps, F-169 to F-186 (docs/reports/2026-10-12-principal-review-4.md) |
 
 ## Dependencies
 - RV-02a after RV-05 (A's final poses); RV-02b after RV-02a, RV-03 and RV-06; RV-07 after RV-08; RV-13b after RV-13 and
@@ -89,6 +90,8 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 - F-152: O72's measure for body contacts; F-153: render.txt's deliverability under O1 and O94; F-154: owner_default
   ADRs as rulings (confirm or strike O103 to O106 and O108); F-164: O90's timing; F-165: the pellet's point
 - F-055, F-057 and F-060: open since before the run
+- From review 4 (S-063): whether a substitution may move or change props other than its decoy without a hand (F-169); what counts as a hit beyond a thrown or held blade (F-175); whether a smash cut, a whip onto the impact frame or a shaky handheld shot is a camera hold (F-177); which checklist rows must pass for a deliverable (F-178, with F-153 and F-117); a declared turn plane against the 180-degree side (F-184); O23's `at: start` read literally or as any key of the actor; O93's grasp and throw on one instant at 6.6; whether the source counts as a ruling under R-06 (O105, O108); whether a deviation's ruling must be an owner ADR in force; R-21's reach to every genre; partly fixed findings reopened (S-063) or kept resolved (S-056 D2); `decided_by: owner` (R-28); O103 sets aside two of O88's flips, which R-06 now leaves to the owner
+- F-124 (the 5.9 slide's exception) and F-133 (the scene_reference rules; RV-64b waits for it)
 - RV-20: an ADR for the layer-order edit; RV-38: the owner's review of draft values and F-053
 
 ## Critical Path
@@ -100,6 +103,9 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 5. Then PLAN-006 (AS-01 to AS-07) and PLAN-003's remaining M9 slices
 After review 3 (S-054): RV-45 and RV-46 (the records) first, then RV-48a, RV-48b, RV-60, RV-61, RV-62, RV-57, RV-58, RV-18,
 RV-64 and RV-13, then the rest in backlog order.
+After review 4 (S-063): the builder's own shortcuts and overclaims first, RV-66, RV-67, RV-68, RV-69, RV-70, RV-71,
+RV-72, RV-73, RV-74, RV-75, RV-76, RV-77; then RV-58, RV-18, RV-64, RV-13; then the fight-breakers RV-15, RV-14,
+RV-16, RV-37, RV-35, RV-59, RV-22; then RV-78 to RV-84 and the rest in backlog order.
 6. Waiting on the owner: RV-13b, RV-20, RV-24, RV-26, RV-36, RV-40, RV-52, RV-53, RV-55, RV-56, RV-63 (and RV-33, which
    follows RV-52); the owner's own: RV-38
 
@@ -130,3 +136,4 @@ RV-64 and RV-13, then the rest in backlog order.
 - 2026-10-12 — RV-61 done (S-060): "before a beat" read one way by S06, S09 and S10; S09 carries instants.
 - 2026-10-12 — RV-62 done (S-061): the vanish line ends A's support; B draws the volley at 5.1.
 - 2026-10-12 — RV-57 done (S-062): hits come from the contacts; S16 holds the camera on each.
+- 2026-10-12 — Review 4 (S-063): verdict partially; F-169 to F-186 filed with RV-66 to RV-84; RV-27, RV-33 blocked; RV-64 split.

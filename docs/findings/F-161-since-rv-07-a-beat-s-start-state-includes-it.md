@@ -12,7 +12,7 @@ medium
 L2.2
 
 ## Status
-resolved
+open
 
 ## Reported
 2026-10-12
@@ -47,7 +47,8 @@ none needed
 - RV-61
 
 ## Resolution
-RV-61 (S-060): S06 computes the values before a beat's own effects with the function its requirements use, and a
+Open in part (review 4, S-063): S10 reads the state before the beat's own effects, but S09 still credits a release made before the change as the hand on the object (F-173, RV-72).
+Before: RV-61 (S-060): S06 computes the values before a beat's own effects with the function its requirements use, and a
 beat's snapshot keeps them where they differ (`before_own_effects`, state_graph 1.4); S09 carries them for internal
 properties and each change's instant (object_state_graph 1.2), and credits only a hand on the object by that instant;
 S10 reads preconditions and postconditions before the own effects of the beat starting there

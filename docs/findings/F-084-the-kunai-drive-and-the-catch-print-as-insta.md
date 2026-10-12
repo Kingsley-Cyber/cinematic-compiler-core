@@ -12,7 +12,7 @@ high
 L1.1
 
 ## Status
-resolved
+open
 
 ## Reported
 2026-10-11
@@ -47,7 +47,8 @@ ADR-O93
 - ADR-O22
 
 ## Resolution
-RV-10 (S-051, O93): from 8.5 the kunai is embedded (an effect at the drive's start) and its samples sit at B's torso
+Open in part (review 4, S-063): the catch and the drive print as holds; the kunai still sits on B's torso point, 0.21 m from the shoulder O93 names (F-186, RV-84).
+Before: RV-10 (S-051, O93): from 8.5 the kunai is embedded (an effect at the drive's start) and its samples sit at B's torso
 point (the shoulder has no part of its own) at 8.5, 9.0, 9.5 and 10.0, while A's right hand keeps it (holder A to the
 end); B's torso meets the blade at 8.5, which no longer counts as B's strike (a body struck by a blade another
 performer holds); B's hands take A's left arm at 6.6 (possess, catch) and let go at 6.8 (release, throw), so b17 runs

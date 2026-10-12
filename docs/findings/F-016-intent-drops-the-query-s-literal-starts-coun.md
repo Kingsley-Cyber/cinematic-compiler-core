@@ -34,6 +34,7 @@ See the report's Phase 3 (impact) and Phase 3.5 (cascade) for this gap.
 
 ## Proposed Fix
 Backlog slice M9-08 (docs/plan.md).
+Review 4 (S-063): M9-08 is done; RV-41 carries the rest.
 
 ## Owner Ruling
 ADR-O21

@@ -12,7 +12,7 @@ low
 docs
 
 ## Status
-resolved
+open
 
 ## Reported
 2026-10-12
@@ -52,7 +52,8 @@ none needed
 - F-095
 
 ## Resolution
-RV-46 (S-056): each stale record corrected at its file: F-070's and F-071's resolutions (the counts and the
+Open in part (review 4, S-063): the stale records were corrected; the S07 widening it listed became the substitution's blanket exemption (F-169, RV-66).
+Before: RV-46 (S-056): each stale record corrected at its file: F-070's and F-071's resolutions (the counts and the
 anchor since), PLAN-007 (the test rule, the waiting list), ADR-O83 (amended by O89 and O104), solver/contact_world.py's
 flags, docs/plans/MASTER_PLAN.md's commit times; F-015 assigned to RV-57, F-052 and F-054 to RV-38; the S04 prompt is
 RV-48b's and the declared reads RV-20's (F-095).

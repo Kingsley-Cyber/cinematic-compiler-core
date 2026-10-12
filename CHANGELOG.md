@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- Principal review 4 (S-063, finish.md section 6): five read-only reviewers, verdict "partially"; their gaps filed as
+  F-169 to F-186 with slices RV-66 to RV-84, the builder's own shortcuts first (the substitution's exemption, the S04
+  instructions, the draw's measure). Ten findings reopened in part; RV-27 and RV-33 blocked; RV-64 split; RV-39 covers
+  all six of the owner's conditions. S-061's recorded clearance at the draw corrected (0.028 m, not 0.05 m).
 - Hits come from the contacts (RV-57, F-155, S-062): a touch on another performer's body, a strike or deflect on a prop
   another holds or threw, a catch of a body, or a body touched by another's held blade owes a static camera hold on
   every body present, checked at S16 (new), at S17 and in the prompt, whatever S17's frame parts hold (owner O92). The

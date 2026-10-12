@@ -58,3 +58,4 @@ the commit times; AGENTS.md, ADR-O92, PLAN-007, F-148, docs/for_the_owner.md, th
 (and F-124's) and validators/contact_world_report.py are corrected; the owner lists name every owner_default ADR and
 the hook (F-168). Kernel log seq 59 keeps its decided_by "owner" (a log line is never edited); seq 64 records the
 file's version 2 as agent_fix.
+Review 4 (S-063): from S-063 a partly fixed finding reads open with "Open in part", as this finding proposed; S-056 D2 had kept such findings resolved. The choice is listed for the owner.

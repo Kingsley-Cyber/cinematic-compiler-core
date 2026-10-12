@@ -12,7 +12,7 @@ medium
 L1.1
 
 ## Status
-resolved
+open
 
 ## Reported
 2026-10-12
@@ -47,7 +47,8 @@ none needed
 - RV-20
 
 ## Resolution
-RV-48b (S-058): planner/prompts/beat_planning.txt teaches the rules S04 to S07 apply to a beat plan today (an
+Open in part (review 4, S-063): the instructions name every code, but two of their sentences teach what the code refuses (F-077's jump, "deployment hidden") and the test checks names only; F-170, RV-67.
+Before: RV-48b (S-058): planner/prompts/beat_planning.txt teaches the rules S04 to S07 apply to a beat plan today (an
 effect's and a contact's `at`, a change of hands at its possess or release, a catch and a throw on a prop or a body,
 releases on a key, the vanished body, prop samples, the decoy's swap, first places) and names each one's code;
 tests/test_instructions.py fails when a code S04 to S07 emit, or one S08 emits, is missing from its step's

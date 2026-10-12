@@ -101,10 +101,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.0; backlog 25.
-- Last session: S-062 (2026-10-12, applied): RV-57: hits found from the contacts are camera holds at S16, S17 and in the prompt, whatever S17 holds.
-- Next slice: RV-58 The compiler judges prompts with the owner's render findings; a possess counts on an impact frame only as a catch; a touch of another's held prop is no strike only for a non-limb part (step render).
-- Open findings: 91; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
+- Layer order 1.7; rules 7.0; backlog 26.
+- Last session: S-063 (2026-10-12, applied): Principal review 4: does the finished work match the plan?.
+- Next slice: RV-66 A substitution exempts only its decoy, the prop it places at its actor's anchor (step temporal).
+- Open findings: 119; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
@@ -132,7 +132,7 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - F-111 (medium): Limb words mix frames against the legend
 - F-114 (medium): Do R-21, R-23 and R-25 bind render.txt?
 - F-116 (medium): Rebinding re-stamps hashes instead of forcing re-authoring
-- F-117 (low): F-013 and F-014 cannot close
+- F-117 (high): F-013 and F-014 cannot close
 - F-118 (low): O37 and the genre_profile schema disagree on where genre values live
 - F-124 (medium): The 5.9 slide's exception: the prompt says both feet support while the soles are 0.35-0.55 m up
 - F-133 (medium): The 37 scene_reference rules reach no scene
@@ -141,12 +141,16 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - F-152 (high): O72's point measure and BODY_OVERLAP cannot both hold for body contacts
 - F-153 (high): No compile can ever emit: render.txt cannot pass the Master Template rows
 - F-154 (medium): Owner_default ADRs taken under O101 are counted as rulings the owner has not seen
+- F-165 (medium): The log and the pellet do not follow the source at 3.7
 - F-168 (low): The pre-commit gate waits for the owner's `make hooks`
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
+- Backlog RV-64b blocked: The S04 packet carries the scene_reference rules — the owner's answer in F-133
 - Backlog RV-13b blocked: Every prompt fits the caps (O97) — the owner's answers in F-088
 - Backlog RV-20 blocked: external_inputs complete: the layer order states what each step depends on — an accepted ADR for the layer-order edit (R-09)
 - Backlog RV-24 blocked: The launch check per O80's words: the prior beat, every launch — the owner's ruling on A's 5.1 backflip in F-099
 - Backlog RV-26 blocked: Momentum at the true takeoff; the opening fall judged; each span re-timed or hung — the owner's span-by-span answer in F-101
+- Backlog RV-27 blocked: Prop paths and times follow the source (R-17) — the owner's answers in F-165 and F-059
+- Backlog RV-33 blocked: B's track follows the source (F-108's question answered by ADR-O105) — RV-52, which waits for the owner
 - Backlog RV-36 blocked: Limb and head words read in one declared frame — the owner's answer in F-111
 - Backlog RV-40 blocked: Rebinding forces re-authoring — the owner's answer in F-116
 - Backlog RV-52 blocked: The Euler convention: the source's turned leans and its backflip (ADR-Q6) — the owner's answer in F-143 (ADR-Q6's label or its meaning)

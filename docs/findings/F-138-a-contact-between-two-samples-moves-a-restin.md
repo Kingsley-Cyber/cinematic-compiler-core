@@ -50,3 +50,4 @@ sample at its instant (PROP_KINEMATICS); a substitution swaps its decoy into its
 touch of it went (it missed by 0.8 m once measurable; S07 lets a substitution change its decoy without a hand)
 (tests/test_dynamic_beat_validator.py::test_a_contact_between_two_samples_does_not_move_a_resting_prop,
 tests/test_reference_fight_golden.py::test_the_log_takes_a_s_place_at_the_swap).
+Review 4 (S-063): the moves between samples stay refused; the substitution's swap was widened past its label, which F-169 (RV-66) carries.

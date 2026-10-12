@@ -12,7 +12,7 @@ high
 L5.5
 
 ## Status
-resolved
+open
 
 ## Reported
 2026-10-12
@@ -51,7 +51,8 @@ none needed (O92)
 - RV-15
 
 ## Resolution
-RV-57 (S-062): planner/hits.py finds the hits from the contacts (a touch on another performer's body; a strike,
+Open in part (review 4, S-063): hits come from the contacts at S16, S17 and in the prompt, but the framing is still judged by the subjects and the horizontal projection (F-090, RV-15), and which contacts are hits follows how they are written (F-175, RV-69).
+Before: RV-57 (S-062): planner/hits.py finds the hits from the contacts (a touch on another performer's body; a strike,
 deflect or parry on a prop another performer holds or threw; a catch of a body; a body touched by a blade another
 performer holds); S16's packet lists them and the camera validator holds the camera on each (HIT_HOLD at S16), and
 S17's `hit_hold`, the prose's holds and the prompt judge them with S17's holds, whatever S17 holds

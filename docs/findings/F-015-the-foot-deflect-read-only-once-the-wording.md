@@ -46,3 +46,4 @@ none needed
 Open: RV-57 (S-062) makes the 2.5 deflect a hit from the contacts, so its shot holds A and B in frame at S16, S17 and
 in the prompt, and its line still names the limb and its target ("A foot deflect kunai"); whether that reads is a
 render question (R-29).
+Review 4 (S-063): no slice carried it after RV-57; RV-80 prepares its render probe for the owner (R-29).
