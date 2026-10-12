@@ -10,16 +10,16 @@ Layer order 1.7; rules 7.2; backlog 36.
 
 ## Last sessions
 
-- S-085 (applied): RV-99: the camera cards' rules keep RV-60's floor, and a hit rule is found from what a contact does
 - S-086 (applied): RV-59a: bodies measured between keys, along the declared interpolation
 - S-087 (applied): RV-59b: the re-block solver clears paths between keys; two of B's spans re-blocked, the rest filed
+- S-088 (applied): RV-59d: a contact with no key at its instant measured on the interpolated pose
 
 ## Next slices
 
-- RV-59d (next, step motion): CONTACT_WORLD at an instant with no key measured on the interpolated pose (the wizard example's landing at 6.4)
+- RV-59c (next, step motion): FLOOR_PENETRATION at every frame between keys; B's crash given a key between or a declared fall
 - RV-35b (ready, step all): The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools
-- RV-59c (ready, step motion): FLOOR_PENETRATION at every frame between keys; B's crash given a key between or a declared fall
 - RV-97 (ready, step camera): VERTICAL_FRAMING along a static shot's window, frames on the declared interpolation, a margin by each part's radius; c11 and c20 re-authored
+- RV-98 (ready, step camera): A declared entrance may start outside its shot's frame (O21): c01 opens with A above the frame
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -138,4 +138,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-221, session S-088, render R20.
+Decision ADR-O109, finding F-221, session S-089, render R20.

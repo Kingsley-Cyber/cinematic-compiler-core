@@ -186,3 +186,5 @@ Added in S-086 (RV-59a, solver/interpolation.py): the root runs straight between
 there), the joints slerp as the source says, a declared turn's root angles run straight; at Y = 90 or -90 degrees the
 shared X and Z turn is read back as X; frames at the scene's fps, a vanished body's window left out; a span is the
 source's when both its keys are the owner's rows.
+Added in S-088 (RV-59d, solver/contact_world.py): between keys the actor is airborne (ADR-O104) when the key before
+claims no support, and turning when that key declares a turn; nothing else states the support between keys.

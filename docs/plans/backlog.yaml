@@ -160,12 +160,12 @@ items:
      step: motion, plan: PLAN-007, depends_on: [RV-35a], findings: [F-159, F-089], codes: []}
   - {id: RV-59b, title: "The re-block solver keeps a key's spans clear along the declared interpolation, the root's position free; B's paths re-blocked where a re-pose clears them with every contact held (3.4-3.7, 4.4-4.7)", status: done,
      step: motion, plan: PLAN-007, depends_on: [RV-59a], findings: [F-159], codes: []}
-  - {id: RV-59d, title: "CONTACT_WORLD at an instant with no key measured on the interpolated pose (the wizard example's landing at 6.4)", status: next,
+  - {id: RV-59d, title: "CONTACT_WORLD at an instant with no key measured on the interpolated pose (the wizard example's landing at 6.4)", status: done,
      step: motion, plan: PLAN-007, depends_on: [RV-59a], findings: [F-089], codes: []}
   - {id: RV-59e, title: "BODY_OVERLAP refused at every frame between keys; the spans by a contact cleared as F-220's answer says (the knee at 4.7, the catch and the throw 6.3-7.5, the drive and the crash 8.0-9.0, the wizard's kick at 3.6)", status: blocked,
      blocked_by: "the owner's answer in F-220 (in-between keys, an allowance by a contact, looser contacts or A's rows)",
      step: motion, plan: PLAN-007, depends_on: [RV-59b], findings: [F-159, F-220], codes: []}
-  - {id: RV-59c, title: "FLOOR_PENETRATION at every frame between keys; B's crash given a key between or a declared fall", status: ready,
+  - {id: RV-59c, title: "FLOOR_PENETRATION at every frame between keys; B's crash given a key between or a declared fall", status: next,
      step: motion, plan: PLAN-007, depends_on: [RV-59a], findings: [F-089], codes: []}
   - {id: RV-97, title: "VERTICAL_FRAMING along a static shot's window, frames on the declared interpolation, a margin by each part's radius; c11 and c20 re-authored", status: ready,
      step: camera, plan: PLAN-007, depends_on: [RV-59a], findings: [F-208, F-090], codes: []}

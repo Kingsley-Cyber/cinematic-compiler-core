@@ -105,7 +105,7 @@ flowchart LR
 | `renderers.ugc_renderer` | `renderers.anime_renderer` | — |
 | `solver.body_overlap` | `solver.forward_kinematics` | itertools |
 | `solver.camera_geometry` | — | math |
-| `solver.contact_world` | `planner.dynamic_beat_validator`, `solver.floor_penetration`, `solver.forward_kinematics` | hashlib, math, pathlib, yaml |
+| `solver.contact_world` | `planner.dynamic_beat_validator`, `solver.floor_penetration`, `solver.forward_kinematics`, `solver.interpolation` | hashlib, math, pathlib, yaml |
 | `solver.euler_solver` | `solver.quaternion` | — |
 | `solver.floor_penetration` | `planner.dynamic_beat_validator` | — |
 | `solver.forward_kinematics` | `planner.dependency_graph`, `planner.genre_profile`, `solver.quaternion`, `validators.schema_validator` | json, math, yaml |

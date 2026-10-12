@@ -102,8 +102,8 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 7.2; backlog 36.
-- Last session: S-087 (2026-10-12, applied): RV-59b: the re-block solver clears paths between keys; two of B's spans re-blocked, the rest filed.
-- Next slice: RV-59d CONTACT_WORLD at an instant with no key measured on the interpolated pose (the wizard example's landing at 6.4) (step motion).
+- Last session: S-088 (2026-10-12, applied): RV-59d: a contact with no key at its instant measured on the interpolated pose.
+- Next slice: RV-59c FLOOR_PENETRATION at every frame between keys; B's crash given a key between or a declared fall (step motion).
 - Open findings: 137; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 

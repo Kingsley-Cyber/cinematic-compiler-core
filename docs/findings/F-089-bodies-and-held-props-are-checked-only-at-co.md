@@ -60,3 +60,6 @@ passes (F-206, F-215); between keys B's left sole goes 0.385 m under the floor a
 FLOOR_PENETRATION between keys).
 Noted in S-086 (RV-59a): between keys B's crash (8.5 to 9.0) sinks the left sole 0.385 m under the floor over nine
 frames, the only body more than 0.15 m under it between keys in the four examples (RV-59c refuses it).
+Noted in S-088 (RV-59d): a contact between two of its actor's keys is measured on the interpolated pose (a prop
+between its samples straight between them); the wizard example's landing at 6.4 missed the ground by 0.275 and 0.181 m
+there, braced on the pillar at the key before, so its beat now lands at the 6.6 key. The floor between keys is RV-59c.

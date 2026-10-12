@@ -6,21 +6,25 @@ surface, from its own key: the nearest point of the named part's capsules, the t
 distance between them; between two bodies it runs from surface to surface, the actor's part carrying its segment's
 radius (RV-49, F-144: a strike is measured to the target's surface, and BODY_OVERLAP refuses one inside it; F-152 asks
 the owner whether O72's point measure or this one holds). Flags mark the conditions ADR-O83 named for a measurement
-artefact: the actor airborne, the actor's key turning, the prop moving at the instant. A
-contact with no key at its instant, a prop with no sample there, or a surface with no top (a wall, a pillar's face; a
-touch on any surface but a floor) is not measurable. `measure` reads an envelope (the report, the prose);
+artefact: the actor airborne, the actor's key turning, the prop moving at the instant. An actor or a body target with
+no key at the contact's instant but keys on both sides is posed there along the declared interpolation
+(solver/interpolation.py), and a prop with no sample there but samples on both sides runs straight between them; the
+row is then `interpolated` (RV-59d), its actor airborne when the key before claims no support and turning when that
+key declares a turn (interpretation, Claude's: nothing else states the support between keys). A contact outside its
+actor's keys or its prop's samples, or on a surface with no top (a wall, a pillar's face; a touch on any surface but
+a floor), is not measurable. `measure` reads an envelope (the report, the prose);
 `measure_plan` reads S13's packet and its authored keys (the check). CONTACT_WORLD (ADR-O83, O89) refuses a
 measurable miss over 0.15 m (O72) unless it is a genuine
 artefact, or the owner's list keeps it with its reason (kernel/contact_world_exceptions.yaml, read through S13's packet,
 never from an authored plan: the owner's source rows, ADR-O83 point 2, F-123); an exception that names anything but
 such a miss is refused, so the list stays true. A genuine artefact (ADR-O104) is a contact measured between keys or
 samples (an interpolated point) while its actor is airborne or its prop moves; at an exact instant nothing is exempt,
-and a turn alone never is (O89). Every contact measured today sits at an exact instant (`interpolated` is false).
+and a turn alone never is (O89).
 Every key's claimed supports (its S11 kinematic node) are measured too, not only a support contact's onset (RV-14a,
 F-089; row id `<slot>:<part>`): each part to the top of the surface its open support contact names, or to the floor
 when no contact names one (the lowest floor top, else the convention's ground). A part on any other surface than a
-floor waits for that surface's faces (RV-22); a held or embedded prop at every sample waits for F-148 (RV-14b); a
-contact between keys for RV-59. The owner's exceptions name contacts, so they keep covering only an onset.
+floor waits for that surface's faces (RV-22); a held or embedded prop at every sample waits for F-148 (RV-14b). The
+owner's exceptions name contacts, so they keep covering only an onset.
 """
 
 import hashlib
@@ -30,7 +34,7 @@ from pathlib import Path
 import yaml
 
 from planner.dynamic_beat_validator import surface_tops
-from solver import forward_kinematics
+from solver import forward_kinematics, interpolation
 from solver.floor_penetration import floor_level
 from solver.forward_kinematics import capsules, part_capsules, part_point, part_radius, points, surface_gap
 
@@ -64,7 +68,8 @@ def measure(envelope):
     tops = surface_tops(surfaces, envelope["scene"]["ax"].get("ground"))
     samples = [sample for beat in envelope["nodes"]["beats"]["items"] for sample in beat.get("prop_samples", [])]
     return _rows(keys, support, tops, {s["id"] for s in surfaces if s["kind"] == "floor"}, samples,
-                 envelope["nodes"]["contacts"]["items"], radii, floor_level(surfaces, envelope["scene"]["ax"].get("ground")))
+                 envelope["nodes"]["contacts"]["items"], radii, floor_level(surfaces, envelope["scene"]["ax"].get("ground")),
+                 metres)
 
 
 def packet_view(envelope):
@@ -80,9 +85,11 @@ def packet_view(envelope):
 
 
 def plan_bodies(keys, slots, packet):
-    """{(entity, t): {id, turn, points, capsules}} from S13's packet and its authored keys ({slot: key})."""
+    """{(entity, t): {id, t, pos, rot, bones, turn, points, capsules}} from S13's packet and its authored keys
+    ({slot: key})."""
     return {(slots[slot]["entity"], round(slots[slot]["t"], 6)):
-            {"id": slot, "turn": key["turn"], "points": points(key, packet["segments"]),
+            {"id": slot, "t": slots[slot]["t"], "pos": key["pos"], "rot": key["rot"], "bones": key["bones"],
+             "turn": key["turn"], "points": points(key, packet["segments"]),
              "capsules": capsules(key, packet["segments"], packet["radii"])} for slot, key in keys.items()}
 
 
@@ -91,10 +98,42 @@ def measure_plan(keys, slots, packet):
     view = packet["contact_world"]
     support = {slot: slots[slot]["kinematic"]["support"] for slot in keys}
     return _rows(plan_bodies(keys, slots, packet), support, view["surface_tops"], set(view["floors"]),
-                 view["prop_samples"], view["contacts"], packet["radii"], packet.get("floor_y"))
+                 view["prop_samples"], view["contacts"], packet["radii"], packet.get("floor_y"), packet["segments"])
 
 
-def _rows(keys, support, tops, floors, prop_samples, contacts, radii, floor=None):
+def _between(keys, entity, t, metres, radii):
+    """(body, key before): the entity's key at instant t, else its pose there between its keys along the declared
+    interpolation (RV-59d), else (None, None) outside its keys."""
+    if (entity, t) in keys:
+        return keys[(entity, t)], None
+    own = sorted(((s, body) for (e, s), body in keys.items() if e == entity), key=lambda item: item[0])
+    before, after = [b for s, b in own if s < t], [b for s, b in own if s > t]
+    if not (before and after and metres):
+        return None, None
+    pose = interpolation.pose(before[-1], after[0], t)
+    return {"id": f"{entity}@{t:g}", "turn": before[-1]["turn"], "points": points(pose, metres),
+            "capsules": capsules(pose, metres, radii)}, before[-1]
+
+
+def _prop_at(samples, prop, t):
+    """(samples, moving, between): the prop's samples at instant t, else one point straight between its samples on both
+    sides (RV-59d), moving when they differ or either has a velocity."""
+    def moves(group):
+        return any(s["v"] is not None and any(abs(x) > 1e-9 for x in s["v"]) for s in group)
+
+    if (prop, t) in samples:
+        return samples[(prop, t)], moves(samples[(prop, t)]), False
+    own = sorted(((s, group[0]) for (p, s), group in samples.items() if p == prop), key=lambda item: item[0])
+    before, after = [x for s, x in own if s < t], [x for s, x in own if s > t]
+    if not (before and after):
+        return [], False, False
+    a, b = before[-1], after[0]
+    share = (t - a["t"]) / (b["t"] - a["t"])
+    point = [round(pa + share * (pb - pa), 6) for pa, pb in zip(a["p"], b["p"], strict=True)]
+    return [{"p": point, "v": None}], a["p"] != b["p"] or moves((a, b)), True
+
+
+def _rows(keys, support, tops, floors, prop_samples, contacts, radii, floor=None, metres=None):
     samples = {}
     for sample in prop_samples:
         samples.setdefault((sample["prop"], round(sample["t"], 6)), []).append(sample)
@@ -103,15 +142,16 @@ def _rows(keys, support, tops, floors, prop_samples, contacts, radii, floor=None
         if c["contact_type"] not in MEASURED or (c["contact_type"] == "release" and c["b"]["kind"] != "prop"):
             continue  # RV-02b (F-075): a release lets a prop go from the hand; a foot leaving a surface is a takeoff
         t, b = round(c["t"], 6), c["b"]
-        key = keys.get((c["a"]["id"], t))
+        key, before = _between(keys, c["a"]["id"], t, metres, radii)
+        decides = before or key  # between keys the key before says whether the span starts in the air (RV-59d)
         row = {"id": c["id"], "t": c["t"], "actor": c["a"]["id"], "part": c["body_part"], "kind": KINDS[b["kind"]],
                "target": f"{_words(b['id'])}" + (f" {_words(b['part'])}" if b.get("part") else ""),
                "actor_point": None, "target_point": None, "distance": None, "measurable": False, "reason": "",
-               "airborne": bool(key) and not support.get(key["id"]), "rotating": bool(key) and key["turn"] != "none",
-               "prop_moving": False, "interpolated": False}
+               "airborne": bool(key) and not support.get(decides["id"]), "rotating": bool(key) and decides["turn"] != "none",
+               "prop_moving": False, "interpolated": before is not None}
         rows.append(row)
         if key is None:
-            row["reason"] = "no key at the contact's instant"
+            row["reason"] = "no key at or around the contact's instant"
             continue
         point = part_point(key["points"], c["body_part"])
         if point is None:
@@ -125,18 +165,19 @@ def _rows(keys, support, tops, floors, prop_samples, contacts, radii, floor=None
             row["target_point"] = [point[0], tops[b["id"]], point[2]]
             row["distance"] = round(abs(point[1] - tops[b["id"]]), 3)
         elif b["kind"] == "prop":
-            here = samples.get((b["id"], t), [])
+            here, moving, between = _prop_at(samples, b["id"], t)
             if not here:
-                row["reason"] = f"no {_words(b['id'])} sample at {c['t']}"
+                row["reason"] = f"no {_words(b['id'])} sample at or around {c['t']}"
                 continue
-            row["prop_moving"] = any(s["v"] is not None and any(abs(x) > 1e-9 for x in s["v"]) for s in here)
+            row["prop_moving"], row["interpolated"] = moving, row["interpolated"] or between
             row["target_point"] = list(here[0]["p"])
             row["distance"] = round(math.dist(point, here[0]["p"]), 3)
         else:
-            other = keys.get((b["id"], t))
+            other, other_before = _between(keys, b["id"], t, metres, radii)
             if other is None:
-                row["reason"] = f"no key for {_words(b['id'])} at {c['t']}"
+                row["reason"] = f"no key for {_words(b['id'])} at or around {c['t']}"
                 continue
+            row["interpolated"] = row["interpolated"] or other_before is not None
             target = [other["capsules"][name] for name in part_capsules(b.get("part") or "torso")]
             row["distance"], row["target_point"] = surface_gap(point, part_radius(c["body_part"], radii), target)
         row["measurable"] = True

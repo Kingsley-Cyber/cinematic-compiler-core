@@ -633,7 +633,7 @@
   {
    "id": "b08",
    "t": 5.2,
-   "dur": 1.2,
+   "dur": 1.4,
    "event_type": "action",
    "actor": "acrobat",
    "label": "recover",

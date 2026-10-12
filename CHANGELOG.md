@@ -6,6 +6,11 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- A contact between keys is measured (RV-59d, F-089, S-088): CONTACT_WORLD poses an actor or a body target with no
+  key at the contact's instant along the declared interpolation, and reads a prop between its samples straight
+  between them; the row is interpolated, so ADR-O104's artefact applies when the span starts in the air. The wizard
+  example's landing at 6.4 missed the ground by 0.275 and 0.181 m that way, so its push-off-and-drop beat lasts 1.4 s
+  and lands at the 6.6 key; the S13 instructions say how such a contact is measured.
 - The re-block solver clears paths between keys (RV-59b, F-159, S-087): `--clear <entity>` keeps a key's two spans
   clear of another body along the declared interpolation, and a root component (`pos.x`) may move the key's root.
   B's left arm at 3.7 and B's root (1.1 cm) and legs at 4.4 are re-blocked from recorded commands (DEV-34); the eight

@@ -131,6 +131,40 @@ def test_contact_world_spares_a_listed_exception_and_an_artefact():
     assert contact_world.refusals([dict(miss, interpolated=True, airborne=False, prop_moving=False)], {})  # a turn alone
 
 
+def test_a_contact_between_keys_is_measured_on_the_interpolated_pose():
+    """F-089 (RV-59d, ADR-O104): a contact with no key at its instant but keys on both sides is measured on the pose the
+    declared interpolation gives there. The wizard example's landing, back at 6.4 (between the pillar brace at 5.2 and
+    the lunge at 6.6, S-088), misses the ground and is refused: the span starts braced on the pillar, not in the air.
+    Starting the span in the air makes the same miss an artefact."""
+    from solver import contact_world
+    packet = copy.deepcopy(PACKET)
+    for contact in packet["contact_world"]["contacts"]:
+        if contact["id"] in ("b08_c2", "b08_c3"):
+            contact["t"] = 6.4
+    slots = {s["slot"]: s for s in packet["slots"]}
+    rows = {r["id"]: r for r in contact_world.measure_plan({k["slot"]: k for k in PLAN["keys"]}, slots, packet)}
+    landing = [rows["b08_c2"], rows["b08_c3"]]
+    assert all(r["measurable"] and r["interpolated"] and not r["airborne"] for r in landing)
+    assert [r["distance"] for r in landing] == [0.275, 0.181]
+    assert {f["contact"] for f in p13_motion.check(PLAN, packet) if f["code"] == "CONTACT_WORLD"} == {"b08_c2", "b08_c3"}
+    slots["acrobat@b08"]["kinematic"]["support"] = []
+    rows = contact_world.measure_plan({k["slot"]: k for k in PLAN["keys"]}, slots, packet)
+    assert contact_world.refusals([r for r in rows if r["id"] in ("b08_c2", "b08_c3")], {}) == []
+
+
+def test_a_prop_between_its_samples_runs_straight_and_moves_when_its_samples_differ():
+    """RV-59d (ADR-O104): a prop with no sample at a contact's instant but samples on both sides is read straight between
+    them, moving when the samples differ or carry a velocity; outside its samples it is not measured."""
+    from solver.contact_world import _prop_at
+    samples = {("kunai", 1.0): [{"t": 1.0, "p": [0.0, 1.0, 0.0], "v": [0, 0, 0]}],
+               ("kunai", 2.0): [{"t": 2.0, "p": [1.0, 1.0, 0.0], "v": None}],
+               ("log", 1.0): [{"t": 1.0, "p": [2.0, 0.0, 0.0], "v": [0, 0, 0]}],
+               ("log", 3.0): [{"t": 3.0, "p": [2.0, 0.0, 0.0], "v": [0, 0, 0]}]}
+    assert _prop_at(samples, "kunai", 1.25) == ([{"p": [0.25, 1.0, 0.0], "v": None}], True, True)
+    assert _prop_at(samples, "log", 2.0) == ([{"p": [2.0, 0.0, 0.0], "v": None}], False, True)
+    assert _prop_at(samples, "kunai", 2.5) == ([], False, False)
+
+
 def test_no_body_sinks_into_the_floor_at_any_key():
     """F-089 (RV-14a, owner O72): at every key no body point lies more than 0.15 m under the floor, the lowest floor's
     top or, where a scene names no floor, the convention's ground."""
