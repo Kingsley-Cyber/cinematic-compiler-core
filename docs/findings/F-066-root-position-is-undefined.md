@@ -12,7 +12,7 @@ high
 L4c
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -49,4 +49,6 @@ ADR-O72
 - PLAN-003
 
 ## Resolution
-Open.
+The owner ruled ADR-O72 (accepted 2026-10-11): the root is the pelvis and the contact tolerance is 0.15 m; M9-06 built
+forward kinematics and CONTACT_WORLD on it (solver/forward_kinematics.py, solver/contact_world.py). Closed in RV-04
+(S-044).

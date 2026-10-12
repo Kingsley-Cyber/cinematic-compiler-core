@@ -27,7 +27,7 @@ the list first) is met.
 ## Consequences
 - Backlog M9-06c: calibrate the card to the source's grounded A rows; the repo-authored roots re-root to the new
   pelvis height; the miss report is regenerated.
-- M9-06b (CONTACT_WORLD refuses) follows M9-06c; its three open points are ADR-O83 (proposed).
+- M9-06b (CONTACT_WORLD refuses) follows M9-06c; its three open points are ADR-O83 (proposed then, accepted 2026-10-11).
 
 ## Alternatives Considered
 - Keep the draft adult: not chosen.

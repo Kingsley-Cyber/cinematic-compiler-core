@@ -547,17 +547,26 @@ def _schema_problems(root):
     return found + shared_problems(root)
 
 
-def _freeze_problems(root):
-    """Frozen docs (owner O64): a docs-log entry that changes a file must also change its version."""
-    from kernel.schema_log import DOCS
+# ADR-O106 (F-078, S-044): the schemas, library and kernel logs refuse an unbumped change after these entries; the
+# changes before them that kept their version (36, 21 and 47) stay as written, the logs being append-only.
+BUMP_CHECKED_AFTER = {"schemas": 125, "library": 77, "kernel": 55, "docs": 0}
 
-    found, last = [], {}
-    for row in DOCS.entries(root):
-        previous = last.get(row["file"])
-        if row["change"] == "changed" and previous is not None and previous == row["docs_version"]:
-            found.append(f"docs/docs_log.jsonl seq {row['seq']}: {row['file']} changed without a version bump "
-                         f"(still {row['docs_version']})")
-        last[row["file"]] = row["docs_version"]
+
+def _freeze_problems(root):
+    """Frozen docs (owner O64) and, since ADR-O106, schemas, library cards and kernel files: a log entry that changes a
+    file must also change its version."""
+    from kernel.schema_log import LOGS
+
+    found = []
+    for name, log in LOGS.items():
+        last = {}
+        for row in log.entries(root):
+            previous = last.get(row[log.key])
+            if (row["change"] == "changed" and row["seq"] > BUMP_CHECKED_AFTER[name] and previous is not None
+                    and previous == row[log.version_key]):
+                found.append(f"{log.log} seq {row['seq']}: {row[log.key]} changed without a version bump "
+                             f"(still {row[log.version_key]})")
+            last[row[log.key]] = row[log.version_key]
     return found
 
 

@@ -101,10 +101,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 3.1; backlog 18.
-- Last session: S-043 (2026-10-12, applied): RV-02b: CONTACT_WORLD measures releases; B's kunai throw re-staged.
-- Next slice: RV-04 Records: rules 4.0, version bumps checked, layer_order.yaml logged, the hook active, stale docs and findings closed (step docs).
-- Open findings: 73; decisions: 132 (0 proposed).
+- Layer order 1.7; rules 4.0; backlog 19.
+- Last session: S-044 (2026-10-12, applied): RV-04: the records agree with the repo: versions, logs, stale documents and findings.
+- Next slice: RV-07 The smoke bursts at 3.7 at A's body; the spent pellet falls and rests (O91) (step temporal).
+- Open findings: 69; decisions: 133 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
@@ -121,7 +121,6 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - F-057 (low): The kernel rule 'substitution log reveals' reads against O48's staging
 - F-059 (low): Reference-fight deviations from its own data await review
 - F-060 (low): What is a motif?
-- F-066 (high): What is a key's root position: the pelvis or the ground point?
 - F-088 (high): Every prompt is over the length caps; fitting them needs the owner's call on what goes
 - F-108 (medium): B's track departs from the source
 - F-111 (medium): Limb words mix frames against the legend

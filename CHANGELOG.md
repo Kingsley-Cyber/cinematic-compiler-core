@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The records agree with the repo (RV-04, F-078, ADR-O106, S-044): rules 4.0; the gate refuses an unbumped change in the
+  schemas, library and kernel logs from now on; the library log reads `version` where a file has no `card_version`; the
+  kernel log covers kernel/layer_order.yaml; the knowledge map is version 2; README points to docs/layer_order.md; stale
+  ADR texts and answered findings (F-066, F-028, F-063) closed; F-015 stays open (no code catches it yet). The pre-commit hook waits on the owner (O52).
 - CONTACT_WORLD measures a prop's release (RV-02b, ADR-O105, F-075, S-043): a thrown or dropped prop leaves the hand
   where the hand is. F-108 answered: B's kunai leaves the hand once, at the 2.0 throw. B throws from A's -Z side, so
   the kunai rises toward A, arrives along +Z and is deflected back down toward B, as the source's rule says. Every S13

@@ -41,7 +41,8 @@ every example; no ruling covers those edits, and M9-10, M9-14b and M9-15d depend
   would re-author 24.
 - The measurement thresholds are Claude's; a flip's in-air lean (A at 5.10-5.90) reads as a form change, so some of
   the twelve may be the measure's, not the plan's.
-- Until the owner rules, M9-09a is blocked, with M9-10, M9-14b and M9-15d behind it.
+- Until the owner ruled (2026-10-11, accepted), M9-09a was blocked, with M9-10, M9-14b and M9-15d behind it; M9-09a
+  then built SHAPE_DIRECTION on it.
 
 ## Alternatives Considered
 - Strict: refuse an interval whose quality neither reading shows (24 intervals re-authored).

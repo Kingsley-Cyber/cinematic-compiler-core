@@ -29,8 +29,10 @@ def _schema_version(path):
 
 
 def _card_version(path):
+    """A card's `card_version`, or a library file's `version` (F-078: 18 library files carry `version`, which the log
+    read as None until S-044)."""
     card = yaml.safe_load(path.read_text(encoding="utf-8"))
-    return f"{card.get('card_version')}:{card.get('status')}"
+    return f"{card.get('card_version', card.get('version'))}:{card.get('status')}"
 
 
 def _kernel_version(path):
@@ -141,7 +143,7 @@ SCHEMAS = HashLog("schemas/schema_log.jsonl", "schemas", "**/*.schema.json", "sc
 LIBRARY = HashLog("library/library_log.jsonl", "library", "**/*.yaml", "card", "card_version", _card_version)
 KERNEL = HashLog("kernel/kernel_log.jsonl", "kernel", ("sources/*.txt", "kernel_scope.yaml", "invariants.yaml",
                                                        "state_vocabulary.yaml", "conventions.yaml", "owner_invariants.yaml",
-                                                       "knowledge_map.yaml"),
+                                                       "knowledge_map.yaml", "layer_order.yaml"),  # layer order: F-078
                  "file", "file_version", _kernel_version)
 GENERATED_BLOCK = re.compile(r"<!-- BEGIN GENERATED: (\w+) -->\n.*?<!-- END GENERATED: \1 -->", re.S)
 DOCS_VERSION = re.compile(r"docs-version: (\S+?)(?: -->|$)", re.M)

@@ -6,20 +6,20 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 3.1; backlog 18.
+Layer order 1.7; rules 4.0; backlog 19.
 
 ## Last sessions
 
-- S-041 (applied): RV-03: the UGC pickup on the table, no resting-prop jump, the UGC poses agree with their words
 - S-042 (applied): RV-06: the vanish: A's supports and holds end at 3.7; the rope dart lies on the ground until 7.5
 - S-043 (applied): RV-02b: CONTACT_WORLD measures releases; B's kunai throw re-staged
+- S-044 (applied): RV-04: the records agree with the repo: versions, logs, stale documents and findings
 
 ## Next slices
 
-- RV-04 (next, step docs): Records: rules 4.0, version bumps checked, layer_order.yaml logged, the hook active, stale docs and findings closed
-- RV-07 (ready, step temporal): The smoke bursts at 3.7 at A's body; the spent pellet falls and rests (O91)
+- RV-07 (next, step temporal): The smoke bursts at 3.7 at A's body; the spent pellet falls and rests (O91)
 - RV-09 (ready, step camera): Hits are camera holds framing both bodies, no playback ramps; the source's camera directives (O92)
 - RV-10 (ready, step temporal): The kunai drive holds the kunai in B's right shoulder; the catch is a grasp plus a throw (O93)
+- RV-11 (ready, step render): DAG-excluded rows are N/A; cinematic compile refuses a non-deliverable prompt (O94)
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -33,7 +33,6 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-057 (low): The kernel rule 'substitution log reveals' reads against O48's staging
 - F-059 (low): Reference-fight deviations from its own data await review
 - F-060 (low): What is a motif?
-- F-066 (high): What is a key's root position: the pelvis or the ground point?
 - F-088 (high): Every prompt is over the length caps; fitting them needs the owner's call on what goes
 - F-108 (medium): B's track departs from the source
 - F-111 (medium): Limb words mix frames against the legend
@@ -50,7 +49,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-40 blocked: Rebinding forces re-authoring — the owner's answer in F-116
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 73
+## Open findings: 69
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -60,12 +59,10 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-019 (high, L1.5): Beats are not checked against the constraint rules
 - F-020 (high, all): Declared constraint validators do not run per layer
 - F-025 (high, L2.2): Contacts lack world points, striking surface and verb
-- F-028 (high, L4c): No forward kinematics, rotation path or launch check
 - F-029 (high, L5): Effort lacks direction, phrasing and idle checks
 - F-030 (high, L5.5): Camera lacks C10's rules and the arc with the rotation
 - F-031 (critical, L6): Render wording the model does not follow
 - F-036 (high, L6): Aerial timing is not followed: takeoffs come late
-- F-066 (high, L4c): What is a key's root position: the pelvis or the ground point?
 - F-082 (high, L1.1): O78 was applied backwards: the smoke bursts on landing at 4.0
 - F-083 (high, L5.5): Hits are slow-motion close-up inserts, and most of the source's holds are not printed
 - F-084 (high, L1.1): The kunai drive and the catch print as instant strikes, and the kunai floats over the downed B
@@ -80,4 +77,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O106, finding F-120, session S-044, render R20.
+Decision ADR-O107, finding F-120, session S-045, render R20.

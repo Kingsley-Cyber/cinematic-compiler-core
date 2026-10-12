@@ -12,7 +12,7 @@ high
 L4c
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -43,4 +43,6 @@ ADR-O33
 - backlog M9-05
 
 ## Resolution
-Open.
+Built: forward kinematics and world points (F5.1, solver/forward_kinematics.py, M9-06a), the derived rotation path
+printed as one named turn (FR.1, ROTATION_PATH_UNSTATED) and the launch before a turn (FR.4, AIRBORNE_WITHOUT_LAUNCH in
+solver/euler_solver.py, M9-09c). Closed in RV-04 (S-044).

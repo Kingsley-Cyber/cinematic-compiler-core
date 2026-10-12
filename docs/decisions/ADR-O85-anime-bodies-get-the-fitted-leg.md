@@ -31,7 +31,7 @@ draft adult's. PLAN-003 F5.1 already asks for segment lengths "per archetype or 
 adult for every body.
 
 ## Consequences
-- `library/body_segments.yaml` holds two bodies, `adult` and `anime` (card 3; schema 3.0, logged); each genre profile
+- `library/body_segments.yaml` holds two bodies, `adult` and `anime` (card 3 then, card 4 since S-033; schema 3.0, logged); each genre profile
   (`library/genre_profiles/<genre>.yaml`, the genre profile cards of `schemas/genre_profile.schema.json`, O65; S-033)
   names its `body_type`: anime for anime, adult for live action and UGC; `solver/forward_kinematics.segments` reads it.
   S-029 had put the genres in the card and S-031 the body type in the modality schemas.

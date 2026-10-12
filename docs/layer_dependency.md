@@ -1,3 +1,5 @@
+> **Superseded (S-044, F-078).** This page describes layer order 1.4 and its old step numbers. The layer order is [`kernel/layer_order.yaml`](../kernel/layer_order.yaml) (1.7) and, step by step, [`docs/layer_order.md`](layer_order.md); the open owner decisions are in [`docs/index/decisions.md`](index/decisions.md). Kept as history.
+
 # Layer dependency (L0 → L6.5)
 
 The DAG is data: [`kernel/layer_order.yaml`](../kernel/layer_order.yaml) (version 1.4). The envelope

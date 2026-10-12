@@ -25,7 +25,7 @@ the declared validators after every layer that declares them, and records who ca
 |-----|-------|----------|--------|-----|
 | F-019 (GAP-04) | L1.5 | high | open | checkable constraint form + CONSTRAINT_BEAT at S04/S06 |
 | F-020 (GAP-05) | all | high | open | the declared `constraint` validator runs after S04, S06, S07, S11, S13 |
-| F-018 (GAP-03) | L0.5 | medium | open | `carried_by` on prop nodes from the archetype card's equipment (O63) |
+| F-018 (GAP-03) | L0.5 | medium | resolved | `carried_by` on prop nodes from the archetype card's equipment (O63) |
 
 ## Dependencies
 - Backlog M9-02 (F5.3 strike timing) first (O61).

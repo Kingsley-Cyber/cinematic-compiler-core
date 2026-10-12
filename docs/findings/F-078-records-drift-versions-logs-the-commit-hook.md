@@ -12,7 +12,7 @@ medium
 docs
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -51,4 +51,12 @@ none needed; F-063 still asks which versioning reading the owner wants (until th
 - F-015
 
 ## Resolution
-Open.
+RV-04 (S-044, ADR-O106): docs/rules.yaml 4.0; kernel/docs_plane.py refuses a schema, library or kernel log entry that
+changes a file without changing its version (after each log's end at S-044; the earlier ones stay as written)
+(tests/test_docs_plane.py::test_a_logged_kernel_file_cannot_change_without_a_version_bump); the library log reads a
+library file's `version` when it has no `card_version`; the kernel log covers kernel/layer_order.yaml; the knowledge map
+is version 2; README points to docs/layer_order.md and docs/layer_dependency.md says it is superseded; ADR-O72, O73,
+O82 and O85 no longer read as open; F-066 and F-028 are closed; PLAN-004 shows F-018 resolved. F-015 stays open: the
+docs plane resolves a render finding only when a checklist code catches it, and none catches F-015 yet. The pre-commit
+hook is the owner's one command (`make hooks`): it writes the repository config that this worktree shares with the main
+folder, which O52 keeps the agent from editing (docs/reports/2026-10-11-finish-1.md, For the owner).

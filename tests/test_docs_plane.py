@@ -87,3 +87,17 @@ def test_a_frozen_doc_cannot_change_without_its_log_entry_and_version_bump(tmp_p
     regenerated = docs_plane.fill_blocks(text, {"state": "- anything\n"})  # generated blocks are outside the digest
     agents.write_text(regenerated, encoding="utf-8")
     DOCS.verify(root)
+
+
+def test_a_logged_kernel_file_cannot_change_without_a_version_bump(tmp_path):
+    """ADR-O106 (F-078): like a frozen doc (O64), a schema, library card or kernel file logged as changed must carry a new
+    version; the changes before each log's cutoff stay as written."""
+    from kernel.schema_log import KERNEL
+
+    root = tmp_path / "repo"
+    shutil.copytree(ROOT, root, ignore=SKIP)
+    assert docs_plane._freeze_problems(root) == []
+    conventions = root / "kernel" / "conventions.yaml"
+    conventions.write_text(conventions.read_text(encoding="utf-8") + "# a comment\n", encoding="utf-8")
+    KERNEL.record("kernel/conventions.yaml", "changed", "test: no bump", "owner", root=root)
+    assert any("kernel/conventions.yaml changed without a version bump" in p for p in docs_plane._freeze_problems(root))

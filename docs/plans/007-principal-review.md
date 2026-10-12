@@ -50,7 +50,7 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 | RV-01 | L6 | high | done (S-037) | C12 off CONTACT_WORLD (F-074) |
 | RV-02a, RV-02b | L4c | high | done (S-039, S-043) | CONTACT_WORLD per O89 (re-blocks, the vault's hand plant, test hygiene), then releases measured (F-075, F-076, F-079) |
 | RV-03 | L1.1 | medium | done (S-041) | the UGC pickup and poses (F-077) |
-| RV-04 | docs | medium | open | records: versions, logs, hook, stale docs and findings (F-078) |
+| RV-04 | docs | medium | done (S-044; the hook is the owner's) | records: versions, logs, hook, stale docs and findings (F-078) |
 | RV-05 | L4c | high | done (S-038) | A's words follow the source (F-080) |
 | RV-06 | L1.1 | high | done (S-042) | the vanish (F-081) |
 | RV-07, RV-08 | L1.1, L2.1 | high | RV-08 done (S-040); RV-07 open | the smoke at 3.7 after commits at the contact's instant (F-082, F-061) |

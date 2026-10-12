@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 18
+version: 19
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -74,7 +74,7 @@ items:
      step: motion, plan: PLAN-007, depends_on: [RV-02a, RV-03, RV-06], findings: [F-075, F-108], codes: []}
   - {id: RV-03, title: "The UGC pickup on the table; no resting-prop jump at a pickup; UGC poses agree with their words", status: done,
      step: temporal, plan: PLAN-007, depends_on: [RV-08], findings: [F-077], codes: []}
-  - {id: RV-04, title: "Records: rules 4.0, version bumps checked, layer_order.yaml logged, the hook active, stale docs and findings closed", status: next,
+  - {id: RV-04, title: "Records: rules 4.0, version bumps checked, layer_order.yaml logged, the hook active, stale docs and findings closed", status: done,
      step: docs, plan: PLAN-007, depends_on: [], findings: [F-078, F-063, F-066, F-028, F-015], codes: []}
   - {id: RV-05, title: "A's limb and head words follow the source's words (O88)", status: done,
      step: motion, plan: PLAN-007, depends_on: [], findings: [F-080], codes: []}
@@ -82,7 +82,7 @@ items:
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-081], codes: []}
   - {id: RV-08, title: "A state change commits at its contact's instant, not the beat's end (F-061)", status: done,
      step: state, plan: PLAN-007, depends_on: [], findings: [F-061], codes: []}
-  - {id: RV-07, title: "The smoke bursts at 3.7 at A's body; the spent pellet falls and rests (O91)", status: ready,
+  - {id: RV-07, title: "The smoke bursts at 3.7 at A's body; the spent pellet falls and rests (O91)", status: next,
      step: temporal, plan: PLAN-007, depends_on: [RV-08], findings: [F-082], codes: []}
   - {id: RV-09, title: "Hits are camera holds framing both bodies, no playback ramps; the source's camera directives (O92)", status: ready,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-083, F-005], codes: [HIT_HOLD, PLAYBACK_RAMP]}

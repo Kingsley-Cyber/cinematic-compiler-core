@@ -2,7 +2,7 @@
 # and a docs-log entry (python -m kernel.schema_log --log docs record docs/rules.yaml ...). Every rule cites accepted
 # decisions (docs/decisions/) and names what enforces it: a code or test the gate runs, or `protocol` (the agent
 # follows it; AGENTS.md). Validated by schemas/rules.schema.json.
-version: "3.1"
+version: "4.0"
 rules:
   # ---- agent: how every session works
   - {id: R-01, scope: agent, source: [ADR-S6, ADR-O64],

@@ -12,7 +12,7 @@ low
 docs
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -47,4 +47,4 @@ none yet
 - ADR-O70
 
 ## Resolution
-Open.
+ADR-O106 (S-044): docs/versioning.md stands as written; the three earlier +0.1 bumps stay (the log is append-only).
