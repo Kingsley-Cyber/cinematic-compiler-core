@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Added
+- Every prompt prints the in-between keys (RV-59i, ADR-O109, S-095): render.txt gives each its actor's row at its
+  instant, marked as an in-between key, and its coverage counts them; each prose mode prints an [IN-BETWEEN KEYS] block
+  after the staff (Root and Joints in all but the pure staff), and the motion control counts them among the explicit
+  keys. With none in the examples, every prompt is unchanged.
 - In-between keys at S13 (RV-59f, ADR-O109, S-094): the motion plan may carry one entity's pose between two of its
   keys (motion_plan 2.1); S13 checks it like a key (INBETWEEN_SPAN, its joints and limits, TELEPORT, the floor and the
   bodies at its instant), the follows edge it splits carries it (motion_graph 1.2), the declared interpolation, the

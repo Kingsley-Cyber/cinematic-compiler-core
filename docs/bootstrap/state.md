@@ -6,20 +6,20 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 7.2; backlog 40.
+Layer order 1.7; rules 7.2; backlog 41.
 
 ## Last sessions
 
-- S-092 (applied): RV-99b: the camera floor finds a hit by what strikes, and reads a negation in every word
 - S-093 (applied): RV-95b: the pickups judged as drawn, their stated bounds restored
 - S-094 (applied): RV-59f: in-between keys at S13 (ADR-O109)
+- S-095 (applied): RV-59i: every prompt prints the in-between keys
 
 ## Next slices
 
-- RV-59i (next, step render): Every prompt prints the in-between keys with their instants (the LBN rows and every prose mode; the motion control's density counts them), before RV-59e's first use
+- RV-108 (next, step motion): A declared turn drawn about its own axis by its net angle between keys (B's 8.5 tip), F-053's straight-Euler reading revised, the between-keys report re-measured
 - RV-35b (ready, step all): The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools
-- RV-95c (ready, step motion): The pickup rows worded in the printed legend's frame, and A's head at 7.5 aimed at B by a facing goal in the re-block solver (or its words dropped)
-- RV-108 (ready, step motion): A declared turn drawn about its own axis by its net angle between keys (B's 8.5 tip), F-053's straight-Euler reading revised, the between-keys report re-measured
+- RV-59e (ready, step motion): BODY_OVERLAP refused at every frame between keys: B's 7.5 root re-blocked (the descent, no contact), the spans by a contact cleared with B's in-between keys (ADR-O109); what only A's rows could clear stays F-220's
+- RV-59c (ready, step motion): FLOOR_PENETRATION at every frame between keys; B's crash cleared with a key mid-fall (ADR-O109) after RV-108 draws its tip
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -140,4 +140,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O110, finding F-230, session S-095, render R20.
+Decision ADR-O110, finding F-230, session S-096, render R20.

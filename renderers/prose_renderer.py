@@ -27,7 +27,7 @@ from compiler.passes.mandatory.p07_contact import events_for, lifecycle
 from planner import camera_library, dynamic_beat_validator, hits
 from planner.scene_view import slots
 from renderers import prop_samples, ugc_renderer
-from renderers.anime_renderer import NUMBERS, _face_words, _items, _num, constraint_rows
+from renderers.anime_renderer import NUMBERS, _face_words, _items, _num, constraint_rows, inbetweens
 from solver import contact_world, euler_solver, staff_geometry
 
 TARGET = "structured-prose"
@@ -446,12 +446,14 @@ def _held_at_end(envelope, entity):
     return [names.get(s["subject"]["id"], s["subject"]["id"]) for s in ends if s["conditions"].get("holder") == entity]
 
 
-def _gaps(lines, labels):
-    """(label, t0, t1) between consecutive lines of each performer."""
+def _gaps(lines, labels, between=()):
+    """(label, t0, t1) between consecutive explicit keys of each performer: its lines and its in-between keys."""
     times = {}
     for line in lines:
         times.setdefault(labels[line["entity"]], []).append(line["key"]["t"])
-    return [(label, a, b) for label, ts in sorted(times.items()) for a, b in zip(ts, ts[1:], strict=False)]
+    for b in between:  # ADR-O109 (RV-59i)
+        times.setdefault(labels[b["entity"]], []).append(b["t"])
+    return [(label, a, b) for label, ts in sorted(times.items()) for a, b in zip(sorted(ts), sorted(ts)[1:], strict=False)]
 
 
 def _render_intent(envelope, frame_parts, lines, labels):
@@ -593,8 +595,8 @@ def _implied(envelope, lines, labels):
     return "[IMPLIED GUIDANCE]\n" + "\n".join(f"- {line}" for line in out)
 
 
-def _motion_control(lines, labels):
-    gaps = _gaps(lines, labels)
+def _motion_control(lines, labels, between=()):
+    gaps = _gaps(lines, labels, between)
     sizes = [b - a for _, a, b in gaps]
     text = ["Interpolation: slerp joint rotations between lines; the root follows its derived path between positions; "
             "support and the declared Effort hold at all times."]
@@ -603,8 +605,27 @@ def _motion_control(lines, labels):
         text.append(f"Density (measured): {sum(g < 0.6 for g in sizes)} dense gaps under 0.6 s, "
                     f"{sum(0.6 <= g <= 0.9 for g in sizes)} medium from 0.6 to 0.9 s, {sum(g > 0.9 for g in sizes)} sparse "
                     f"over 0.9 s; the longest is {b - a:.2f} s ({label} {_time(a)}–{_time(b)}).")
-    text.append("Explicit = the staff lines; implied = everything between them (IMPLIED GUIDANCE).")
+    explicit = "the staff lines and the in-between keys" if between else "the staff lines"
+    text.append(f"Explicit = {explicit}; implied = everything between them (IMPLIED GUIDANCE).")
     return "[MOTION CONTROL]\n" + "\n".join(text)
+
+
+def _inbetween_block(between, mode, labels):
+    """ADR-O109 (RV-59i): the poses the interpolation passes through between two staff lines, each at its time; Root and
+    Joints in every mode but the pure staff."""
+    out = ["Poses between two staff lines (no beat, no contact): the interpolation passes through each at its time."]
+    for b in between:
+        words = staff_geometry.pose_words(b)
+        left = (f"L arm {words['left']['arm']}, lower arm {words['left']['lower_arm']}, L leg {words['left']['leg']}, "
+                f"lower leg {words['left']['lower_leg']}")
+        left += f", body {words['body']}" if words["body"] else ""
+        left += f", head {words['head']}" if words["head"] else ""
+        right = (f"R arm {words['right']['arm']}, lower arm {words['right']['lower_arm']}, R leg {words['right']['leg']}, "
+                 f"lower leg {words['right']['lower_leg']}")
+        euler = "" if mode == "pure_staff" else (f" · Root {_numbers(b['pos'])} EulerXYZ {_numbers(b['rot'])} · Joints {{"
+                                                 + ", ".join(f"{j}: {_numbers(b['bones'][j])}" for j in JOINTS) + "}")
+        out.append(f"{_time(b['t'])} {labels[b['entity']]}: {_words(b['name'])} | {left} | {right}{euler}")
+    return "[IN-BETWEEN KEYS]\n" + "\n".join(out)
 
 
 def _spatial(envelope, lines, labels, rows):
@@ -915,8 +936,9 @@ def render_all(envelope, frame_parts, labels):
     _, rows = constraint_rows(envelope, labels)
     omitted = sorted({cid for _, _, cid, ref in rows if ref == ROOT_EXACT})
     lines = staff_lines(envelope, frame_parts, labels)
+    between = inbetweens(envelope)  # ADR-O109 (RV-59i)
     shared = {"scene": _scene(envelope, frame_parts, lines, labels, rows), "implied": _implied(envelope, lines, labels),
-              "motion": _motion_control(lines, labels), "spatial": _spatial(envelope, lines, labels, rows),
+              "motion": _motion_control(lines, labels, between), "spatial": _spatial(envelope, lines, labels, rows),
               "props": _props(envelope, labels), "causal": _causal(envelope, labels),
               "camera": _camera(envelope, frame_parts, labels),
               "genre": _genre_block(envelope, frame_parts, labels), "negatives": _negatives(rows, envelope, labels)}
@@ -924,9 +946,10 @@ def render_all(envelope, frame_parts, labels):
     for mode, (title, _) in MODES.items():
         staff = "\n".join(line["text"] + _euler(line, mode) for line in lines)
         verbs = any(c.get("verb") for c in _items(envelope, "nodes", "contacts"))
-        blocks = [shared["scene"], _movement_language(mode, rows, verbs), f"[LABAN STAFF – {title}]\n{staff}", shared["implied"],
-                  shared["motion"], shared["spatial"], *shared["props"], shared["causal"], shared["camera"],
-                  shared["genre"], _rules(envelope, mode, rows, lines, labels), shared["negatives"]]
+        blocks = [shared["scene"], _movement_language(mode, rows, verbs), f"[LABAN STAFF – {title}]\n{staff}",
+                  *([_inbetween_block(between, mode, labels)] if between else []), shared["implied"], shared["motion"],
+                  shared["spatial"], *shared["props"], shared["causal"], shared["camera"], shared["genre"],
+                  _rules(envelope, mode, rows, lines, labels), shared["negatives"]]
         text = "\n\n".join(blocks) + "\n"
         result[mode] = {"target": TARGET, "variant": f"DAG-PROSE-{title.replace(' ', '-')}", "text": text,
                         "sha256": "sha256:" + hashlib.sha256(text.encode("utf-8")).hexdigest(),

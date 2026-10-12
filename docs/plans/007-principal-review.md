@@ -181,3 +181,4 @@ backlog order (backlog 33).
 - 2026-10-12 — RV-99b done (S-092): the camera floor finds a hit by what strikes and reads a negation in every word; F-210, F-187, F-160 resolved again; RV-95b next.
 - 2026-10-12 — RV-95b done (S-093): the pickups re-solved with every bound S-083 stated; the knees and head held without slack, the lean (70.2, 71.2 degrees) and the ankles asked (F-223, F-215); F-226 resolved; F-224 split to RV-95c; RV-59f next.
 - 2026-10-12 — RV-59f done (S-094): in-between keys stand at S13 (motion_plan 2.1, motion_graph 1.2), checked like keys; one of B's at 6.45 clears A's cartwheel elbow (measured); RV-59i (the prompts print them) next.
+- 2026-10-12 — RV-59i done (S-095): every prompt prints the in-between keys at their instants (render.txt's rows, the prose's block, the density); RV-108 next.

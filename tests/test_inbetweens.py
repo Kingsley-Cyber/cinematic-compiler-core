@@ -102,3 +102,58 @@ def test_the_re_block_solver_places_an_in_between(tmp_path, capsys):
         bodies = {(e, t): {"id": e, "capsules": forward_kinematics.capsules(reblock._posed(own, t), metres, radii)}
                   for e, own in keys.items()}
         assert body_overlap.overlaps(bodies) == [], t
+
+
+def _rendered_with(between):
+    """The courtyard at the camera stage with `between` on its motion edges, as S13 builds them, and the render plan's
+    frame parts."""
+    from scenes import courtyard as stage
+    envelope = copy.deepcopy(stage("camera"))
+    graph = p13_motion.build(ENVELOPE, {**PLAN, "inbetweens": [between]}, PACKET)
+    envelope["edges"]["motion"]["items"] = graph["/edges/motion"]
+    return envelope, courtyard_plans()["render"]["frame_parts"]
+
+
+def test_render_txt_prints_an_in_between_at_its_instant():
+    """ADR-O109 (RV-59i): the LBN projection prints an in-between as a row of its actor at its instant, in time order,
+    marked as an in-between key, and its coverage counts the in-betweens, so a projection that skipped one reads
+    incomplete."""
+    from renderers import anime_renderer
+    envelope, frame_parts = _rendered_with(_between())
+    rendered = anime_renderer.render(envelope, frame_parts)
+    spec = json.loads(rendered["text"][rendered["text"].index("{"):])
+    rows = spec[rendered["labels"]["acrobat"]]
+    assert [float(r["t"]) for r in rows] == sorted(float(r["t"]) for r in rows)
+    row = next(r for r in rows if r["label"] == "kick_rising")
+    assert row["t"] == 3 and row["desc"].startswith("IN-BETWEEN key (no beat, no contact)")
+    assert rendered["coverage"]["complete"] and rendered["coverage"]["groups"]["inbetweens"]["rendered"] == 1
+    skipped = anime_renderer._Coverage(envelope).report(set(), set(), set())
+    assert skipped["groups"]["inbetweens"]["missing"] == ["acrobat@3"] and not skipped["complete"]
+
+
+def test_every_prose_mode_prints_the_in_between_keys():
+    """ADR-O109 (RV-59i): each prose mode prints an [IN-BETWEEN KEYS] block after the staff, the in-between's time,
+    performer and pose words, with Root and Joints in all but the pure staff; the motion control counts it among the
+    explicit keys."""
+    from renderers import prose_renderer
+    envelope, frame_parts = _rendered_with(_between())
+    labels = {"wizard": "A", "acrobat": "B"}
+    plain = copy.deepcopy(envelope)
+    for edge in plain["edges"]["motion"]["items"]:
+        edge.pop("inbetweens", None)
+    prompts = prose_renderer.render_all(envelope, frame_parts, labels)
+    before = prose_renderer.render_all(plain, frame_parts, labels)
+    for mode, prompt in prompts.items():
+        text = prompt["text"]
+        block = text[text.index("[IN-BETWEEN KEYS]"):].split("\n\n")[0]
+        line = next(row for row in block.splitlines() if row.startswith("3.00 B: kick rising | L arm "))
+        assert ("Root [" in line and "Joints {" in line) == (mode != "pure_staff"), mode
+        assert text.index("[LABAN STAFF") < text.index("[IN-BETWEEN KEYS]") < text.index("[IMPLIED GUIDANCE]")
+        assert "Explicit = the staff lines and the in-between keys;" in text
+        assert "[IN-BETWEEN KEYS]" not in before[mode]["text"]
+    import re
+
+    def gaps(text):  # the density line's three counts, summed: one per pair of consecutive explicit keys
+        return sum(int(n) for n in re.search(r"Density \(measured\): (\d+) dense gaps under 0\.6 s, (\d+) medium from "
+                                               r"0\.6 to 0\.9 s, (\d+) sparse", text).groups())
+    assert gaps(prompts["mixed"]["text"]) == gaps(before["mixed"]["text"]) + 1

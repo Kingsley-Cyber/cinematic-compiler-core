@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 40
+version: 41
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -168,13 +168,11 @@ items:
      step: camera, plan: PLAN-007, depends_on: [RV-99], findings: [F-210, F-187, F-160], codes: []}
   - {id: RV-95b, title: "The pickups judged as drawn: the lean by the trunk vector (R-34), the knee and head bounds without slack, the ankle bound restored in the commands and its misses asked, S-078's values pinned as hand choices", status: done,
      step: motion, plan: PLAN-007, depends_on: [RV-95], findings: [F-223, F-226], codes: []}
-  - {id: RV-95c, title: "The pickup rows worded in the printed legend's frame, and A's head at 7.5 aimed at B by a facing goal in the re-block solver (or its words dropped)", status: ready,
-     step: motion, plan: PLAN-007, depends_on: [RV-95b], findings: [F-224, F-111], codes: []}
   - {id: RV-59f, title: "In-between keys at S13 (ADR-O109): one entity's pose at an instant between two of its keys, checked like a key, carried on its edge, run through by the declared interpolation, placed by the re-block solver", status: done,
      step: motion, plan: PLAN-007, depends_on: [RV-59b], findings: [F-220, F-159], codes: []}
-  - {id: RV-59i, title: "Every prompt prints the in-between keys with their instants (the LBN rows and every prose mode; the motion control's density counts them), before RV-59e's first use", status: next,
+  - {id: RV-59i, title: "Every prompt prints the in-between keys with their instants (the LBN rows and every prose mode; the motion control's density counts them), before RV-59e's first use", status: done,
      step: render, plan: PLAN-007, depends_on: [RV-59f], findings: [F-220], codes: []}
-  - {id: RV-108, title: "A declared turn drawn about its own axis by its net angle between keys (B's 8.5 tip), F-053's straight-Euler reading revised, the between-keys report re-measured", status: ready,
+  - {id: RV-108, title: "A declared turn drawn about its own axis by its net angle between keys (B's 8.5 tip), F-053's straight-Euler reading revised, the between-keys report re-measured", status: next,
      step: motion, plan: PLAN-007, depends_on: [RV-59a], findings: [F-225], codes: []}
   - {id: RV-59e, title: "BODY_OVERLAP refused at every frame between keys: B's 7.5 root re-blocked (the descent, no contact), the spans by a contact cleared with B's in-between keys (ADR-O109); what only A's rows could clear stays F-220's", status: ready,
      step: motion, plan: PLAN-007, depends_on: [RV-59f, RV-59i], findings: [F-159, F-220], codes: []}
@@ -184,6 +182,8 @@ items:
      step: motion, plan: PLAN-007, depends_on: [RV-59f], findings: [F-221], codes: []}
   - {id: RV-107, title: "The wizard example's push-off at the pillar's release and its landing keyed where the fall ends; c06 and c08 re-authored; beat_planning.txt teaches RV-59d's measure", status: ready,
      step: temporal, plan: PLAN-007, depends_on: [RV-59f], findings: [F-227], codes: []}
+  - {id: RV-95c, title: "The pickup rows worded in the printed legend's frame, and A's head at 7.5 aimed at B by a facing goal in the re-block solver (or its words dropped)", status: ready,
+     step: motion, plan: PLAN-007, depends_on: [RV-95b], findings: [F-224, F-111], codes: []}
   - {id: RV-97, title: "VERTICAL_FRAMING along a static shot's window, frames on the declared interpolation, a margin by each part's radius; c11 and c20 re-authored", status: ready,
      step: camera, plan: PLAN-007, depends_on: [RV-59a], findings: [F-208, F-090], codes: []}
   - {id: RV-110, title: "CONTACT_WORLD reads a free prop between samples on S04's gravity arc and a held one at its holder's hand", status: ready,

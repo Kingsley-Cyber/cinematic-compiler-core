@@ -101,9 +101,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.2; backlog 40.
-- Last session: S-094 (2026-10-12, applied): RV-59f: in-between keys at S13 (ADR-O109).
-- Next slice: RV-59i Every prompt prints the in-between keys with their instants (the LBN rows and every prose mode; the motion control's density counts them), before RV-59e's first use (step render).
+- Layer order 1.7; rules 7.2; backlog 41.
+- Last session: S-095 (2026-10-12, applied): RV-59i: every prompt prints the in-between keys.
+- Next slice: RV-108 A declared turn drawn about its own axis by its net angle between keys (B's 8.5 tip), F-053's straight-Euler reading revised, the between-keys report re-measured (step motion).
 - Open findings: 144; decisions: 136 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 

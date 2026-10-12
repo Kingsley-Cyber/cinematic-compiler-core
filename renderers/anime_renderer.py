@@ -59,9 +59,17 @@ def _items(envelope, kind, group):
     return envelope.get(kind, {}).get(group, {}).get("items", [])
 
 
+def inbetweens(envelope):
+    """The in-between keys S13's follows edges carry (ADR-O109, RV-59i), in time order."""
+    return sorted((b for e in _items(envelope, "edges", "motion") for b in e.get("inbetweens", [])),
+                  key=lambda b: (b["t"], b["id"]))
+
+
 class _Coverage:
     def __init__(self, envelope):
         self.groups = {g: {i["id"] for i in envelope["nodes"][g]["items"]} for g in envelope["nodes"] if g != "render"}
+        if inbetweens(envelope):  # ADR-O109 (RV-59i): every in-between key is printed
+            self.groups["inbetweens"] = {b["id"] for b in inbetweens(envelope)}
         self.seen = {g: set() for g in self.groups}
 
     def mark(self, group, identity):
@@ -281,7 +289,13 @@ def _actor_rows(envelope, entity, labels, cover):
             parts.append(_face_words(face, labels))
         rows.append({"t": _num(key["t"]), "label": key["name"], "pos": key["pos"], "rot": key["rot"],
                      "joints": key["bones"], "desc": "; ".join(parts) + "; " + key["description"]})
-    return rows
+    between = [b for b in inbetweens(envelope) if b["entity"] == entity]
+    for b in between:  # ADR-O109 (RV-59i): a pose the interpolation passes through, at its instant
+        cover.mark("inbetweens", b["id"])
+        rows.append({"t": _num(b["t"]), "label": b["name"], "pos": b["pos"], "rot": b["rot"], "joints": b["bones"],
+                     "desc": "IN-BETWEEN key (no beat, no contact): the interpolation passes through this pose; "
+                             + b["description"]})
+    return sorted(rows, key=lambda row: float(row["t"])) if between else rows
 
 
 def _face_words(face, labels):
