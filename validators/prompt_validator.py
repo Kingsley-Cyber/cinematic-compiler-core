@@ -61,6 +61,8 @@ CODES = {
     "ROTATION_PATH_UNSTATED": "a turn run, named or not (a spin too), is not written once on its first line by axis, "
                               "plane and count with its takeoff and landing, or not continued on its later lines (FR.1 "
                               "as amended by W3)",
+    "MOMENTUM_MISSING": "an anime span that hangs against gravity is not said to hang (stylised hang time) in RULES "
+                        "(plan F9.2, owner O74; S11 refuses an undeclared hang)",
     "SHAPE_DIRECTION": "a printed Shape quality is the opposite of what the body's path and form show (plan F9.1, owner "
                        "O31, O73; airborne turns are not judged, O76)",
     "ENTRANCE_UNSTATED": "a performer who starts in the air above a raised top lacks the rule that its feet touch the "
@@ -104,7 +106,7 @@ READS = {
     "BODY_HOLD_FRAMES": (), "EMPTY_HAND_UNSTATED": (STAFF,), "ROTATION_ANGLES_PRINTED": (), "HIDDEN_PHRASING": (),
     "IMPACT_CONTACT_SYNC": (STAFF, "[ANIME]", "[UGC]", "[LIVE ACTION]"), "AIRBORNE_PICKUP": (STAFF,),
     "PROP_PHYSICS_UNSTATED": (PROPS,), "PROP_VISIBILITY": (PROPS,), "ROTATION_PATH_UNSTATED": (STAFF,),
-    "ENTRANCE_UNSTATED": (RULES, NEGATIVES), "SHAPE_DIRECTION": ("[IMPLIED GUIDANCE]",),
+    "ENTRANCE_UNSTATED": (RULES, NEGATIVES), "SHAPE_DIRECTION": ("[IMPLIED GUIDANCE]",), "MOMENTUM_MISSING": (RULES,),
     "CAUSAL_LIST_MISSING": ("[CAUSAL LINKS]",), "CAUSE_REASON": ("[CAUSAL LINKS]",),
     "REACTION_WITHOUT_CAUSE": (),
     "CAUSAL_RULE_MISSING": (RULES,), "CONSERVATION_RULE_MISSING": (RULES,), "SPAN_RULE_MISSING": (STAFF, RULES),
@@ -207,6 +209,9 @@ def check(text, envelope, mode):
     _where_checks(envelope, parts, labels, add)
     _entrance_checks(envelope, parts, labels, add)
     _shape_checks(envelope, parts, labels, add)
+    for rule in prose_renderer.hang_rules(envelope, labels):  # MOMENTUM_MISSING (plan F9.2, owner O74)
+        if rule not in _body(parts, RULES):
+            add("MOMENTUM_MISSING", f"RULES do not say: {rule}")
     _first_state_checks(envelope, parts, labels, add)
     _line_and_word_checks(envelope, text, parts, labels, add)
     _count_checks(envelope, text, add)

@@ -101,9 +101,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 3.0; backlog 5.
-- Last session: S-020 (2026-10-11, applied): M9-09a: SHAPE_DIRECTION refuses a Shape quality the body contradicts (F9.1; O31, O73, O76).
-- Next slice: M9-09b F9.2 airborne momentum under gravity (O74) (step kinematic).
-- Open findings: 40; decisions: 107 (0 proposed).
+- Last session: S-021 (2026-10-11, applied): M9-09b: airborne spans follow the gravity arc; anime declares hang time (F9.2, O74).
+- Next slice: M9-09c FR.4 launch before an aerial turn; a launch needs grounded support before it (O80) (step motion).
+- Open findings: 38; decisions: 107 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
@@ -121,7 +121,6 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - F-059 (low): Reference-fight deviations from its own data await review
 - F-060 (low): What is a motif?
 - F-066 (high): What is a key's root position: the pelvis or the ground point?
-- F-069 (medium): Nine airborne spans hang longer than gravity allows
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 <!-- END GENERATED: rulings -->
 

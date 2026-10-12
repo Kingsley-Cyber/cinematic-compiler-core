@@ -44,13 +44,17 @@ def test_courtyard_plan_passes_and_packet_is_stable():
     ("KINEMATIC_SUPPORT", lambda p: node(p, "acrobat@b05").update(support=["left_foot"])),
     ("KINEMATIC_SUPPORT", lambda p: node(p, "acrobat@b04").update(support=["left_foot"])),
     ("KINEMATIC_SUPPORT", lambda p: node(p, "acrobat@b01").update(support=[])),
+    # plan F9.2, owner O74: the dodge flip without its declared hang time leaves the gravity arc; a float on a grounded key
+    ("MOMENTUM_MISSING", lambda p: node(p, "acrobat@b13").pop("float")),
+    ("MOMENTUM_MISSING", lambda p: node(p, "acrobat@b01").update(float=True)),
 ])
 def test_each_rule_rejects_its_violation(code, change):
     assert code in codes(change)
 
 
 def test_a_support_change_in_progress_allows_either_side():
-    assert codes(lambda p: node(p, "acrobat@b03").update(support=["left_foot"])) == set()
+    # b03 declares the flip's hang time (O74, S-021); a supported key cannot float, so the float goes with the support
+    assert codes(lambda p: node(p, "acrobat@b03").update(support=["left_foot"], float=False)) == set()
 
 
 @pytest.mark.integration
@@ -86,3 +90,16 @@ def test_airborne_pickup_needs_a_supported_body_within_reach():
     next(s for s in far["slots"] if s["slot"] == "ninja_lean@b20")["pos"] = [-3.0, 0.6, 5.1]
     assert [f["message"] for f in p11_kinematic.pickup_findings(document, far, envelope)] == [
         "ninja_lean takes kunai at 8.0 from 3.36 m away"]
+
+
+def test_hang_time_is_anime_only_and_said_in_the_prompt():
+    """MOMENTUM_MISSING (plan F9.2, owner O74): live action and UGC follow the arc; anime's hang is printed once a span."""
+    from validators import prompt_validator
+    live = {**PACKET, "genre": "live_action"}
+    assert "MOMENTUM_MISSING" in {f["code"] for f in p11_kinematic.check(PLAN, live)}
+    envelope = json.loads((ROOT / "examples" / "wizard_vs_acrobat" / "envelope.json").read_text(encoding="utf-8"))
+    text = envelope["nodes"]["render"]["items"][0]["prose"]["mixed"]["text"]
+    line = "- B hangs in the air 8.60–9.80, longer than a real jump (stylised anime hang time).\n"
+    assert line in text
+    assert "MOMENTUM_MISSING" in {f["code"] for f in prompt_validator.check(text.replace(line, ""), envelope, "mixed")}
+

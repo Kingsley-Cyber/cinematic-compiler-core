@@ -147,6 +147,9 @@ Ink: heavy on silhouettes,broken in smears,clean on holds,smear follows ONLY the
 - From 9.80 to the end, B keeps support grounded.
 - End state: A at [0, 0, 5.8], condition ok, support both feet place-mid.
 - End state: B at [-1.1, 0, 5.3], condition ok, location ground, posture crouching, support grounded.
+- B hangs in the air 1.20–2.60, longer than a real jump (stylised anime hang time).
+- B hangs in the air 3.60–5.20, longer than a real jump (stylised anime hang time).
+- B hangs in the air 8.60–9.80, longer than a real jump (stylised anime hang time).
 
 [NEGATIVES]
 no missing limbs; no missing arms; no missing hands; no headless body; no faceless head; no extra fighters beyond A and B; no cloned A; no cloned B; no extra weapons; no full circle; no ring; no halo

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:kinematic_plan:1.0",
+  "$id": "urn:cinematic-compiler:schema:kinematic_plan:1.1",
   "title": "S11 kinematic plan (authored in-session): visible bodily organization per entity per beat",
   "description": "One node per packet slot. support lists the entity's own parts bearing weight at the beat start; the ten cues come from library/kinematic_cues.yaml; reads says what the audience sees.",
   "type": "object",
@@ -124,6 +124,10 @@
           "reads": {
             "type": "string",
             "minLength": 1
+          },
+          "float": {
+            "type": "boolean",
+            "description": "Owner O74: anime only, on an airborne key; the key's span hangs (stylised hang time) instead of following the gravity arc (MOMENTUM_MISSING)."
           }
         }
       }

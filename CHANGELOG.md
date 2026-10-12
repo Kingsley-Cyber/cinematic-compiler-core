@@ -16,6 +16,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
   quality)" for punch and "(press quality)" and so on; S15's data and LBN-2.4 keep the Laban vocabulary.
 
 ### Added
+- MOMENTUM_MISSING (M9-09b, plan F9.2, owner O74, S-021): S11 holds an airborne span to the gravity arc through its
+  takeoff and landing roots unless, in anime, its keys declare hang time (`float`; kinematic_plan and kinematic_graph
+  1.1); the prompts say each hang once in RULES; the eight anime spans that hung declare it (R-33).
 - SHAPE_DIRECTION (M9-09a, plan F9.1, owners O31, O73, O76, S-020): S15 and the prompt refuse a Shape quality the
   body's path and form contradict (`solver/shape_direction.py`; airborne turns are not judged); nine intervals across
   the four examples rewritten (R-33); the single-joint audit finds one defect, the face's heading (M9-09g).

@@ -1,7 +1,7 @@
 {
  "step_id": "S11",
  "band": "L4a",
- "packet_sha256": "sha256:fdc3f5e80dc63415a426cc3ed516c5ff8cf29500a10a9c8c9d9c3afbb59a1c02",
+ "packet_sha256": "sha256:aee8b3561be4763a24f5c317b835b0eed1acf36e233265c642e19447fa97ed41",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -90,7 +90,8 @@
    "strain": "none",
    "restraint": "none",
    "breathing": "exhale",
-   "reads": "Both legs straighten off the pillar; the body arcs back and away toward B."
+   "reads": "Both legs straighten off the pillar; the body arcs back and away toward B.",
+   "float": true
   },
   {
    "slot": "ninja_broad@b04",
@@ -141,7 +142,8 @@
    "strain": "none",
    "restraint": "none",
    "breathing": "held",
-   "reads": "Mid-descent, arms extended, eyes on the rising kunai."
+   "reads": "Mid-descent, arms extended, eyes on the rising kunai.",
+   "float": true
   },
   {
    "slot": "ninja_lean@b06",
@@ -156,7 +158,8 @@
    "strain": "mild",
    "restraint": "none",
    "breathing": "exhale",
-   "reads": "Right foot sole snaps down onto the kunai; the left leg trails for the landing."
+   "reads": "Right foot sole snaps down onto the kunai; the left leg trails for the landing.",
+   "float": true
   },
   {
    "slot": "ninja_broad@b06",
@@ -351,7 +354,8 @@
    "strain": "mild",
    "restraint": "none",
    "breathing": "exhale",
-   "reads": "Right knee drives up into B's spine, left leg extended down as the counter."
+   "reads": "Right knee drives up into B's spine, left leg extended down as the counter.",
+   "float": true
   },
   {
    "slot": "ninja_broad@b12",
@@ -384,7 +388,8 @@
    "strain": "none",
    "restraint": "none",
    "breathing": "exhale",
-   "reads": "Full backflip, the left leg sweeping a vertical crescent."
+   "reads": "Full backflip, the left leg sweeping a vertical crescent.",
+   "float": true
   },
   {
    "slot": "ninja_broad@b13",
@@ -399,7 +404,8 @@
    "strain": "mild",
    "restraint": "none",
    "breathing": "gasp",
-   "reads": "Airborne from the knee strike, body pitched forward."
+   "reads": "Airborne from the knee strike, body pitched forward.",
+   "float": true
   },
   {
    "slot": "ninja_broad@b14",
@@ -414,7 +420,8 @@
    "strain": "mild",
    "restraint": "none",
    "breathing": "exhale",
-   "reads": "Twists mid-air and throws the three shuriken from the right hand."
+   "reads": "Twists mid-air and throws the three shuriken from the right hand.",
+   "float": true
   },
   {
    "slot": "ninja_lean@b14",
@@ -429,7 +436,8 @@
    "strain": "none",
    "restraint": "none",
    "breathing": "held",
-   "reads": "Dropping out of the flip into the slide line, eyes on the volley."
+   "reads": "Dropping out of the flip into the slide line, eyes on the volley.",
+   "float": true
   },
   {
    "slot": "ninja_lean@b15",
@@ -462,7 +470,8 @@
    "strain": "none",
    "restraint": "none",
    "breathing": "exhale",
-   "reads": "Drops back to the ground behind the volley."
+   "reads": "Drops back to the ground behind the volley.",
+   "float": true
   },
   {
    "slot": "ninja_lean@b16",
@@ -477,7 +486,8 @@
    "strain": "mild",
    "restraint": "none",
    "breathing": "exhale",
-   "reads": "Cartwheels up out of the slide, left elbow driving up toward B's chest."
+   "reads": "Cartwheels up out of the slide, left elbow driving up toward B's chest.",
+   "float": true
   },
   {
    "slot": "ninja_broad@b16",
@@ -528,7 +538,8 @@
    "strain": "high",
    "restraint": "none",
    "breathing": "gasp",
-   "reads": "Caught by the left elbow and flung backward toward the pillar, legs trailing."
+   "reads": "Caught by the left elbow and flung backward toward the pillar, legs trailing.",
+   "float": true
   },
   {
    "slot": "ninja_lean@b18",
@@ -543,7 +554,8 @@
    "strain": "mild",
    "restraint": "none",
    "breathing": "exhale",
-   "reads": "Feet hit the pillar and push off hard; the left hand snatches the rope dart."
+   "reads": "Feet hit the pillar and push off hard; the left hand snatches the rope dart.",
+   "float": true
   },
   {
    "slot": "ninja_lean@b19",
@@ -630,7 +642,8 @@
    "strain": "high",
    "restraint": "none",
    "breathing": "exhale",
-   "reads": "Right hand drives the kunai down into B's right shoulder."
+   "reads": "Right hand drives the kunai down into B's right shoulder.",
+   "float": true
   },
   {
    "slot": "ninja_broad@b21",

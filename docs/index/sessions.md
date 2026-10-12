@@ -27,6 +27,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-018 | 2026-10-11 | Claude Code (Opus 5.5), autopilot run 1 (docs/reports/2026-10-11-autopilot-1.md) | Backlog M9-09b (PLAN-003 F9.2); finding… | not started | the commit whose message names [S-018] | about 20 minutes | The owner rules on ADR-O72, ADR-O73 and ADR-O74 (and the po… | [S-018-m9-09b-parked-airborne-momentum.md](../sessions/S-018-m9-09b-parked-airborne-momentum.md) |
 | S-019 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog D-09; the owner's answers to au… | applied | the commit whose message names [S-019] | about 20 minutes | M9-09a (SHAPE_DIRECTION with the owner's lean ruling). | [S-019-owner-rulings-o72-o80.md](../sessions/S-019-owner-rulings-o72-o80.md) |
 | S-020 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog M9-09a (PLAN-003 F9.1); finding… | applied | the commit whose message names [S-020] | about 60 minutes | M9-09b (MOMENTUM_MISSING with anime hang time, O74). | [S-020-m9-09a-shape-direction.md](../sessions/S-020-m9-09a-shape-direction.md) |
+| S-021 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog M9-09b (PLAN-003 F9.2); finding… | applied | the commit whose message names [S-021] | about 45 minutes | M9-09c (FR.4 launch; F-058, O80). | [S-021-m9-09b-airborne-momentum.md](../sessions/S-021-m9-09b-airborne-momentum.md) |
 
 ## Status values
 

@@ -10,18 +10,18 @@ Layer order 1.7; rules 3.0; backlog 5.
 
 ## Last sessions
 
-- S-018 (not started): M9-09b parked: the examples' airborne spans leave the gravity arc
 - S-019 (applied): The owner's rulings O72-O80, rules R-33 and R-34
 - S-020 (applied): M9-09a: SHAPE_DIRECTION refuses a Shape quality the body contradicts (F9.1; O31, O73, O76)
+- S-021 (applied): M9-09b: airborne spans follow the gravity arc; anime declares hang time (F9.2, O74)
 
 ## Next slices
 
-- M9-09b (next, step kinematic): F9.2 airborne momentum under gravity (O74)
+- M9-09c (next, step motion): FR.4 launch before an aerial turn; a launch needs grounded support before it (O80)
 - M9-06 (ready, step motion): F5.1/F5.2 world contact points by forward kinematics; roots at the pelvis (O72)
-- M9-09c (ready, step motion): FR.4 launch before an aerial turn; a launch needs grounded support before it (O80)
 - M9-09d (ready, step temporal): F-064: the kunai reverses to -Z at the deflect (O77)
+- M9-09e (ready, step temporal): F-065: a prop at rest has support; the smoke pellet falls (O78)
 
-M9: 12 of 34 slices done, 22 left (M9-03a blocked; 1 the owner's own).
+M9: 13 of 34 slices done, 21 left (M9-03a blocked; 1 the owner's own).
 
 ## Waiting on the owner
 
@@ -34,10 +34,9 @@ M9: 12 of 34 slices done, 22 left (M9-03a blocked; 1 the owner's own).
 - F-059 (low): Reference-fight deviations from its own data await review
 - F-060 (low): What is a motif?
 - F-066 (high): What is a key's root position: the pelvis or the ground point?
-- F-069 (medium): Nine airborne spans hang longer than gravity allows
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 
-## Open findings: 40
+## Open findings: 38
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -47,7 +46,6 @@ M9: 12 of 34 slices done, 22 left (M9-03a blocked; 1 the owner's own).
 - F-019 (high, L1.5): Beats are not checked against the constraint rules
 - F-020 (high, all): Declared constraint validators do not run per layer
 - F-025 (high, L2.2): Contacts lack world points, striking surface and verb
-- F-026 (high, L4a): Airborne bodies are not held to gravity
 - F-028 (high, L4c): No forward kinematics, rotation path or launch check
 - F-029 (high, L5): Effort lacks direction, phrasing and idle checks
 - F-030 (high, L5.5): Camera lacks C10's rules and the arc with the rotation
@@ -57,4 +55,4 @@ M9: 12 of 34 slices done, 22 left (M9-03a blocked; 1 the owner's own).
 
 ## Next free IDs
 
-Decision ADR-O81, finding F-070, session S-021, render R20.
+Decision ADR-O81, finding F-070, session S-022, render R20.

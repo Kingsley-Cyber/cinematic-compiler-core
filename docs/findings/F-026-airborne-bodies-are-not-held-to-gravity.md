@@ -12,7 +12,7 @@ high
 L4a
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -43,4 +43,5 @@ ADR-O34
 - backlog M9-09
 
 ## Resolution
-Open.
+MOMENTUM_MISSING (S11; M9-09b, S-021, owner O74) holds every airborne span with a takeoff and a landing to the
+gravity arc, anime hang time declared per span.

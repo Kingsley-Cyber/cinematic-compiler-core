@@ -12,12 +12,13 @@ import math
 from compiler.authoring import run_authored, seal
 from planner import library_vocab
 from planner.dependency_graph import ROOT, load
-from planner.dynamic_beat_validator import REACH_M
+from planner.dynamic_beat_validator import GRAVITY, REACH_M
 from planner.scene_view import slots, values_in_progress
 
 NODE, STEP = "kinematic", "S11"
 PLAN_SCHEMA = ROOT / "schemas" / "graphs" / "kinematic_plan.schema.json"
 PROMPT = ROOT / "planner" / "prompts" / "kinematic_organization.txt"
+ARC_TOLERANCE_M = 0.3  # interpretation (Claude's, for owner review): a root this far off the gravity arc hangs
 CUES = ("balance", "loading", "bracing", "yielding", "weight_transfer", "tension", "release", "strain", "restraint", "breathing")
 
 
@@ -26,7 +27,7 @@ def prepare(envelope):
     parts = {e["id"]: e["parts"] for e in envelope["nodes"]["entities"]["items"]}
     view = [{**s, "allowed_support_states": values_in_progress(envelope, s, "support")} for s in slots(envelope)]
     return seal({"step_id": STEP, "band": "L4a", "kind": "kinematic_plan",
-                 "schema": "urn:cinematic-compiler:schema:kinematic_plan:1.0",
+                 "schema": "urn:cinematic-compiler:schema:kinematic_plan:1.1",
                  "instructions": PROMPT.read_text(encoding="utf-8"), "genre": envelope["scene"]["genre"],
                  "slots": view, "parts": parts, "vocabulary": vocabulary["fields"]})
 
@@ -58,6 +59,51 @@ def check(document, packet):
     for slot_id in slots_by_id:
         if seen.get(slot_id, 0) != 1:
             findings.append({"code": "KINEMATIC_SLOT", "message": "Every slot needs exactly one node", "slot": slot_id})
+    return findings + momentum_findings(document, packet)
+
+
+def float_spans(nodes, slots):
+    """[(entity, takeoff slot, airborne slots, landing slot)] for each run of airborne keys (no support) between a
+    supported key before it and one after it; `nodes` and `slots` keyed by slot id."""
+    own, spans = {}, []
+    for slot in sorted(slots.values(), key=lambda s: s["t"]):
+        own.setdefault(slot["entity"], []).append(slot)
+    for entity, seq in own.items():
+        i = 0
+        while i < len(seq):
+            if nodes[seq[i]["slot"]]["support"]:
+                i += 1
+                continue
+            j = i
+            while j < len(seq) and not nodes[seq[j]["slot"]]["support"]:
+                j += 1
+            if i > 0 and j < len(seq):
+                spans.append((entity, seq[i - 1], seq[i:j], seq[j]))
+            i = j
+    return spans
+
+
+def momentum_findings(document, packet):
+    """MOMENTUM_MISSING (plan F9.2, owner O74): an airborne span keeps each root within 0.3 m of the gravity arc
+    through its takeoff and landing roots, unless (anime only) a key of the span floats: stylised hang time. A float
+    outside anime or on a supported key is refused. Interpretation (Claude's, for owner review): the arc and the
+    0.3 m; a span with no takeoff or no landing key (a fall into the clip, a clip ending in the air) is not judged."""
+    nodes = {n["slot"]: n for n in document["nodes"]}
+    slots = {s["slot"]: s for s in packet["slots"] if s["slot"] in nodes}
+    findings = [{"code": "MOMENTUM_MISSING", "message": "Only an airborne key in anime may float (O74)", "slot": n["slot"]}
+                for n in document["nodes"] if n.get("float") and (packet["genre"] != "anime" or n["support"])]
+    for entity, takeoff, airborne, landing in float_spans(nodes, slots):
+        if any(nodes[s["slot"]].get("float") for s in airborne):
+            continue
+        t0, y0, span = takeoff["t"], takeoff["pos"][1], landing["t"] - takeoff["t"]
+        launch = (landing["pos"][1] - y0 + 0.5 * GRAVITY * span * span) / span
+        for slot in airborne:
+            dt = slot["t"] - t0
+            arc = y0 + launch * dt - 0.5 * GRAVITY * dt * dt
+            if abs(slot["pos"][1] - arc) > ARC_TOLERANCE_M:
+                findings.append({"code": "MOMENTUM_MISSING", "message": f"{entity} at {slot['t']} is at y={slot['pos'][1]:g}, "
+                                 f"{abs(slot['pos'][1] - arc):.2f} m off the gravity arc from {t0} to {landing['t']} "
+                                 "(re-time it, or in anime declare the span's hang time)", "slot": slot["slot"]})
     return findings
 
 

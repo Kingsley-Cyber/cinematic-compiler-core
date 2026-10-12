@@ -1,7 +1,7 @@
 {
  "step_id": "S11",
  "band": "L4a",
- "packet_sha256": "sha256:48fcbe73e2c9adf7838efd8188617a4ca695af22b70a803aff13ebf0ca858ec2",
+ "packet_sha256": "sha256:6d2bfa3d4a7bcf0c098d02ac697f14b179e5fc0c6b4dc6ce7ec5e39c97ae162c",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -75,7 +75,8 @@
    "strain": "none",
    "restraint": "none",
    "breathing": "exhale",
-   "reads": "Inverted over the planted hand, legs whipping overhead, weight carried by momentum."
+   "reads": "Inverted over the planted hand, legs whipping overhead, weight carried by momentum.",
+   "float": true
   },
   {
    "slot": "acrobat@b04",
@@ -90,7 +91,8 @@
    "strain": "none",
    "restraint": "none",
    "breathing": "exhale",
-   "reads": "Dropping toward the stone, knees folding to absorb the landing."
+   "reads": "Dropping toward the stone, knees folding to absorb the landing.",
+   "float": true
   },
   {
    "slot": "acrobat@b05",
@@ -176,7 +178,8 @@
    "strain": "high",
    "restraint": "none",
    "breathing": "gasp",
-   "reads": "Flung backward through the air, shoulders rounding to take the impact."
+   "reads": "Flung backward through the air, shoulders rounding to take the impact.",
+   "float": true
   },
   {
    "slot": "acrobat@b08",
@@ -316,7 +319,8 @@
    "strain": "none",
    "restraint": "none",
    "breathing": "exhale",
-   "reads": "Coming down out of the flip, knees bending to land in the guard."
+   "reads": "Coming down out of the flip, knees bending to land in the guard.",
+   "float": true
   },
   {
    "slot": "acrobat@b14",

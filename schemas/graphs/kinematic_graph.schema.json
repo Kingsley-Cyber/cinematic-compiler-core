@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:kinematic_graph:1.0",
+  "$id": "urn:cinematic-compiler:schema:kinematic_graph:1.1",
   "title": "S11 kinematic graph",
   "description": "Nodes copied from the kinematic plan; transitions computed between an entity's consecutive nodes.",
   "type": "object",
@@ -101,6 +101,10 @@
           "reads": {
             "type": "string",
             "minLength": 1
+          },
+          "float": {
+            "type": "boolean",
+            "description": "Owner O74: anime only, on an airborne key; the key's span hangs (stylised hang time) instead of following the gravity arc (MOMENTUM_MISSING)."
           }
         }
       }

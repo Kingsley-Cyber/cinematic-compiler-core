@@ -12,7 +12,7 @@ medium
 L4a
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -66,4 +66,5 @@ ADR-O74
 - PLAN-003
 
 ## Resolution
-Open.
+MOMENTUM_MISSING (S11 and the prompt; M9-09b, S-021): an airborne span keeps to the gravity arc unless, in anime,
+it declares its hang time; the eight anime spans that hung declare it (R-33, O74) and the prompts say so.

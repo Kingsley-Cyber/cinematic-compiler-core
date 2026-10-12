@@ -30,7 +30,7 @@ flowchart LR
   planner -->|3| compiler
   planner -->|11| kernel
   planner -->|4| validators
-  renderers -->|1| compiler
+  renderers -->|2| compiler
   renderers -->|5| planner
   renderers -->|2| solver
   solver -->|1| kernel
@@ -96,7 +96,7 @@ flowchart LR
 | `renderers.anime_renderer` | `planner.library_vocab`, `renderers.prop_samples` | hashlib, json, math |
 | `renderers.live_renderer` | `renderers.anime_renderer` | — |
 | `renderers.prop_samples` | `planner.dynamic_beat_validator` | math |
-| `renderers.prose_renderer` | `compiler.passes.mandatory.p07_contact`, `planner.camera_library`, `planner.dynamic_beat_validator`, `planner.scene_view`, `renderers.anime_renderer`, `renderers.prop_samples`, `renderers.ugc_renderer`, `solver.euler_solver`, `solver.staff_geometry` | hashlib |
+| `renderers.prose_renderer` | `compiler.passes.derived.p11_kinematic`, `compiler.passes.mandatory.p07_contact`, `planner.camera_library`, `planner.dynamic_beat_validator`, `planner.scene_view`, `renderers.anime_renderer`, `renderers.prop_samples`, `renderers.ugc_renderer`, `solver.euler_solver`, `solver.staff_geometry` | hashlib |
 | `renderers.ugc_renderer` | `renderers.anime_renderer` | — |
 | `solver.camera_geometry` | — | math |
 | `solver.euler_solver` | `solver.quaternion` | — |

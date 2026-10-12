@@ -824,7 +824,7 @@ def _rules(envelope, mode, rows, lines, labels):
             kept.append(text)
     rules = ([lead] + kept + list(CONSERVATION) + _lasting(envelope, labels) + _end_states(envelope, lines, labels)
              + _spans(envelope, lines, labels) + _separations(lines, labels) + vanish_rules(envelope, labels)
-             + [entrance["rule"] for entrance in entrances(envelope, labels)])
+             + [entrance["rule"] for entrance in entrances(envelope, labels)] + hang_rules(envelope, labels))
     return "[RULES]\n" + "\n".join(f"- {r}" for r in rules)
 
 
@@ -835,6 +835,17 @@ def _negatives(rows, envelope=None, labels=None):
             kept.append(text)
     kept += [entrance["negative"] for entrance in (entrances(envelope, labels) if envelope else [])]
     return "[NEGATIVES]\n" + "; ".join(kept)
+
+
+def hang_rules(envelope, labels):
+    """Owner O74 (plan F9.2): an anime span that floats is said to hang, once per span, takeoff to landing."""
+    from compiler.passes.derived.p11_kinematic import float_spans
+
+    nodes = {n["id"]: n for n in _items(envelope, "nodes", "kinematic")}
+    view = {s["slot"]: s for s in slots(envelope) if s["slot"] in nodes}
+    return [f"{labels[entity]} hangs in the air {_time(takeoff['t'])}–{_time(landing['t'])}, longer than a real jump "
+            "(stylised anime hang time)." for entity, takeoff, airborne, landing in float_spans(nodes, view)
+            if any(nodes[s["slot"]].get("float") for s in airborne)]
 
 
 def entrances(envelope, labels):

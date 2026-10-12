@@ -194,5 +194,16 @@ def test_six_shape_qualities_follow_their_bodies():
     assert {i: shapes[i] for i in SHAPE_REWRITES} == SHAPE_REWRITES
 
 
+# Owner O74 (backlog M9-09b; rule R-33): the golden's aerial spans hang longer than gravity allows; each declares its
+# stylised anime hang time on its airborne keys.
+HANG_SPANS = {"ninja_lean": [(1.1, 3.0), (4.4, 5.9), (5.9, 7.5), (8.0, 9.0)], "ninja_broad": [(4.7, 6.3)]}
+
+
+def test_the_aerial_spans_declare_their_hang_time():
+    floats = sorted((n["entity"], n["t"]) for n in ENVELOPE["nodes"]["kinematic"]["items"] if n.get("float"))
+    assert {entity for entity, _ in floats} == set(HANG_SPANS)
+    assert all(any(t0 < t < t1 for t0, t1 in HANG_SPANS[entity]) for entity, t in floats)
+
+
 def test_render_txt_is_the_render_node():
     assert (FOLDER / "render.txt").read_text(encoding="utf-8") == TEXT + "\n"

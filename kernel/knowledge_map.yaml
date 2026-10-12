@@ -160,9 +160,13 @@ rows:
     class: mandatory
     step: S11
     status: partial
-    codes: [SUPPORT_MISMATCH, AIRBORNE_UNBOOKENDED, AIRBORNE_PICKUP]
+    codes: [SUPPORT_MISMATCH, AIRBORNE_UNBOOKENDED, AIRBORNE_PICKUP, MOMENTUM_MISSING]
     gaps: [WEIGHT_TRAVEL, OPPOSITION]
     enforced_by:
+      - {file: compiler/passes/derived/p11_kinematic.py, check: momentum_findings, code: MOMENTUM_MISSING,
+         test: tests/test_kinematic_solver.py::test_each_rule_rejects_its_violation}
+      - {file: validators/prompt_validator.py, check: check, code: MOMENTUM_MISSING,
+         test: tests/test_kinematic_solver.py::test_hang_time_is_anime_only_and_said_in_the_prompt}
       - {file: compiler/passes/derived/p11_kinematic.py, check: pickup_findings, code: AIRBORNE_PICKUP,
          test: tests/test_kinematic_solver.py::test_airborne_pickup_needs_a_supported_body_within_reach}
       - {file: solver/euler_solver.py, check: limit_findings, code: JOINT_LIMIT,
@@ -530,8 +534,7 @@ rows:
     class: mandatory
     step: all
     status: partial
-    codes: [CONSERVATION_RULE_MISSING]
-    gaps: [MOMENTUM_MISSING]
+    codes: [CONSERVATION_RULE_MISSING, MOMENTUM_MISSING]
     enforced_by:
       - {file: planner/dynamic_beat_validator.py, check: _teleports, code: TELEPORT,
          test: tests/test_dynamic_beat_validator.py::test_teleport_threshold_and_the_substitution_exemption}
@@ -846,8 +849,7 @@ rows:
     class: required
     step: S06
     status: partial
-    codes: [END_STATE_MISSING]
-    gaps: [MOMENTUM_MISSING]
+    codes: [END_STATE_MISSING, MOMENTUM_MISSING]
     enforced_by:
       - {file: renderers/prose_renderer.py, check: render_all, test: tests/test_prose_render.py::test_reference_rules_bound_lasting_effects_spans_and_separate_strikes}
       - {file: planner/chaining.py, check: summary, code: CHAIN_INCOMPLETE,

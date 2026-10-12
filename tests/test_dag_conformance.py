@@ -174,6 +174,7 @@ BREAKS = [
                                                              "7.50 A: SUPPORT NO SUPPORT |")),
     ("HIDDEN_PHRASING", "reference_fight", "mixed", _replace("substitution log (on the ground, deployment standing until 4.00)",
                                                              "substitution log (hidden in A's coat until 3.70)")),
+    ("MOMENTUM_MISSING", "wizard_vs_acrobat", "mixed", _line("- B hangs in the air 8.60")),
     ("SHAPE_DIRECTION", "reference_fight", "mixed", _replace("B 7.50–9.00: maintain sudden time, bound flow; shape advancing",
                                                              "B 7.50–9.00: maintain sudden time, bound flow; shape retreating")),
     ("ENTRANCE_UNSTATED", "reference_fight", "mixed", _replace("; no A standing on the wooden pillar at the start", "")),

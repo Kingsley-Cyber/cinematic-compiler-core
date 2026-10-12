@@ -43,10 +43,10 @@ items:
   - {id: M9-09a, title: "F9.1 Laban direction against path and form (O73, O76)", status: done,
      step: effort, plan: PLAN-003,
      depends_on: [M9-05], findings: [F-029], codes: [SHAPE_DIRECTION]}
-  - {id: M9-09b, title: "F9.2 airborne momentum under gravity (O74)", status: next, step: kinematic,
+  - {id: M9-09b, title: "F9.2 airborne momentum under gravity (O74)", status: done, step: kinematic,
      plan: PLAN-003,
      depends_on: [M9-05], findings: [F-026], codes: [MOMENTUM_MISSING]}
-  - {id: M9-09c, title: "FR.4 launch before an aerial turn; a launch needs grounded support before it (O80)", status: ready,
+  - {id: M9-09c, title: "FR.4 launch before an aerial turn; a launch needs grounded support before it (O80)", status: next,
      step: motion, plan: PLAN-003,
      depends_on: [M9-05], findings: [F-028, F-058], codes: [AIRBORNE_WITHOUT_LAUNCH]}
   - {id: M9-09d, title: "F-064: the kunai reverses to -Z at the deflect (O77)", status: ready, step: temporal,
