@@ -101,8 +101,8 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 3.0; backlog 5.
-- Last session: S-025 (2026-10-11, applied): M9-09f: the reference query says A falls from y=10 (F-067, O79).
-- Next slice: M9-09g R-34 audit: the face's heading through the spine (O76) (step facial).
+- Last session: S-026 (2026-10-11, applied): M9-09g: the face's heading reads the whole chain (O76, R-34).
+- Next slice: M9-06 F5.1/F5.2 world contact points by forward kinematics; roots at the pelvis (O72) (step motion).
 - Open findings: 34; decisions: 107 (0 proposed).
 <!-- END GENERATED: state -->
 

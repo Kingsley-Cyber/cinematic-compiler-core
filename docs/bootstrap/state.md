@@ -10,18 +10,18 @@ Layer order 1.7; rules 3.0; backlog 5.
 
 ## Last sessions
 
-- S-023 (applied): M9-09d: the kunai reverses to -Z at the deflect (F-064, O77)
 - S-024 (applied): M9-09e: a prop at rest has something under it; the smoke pellet falls (F-065, O78)
 - S-025 (applied): M9-09f: the reference query says A falls from y=10 (F-067, O79)
+- S-026 (applied): M9-09g: the face's heading reads the whole chain (O76, R-34)
 
 ## Next slices
 
-- M9-09g (next, step facial): R-34 audit: the face's heading through the spine (O76)
-- M9-06 (ready, step motion): F5.1/F5.2 world contact points by forward kinematics; roots at the pelvis (O72)
+- M9-06 (next, step motion): F5.1/F5.2 world contact points by forward kinematics; roots at the pelvis (O72)
 - M9-10 (ready, step effort): F4.3/F4.4 B's active keys and the idle-fighter check
 - M9-11 (ready, step render): FR.7 genre cards; FR.6 money-shot frame parts; FR.2 limb paths
+- M9-12 (ready, step render): O19 D9-style staff lines
 
-M9: 17 of 34 slices done, 17 left (M9-03a blocked; 1 the owner's own).
+M9: 18 of 34 slices done, 16 left (M9-03a blocked; 1 the owner's own).
 
 ## Waiting on the owner
 
@@ -55,4 +55,4 @@ M9: 17 of 34 slices done, 17 left (M9-03a blocked; 1 the owner's own).
 
 ## Next free IDs
 
-Decision ADR-O81, finding F-070, session S-026, render R20.
+Decision ADR-O81, finding F-070, session S-027, render R20.

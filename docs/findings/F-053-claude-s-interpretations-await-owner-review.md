@@ -48,6 +48,7 @@ Added in S-022 (solver/euler_solver.py): a turn that stays on the ground (a tip)
 effects of the wizard's two flips sit on the beats before them (run_in, the slicing bolt).
 Added in S-024 (planner/dynamic_beat_validator.py): PROP_SUPPORT reads a top by height alone and a card's worn
 state as the wearer's support; the pellet bursts as it lands at 4.0 (the owner's words: fall after bursting).
+Added in S-026 (solver/quaternion.py): a face within FACE_LEVEL 0.2 of vertical keeps the summed heading.
 
 ## Impact
 Waits on the owner.

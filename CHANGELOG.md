@@ -6,6 +6,8 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The face's heading reads the whole chain, root, spine, neck and head (M9-09g, owner O76, rule R-34, S-026); a face
+  near vertical keeps the old reading. No example output changes (no spine twists in the live-action and UGC keys).
 - The reference query says A falls from y=10 (M9-09f, owner O79, S-025); the golden test records the rewording of
   k_preface_04. F-067 resolved.
 - The kunai reverses to -Z at the deflect (M9-09d, owner O77, S-023): the source's v_post [0.5, -4.0, -3.0]; it lands

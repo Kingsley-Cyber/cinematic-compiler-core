@@ -110,7 +110,19 @@ def require(convention):
                             wrong)
 
 
+FACE_LEVEL = 0.2  # interpretation (Claude's, for owner review): a face this close to vertical has no heading of its own
+
+
 def head_heading(key):
-    """Approximate heading of the face: root heading plus the neck and head yaw (S13 key pose)."""
-    heading = root_heading(key["rot"]) + key["bones"]["NK"][1] + key["bones"]["HD"][1]
+    """Heading of the face (owner O76, rule R-34): the forward axis through the whole chain, root, Sp, NK and HD. A face
+    pointing almost straight up or down (a body on its back) has no horizontal heading, so it reads as the root's
+    heading plus the neck and head yaw."""
+    face = (0.0, 0.0, 1.0)
+    for joint in ("HD", "NK", "Sp"):
+        face = apply(matrix(key["bones"][joint]), face)
+    face = apply(matrix(key["rot"]), face)
+    if horizontal(face) >= FACE_LEVEL:
+        heading = heading_degrees(face)
+    else:
+        heading = root_heading(key["rot"]) + key["bones"]["NK"][1] + key["bones"]["HD"][1]
     return round((heading + 180) % 360 - 180, 3) + 0.0

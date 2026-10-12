@@ -147,3 +147,12 @@ def test_a_spin_is_written_once_like_a_named_flip():
     found = {f["code"] for f in prompt_validator.check(text.replace(words, "turns left, 1.60–2.00"), envelope, "mixed")}
     assert "ROTATION_PATH_UNSTATED" in found and "TURN_LABEL" not in found       # no beat names this spin
 
+
+
+def test_the_face_heading_reads_the_whole_chain():
+    """Owner O76, rule R-34 (S-026 audit): the spine's twist turns the face; a face pointing up keeps the old reading."""
+    bones = {j: [0, 0, 0] for j in ("Sp", "LUL", "RUL", "LL", "RL", "LA", "RA", "LFA", "RFA", "HD", "NK")}
+    twisted = {"rot": [0, 0, 0], "bones": {**bones, "Sp": [0, 30, 0]}}
+    assert quaternion.head_heading(twisted) == 30.0                       # the old sum of root, NK and HD said 0
+    supine = {"rot": [-90, 0, 0], "bones": {**bones, "NK": [0, 10, 0]}}    # on the back, the face up
+    assert quaternion.head_heading(supine) == 10.0                         # no horizontal heading: the old reading
