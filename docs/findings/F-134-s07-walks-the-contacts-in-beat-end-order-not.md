@@ -46,3 +46,6 @@ none needed
 
 ## Resolution
 Open.
+Noted in S-081 (the sixth review): S07 walks a beat's contacts in list order: the golden's b19 with its support listed
+after its release is refused (CONTACT_RELEASE), and a second opening of an open support listed after a release passes
+(RV-17, pulled forward).

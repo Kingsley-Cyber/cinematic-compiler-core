@@ -108,3 +108,17 @@ from 08:22 (the plan) to 08:35 (the record's last edit before the gate; the gate
 - the gate on this record (08:35:25): `scripts/verify.sh` exit 0, 711 passed in 76.28 s, docs plane: PASS, check:
   PASS
 - the hygiene scan over the staged diff: 0 hits
+
+## Corrections (S-081, the sixth review)
+- D2's claim that no pose reaches the prop under 80 degrees at the 0.57 and 0.59 m crouches came from a search that
+  froze the spine's twist; with it free, the 7.5 reach meets the rope dart within 0.031 m at 66 degrees, both knees
+  above the floor. D2 also misquotes O18, which says A 'lands beside the rope dart and the kunai before picking them
+  up'.
+- The 7.5 key puts A's right knee 0.109 m in the floor, which the 0.15 m allowance passes; the hand supports span a
+  throw (7.5 to 8.0) and a leap (8.0 to 8.5); the pinned words still describe the old pose (F-206, RV-95).
+- D3's thresholds (a trunk under 80 degrees, the head 0.2 m up) were set after the solve, looser than prediction 2's
+  70 degrees and 0.25 m.
+- Prediction 4 held only because its goals restated S-078's outcomes, and the solver's answer depends on its joints'
+  order (F-207).
+- The commit's 'Deviations: none' was wrong: two golden pins moved and the example's S04, S11 and S13 data changed
+  (typed in RV-100, F-212).

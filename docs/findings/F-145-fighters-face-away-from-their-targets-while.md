@@ -49,3 +49,5 @@ with F-148 for the source rows
 
 ## Resolution
 Open.
+Noted in S-081 (the sixth review): B's part (re-aimed keys, B pulled toward A at 7.5 to 8.0) moves to RV-103b, which
+needs no ruling; RV-15c keeps A's source facings.

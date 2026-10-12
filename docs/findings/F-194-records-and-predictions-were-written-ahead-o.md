@@ -49,3 +49,4 @@ none needed (R-05; self_audit.md)
 
 ## Resolution
 Open.
+Noted in S-081 (the sixth review): carried by RV-77 (the records' guards check substance).

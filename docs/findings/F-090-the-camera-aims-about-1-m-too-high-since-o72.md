@@ -12,7 +12,7 @@ high
 L5.5
 
 ## Status
-resolved
+open
 
 ## Reported
 2026-10-11
@@ -50,6 +50,10 @@ none needed
 - ADR-O72
 
 ## Resolution
+Open in part, reopened by the sixth review (S-081): a static shot is checked at its keys only and both hit holds lose
+their bodies before the shot ends (F-208, RV-97); VERTICAL_FRAMING refuses O21's opening (F-209, RV-98); an insert or
+a framed prop without a point, and a prop an action names, go unframed (F-213, RV-101). What follows is S-077's
+resolution.
 Resolved by RV-15a (S-076) and RV-15b (S-077). RV-15a (S-076) aims each shot at the middle of the extent of the parts
 its scale shows of its target (both axis performers for `midpoint`), from S13's keys carried in S16's packet, and
 VERTICAL_FRAMING refuses a part the scale shows that projects outside the frame, up and down as well as across, at

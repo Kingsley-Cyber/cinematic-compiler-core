@@ -155,6 +155,9 @@ square metre of goal miss, searched by pattern steps from 16 to 0.125 degrees; a
 when both soles are within 0.03 m of the floor, the grasping hand within 0.03 m of it, the other hand 0.3 m or more
 over it, the head 0.2 m or more over the pelvis and the trunk (root and spine) under 80 degrees; A's crouch at 0.40 m
 is the repo's reading of O18's "crouched on the ground", and a hand on the floor at a pickup bears weight (a support).
+Noted in S-081 (the sixth review): S-074's TELEPORT exemption (a substitution's decoy in the actor's place) answers
+F-196 Q5, which is open; S-080's quote of O18 was wrong (O18 says A "lands beside the rope dart and the kunai before
+picking them up"), and its crouch height and hand supports are reopened (F-206).
 
 ## Impact
 Waits on the owner.

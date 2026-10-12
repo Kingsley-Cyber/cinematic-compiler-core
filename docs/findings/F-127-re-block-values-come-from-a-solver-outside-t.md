@@ -51,6 +51,11 @@ none needed
 - F-110
 
 ## Resolution
+Corrected in S-081 (the sixth review): the claim below that the solver re-derives S-078's re-blocks is circular, since
+each re-derivation took the outcome's own sole height as its goal (with independent goals it gives LUL -38.5 where
+S-078 committed -70.17; S-078's values were hand steps); the solver's answer depends on its free joints' order (28.6
+degrees apart for S-080's 8.0 key), it loads no joint limits, and its CLI takes no start key or goal weight (F-207,
+RV-96).
 Open in part: solver/reblock.py (RV-35a, S-080) is the committed solver: the least squared change to the listed joint
 components that meets stated goals inside stated bounds, with a CLI; it re-derives S-078's three re-blocks from their
 goals (within 0.125 degrees) and derived S-080's pickups. Open: the re-blocks recorded from S-030 to S-049 and the

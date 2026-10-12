@@ -68,8 +68,9 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 | RV-42 to RV-54 | various | high-low | RV-42, RV-43, RV-49, RV-45, RV-46, RV-48a, RV-48b done (S-046, S-047, S-049, S-055 to S-058); the rest open | the second review's gaps, F-122 to F-150 (docs/reports/2026-10-12-principal-review-2.md), and F-151 (a body through a prop, RV-54) |
 | RV-55 to RV-65 | various | high-medium | RV-57, RV-60, RV-61, RV-62 done (S-059 to S-062); the rest open (RV-55, RV-56, RV-63, RV-64b wait for the owner) | the third review's gaps, F-152 to F-167 (docs/reports/2026-10-12-principal-review-3.md), and RV-65 (RV-20's prompt part) |
 | RV-66 to RV-84 | various | high-medium | RV-66 to RV-72 done (S-064 to S-071); the rest open | the fourth review's gaps, F-169 to F-186 (docs/reports/2026-10-12-principal-review-4.md) |
-| RV-85 to RV-93, RV-82b | various | high-low | RV-85, RV-86 done (S-073, S-074); the rest open (RV-82b waits for the owner) | the fifth review's gaps, F-187 to F-195 (docs/reports/2026-10-12-principal-review-5.md); its questions F-196 to F-203 |
+| RV-85 to RV-93, RV-82b | various | high-low | RV-85, RV-86 done (S-073, S-074; F-187 reopened in part, RV-99); the rest open (RV-82b, RV-87 wait for the owner) | the fifth review's gaps, F-187 to F-195 (docs/reports/2026-10-12-principal-review-5.md); its questions F-196 to F-203 |
 | RV-94 | L5.5 | medium | open | a moving camera's path (F-204, S-077) |
+| RV-95 to RV-105, RV-103a-c, RV-14c, RV-90b | various | high-low | open (RV-90b waits for the owner) | the sixth review's gaps, F-206 to F-218 (docs/reports/2026-10-12-principal-review-6.md); its questions F-211, F-215 |
 
 ## Dependencies
 - RV-02a after RV-05 (A's final poses); RV-02b after RV-02a, RV-03 and RV-06; RV-07 after RV-08; RV-13b after RV-13 and
@@ -96,6 +97,9 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 - F-124 (the 5.9 slide's exception) and F-133 (the scene_reference rules; RV-64b waits for it)
 - From review 5 (S-072), filed as question findings: F-196 to F-203; RV-27 and RV-64b wait too
 - RV-20: an ADR for the layer-order edit; RV-38: the owner's review of draft values and F-053
+- From review 6 (S-081): F-205 (the anime arm, evidence corrected), F-211 (each fighter's chain under O1), F-215 (the
+  floor's allowance), F-196 Q5 (S-074's reading, pending) and Q1-Q3 (RV-87 waits), F-197 Q3 (RV-90b waits), F-202 Q2
+  (the rope's end); F-202 Q3 is answered by O21 (RV-98)
 
 ## Critical Path
 1. Step 3, the builder's own shortcuts first (only on the owner's "go"): RV-01, then RV-05 (O88 moves A's arms that
@@ -112,8 +116,11 @@ RV-16, RV-37, RV-35, RV-59, RV-22; then RV-78 to RV-84 and the rest in backlog o
 After review 5 (S-072): RV-85 and RV-86 (the builder's own shortcuts), then RV-13, then the fight-breakers
 RV-15, RV-14, RV-16, RV-35, RV-59, RV-37, RV-22, then RV-88, RV-89, RV-92, RV-73, RV-87, RV-90, RV-91,
 RV-93, RV-75, RV-76, RV-77, RV-58, RV-18, RV-64 and the rest in backlog order (backlog 28).
-6. Waiting on the owner: RV-13b, RV-20, RV-24, RV-26, RV-36, RV-40, RV-52, RV-53, RV-55, RV-56, RV-63 (and RV-33, which
-   follows RV-52); the owner's own: RV-38
+After review 6 (S-081): the builder's own regressions first, RV-96, RV-95, RV-100, RV-99; then the fight-breakers RV-59,
+RV-97, RV-98, RV-101, RV-103a to RV-103c, RV-17; then RV-104, RV-105, RV-14c, RV-37, RV-22, RV-102 and the rest in
+backlog order (backlog 33).
+6. Waiting on the owner: RV-13b, RV-14b, RV-15c, RV-20, RV-24, RV-26, RV-36, RV-40, RV-52, RV-53, RV-55, RV-56, RV-63,
+   RV-82b, RV-87, RV-90b (and RV-33, which follows RV-52); the owner's own: RV-38
 
 ## Verification
 - Each slice: `scripts/verify.sh` and `make golden`, its predictions reported, the self-audit recorded (RV-45); tests
@@ -160,3 +167,4 @@ RV-93, RV-75, RV-76, RV-77, RV-58, RV-18, RV-64 and the rest in backlog order (b
 - 2026-10-12 — RV-14a done (S-078): FLOOR_PENETRATION; every claimed support measured at every key; RV-14b (held and embedded props) waits for F-148; the table above brought up to date.
 - 2026-10-12 — RV-16 done (S-079): each fighter's laban chain lists the beats it acts in; F-091 resolved.
 - 2026-10-12 — RV-35a done (S-080): A's pickups crouch with one hand down; solver/reblock.py committed; F-110 resolved; F-205 (the anime arm) for the owner; RV-35b open.
+- 2026-10-12 — Review 6 (S-081): verdict partially, no tampering; F-206 to F-218 with RV-95 to RV-105; F-090, F-110, F-187, F-160, F-091 reopened in part; RV-96 next.

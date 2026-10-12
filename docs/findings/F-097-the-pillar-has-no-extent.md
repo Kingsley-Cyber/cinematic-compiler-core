@@ -45,3 +45,5 @@ open question (the source's rows)
 
 ## Resolution
 Open.
+Noted in S-081 (the sixth review): 12 of 22 cameras stand behind the pillar's z = 6 and nothing checks a line of sight
+past it (F-214, RV-102).

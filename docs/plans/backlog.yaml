@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 32
+version: 33
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -134,12 +134,12 @@ items:
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-090], codes: [VERTICAL_FRAMING]}
   - {id: RV-15b, title: "An insert aims at its detail and a framed prop is in frame; the camera schemas' position text names the aim", status: done,
      step: camera, plan: PLAN-007, depends_on: [RV-15a], findings: [F-090], codes: []}
-  - {id: RV-15c, title: "A strike's limb and a facing head point at their target, checked at S13; B's keys re-aimed", status: blocked,
+  - {id: RV-15c, title: "A strike's limb and a facing head point at their target, checked at S13 (B's keys re-aimed in RV-103b)", status: blocked,
      blocked_by: "the owner's answer in F-148 (A's source facings: the check would refuse the golden's own rows, O10)",
      step: motion, plan: PLAN-007, depends_on: [], findings: [F-145], codes: []}
   - {id: RV-14a, title: "Every-key body checks: no body under the floor; every claimed support on its surface at every key", status: done,
      step: motion, plan: PLAN-007, depends_on: [M9-06b], findings: [F-089], codes: [FLOOR_PENETRATION]}
-  - {id: RV-14b, title: "A held or embedded prop at its holder at every sample (a rope dart's dart within its line of the hand)", status: blocked,
+  - {id: RV-14b, title: "A held or embedded prop at its holder at every sample (the rope dart's line in RV-14c)", status: blocked,
      blocked_by: "the owner's answer in F-148 (the climax: A's source right hand is 0.65-0.87 m from the kunai the source keeps in B's shoulder at 8.5-9.5)",
      step: motion, plan: PLAN-007, depends_on: [RV-14a], findings: [F-089, F-062, F-084], codes: []}
   - {id: RV-16, title: "One laban chain per fighter in render.txt", status: done,
@@ -148,12 +148,42 @@ items:
      step: motion, plan: PLAN-007, depends_on: [RV-02a], findings: [F-110, F-127], codes: []}
   - {id: RV-35b, title: "The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools", status: ready,
      step: all, plan: PLAN-007, depends_on: [RV-35a], findings: [F-127], codes: []}
-  - {id: RV-59, title: "BODY_OVERLAP and CONTACT_WORLD along the declared interpolation between keys; the paths re-blocked", status: next,
+  - {id: RV-96, title: "The re-block solver re-derives a re-block from its record: order-independent, joint limits, weighted goals and a start key in the CLI", status: next,
+     step: motion, plan: PLAN-007, depends_on: [RV-35a], findings: [F-207, F-127], codes: []}
+  - {id: RV-95, title: "The pickups re-blocked with RV-96's solver: every body point above the floor, the hand on it only at the pickup, the words re-written to the numbers", status: ready,
+     step: motion, plan: PLAN-007, depends_on: [RV-96], findings: [F-206, F-110], codes: []}
+  - {id: RV-100, title: "S-076's, S-078's and S-080's example rewrites typed in deviations.yaml; DEV-09 updated; R-19 cites O97", status: ready,
+     step: docs, plan: PLAN-007, depends_on: [], findings: [F-212], codes: []}
+  - {id: RV-99, title: "Camera card rules: RV-60's word lists restored as a floor; a hit rule found from what a contact means; subject and rig words read", status: ready,
+     step: camera, plan: PLAN-007, depends_on: [], findings: [F-210, F-187, F-160], codes: []}
+  - {id: RV-59, title: "BODY_OVERLAP, CONTACT_WORLD and FLOOR_PENETRATION along the declared interpolation between keys; the paths re-blocked", status: ready,
      step: motion, plan: PLAN-007, depends_on: [RV-35a], findings: [F-159, F-089], codes: []}
+  - {id: RV-97, title: "VERTICAL_FRAMING along a static shot's window, frames on the declared interpolation, a margin by each part's radius; c11 and c20 re-authored", status: ready,
+     step: camera, plan: PLAN-007, depends_on: [RV-59], findings: [F-208, F-090], codes: []}
+  - {id: RV-98, title: "A declared entrance may start outside its shot's frame (O21): c01 opens with A above the frame", status: ready,
+     step: camera, plan: PLAN-007, depends_on: [], findings: [F-209, F-090], codes: []}
+  - {id: RV-101, title: "An insert's detail has a point; a carried prop takes its carrier's point; a prop a shot's action names is framed; a vanished body is no aim", status: ready,
+     step: camera, plan: PLAN-007, depends_on: [], findings: [F-213, F-090], codes: []}
+  - {id: RV-103a, title: "S04: the kunai in B's hand at 0.6, the rope dart's 9.5 sample at its line, one time for the wrap", status: ready,
+     step: temporal, plan: PLAN-007, depends_on: [], findings: [F-216], codes: []}
+  - {id: RV-103b, title: "S13: B pulled toward A at 7.5-8.0 and facing what it acts on; B's charge covers ground", status: ready,
+     step: motion, plan: PLAN-007, depends_on: [RV-103a], findings: [F-216, F-145], codes: []}
+  - {id: RV-103c, title: "S11: B's weight transfer follows B's travel over 0-1.6", status: ready,
+     step: kinematic, plan: PLAN-007, depends_on: [], findings: [F-216], codes: []}
+  - {id: RV-17, title: "One possession model for S04 and S07; PROP_TWO_HOLDERS", status: ready,
+     step: contact, plan: PLAN-007, depends_on: [], findings: [F-092, F-134], codes: [PROP_TWO_HOLDERS]}
+  - {id: RV-104, title: "A commit's tests run in an exported tree with an isolated path; self_audit.md names the script", status: ready,
+     step: all, plan: PLAN-007, depends_on: [], findings: [F-217], codes: []}
+  - {id: RV-105, title: "The checklist's Any row is deliverable only when one prompt is", status: ready,
+     step: render, plan: PLAN-007, depends_on: [], findings: [F-218], codes: []}
+  - {id: RV-14c, title: "A line prop's dart stays within its line of the hand that holds it (the rope dart)", status: ready,
+     step: motion, plan: PLAN-007, depends_on: [RV-14a], findings: [F-062, F-186], codes: []}
   - {id: RV-37, title: "One strike definition at S04; S17's impact frames agree with it", status: ready,
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-112], codes: []}
   - {id: RV-22, title: "The pillar has a radius and faces; landings and face contacts measured", status: ready,
      step: motion, plan: PLAN-007, depends_on: [RV-14a], findings: [F-097], codes: []}
+  - {id: RV-102, title: "A camera stands inside the set and sees its subjects past the pillar's extent", status: ready,
+     step: camera, plan: PLAN-007, depends_on: [RV-22], findings: [F-214], codes: []}
   - {id: RV-88, title: "S09's trigger is the interaction's hand on the object at the change's instant", status: ready,
      step: object_state, plan: PLAN-007, depends_on: [], findings: [F-190, F-173], codes: []}
   - {id: RV-89, title: "A thrown prop is a hit only in flight", status: ready,
@@ -162,10 +192,14 @@ items:
      step: all, plan: PLAN-007, depends_on: [], findings: [F-195], codes: []}
   - {id: RV-73, title: "S04 refuses a contact by a vanished body inside its window, the actor's own beat inside it, and a contact by a body outside its beat", status: ready,
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-172, F-136], codes: []}
-  - {id: RV-87, title: "The substitution's decoy is declared, stands in the scene from the first beat, and is measured where the actor stood; a substitution needs the capability", status: ready,
+  - {id: RV-87, title: "The substitution's decoy is declared, stands in the scene from the first beat, and is measured where the actor stood; a substitution needs the capability", status: blocked,
+     blocked_by: "the owner's answers in F-196 (Q1-Q3: who declares the decoy, whether it stands from the first frame, who may substitute)",
      step: temporal, plan: PLAN-007, depends_on: [RV-86], findings: [F-189], codes: []}
-  - {id: RV-90, title: "HIT_HOLD's scale follows the grammar's impact scales; S16 refuses a gone subject and VANISHED_BODY reads [CAMERA]; the impact rule speaks of hits", status: ready,
+  - {id: RV-90, title: "S16 refuses a gone subject and VANISHED_BODY reads [CAMERA]; the impact rule speaks of hits", status: ready,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-192], codes: []}
+  - {id: RV-90b, title: "HIT_HOLD's scale follows the grammar's impact scales", status: blocked,
+     blocked_by: "the owner's answer in F-197 (Q3: may a hit be held at a wide scale)",
+     step: camera, plan: PLAN-007, depends_on: [RV-90], findings: [F-192], codes: []}
   - {id: RV-91, title: "A vanish that never returns: S15 refuses an Effort across a vanish; no end state or reappearance for a body gone to the end; a compiled test scene", status: ready,
      step: render, plan: PLAN-007, depends_on: [], findings: [F-193], codes: []}
   - {id: RV-93, title: "S07: a prop's change needs a contact on it in its beat, or a hold by a body of that beat (MASTER_PLAN S07.3)", status: ready,
@@ -192,8 +226,6 @@ items:
      step: render, plan: PLAN-007, depends_on: [RV-13], findings: [F-088], codes: []}
   - {id: RV-74, title: "PROP_SUPPORT: a location on a surface with a known top puts the resting prop at that top", status: ready,
      step: temporal, plan: PLAN-007, depends_on: [RV-54, RV-22], findings: [F-171], codes: []}
-  - {id: RV-17, title: "One possession model for S04 and S07; PROP_TWO_HOLDERS", status: ready,
-     step: contact, plan: PLAN-007, depends_on: [], findings: [F-092, F-134], codes: [PROP_TWO_HOLDERS]}
   - {id: RV-19, title: "Replans reach the step that owns the fix", status: ready,
      step: all, plan: PLAN-007, depends_on: [], findings: [F-094], codes: []}
   - {id: RV-20, title: "external_inputs complete: the layer order states what each step depends on", status: blocked,

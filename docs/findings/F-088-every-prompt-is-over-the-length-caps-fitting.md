@@ -52,3 +52,7 @@ against O97's caps, and the checklist's deliverable column and `cinematic compil
 (PROMPT_LENGTH); conformance is untouched, so the golden still passes it with nothing set aside (O10). Every prompt
 today is over both caps (the closest, the UGC's render.txt, has 11,464 characters and 1,085 words). The questions
 stand: which prompts carry the cap, what a capped prompt may drop, and whether O97 amends R-16 (RV-13b).
+Noted in S-081 (the sixth review): with no target named a prompt fits either cap, so a 1,000-word prompt is delivered
+at up to about 13,000 characters (the prompts run 5.4 to 13 characters a word); a word is a run of non-space
+characters, which under-counts JSON; R-19 does not cite O97 (RV-100). The questions stand: one cap or both, and what a
+BytePlus word is.

@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- Principal review 6 (S-081): five read-only reviewers, verdict "partially", no test tampering; the run's fixes again
+  closed their probes, not their classes, and S-080 put a knee in the floor and the pickup hands on it through a throw
+  and a leap. Filed F-206 to F-218 with RV-95 to RV-105; reopened F-090, F-110, F-187, F-160 and F-091 in part; corrected
+  F-127; the queue puts the builder's own regressions first (RV-96, RV-95, RV-100, RV-99), then the fight-breakers.
 - A's pickups crouch on the feet with one hand down (RV-35a, F-110, S-080): at 7.5 and 8.0 A no longer crawls; the
   pelvis sits at 0.40 m, one hand takes the prop from the floor and is named as a support (S04, S11, the staff), the
   other hand is up, and the trunk leans 58 and 75 degrees instead of past flat. The values come from the committed

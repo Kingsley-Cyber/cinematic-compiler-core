@@ -48,3 +48,7 @@ needed
 
 ## Resolution
 Open.
+Noted in S-081 (the sixth review): S-074 (RV-86) implemented Q5's 'yes' (TELEPORT exempts a substitution only when its
+decoy stands in the actor's place) as covered by O12; the reading waits for your answer to Q5, and F-053 lists it. The
+S01-S09 reviewer asks too: may the actor's own device count as the decoy (an actor's smoke pellet held 0.15 m from the
+pelvis is found as one)?

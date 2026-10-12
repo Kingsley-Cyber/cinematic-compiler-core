@@ -55,3 +55,6 @@ bend), B's lunge at 3.4 and 3.7 (the front sole 0.158 m up, now planted by the h
 9.0 lie within the tolerance. Open: a held or embedded prop at its holder at every sample (RV-14b, blocked on F-148:
 A's source right hand is 0.65-0.87 m from the kunai at 8.5-9.5; a rope dart's sample is its dart, which needs its
 line); a support on a surface's face (RV-22); a contact between keys (RV-59).
+Noted in S-081 (the sixth review): S-080 put A's right knee 0.109 m in the floor at 7.5, which the 0.15 m allowance
+passes (F-206, F-215); between keys B's left sole goes 0.385 m under the floor at 8.75 (RV-59 now carries
+FLOOR_PENETRATION between keys).

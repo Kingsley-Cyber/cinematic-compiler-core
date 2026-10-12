@@ -49,3 +49,5 @@ none needed
 
 ## Resolution
 Open.
+Noted in S-081 (the sixth review): beat_planning.txt does not teach FLOOR_PENETRATION, the every-key measure of
+claimed supports, or that every weight-bearing part needs a support contact (RV-92).

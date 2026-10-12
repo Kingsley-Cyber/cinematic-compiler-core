@@ -49,3 +49,5 @@ needed
 
 ## Resolution
 Open.
+Noted in S-081 (the sixth review): R-33 says a rewrite is recorded 'in the golden test and the session file', ADR-O102
+'or' (F-212).

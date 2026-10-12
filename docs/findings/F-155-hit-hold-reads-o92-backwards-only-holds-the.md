@@ -61,3 +61,5 @@ test_render.py::test_a_hit_from_the_contacts_is_held_whatever_s17_holds,
 test_prose_render.py::test_the_prompt_owes_a_hold_at_every_hit_whatever_s17_holds). The framing is still judged by
 the shot's subjects and the horizontal projection; the vertical framing is RV-15's (F-090).
 Review 5 (S-072): the carriers are RV-15 (the vertical framing), F-197 (the owner's breadth of hits) and RV-90 (the hold's scale and a gone subject); RV-69 is done.
+Noted in S-081 (the sixth review): its slice text is stale: RV-15 became RV-15a and RV-15b (done), and S16 now judges
+the vertical as well as the horizontal projection.

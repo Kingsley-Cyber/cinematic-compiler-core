@@ -49,3 +49,6 @@ who declares the decoy and whether every decoy stands from the first frame (list
 
 ## Resolution
 Open.
+Noted in S-081 (the sixth review): TELEPORT inherits decoy()'s distance guess: the actor's own pellet 0.15 m from the
+pelvis counts as a decoy and spares a 13 m jump; a crouched actor's standing log centred 1.0 m up is not found (RV-87,
+blocked on F-196).

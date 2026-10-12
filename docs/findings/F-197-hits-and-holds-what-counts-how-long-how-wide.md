@@ -48,3 +48,5 @@ needed
 
 ## Resolution
 Open.
+Noted in S-081 (the sixth review): RV-90b (a hit's scale) waits for Q3; RV-97 reads O92's 'both bodies in frame' for
+the hold's whole shot.

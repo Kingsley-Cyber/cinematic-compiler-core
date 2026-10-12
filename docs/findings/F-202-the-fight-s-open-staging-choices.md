@@ -48,3 +48,6 @@ needed
 
 ## Resolution
 Open.
+Noted in S-081 (the sixth review): Q3 (the opening) is answered by O21 ('A starts above the frame'): RV-98. On Q2 the
+two sources disagree: the FINAL text keeps the line taut to 10.0, the kernel 2.3 source trails it; which governs the
+golden?

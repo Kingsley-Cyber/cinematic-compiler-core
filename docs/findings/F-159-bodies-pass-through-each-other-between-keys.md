@@ -52,3 +52,6 @@ none needed (R-18)
 
 ## Resolution
 Open.
+Noted in S-081 (the sixth review): between keys A and B overlap in 33 frames (deepest 0.149 m at 6.375), A falls
+through B's head at 7.21, and B's left sole goes 0.385 m under the floor at 8.75 (RV-59, its title widened to
+FLOOR_PENETRATION).

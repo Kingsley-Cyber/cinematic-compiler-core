@@ -49,3 +49,5 @@ none needed
 
 ## Resolution
 Open.
+Noted in S-081 (the sixth review): A holds the rope dart and the kunai from 8.0, so the single-valued possession can
+declare neither; no example sets possession, so POSSESSION_MISMATCH never runs on authored data (RV-17).

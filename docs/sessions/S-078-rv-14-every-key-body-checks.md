@@ -106,3 +106,11 @@ from 07:58 (the plan) to 08:09 (the record's last edit before the gate; the gate
 - the gate on this record (08:09:57): `scripts/verify.sh` exit 0, 707 passed in 75.35 s, docs plane: PASS, check:
   PASS
 - the hygiene scan over the staged diff: 0 hits
+
+## Corrections (S-081, the sixth review)
+- Prediction 2 restated F-089's measurements (the acrobat 0.185 m under the ground, A within 0.15 m) as a forecast and
+  counted them as held; they were known, not predicted (F-194's pattern).
+- D4 cites the acrobat's description 'deep bend' as support; this slice wrote that word, replacing 'shallow bend'. The
+  commit's 'Deviations: none' was wrong: three keys and a description were rewritten (typed in RV-100, F-212).
+- B's values at 3.4 and 3.7 (-70.17, -65.7) came from a scratch search (the hip alone, a sole height of about 0.03 m),
+  not from a least-change solve; S-080's 're-derivation' of them used their outcomes as goals (F-207).

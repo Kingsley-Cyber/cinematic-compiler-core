@@ -12,7 +12,7 @@ high
 L5.5
 
 ## Status
-resolved
+open
 
 ## Reported
 2026-10-12
@@ -48,6 +48,9 @@ whether a card's rule is its printed words or its fields (listed, F-197)
 - ADR-O92
 
 ## Resolution
+Open in part, reopened by the sixth review (S-081): RV-85's backlog title promised RV-60's word lists as a floor on
+the printed rules and none was built; rule_problems passes 'Cut to a close-up of the face at each contact.' and the
+hit words are review 5's probe vocabulary (F-210, RV-99).
 RV-85 (S-073): planner/camera_library.py reads each rule's words (a convention's statement, an idiom's prefer) in the
 grammar's camera terms and their common synonyms (TERMS), and refuses a term its fields do not allow; a rule whose words
 name a blow, hit, impact or strike (other than "between hits") is a hit rule, held to O92's hold (CAMERA_CARD, raised

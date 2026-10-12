@@ -51,3 +51,4 @@ RV-86 (S-074): TELEPORT exempts an actor's jump only when its substitution leave
 rule S04's swap and S07 read); the validator's docstring and the S04 instructions say so
 (tests/test_dynamic_beat_validator.py::test_teleport_threshold_and_the_substitution_exemption, its far-decoy case).
 A substitution with no decoy that does not jump is F-189's (RV-87).
+Noted in S-081 (the sixth review): its reading of O12 is pending the owner's answer to F-196 Q5.

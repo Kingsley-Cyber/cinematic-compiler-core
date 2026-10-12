@@ -6,20 +6,20 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 7.1; backlog 32.
+Layer order 1.7; rules 7.1; backlog 33.
 
 ## Last sessions
 
-- S-078 (applied): RV-14: every key keeps its bodies above the floor, its supports on their surfaces and its props in hand
 - S-079 (applied): RV-16: each fighter's laban chain in render.txt lists its own moves
 - S-080 (applied): RV-35a: A's pickups crouch on the feet with one hand down, re-blocked by a committed solver
+- S-081 (applied): Principal review 6: does the finished work match the plan?
 
 ## Next slices
 
-- RV-59 (next, step motion): BODY_OVERLAP and CONTACT_WORLD along the declared interpolation between keys; the paths re-blocked
+- RV-96 (next, step motion): The re-block solver re-derives a re-block from its record: order-independent, joint limits, weighted goals and a start key in the CLI
 - RV-35b (ready, step all): The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools
-- RV-37 (ready, step temporal): One strike definition at S04; S17's impact frames agree with it
-- RV-22 (ready, step motion): The pillar has a radius and faces; landings and face contacts measured
+- RV-95 (ready, step motion): The pickups re-blocked with RV-96's solver: every body point above the floor, the hand on it only at the pickup, the words re-written to the numbers
+- RV-100 (ready, step docs): S-076's, S-078's and S-080's example rewrites typed in deviations.yaml; DEV-09 updated; R-19 cites O97
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -64,9 +64,13 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-202 (medium): The fight's open staging choices
 - F-203 (medium): RV-20's layer-order ADR
 - F-205 (medium): The anime body's arms reach the floor only with the trunk leaning 58 to 75 degrees
+- F-211 (medium): Must each fighter's laban chain carry its side of the other's beats?
+- F-215 (high): May a body point sit up to 0.15 m under the floor, or only by its radius?
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
-- Backlog RV-15c blocked: A strike's limb and a facing head point at their target, checked at S13; B's keys re-aimed — the owner's answer in F-148 (A's source facings: the check would refuse the golden's own rows, O10)
-- Backlog RV-14b blocked: A held or embedded prop at its holder at every sample (a rope dart's dart within its line of the hand) — the owner's answer in F-148 (the climax: A's source right hand is 0.65-0.87 m from the kunai the source keeps in B's shoulder at 8.5-9.5)
+- Backlog RV-15c blocked: A strike's limb and a facing head point at their target, checked at S13 (B's keys re-aimed in RV-103b) — the owner's answer in F-148 (A's source facings: the check would refuse the golden's own rows, O10)
+- Backlog RV-14b blocked: A held or embedded prop at its holder at every sample (the rope dart's line in RV-14c) — the owner's answer in F-148 (the climax: A's source right hand is 0.65-0.87 m from the kunai the source keeps in B's shoulder at 8.5-9.5)
+- Backlog RV-87 blocked: The substitution's decoy is declared, stands in the scene from the first beat, and is measured where the actor stood; a substitution needs the capability — the owner's answers in F-196 (Q1-Q3: who declares the decoy, whether it stands from the first frame, who may substitute)
+- Backlog RV-90b blocked: HIT_HOLD's scale follows the grammar's impact scales — the owner's answer in F-197 (Q3: may a hit be held at a wide scale)
 - Backlog RV-64b blocked: The S04 packet carries the scene_reference rules — the owner's answer in F-133
 - Backlog RV-13b blocked: Every prompt fits the caps (O97) — the owner's answers in F-088
 - Backlog RV-20 blocked: external_inputs complete: the layer order states what each step depends on — an accepted ADR for the layer-order edit (R-09)
@@ -84,7 +88,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 124
+## Open findings: 142
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -101,6 +105,8 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-086 (high, L4c): Mirror-symmetric keys are not refused on strikes and action beats
 - F-088 (high, L6): Every prompt is over the length caps; fitting them needs the owner's call on what goes
 - F-089 (high, L4c): Bodies and held props are checked only at contact onsets, never against the floor
+- F-090 (high, L5.5): The camera aims about 1 m too high since O72, and vertical framing is unchecked
+- F-091 (high, L6): render.txt's laban chains mix both fighters' moves
 - F-096 (high, L6): PASS cells are inflated: rows pass on codes that cover part of the row
 - F-115 (high, all): Two gate conditions have no check: soul_check_passes, fight_works
 - F-117 (high, L6): F-013 and F-014 cannot close
@@ -118,11 +124,19 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-178 (high, all): No prompt can become deliverable: thirty checklist rows have no way to pass
 - F-179 (high, all): The done-gate has conditions no slice reaches
 - F-185 (high, L1.2): CAUSE_REASON passes sentences that state no cause
+- F-187 (high, L5.5): The camera check reads the cards' labels, not the words the prompt prints
 - F-189 (high, L1.1): The decoy is guessed by distance and may come from nowhere
 - F-196 (high, all): The substitution's decoy: who declares it, where it stands, who may substitute
 - F-197 (high, all): Hits and holds: what counts, how long, how wide, and which cuts hold
 - F-198 (high, all): Which checklist rows must pass for a prompt to be a deliverable
+- F-206 (high, L4c): S-080's pickups put a knee in the floor and the hands on it through a throw and a leap
+- F-207 (high, L4c): The re-block solver does not re-derive a re-block from its record
+- F-208 (high, L5.5): A static shot is framed at its keys only and loses the hit holds' bodies between them
+- F-209 (high, L5.5): VERTICAL_FRAMING refuses O21's opening, A above the frame
+- F-210 (high, L5.5): The camera rule check lets through what RV-60's word lists refused
+- F-215 (high, L4c): May a body point sit up to 0.15 m under the floor, or only by its radius?
+- F-216 (high, L1.1): Repo-authored fight defects outside the owner's questions
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-206, session S-081, render R20.
+Decision ADR-O109, finding F-219, session S-082, render R20.

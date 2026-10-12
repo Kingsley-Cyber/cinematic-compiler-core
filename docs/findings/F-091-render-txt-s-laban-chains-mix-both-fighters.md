@@ -12,7 +12,7 @@ high
 L6
 
 ## Status
-resolved
+open
 
 ## Reported
 2026-10-11
@@ -45,6 +45,10 @@ none needed (ADR-O1)
 - ADR-O1
 
 ## Resolution
+Open in part, reopened by the sixth review (S-081): B's chain now stops at the 6.6 catch, 5 moves against the 2.4
+source's 14; whether a chain carries a fighter's side of the other's beats is the owner's (F-211, O1). S-079 D1's 'no
+node words that side' is wrong for B, whose own key names word it; `_laban`'s docstring overclaims 'as the 2.4 source
+chains them'.
 Resolved by RV-16 (S-079): renderers/anime_renderer.py chains, for each fighter, the beats it acts in, in time order,
 then its own efforts, so A's chain in the reference fight lists its 18 moves (from 22) and B's its 5 (from 20, which
 opened with A's fall); the wizard example's and the live-action example's chains shrink the same way, and the UGC's

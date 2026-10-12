@@ -51,3 +51,5 @@ none needed (O18, O90)
 ## Resolution
 Open.
 Review 5 (S-072): RV-73 also refuses the actor's own beat inside its window.
+Noted in S-081 (the sixth review): a beat may also anchor a body it does not list: B given a pos in b18 passes S04 to
+S07 and S13 has no slot to measure it (RV-73).
