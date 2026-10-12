@@ -225,6 +225,7 @@ Every finding: a bug, gap, contradiction, drift, question, risk or opportunity f
 | F-217 | Testing an exported commit imports the live worktree's modules | risk | medium | all | open | — | - the rules reviewer, S-081: the venv's editable… | 2026-10-12 | [F-217-testing-an-exported-commit-imports-the-live.md](../findings/F-217-testing-an-exported-commit-imports-the-live.md) |
 | F-218 | The checklist's Any row can call deliverable what no single prompt is | bug | low | L6 | open | — | - validators/checklist.py: the Any row is 'yes' w… | 2026-10-12 | [F-218-the-checklist-s-any-row-can-call-deliverab.md](../findings/F-218-the-checklist-s-any-row-can-call-deliverab.md) |
 | F-219 | The body model has no ankle joint: a crouching foot cannot lie flat | gap | medium | L4c | open | — | - solver/forward_kinematics.py: the sole lies 0.1… | 2026-10-12 | [F-219-the-body-model-has-no-ankle-joint-a-crouch.md](../findings/F-219-the-body-model-has-no-ankle-joint-a-crouch.md) |
+| F-220 | By a contact the declared interpolation draws one body through the ot… | question | high | L4c | open | — | - S-087 (RV-59b): solver/reblock.py's clearance g… | 2026-10-12 | [F-220-by-a-contact-the-declared-interpolation-draws.md](../findings/F-220-by-a-contact-the-declared-interpolation-draws.md) |
 
 ## Type values
 

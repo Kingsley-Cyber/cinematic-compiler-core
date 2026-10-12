@@ -1,5 +1,6 @@
-"""solver/reblock.py (RV-35a, F-127): a re-block is re-derived from stated goals, free joints and bounds; and the
-pickups it re-derived crouch on the feet with one hand down (F-110)."""
+"""solver/reblock.py (RV-35a, F-127): a re-block is re-derived from stated goals, free joints and bounds; the pickups
+it re-derived crouch on the feet with one hand down (F-110); and a clearance goal keeps a key's spans clear of another
+body between keys (RV-59b, F-159)."""
 
 import json
 
@@ -7,7 +8,7 @@ import pytest
 from conftest import ROOT
 
 from solver import forward_kinematics
-from solver.reblock import limits, main, solve
+from solver.reblock import _capsules, clearance, limits, main, solve, solve_key
 
 pytestmark = pytest.mark.unit
 EXAMPLES = ROOT / "examples"
@@ -137,3 +138,83 @@ def test_the_pickups_crouch_on_the_feet_with_one_hand_down():
         assert points["head"][1] - points["pelvis"][1] >= 0.2 - 1e-3
         assert (key["rot"][0] % 360) + key["bones"]["Sp"][0] <= 70  # the root's 30 degrees and the spine's lean
         assert kinematic[slot]["support"] == ["left_foot", "right_foot"]
+
+
+def test_the_solver_s_capsules_are_forward_kinematics():
+    """The clearance composes each chain's rotations once; on every key of the four examples its capsules are forward
+    kinematics' to 2 micrometres (forward kinematics rounds each joint to a micrometre), far under CLEARANCE_M."""
+    for example in ("reference_fight", "wizard_vs_acrobat", "live_action_standoff", "ugc_glasses_demo"):
+        envelope = json.loads((EXAMPLES / example / "envelope.json").read_text(encoding="utf-8"))
+        genre = envelope["scene"]["genre"]
+        metres, radii = forward_kinematics.segments(genre), forward_kinematics.radii(genre)
+        for key in envelope["nodes"]["motion"]["items"]:
+            exact, fast = forward_kinematics.capsules(key, metres, radii), _capsules(key, metres, radii)
+            assert max(abs(u - v) for name in exact for end in (0, 1)
+                       for u, v in zip(exact[name][end], fast[name][end], strict=True)) < 2e-6, key["id"]
+
+
+def test_a_root_component_moves_the_root_inside_its_bound_in_metres():
+    """RV-59b: `pos.x` moves the key's root, its change counted in centimetres, its bound stated in metres."""
+    metres = forward_kinematics.segments("anime")
+    key = _key("wizard_vs_acrobat", "acrobat@b11")
+    x = key["pos"][0]
+    goal = [("pelvis", [x + 0.05, key["pos"][1], key["pos"][2]])]
+    free, _ = solve_key(key, metres, goal, ["pos.x"], {"pos.x": (x - 0.1, x + 0.1)})
+    bound, _ = solve_key(key, metres, goal, ["pos.x"], {"pos.x": (x, x + 0.02)})
+    assert abs(free["pos"][0] - (x + 0.05)) < 0.001 and free["bones"] == key["bones"]
+    assert abs(bound["pos"][0] - (x + 0.02)) < 1e-9
+
+
+# RV-59b (F-159, S-087): the commands that re-blocked B's paths, run from the keys at 76da0e5, whose values PATH_START
+# keeps; `--from 76da0e5` reads the same keys from git.
+PATH_START = {"ninja_broad@b09": {"bones": {"LA": [-25.2, 1.2, 14], "LFA": [-29.2, 0, 0]}},
+              "ninja_broad@b11": {"pos": [-0.39, 1.07, 4.51],
+                                  "bones": {"LUL": [-74.7, -0.1, 10.3], "RUL": [-14.8, -0.4, -4.5], "LL": [50, 0, 0],
+                                            "RL": [31.1, 0, 0]}}}
+PATH_COMMANDS = {
+    "ninja_broad@b09": ["--free", "LA.x,LA.z,LFA.x", "--goal", "left_foot=1.005,0.0392,4.8579",
+                        "--goal", "right_foot=1.8882,-0.0003,4.2357", "--bound", "LA.x=-70.2..19.8", "--bound", "LA.z=-31..59",
+                        "--bound", "LFA.x=-74.2..15.8", "--clear", "ninja_lean"],
+    "ninja_broad@b11": ["--free", "pos.x,pos.z,LUL.x,LUL.z,RUL.x,RUL.z,LL.x,RL.x", "--goal", "left_foot=-0.6198,0.0022,4.7869",
+                        "--goal", "right_foot=0.3178,0.1352,4.3241", "--bound", "pos.x=-0.54..-0.24",
+                        "--bound", "pos.z=4.36..4.66",
+                        "--bound", "LUL.x=-119.7..-29.7", "--bound", "LUL.z=-34.7..55.3", "--bound", "RUL.x=-59.8..30.2",
+                        "--bound", "RUL.z=-49.5..40.5", "--bound", "LL.x=5..95", "--bound", "RL.x=-13.9..76.1",
+                        "--clear", "ninja_lean"],
+}
+
+
+def _path_start_plan():
+    plan = json.loads((EXAMPLES / "reference_fight" / "plans" / "motion.json").read_text(encoding="utf-8"))
+    for key in plan["keys"]:
+        if key["slot"] in PATH_START:
+            start = PATH_START[key["slot"]]
+            key["pos"] = start.get("pos", key["pos"])
+            key["bones"] = {**key["bones"], **start["bones"]}
+    return plan
+
+
+def test_b_s_paths_re_derive_from_their_recorded_commands(tmp_path, capsys):
+    """F-159 (RV-59b): each re-blocked key of B is what its recorded command gives from the key before the re-block, the
+    feet held where they stood and every angle within 45 degrees of its start."""
+    plan = json.loads((EXAMPLES / "reference_fight" / "plans" / "motion.json").read_text(encoding="utf-8"))
+    committed = {k["slot"]: k for k in plan["keys"] if k["slot"] in PATH_START}
+    before = tmp_path / "motion.json"
+    before.write_text(json.dumps(_path_start_plan()), encoding="utf-8")
+    for slot, command in PATH_COMMANDS.items():
+        assert main(["reference_fight", slot, "--plan", str(before), *command]) == 0
+        printed = json.loads(capsys.readouterr().out)
+        assert (printed["pos"], printed["bones"]) == (committed[slot]["pos"], committed[slot]["bones"]), slot
+
+
+def test_the_re_blocked_paths_clear_a_between_keys():
+    """F-159 (RV-59b): before the re-block B overlapped A between its keys at 3.7 and 4.4 along the declared
+    interpolation; after it, no capsule of B meets one of A at any frame of those keys' spans."""
+    envelope = json.loads((EXAMPLES / "reference_fight" / "envelope.json").read_text(encoding="utf-8"))
+    after = json.loads((EXAMPLES / "reference_fight" / "plans" / "motion.json").read_text(encoding="utf-8"))
+    before = _path_start_plan()
+    for slot in PATH_START:
+        old, new = (next(k for k in plan["keys"] if k["slot"] == slot) for plan in (before, after))
+        assert clearance(before, envelope, slot, ["ninja_lean"], margin=0.0)(old) > 0, slot
+        assert clearance(after, envelope, slot, ["ninja_lean"], margin=0.0)(new) == 0, slot
+

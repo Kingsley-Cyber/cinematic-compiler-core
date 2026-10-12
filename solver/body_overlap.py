@@ -5,7 +5,8 @@ axis between its two joints, its radius from the body card, draft) stays out of 
 distance between their axes is at least the sum of their radii. A contact between two bodies meets at their surfaces
 (CONTACT_WORLD measures it there), so it overlaps nothing either.
 Interpretation (Claude's, for owner review): only the keys' exact instants are checked here; between keys
-validators/between_keys_report.py measures along the declared interpolation (RV-59a) and RV-59b refuses; a body's own
+validators/between_keys_report.py measures along the declared interpolation (RV-59a), solver/reblock.py's clearance
+keeps a re-blocked key's spans clear (RV-59b) and RV-59e refuses after F-220's answer; a body's own
 segments may cross each other; no depth is allowed (ALLOWANCE_M); a prop has no extent yet, so a
 body through a prop is not checked.
 """

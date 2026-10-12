@@ -182,10 +182,11 @@ CATCH_ROOT = [0.07, 1.03, 4.8]
 # RV-49 (S-049, F-144, R-18: no body through another, a strike measured to the target's surface): B holds back at 3.7
 # while A leans into the swap, then lunges to the log; B stands clear of A's legs at 4.4; A's knee meets the surface of
 # B's back at 4.7, so B stands 0.24 m further along the launch; B bows less at 8.5; B lies 0.18 m aside at 9.0-9.5.
+# RV-59b (S-087, B_PATHS): B at 4.4 a further 1.1 cm along the stumble, clear of A's hand between keys.
 REBLOCKED_ROOTS = {"ninja_broad@b10": [1.0, 1.09, 5.0], "ninja_broad@b12": [-0.44, 1.2, 4.56],
                    "ninja_broad@b04": [1.4, 1.19, 3.3], "ninja_broad@b05": [1.77, 1.14, 2.97],
                    "ninja_broad@b06": [1.77, 1.19, 3.0], "ninja_broad@b09": [1.39, 1.07, 4.53],
-                   "ninja_broad@b11": [-0.39, 1.07, 4.51], "ninja_broad@b21": [1.09, 1.08, 5.06],
+                   "ninja_broad@b11": [-0.40125, 1.07, 4.50875], "ninja_broad@b21": [1.09, 1.08, 5.06],
                    "ninja_broad@b22": [0.96, 0.1, 5.48], "ninja_broad@b23": [0.96, 0.1, 5.48]}
 # Owner O86 (F-071, S-032): at 8.0 B stands on A's far side from the pillar (z 6), pose and facing kept, so the rope from
 # B to A's hand pulls toward the pillar and B is dragged that way to 8.5; with the kunai's landing since O89 (S-039).
@@ -437,11 +438,14 @@ REAUTHORED_SHOTS = {"c02": {"framing.scale": "extreme_wide", "position.distance_
 # RV-14a (F-089, S-078; owner O72): B's lunge at 3.4 and 3.7 plants its front sole by the hip alone, a hand choice
 # (typed as DEV-33, RV-100).
 B_LUNGE = {"ninja_broad@b08": {"LUL": [-70.17, 1.29, 22.95]}, "ninja_broad@b09": {"LUL": [-65.7, 2.7, 23.3]}}
+B_PATHS = {"ninja_broad@b09": {"LA": [-8.95, 1.2, 37.5], "LFA": [-25.95, 0, 0]},
+           "ninja_broad@b11": {"pos": [-0.40125, 1.07, 4.50875], "LUL": [-74.575, -0.1, 10.425], "RUL": [-14.3, -0.4, -4.375],
+                               "LL": [50.75, 0, 0], "RL": [30.85, 0, 0]}}
 
 
 def test_the_re_authored_shots_and_the_lunge_are_what_the_records_say():
-    """F-212 (RV-100): the shots S-076 re-authored and the lunge S-078 re-posed are held to their records, so a change
-    to either is a change to a typed deviation."""
+    """F-212 (RV-100): the shots S-076 re-authored, the lunge S-078 re-posed and the paths S-087 re-blocked (RV-59b) are
+    held to their records, so a change to any is a change to a typed deviation."""
     shots = {s["id"]: s for s in json.loads((FOLDER / "plans" / "camera.json").read_text(encoding="utf-8"))["shots"]}
     for shot, fields in REAUTHORED_SHOTS.items():
         for path, value in fields.items():
@@ -451,6 +455,8 @@ def test_the_re_authored_shots_and_the_lunge_are_what_the_records_say():
             assert node == value, (shot, path)
     keys = {k["slot"]: k for k in json.loads((FOLDER / "plans" / "motion.json").read_text(encoding="utf-8"))["keys"]}
     assert {slot: {joint: keys[slot]["bones"][joint] for joint in bones} for slot, bones in B_LUNGE.items()} == B_LUNGE
+    assert {slot: {name: keys[slot]["pos"] if name == "pos" else keys[slot]["bones"][name] for name in values}
+            for slot, values in B_PATHS.items()} == B_PATHS
 
 
 def test_every_recorded_deviation_is_typed_and_ruled():

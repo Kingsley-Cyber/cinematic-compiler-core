@@ -173,3 +173,4 @@ backlog order (backlog 33).
 - 2026-10-12 — RV-100 done (S-084): S-076's shots and S-078's lunge typed (DEV-32, DEV-33), DEV-09 and DEV-10 updated, R-19 cites O97; F-212 resolved.
 - 2026-10-12 — RV-99 done (S-085): RV-60's word lists are a floor in the card check, and a hit rule is found from what a contact does; F-210, F-187, F-160 resolved.
 - 2026-10-12 — RV-59a done (S-086): poses between keys along the declared interpolation, measured and reported (38 overlap frames in the fight, one sink: B's crash); RV-59b next, then RV-59c.
+- 2026-10-12 — RV-59b done (S-087): the re-block solver keeps a key's spans clear; B re-blocked at 3.7 and 4.4 (29 overlap frames left, all by a contact); F-220 asks how those clear, RV-59e (the check) waits for it; RV-59d next.

@@ -59,3 +59,6 @@ Noted in S-086 (RV-59a): along the declared interpolation (joints slerped, the r
 overlap in 38 frames over eight spans between keys, deepest 0.149 m at 6.375, every span with B's repo keys at one
 end; the wizard example's in 5 frames over two spans (docs/reports/2026-10-12-between-keys.md). RV-59b refuses them
 and re-blocks B's paths.
+Noted in S-087 (RV-59b): the re-block solver's clearance goal cleared 3.4-3.7 and 4.4-4.7 (B's left arm at 3.7, B's
+root and legs at 4.4); the six spans left lie by a contact the keys must keep, and the wizard example's two by its
+kick: F-220 asks how they clear, and RV-59e refuses after its answer.

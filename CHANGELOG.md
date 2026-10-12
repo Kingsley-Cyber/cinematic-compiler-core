@@ -6,6 +6,11 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The re-block solver clears paths between keys (RV-59b, F-159, S-087): `--clear <entity>` keeps a key's two spans
+  clear of another body along the declared interpolation, and a root component (`pos.x`) may move the key's root.
+  B's left arm at 3.7 and B's root (1.1 cm) and legs at 4.4 are re-blocked from recorded commands (DEV-34); the eight
+  spans left lie by a contact the keys hold, so how they clear is the owner's question (F-220) and BODY_OVERLAP between
+  keys waits for it (RV-59e).
 - Bodies are measured between keys (RV-59a, F-159, F-089, S-086): solver/interpolation.py poses each body at every
   frame along the declared interpolation (joints slerped, the root straight, a declared turn's angles straight), and
   validators/between_keys_report.py measures overlaps and the floor there (docs/reports/2026-10-12-between-keys.md):

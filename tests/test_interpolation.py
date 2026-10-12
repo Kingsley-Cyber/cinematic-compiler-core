@@ -72,12 +72,12 @@ def test_frames_leave_out_the_keys_and_a_vanished_window():
 
 def test_the_report_measures_the_fight_between_keys():
     """RV-59a (F-159, F-089): between keys the fight's bodies overlap and B's crash sinks where S13's keys cannot see;
-    as measured on S-086 (RV-59b and RV-59c refuse them). Every overlapping span has B's repo keys at one end, and no
-    span of A's source rows sinks."""
+    as measured on S-086 and S-087 (RV-59e and RV-59c refuse them). Every overlapping span has B's repo keys at one
+    end, and no span of A's source rows sinks."""
     from validators import between_keys_report
     found = between_keys_report.measure("reference_fight")
     assert [(row["entity"], row["span"], row["frames"], row["deepest"], row["whose"]) for row in found["sinks"]] == \
         [("ninja_broad", (8.5, 9.0), 9, 0.385, "repo keys")]
     assert max(row["deepest"] for row in found["overlaps"]) == 0.149
-    assert sum(row["frames"] for row in found["overlaps"]) == 38
+    assert sum(row["frames"] for row in found["overlaps"]) == 29  # 38 on S-086; S-087 re-blocked 3.4-3.7 and 4.4-4.7
     assert all(row["whose"][0] == "repo keys" and row["pair"][0] == "ninja_broad" for row in found["overlaps"])

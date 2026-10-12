@@ -5,6 +5,7 @@ Intrinsic X then Y then Z composes as R = Rx(a) · Ry(b) · Rz(c) acting on colu
 """
 
 import math
+from functools import lru_cache
 
 
 def _rx(a):
@@ -27,7 +28,14 @@ def _mul(a, b):
 
 
 def matrix(rot):
-    a, b, c = (math.radians(v) for v in rot)
+    return _matrix(*rot)
+
+
+@lru_cache(maxsize=1 << 16)
+def _matrix(a, b, c):
+    """The rotation of one Euler triple, kept: a pose's chains turn by the same root and spine many times, and a solve
+    re-poses the same unmoved joints at every trial (RV-59b)."""
+    a, b, c = (math.radians(v) for v in (a, b, c))
     return _mul(_mul(_rx(a), _ry(b)), _rz(c))
 
 

@@ -9,16 +9,21 @@ O11), narrowed by any stated bound; a sum limit (NK+HD) is not enforced, so the 
 together. The cost is the sum of the squared degree changes plus GOAL_WEIGHT per square metre of weighted miss. The
 search is a deterministic steepest descent: at each step size, from 16 down to 0.125 degrees, it takes the best of
 every free component's two moves (ties broken by the components' sorted names) until no move improves, so the order
-the caller lists them in cannot change the answer. A recorded re-block is re-derived by its command, which the CLI
-prints with its result:
+the caller lists them in cannot change the answer. A root component (`pos.x`, `pos.z`) moves the key's root, its
+change counted in centimetres (a centimetre weighs as a degree) and its bound stated in metres. A clearance goal
+(`--clear <entity>`, RV-59b, R-18) keeps the moving body clear of another at the key's instant and at every frame of
+its two spans, posed along the declared interpolation (solver/interpolation.py), by CLEARANCE_M between their
+capsules' surfaces; its misses count like a goal's.
+A recorded re-block is re-derived by its command, which the CLI prints with its result:
 `python -m solver.reblock <example> <slot> --from <git revision> --root-y 0.4 --free Sp.x,RUL.x
 --goal right_hand=1.4,0,3.77 --goal left_foot.y=0 --goal left_foot=0.46,0,3.54@0.01 --above head.y=0.65
---bound Sp.x=-30..45`.
+--bound Sp.x=-30..45 --clear ninja_lean`.
 """
 
 import argparse
 import copy
 import json
+import math
 import shlex
 import subprocess
 import sys
@@ -26,14 +31,33 @@ from pathlib import Path
 
 import yaml
 
-from solver import forward_kinematics
+from planner.dynamic_beat_validator import vanish_windows
+from solver import forward_kinematics, interpolation
 from solver.euler_solver import effective_limits
+from solver.quaternion import matrix
 
 ROOT = Path(__file__).resolve().parents[1]
 AXES = "xyz"
 GOAL_WEIGHT = 1e8  # per square metre of miss: a millimetre's miss outweighs a degree of change
 STEPS = (16.0, 8.0, 4.0, 2.0, 1.0, 0.5, 0.25, 0.125)
 OPEN = (-360.0, 360.0)
+CLEARANCE_M = 0.01  # between two bodies' surfaces on a cleared path: room for the angles' rounding (the check allows none)
+EPSILON = 1e-9
+CENTIMETRES = 100.0  # a root component's change is counted in centimetres
+UNBOUND = (-1e9, 1e9)
+
+
+def _get(key, name):
+    joint, axis = _component(name)
+    return key["pos"][axis] * CENTIMETRES if joint == "pos" else key["bones"][joint][axis]
+
+
+def _set(key, name, value):
+    joint, axis = _component(name)
+    if joint == "pos":
+        key["pos"][axis] = round(value / CENTIMETRES, 6) + 0.0
+    else:
+        key["bones"][joint][axis] = value
 
 
 def limits(genre):
@@ -48,7 +72,7 @@ def _component(name):
     return joint, AXES.index(axis)
 
 
-def _misses(key, metres, goals, above):
+def _misses(key, metres, goals, above, extra=None):
     points = forward_kinematics.points(key, metres)
     joints = forward_kinematics.joints(key, metres) if any(part not in points for part, _ in above) else {}
     total = 0.0
@@ -62,29 +86,156 @@ def _misses(key, metres, goals, above):
     for part, floor in above:  # a contact point or a joint (an ankle, a knee)
         point = points[part] if part in points else joints.get(part) or forward_kinematics.part_point(points, part)
         total += max(0.0, floor - point[1]) ** 2
-    return total
+    return total + (extra(key) if extra else 0.0)
 
 
-def solve(key, metres, goals, free, bounds=None, above=(), joint_limits=None):
-    """(bones, misses): the bones of `key` with the `free` components ("Sp.x") moved, inside `joint_limits` (from
-    `limits`) narrowed by `bounds` ({component: (low, high)}; a start outside its span is first moved into it), by the
-    least squared change that meets `goals` ([(part, [x, y, z] or a height[, weight])]) and keeps every `above` point
-    ([(part, height)]) at or over its height; misses is the weighted square of what is left unmet."""
+def _scene_keys(plan, envelope):
+    """{entity: [key with its instant t, in time order]} for every key of the plan, timed by the envelope's beats."""
+    times = {beat["id"]: beat["t"] for beat in envelope["nodes"]["beats"]["items"]}
+    keys = {}
+    for key in plan["keys"]:
+        entity, beat = key["slot"].split("@")
+        keys.setdefault(entity, []).append({**key, "t": times[beat]})
+    return {entity: sorted(own, key=lambda k: k["t"]) for entity, own in keys.items()}
+
+
+def _posed(own, t):
+    """An entity's key at instant t, its pose between two of its keys, or None outside its keys."""
+    for key in own:
+        if abs(key["t"] - t) < EPSILON:
+            return key
+    before, after = [k for k in own if k["t"] < t], [k for k in own if k["t"] > t]
+    return interpolation.pose(before[-1], after[0], t) if before and after else None
+
+
+def _mm(a, b):
+    return tuple(tuple(a[i][0] * b[0][j] + a[i][1] * b[1][j] + a[i][2] * b[2][j] for j in range(3)) for i in range(3))
+
+
+def _from(base, m, vector):
+    return [base[i] + m[i][0] * vector[0] + m[i][1] * vector[1] + m[i][2] * vector[2] for i in range(3)]
+
+
+def _capsules(key, metres, radii):
+    """forward_kinematics.capsules unrounded, each chain's rotations composed once: the clearance's inner loop (a test
+    holds the two to a micrometre on every key of the examples)."""
+    bones, pelvis = key["bones"], list(key["pos"])
+    root = matrix(key["rot"])
+    trunk = _mm(root, matrix(bones["Sp"]))
+    at = {"pelvis": pelvis, "chest": _from(pelvis, trunk, (0.0, metres["spine"], 0.0))}
+    for side, sign, upper, lower in (("left", 1, "LUL", "LL"), ("right", -1, "RUL", "RL")):
+        thigh = _mm(trunk, matrix(bones[upper]))
+        shin = _mm(thigh, matrix(bones[lower]))
+        at[f"{side}_hip"] = _from(pelvis, root, (sign * metres["hip"], 0.0, 0.0))
+        at[f"{side}_knee"] = _from(at[f"{side}_hip"], thigh, (0.0, -metres["thigh"], 0.0))
+        at[f"{side}_ankle"] = _from(at[f"{side}_knee"], shin, (0.0, -metres["shin"], 0.0))
+        at[f"{side}_sole"] = _from(at[f"{side}_ankle"], shin, (0.0, -metres["ankle"], 0.0))
+    for side, sign, upper, lower in (("left", 1, "LA", "LFA"), ("right", -1, "RA", "RFA")):
+        arm = _mm(trunk, matrix(bones[upper]))
+        at[f"{side}_shoulder"] = _from(at["chest"], trunk, (sign * metres["shoulder"], 0.0, 0.0))
+        at[f"{side}_elbow"] = _from(at[f"{side}_shoulder"], arm, (0.0, -metres["upper_arm"], 0.0))
+        at[f"{side}_hand"] = _from(at[f"{side}_elbow"], _mm(arm, matrix(bones[lower])), (0.0, -metres["forearm"], 0.0))
+    neck = _mm(trunk, matrix(bones["NK"]))
+    at["neck"] = _from(at["chest"], neck, (0.0, metres["neck"], 0.0))
+    at["head"] = _from(at["neck"], _mm(neck, matrix(bones["HD"])), (0.0, metres["head"], 0.0))
+    return {name: (at[a], at[b], radii[r]) for name, (a, b, r) in forward_kinematics.CAPSULES.items()}
+
+
+def _reach(start, end, radius):
+    """A capsule's middle and the radius of a ball holding it, to pass over the pairs that cannot meet."""
+    return [(a + b) / 2 for a, b in zip(start, end, strict=True)], math.dist(start, end) / 2 + radius
+
+
+def clearance(plan, envelope, slot, others, margin=CLEARANCE_M):
+    """f(key) -> square metres, for a trial key of `slot` (RV-59b, R-18): over the key's instant and every frame of its
+    two spans (the scene's fps, posed along the declared interpolation, a vanished body left out but a body at its own
+    key always in, as S13 judges it), the sum of each overlap's squared depth plus `margin` between the moving body's
+    capsules and those of each entity in `others`."""
+    genre, fps = envelope["scene"]["genre"], envelope["scene"]["fps"]
+    metres, radii = forward_kinematics.segments(genre), forward_kinematics.radii(genre)
+    keys = _scene_keys(plan, envelope)
+    gone = [(entity, start, back) for entity, _, start, back in vanish_windows(envelope["nodes"]["beats"]["items"])]
+    own = keys[slot.split("@")[0]]
+    index = next(n for n, k in enumerate(own) if k["slot"] == slot)
+    before, after = own[index - 1] if index else None, own[index + 1] if index + 1 < len(own) else None
+    t0 = own[index]["t"]
+    low, high = (before or own[index])["t"], (after or own[index])["t"]
+    frames = [t0] + [t for t in (round(f / fps, 6) for f in range(math.floor(low * fps), math.ceil(high * fps) + 1))
+                     if low + EPSILON < t < high - EPSILON and abs(t - t0) > EPSILON]
+
+    def away(entity, t):
+        return any(e == entity and start - EPSILON <= t and (back is None or t < back - EPSILON) for e, start, back in gone)
+
+    # the farthest a capsule's surface reaches from the pelvis: a leg, an arm or the head drawn straight out
+    body = max(metres["hip"] + metres["thigh"] + metres["shin"] + metres["ankle"],
+                metres["spine"] + metres["shoulder"] + metres["upper_arm"] + metres["forearm"],
+                metres["spine"] + metres["neck"] + metres["head"]) + max(radii.values())
+    fixed = []
+    for t in sorted(frames):
+        if abs(t - t0) > EPSILON and away(slot.split("@")[0], t):
+            continue
+        targets = []
+        for other in others:
+            at_key = any(abs(k["t"] - t) < EPSILON for k in keys[other])
+            pose = _posed(keys[other], t) if at_key or not away(other, t) else None
+            if pose is not None:
+                capsules = _capsules(pose, metres, radii).values()
+                targets += [((p, q, r), *_reach(p, q, r)) for p, q, r in capsules]
+        if targets:  # a ball holding every capsule of the others, to pass over a frame the body cannot reach
+            centre = [sum(target[1][i] for target in targets) / len(targets) for i in range(3)]
+            fixed.append((t, targets, centre, max(math.dist(centre, middle) + far for _, middle, far in targets)))
+
+    def cost(key):
+        trial, total = {**key, "t": t0}, 0.0
+        for t, targets, centre, far in fixed:
+            if abs(t - t0) < EPSILON:
+                pose = trial
+            else:
+                pose = interpolation.pose(before, trial, t) if t < t0 else interpolation.pose(trial, after, t)
+            if math.dist(pose["pos"], centre) > body + far + margin:
+                continue
+            for start, end, radius in _capsules(pose, metres, radii).values():
+                middle, reach = _reach(start, end, radius)
+                for (p, q, r), other_middle, other_reach in targets:
+                    if math.dist(middle, other_middle) <= reach + other_reach + margin:
+                        depth = radius + r + margin - forward_kinematics.segment_distance(start, end, p, q)
+                        if depth > 0:
+                            total += depth * depth
+        return total
+
+    return cost
+
+
+def solve(key, metres, goals, free, bounds=None, above=(), joint_limits=None, extra=None):
+    """(bones, misses): `solve_key`'s bones."""
+    solved, misses = solve_key(key, metres, goals, free, bounds, above, joint_limits, extra)
+    return solved["bones"], misses
+
+
+def solve_key(key, metres, goals, free, bounds=None, above=(), joint_limits=None, extra=None):
+    """(key, misses): `key` with the `free` components ("Sp.x", "pos.x") moved, inside `joint_limits` (from `limits`)
+    narrowed by `bounds` ({component: (low, high)}, a root component's in metres; a start outside its span is first
+    moved into it), by the least squared change that meets `goals` ([(part, [x, y, z] or a height[, weight])]), keeps
+    every `above` point ([(part, height)]) at or over its height and leaves `extra` (a function of the key, square
+    metres: `clearance`) at zero; misses is the weighted square of what is left unmet."""
     free = sorted(set(free))
     span = {}
     for name in free:
+        if _component(name)[0] == "pos":
+            stated = (bounds or {}).get(name)
+            span[name] = tuple(v * CENTIMETRES for v in stated) if stated else UNBOUND
+            continue
         low, high = (joint_limits or {}).get(name, OPEN)
         stated = (bounds or {}).get(name, OPEN)
         span[name] = (max(low, stated[0]), min(high, stated[1]))
-    origin = {name: key["bones"][_component(name)[0]][_component(name)[1]] for name in free}
+    origin = {name: _get(key, name) for name in free}
     trial = copy.deepcopy(key)
 
     def cost(state):
         for name, value in state.items():
-            joint, axis = _component(name)
-            trial["bones"][joint][axis] = value
+            _set(trial, name, value)
         change = sum((state[name] - origin[name]) ** 2 for name in free)
-        return change + GOAL_WEIGHT * _misses(trial, metres, goals, above)
+        return change + GOAL_WEIGHT * _misses(trial, metres, goals, above, extra)
 
     state = {name: min(span[name][1], max(span[name][0], value)) for name, value in origin.items()}
     best = cost(state)
@@ -105,9 +256,8 @@ def solve(key, metres, goals, free, bounds=None, above=(), joint_limits=None):
             state, best = {**state, name: value}, score
     result = copy.deepcopy(key)
     for name, value in state.items():
-        joint, axis = _component(name)
-        result["bones"][joint][axis] = value + 0.0
-    return result["bones"], _misses(result, metres, goals, above)
+        _set(result, name, value + 0.0)
+    return result, _misses(result, metres, goals, above, extra)
 
 
 def _goal(text):
@@ -140,6 +290,7 @@ def main(argv=None):
     parser.add_argument("--goal", action="append", default=[], help="part=x,y,z or part.y=height, with @weight")
     parser.add_argument("--above", action="append", default=[], help="part.y=height kept at or over")
     parser.add_argument("--bound", action="append", default=[], help="component=low..high")
+    parser.add_argument("--clear", action="append", default=[], help="an entity kept clear between keys (RV-59b)")
     args = parser.parse_args(argv)
     plan = _plan(args.example, args.revision, args.plan)
     envelope = json.loads((ROOT / "examples" / args.example / "envelope.json").read_text(encoding="utf-8"))
@@ -149,11 +300,12 @@ def main(argv=None):
         key["pos"] = [key["pos"][0], args.root_y, key["pos"][2]]
     above = [(part.removesuffix(".y"), float(value)) for part, value in (a.split("=") for a in args.above)]
     bounds = {name: tuple(float(v) for v in span.split("..")) for name, span in (b.split("=") for b in args.bound)}
-    bones, misses = solve(key, forward_kinematics.segments(genre), [_goal(g) for g in args.goal], args.free.split(","),
-                          bounds, above, limits(genre))
+    extra = clearance(plan, envelope, args.slot, args.clear) if args.clear else None
+    solved, misses = solve_key(key, forward_kinematics.segments(genre), [_goal(g) for g in args.goal],
+                               args.free.split(","), bounds, above, limits(genre), extra)
     command = "python -m solver.reblock " + " ".join(shlex.quote(a) for a in (argv if argv is not None else sys.argv[1:]))
-    json.dump({"command": command, "slot": args.slot, "pos": key["pos"], "bones": bones, "misses_m2": round(misses, 6)},
-              sys.stdout)
+    json.dump({"command": command, "slot": args.slot, "pos": solved["pos"], "bones": solved["bones"],
+               "misses_m2": round(misses, 6)}, sys.stdout)
     sys.stdout.write("\n")
     return 0
 

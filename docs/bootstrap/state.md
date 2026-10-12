@@ -6,17 +6,17 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 7.2; backlog 35.
+Layer order 1.7; rules 7.2; backlog 36.
 
 ## Last sessions
 
-- S-084 (applied): RV-100: this run's example rewrites typed as deviations; R-19 cites O97
 - S-085 (applied): RV-99: the camera cards' rules keep RV-60's floor, and a hit rule is found from what a contact does
 - S-086 (applied): RV-59a: bodies measured between keys, along the declared interpolation
+- S-087 (applied): RV-59b: the re-block solver clears paths between keys; two of B's spans re-blocked, the rest filed
 
 ## Next slices
 
-- RV-59b (next, step motion): BODY_OVERLAP at every frame between keys, B's paths re-blocked; CONTACT_WORLD at an instant with no key measured on the interpolated pose
+- RV-59d (next, step motion): CONTACT_WORLD at an instant with no key measured on the interpolated pose (the wizard example's landing at 6.4)
 - RV-35b (ready, step all): The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools
 - RV-59c (ready, step motion): FLOOR_PENETRATION at every frame between keys; B's crash given a key between or a declared fall
 - RV-97 (ready, step camera): VERTICAL_FRAMING along a static shot's window, frames on the declared interpolation, a margin by each part's radius; c11 and c20 re-authored
@@ -66,9 +66,11 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-205 (medium): The anime body's arms reach the floor only with the trunk leaning 58 to 75 degrees
 - F-211 (medium): Must each fighter's laban chain carry its side of the other's beats?
 - F-215 (high): May a body point sit up to 0.15 m under the floor, or only by its radius?
+- F-220 (high): By a contact the declared interpolation draws one body through the other; no re-pose of a key clears it
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog RV-15c blocked: A strike's limb and a facing head point at their target, checked at S13 (B's keys re-aimed in RV-103b) — the owner's answer in F-148 (A's source facings: the check would refuse the golden's own rows, O10)
 - Backlog RV-14b blocked: A held or embedded prop at its holder at every sample (the rope dart's line in RV-14c) — the owner's answer in F-148 (the climax: A's source right hand is 0.65-0.87 m from the kunai the source keeps in B's shoulder at 8.5-9.5)
+- Backlog RV-59e blocked: BODY_OVERLAP refused at every frame between keys; the spans by a contact cleared as F-220's answer says (the knee at 4.7, the catch and the throw 6.3-7.5, the drive and the crash 8.0-9.0, the wizard's kick at 3.6) — the owner's answer in F-220 (in-between keys, an allowance by a contact, looser contacts or A's rows)
 - Backlog RV-87 blocked: The substitution's decoy is declared, stands in the scene from the first beat, and is measured where the actor stood; a substitution needs the capability — the owner's answers in F-196 (Q1-Q3: who declares the decoy, whether it stands from the first frame, who may substitute)
 - Backlog RV-90b blocked: HIT_HOLD's scale follows the grammar's impact scales — the owner's answer in F-197 (Q3: may a hit be held at a wide scale)
 - Backlog RV-64b blocked: The S04 packet carries the scene_reference rules — the owner's answer in F-133
@@ -88,7 +90,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 136
+## Open findings: 137
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -132,7 +134,8 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-209 (high, L5.5): VERTICAL_FRAMING refuses O21's opening, A above the frame
 - F-215 (high, L4c): May a body point sit up to 0.15 m under the floor, or only by its radius?
 - F-216 (high, L1.1): Repo-authored fight defects outside the owner's questions
+- F-220 (high, L4c): By a contact the declared interpolation draws one body through the other; no re-pose of a key clears it
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-220, session S-087, render R20.
+Decision ADR-O109, finding F-221, session S-088, render R20.

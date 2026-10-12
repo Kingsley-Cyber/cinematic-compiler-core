@@ -35,7 +35,7 @@ flowchart LR
   renderers -->|6| planner
   renderers -->|3| solver
   solver -->|1| kernel
-  solver -->|4| planner
+  solver -->|5| planner
   solver -->|1| validators
   validators -->|5| compiler
   validators -->|4| kernel
@@ -109,10 +109,10 @@ flowchart LR
 | `solver.euler_solver` | `solver.quaternion` | — |
 | `solver.floor_penetration` | `planner.dynamic_beat_validator` | — |
 | `solver.forward_kinematics` | `planner.dependency_graph`, `planner.genre_profile`, `solver.quaternion`, `validators.schema_validator` | json, math, yaml |
-| `solver.interpolation` | `solver.quaternion` | math |
+| `solver.interpolation` | `solver.quaternion` | functools, math |
 | `solver.prop_state_machine` | — | — |
-| `solver.quaternion` | `kernel.canonical` | math |
-| `solver.reblock` | `solver.euler_solver`, `solver.forward_kinematics` | argparse, copy, json, pathlib, shlex, subprocess, sys, yaml |
+| `solver.quaternion` | `kernel.canonical` | functools, math |
+| `solver.reblock` | `planner.dynamic_beat_validator`, `solver.euler_solver`, `solver.forward_kinematics`, `solver.interpolation`, `solver.quaternion` | argparse, copy, json, math, pathlib, shlex, subprocess, sys, yaml |
 | `solver.shape_direction` | `solver.quaternion`, `solver.staff_geometry` | math |
 | `solver.staff_geometry` | `solver.quaternion` | math |
 | `solver.trajectory` | — | math |

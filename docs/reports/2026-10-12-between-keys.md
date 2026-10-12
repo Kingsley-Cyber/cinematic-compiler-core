@@ -9,12 +9,10 @@ fight), else 'repo keys'.
 
 ## reference_fight
 
-419 frames between keys; 8 overlapping spans; 1 sinking spans.
+419 frames between keys; 6 overlapping spans; 1 sinking spans.
 
 | Bodies | Spans | Frames | Deepest (m) | At | Parts | Whose |
 |---|---|---|---|---|---|---|
-| ninja_broad / ninja_lean | 3.4-3.7; 3.4-3.7 | 7 | 0.079 | 3.54167 | left_forearm / right_forearm | repo keys, source rows |
-| ninja_broad / ninja_lean | 4.4-4.7; 4.4-4.7 | 2 | 0.006 | 4.45833 | trunk / left_forearm | repo keys, source rows |
 | ninja_broad / ninja_lean | 4.7-5.1; 4.7-5.1 | 2 | 0.102 | 4.75 | trunk / left_forearm | repo keys, source rows |
 | ninja_broad / ninja_lean | 6.3-6.6; 6.3-6.6 | 3 | 0.149 | 6.375 | left_forearm / trunk | repo keys, source rows |
 | ninja_broad / ninja_lean | 6.6-7.5; 6.6-7 | 5 | 0.070 | 6.625 | right_forearm / left_upper_arm | repo keys, source rows |

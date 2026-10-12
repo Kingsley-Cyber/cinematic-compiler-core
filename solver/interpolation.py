@@ -9,6 +9,7 @@ window (owner O18: it is gone). Interpretation (Claude's, for owner review): the
 """
 
 import math
+from functools import lru_cache
 
 from solver.quaternion import unit_quaternion
 
@@ -44,6 +45,12 @@ def euler(q):
     return [math.degrees(math.atan2(-r12, r22)), math.degrees(math.asin(r02)), math.degrees(math.atan2(-r01, r00))]
 
 
+@lru_cache(maxsize=1 << 16)
+def _between(a, b, s):
+    """The slerp of one joint's rotation, as Euler degrees, kept: a re-block re-poses its unmoved joints at every trial."""
+    return tuple(euler(_slerp(unit_quaternion(a), unit_quaternion(b), s)))
+
+
 def pose(a, b, t):
     """{pos, rot, bones, turn}: the pose of one entity at instant t between its keys a and b (a["t"] <= t <= b["t"])."""
     s = (t - a["t"]) / (b["t"] - a["t"]) if b["t"] > a["t"] + EPSILON else 0.0
@@ -52,9 +59,8 @@ def pose(a, b, t):
     if turn != "none":  # the edge's euler_axis: the declared turn's angles run straight
         rot = [ra + s * (rb - ra) for ra, rb in zip(a["rot"], b["rot"], strict=True)]
     else:
-        rot = euler(_slerp(unit_quaternion(a["rot"]), unit_quaternion(b["rot"]), s))
-    bones = {joint: euler(_slerp(unit_quaternion(a["bones"][joint]), unit_quaternion(b["bones"][joint]), s))
-             for joint in a["bones"]}
+        rot = list(_between(tuple(a["rot"]), tuple(b["rot"]), s))
+    bones = {joint: list(_between(tuple(a["bones"][joint]), tuple(b["bones"][joint]), s)) for joint in a["bones"]}
     return {"pos": pos, "rot": rot, "bones": bones, "turn": turn}
 
 
