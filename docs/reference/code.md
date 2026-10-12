@@ -28,9 +28,9 @@ flowchart LR
   kernel_extraction -->|1| kernel
   kernel_extraction -->|1| planner
   planner -->|3| compiler
-  planner -->|11| kernel
+  planner -->|12| kernel
   planner -->|1| solver
-  planner -->|4| validators
+  planner -->|5| validators
   renderers -->|2| compiler
   renderers -->|5| planner
   renderers -->|3| solver
@@ -88,6 +88,7 @@ flowchart LR
 | `planner.dependency_graph` | `kernel.canonical` | pathlib, yaml |
 | `planner.dynamic_beat_validator` | `planner.vocabulary` | math, re |
 | `planner.entity_grounder` | — | — |
+| `planner.genre_profile` | `kernel.canonical`, `planner.dependency_graph`, `validators.schema_validator` | functools, json, yaml |
 | `planner.intent_parser` | `kernel.canonical` | argparse, re, sys |
 | `planner.library_vocab` | `planner.dependency_graph`, `validators.schema_validator` | functools, json, yaml |
 | `planner.modality` | `kernel.canonical`, `planner.dependency_graph`, `validators.schema_validator` | functools, json |
@@ -104,7 +105,7 @@ flowchart LR
 | `solver.camera_geometry` | — | math |
 | `solver.contact_world` | `planner.dynamic_beat_validator`, `solver.forward_kinematics` | math |
 | `solver.euler_solver` | `solver.quaternion` | — |
-| `solver.forward_kinematics` | `planner.dependency_graph`, `planner.modality`, `solver.quaternion`, `validators.schema_validator` | json, yaml |
+| `solver.forward_kinematics` | `planner.dependency_graph`, `planner.genre_profile`, `solver.quaternion`, `validators.schema_validator` | json, yaml |
 | `solver.prop_state_machine` | — | — |
 | `solver.quaternion` | `kernel.canonical` | math |
 | `solver.shape_direction` | `solver.quaternion`, `solver.staff_geometry` | math |

@@ -39,6 +39,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-030 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog M9-06b (PLAN-003 F5.2); finding… | applied | the commit whose message names [S-030] | about 120 minutes | M9-10 (F4.3/F4.4 B's active keys and the idle-fighter check… | [S-030-m9-06b-contact-world.md](../sessions/S-030-m9-06b-contact-world.md) |
 | S-031 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog M9-06d (added this session); ru… | applied | the commit whose message names [S-031] | about 25 minutes | M9-09h (F-071: B moves to A's far side at 8.0, the owner's… | [S-031-m9-06d-body-type-on-the-genre-profiles.md](../sessions/S-031-m9-06d-body-type-on-the-genre-profiles.md) |
 | S-032 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog M9-09h; finding F-071; rulings… | applied | the commit whose message names [S-032] | about 20 minutes | The owner's ten asymmetric things per beat (ADR to record,… | [S-032-m9-09h-b-moves-to-a-s-far-side.md](../sessions/S-032-m9-09h-b-moves-to-a-s-far-side.md) |
+| S-033 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog M9-06e (added this session); ru… | applied | the commit whose message names [S-033] | about 25 minutes | The owner's ten asymmetric things per beat (ADR-O87, a plan… | [S-033-m9-06e-body-type-in-the-genre-profile-cards.md](../sessions/S-033-m9-06e-body-type-in-the-genre-profile-cards.md) |
 
 ## Status values
 

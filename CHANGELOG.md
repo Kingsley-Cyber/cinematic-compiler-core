@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- body_type lives in the genre profile cards (M9-06e, owner O85 as clarified, O65, S-033): one card per genre,
+  `library/genre_profiles/<genre>.yaml` (draft), on `schemas/genre_profile.schema.json` 0.2 (body_type required);
+  `planner/genre_profile.py` loads them and forward kinematics reads them; the modality schemas drop the field
+  they gained in S-031 (1.2). No output changes.
 - At 8.0 B stands on A's far side from the pillar (M9-09h, owner O86, S-032): B's anchor and key move along z to
   [1.4, 1.18, 3.7] with the dart on its torso, so the rope dart's pull and B's drag run toward the pillar as the
   source says. F-071 resolved.

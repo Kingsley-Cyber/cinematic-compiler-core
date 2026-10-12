@@ -1,8 +1,8 @@
 # Body segments for S13 forward kinematics (owner O24: world contact points are computed from the pose; O72: the root
 # is the pelvis; O84: the hips are read from the trunk; O85: anime bodies get the leg fitted to the owner's source).
-# Draft by Claude for owner review. Each genre profile (schemas/modality/<genre>.schema.json) names its body_type.
+# Draft by Claude for owner review. Each genre profile (library/genre_profiles/<genre>.yaml) names its body_type.
 library_id: body_segments
-version: 3
+version: 4
 status: draft
 basis: "Owner O24, O72, O84 and O85; PLAN-003 F5.1 (segment lengths per archetype or body mode)."
 bodies:

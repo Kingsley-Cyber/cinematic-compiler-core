@@ -16,7 +16,7 @@ import json
 
 import yaml
 
-from planner import modality
+from planner import genre_profile
 from planner.dependency_graph import ROOT
 from solver.quaternion import apply, matrix
 from validators.schema_validator import validate_schema
@@ -32,8 +32,8 @@ def _card():
 
 
 def segments(genre):
-    """The metres of the body the genre's profile names (owner O85: schemas/modality/<genre>.schema.json body_type)."""
-    return _card()["bodies"][modality.body_type(genre)]["metres"]
+    """The metres of the body the genre's profile names (owner O85: library/genre_profiles/<genre>.yaml body_type)."""
+    return _card()["bodies"][genre_profile.body_type(genre)]["metres"]
 
 
 def standing_leg(metres):

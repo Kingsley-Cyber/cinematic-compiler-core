@@ -26,10 +26,5 @@ def duration_budget(genre):
     return load(genre)["properties"]["scene"]["properties"]["duration_s"]["default"]
 
 
-def body_type(genre):
-    """The genre profile's body (owner O85): the library/body_segments.yaml entry forward kinematics uses."""
-    return load(genre)["properties"]["scene"]["properties"]["body_type"]["default"]
-
-
 def guidance(genre):
     return load(genre)["description"]

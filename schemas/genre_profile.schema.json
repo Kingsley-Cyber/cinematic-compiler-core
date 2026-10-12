@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:genre_profile:0.1",
+  "$id": "urn:cinematic-compiler:schema:genre_profile:0.2",
   "title": "Genre profile (DRAFT)",
-  "$comment": "DRAFT (owner O65): the contract for FR.7's per-genre values (O36, O37), backlog M9-11; no data file uses it yet. Fields and ranges are Claude's draft for owner review.",
+  "$comment": "DRAFT (owner O65): the contract for FR.7's per-genre values (O36, O37), backlog M9-11. body_type is in use (owner O85, S-033: library/genre_profiles/<genre>.yaml); the other fields wait on M9-11. Fields and ranges are Claude's draft for owner review.",
   "description": "Per-genre rendering values the checks read from the scene's genre: camera arc ratio with a rotation, apex slow motion, inverted and impact holds, smear and speedline policy, landing dust and impact shake.",
   "type": "object",
   "additionalProperties": false,
@@ -11,7 +11,8 @@
     "kind",
     "card_version",
     "status",
-    "genre"
+    "genre",
+    "body_type"
   ],
   "properties": {
     "card_id": {
@@ -37,6 +38,11 @@
         "live_action",
         "ugc_ad"
       ]
+    },
+    "body_type": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "description": "The body forward kinematics uses for every performer in this genre: an entry of library/body_segments.yaml (owner O85)."
     },
     "camera_arc_ratio": {
       "type": "number",

@@ -101,8 +101,8 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 3.1; backlog 8.
-- Last session: S-032 (2026-10-11, applied): M9-09h: at 8.0 B moves to A's far side, so the rope dart's pull runs toward the pillar (F-071, O86).
+- Layer order 1.7; rules 3.1; backlog 9.
+- Last session: S-033 (2026-10-11, applied): M9-06e: body_type lives in the genre profile cards (schemas/genre_profile.schema.json), not the modality schemas.
 - Next slice: M9-10 F4.3/F4.4 B's active keys and the idle-fighter check (step effort).
 - Open findings: 34; decisions: 113 (0 proposed).
 <!-- END GENERATED: state -->

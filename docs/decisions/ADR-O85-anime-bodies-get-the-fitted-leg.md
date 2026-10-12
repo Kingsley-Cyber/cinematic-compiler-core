@@ -32,8 +32,9 @@ adult for every body.
 
 ## Consequences
 - `library/body_segments.yaml` holds two bodies, `adult` and `anime` (card 3; schema 3.0, logged); each genre profile
-  (`schemas/modality/<genre>.schema.json`, 1.1, logged) names its `scene.body_type`: anime for anime, adult for live
-  action and UGC; `solver/forward_kinematics.segments` reads it (S-031). S-029 had put the genres in the card.
+  (`library/genre_profiles/<genre>.yaml`, the genre profile cards of `schemas/genre_profile.schema.json`, O65; S-033)
+  names its `body_type`: anime for anime, adult for live action and UGC; `solver/forward_kinematics.segments` reads it.
+  S-029 had put the genres in the card and S-031 the body type in the modality schemas.
 - S13's packet carries the body of the scene's genre; S04's SURFACE_HEIGHT bound reads that body's standing leg.
 
 ## Alternatives Considered

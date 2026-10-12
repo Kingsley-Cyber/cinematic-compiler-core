@@ -1,0 +1,8 @@
+# The anime genre profile (schemas/genre_profile.schema.json, owner O65; FR.7's per-genre values, O36, O37). Draft by
+# Claude for owner review: only body_type is set (owner O85); the rendering values wait on backlog M9-11.
+card_id: anime
+kind: genre_profile
+card_version: 1
+status: draft
+genre: anime
+body_type: anime

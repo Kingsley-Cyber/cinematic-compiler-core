@@ -6,13 +6,13 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 3.1; backlog 8.
+Layer order 1.7; rules 3.1; backlog 9.
 
 ## Last sessions
 
-- S-030 (applied): M9-06b: CONTACT_WORLD refuses a contact over 0.15 m; repo misses re-blocked, source misses excepted (O83)
 - S-031 (applied): M9-06d: the genre profiles name each genre's body type; the card holds two bodies (O85 as clarified)
 - S-032 (applied): M9-09h: at 8.0 B moves to A's far side, so the rope dart's pull runs toward the pillar (F-071, O86)
+- S-033 (applied): M9-06e: body_type lives in the genre profile cards (schemas/genre_profile.schema.json), not the modality schemas
 
 ## Next slices
 
@@ -21,7 +21,7 @@ Layer order 1.7; rules 3.1; backlog 8.
 - M9-12 (ready, step render): O19 D9-style staff lines
 - M9-13 (ready, step camera): C10 camera in V5's wording, FR.5 arc, F8.1-F8.3
 
-M9: 23 of 38 slices done, 15 left (M9-03a blocked; 1 the owner's own).
+M9: 24 of 39 slices done, 15 left (M9-03a blocked; 1 the owner's own).
 
 ## Waiting on the owner
 
@@ -55,4 +55,4 @@ M9: 23 of 38 slices done, 15 left (M9-03a blocked; 1 the owner's own).
 
 ## Next free IDs
 
-Decision ADR-O87, finding F-072, session S-033, render R20.
+Decision ADR-O87, finding F-072, session S-034, render R20.

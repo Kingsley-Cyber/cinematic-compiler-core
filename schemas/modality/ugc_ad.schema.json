@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:modality:ugc_ad:1.1",
+  "$id": "urn:cinematic-compiler:schema:modality:ugc_ad:1.2",
   "title": "Modality: ugc_ad",
   "description": "UGC ad: hands-and-product framing; the product must visibly work. Hand roles stay locked through each interaction; every functional verb shows its before and after state. Applies to a complete envelope; scene.fps.default is the genre fps used when the query gives none (marked fps_source: default); scene.duration_s.default is the planning budget S04 uses when the query gives no duration (draft value).",
   "type": "object",
@@ -21,11 +21,6 @@
         "duration_s": {
           "type": "number",
           "default": 15
-        },
-        "body_type": {
-          "const": "adult",
-          "default": "adult",
-          "description": "The body forward kinematics uses for every performer in this genre: an entry of library/body_segments.yaml (owner O85)."
         }
       }
     },

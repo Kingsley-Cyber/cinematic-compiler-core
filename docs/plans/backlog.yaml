@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 8
+version: 9
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -37,6 +37,8 @@ items:
      step: motion, plan: PLAN-003, depends_on: [M9-06c], findings: [F-025, F-070], codes: [CONTACT_WORLD]}
   - {id: M9-06d, title: "The genre profiles name the body type; the segment card holds two bodies (O85 as clarified)",
      status: done, step: motion, plan: PLAN-003, depends_on: [M9-06c], findings: [], codes: []}
+  - {id: M9-06e, title: "body_type in the genre profile cards (schemas/genre_profile.schema.json, O65), not the modality schemas",
+     status: done, step: motion, plan: PLAN-003, depends_on: [M9-06d], findings: [], codes: []}
   - {id: M9-07a, title: "F4.1 combat verbs on contacts (O22; split from M9-07)", status: done, step: temporal,
      plan: PLAN-003, depends_on: [M9-02], findings: [], codes: [CONTACT_VERB]}
   - {id: M9-07b, title: "F4.2 Laban actions printed as qualities (O22; split from M9-07)", status: done, step: render,

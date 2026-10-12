@@ -4,9 +4,10 @@ read from the trunk, one body per genre group, and the contact misses."""
 import json
 
 import pytest
+import yaml
 from conftest import ROOT
 
-from planner import modality
+from planner import genre_profile
 from solver import contact_world, forward_kinematics
 from validators import prompt_validator
 
@@ -33,10 +34,15 @@ def test_a_bent_hip_and_knee_carry_the_foot_forward_and_up():
 
 
 def test_each_genre_profile_names_its_body():
-    """ADR-O85: the genre profile's body_type picks the card's body (no per-key or per-performer choice); anime bodies
-    have the leg fitted to the source, live action and UGC keep the 0.98 m adult."""
-    assert {g: modality.body_type(g) for g in ("anime", "live_action", "ugc_ad")} == \
-        {"anime": "anime", "live_action": "adult", "ugc_ad": "adult"}
+    """ADR-O85: the genre profile card's body_type (library/genre_profiles/<genre>.yaml, schema O65) picks the segment
+    card's body, with no per-key or per-performer choice; anime bodies have the leg fitted to the source, live action
+    and UGC keep the 0.98 m adult."""
+    genres = sorted(p.stem for p in (ROOT / "schemas" / "modality").glob("*.schema.json"))
+    profiles = {g.split(".")[0]: genre_profile.body_type(g.split(".")[0]) for g in genres}
+    assert profiles == {"anime": "anime", "live_action": "adult", "ugc_ad": "adult"}
+    bodies = set(yaml.safe_load((ROOT / "library" / "body_segments.yaml").read_text(encoding="utf-8"))["bodies"])
+    cards = {path.stem for path in (ROOT / "library" / "genre_profiles").glob("*.yaml")}
+    assert set(profiles.values()) <= bodies and cards == set(profiles)
     assert forward_kinematics.standing_leg(ANIME) == 1.22 and forward_kinematics.standing_leg(METRES) == 0.98
     assert forward_kinematics.segments("ugc_ad") == METRES and ANIME["spine"] == METRES["spine"]
 
