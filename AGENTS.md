@@ -100,10 +100,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 3.0; backlog 6.
-- Last session: S-027 (2026-10-11, applied): M9-06a: forward kinematics, roots at the pelvis, printed world points, the miss report (F5.1; O72, O81).
-- Next slice: none.
-- Open findings: 35; decisions: 108 (0 proposed).
+- Layer order 1.7; rules 3.0; backlog 7.
+- Last session: S-028 (2026-10-11, applied): Bootstrap before a compaction: the owner's review of the miss list (O82, O83).
+- Next slice: M9-06c Calibrate library/body_segments.yaml to the source's grounded A rows; re-root (O82) (step motion).
+- Open findings: 35; decisions: 110 (1 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
@@ -112,6 +112,7 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 ## 7. Open rulings
 
 <!-- BEGIN GENERATED: rulings -->
+- ADR-O83 (proposed): What CONTACT_WORLD refuses: repo misses re-blocked, source misses kept as exceptions, artefacts exempt
 - F-051 (low): Draft library cards await owner review
 - F-052 (low): Kernel scope numbers await owner review
 - F-053 (medium): Claude's interpretations await owner review
@@ -122,7 +123,6 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - F-060 (low): What is a motif?
 - F-066 (high): What is a key's root position: the pelvis or the ground point?
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
-- Backlog M9-06b blocked: F5.2 CONTACT_WORLD refuses a contact over 0.15 m (O72) — the owner reviews M9-06a's miss list first (ADR-O81)
 <!-- END GENERATED: rulings -->
 
 The owner updates this section by ruling: in chat (the agent writes the ADR) or by writing an ADR from

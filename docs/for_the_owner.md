@@ -30,6 +30,7 @@ done only when every row that applies passes. Claude never renders; you render, 
 ## What waits for you
 
 <!-- BEGIN GENERATED: owner_rulings -->
+- ADR-O83 (proposed): What CONTACT_WORLD refuses: repo misses re-blocked, source misses kept as exceptions, artefacts exempt
 - F-051 (low): Draft library cards await owner review
 - F-052 (low): Kernel scope numbers await owner review
 - F-053 (medium): Claude's interpretations await owner review
@@ -40,7 +41,6 @@ done only when every row that applies passes. Claude never renders; you render, 
 - F-060 (low): What is a motif?
 - F-066 (high): What is a key's root position: the pelvis or the ground point?
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
-- Backlog M9-06b blocked: F5.2 CONTACT_WORLD refuses a contact over 0.15 m (O72) — the owner reviews M9-06a's miss list first (ADR-O81)
 <!-- END GENERATED: owner_rulings -->
 
 To rule, tell the agent in chat. The agent writes it up as a decision file (an ADR), cites it in the rules if it

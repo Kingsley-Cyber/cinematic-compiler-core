@@ -6,6 +6,8 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The owner reviewed the contact-miss list (ADR-O82): calibrate the segment card first (backlog M9-06c), then
+  CONTACT_WORLD (M9-06b, scope proposed in ADR-O83). Lesson L-22.
 - The face's heading reads the whole chain, root, spine, neck and head (M9-09g, owner O76, rule R-34, S-026); a face
   near vertical keeps the old reading. No example output changes (no spine twists in the live-action and UGC keys).
 - The reference query says A falls from y=10 (M9-09f, owner O79, S-025); the golden test records the rewording of

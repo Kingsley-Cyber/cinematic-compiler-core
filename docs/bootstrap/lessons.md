@@ -26,3 +26,4 @@ one that supersedes it).
 | L-19 | `pipeline.run` stops at `until='constraint'` by default: a script that compiles an example to see whether it passes must pass `until='render'` (or use `compiler.examples`), or it never reaches the authored steps. | S-011 |
 | L-20 | A `kernel/knowledge_map.yaml` edit changes every checklist's evidence text: run `python -m validators.checklist --write` after it, or test_checklist fails on a stale checklist. | S-011 |
 | L-21 | A schema `$id` bump must also move the packet's pinned id (`planner/beat_planner.SCHEMA_ID`, the `"schema"` strings in `compiler/passes/derived/p*.py`); S-009 missed it, and tests/test_packet_schema_ids.py now catches it. | S-013 |
+| L-22 | A one-off data script that writes several examples is not idempotent: if it stops partway, `git checkout` the files it wrote before running it again, or the offsets apply twice. Give it example names as arguments. | S-027 |

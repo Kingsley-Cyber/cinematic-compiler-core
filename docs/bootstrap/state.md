@@ -6,25 +6,26 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 3.0; backlog 6.
+Layer order 1.7; rules 3.0; backlog 7.
 
 ## Last sessions
 
-- S-025 (applied): M9-09f: the reference query says A falls from y=10 (F-067, O79)
 - S-026 (applied): M9-09g: the face's heading reads the whole chain (O76, R-34)
 - S-027 (applied): M9-06a: forward kinematics, roots at the pelvis, printed world points, the miss report (F5.1; O72, O81)
+- S-028 (applied): Bootstrap before a compaction: the owner's review of the miss list (O82, O83)
 
 ## Next slices
 
+- M9-06c (next, step motion): Calibrate library/body_segments.yaml to the source's grounded A rows; re-root (O82)
+- M9-06b (ready, step motion): F5.2 CONTACT_WORLD refuses a contact over 0.15 m (O72, O82; scope ADR-O83)
 - M9-10 (ready, step effort): F4.3/F4.4 B's active keys and the idle-fighter check
 - M9-11 (ready, step render): FR.7 genre cards; FR.6 money-shot frame parts; FR.2 limb paths
-- M9-12 (ready, step render): O19 D9-style staff lines
-- M9-13 (ready, step camera): C10 camera in V5's wording, FR.5 arc, F8.1-F8.3
 
-M9: 19 of 35 slices done, 16 left (M9-03a blocked, M9-06b blocked; 1 the owner's own).
+M9: 19 of 36 slices done, 17 left (M9-03a blocked; 1 the owner's own).
 
 ## Waiting on the owner
 
+- ADR-O83 (proposed): What CONTACT_WORLD refuses: repo misses re-blocked, source misses kept as exceptions, artefacts exempt
 - F-051 (low): Draft library cards await owner review
 - F-052 (low): Kernel scope numbers await owner review
 - F-053 (medium): Claude's interpretations await owner review
@@ -35,7 +36,6 @@ M9: 19 of 35 slices done, 16 left (M9-03a blocked, M9-06b blocked; 1 the owner's
 - F-060 (low): What is a motif?
 - F-066 (high): What is a key's root position: the pelvis or the ground point?
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
-- Backlog M9-06b blocked: F5.2 CONTACT_WORLD refuses a contact over 0.15 m (O72) — the owner reviews M9-06a's miss list first (ADR-O81)
 
 ## Open findings: 35
 
@@ -57,4 +57,4 @@ M9: 19 of 35 slices done, 16 left (M9-03a blocked, M9-06b blocked; 1 the owner's
 
 ## Next free IDs
 
-Decision ADR-O82, finding F-071, session S-028, render R20.
+Decision ADR-O84, finding F-071, session S-029, render R20.
