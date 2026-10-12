@@ -6,12 +6,12 @@ Genre: anime. LBN-2.4 is read against the DAG's Master Template (O13), so many o
 
 | Prompt | File | sha256 | Bytes | PASS | FAIL | NOT CHECKED | N/A | Deliverable |
 |---|---|---|---|---|---|---|---|---|
-| LBN | `render.txt` | `f92835d0746976be91526ba6ad4aff1a4e0887eea4149b75c87ccf34a69bd82e` | 71776 | 3 | 50 | 25 | 6 | no |
-| Pure | `prose_pure_staff.txt` | `f9eafc9508e246ca43c63ad7f62dc4e34f15bbfe45018f187b3b6d78da5837dc` | 46535 | 31 | 0 | 47 | 6 | no |
-| Mixed | `prose_mixed.txt` | `0e91ce1dc6121b874ff37175151e2190f5e29d92d35d121ea04f67233d3bbbf0` | 47018 | 31 | 0 | 47 | 6 | no |
-| Upgr | `prose_upgraded_mixed.txt` | `51977c86f734674adb828e4016547801edc797b4032a7d5e0499747278261bac` | 48065 | 31 | 0 | 47 | 6 | no |
-| Euler | `prose_euler_heavy.txt` | `c919d620b82ca5551b236eafb0cb3725780d73277e5e94abac253b409580de57` | 57369 | 31 | 0 | 47 | 6 | no |
-| Any | union of the five | | | 34 | 0 | 47 | 3 | no |
+| LBN | `render.txt` | `f92835d0746976be91526ba6ad4aff1a4e0887eea4149b75c87ccf34a69bd82e` | 71776 | 3 | 50 | 14 | 17 | no |
+| Pure | `prose_pure_staff.txt` | `f9eafc9508e246ca43c63ad7f62dc4e34f15bbfe45018f187b3b6d78da5837dc` | 46535 | 31 | 0 | 36 | 17 | no |
+| Mixed | `prose_mixed.txt` | `0e91ce1dc6121b874ff37175151e2190f5e29d92d35d121ea04f67233d3bbbf0` | 47018 | 31 | 0 | 36 | 17 | no |
+| Upgr | `prose_upgraded_mixed.txt` | `51977c86f734674adb828e4016547801edc797b4032a7d5e0499747278261bac` | 48065 | 31 | 0 | 36 | 17 | no |
+| Euler | `prose_euler_heavy.txt` | `c919d620b82ca5551b236eafb0cb3725780d73277e5e94abac253b409580de57` | 57369 | 31 | 0 | 36 | 17 | no |
+| Any | union of the five | | | 34 | 0 | 36 | 14 | no |
 
 | Row | Name | Class | LBN | Pure | Mixed | Upgr | Euler | Any | Findings | Evidence |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -86,16 +86,16 @@ Genre: anime. LBN-2.4 is read against the DAG's Master Template (O13), so many o
 | V11 | Delivery arc | style | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | not checked: No arc field; the S05 quadrant and strata are scores, not an arc. |
 | V12 | Reference spirit | style | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | not checked: scene.style_reference exists (parsed from the query, feeds the S05 quadrant); null in all four examples and rendered only through the query preface. |
 | V13 | Multi-syntax output | projection | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | not checked: One syntax: the LBN-2.4 preface + JSON text. |
-| P3.2-1 | 23-node causal graph in the prompt; 'causality is a validator, not a prompt' | excluded | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | not checked: DAG: a short causal list goes in the prompt (C8, V7, V8). |
-| P3.2-2 | Static camera; 3 motivated moves; 'camera motivation > camera timeline' | excluded | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | not checked: The repo requires a motivation per shot (CAMERA_MOTIVATION), which can coexist with a height/depth cadence; no static-camera or three-move rule. |
-| P3.2-3 | 7 s beats with optional keyframes; beat-only movement spec | excluded | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | not checked: Example beats run 0.3-2.5 s with a key per participant; but key gaps reach 2.5 s (C2 missing). |
-| P3.2-4 | Support/contact carried only as attention tags | excluded | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | not checked: Agrees with the DAG: support is explicit per slot (S11) and checked against S07/S06. |
+| P3.2-1 | 23-node causal graph in the prompt; 'causality is a validator, not a prompt' | excluded | N/A | N/A | N/A | N/A | N/A | N/A |  | the DAG excludes it and no code checks it (owner O94) |
+| P3.2-2 | Static camera; 3 motivated moves; 'camera motivation > camera timeline' | excluded | N/A | N/A | N/A | N/A | N/A | N/A |  | the DAG excludes it and no code checks it (owner O94) |
+| P3.2-3 | 7 s beats with optional keyframes; beat-only movement spec | excluded | N/A | N/A | N/A | N/A | N/A | N/A |  | the DAG excludes it and no code checks it (owner O94) |
+| P3.2-4 | Support/contact carried only as attention tags | excluded | N/A | N/A | N/A | N/A | N/A | N/A |  | the DAG excludes it and no code checks it (owner O94) |
 | P3.2-5 | 'Root positions are exact' as a rule | excluded | PASS | PASS | PASS | PASS | PASS | PASS |  | **LBN:** pass: ROOT_EXACT_PRESENT (owner O3 keeps 'root exact' in LBN-2.4) — **Pure, Mixed, Upgr, Euler:** pass: ROOT_EXACT_PRESENT |
-| P3.2-6 | screen_geometry: PRESERVE_AXIS | excluded | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | not checked: Owner O53 (2026-10-11): keep the repo rule; the clash is settled. |
-| P3.2-7 | Laws placed first in the prompt | excluded | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | not checked: The render opens with the query preface and ends with rules; the negative block sits after the key legend, before the keys, as in D5. |
-| P3.2-8 | Negatives near the thing they forbid; a lean 7-negative set for a fight | excluded | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | not checked: Agrees with the DAG: negatives are one block, no per-key NOT clauses; fight renders carry 12-20 negatives. |
-| P3.2-9 | Blanket pre_contact: A_reaction: NONE | excluded | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | not checked: Agrees with the DAG: soft causes let the partner brace while the attack approaches (C27). |
-| P3.2-10 | Prose-first always | excluded | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | not checked: Agrees with the DAG: movement renders Euler-heavy. |
+| P3.2-6 | screen_geometry: PRESERVE_AXIS | excluded | N/A | N/A | N/A | N/A | N/A | N/A |  | the DAG excludes it and no code checks it (owner O94) |
+| P3.2-7 | Laws placed first in the prompt | excluded | N/A | N/A | N/A | N/A | N/A | N/A |  | the DAG excludes it and no code checks it (owner O94) |
+| P3.2-8 | Negatives near the thing they forbid; a lean 7-negative set for a fight | excluded | N/A | N/A | N/A | N/A | N/A | N/A |  | the DAG excludes it and no code checks it (owner O94) |
+| P3.2-9 | Blanket pre_contact: A_reaction: NONE | excluded | N/A | N/A | N/A | N/A | N/A | N/A |  | the DAG excludes it and no code checks it (owner O94) |
+| P3.2-10 | Prose-first always | excluded | N/A | N/A | N/A | N/A | N/A | N/A |  | the DAG excludes it and no code checks it (owner O94) |
 | P4.2-1 | 'A root exact' in the rules | excluded | PASS | PASS | PASS | PASS | PASS | PASS |  | **LBN:** pass: ROOT_EXACT_PRESENT (owner O3 keeps 'root exact' in LBN-2.4) — **Pure, Mixed, Upgr, Euler:** pass: ROOT_EXACT_PRESENT |
-| P4.2-2 | '>' does two jobs as a design principle | excluded | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | not checked: Agrees with the DAG: the render uses '>' only for sequence (laban, follow-through) and '->' for contact targets and value changes, each in its own fields. |
-| P4.2-3 | Sparse joint dicts (only moving bones listed) | excluded | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | not checked: Agrees with the DAG and the owner's no-compression rule: every key lists all 11 kernel joints. |
+| P4.2-2 | '>' does two jobs as a design principle | excluded | N/A | N/A | N/A | N/A | N/A | N/A |  | the DAG excludes it and no code checks it (owner O94) |
+| P4.2-3 | Sparse joint dicts (only moving bones listed) | excluded | N/A | N/A | N/A | N/A | N/A | N/A |  | the DAG excludes it and no code checks it (owner O94) |

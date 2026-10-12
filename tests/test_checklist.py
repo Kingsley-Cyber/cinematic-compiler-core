@@ -54,8 +54,18 @@ def test_not_applicable_comes_only_from_the_owner_rulings(tables):
                 if result != checklist.NA:
                     continue
                 when = row.get("applies_when", {})
-                assert ("not_applicable" in row or when.get("mode") not in (None, modes[column["label"]])
+                excluded = row["status"] == "excluded" and not row.get("codes")  # owner O94 (RV-11)
+                assert ("not_applicable" in row or excluded or when.get("mode") not in (None, modes[column["label"]])
                         or table["genre"] not in when.get("genre", [table["genre"]])), row["id"]
+
+
+def test_dag_excluded_rows_are_not_applicable_unless_a_code_checks_them():
+    """Owner O94 (RV-11, F-085): a row the DAG excludes is N/A, unless a code checks it: P3.2-5's ROOT_EXACT_PRESENT
+    still judges, since a FAIL there breaks owner O3."""
+    rows = {row["id"]: row for row in checklist.rows()}
+    assert checklist.judge(rows["P3.2-1"], {}, "mixed", "anime", False)[0] == checklist.NA
+    assert checklist.judge(rows["P3.2-5"], {}, "mixed", "anime", False)[0] == checklist.PASS
+    assert checklist.judge(rows["P3.2-5"], {"ROOT_EXACT_PRESENT": ["x"]}, "mixed", "anime", False)[0] == checklist.FAIL
 
 
 def test_a_section_the_codes_read_must_be_there(tables):

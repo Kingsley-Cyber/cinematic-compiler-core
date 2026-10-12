@@ -1,4 +1,4 @@
-"""`cinematic` CLI: compile (packet exit 3, replan exit 4, stop exit 2), validate, graph."""
+"""`cinematic` CLI: compile (packet exit 3, replan exit 4, stop exit 2, not a deliverable exit 5), validate, graph."""
 
 import copy
 import json
@@ -10,6 +10,7 @@ from conftest import ROOT
 from scenes import COURTYARD, COURTYARD_PLAN, COURTYARD_QUERY, CUP_QUERY, cup_plan
 
 from compiler import pipeline
+from kernel.canonical import canonical_json
 
 pytestmark = pytest.mark.integration
 
@@ -18,10 +19,17 @@ def cli(*args):
     return subprocess.run([sys.executable, "-m", "cli.main", *args], cwd=ROOT, capture_output=True, text=True, check=False)
 
 
-def test_compile_reproduces_the_example_and_stops_for_a_packet():
+def test_compile_refuses_a_prompt_that_is_not_a_deliverable_and_stops_for_a_packet():
+    """Owner O94 (RV-11, F-085, R-19): compiled to its prompts, the example is refused, since none of its five prompts is
+    a deliverable yet, and nothing is written; compiled to the camera step, it reproduces the pipeline."""
     until = json.loads((COURTYARD / "request.json").read_text())["until"]
     result = cli("compile", COURTYARD_QUERY, "--plans", str(COURTYARD / "plans"), "--until", until)
-    assert result.returncode == 0 and result.stdout == (COURTYARD / "envelope.json").read_text(encoding="utf-8")
+    assert result.returncode == 5 and result.stdout == "" and "Pure (prose_pure_staff.txt) is not a deliverable" in \
+        result.stderr
+    plans = {p.stem: json.loads(p.read_text(encoding="utf-8")) for p in (COURTYARD / "plans").glob("*.json")}
+    result = cli("compile", COURTYARD_QUERY, "--plans", str(COURTYARD / "plans"), "--until", "camera")
+    assert result.returncode == 0 and result.stdout == canonical_json(pipeline.run(COURTYARD_QUERY, until="camera",
+                                                                                   plans=plans))
     result = cli("compile", COURTYARD_QUERY)
     assert result.returncode == 3 and json.loads(result.stdout)["packet_sha256"] == COURTYARD_PLAN["packet_sha256"]
 

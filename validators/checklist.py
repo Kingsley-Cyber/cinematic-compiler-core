@@ -10,13 +10,16 @@ Each cell is PASS, FAIL, NOT CHECKED or N/A, with its evidence:
 - FAIL: a code of the row fires, or the prompt lacks a section the code reads (silence is not a pass).
 - NOT CHECKED: no code covers the row, or covers only part of it (partial and missing rows, rows checked on the graph
   only, menus nothing selects yet, open owner questions).
-- N/A: only by owner O14: T3 and T4 (superseded by T5 in the DAG), and menu rows that another mode or genre selects
-  (C11, C14-C17). C26's 14 unnamed states are N/A inside C26, which checks the two the DAG names.
+- N/A: by owner O14: T3 and T4 (superseded by T5 in the DAG), and menu rows that another mode or genre selects
+  (C11, C14-C17); by owner O94, a row the DAG excludes, unless a code checks it (P3.2-5 and P4.2-1: their
+  ROOT_EXACT_PRESENT judges, since a FAIL there breaks owner O3). C26's 14 unnamed states are N/A inside C26, which
+  checks the two the DAG names.
 
 O13: the five prompts are fragments of one complete prompt (one content set in the DAG's template, the mode as a
 setting), so the Any column is their union: PASS if any prompt passes, else NOT CHECKED if any is unchecked, else
-FAIL. A prompt is a deliverable only with no FAIL and no NOT CHECKED row; `--gate` refuses the rest. The tables sit
-next to the prompts (examples/<name>/checklist.md); tests/test_checklist.py keeps them current.
+FAIL. A prompt is a deliverable only with no FAIL and no NOT CHECKED row; `--gate` refuses the rest, and so does
+`cinematic compile` for every prompt it emits (owner O94, `refusals`). The tables sit next to the prompts
+(examples/<name>/checklist.md); tests/test_checklist.py keeps them current.
 
     python -m validators.checklist           # report every prompt; exit 1 if a checklist.md is stale
     python -m validators.checklist --write   # rewrite them
@@ -29,7 +32,7 @@ import sys
 
 import yaml
 
-from compiler.examples import EXAMPLES, render_text
+from compiler.examples import EXAMPLES, prose_texts, render_text
 from planner.dependency_graph import ROOT
 from validators import prompt_validator
 
@@ -117,6 +120,8 @@ def judge(row, found, mode, genre, lbn):
     """(result, evidence) for one checklist row on one prompt, given the codes `found` on it."""
     if "not_applicable" in row:
         return NA, row["not_applicable"]
+    if row["status"] == "excluded" and not row.get("codes"):
+        return NA, "the DAG excludes it and no code checks it (owner O94)"
     when = row.get("applies_when", {})
     if "mode" in when and when["mode"] != mode:
         return NA, f"menu (DAG §2.14, O14): the {when['mode']} mode's row; this prompt is {mode}"
@@ -169,21 +174,44 @@ def deliverable(results):
     return all(r in (PASS, NA) for r in results)
 
 
+def judge_prompts(envelope, texts, name=None):
+    """[(label, file, cells)] for the five prompts of one envelope; `texts` maps each prompt's file name to its text
+    (an example's files on disk, or the envelope's own projection for a fresh compile, which no render finding names)."""
+    genre, checklist = envelope["scene"]["genre"], rows()
+    out = []
+    for label, file, mode in PROMPTS:
+        lbn = file == "render.txt"
+        found = fired(texts[file], envelope, mode, lbn)
+        out.append((label, file, [contested(judge(row, found, mode, genre, lbn),
+                                            [f for f, caught in findings_for(name, row) if not caught])
+                                   for row in checklist]))
+    return out
+
+
 def evaluate(name):
     """{genre, columns: [{label, file, sha256, bytes, cells: [(result, evidence)]}], rows} for one example."""
     folder = EXAMPLES / name
     envelope = json.loads((folder / "envelope.json").read_text(encoding="utf-8"))
-    genre, checklist = envelope["scene"]["genre"], rows()
-    columns = []
-    for label, file, mode in PROMPTS:
-        data = (folder / file).read_bytes()
-        lbn = file == "render.txt"
-        found = fired(data.decode("utf-8"), envelope, mode, lbn)
-        cells = [contested(judge(row, found, mode, genre, lbn), [f for f, caught in findings_for(name, row) if not caught])
-                 for row in checklist]
-        columns.append({"label": label, "file": file, "sha256": hashlib.sha256(data).hexdigest(), "bytes": len(data),
-                        "cells": cells})
-    return {"genre": genre, "columns": columns, "rows": checklist}
+    data = {file: (folder / file).read_bytes() for _, file, _ in PROMPTS}
+    columns = [{"label": label, "file": file, "sha256": hashlib.sha256(data[file]).hexdigest(), "bytes": len(data[file]),
+                "cells": cells}
+               for label, file, cells in judge_prompts(envelope, {f: d.decode("utf-8") for f, d in data.items()}, name)]
+    return {"genre": envelope["scene"]["genre"], "columns": columns, "rows": rows()}
+
+
+def refusals(envelope):
+    """Owner O94 (RV-11, F-085, R-19): why the prompts of a freshly compiled envelope are not deliverables, one line per
+    prompt that is not (its counts and the rows that are neither PASS nor N/A); empty when all five are."""
+    checklist, out = rows(), []
+    for label, file, cells in judge_prompts(envelope, {"render.txt": render_text(envelope), **prose_texts(envelope)}):
+        results = [r for r, _ in cells]
+        if deliverable(results):
+            continue
+        blocking = [f"{row['id']} {r}" for row, (r, _) in zip(checklist, cells, strict=True) if r not in (PASS, NA)]
+        out.append(f"{label} ({file}) is not a deliverable: {'/'.join(map(str, _counts(results)))} "
+                   f"PASS/FAIL/NOT CHECKED/N/A; " + ", ".join(blocking[:8])
+                   + (f" and {len(blocking) - 8} more" if len(blocking) > 8 else ""))
+    return out
 
 
 def _cell(text):

@@ -6,6 +6,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- `cinematic compile` refuses a prompt that is not a deliverable (RV-11, O94, F-085, S-052): it runs the prompt checks
+  and the checklist on every prompt it emits and exits 5, writing nothing, unless all five are deliverables; a row the
+  DAG excludes is N/A unless a code checks it. R-19 says so (rules 7.0). No prompt is a deliverable yet.
 - The kunai drive and the catch (RV-10, O93, F-084, S-051): from 8.5 the kunai is embedded in B's shoulder to the end,
   its samples on B's torso point, while A's right hand keeps it; B's hands take A's left arm at 6.6 and throw A at 6.8.
   Neither prints as an instant strike: a body struck by a blade another holds is not striking, and a catch's hold

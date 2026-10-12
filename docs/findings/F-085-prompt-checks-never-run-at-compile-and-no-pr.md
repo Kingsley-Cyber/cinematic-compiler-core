@@ -12,7 +12,7 @@ high
 L6
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -46,4 +46,10 @@ ADR-O94
 - ADR-O94
 
 ## Resolution
-Open.
+RV-11 (S-052, O94): a row the DAG excludes is N/A unless a code checks it (P3.2-5 and P4.2-1 keep their
+ROOT_EXACT_PRESENT verdict, owner O3), so every prompt's N/A count rose by 11; the checklist judges the prompts of any
+envelope (validators/checklist.py `judge_prompts`, `refusals`); `cinematic compile` runs it on every prompt it emits
+and refuses one that is not a deliverable, exit 5 with nothing written (cli/main.py;
+tests/test_cli.py::test_compile_refuses_a_prompt_that_is_not_a_deliverable_and_stops_for_a_packet,
+tests/test_checklist.py::test_dag_excluded_rows_are_not_applicable_unless_a_code_checks_them). No prompt is a
+deliverable yet (0 of 20), so a full compile is refused until the rest of the plan lands.

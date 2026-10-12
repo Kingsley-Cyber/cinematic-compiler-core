@@ -82,7 +82,7 @@ Full table: [docs/layer_order.md](docs/layer_order.md).
 - **R-17** Where the golden contradicts its own words or the DAG, fix the golden as a recorded deviation; where a new check fails on internally consistent golden content, fix the check.
 - **R-18** Bodies and props obey the scene's physics: no teleport above 25 m/s except a declared substitution; props follow gravity unless a float is declared (anime only).
 - **R-35** Hip angles are read from the trunk (the root, then Sp) in every key, genre and example: forward kinematics hangs the legs from the spine, and every authored key writes its hips that way.
-- **R-19** A prompt is a deliverable only when every applicable DAG-map row passes on it, shown per prompt; NOT CHECKED is not a pass.
+- **R-19** A prompt is a deliverable only when every applicable DAG-map row passes on it, shown per prompt; NOT CHECKED is not a pass; a row the DAG excludes is N/A unless a code checks it; cinematic compile refuses a prompt that is not a deliverable.
 - **R-20** The format comes from the DAG's own instances (D6, D9, D10).
 - **R-21** No hold, freeze or pause is written in frames; a hit gets a camera hold with the bodies in frame and no close-up or insert; no shot changes playback speed (no slow motion or ramps in a fixed-length clip).
 - **R-22** A hand that releases a prop and then holds nothing is said to be empty.
@@ -101,10 +101,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 6.0; backlog 22.
-- Last session: S-051 (2026-10-12, applied): RV-10: the kunai drive holds the kunai in B's shoulder; the catch is a grasp plus a throw (O93).
-- Next slice: RV-11 DAG-excluded rows are N/A; cinematic compile refuses a non-deliverable prompt (O94) (step render).
-- Open findings: 91; decisions: 135 (0 proposed).
+- Layer order 1.7; rules 7.0; backlog 22.
+- Last session: S-052 (2026-10-12, applied): RV-11: DAG-excluded rows are N/A; `cinematic compile` refuses a prompt that is not a deliverable (O94).
+- Next slice: RV-12 The 6.3 cartwheel is a full turn in render.txt (O96) (step render).
+- Open findings: 90; decisions: 135 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

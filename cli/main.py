@@ -5,7 +5,9 @@
   cinematic graph <envelope.json> <group>
 
 Exit codes: 0 ok · 2 contract refusal · 3 an authored step needs a document (packet written) ·
-4 a gate failed (replan request written: the step to re-author, its packet and the findings).
+4 a gate failed (replan request written: the step to re-author, its packet and the findings) ·
+5 a prompt is not a deliverable (owner O94, R-19): nothing is written; each prompt's checklist counts and the rows
+that keep it from being one go to stderr.
 """
 
 import argparse
@@ -16,6 +18,7 @@ from pathlib import Path
 from compiler import pipeline, replan_trigger
 from compiler.authoring import AuthorRequired, StepFailed
 from kernel.canonical import ContractError, canonical_json, load_json
+from validators import checklist
 from validators.envelope_validator import validate_envelope
 
 
@@ -60,6 +63,11 @@ def _compile(args):
     except ContractError as error:
         print(f"refused: {error}", file=sys.stderr)
         return 2
+    if "render" in envelope["nodes"]:
+        refused = checklist.refusals(envelope)  # owner O94: every emitted prompt is a deliverable (R-19)
+        if refused:
+            print("refused: " + "\n".join(refused), file=sys.stderr)
+            return 5
     _write(canonical_json(envelope), args.out)
     return 0
 

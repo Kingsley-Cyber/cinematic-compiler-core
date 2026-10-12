@@ -6,20 +6,20 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 6.0; backlog 22.
+Layer order 1.7; rules 7.0; backlog 22.
 
 ## Last sessions
 
-- S-049 (applied): RV-49: no body through another; a strike meets the target's surface (F-144)
 - S-050 (applied): RV-09: hits are camera holds with both bodies in frame; no playback ramps (O92)
 - S-051 (applied): RV-10: the kunai drive holds the kunai in B's shoulder; the catch is a grasp plus a throw (O93)
+- S-052 (applied): RV-11: DAG-excluded rows are N/A; `cinematic compile` refuses a prompt that is not a deliverable (O94)
 
 ## Next slices
 
-- RV-11 (next, step render): DAG-excluded rows are N/A; cinematic compile refuses a non-deliverable prompt (O94)
-- RV-12 (ready, step render): The 6.3 cartwheel is a full turn in render.txt (O96)
+- RV-12 (next, step render): The 6.3 cartwheel is a full turn in render.txt (O96)
 - RV-13 (ready, step render): PROMPT_LENGTH: 3,500 characters for Runway, 1,000 words for BytePlus (O97)
 - RV-14 (ready, step motion): Every-key body checks: no body under the floor; supports at every key; held and embedded props at their holder
+- RV-15 (ready, step camera): The camera aims at the body and an insert at its detail; vertical framing checked
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -55,7 +55,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-53 blocked: The source rows whose numbers contradict their words; O95 against O88 on two action keys — the owner's answers in F-148 and F-149
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 91
+## Open findings: 90
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -68,7 +68,6 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-030 (high, L5.5): Camera lacks C10's rules and the arc with the rotation
 - F-031 (critical, L6): Render wording the model does not follow
 - F-036 (high, L6): Aerial timing is not followed: takeoffs come late
-- F-085 (high, L6): Prompt checks never run at compile, and no prompt can be a deliverable
 - F-086 (high, L4c): Mirror-symmetric keys are not refused on strikes and action beats
 - F-088 (high, L6): Every prompt is over the length caps; fitting them needs the owner's call on what goes
 - F-089 (high, L4c): Bodies and held props are checked only at contact onsets, never against the floor
@@ -82,4 +81,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-152, session S-052, render R20.
+Decision ADR-O109, finding F-152, session S-053, render R20.
