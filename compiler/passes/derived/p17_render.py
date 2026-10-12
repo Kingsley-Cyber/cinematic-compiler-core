@@ -3,7 +3,8 @@
 Authored: frame-part directives (impact, smear, speedlines, holds, fx, ink). Checks: impacts sit on contact onsets or
 impact shots, and one time per hit (IMPACT_CONTACT_SYNC, O23); a smear names one subject and, for a body, one part
 (smear only on the declared limb or prop) and sits on a sudden effort of that body or an event of that prop;
-speedlines likewise; holds sit on beat boundaries; fx inside the scene; and the projection's coverage is complete
+speedlines likewise; holds sit on beat boundaries; fx inside the scene; a hold on an impact frame (a hit) is a camera
+hold on every body present, never a close-up (HIT_HOLD, owner O92, R-21); and the projection's coverage is complete
 (owner invariant no_render_compression).
 Derived: the render node (renderers/anime_renderer.py;
 ugc_renderer.py for ugc_ad): target, variant, text, sha256, coverage, frame parts; and (M8, owner O1-O3) `prose`, the
@@ -12,6 +13,7 @@ knowledge DAG's structured-prose prompts in four movement modes (renderers/prose
 
 from compiler.authoring import run_authored, seal
 from planner.dependency_graph import ROOT, load
+from planner.dynamic_beat_validator import vanish_windows
 from renderers import anime_renderer, live_renderer, prose_renderer, ugc_renderer
 
 NODE, STEP = "render", "S17"
@@ -75,6 +77,36 @@ def impact_sync(envelope, impacts):
     return findings
 
 
+def hit_hold(envelope, frame):
+    """HIT_HOLD (owner O92, R-21, F-083): a hold on an impact frame is a hit, and the shot covering it holds the camera
+    still (static) with every body present at that instant in frame (a vanished body is not, O18), at no close-up or
+    insert. The fix is upstream, in the S16 shot; playback is S16's PLAYBACK_RAMP."""
+    fps = envelope["scene"]["fps"]
+    gone = vanish_windows(envelope["nodes"]["beats"]["items"])
+    findings = []
+    for hold in frame["holds"]:
+        t = hold["t"]
+        if not any(_near(t, i, fps) for i in frame["impact"]):
+            continue
+        shot = next((s for s in envelope["nodes"]["camera"]["items"]
+                     if s["t"] - 0.5 / fps <= t < s["t"] + s["dur"] - 0.5 / fps), None)
+        present = sorted(e["id"] for e in envelope["nodes"]["entities"]["items"]
+                         if not any(actor == e["id"] and start < t - 1e-9 and (back is None or t < back - 1e-9)
+                                    for actor, _, start, back in gone))
+        if shot is None:
+            findings.append({"code": "HIT_HOLD", "message": f"The hit at {t} has no shot"})
+            continue
+        problems = [f"{x} is not in frame" for x in present if x not in shot["framing"]["subjects"]]
+        if any(word in shot["framing"]["scale"] for word in prose_renderer.CLOSE):
+            problems.append(f"a {shot['framing']['scale']} is a close-up")
+        if shot["movement"]["kind"] != "static":
+            problems.append(f"the camera moves ({shot['movement']['kind']})")
+        if problems:
+            findings.append({"code": "HIT_HOLD", "message": f"The hit at {t} in {shot['id']} is no camera hold on the bodies: "
+                             + "; ".join(problems) + " (owner O92)", "slot": shot["id"]})
+    return findings
+
+
 def check(document, packet, envelope=None):
     findings = []
     frame = document["frame_parts"]
@@ -107,7 +139,7 @@ def check(document, packet, envelope=None):
         if not 0 <= fx["t"] <= end or (fx["t_end"] is not None and not fx["t"] < fx["t_end"] <= end):
             findings.append({"code": "FRAME_FX", "message": f"fx at {fx['t']} is outside the scene"})
     if envelope is not None:
-        findings += impact_sync(envelope, frame["impact"])
+        findings += impact_sync(envelope, frame["impact"]) + hit_hold(envelope, frame)
         coverage = renderer(envelope).render(envelope, frame)["coverage"]
         if not coverage["complete"]:
             missing = {g: row["missing"] for g, row in coverage["groups"].items() if row["missing"]}

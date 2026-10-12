@@ -1,7 +1,7 @@
 # Camera grammar (S16, L5.5). Draft rules by Claude for owner review: geometry constants, scale bands, what a
 # scale shows, rig limits, the 30-degree cut rule and the owner's intent weighting as checkable requirements.
 grammar_id: camera_grammar
-version: 1
+version: 2
 status: draft
 basis: Owner camera plan (13 subdivisions, 180-line, shot grammar, intent table); numbers drafted by Claude (full-frame 36x24 mm sensor).
 aim_height_m: 1.0
@@ -49,9 +49,8 @@ rig_stability:
   handheld: [shaky, floating]
   drone: [smooth, floating]
 intents:
-  impact:
-    - {field: framing.scale, in: [insert, extreme_close, close, medium_close, medium]}
-    - {field: playback.treatment, in: [slow, ramp, freeze]}
+  impact:  # owner O92 (RV-09): a hit is a camera hold with the bodies in frame, no close-up, no insert, no ramp
+    - {field: framing.scale, in: [medium, medium_wide, full]}
     - {field: blur.motion_blur, in: [subject, both]}
   reveal:
     - {field: movement.kind, not_in: [static]}

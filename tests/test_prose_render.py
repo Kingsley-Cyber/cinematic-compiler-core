@@ -9,6 +9,7 @@ from conftest import ROOT
 
 from renderers import prose_renderer
 from renderers.anime_renderer import constraint_rows
+from validators import prompt_validator
 
 pytestmark = pytest.mark.unit
 EXAMPLES = sorted(p for p in (ROOT / "examples").iterdir() if (p / "render.txt").exists())
@@ -168,3 +169,21 @@ def test_reference_rules_bound_lasting_effects_spans_and_separate_strikes():
     assert "End state: B at [0.96, 0.1, 5.48], condition down, support lying." in rules
     assert "Contact before effect: nothing reacts to a hit before the contact." in rules
     assert rules.index("Identity is immutable") > rules.index("Follow the SUPPORT column")  # laws in the rules layer
+
+
+def test_hits_are_camera_holds_and_nothing_plays_slow():
+    """Owner O92 (RV-09, F-083): the reference fight's four hits print as camera holds with both bodies in frame and
+    every shot plays at normal x1; without the hold, or with a slowed shot, the prompt is refused (HIT_HOLD,
+    PLAYBACK_RAMP)."""
+    envelope, render = load(ROOT / "examples" / "reference_fight")
+    text = render["prose"]["mixed"]["text"]
+    assert ("Holds on hits: 2.50 impact: hold with BOTH bodies in frame (A and B), no close-up; 4.70 impact: hold with "
+            "BOTH bodies") in text and "8.50 impact: hold with BOTH bodies" in text
+    assert not re.search(r"; (slow|ramp|freeze) x", text)
+
+    def fired(prompt):
+        return {f["code"] for f in prompt_validator.check(prompt, envelope, "mixed")}
+    assert not {"HIT_HOLD", "PLAYBACK_RAMP"} & fired(text)
+    assert "HIT_HOLD" in fired(text.replace("2.50 impact: hold with", "2.50 impact: cut to", 1))
+    assert "PLAYBACK_RAMP" in fired(text.replace("normal x1; shows A foot deflect kunai", "slow x0.25; shows A foot "
+                                                 "deflect kunai", 1))

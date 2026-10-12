@@ -1,7 +1,7 @@
 {
  "step_id": "S16",
  "band": "L5.5",
- "packet_sha256": "sha256:622528d6e71418caea5db5aa1e532421aadd1a9a35df5fdfb7e8a3354d8744bb",
+ "packet_sha256": "sha256:8bf3b3ed631813cc6a2f6bfb9e0c7eac109a7ea3b6033843f8d682390163dc21",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -39,7 +39,7 @@
     "side": "left"
    },
    "lens": {
-    "focal_length_mm": 35,
+    "focal_length_mm": 43.46,
     "perspective": "normal"
    },
    "focus": {
@@ -340,35 +340,36 @@
     "ref": "ninja_lean@b05-b06"
    },
    "framing": {
-    "scale": "insert",
+    "scale": "full",
     "subjects": [
-     "ninja_lean"
+     "ninja_lean",
+     "ninja_broad"
     ],
-    "detail": "right_foot",
-    "visible_action": "A's right foot sole strikes the kunai and sends it back down, NOT a kick."
+    "detail": null,
+    "visible_action": "A's right foot sole strikes the kunai and sends it back down, NOT a kick; B, who threw it, in frame."
    },
    "angle": {
     "elevation_deg": -5,
-    "azimuth_deg": -6.3,
+    "azimuth_deg": 50.0,
     "roll_deg": 0
    },
    "position": {
-    "target": "ninja_lean",
-    "distance_m": 0.62,
+    "target": "midpoint",
+    "distance_m": 3.0,
     "side": "left"
    },
    "lens": {
-    "focal_length_mm": 85,
-    "perspective": "telephoto"
+    "focal_length_mm": 35,
+    "perspective": "normal"
    },
    "focus": {
     "target": "ninja_lean",
-    "depth_of_field": "shallow",
+    "depth_of_field": "medium",
     "transition": "hold"
    },
    "movement": {
     "kind": "static",
-    "path": "locked on the right foot"
+    "path": "held on the deflect with both fighters in frame"
    },
    "movement_quality": {
     "easing": "snap",
@@ -381,18 +382,19 @@
    "relation_to_action": {
     "mode": "observe",
     "subject": "ninja_lean",
-    "note": "the sole meets the kunai"
+    "note": "the sole meets the kunai, B in frame"
    },
    "composition": {
     "placement": {
-     "ninja_lean": "center"
+     "ninja_lean": "left_third",
+     "ninja_broad": "right_third"
     },
     "depth_anchor": null,
-    "negative_space": "black falloff around the foot"
+    "negative_space": "the air between the fighters"
    },
    "playback": {
-    "treatment": "slow",
-    "speed": 0.25
+    "treatment": "normal",
+    "speed": 1
    },
    "blur": {
     "motion_blur": "subject",
@@ -403,7 +405,7 @@
    "editing": {
     "transition_in": "smash_cut",
     "axis": "keep",
-    "eyeline": "none"
+    "eyeline": "A to the kunai"
    }
   },
   {
@@ -630,8 +632,8 @@
     "negative_space": "smoke filling the frame"
    },
    "playback": {
-    "treatment": "ramp",
-    "speed": 0.5
+    "treatment": "normal",
+    "speed": 1
    },
    "blur": {
     "motion_blur": "subject",
@@ -816,36 +818,36 @@
     "ref": "b12"
    },
    "framing": {
-    "scale": "insert",
+    "scale": "medium_wide",
     "subjects": [
      "ninja_lean",
      "ninja_broad"
     ],
-    "detail": "right_leg",
-    "visible_action": "A's RIGHT KNEE drives up into B's spine from behind, NOT a kick."
+    "detail": null,
+    "visible_action": "A's RIGHT KNEE drives up into B's spine from behind, NOT a kick; both fighters in frame."
    },
    "angle": {
     "elevation_deg": -5,
-    "azimuth_deg": 90.0,
+    "azimuth_deg": -176.0,
     "roll_deg": 0
    },
    "position": {
-    "target": "ninja_lean",
-    "distance_m": 0.62,
-    "side": "on_axis"
+    "target": "midpoint",
+    "distance_m": 2.2,
+    "side": "left"
    },
    "lens": {
-    "focal_length_mm": 85,
-    "perspective": "telephoto"
+    "focal_length_mm": 35,
+    "perspective": "normal"
    },
    "focus": {
     "target": "ninja_broad",
-    "depth_of_field": "shallow",
+    "depth_of_field": "medium",
     "transition": "hold"
    },
    "movement": {
     "kind": "static",
-    "path": "locked on the knee and spine"
+    "path": "held on the knee and spine with both fighters in frame"
    },
    "movement_quality": {
     "easing": "snap",
@@ -862,15 +864,15 @@
    },
    "composition": {
     "placement": {
-     "ninja_lean": "center",
-     "ninja_broad": "center"
+     "ninja_lean": "left_third",
+     "ninja_broad": "right_third"
     },
     "depth_anchor": null,
-    "negative_space": "black falloff around the strike"
+    "negative_space": "the air ahead of B"
    },
    "playback": {
-    "treatment": "slow",
-    "speed": 0.25
+    "treatment": "normal",
+    "speed": 1
    },
    "blur": {
     "motion_blur": "subject",
@@ -1029,8 +1031,8 @@
     "negative_space": "the fan of the volley"
    },
    "playback": {
-    "treatment": "ramp",
-    "speed": 0.5
+    "treatment": "normal",
+    "speed": 1
    },
    "blur": {
     "motion_blur": "subject",
@@ -1138,7 +1140,7 @@
     "ref": "b16"
    },
    "framing": {
-    "scale": "medium_wide",
+    "scale": "medium",
     "subjects": [
      "ninja_lean"
     ],
@@ -1152,7 +1154,7 @@
    },
    "position": {
     "target": "ninja_lean",
-    "distance_m": 2.48,
+    "distance_m": 2.1,
     "side": "left"
    },
    "lens": {
@@ -1270,8 +1272,8 @@
     "negative_space": "the pillar behind A"
    },
    "playback": {
-    "treatment": "ramp",
-    "speed": 0.5
+    "treatment": "normal",
+    "speed": 1
    },
    "blur": {
     "motion_blur": "subject",
@@ -1539,36 +1541,36 @@
     "ref": "b21"
    },
    "framing": {
-    "scale": "insert",
+    "scale": "medium",
     "subjects": [
      "ninja_lean",
      "ninja_broad"
     ],
-    "detail": "torso",
-    "visible_action": "A drives the kunai down into B's right shoulder, NOT a punch."
+    "detail": null,
+    "visible_action": "A drives the kunai down into B's right shoulder, NOT a punch; both fighters in frame."
    },
    "angle": {
     "elevation_deg": 10,
-    "azimuth_deg": -99.5,
+    "azimuth_deg": -25.0,
     "roll_deg": 0
    },
    "position": {
-    "target": "ninja_lean",
-    "distance_m": 0.62,
-    "side": "on_axis"
+    "target": "midpoint",
+    "distance_m": 1.8,
+    "side": "left"
    },
    "lens": {
-    "focal_length_mm": 85,
-    "perspective": "telephoto"
+    "focal_length_mm": 35,
+    "perspective": "normal"
    },
    "focus": {
     "target": "ninja_broad",
-    "depth_of_field": "shallow",
+    "depth_of_field": "medium",
     "transition": "hold"
    },
    "movement": {
     "kind": "static",
-    "path": "locked on the kunai and shoulder"
+    "path": "held on the kunai and shoulder with both fighters in frame"
    },
    "movement_quality": {
     "easing": "snap",
@@ -1585,15 +1587,15 @@
    },
    "composition": {
     "placement": {
-     "ninja_lean": "center",
-     "ninja_broad": "center"
+     "ninja_lean": "left_third",
+     "ninja_broad": "right_third"
     },
     "depth_anchor": null,
-    "negative_space": "black falloff around the strike"
+    "negative_space": "the night above the fighters"
    },
    "playback": {
-    "treatment": "slow",
-    "speed": 0.25
+    "treatment": "normal",
+    "speed": 1
    },
    "blur": {
     "motion_blur": "subject",
@@ -1610,24 +1612,104 @@
   {
    "id": "c21",
    "t": 9.0,
-   "dur": 1.0,
+   "dur": 0.5,
    "beats": [
-    "b22",
-    "b23"
+    "b22"
    ],
-   "intent": "spatial",
+   "intent": "impact",
    "motivation": {
     "kind": "narrative_intent",
     "ref": "b22__causes__b23"
    },
    "framing": {
-    "scale": "wide",
+    "scale": "full",
     "subjects": [
      "ninja_lean",
      "ninja_broad"
     ],
     "detail": null,
-    "visible_action": "A and B crash to the ground; A holds a crouch over B; the shuriken stay in the pillar, the log on the ground, smoke thinning."
+    "visible_action": "A and B crash to the ground; A lands in a crouch over B."
+   },
+   "angle": {
+    "elevation_deg": -5,
+    "azimuth_deg": 0.0,
+    "roll_deg": 0
+   },
+   "position": {
+    "target": "midpoint",
+    "distance_m": 3.0,
+    "side": "left"
+   },
+   "lens": {
+    "focal_length_mm": 35,
+    "perspective": "normal"
+   },
+   "focus": {
+    "target": "ninja_lean",
+    "depth_of_field": "deep",
+    "transition": "hold"
+   },
+   "movement": {
+    "kind": "static",
+    "path": "held low on the crash"
+   },
+   "movement_quality": {
+    "easing": "snap",
+    "stability": "locked",
+    "texture": "none"
+   },
+   "support": {
+    "rig": "tripod"
+   },
+   "relation_to_action": {
+    "mode": "observe",
+    "subject": "ninja_lean",
+    "note": "the crash lands and holds"
+   },
+   "composition": {
+    "placement": {
+     "ninja_broad": "right_third",
+     "ninja_lean": "left_third"
+    },
+    "depth_anchor": "wooden_pillar",
+    "negative_space": "the marked courtyard"
+   },
+   "playback": {
+    "treatment": "normal",
+    "speed": 1
+   },
+   "blur": {
+    "motion_blur": "subject",
+    "affected": [
+     "ninja_lean"
+    ]
+   },
+   "editing": {
+    "transition_in": "cut",
+    "axis": "keep",
+    "eyeline": "A down at B"
+   }
+  },
+  {
+   "id": "c22",
+   "t": 9.5,
+   "dur": 0.5,
+   "beats": [
+    "b23"
+   ],
+   "intent": "rhythm",
+   "motivation": {
+    "kind": "beat_type",
+    "ref": "b23"
+   },
+   "framing": {
+    "scale": "medium_wide",
+    "subjects": [
+     "ninja_lean",
+     "ninja_broad"
+    ],
+    "detail": null,
+    "visible_action": "A holds a crouch over B; the shuriken stay in the pillar, the log on the ground, smoke thinning."
    },
    "angle": {
     "elevation_deg": 3,
@@ -1640,12 +1722,12 @@
     "side": "left"
    },
    "lens": {
-    "focal_length_mm": 18,
-    "perspective": "wide"
+    "focal_length_mm": 57.09,
+    "perspective": "normal"
    },
    "focus": {
     "target": "ninja_lean",
-    "depth_of_field": "deep",
+    "depth_of_field": "medium",
     "transition": "hold"
    },
    "movement": {
@@ -1663,7 +1745,7 @@
    "relation_to_action": {
     "mode": "observe",
     "subject": "ninja_lean",
-    "note": "the crash settles into the hold"
+    "note": "the crouch over B holds to the end"
    },
    "composition": {
     "placement": {

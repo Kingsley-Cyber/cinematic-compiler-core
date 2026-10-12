@@ -12,7 +12,7 @@ high
 L5.5
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -48,4 +48,15 @@ ADR-O92
 - F-005
 
 ## Resolution
-Open.
+RV-09 (S-050, O92): the hits at 2.5, 4.7 and 8.5 are static camera holds with both fighters in frame at
+35 mm (full, medium_wide and medium), no insert, no slow motion, and every shot plays at normal x1 (the ramps at 3.7,
+5.5 and 6.6 went). S16 refuses a slowed shot (PLAYBACK_RAMP, validators/camera_validator.py); S17 refuses a hit that is
+no camera hold on the bodies (HIT_HOLD, compiler/passes/derived/p17_render.py: at S17, where hits are its impact
+frames, not at S16 as ADR-O92's consequence line put it); the prompt checks both (validators/prompt_validator.py). The
+prose prints all four holds on hits (2.5, 4.7, 6.6, 8.5). The camera grammar's impact intent follows O92
+(library/camera_grammar.yaml 2), and the wizard example's kick (3.6) and landing (5.2) are holds too. The source's
+lenses are kept: fov45 at 0 and the slow push in at fov35 from 9.5, now its own shot. Its "ground level" at 3.0 and
+9.0 waits for RV-15 (F-090: the camera aims 1 m above the root). Tests:
+tests/test_render.py::test_a_hit_is_a_camera_hold_on_the_bodies,
+tests/test_prose_render.py::test_hits_are_camera_holds_and_nothing_plays_slow,
+tests/test_reference_fight_golden.py::test_the_hits_are_held_and_the_source_lenses_kept.

@@ -12,7 +12,7 @@ high
 L5.5
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -43,4 +43,6 @@ ADR-O47
 - docs/reports/2026-10-11-renders-and-dag-adherence.md section 3
 
 ## Resolution
-Open: no code catches it yet.
+RV-09 (S-050, O92, F-083): every hit is a camera hold with the bodies in frame, no limb insert; HIT_HOLD catches a hit
+shot as a close-up or insert at S17 and in the prompt (tests/test_render.py::test_a_hit_is_a_camera_hold_on_the_bodies;
+the checklist's caught_by for F5).

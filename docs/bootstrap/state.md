@@ -6,20 +6,20 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 5.1; backlog 22.
+Layer order 1.7; rules 6.0; backlog 22.
 
 ## Last sessions
 
-- S-047 (applied): RV-43: CONTACT_WORLD exceptions come only from an owner-held, logged list
 - S-048 (applied): RV-07: the smoke bursts at 3.7 at A's body; an effect can take effect at its beat's start
 - S-049 (applied): RV-49: no body through another; a strike meets the target's surface (F-144)
+- S-050 (applied): RV-09: hits are camera holds with both bodies in frame; no playback ramps (O92)
 
 ## Next slices
 
-- RV-09 (next, step camera): Hits are camera holds framing both bodies, no playback ramps; the source's camera directives (O92)
-- RV-10 (ready, step temporal): The kunai drive holds the kunai in B's right shoulder; the catch is a grasp plus a throw (O93)
+- RV-10 (next, step temporal): The kunai drive holds the kunai in B's right shoulder; the catch is a grasp plus a throw (O93)
 - RV-11 (ready, step render): DAG-excluded rows are N/A; cinematic compile refuses a non-deliverable prompt (O94)
 - RV-12 (ready, step render): The 6.3 cartwheel is a full turn in render.txt (O96)
+- RV-13 (ready, step render): PROMPT_LENGTH: 3,500 characters for Runway, 1,000 words for BytePlus (O97)
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -55,11 +55,10 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-53 blocked: The source rows whose numbers contradict their words; O95 against O88 on two action keys — the owner's answers in F-148 and F-149
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 94
+## Open findings: 92
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
-- F-005 (high, L5.5): Every hit is a limb close-up
 - F-014 (high, L6): Timing slips
 - F-016 (high, L0): Intent drops the query's literal starts, counts and anchors
 - F-019 (high, L1.5): Beats are not checked against the constraint rules
@@ -69,7 +68,6 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-030 (high, L5.5): Camera lacks C10's rules and the arc with the rotation
 - F-031 (critical, L6): Render wording the model does not follow
 - F-036 (high, L6): Aerial timing is not followed: takeoffs come late
-- F-083 (high, L5.5): Hits are slow-motion close-up inserts, and most of the source's holds are not printed
 - F-084 (high, L1.1): The kunai drive and the catch print as instant strikes, and the kunai floats over the downed B
 - F-085 (high, L6): Prompt checks never run at compile, and no prompt can be a deliverable
 - F-086 (high, L4c): Mirror-symmetric keys are not refused on strikes and action beats
@@ -85,4 +83,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-152, session S-050, render R20.
+Decision ADR-O109, finding F-152, session S-051, render R20.

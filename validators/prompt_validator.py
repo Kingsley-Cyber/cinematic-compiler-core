@@ -84,6 +84,9 @@ CODES = {
     "RULES_MISSING": "a rule constraint (other than root exact) is absent from RULES",
     "NEGATIVES_MISSING": "a negative constraint is absent from NEGATIVES",
     "DISCONNECTED_CAMERA_MOTION": "a shot is missing, or a camera line lacks its motivation or the beats it shows",
+    "HIT_HOLD": "a hit (a hold on an impact frame) is not printed as a camera hold with the bodies in frame, or its shot "
+                "is a close-up, an insert or a moving camera (owner O92, R-21; F-083)",
+    "PLAYBACK_RAMP": "a camera line plays at a speed other than normal x1 (owner O92: the clip has a fixed length; F-083)",
     "ANCHOR_PHRASE_MISSING": "an entity lacks its appearance phrase in SCENE",
     "RENDER_INTENT_MISSING": "SCENE lacks the motion, animation or choreography intent",
     "END_STATE_MISSING": "a performer lacks its end state (position and support)",
@@ -114,11 +117,13 @@ READS = {
     "REACTION_WITHOUT_CAUSE": (),
     "CAUSAL_RULE_MISSING": (RULES,), "CONSERVATION_RULE_MISSING": (RULES,), "SPAN_RULE_MISSING": (STAFF, RULES),
     "EVENT_SEPARATION_MISSING": (STAFF, RULES), "RULES_MISSING": (RULES,), "NEGATIVES_MISSING": (NEGATIVES,),
-    "DISCONNECTED_CAMERA_MOTION": ("[CAMERA]",), "ANCHOR_PHRASE_MISSING": ("[SCENE]",),
+    "DISCONNECTED_CAMERA_MOTION": ("[CAMERA]",), "HIT_HOLD": ("[CAMERA]",), "PLAYBACK_RAMP": ("[CAMERA]",),
+    "ANCHOR_PHRASE_MISSING": ("[SCENE]",),
     "RENDER_INTENT_MISSING": ("[SCENE]",), "END_STATE_MISSING": (RULES,),
 }
 HEADER = re.compile(r"^\[[A-Z][^\]]*\]$")
 LINE = re.compile(r"^(\d+\.\d\d) ([A-Z]): SUPPORT (.*)$")
+SHOT = re.compile(r"^(\d+\.\d\d)–(\d+\.\d\d) \S+(?: across the axis)? to (\w+)")
 NUMBERS = re.compile(r"-?\d+(?:\.\d+)?")
 GENRE_TITLES = {"anime": "[ANIME]", "ugc_ad": "[UGC]", "live_action": "[LIVE ACTION]"}
 LAWS = ("Identity is immutable", "Spatial continuity", "Momentum is conserved", "Ground force needs support",
@@ -797,3 +802,18 @@ def _camera_checks(envelope, parts, labels, add):
     for line in lines:
         if "; motivated by " not in line or "; shows " not in line:
             add("DISCONNECTED_CAMERA_MOTION", f"Camera line lacks its motivation or its beats: {line[:40]}")
+        played = re.search(r"; (\w+) x([0-9.]+); shows ", line)
+        if played and (played.group(1), float(played.group(2))) != ("normal", 1.0):
+            add("PLAYBACK_RAMP", f"A camera line plays {played.group(1)} x{played.group(2)}: {line[:40]}")
+    camera = _body(parts, "[CAMERA]")
+    held = camera.split("Holds on hits: ", 1)[1].split("\n", 1)[0] if "Holds on hits: " in camera else ""
+    frame_parts, fps = envelope["nodes"]["render"]["items"][0]["frame_parts"], envelope["scene"]["fps"]
+    for hold in frame_parts["holds"]:  # a hit: a hold on an impact frame (owner O92, R-21)
+        t = hold["t"]
+        if not any(abs(t - i) <= 0.5 / fps + 1e-9 for i in frame_parts["impact"]):
+            continue
+        shot = next((m for m in map(SHOT.match, lines) if m and float(m.group(1)) - EPSILON <= t < float(m.group(2)) - EPSILON),
+                    None)
+        if (f"{t:.2f} impact: hold with " not in held or shot is None or "; static: " not in shot.string
+                or any(word in shot.group(3) for word in ("close", "insert"))):
+            add("HIT_HOLD", f"The hit at {t:.2f} is not a camera hold with the bodies in frame")

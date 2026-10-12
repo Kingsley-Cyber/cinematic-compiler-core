@@ -6,11 +6,11 @@ Genre: anime. LBN-2.4 is read against the DAG's Master Template (O13), so many o
 
 | Prompt | File | sha256 | Bytes | PASS | FAIL | NOT CHECKED | N/A | Deliverable |
 |---|---|---|---|---|---|---|---|---|
-| LBN | `render.txt` | `3c44927f22695947a9b55a81d1956c73cebedd34839cc70eaa4abdadc613e07d` | 30731 | 4 | 48 | 26 | 6 | no |
-| Pure | `prose_pure_staff.txt` | `c7add1b957ce50b6f99f6c98aca752ef20a711a16cb81387063e2c765745a01c` | 21331 | 38 | 0 | 40 | 6 | no |
-| Mixed | `prose_mixed.txt` | `f65f657730cbeae78f7693a9bf3bf8869b984d98c650a388c5b20c5441caacd3` | 21721 | 38 | 0 | 40 | 6 | no |
-| Upgr | `prose_upgraded_mixed.txt` | `55aa2091d1e9121060e7984fcd6a6d57a32f69ab1dcb9f33d8803c8d3f7447da` | 22386 | 38 | 0 | 40 | 6 | no |
-| Euler | `prose_euler_heavy.txt` | `21d85e838d01555e403b6db631692fc0b7f4aae2e3acdc2ea1da0911d6e5218a` | 26346 | 38 | 0 | 40 | 6 | no |
+| LBN | `render.txt` | `129942f0689166ac630367479e37fb0b71e15695d91fd973c7208b11ec49490f` | 30824 | 4 | 49 | 25 | 6 | no |
+| Pure | `prose_pure_staff.txt` | `3b08dad9279b60883e2147e1dd837071f4d9fd2d39a63b1aeb4460b014e20ad0` | 21550 | 38 | 0 | 40 | 6 | no |
+| Mixed | `prose_mixed.txt` | `e31b64d85a6eaf4f1720dda0d478bb85748b0164f02d48f1a66e6fa7f45dbe6e` | 21940 | 38 | 0 | 40 | 6 | no |
+| Upgr | `prose_upgraded_mixed.txt` | `d73135f5e0af11c881cd0f69954b9ff366212ebfce7395f3b6e95c3b03fce4b3` | 22605 | 38 | 0 | 40 | 6 | no |
+| Euler | `prose_euler_heavy.txt` | `6f24037c519222e43a15ce957f6b57fbe5b474aa1d2f8cad28dd956aabc4d195` | 26565 | 38 | 0 | 40 | 6 | no |
 | Any | union of the five | | | 41 | 0 | 40 | 3 | no |
 
 | Row | Name | Class | LBN | Pure | Mixed | Upgr | Euler | Any | Findings | Evidence |
@@ -50,7 +50,7 @@ Genre: anime. LBN-2.4 is read against the DAG's Master Template (O13), so many o
 | C7 | Attachment graph | mandatory | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** PROMPT_CONTRADICTION ×1: cannot pass: the prompt has no [LABAN STAFF – EULER-HEAVY], [NEGATIVES] — **Pure, Mixed, Upgr, Euler:** pass: PROP_STATE_ORDER, PROMPT_CONTRADICTION, PROP_LINE_MISSING |
 | C8 | Layer 1.5 / 3.5 | style | FAIL | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | **LBN:** CAUSAL_LIST_MISSING ×14: cannot pass: the prompt has no [CAUSAL LINKS] — **Pure, Mixed, Upgr, Euler:** pass: CAUSAL_LIST_MISSING; not checked: Causal (S05) and attachment (S06/S07) graphs are built before key poses (S13), as the DAG places them; 'after Laban' does not hold (S15 comes later). |
 | C9 | Spatial anchors / axis | required | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** SPATIAL_ANCHOR_MISSING ×6: cannot pass: the prompt has no [SPATIAL ANCHORS]; ENTRANCE_UNSTATED ×1: cannot pass: the prompt has no [RULES], [NEGATIVES] — **Pure, Mixed, Upgr, Euler:** pass: SPATIAL_ANCHOR_MISSING, ENTRANCE_UNSTATED |
-| C10 | Camera layer (dynamic) | style | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | not checked: Genre cards set shot length (anime 0.25-6.0 s), crossing and roll; every shot is motivated. |
+| C10 | Camera layer (dynamic) | style | FAIL | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | **LBN:** HIT_HOLD ×3: cannot pass: the prompt has no [CAMERA]; PLAYBACK_RAMP ×1: cannot pass: the prompt has no [CAMERA] — **Pure, Mixed, Upgr, Euler:** pass: HIT_HOLD, PLAYBACK_RAMP; not checked: Genre cards set shot length (anime 0.25-6.0 s), crossing and roll; every shot is motivated. |
 | C11 | UGC camera | style | N/A | N/A | N/A | N/A | N/A | N/A |  | O14: applies to ugc_ad; this example is anime |
 | C12 | Stylization layer | style | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | checked on the graph only (FRAME_SMEAR at S17); the prompt text is not checked |
 | C13 | Rules + Negatives | mandatory | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** RULES_MISSING ×8: cannot pass: the prompt has no [RULES]; NEGATIVES_MISSING ×13: cannot pass: the prompt has no [NEGATIVES]; CAUSAL_RULE_MISSING ×9: cannot pass: the prompt has no [RULES]; SECTION_ORDER ×2: cannot pass: the prompt has no [SCENE] — **Pure, Mixed, Upgr, Euler:** pass: RULES_MISSING, NEGATIVES_MISSING, CAUSAL_RULE_MISSING, SECTION_ORDER |
@@ -65,7 +65,7 @@ Genre: anime. LBN-2.4 is read against the DAG's Master Template (O13), so many o
 | C22 | End state per entity | required | FAIL | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | **LBN:** END_STATE_MISSING ×3: cannot pass: the prompt has no [RULES]; MOMENTUM_MISSING ×4: cannot pass: the prompt has no [RULES] — **Pure, Mixed, Upgr, Euler:** pass: END_STATE_MISSING, MOMENTUM_MISSING; not checked: S06 writes every subject's end state and chaining carries it. |
 | C23 | Anchor phrase | required | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** ANCHOR_PHRASE_MISSING ×3: cannot pass: the prompt has no [SCENE]; PROP_FIRST_STATE ×1: cannot pass: the prompt has no [SCENE] — **Pure, Mixed, Upgr, Euler:** pass: ANCHOR_PHRASE_MISSING, PROP_FIRST_STATE, PROP_VISIBILITY |
 | C24 | CUSTODY invariant | mandatory | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** PROP_FIRST_STATE ×1: cannot pass: the prompt has no [SCENE] — **Pure, Mixed, Upgr, Euler:** pass: CUSTODY_RULE_MISSING, PROP_FIRST_STATE |
-| C25 | Shot program | required | FAIL | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | **LBN:** DISCONNECTED_CAMERA_MOTION ×2: cannot pass: the prompt has no [CAMERA] — **Pure, Mixed, Upgr, Euler:** pass: DISCONNECTED_CAMERA_MOTION; not built: SHOT_TRANSITION_MISSING |
+| C25 | Shot program | required | FAIL | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | **LBN:** DISCONNECTED_CAMERA_MOTION ×2: cannot pass: the prompt has no [CAMERA]; HIT_HOLD ×3: cannot pass: the prompt has no [CAMERA] — **Pure, Mixed, Upgr, Euler:** pass: DISCONNECTED_CAMERA_MOTION, HIT_HOLD; not built: SHOT_TRANSITION_MISSING |
 | C26 | Named invalid states | mandatory | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** CAUSE_REASON ×14: cannot pass: the prompt has no [CAUSAL LINKS]; DISCONNECTED_CAMERA_MOTION ×2: cannot pass: the prompt has no [CAMERA] — **Pure, Mixed, Upgr, Euler:** pass: REACTION_WITHOUT_CAUSE, CAUSE_REASON, DISCONNECTED_CAMERA_MOTION |
 | C27 | Response while approaching | mandatory | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** CAUSE_REASON ×14: cannot pass: the prompt has no [CAUSAL LINKS] — **Pure, Mixed, Upgr, Euler:** pass: REACTION_WITHOUT_CAUSE, CAUSE_REASON |
 | C28 | Render intent | required | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** RENDER_INTENT_MISSING ×5: cannot pass: the prompt has no [SCENE] — **Pure, Mixed, Upgr, Euler:** pass: RENDER_INTENT_MISSING |

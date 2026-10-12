@@ -2,7 +2,7 @@
 # and a docs-log entry (python -m kernel.schema_log --log docs record docs/rules.yaml ...). Every rule cites accepted
 # decisions (docs/decisions/) and names what enforces it: a code or test the gate runs, or `protocol` (the agent
 # follows it; AGENTS.md). Validated by schemas/rules.schema.json.
-version: "5.1"
+version: "6.0"
 rules:
   # ---- agent: how every session works
   - {id: R-01, scope: agent, source: [ADR-S6, ADR-O64],
@@ -82,9 +82,9 @@ rules:
   - {id: R-20, scope: prompt, source: [ADR-S7, ADR-O19],
      rule: "The format comes from the DAG's own instances (D6, D9, D10).",
      enforced_by: [validators/prompt_validator.py SECTION_ORDER, STAFF_FORMAT]}
-  - {id: R-21, scope: prompt, source: [ADR-O47],
-     rule: "No hold, freeze or pause is written in frames; a hit gets a camera hold with the bodies in frame and no close-up.",
-     enforced_by: [BODY_HOLD_FRAMES]}
+  - {id: R-21, scope: prompt, source: [ADR-O47, ADR-O92],
+     rule: "No hold, freeze or pause is written in frames; a hit gets a camera hold with the bodies in frame and no close-up or insert; no shot changes playback speed (no slow motion or ramps in a fixed-length clip).",
+     enforced_by: [BODY_HOLD_FRAMES, HIT_HOLD, PLAYBACK_RAMP]}
   - {id: R-22, scope: prompt, source: [ADR-O47],
      rule: "A hand that releases a prop and then holds nothing is said to be empty.",
      enforced_by: [EMPTY_HAND_UNSTATED]}

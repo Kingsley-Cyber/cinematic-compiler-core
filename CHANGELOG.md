@@ -6,6 +6,11 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- Hits are camera holds (RV-09, O92, F-083, F-005, S-050): the hits at 2.5, 4.7 and 8.5 are static holds with both
+  fighters in frame at 35 mm, no insert, no slow motion; no shot changes playback speed. S16 refuses a slowed shot
+  (PLAYBACK_RAMP), S17 a hit that is no camera hold on the bodies (HIT_HOLD), and the prompt checks both. The camera
+  grammar's impact intent follows O92 (2); R-21 adds it (rules 6.0). The source's lenses are kept (fov45 at 0; the push
+  in at fov35 from 9.5, its own shot). The wizard example's kick and landing are holds too.
 - No body through another (RV-49, F-144, R-18, S-049): each segment is a capsule with a draft radius from the body card
   (library/body_segments.yaml 5, schema 3.1); S13 refuses two bodies that overlap at an instant both have a key
   (BODY_OVERLAP), and CONTACT_WORLD measures a contact between two bodies from surface to surface. B re-blocked at

@@ -27,6 +27,8 @@ agent
 - the principal review, S-035 (docs/prompts/principal_review.md)
 - library/camera_grammar.yaml aim_height_m: 1.0, added to the root, which O72 made the pelvis (an aim near 2.0-2.2 m)
 - validators/camera_validator.py places subjects on screen in x only; inserts aim at the entity, not their detail; CAMERA_COUPLING passes on part names
+- the source's "ground level" shots (3.0, 9.0): the camera sits 1.1 to 1.9 m high, since it aims 1 m above the root
+  (RV-09, S-050, left this to RV-15)
 - about 16 of 37 contact moments project outside their shot's frame (the principal review, S-035 (docs/prompts/principal_review.md)); render.txt prints these camera positions
 
 ## Description

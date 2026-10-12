@@ -14,6 +14,8 @@
 - continuity: no jump cut (same target and scale with an azimuth change under the grammar's minimum) unless the cut
   is declared jump_cut;
 - genre: transition, playback, rig, roll, shot length and required intents per library/camera_conventions/<genre>;
+- playback (owner O92, F-083, PLAYBACK_RAMP): every shot plays at normal speed (x1): the clip has a fixed length, so
+  no slow motion, ramp or freeze fits it;
 - coherence: scale vs frame height, lens perspective vs focal length, rig vs movement and stability, playback speed
   vs treatment, camera blur needs movement, insert needs a detail, focus/relation subjects are framed, a following
   relation needs movement;
@@ -93,6 +95,9 @@ def check(shots, packet):
             add(code, message, shot, detail)
         if shot["position"]["side"] != geo["side"]:
             add("CAMERA_AXIS", f"Declared side {shot['position']['side']} but the camera is {geo['side']}", shot)
+        if (shot["playback"]["treatment"], shot["playback"]["speed"]) != ("normal", 1):
+            add("PLAYBACK_RAMP", f"Playback {shot['playback']['treatment']} x{shot['playback']['speed']:g} in a fixed-length "
+                "clip (owner O92: no slow motion or ramps)", shot)
     for previous, shot in zip(ordered, ordered[1:], strict=False):
         if previous["id"] in derived and shot["id"] in derived:
             for code, message in _cut(previous, shot, derived, packet):

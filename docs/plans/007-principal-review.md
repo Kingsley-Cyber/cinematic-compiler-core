@@ -55,7 +55,7 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 | RV-05 | L4c | high | done (S-038) | A's words follow the source (F-080) |
 | RV-06 | L1.1 | high | done (S-042) | the vanish (F-081) |
 | RV-07, RV-08 | L1.1, L2.1 | high | done (S-040, S-048) | the smoke at 3.7 after commits at the contact's instant (F-082, F-061) |
-| RV-09 | L5.5 | high | open | hits as camera holds (F-083, F-005) |
+| RV-09 | L5.5 | high | done (S-050) | hits as camera holds (F-083, F-005) |
 | RV-10 | L1.1 | high | open | the kunai drive and the catch (F-084) |
 | RV-11 | L6 | high | open | compile refuses non-deliverables; excluded rows N/A (F-085) |
 | RV-12 | L6 | medium | open | the cartwheel's words (F-087) |
@@ -109,3 +109,4 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 - 2026-10-12 — RV-08, RV-03, RV-06 and RV-02b done (S-040 to S-043); ADR-O105 answers F-108.
 - 2026-10-12 — RV-04 done (S-044); the second principal review (S-045): F-120 to F-150, RV-42 to RV-53; ADR-O107.
 - 2026-10-12 — RV-42, RV-43, RV-07 and RV-49 done (S-046 to S-049); F-151 and RV-54 (a body through a prop) filed.
+- 2026-10-12 — RV-09 done (S-050): hits are camera holds, no playback ramps.

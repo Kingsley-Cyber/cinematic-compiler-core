@@ -234,7 +234,21 @@ def test_props_cast_and_anime_directives_survive():
     assert anime["impact"] == REFERENCE["anime"]["impact"] and [h[0] for h in anime["holds"]] == REFERENCE["anime"]["holds"]
     assert anime["ink"] == REFERENCE["anime"]["ink"] and fx(anime["fx"]) == [(when, FX_REWORDED.get(what, what))
                                                                              for when, what in fx(REFERENCE["anime"]["fx"])]
-    assert len(SPEC["cam"]) == 21 and (SPEC["fps"], SPEC["dur"]) == (24, 10.0)
+    assert len(SPEC["cam"]) == 22 and (SPEC["fps"], SPEC["dur"]) == (24, 10.0)  # the 9.5 push in is its own shot (RV-09)
+
+
+# Owner O92 (RV-09, F-083, R-21): the hits at 2.5, 4.7 and 8.5 are camera holds with both bodies in frame, never a
+# close-up or an insert, and no shot changes playback speed (the source's "slomo.25" at 4.7 and 8.5 goes with O92).
+# R-17: the source's lenses are followed: fov45 at 0 (43.46 mm, not 35) and the slow push in on the crouch at fov35
+# from 9.5 (57.09 mm), its own shot after the low hold on the crash at 9.0 (it was one 18 mm shot from 9.0).
+def test_the_hits_are_held_and_the_source_lenses_kept():
+    rows = {row.split(" ", 2)[1]: row for row in SPEC["cam"]}
+    for shot in ("c05", "c11", "c20"):
+        assert " on A,B: " in rows[shot] and "movement static: " in rows[shot] and "insert" not in rows[shot]
+    assert all("playback normal x1;" in row for row in SPEC["cam"])
+    assert REFERENCE["cam"][0].endswith("fov45") and "fov44.996126x" in rows["c01"]
+    assert REFERENCE["cam"][-2] == "9.5 slow push in crouch fov35"
+    assert rows["c22"].startswith("9.5-10 c22 ") and "fov34.999255x" in rows["c22"] and "dolly_in: slow push in" in rows["c22"]
 
 
 # Owner O48 (2026-10-11, probes R12 and R17, as in R1-R5): the source keeps the log 'hidden in A coat' until 3.7, but the

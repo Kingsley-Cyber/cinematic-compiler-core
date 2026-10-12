@@ -30,7 +30,7 @@
 # Anchors are line numbers in the frozen copy (§2.2 = Mermaid block, §2.3 = node catalogue).
 # X1-X41 (§3.5) are findings about specific prompts, not rules, and are not mapped.
 
-version: 6
+version: 7
 status: draft
 basis: "Mapped by Claude 2026-10-11 against the repo at 9c9fd98 (layer_order 1.7); owner decisions O1-O4 recorded
   2026-10-11 (docs/plans/M8_DAG_PROSE.md); O13-O14 (checklist scope, not-applicable rulings) 2026-10-11; owner
@@ -697,12 +697,24 @@ rows:
     class: style
     step: S16
     status: partial
+    codes: [HIT_HOLD, PLAYBACK_RAMP]
     enforced_by:
       - {file: validators/camera_validator.py, check: _genre, code: CAMERA_GENRE,
          test: tests/test_camera_solver.py::test_genre_card_rules_apply_scene_wide}
+      - {file: validators/camera_validator.py, check: check, code: PLAYBACK_RAMP,
+         test: tests/test_camera_solver.py::test_each_rule_rejects_its_violation}
+      - {file: compiler/passes/derived/p17_render.py, check: hit_hold, code: HIT_HOLD,
+         test: tests/test_render.py::test_a_hit_is_a_camera_hold_on_the_bodies}
+      - {file: validators/prompt_validator.py, check: _camera_checks, code: HIT_HOLD,
+         test: tests/test_prose_render.py::test_hits_are_camera_holds_and_nothing_plays_slow}
+      - {file: validators/prompt_validator.py, check: _camera_checks, code: PLAYBACK_RAMP,
+         test: tests/test_prose_render.py::test_hits_are_camera_holds_and_nothing_plays_slow}
       - {file: validators/camera_validator.py, check: _motivation, code: CAMERA_MOTIVATION,
          test: tests/test_camera_solver.py::test_each_rule_rejects_its_violation}
-    note: "Genre cards set shot length (anime 0.25-6.0 s), crossing and roll; every shot is motivated. Not encoded:
+    note: "Genre cards set shot length (anime 0.25-6.0 s), crossing and roll; every shot is motivated. RV-09 (owner
+      O92, F-083): a hit (a hold on an impact frame) is a static camera hold with every body present in frame, no
+      close-up or insert (HIT_HOLD at S17 and in the prompt), and every shot plays at normal x1 (PLAYBACK_RAMP at S16
+      and in the prompt). Not encoded:
       the six rules (eye-level medium at most 1.2 s, height change every 2 s, low angles in aerial dominance,
       parallax, orbit on spins, push through Z) and three forbidden shots; F4's relational speed (match_subject)."
 
@@ -918,15 +930,18 @@ rows:
     class: required
     step: S16
     status: partial
-    codes: [DISCONNECTED_CAMERA_MOTION]
+    codes: [DISCONNECTED_CAMERA_MOTION, HIT_HOLD]
     gaps: [SHOT_TRANSITION_MISSING]
     enforced_by:
       - {file: validators/camera_validator.py, check: _coupling, code: CAMERA_COUPLING,
          test: tests/test_camera_solver.py::test_each_rule_rejects_its_violation}
+      - {file: compiler/passes/derived/p17_render.py, check: hit_hold, code: HIT_HOLD,
+         test: tests/test_render.py::test_a_hit_is_a_camera_hold_on_the_bodies}
       - {file: validators/camera_validator.py, check: _motivation, code: CAMERA_MOTIVATION,
          test: tests/test_camera_solver.py::test_each_rule_rejects_its_violation}
     note: "Every beat is covered, every contact onset in a shot's window is shown, and a motivation may cite a causal
-      edge. No per-shot execute list, graph_transition or forbidden list."
+      edge; a hit is a camera hold on the bodies (HIT_HOLD, owner O92). No per-shot execute list, graph_transition or
+      forbidden list."
 
   - id: C26
     name: Named invalid states

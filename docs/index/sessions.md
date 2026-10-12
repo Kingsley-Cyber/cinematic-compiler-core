@@ -56,6 +56,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-047 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-43 (PLAN-007); finding F-123… | applied | the commit whose message names [S-047] | about 40 minutes | RV-07 (the smoke bursts at 3.7, O91). | [S-047-rv-43-contact-world-exceptions-are-the-owner-s.md](../sessions/S-047-rv-43-contact-world-exceptions-are-the-owner-s.md) |
 | S-048 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-07 (PLAN-007); findings F-08… | applied | the commit whose message names [S-048] | about 50 minutes | RV-49 (no body through another). | [S-048-rv-07-the-smoke-bursts-at-3-7.md](../sessions/S-048-rv-07-the-smoke-bursts-at-3-7.md) |
 | S-049 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-49 (PLAN-007); findings F-14… | applied | the commit whose message names [S-049] | about 2 hours (the re-block solves took about 10 minutes of it) | RV-09 (hits as camera holds, O92). | [S-049-rv-49-no-body-through-another.md](../sessions/S-049-rv-49-no-body-through-another.md) |
+| S-050 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog RV-09 (PLAN-007); findings F-08… | applied | the commit whose message names [S-050] | about 1.5 hours | RV-10 (the kunai drive and the catch, O93). | [S-050-rv-09-hits-are-camera-holds.md](../sessions/S-050-rv-09-hits-are-camera-holds.md) |
 
 ## Status values
 

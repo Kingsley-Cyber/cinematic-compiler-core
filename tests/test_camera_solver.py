@@ -77,8 +77,10 @@ def unframe_acrobat(plan):
      or shot(p, "c02")["angle"].update(azimuth_deg=100)),
     ("CAMERA_GENRE", lambda p: shot(p, "c05")["angle"].update(roll_deg=45)),
     ("CAMERA_COHERENCE", lambda p: shot(p, "c01")["movement"].update(kind="dolly_in")),
-    ("CAMERA_COHERENCE", lambda p: shot(p, "c04")["playback"].update(speed=1)),
-    ("CAMERA_INTENT", lambda p: shot(p, "c04")["playback"].update(treatment="normal", speed=1)),
+    ("CAMERA_COHERENCE", lambda p: shot(p, "c04")["playback"].update(treatment="slow", speed=1)),
+    # owner O92 (RV-09): an impact shot frames the bodies (medium to full), no close-up, no slowed playback
+    ("CAMERA_INTENT", lambda p: shot(p, "c04")["blur"].update(motion_blur="none", affected=[])),
+    ("PLAYBACK_RAMP", lambda p: shot(p, "c06")["playback"].update(treatment="ramp", speed=0.3)),
     ("CAMERA_INTENT", lambda p: shot(p, "c07")["focus"].update(depth_of_field="deep")),
 ])
 def test_each_rule_rejects_its_violation(code, change):
@@ -107,7 +109,7 @@ def test_derived_geometry_edges_scope_and_determinism(order):
     validate_schema({"camera": nodes, "camera_edges": edges}, GRAPH)
     assert [n["id"] for n in nodes] == [f"c{i:02d}" for i in range(1, 12)] and len(edges) == len(nodes) - 1
     assert all(n["derived"]["side"] == n["position"]["side"] for n in nodes)
-    assert {e["side_to"] for e in edges} == {"left", "on_axis"}
+    assert {e["side_to"] for e in edges} == {"left"}  # the kick's on-axis insert became a hold on both bodies (O92)
     assert camera_validator.derive(nodes[0], p16_camera.prepare(before)) == nodes[0]["derived"]
     assert courtyard("camera")["validation"]["camera_kinematic_coupling"] == "pass"
     assert canonical_json(after) == canonical_json(p16_camera.run(courtyard("effort"), PLAN, order=order)[0])

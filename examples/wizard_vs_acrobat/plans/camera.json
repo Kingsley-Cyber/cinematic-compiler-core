@@ -1,7 +1,7 @@
 {
  "step_id": "S16",
  "band": "L5.5",
- "packet_sha256": "sha256:b7ce2cb230ccc2edec7b09a6ed56018df758274fb25ebb0cdae8cb0fdb9a99b5",
+ "packet_sha256": "sha256:7c10151173da7832fc2efaec5c6423bd13ae75357fec20557562e4b136c5b773",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -264,36 +264,36 @@
     "ref": "b05_c2"
    },
    "framing": {
-    "scale": "insert",
+    "scale": "full",
     "subjects": [
      "acrobat",
      "wizard"
     ],
-    "detail": "right_foot",
-    "visible_action": "Right heel drives into the wizard's chest; robes buckle around the strike."
+    "detail": null,
+    "visible_action": "Right heel drives into the wizard's chest; robes buckle around the strike; both bodies in frame."
    },
    "angle": {
     "elevation_deg": -5,
-    "azimuth_deg": 146.3,
+    "azimuth_deg": 80.0,
     "roll_deg": 0
    },
    "position": {
-    "target": "wizard",
-    "distance_m": 6.0,
-    "side": "on_axis"
+    "target": "midpoint",
+    "distance_m": 3.0,
+    "side": "left"
    },
    "lens": {
-    "focal_length_mm": 450,
-    "perspective": "telephoto"
+    "focal_length_mm": 35,
+    "perspective": "normal"
    },
    "focus": {
     "target": "wizard",
-    "depth_of_field": "shallow",
+    "depth_of_field": "medium",
     "transition": "hold"
    },
    "movement": {
     "kind": "static",
-    "path": "locked on the strike point"
+    "path": "held on the strike with both bodies in frame"
    },
    "movement_quality": {
     "easing": "snap",
@@ -310,15 +310,15 @@
    },
    "composition": {
     "placement": {
-     "acrobat": "center",
-     "wizard": "center"
+     "acrobat": "right_third",
+     "wizard": "left_third"
     },
     "depth_anchor": null,
-    "negative_space": "black falloff around the strike"
+    "negative_space": "the air around the strike"
    },
    "playback": {
-    "treatment": "slow",
-    "speed": 0.25
+    "treatment": "normal",
+    "speed": 1
    },
    "blur": {
     "motion_blur": "subject",
@@ -427,12 +427,13 @@
     "ref": "b07_c1"
    },
    "framing": {
-    "scale": "medium_close",
+    "scale": "full",
     "subjects": [
-     "acrobat"
+     "acrobat",
+     "wizard"
     ],
     "detail": null,
-    "visible_action": "Back slams into the pillar; the stone cracks behind the shoulders."
+    "visible_action": "The acrobat comes off the cracked pillar onto both feet; the wizard regroups across the courtyard."
    },
    "angle": {
     "elevation_deg": 0,
@@ -440,12 +441,12 @@
     "roll_deg": 0
    },
    "position": {
-    "target": "acrobat",
-    "distance_m": 1.67,
+    "target": "midpoint",
+    "distance_m": 4.4,
     "side": "left"
    },
    "lens": {
-    "focal_length_mm": 50,
+    "focal_length_mm": 35,
     "perspective": "normal"
    },
    "focus": {
@@ -455,7 +456,7 @@
    },
    "movement": {
     "kind": "static",
-    "path": "locked on the pillar"
+    "path": "held on the landing with both bodies in frame"
    },
    "movement_quality": {
     "easing": "snap",
@@ -472,14 +473,15 @@
    },
    "composition": {
     "placement": {
-     "acrobat": "center"
+     "acrobat": "right_third",
+     "wizard": "left_third"
     },
     "depth_anchor": "stone_pillar",
-    "negative_space": "cracked stone around the shoulders"
+    "negative_space": "the courtyard between them"
    },
    "playback": {
-    "treatment": "ramp",
-    "speed": 0.3
+    "treatment": "normal",
+    "speed": 1
    },
    "blur": {
     "motion_blur": "subject",

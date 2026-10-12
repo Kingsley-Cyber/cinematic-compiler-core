@@ -53,7 +53,7 @@ FINDINGS = {
     "F2": (EVERY, ("C6", "V7"), ("CAUSE_REASON",)),
     "F3": (("reference_fight", "live_action_standoff"), ("M4",), ()),
     "F4": (RENDERED, ("C10", "C11", "C25", "V3", "V6"), ()),
-    "F5": (RENDERED, ("C10", "C12", "C25"), ()),
+    "F5": (RENDERED, ("C10", "C12", "C25"), ("HIT_HOLD",)),
     "F6": (RENDERED, ("C2", "C3", "C4"), ()),
     "F7": (RENDERED, ("BIO", "T7", "C5"), ("AIRBORNE_PICKUP",)),
     "F8": (RENDERED, ("C5", "C7", "C31"), ("PROP_LINE_MISSING", "DOUBLED_WORD")),

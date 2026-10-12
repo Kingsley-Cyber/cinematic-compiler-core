@@ -61,6 +61,19 @@ def codes(change, envelope=BEFORE):
     return {f["code"] for f in p17_render.check(plan, PACKET, envelope)}
 
 
+def test_a_hit_is_a_camera_hold_on_the_bodies():
+    """Owner O92 (RV-09, F-083, R-21): a hold on an impact frame is a hit; the shot covering it holds still with every
+    body present in frame and is no close-up, or S17 refuses it (HIT_HOLD)."""
+    assert "HIT_HOLD" not in codes(lambda f: None)
+    moving = copy.deepcopy(BEFORE)
+    next(s for s in moving["nodes"]["camera"]["items"] if s["id"] == "c04")["movement"]["kind"] = "tracking"
+    assert "HIT_HOLD" in codes(lambda f: None, moving)
+    close = copy.deepcopy(BEFORE)
+    next(s for s in close["nodes"]["camera"]["items"] if s["id"] == "c04")["framing"].update(scale="insert",
+                                                                                         subjects=["acrobat"])
+    assert "HIT_HOLD" in codes(lambda f: None, close)
+
+
 @pytest.mark.parametrize("code, change", [
     ("FRAME_IMPACT", lambda f: f["impact"].append(1.0)),
     ("FRAME_SMEAR", lambda f: f["smear"][0].update(part=None)),
