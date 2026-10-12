@@ -73,6 +73,7 @@ Every finding: a bug, gap, contradiction, drift, question, risk or opportunity f
 | F-065 | The smoke pellet rests in mid-air from 3.70 to the end | contradiction | low | L1.1 | open | — | - examples/reference_fight/plans/temporal.json: t… | 2026-10-11 | [F-065-smoke-pellet-rests-in-mid-air.md](../findings/F-065-smoke-pellet-rests-in-mid-air.md) |
 | F-066 | What is a key's root position: the pelvis or the ground point? | question | high | L4c | open | — | - kernel/conventions.yaml (Q6): axes, Euler order… | 2026-10-11 | [F-066-root-position-is-undefined.md](../findings/F-066-root-position-is-undefined.md) |
 | F-067 | The query says "falling from y=8"; O21 starts A at y=10 | contradiction | low | L0 | open | — | - examples/reference_fight/request.json and kerne… | 2026-10-11 | [F-067-query-start-height-against-o21.md](../findings/F-067-query-start-height-against-o21.md) |
+| F-068 | Twelve Effort intervals declare a Shape quality their motion contradi… | question | medium | L5 | open | — | - the S-017 prototype (ADR-O73's measure) over th… | 2026-10-11 | [F-068-shape-qualities-contradict-the-motion.md](../findings/F-068-shape-qualities-contradict-the-motion.md) |
 
 ## Type values
 

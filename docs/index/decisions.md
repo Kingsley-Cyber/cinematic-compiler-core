@@ -98,6 +98,7 @@ Every owner decision. ADR IDs keep the names the code and tests cite (Q, A, B: 2
 | ADR-O70 | Autopilot runs: slice after slice, every decision logged | accepted | all | 2026-10-11 | [ADR-O70-autopilot-runs.md](../decisions/ADR-O70-autopilot-runs.md) |
 | ADR-O71 | Golden and authored-data changes during an autopilot run | accepted | all | 2026-10-11 | [ADR-O71-golden-changes-in-autopilot.md](../decisions/ADR-O71-golden-changes-in-autopilot.md) |
 | ADR-O72 | A key's root is the pelvis, and a touch's two points meet within 0.15… | proposed | L4c | 2026-10-11 | [ADR-O72-root-position-and-contact-tolerance.md](../decisions/ADR-O72-root-position-and-contact-tolerance.md) |
+| ADR-O73 | SHAPE_DIRECTION refuses only a Shape quality the motion contradicts | proposed | L5 | 2026-10-11 | [ADR-O73-shape-direction-contradictions-only.md](../decisions/ADR-O73-shape-direction-contradictions-only.md) |
 | ADR-S1 | Log every schema, library and kernel change | accepted | Schema control | 2026-10-10 | [ADR-S1-log-every-schema-library-and-kernel-change.md](../decisions/ADR-S1-log-every-schema-library-and-kernel-change.md) |
 | ADR-S2 | The owner renders; no paid model API | accepted | all | 2026-10-11 | [ADR-S2-the-owner-renders-no-paid-model-api.md](../decisions/ADR-S2-the-owner-renders-no-paid-model-api.md) |
 | ADR-S3 | Every prompt adheres to the knowledge DAG as a checklist | accepted | L6 | 2026-10-11 | [ADR-S3-every-prompt-adheres-to-the-knowledge-dag-as.md](../decisions/ADR-S3-every-prompt-adheres-to-the-knowledge-dag-as.md) |

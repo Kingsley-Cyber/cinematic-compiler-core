@@ -40,9 +40,11 @@ items:
      plan: PLAN-003, depends_on: [M9-02], findings: [F-010], codes: [SURFACE_HEIGHT]}
   - {id: M9-08b, title: "The opening from above in V6's wording (split from M9-08)", status: done, step: render,
      plan: PLAN-003, depends_on: [M9-08a], findings: [F-010], codes: [ENTRANCE_UNSTATED]}
-  - {id: M9-09a, title: "F9.1 Laban direction against path and form", status: next, step: effort, plan: PLAN-003,
+  - {id: M9-09a, title: "F9.1 Laban direction against path and form", status: blocked,
+     blocked_by: "ADR-O73 (proposed): SHAPE_DIRECTION refuses contradictions only; twelve intervals re-authored (F-068)",
+     step: effort, plan: PLAN-003,
      depends_on: [M9-05], findings: [F-029], codes: [SHAPE_DIRECTION]}
-  - {id: M9-09b, title: "F9.2 airborne momentum under gravity", status: ready, step: kinematic, plan: PLAN-003,
+  - {id: M9-09b, title: "F9.2 airborne momentum under gravity", status: next, step: kinematic, plan: PLAN-003,
      depends_on: [M9-05], findings: [F-026], codes: [MOMENTUM_MISSING]}
   - {id: M9-09c, title: "FR.4 launch before an aerial turn", status: ready, step: motion, plan: PLAN-003,
      depends_on: [M9-05], findings: [F-028, F-058], codes: [AIRBORNE_WITHOUT_LAUNCH]}

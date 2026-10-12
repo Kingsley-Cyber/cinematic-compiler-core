@@ -99,9 +99,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 2.2; backlog 4.
-- Last session: S-016 (2026-10-11, applied): M9-08b: the opening from above in V6's wording (F-010).
-- Next slice: M9-09a F9.1 Laban direction against path and form (step effort).
-- Open findings: 39; decisions: 99 (1 proposed).
+- Last session: S-017 (2026-10-11, not started): M9-09a parked: Shape qualities contradict the motion in every example.
+- Next slice: M9-09b F9.2 airborne momentum under gravity (step kinematic).
+- Open findings: 40; decisions: 100 (2 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
@@ -111,6 +111,7 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 
 <!-- BEGIN GENERATED: rulings -->
 - ADR-O72 (proposed): A key's root is the pelvis, and a touch's two points meet within 0.15 m
+- ADR-O73 (proposed): SHAPE_DIRECTION refuses only a Shape quality the motion contradicts
 - F-051 (low): Draft library cards await owner review
 - F-052 (low): Kernel scope numbers await owner review
 - F-053 (medium): Claude's interpretations await owner review
@@ -120,8 +121,10 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - F-059 (low): Reference-fight deviations from its own data await review
 - F-060 (low): What is a motif?
 - F-066 (high): What is a key's root position: the pelvis or the ground point?
+- F-068 (medium): Twelve Effort intervals declare a Shape quality their motion contradicts
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog M9-06 blocked: F5.1/F5.2 world contact points by forward kinematics — ADR-O72 (proposed): what a key's root position is, and the contact tolerance (F-066)
+- Backlog M9-09a blocked: F9.1 Laban direction against path and form — ADR-O73 (proposed): SHAPE_DIRECTION refuses contradictions only; twelve intervals re-authored (F-068)
 <!-- END GENERATED: rulings -->
 
 The owner updates this section by ruling: in chat (the agent writes the ADR) or by writing an ADR from

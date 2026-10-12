@@ -10,22 +10,23 @@ Layer order 1.7; rules 2.2; backlog 4.
 
 ## Last sessions
 
-- S-014 (applied): M9-07b: Laban actions printed as qualities (F4.2, O22)
 - S-015 (applied): M9-08a: the opening from y 10 onto the 8 m top, and SURFACE_HEIGHT (O21)
 - S-016 (applied): M9-08b: the opening from above in V6's wording (F-010)
+- S-017 (not started): M9-09a parked: Shape qualities contradict the motion in every example
 
 ## Next slices
 
-- M9-09a (next, step effort): F9.1 Laban direction against path and form
-- M9-09b (ready, step kinematic): F9.2 airborne momentum under gravity
+- M9-09b (next, step kinematic): F9.2 airborne momentum under gravity
 - M9-09c (ready, step motion): FR.4 launch before an aerial turn
 - M9-10 (ready, step effort): F4.3/F4.4 B's active keys and the idle-fighter check
+- M9-11 (ready, step render): FR.7 genre cards; FR.6 money-shot frame parts; FR.2 limb paths
 
-M9: 11 of 30 slices done, 19 left (M9-03a blocked, M9-06 blocked; 1 the owner's own).
+M9: 11 of 30 slices done, 19 left (M9-03a blocked, M9-06 blocked, M9-09a blocked; 1 the owner's own).
 
 ## Waiting on the owner
 
 - ADR-O72 (proposed): A key's root is the pelvis, and a touch's two points meet within 0.15 m
+- ADR-O73 (proposed): SHAPE_DIRECTION refuses only a Shape quality the motion contradicts
 - F-051 (low): Draft library cards await owner review
 - F-052 (low): Kernel scope numbers await owner review
 - F-053 (medium): Claude's interpretations await owner review
@@ -35,10 +36,12 @@ M9: 11 of 30 slices done, 19 left (M9-03a blocked, M9-06 blocked; 1 the owner's 
 - F-059 (low): Reference-fight deviations from its own data await review
 - F-060 (low): What is a motif?
 - F-066 (high): What is a key's root position: the pelvis or the ground point?
+- F-068 (medium): Twelve Effort intervals declare a Shape quality their motion contradicts
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog M9-06 blocked: F5.1/F5.2 world contact points by forward kinematics — ADR-O72 (proposed): what a key's root position is, and the contact tolerance (F-066)
+- Backlog M9-09a blocked: F9.1 Laban direction against path and form — ADR-O73 (proposed): SHAPE_DIRECTION refuses contradictions only; twelve intervals re-authored (F-068)
 
-## Open findings: 39
+## Open findings: 40
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -58,4 +61,4 @@ M9: 11 of 30 slices done, 19 left (M9-03a blocked, M9-06 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O73, finding F-068, session S-017, render R20.
+Decision ADR-O74, finding F-069, session S-018, render R20.
