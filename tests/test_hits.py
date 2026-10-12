@@ -28,3 +28,17 @@ def test_hits_come_from_the_contacts():
     assert [h["t"] for h in hits.hits(envelope("wizard_vs_acrobat"))] == [3.6]
     assert hits.hits(envelope("live_action_standoff")) == [] == hits.hits(envelope("ugc_glasses_demo"))
     assert hits.hold_times(fight, fight["nodes"]["render"]["items"][0]["frame_parts"]) == [2.5, 4.7, 6.6, 8.5]
+
+
+def test_a_prop_another_performer_threw_is_a_hit_whatever_the_verb():
+    """F-175 (RV-69, owner O92): the kunai B threw, landing in A's torso and written with A as side a and no verb (as
+    the golden writes the 8.5 drive), is a hit; it owes the same camera hold as the deflect."""
+    import copy
+    fight = envelope("reference_fight")
+    probe = copy.deepcopy(fight)
+    contact = next(c for c in probe["nodes"]["contacts"]["items"] if c["id"] == "b06_c1")
+    contact.update(a={"kind": "entity", "id": "ninja_lean", "part": "torso"}, body_part="torso", verb=None)
+    found = {h["contact"]: h["kind"] for h in hits.hits(probe)}
+    assert found["b06_c1"] == "a body touched by a prop another performer threw"
+    assert [h["t"] for h in hits.hits(probe)] == [h["t"] for h in hits.hits(fight)]
+

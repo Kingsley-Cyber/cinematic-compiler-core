@@ -3,10 +3,14 @@ camera hold on every body present whatever S17 holds (HIT_HOLD at S16, S17 and i
 - a touch on another performer's body (A's knee on B at 4.7);
 - a strike, deflect or parry on a prop another performer holds, or threw and no one holds (A's foot on the kunai B
   threw, 2.5);
+- a touch between a performer and a prop another performer threw and no one holds, whatever the verb and whichever
+  side names the body (a kunai landing in A; F-175, RV-69);
 - a catch of another performer's body (B catches A's arm at 6.6, O93);
 - a body touched by a prop another performer holds that affords stab (the kunai A drives into B at 8.5, O93).
-Interpretation (Claude's, for owner review): the four kinds, read from F-155's list; a touch on a body counts whatever its
-verb, a touch on a prop only with a striking verb or a stabbing blade.
+Interpretation (Claude's, for owner review): the five kinds, read from F-155's and F-175's lists; a touch on a body
+counts whatever its verb, a touch on a prop only with a striking verb, a stabbing blade or a throw by another
+performer. The rest of F-175's breadth (held weapons without stab, grapples, pins, touches outside combat) waits for
+the owner.
 """
 
 from compiler.passes.mandatory.p07_contact import events_for, lifecycle
@@ -43,6 +47,9 @@ def hits(envelope):
         elif c["contact_type"] == "touch" and target["kind"] == "prop" and verb in STRIKING and (
                 held not in (None, who) or (held is None and thrower(target["id"], c["t"]) not in (None, who))):
             kind = f"a {verb} on a prop another performer holds or threw"
+        elif c["contact_type"] == "touch" and target["kind"] == "prop" and held is None and thrower(target["id"], c["t"]) not in (
+                None, who):
+            kind = "a body touched by a prop another performer threw"
         elif c["contact_type"] == "possess" and verb == "catch" and target["kind"] == "entity" and target["id"] != who:
             kind = "a catch of another performer's body"
         elif c["contact_type"] == "touch" and target["id"] in stab and held not in (None, who):

@@ -46,4 +46,7 @@ needed for the breadth (O92's "hits")
 - ADR-O92
 
 ## Resolution
-Open.
+Open in part: RV-69 (S-067) counts a touch between a performer and a prop another performer threw and no one holds as a
+hit, whatever the verb and whichever side names the body (planner/hits.py;
+tests/test_hits.py::test_a_prop_another_performer_threw_is_a_hit_whatever_the_verb). The breadth waits for the owner:
+held weapons without stab, grapples, pins, touches outside combat, scenes of three or more.

@@ -6,6 +6,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- A thrown weapon landing in a body is a hit (RV-69, F-175, S-067): a touch between a performer and a prop another
+  performer threw owes a camera hold whatever its verb and whichever side names the body; the rest of what counts as
+  a hit waits for the owner. No example changed.
 - The draw is measured (RV-68, F-182, S-066): the shuriken volley waits at the pouch on B's right thigh until B's hand,
   re-posed to meet it from outside the thigh, draws it at 5.1; CONTACT_WORLD reads 0.045 m where it read the hand
   against itself.

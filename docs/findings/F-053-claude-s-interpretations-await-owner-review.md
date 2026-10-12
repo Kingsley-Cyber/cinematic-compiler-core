@@ -120,6 +120,8 @@ resolved with a "Corrected" line, against F-166's proposed fix; reversed in S-06
 the struck words is flagged too); S-061 D5 (the volley's card gains flight `drawn`).
 Added in S-066 (RV-68, examples/reference_fight): the thigh pouch sits on the thigh's outer side a quarter of the way
 from the hip, where B's hand can reach it while airborne at 5.1.
+Added in S-067 (RV-69, planner/hits.py): a fifth kind of hit, a touch between a performer and a prop another performer
+threw and no one holds, whatever the verb and whichever side names the body.
 
 ## Impact
 Waits on the owner.

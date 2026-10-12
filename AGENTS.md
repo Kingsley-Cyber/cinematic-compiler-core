@@ -102,8 +102,8 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 7.0; backlog 26.
-- Last session: S-066 (2026-10-12, applied): RV-68: the holstered volley rests at the thigh pouch, and the draw is measured against it.
-- Next slice: RV-69 A body touched by a prop another performer threw is a hit, whatever the verb (step camera).
+- Last session: S-067 (2026-10-12, applied): RV-69: a body touched by a prop another performer threw is a hit, whatever the verb.
+- Next slice: RV-70 A vanished body is gone from every section (S15's coverage, the guidance, a vanish that never returns), and VANISHED_BODY reads them (step render).
 - Open findings: 114; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
