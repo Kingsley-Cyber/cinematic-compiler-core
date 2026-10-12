@@ -66,8 +66,11 @@ FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship |
 
 [MOTION CONTROL]
 Interpolation: slerp joint rotations between lines; the root follows its derived path between positions; support and the declared Effort hold at all times.
-Density (measured): 3 dense gaps under 0.6 s, 3 medium from 0.6 to 0.9 s, 11 sparse over 0.9 s; the longest is 1.60 s (A 3.60–5.20).
-Explicit = the staff lines; implied = everything between them (IMPLIED GUIDANCE).
+Density (measured): 5 dense gaps under 0.6 s, 4 medium from 0.6 to 0.9 s, 10 sparse over 0.9 s; the longest is 1.60 s (A 3.60–5.20).
+Explicit = the staff lines and the in-between keys; implied = everything between them (IMPLIED GUIDANCE).
+In-between keys (no beat, no contact): the interpolation passes through each pose at its time.
+3.55 B: kick chambered | L arm left-mid, lower arm folded 30, L leg forward-low, lower leg folded 45, body back-high (20 lean), head forward-high | R arm right-mid, lower arm folded 30, R leg right-forward-mid, lower leg straight
+3.70 B: kick recoil | L arm left-mid, lower arm folded 15, L leg forward-low, lower leg folded 45, body back-high (15 lean), head forward-high | R arm right-mid, lower arm folded 15, R leg forward-mid, lower leg straight
 
 [SPATIAL ANCHORS]
 Frame: up +Y, forward +Z, ground y=0, units m; Euler XYZ intrinsic, right-handed, degrees; +X = the performer's left; joints local to their parent (root -> Sp -> arms, NK -> HD; root -> legs), root in the scene frame.

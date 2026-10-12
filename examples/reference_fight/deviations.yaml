@@ -4,7 +4,7 @@
 # no entry, a type not listed here, or a ruling with no ADR file. RV-100 (F-212, S-084) typed this run's rewrites
 # (S-076's shots, S-078's lunge, S-083's pickups); deviations the golden test does not yet record (the camera values
 # before S-076, B's other joints, the props' points) are RV-51's (F-147).
-version: 4
+version: 5
 types:
   reworded: the source's words changed
   renumbered: the source's own numbers changed (A's rows)
@@ -49,3 +49,4 @@ deviations:
   - {id: DEV-32, record: REAUTHORED_SHOTS, type: re-blocked, rulings: [ADR-O72, ADR-O92], what: "eleven shots re-authored when the camera aimed at the bodies and VERTICAL_FRAMING came (S-076): distances, two scales, placements"}
   - {id: DEV-33, record: B_LUNGE, type: re-blocked, rulings: [ADR-O72], what: "B's front sole planted at 3.4 and 3.7 by the hip alone, a hand choice (S-078)"}
   - {id: DEV-34, record: B_PATHS, type: re-blocked, rulings: [ADR-O12, ADR-O72], what: "B's left arm at 3.7 and B's root (1.1 cm; REBLOCKED_ROOTS follows) and legs at 4.4 re-blocked clear of A between keys, the feet held (RV-59b's recorded commands, S-087)"}
+  - {id: DEV-35, record: B_INBETWEENS, type: added, rulings: [ADR-O109, ADR-O12, ADR-O72], what: "five in-between keys of B's (4.75, 6.45, 6.7, 8.45, 8.75) clear B of A between keys by the knee, the elbow, the catch and the throw, the drive and the crash, the last also over the floor (RV-59e's recorded commands, S-097); A's rows take none"}

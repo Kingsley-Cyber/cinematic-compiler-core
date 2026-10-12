@@ -44,8 +44,10 @@ def test_layout_carries_every_graph():
     assert RENDER["text"].startswith(BEFORE["provenance"]["source_prompt"])
     assert RENDER["labels"] == {"wizard": "A", "acrobat": "B"}
     keys = BEFORE["nodes"]["motion"]["items"]
-    assert len(SPEC["A"]) == sum(k["entity"] == "wizard" for k in keys)
-    assert len(SPEC["B"]) == sum(k["entity"] == "acrobat" for k in keys)
+    between = [b for e in BEFORE["edges"]["motion"]["items"] for b in e.get("inbetweens", [])]  # ADR-O109 (RV-59e)
+    assert len(SPEC["A"]) == sum(k["entity"] == "wizard" for k in keys) + sum(b["entity"] == "wizard" for b in between)
+    assert len(SPEC["B"]) == sum(k["entity"] == "acrobat" for k in keys) + sum(b["entity"] == "acrobat" for b in between)
+    assert sum(b["entity"] == "acrobat" for b in between) == 2
     assert {k: SPEC["A"][0][k] for k in ("t", "label", "pos", "rot")} == {
         "t": 1.6, "label": "bolt_cast_extend", "pos": [0, 1.19, 6], "rot": [0, 180, 0]}  # the anime pelvis (O72, O85, S-029)
     assert list(SPEC["A"][0]) == ["t", "label", "pos", "rot", "joints", "desc"]  # named fields (owner O9)

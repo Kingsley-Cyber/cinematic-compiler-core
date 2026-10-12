@@ -3,7 +3,9 @@
 Authored: root pos/rot, the kernel joints, turn and axis declarations. Checked by solver/euler_solver.py, by
 CONTACT_WORLD (solver/contact_world.py; a support on a floor at every key it spans, RV-14a), by BODY_OVERLAP
 (solver/body_overlap.py: no body through another, RV-49) and by FLOOR_PENETRATION (solver/floor_penetration.py: no
-body under the floor at any key, RV-14a). An in-between key (ADR-O109, RV-59f) is checked like a key: its span
+body under the floor at any key, RV-14a), and at every frame between keys no body passes through another, each posed
+by the declared interpolation through its keys and in-betweens (BODY_OVERLAP, RV-59e). An in-between key (ADR-O109,
+RV-59f) is checked like a key: its span
 (INBETWEEN_SPAN), the kernel joints and their limits, its root's speed to its neighbours (TELEPORT, owner O12), the
 floor and the other bodies at its instant, posed as the declared interpolation has them.
 Derived: root quaternion per key (solver/quaternion.py) and per-entity follows edges with the Euler delta,
@@ -153,6 +155,43 @@ def _words(text):
     return text.replace("_", " ")
 
 
+def _between_keys(keys, by_id, standing, packet):
+    """BODY_OVERLAP at every frame between keys (RV-59e, R-18): each body posed by the declared interpolation through
+    its keys and in-betweens, a vanished body left out; an instant where every body stands at a key or an in-between is
+    judged there. One refusal per pair of spans, at its deepest frame, naming both spans."""
+    fps, sequences = packet["fps"], interpolation.sequences(_timeline(keys, by_id), standing)
+    times = [k["t"] for own in sequences.values() for k in own]
+    worst = {}
+    for frame in range(math.floor(min(times) * fps) + 1, math.ceil(max(times) * fps)):
+        t, bodies, spans = round(frame / fps, 6), {}, {}
+        for entity, own in sequences.items():
+            gone = any(e == entity and start - 1e-9 <= t and (back is None or t < back - 1e-9)
+                       for e, start, back in packet["vanished"])
+            pose = None if gone else _posed(own, t)
+            if pose is None:
+                continue
+            before = max((k for k in own if k["t"] <= t + 1e-9), key=lambda k: k["t"])
+            after = min((k for k in own if k["t"] >= t - 1e-9), key=lambda k: k["t"])
+            spans[entity] = (before, after)
+            bodies[(entity, t)] = {"id": entity, "capsules": forward_kinematics.capsules(pose, packet["segments"],
+                                                                                        packet["radii"])}
+        if all(a is b for a, b in spans.values()):
+            continue  # every body at a key or an in-between: judged there
+        for _, first, second, depth, one, two in body_overlap.overlaps(bodies):
+            pair = (first[0], second[0])
+            span = tuple((spans[e][0]["t"], spans[e][1]["t"]) for e in pair)
+            if depth > worst.get((pair, span), (0.0,))[0]:
+                worst[(pair, span)] = (depth, t, one, two, spans[first[0]][0])
+    findings = []
+    for (pair, span), (depth, t, one, two, before) in sorted(worst.items(), key=lambda item: item[1][1]):
+        slot = before.get("id") or f"{before['entity']}@{before['t']:g}"
+        findings.append({"code": "BODY_OVERLAP", "slot": slot, "message": f"{_words(pair[0])} {_words(one)} and "
+                         f"{_words(pair[1])} {_words(two)} overlap by {depth:g} m at {t:g} between keys ({_words(pair[0])} "
+                         f"{span[0][0]:g}-{span[0][1]:g}, {_words(pair[1])} {span[1][0]:g}-{span[1][1]:g}; R-18: no body "
+                         f"through another)"})
+    return findings
+
+
 def _posed(sequence, t):
     """An entity's key or in-between at instant t, else its pose between them there, else None outside them."""
     for key in sequence:
@@ -176,7 +215,8 @@ def check(document, packet):
     return (findings + contact_world.refusals(rows, packet["contact_world"]["exceptions"])  # the owner's list (F-123)
             + body_overlap.refusals(bodies)  # RV-49 (F-144, R-18)
             + floor_penetration.refusals(bodies, packet["floor_y"])  # RV-14a (F-089, owner O72)
-            + between_findings + _inbetween_world(standing, keys, by_id, packet))  # ADR-O109 (RV-59f)
+            + between_findings + _inbetween_world(standing, keys, by_id, packet)  # ADR-O109 (RV-59f)
+            + _between_keys(keys, by_id, standing, packet))  # RV-59e (F-159, R-18)
 
 
 def build(envelope, document, packet):

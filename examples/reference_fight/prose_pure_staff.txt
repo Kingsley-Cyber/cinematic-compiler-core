@@ -104,8 +104,14 @@ FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship |
 
 [MOTION CONTROL]
 Interpolation: slerp joint rotations between lines; the root follows its derived path between positions; support and the declared Effort hold at all times.
-Density (measured): 36 dense gaps under 0.6 s, 2 medium from 0.6 to 0.9 s, 2 sparse over 0.9 s; the longest is 1.60 s (B 0.00–1.60).
-Explicit = the staff lines; implied = everything between them (IMPLIED GUIDANCE).
+Density (measured): 41 dense gaps under 0.6 s, 3 medium from 0.6 to 0.9 s, 1 sparse over 0.9 s; the longest is 1.60 s (B 0.00–1.60).
+Explicit = the staff lines and the in-between keys; implied = everything between them (IMPLIED GUIDANCE).
+In-between keys (no beat, no contact): the interpolation passes through each pose at its time.
+4.75 B: lifted off the knee | L arm left-mid, lower arm folded 15, L leg left-back-low, lower leg folded 15, body right-back-high (20 lean), head forward-high | R arm right-mid, lower arm folded 30, R leg right-back-low, lower leg folded 30
+6.45 B: guard opening | L arm forward-mid, lower arm folded 75, L leg forward-mid, lower leg folded 45, body right-back-high (30 lean) | R arm forward-mid, lower arm folded 75, R leg forward-low, lower leg folded 30
+6.70 B: throw follow through | L arm forward-mid, lower arm folded 45, L leg forward-low, lower leg folded 30, body left-back-mid (55 lean) | R arm forward-high, lower arm folded 45, R leg right-forward-low, lower leg straight
+8.45 B: shoulders turning | L arm left-forward-mid, lower arm folded 30, L leg forward-mid, lower leg folded 60, body right-forward-high (15 lean), head back-high | R arm right-back-low, lower arm straight, R leg forward-mid, lower leg folded 45
+8.75 B: tipping back | L arm left-mid, lower arm folded 30, L leg forward-low, lower leg folded 45, body back-high (40 lean) | R arm right-low, lower arm straight, R leg forward-low, lower leg folded 30
 
 [SPATIAL ANCHORS]
 Frame: up +Y, forward +Z, ground y=0, units m; Euler XYZ intrinsic, right-handed, degrees; +X = the performer's left; joints local to their parent (root -> Sp -> arms, NK -> HD; root -> legs), root in the scene frame.

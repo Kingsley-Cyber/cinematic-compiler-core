@@ -12,7 +12,7 @@ high
 L4c
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -91,3 +91,7 @@ at 6.45, placed by the re-block solver (B's arms, spine and root free), clears e
 cartwheel elbow (tests/test_inbetweens.py). Its use, and the prompts' printing of it (RV-59i), come first in RV-59e.
 Noted in S-096 (RV-108): drawn as the 90-degree tip the prompt prints, B's crash sinks 0.209 m between keys (not
 0.385) and overlaps A in 4 frames (not 8); it still needs a key mid-fall (RV-59c).
+Resolved in S-097 (RV-59e) under ADR-O109's answer (a): B's in-between keys clear every span by a contact, the 4.75
+knee follow-through included, and the 8.75 one keeps B's crash within 0.15 m of the floor; the descent's span cleared
+with the 6.7 one, so B's 7.5 root did not move. Nothing remained that only A's rows could clear, so options (b) and
+(d) were not needed.

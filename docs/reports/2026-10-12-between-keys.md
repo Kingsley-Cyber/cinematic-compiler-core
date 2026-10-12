@@ -9,29 +9,11 @@ fight), else 'repo keys'.
 
 ## reference_fight
 
-419 frames between keys; 6 overlapping spans; 1 sinking spans.
-
-| Bodies | Spans | Frames | Deepest (m) | At | Parts | Whose |
-|---|---|---|---|---|---|---|
-| ninja_broad / ninja_lean | 4.7-5.1; 4.7-5.1 | 2 | 0.102 | 4.75 | trunk / left_forearm | repo keys, source rows |
-| ninja_broad / ninja_lean | 6.3-6.6; 6.3-6.6 | 3 | 0.149 | 6.375 | left_forearm / trunk | repo keys, source rows |
-| ninja_broad / ninja_lean | 6.6-7.5; 6.6-7 | 5 | 0.070 | 6.625 | right_forearm / left_upper_arm | repo keys, source rows |
-| ninja_broad / ninja_lean | 6.6-7.5; 7-7.5 | 6 | 0.112 | 7.29167 | right_forearm / head | repo keys, repo keys |
-| ninja_broad / ninja_lean | 8-8.5; 8-8.5 | 5 | 0.065 | 8.45833 | left_upper_arm / right_upper_arm | repo keys, repo keys |
-| ninja_broad / ninja_lean | 8.5-9; 8.5-9 | 8 | 0.054 | 8.66667 | trunk / right_upper_arm | repo keys, source rows |
-
-| Body | Span | Frames | Deepest (m) | At | Part | Whose |
-|---|---|---|---|---|---|---|
-| ninja_broad | 8.5-9 | 9 | 0.385 | 8.75 | left_foot | repo keys |
+417 frames between keys; 0 overlapping spans; 0 sinking spans.
 
 ## wizard_vs_acrobat
 
-378 frames between keys; 2 overlapping spans; 0 sinking spans.
-
-| Bodies | Spans | Frames | Deepest (m) | At | Parts | Whose |
-|---|---|---|---|---|---|---|
-| acrobat / wizard | 2.6-3.6; 2.6-3.6 | 1 | 0.111 | 3.58333 | right_foot / trunk | repo keys, repo keys |
-| acrobat / wizard | 3.6-4.6; 3.6-5.2 | 4 | 0.098 | 3.70833 | right_foot / trunk | repo keys, repo keys |
+378 frames between keys; 0 overlapping spans; 0 sinking spans.
 
 ## live_action_standoff
 

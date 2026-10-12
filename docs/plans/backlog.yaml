@@ -174,9 +174,9 @@ items:
      step: render, plan: PLAN-007, depends_on: [RV-59f], findings: [F-220], codes: []}
   - {id: RV-108, title: "A declared turn drawn about its own axis by its net angle between keys (B's 8.5 tip), F-053's straight-Euler reading revised, the between-keys report re-measured", status: done,
      step: motion, plan: PLAN-007, depends_on: [RV-59a], findings: [F-225], codes: []}
-  - {id: RV-59e, title: "BODY_OVERLAP refused at every frame between keys: B's 7.5 root re-blocked (the descent, no contact), the spans by a contact cleared with B's in-between keys (ADR-O109); what only A's rows could clear stays F-220's", status: next,
+  - {id: RV-59e, title: "BODY_OVERLAP refused at every frame between keys: B's 7.5 root re-blocked (the descent, no contact), the spans by a contact cleared with B's in-between keys (ADR-O109); what only A's rows could clear stays F-220's", status: done,
      step: motion, plan: PLAN-007, depends_on: [RV-59f, RV-59i], findings: [F-159, F-220], codes: []}
-  - {id: RV-59c, title: "FLOOR_PENETRATION at every frame between keys; B's crash cleared with a key mid-fall (ADR-O109) after RV-108 draws its tip", status: ready,
+  - {id: RV-59c, title: "FLOOR_PENETRATION at every frame between keys; B's crash cleared with a key mid-fall (ADR-O109) after RV-108 draws its tip", status: next,
      step: motion, plan: PLAN-007, depends_on: [RV-59f, RV-108], findings: [F-089, F-220, F-225], codes: []}
   - {id: RV-59g, title: "CONTACT_WORLD on every open support at every frame between keys (the DAG's 'respect support'), the examples' takeoffs placed where the motion leaves its surface", status: ready,
      step: motion, plan: PLAN-007, depends_on: [RV-59f], findings: [F-221], codes: []}

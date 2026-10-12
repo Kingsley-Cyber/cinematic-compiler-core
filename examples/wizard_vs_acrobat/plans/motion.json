@@ -1,7 +1,7 @@
 {
  "step_id": "S13",
  "band": "L4c",
- "packet_sha256": "sha256:c12cb470d0dfacb69ad799f9f0fc6e038b33b6cdf097b0d7f4a81b39ecc328e8",
+ "packet_sha256": "sha256:583e1eee5185bf81b1b1067a90332a4f661f93e03b28a3d0ce7b24fd15cc53ab",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -1413,6 +1413,154 @@
    "turn": "none",
    "axis_declaration": "none",
    "description": "Torso wound left, right arm drawn across the body to sweep the thin bolt out in a spiral."
+  }
+ ],
+ "inbetweens": [
+  {
+   "entity": "acrobat",
+   "t": 3.55,
+   "name": "kick_chambered",
+   "pos": [
+    0.62,
+    1.1225,
+    4.705
+   ],
+   "rot": [
+    360.0,
+    -365.597,
+    0.0
+   ],
+   "bones": {
+    "Sp": [
+     -17.362236,
+     -2.453572,
+     -6.192
+    ],
+    "LUL": [
+     -13.93992,
+     -0.835327,
+     3.931997
+    ],
+    "RUL": [
+     -88.976351,
+     2.328733,
+     -24.93
+    ],
+    "LL": [
+     38.0,
+     0.0,
+     -0.0
+    ],
+    "RL": [
+     5.0,
+     0.0,
+     -0.0
+    ],
+    "LA": [
+     -30.991245,
+     -0.165959,
+     59.008755
+    ],
+    "RA": [
+     -27.535355,
+     -0.519896,
+     -58.819468
+    ],
+    "LFA": [
+     -23.5,
+     0.0,
+     0.0
+    ],
+    "RFA": [
+     -22.5,
+     0.0,
+     0.0
+    ],
+    "HD": [
+     13.772763,
+     -1.232808,
+     0.259497
+    ],
+    "NK": [
+     9.250543,
+     -0.248777,
+     0.031098
+    ]
+   },
+   "description": "The kicking heel rises outside the wizard's body before it lands."
+  },
+  {
+   "entity": "acrobat",
+   "t": 3.7,
+   "name": "kick_recoil",
+   "pos": [
+    0.74,
+    1.256,
+    4.81
+   ],
+   "rot": [
+    -0.0,
+    -21.564,
+    0.0
+   ],
+   "bones": {
+    "Sp": [
+     -14.862136,
+     -12.705,
+     0.143603
+    ],
+    "LUL": [
+     -17.5,
+     0.0,
+     5.0
+    ],
+    "RUL": [
+     -87.833886,
+     2.144638,
+     -7.08659
+    ],
+    "LL": [
+     39.5,
+     0.0,
+     -0.0
+    ],
+    "RL": [
+     7.5,
+     0.0,
+     -0.0
+    ],
+    "LA": [
+     -33.878033,
+     -1.265046,
+     56.121967
+    ],
+    "RA": [
+     -33.878033,
+     1.265046,
+     -56.121967
+    ],
+    "LFA": [
+     -22.0,
+     0.0,
+     0.0
+    ],
+    "RFA": [
+     -22.0,
+     0.0,
+     0.0
+    ],
+    "HD": [
+     16.0,
+     0.0,
+     -0.0
+    ],
+    "NK": [
+     10.5,
+     0.0,
+     -0.0
+    ]
+   },
+   "description": "The kicking leg recoils off the wizard's chest."
   }
  ]
 }

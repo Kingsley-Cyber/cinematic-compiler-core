@@ -10,16 +10,16 @@ Layer order 1.7; rules 7.2; backlog 41.
 
 ## Last sessions
 
-- S-094 (applied): RV-59f: in-between keys at S13 (ADR-O109)
 - S-095 (applied): RV-59i: every prompt prints the in-between keys
 - S-096 (applied): RV-108: a declared turn under a half turn is drawn as the turn it is
+- S-097 (applied): RV-59e: no body through another at any frame between keys
 
 ## Next slices
 
-- RV-59e (next, step motion): BODY_OVERLAP refused at every frame between keys: B's 7.5 root re-blocked (the descent, no contact), the spans by a contact cleared with B's in-between keys (ADR-O109); what only A's rows could clear stays F-220's
+- RV-59c (next, step motion): FLOOR_PENETRATION at every frame between keys; B's crash cleared with a key mid-fall (ADR-O109) after RV-108 draws its tip
 - RV-35b (ready, step all): The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools
-- RV-59c (ready, step motion): FLOOR_PENETRATION at every frame between keys; B's crash cleared with a key mid-fall (ADR-O109) after RV-108 draws its tip
 - RV-59g (ready, step motion): CONTACT_WORLD on every open support at every frame between keys (the DAG's 'respect support'), the examples' takeoffs placed where the motion leaves its surface
+- RV-107 (ready, step temporal): The wizard example's push-off at the pillar's release and its landing keyed where the fall ends; c06 and c08 re-authored; beat_planning.txt teaches RV-59d's measure
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -67,7 +67,6 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-205 (medium): The anime body's arms reach the floor only with the trunk leaning 58 to 75 degrees
 - F-211 (medium): Must each fighter's laban chain carry its side of the other's beats?
 - F-215 (high): May a body point sit up to 0.15 m under the floor, or only by its radius?
-- F-220 (high): By a contact the declared interpolation draws one body through the other, and B's crash through the floor
 - F-223 (medium): The pickups' lean is checked by an angle sum the drawn body does not hold
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog RV-15c blocked: A strike's limb and a facing head point at their target, checked at S13 (B's keys re-aimed in RV-103b) — the owner's answer in F-148 (A's source facings: the check would refuse the golden's own rows, O10)
@@ -91,7 +90,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 143
+## Open findings: 141
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -120,7 +119,6 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-152 (high, L4c): O72's point measure and BODY_OVERLAP cannot both hold for body contacts
 - F-153 (high, L6): No compile can ever emit: render.txt cannot pass the Master Template rows
 - F-155 (high, L5.5): HIT_HOLD reads O92 backwards: only holds the S17 author placed are judged
-- F-159 (high, L4c): Bodies pass through each other between keys
 - F-167 (high, L1.1): The S04 author never sees the query it plans
 - F-174 (high, L1.1): The S04 and S08 packets lack what their checks read
 - F-175 (high, L5.5): A hit is found by how its contact is written, not by what lands
@@ -135,9 +133,8 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-209 (high, L5.5): VERTICAL_FRAMING refuses O21's opening, A above the frame
 - F-215 (high, L4c): May a body point sit up to 0.15 m under the floor, or only by its radius?
 - F-216 (high, L1.1): Repo-authored fight defects outside the owner's questions
-- F-220 (high, L4c): By a contact the declared interpolation draws one body through the other, and B's crash through the floor
 - F-221 (high, L4c): Open supports are not checked between keys: a supporting part lifts far off its surface before its release
 
 ## Next free IDs
 
-Decision ADR-O110, finding F-230, session S-097, render R20.
+Decision ADR-O110, finding F-230, session S-098, render R20.

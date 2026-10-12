@@ -83,3 +83,8 @@ from 12:23 (the plan) to 12:25 (the record's last edit before the gate; the gate
 - the gate on this record (12:25:47): `scripts/verify.sh` exit 0, 745 passed in 77.11 s, docs plane: PASS, check:
   PASS
 - the hygiene scan over the staged diff's added lines: 0 hits (run first in the chained commit)
+
+## Correction (S-097)
+D2's block of its own broke the DAG's Master Template once an example carried in-betweens: the checklist read the
+[IN-BETWEEN KEYS] section as a stacked graph (C19, V8, GR failed in every prose mode), so S-097 moved the in-between
+lines inside [MOTION CONTROL], where the explicit keys and the density are already said.

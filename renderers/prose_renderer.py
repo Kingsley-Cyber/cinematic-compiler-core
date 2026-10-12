@@ -595,7 +595,7 @@ def _implied(envelope, lines, labels):
     return "[IMPLIED GUIDANCE]\n" + "\n".join(f"- {line}" for line in out)
 
 
-def _motion_control(lines, labels, between=()):
+def _motion_control(lines, labels, between=(), mode="pure_staff"):
     gaps = _gaps(lines, labels, between)
     sizes = [b - a for _, a, b in gaps]
     text = ["Interpolation: slerp joint rotations between lines; the root follows its derived path between positions; "
@@ -607,13 +607,16 @@ def _motion_control(lines, labels, between=()):
                     f"over 0.9 s; the longest is {b - a:.2f} s ({label} {_time(a)}–{_time(b)}).")
     explicit = "the staff lines and the in-between keys" if between else "the staff lines"
     text.append(f"Explicit = {explicit}; implied = everything between them (IMPLIED GUIDANCE).")
+    if between:  # ADR-O109 (RV-59i, RV-59e): inside the Master Template's motion control, not a section of its own
+        text.append("In-between keys (no beat, no contact): the interpolation passes through each pose at its time.")
+        text += _inbetween_lines(between, mode, labels)
     return "[MOTION CONTROL]\n" + "\n".join(text)
 
 
-def _inbetween_block(between, mode, labels):
-    """ADR-O109 (RV-59i): the poses the interpolation passes through between two staff lines, each at its time; Root and
-    Joints in every mode but the pure staff."""
-    out = ["Poses between two staff lines (no beat, no contact): the interpolation passes through each at its time."]
+def _inbetween_lines(between, mode, labels):
+    """ADR-O109 (RV-59i): each in-between key's time, performer, name and pose words; Root and Joints in every mode but
+    the pure staff."""
+    out = []
     for b in between:
         words = staff_geometry.pose_words(b)
         left = (f"L arm {words['left']['arm']}, lower arm {words['left']['lower_arm']}, L leg {words['left']['leg']}, "
@@ -625,7 +628,7 @@ def _inbetween_block(between, mode, labels):
         euler = "" if mode == "pure_staff" else (f" · Root {_numbers(b['pos'])} EulerXYZ {_numbers(b['rot'])} · Joints {{"
                                                  + ", ".join(f"{j}: {_numbers(b['bones'][j])}" for j in JOINTS) + "}")
         out.append(f"{_time(b['t'])} {labels[b['entity']]}: {_words(b['name'])} | {left} | {right}{euler}")
-    return "[IN-BETWEEN KEYS]\n" + "\n".join(out)
+    return out
 
 
 def _spatial(envelope, lines, labels, rows):
@@ -938,7 +941,7 @@ def render_all(envelope, frame_parts, labels):
     lines = staff_lines(envelope, frame_parts, labels)
     between = inbetweens(envelope)  # ADR-O109 (RV-59i)
     shared = {"scene": _scene(envelope, frame_parts, lines, labels, rows), "implied": _implied(envelope, lines, labels),
-              "motion": _motion_control(lines, labels, between), "spatial": _spatial(envelope, lines, labels, rows),
+              "spatial": _spatial(envelope, lines, labels, rows),
               "props": _props(envelope, labels), "causal": _causal(envelope, labels),
               "camera": _camera(envelope, frame_parts, labels),
               "genre": _genre_block(envelope, frame_parts, labels), "negatives": _negatives(rows, envelope, labels)}
@@ -947,7 +950,7 @@ def render_all(envelope, frame_parts, labels):
         staff = "\n".join(line["text"] + _euler(line, mode) for line in lines)
         verbs = any(c.get("verb") for c in _items(envelope, "nodes", "contacts"))
         blocks = [shared["scene"], _movement_language(mode, rows, verbs), f"[LABAN STAFF – {title}]\n{staff}",
-                  *([_inbetween_block(between, mode, labels)] if between else []), shared["implied"], shared["motion"],
+                  shared["implied"], _motion_control(lines, labels, between, mode),
                   shared["spatial"], *shared["props"], shared["causal"], shared["camera"], shared["genre"],
                   _rules(envelope, mode, rows, lines, labels), shared["negatives"]]
         text = "\n\n".join(blocks) + "\n"

@@ -438,14 +438,23 @@ REAUTHORED_SHOTS = {"c02": {"framing.scale": "extreme_wide", "position.distance_
 # RV-14a (F-089, S-078; owner O72): B's lunge at 3.4 and 3.7 plants its front sole by the hip alone, a hand choice
 # (typed as DEV-33, RV-100).
 B_LUNGE = {"ninja_broad@b08": {"LUL": [-70.17, 1.29, 22.95]}, "ninja_broad@b09": {"LUL": [-65.7, 2.7, 23.3]}}
+# RV-59e (S-097, ADR-O109): B's in-between keys by the contacts, from recorded commands (tests/test_inbetweens.py):
+# their root positions and rotations.
+B_INBETWEENS = {
+                4.75: [[-0.5725, 1.3125, 4.44], [-0.0, -90.0, 0.0]],
+                6.45: [[-0.4625, 1.03, 4.51125], [0.0, 90.0, 0.0]],
+                6.7: [[0.61944, 1.043333, 4.78597], [-0.0, 81.562222, -0.0]],
+                8.45: [[1.44225, 1.09, 4.7285], [-0.0, -90.0, 0.0]],
+                8.75: [[1.02375, 0.59, 5.2725], [-90.0, -45.0, -90.0]]}
 B_PATHS = {"ninja_broad@b09": {"LA": [-8.95, 1.2, 37.5], "LFA": [-25.95, 0, 0]},
            "ninja_broad@b11": {"pos": [-0.40125, 1.07, 4.50875], "LUL": [-74.575, -0.1, 10.425], "RUL": [-14.3, -0.4, -4.375],
                                "LL": [50.75, 0, 0], "RL": [30.85, 0, 0]}}
 
 
 def test_the_re_authored_shots_and_the_lunge_are_what_the_records_say():
-    """F-212 (RV-100): the shots S-076 re-authored, the lunge S-078 re-posed and the paths S-087 re-blocked (RV-59b) are
-    held to their records, so a change to any is a change to a typed deviation."""
+    """F-212 (RV-100): the shots S-076 re-authored, the lunge S-078 re-posed, the paths S-087 re-blocked (RV-59b) and the
+    in-between keys S-097 placed (RV-59e) are held to their records, so a change to any is a change to a typed
+    deviation."""
     shots = {s["id"]: s for s in json.loads((FOLDER / "plans" / "camera.json").read_text(encoding="utf-8"))["shots"]}
     for shot, fields in REAUTHORED_SHOTS.items():
         for path, value in fields.items():
@@ -457,6 +466,8 @@ def test_the_re_authored_shots_and_the_lunge_are_what_the_records_say():
     assert {slot: {joint: keys[slot]["bones"][joint] for joint in bones} for slot, bones in B_LUNGE.items()} == B_LUNGE
     assert {slot: {name: keys[slot]["pos"] if name == "pos" else keys[slot]["bones"][name] for name in values}
             for slot, values in B_PATHS.items()} == B_PATHS
+    plan = json.loads((FOLDER / "plans" / "motion.json").read_text(encoding="utf-8"))
+    assert {b["t"]: [b["pos"], b["rot"]] for b in plan["inbetweens"] if b["entity"] == "ninja_broad"} == B_INBETWEENS
 
 
 def test_every_recorded_deviation_is_typed_and_ruled():

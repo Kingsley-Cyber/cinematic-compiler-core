@@ -67,3 +67,5 @@ Noted in S-089 (RV-59c): the re-block solver's floor term found no re-pose of B'
 over the floor (0.217 m left at best); F-220 now asks for the fall too, and RV-59c waits for it.
 Corrected in S-090 (principal review 7): S-089's note said no re-pose keeps B's crash over the floor; that held with
 the hips' twist frozen (F-220's correction). Open supports between keys are F-221's (RV-59g).
+Noted in S-097 (RV-59e): B's in-between at 8.75, placed with the floor term, keeps the crash within 0.15 m of the
+floor between keys (the report shows no sinking span); RV-59c lands the refusal.

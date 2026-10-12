@@ -6,6 +6,12 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- No body through another at any frame between keys (RV-59e, F-159, F-220, S-097): S13 refuses two bodies overlapping
+  between keys, each posed by the declared interpolation through its keys and in-betweens. Five in-between keys of
+  B's (4.75, 6.45, 6.7, 8.45, 8.75; DEV-35) and two of the acrobat's (3.55, 3.7), placed from recorded commands with
+  nothing on A's rows, clear every span the fight and the wizard example had; the 8.75 one also keeps B's crash over
+  the floor. The prose prints the in-betweens inside [MOTION CONTROL] (a section of their own failed the Master
+  Template). F-159 and F-220 resolved.
 - A declared turn under a half turn is drawn as that turn (RV-108, F-225, S-096): between keys its root is slerped,
   and only a turn of a half turn or more about its axis keeps its Euler angles straight (S13's edge `interpolation`,
   motion_graph 1.3). B's crash becomes the 90-degree tip its prompt prints: 0.209 m under the floor between keys, not

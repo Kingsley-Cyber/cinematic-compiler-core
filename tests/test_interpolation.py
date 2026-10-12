@@ -71,16 +71,13 @@ def test_frames_leave_out_the_keys_and_a_vanished_window():
 
 
 def test_the_report_measures_the_fight_between_keys():
-    """RV-59a (F-159, F-089): between keys the fight's bodies overlap and B's crash sinks where S13's keys cannot see;
-    as measured on S-086 and S-087 (RV-59e and RV-59c refuse them). Every overlapping span has B's repo keys at one
-    end, and no span of A's source rows sinks."""
+    """RV-59a, RV-59e (F-159, F-089): between keys the fight's bodies no longer overlap nor sink: S13 refuses an overlap
+    at any frame (RV-59e) and B's in-between keys clear its side."""
     from validators import between_keys_report
     found = between_keys_report.measure("reference_fight")
-    assert [(row["entity"], row["span"], row["frames"], row["deepest"], row["whose"]) for row in found["sinks"]] == \
-        [("ninja_broad", (8.5, 9.0), 5, 0.209, "repo keys")]  # 0.385 m on straight angles before RV-108
-    assert max(row["deepest"] for row in found["overlaps"]) == 0.149
-    assert sum(row["frames"] for row in found["overlaps"]) == 24  # 38 on S-086, 29 after S-087, 28 after S-093, 24 after S-096
-    assert all(row["whose"][0] == "repo keys" and row["pair"][0] == "ninja_broad" for row in found["overlaps"])
+    # the crash sank 0.385 m (S-086) and 0.209 m on its tip (S-096); the overlaps were 38 frames (S-086) and 24 (S-096);
+    # B's in-between keys (RV-59e, S-097) clear both, with nothing placed on A's rows
+    assert found["sinks"] == [] and found["overlaps"] == []
 
 
 def test_a_declared_turn_under_a_half_turn_is_slerped():

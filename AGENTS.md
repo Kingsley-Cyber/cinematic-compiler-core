@@ -102,9 +102,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 7.2; backlog 41.
-- Last session: S-096 (2026-10-12, applied): RV-108: a declared turn under a half turn is drawn as the turn it is.
-- Next slice: RV-59e BODY_OVERLAP refused at every frame between keys: B's 7.5 root re-blocked (the descent, no contact), the spans by a contact cleared with B's in-between keys (ADR-O109); what only A's rows could clear stays F-220's (step motion).
-- Open findings: 143; decisions: 136 (0 proposed, 7 owner_default awaiting the owner).
+- Last session: S-097 (2026-10-12, applied): RV-59e: no body through another at any frame between keys.
+- Next slice: RV-59c FLOOR_PENETRATION at every frame between keys; B's crash cleared with a key mid-fall (ADR-O109) after RV-108 draws its tip (step motion).
+- Open findings: 141; decisions: 136 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
@@ -155,7 +155,6 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - F-205 (medium): The anime body's arms reach the floor only with the trunk leaning 58 to 75 degrees
 - F-211 (medium): Must each fighter's laban chain carry its side of the other's beats?
 - F-215 (high): May a body point sit up to 0.15 m under the floor, or only by its radius?
-- F-220 (high): By a contact the declared interpolation draws one body through the other, and B's crash through the floor
 - F-223 (medium): The pickups' lean is checked by an angle sum the drawn body does not hold
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog RV-15c blocked: A strike's limb and a facing head point at their target, checked at S13 (B's keys re-aimed in RV-103b) — the owner's answer in F-148 (A's source facings: the check would refuse the golden's own rows, O10)

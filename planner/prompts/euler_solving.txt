@@ -29,7 +29,8 @@ S13 motion (L4c). For every slot write one key pose: the body at the slot's beat
   of its own open just before it, never at a landing (a support's onset), or while its prop moves (ADR-O104); every
   support a slot's kinematic node claims meets its surface at that key, the part on the
   top its open support contact names or on the floor (CONTACT_WORLD, RV-14a); no two bodies overlap at a key they
-  share (BODY_OVERLAP); no body point lies more than 0.15 m under the floor (packet floor_y) at any key
+  share or at any frame between keys, each posed by the declared interpolation through its keys and in-betweens
+  (BODY_OVERLAP, RV-59e); no body point lies more than 0.15 m under the floor (packet floor_y) at any key
   (FLOOR_PENETRATION). Meet them with the bones; the root stays the slot's pos.
 - In-between keys (ADR-O109): where the declared interpolation would draw this body through another or a point more
   than 0.15 m under the floor, and no re-pose of the keys inside their limits clears it, add to `inbetweens` a pose of

@@ -12,7 +12,7 @@ high
 L4c
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -62,3 +62,7 @@ and re-blocks B's paths.
 Noted in S-087 (RV-59b): the re-block solver's clearance goal cleared 3.4-3.7 and 4.4-4.7 (B's left arm at 3.7, B's
 root and legs at 4.4); the six spans left lie by a contact the keys must keep, and the wizard example's two by its
 kick: F-220 asks how they clear, and RV-59e refuses after its answer.
+Resolved in S-097 (RV-59e): S13 refuses two bodies overlapping at any frame between keys, each posed by the declared
+interpolation through its keys and in-betweens; five in-between keys of B's (4.75, 6.45, 6.7, 8.45, 8.75) and two of
+the acrobat's (3.55, 3.7), placed from recorded commands with nothing moved on A's rows, clear every span, so the four
+examples pass (DEV-35; tests/test_inbetweens.py).
