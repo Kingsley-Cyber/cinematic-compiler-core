@@ -200,7 +200,7 @@ def build(envelope, document, packet):
             edge = {"id": f"{prior['id']}__{node['id']}", "from": prior["id"], "to": node["id"], "relation": "follows",
                     "turn": prior["turn"], "axis_declaration": prior["axis_declaration"],
                     "euler_delta": [round(b - a, 6) + 0.0 for a, b in zip(prior["rot"], node["rot"], strict=True)],
-                    "interpolation": "slerp" if prior["turn"] == "none" else "euler_axis",
+                    "interpolation": "euler_axis" if interpolation.straight(prior, node) else "slerp",  # RV-108
                     "slerp_angle": quaternion.arc_degrees(prior["rot"], node["rot"]),
                     "trajectory": trajectory.segment(prior, node)}
             inside = [b for b in inbetweens if b["entity"] == node["entity"] and prior["t"] < b["t"] < node["t"]]

@@ -32,7 +32,8 @@ planner/dynamic_beat_validator.py): a free prop moving into a contact must carry
 velocity into a pre sample is held to gravity within 0.25 m/s. Added in S-010 (M9-04b, renderers/prop_samples.py):
 the WHERE line is printed in the prose only (LBN-2.4's prop rows unchanged), and a resting span names the S06 location
 in force at its start or first set inside it, ignoring one set before the prop's last hold. Added in S-011 (M9-05,
-solver/euler_solver.py): a flip or cartwheel's inversion is read on linear Euler interpolation between its keys; O38's
+solver/euler_solver.py): a flip or cartwheel's inversion is read on linear Euler interpolation between its keys (between
+keys a turn under a half turn is slerped since RV-108, S-096); O38's
 landing key for the wizard's dodge_flip is a new hold beat b14 at 9.80 (land_guard shortened to 9.40-9.80 and
 continuing the flip), not the 9.40 apex key turned into a landing. Added in S-013 (M9-07a, library/combat_verbs.yaml
 and planner/dynamic_beat_validator.py): strike joins O22's nine verbs; which contact type takes which verb; a throw
@@ -177,7 +178,8 @@ of meeting (lands, connects, meets, drives, sinks, slams, smashes, rams, buries,
 (to a comma, a stop, a colon, a semicolon or "but"); the slowed fractions, the trembling and rattling frame and
 "just the receiver" join the floor.
 Added in S-086 (RV-59a, solver/interpolation.py): the root runs straight between keys (its positions exact only
-there), the joints slerp as the source says, a declared turn's root angles run straight; at Y = 90 or -90 degrees the
+there), the joints slerp as the source says, a declared turn's root angles run straight (since S-096, RV-108: only a
+turn of a half turn or more about its axis; one under it is slerped); at Y = 90 or -90 degrees the
 shared X and Z turn is read back as X; frames at the scene's fps, a vanished body's window left out; a span is the
 source's when both its keys are the owner's rows.
 Added in S-088 (RV-59d, solver/contact_world.py): between keys the actor is airborne (ADR-O104) when the key before

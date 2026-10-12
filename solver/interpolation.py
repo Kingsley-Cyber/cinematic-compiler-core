@@ -3,7 +3,9 @@ declares the motion: "Use slerp on all joint rotations. Root positions are exact
 
 Every joint's local rotation is slerped between its two keys; the root's position runs straight from key to key (it is
 exact only at the keys); the root's rotation is slerped too, unless the earlier key declares a turn (a flip, a spin or a
-cartwheel), when its Euler angles run straight from key to key along the turn, as the S13 edge's `euler_axis` says.
+cartwheel) of a half turn or more about its own axis (X, Y or Z), when its Euler angles run straight from key to key
+along the turn, as the S13 edge's `euler_axis` says: a shortest-arc slerp would undo it. A declared turn under a half
+turn is slerped, the shortest arc being that turn (RV-108, F-225).
 `frames` gives every frame of the scene strictly between an entity's consecutive keys, leaving out a vanished body's
 window (owner O18: it is gone). Interpretation (Claude's, for owner review): the straight root path. An in-between key
 (ADR-O109, RV-59f) stands in its entity's sequence like a key and carries the turn of the key before it, so the
@@ -14,8 +16,10 @@ import math
 from functools import lru_cache
 
 from solver.quaternion import unit_quaternion
+from solver.staff_geometry import TURNS
 
 EPSILON = 1e-9
+HALF_TURN = 180.0
 LOCK = 1e-10  # |sin Y| within this of 1: Y is +-90 degrees, where the X and Z turns share one axis
 
 
@@ -53,12 +57,19 @@ def _between(a, b, s):
     return tuple(euler(_slerp(unit_quaternion(a), unit_quaternion(b), s)))
 
 
+def straight(a, b):
+    """Whether the root's Euler angles run straight from key a to key b: a declared turn of a half turn or more about its
+    own axis, which a shortest-arc slerp would undo (RV-108)."""
+    turn = a.get("turn", "none")
+    return turn != "none" and abs(b["rot"][TURNS[turn][0]] - a["rot"][TURNS[turn][0]]) >= HALF_TURN - EPSILON
+
+
 def pose(a, b, t):
     """{pos, rot, bones, turn}: the pose of one entity at instant t between its keys a and b (a["t"] <= t <= b["t"])."""
     s = (t - a["t"]) / (b["t"] - a["t"]) if b["t"] > a["t"] + EPSILON else 0.0
     pos = [pa + s * (pb - pa) for pa, pb in zip(a["pos"], b["pos"], strict=True)]
     turn = a.get("turn", "none")
-    if turn != "none":  # the edge's euler_axis: the declared turn's angles run straight
+    if straight(a, b):  # the edge's euler_axis: the declared turn's angles run straight
         rot = [ra + s * (rb - ra) for ra, rb in zip(a["rot"], b["rot"], strict=True)]
     else:
         rot = list(_between(tuple(a["rot"]), tuple(b["rot"]), s))

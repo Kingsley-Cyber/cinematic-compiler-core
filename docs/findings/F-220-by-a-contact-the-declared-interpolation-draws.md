@@ -89,3 +89,5 @@ knee, which O72 allows: option (c) is the run's to take, though it leaves the st
 Noted in S-094 (RV-59f): the in-between key stands at S13, checked like a key; measured with it, one in-between of B's
 at 6.45, placed by the re-block solver (B's arms, spine and root free), clears every frame from 6.333 to 6.583 of A's
 cartwheel elbow (tests/test_inbetweens.py). Its use, and the prompts' printing of it (RV-59i), come first in RV-59e.
+Noted in S-096 (RV-108): drawn as the 90-degree tip the prompt prints, B's crash sinks 0.209 m between keys (not
+0.385) and overlaps A in 4 frames (not 8); it still needs a key mid-fall (RV-59c).

@@ -5,6 +5,12 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 
 ## Unreleased
 
+### Changed
+- A declared turn under a half turn is drawn as that turn (RV-108, F-225, S-096): between keys its root is slerped,
+  and only a turn of a half turn or more about its axis keeps its Euler angles straight (S13's edge `interpolation`,
+  motion_graph 1.3). B's crash becomes the 90-degree tip its prompt prints: 0.209 m under the floor between keys, not
+  0.385. Eight declared-turn edges change; no prompt does.
+
 ### Added
 - Every prompt prints the in-between keys (RV-59i, ADR-O109, S-095): render.txt gives each its actor's row at its
   instant, marked as an in-between key, and its coverage counts them; each prose mode prints an [IN-BETWEEN KEYS] block

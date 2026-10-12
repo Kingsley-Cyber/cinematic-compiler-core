@@ -12,7 +12,7 @@ medium
 L4c
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -54,4 +54,8 @@ none needed (F-053's reading is the repo's)
 - RV-108
 
 ## Resolution
-Open.
+Resolved in S-096 (RV-108): a declared turn under a half turn about its own axis (flip X, spin Y, cartwheel Z) is
+slerped, the shortest arc being that turn; a half turn or more keeps its angles straight (solver/interpolation.py
+`straight`, S13's edge `interpolation`, motion_graph 1.3). B's crash is the 90-degree tip the prompt prints and sinks
+0.209 m between keys, not 0.385; eight declared-turn edges in the examples changed to slerp, six in the fight and two
+in the wizard example, single-axis spins among them whose path is the same either way. No prompt changed.

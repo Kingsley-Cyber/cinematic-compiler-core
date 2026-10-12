@@ -30,7 +30,7 @@
 # Anchors are line numbers in the frozen copy (§2.2 = Mermaid block, §2.3 = node catalogue).
 # X1-X41 (§3.5) are findings about specific prompts, not rules, and are not mapped.
 
-version: 28
+version: 29
 status: draft
 basis: "Mapped by Claude 2026-10-11 against the repo at 9c9fd98 (layer_order 1.7); owner decisions O1-O4 recorded
   2026-10-11 (docs/plans/M8_DAG_PROSE.md); O13-O14 (checklist scope, not-applicable rulings) 2026-10-11; owner
@@ -224,7 +224,9 @@ rows:
       keys of one entity on a frame of its own, checked like a key (INBETWEEN_SPAN, its joints and limits, TELEPORT,
       the floor and the bodies at its instant), carried on the follows edge it splits; the declared interpolation runs
       through it, and every prompt prints it at its instant (render.txt's actor rows, the prose's [IN-BETWEEN KEYS]
-      block; RV-59i). Anticipation, follow-through and airborne arcs (K-Ant, K-FT, K-Air) are not checked."
+      block; RV-59i). A declared turn under a half turn about its axis is slerped between keys, one of a half turn or
+      more runs its angles straight (RV-108). Anticipation, follow-through and airborne arcs (K-Ant, K-FT, K-Air) are
+      not checked."
 
   - id: EXT1
     name: "[EXT] Root pos + root Euler"

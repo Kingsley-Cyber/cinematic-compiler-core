@@ -235,7 +235,8 @@ def test_the_floor_term_counts_a_point_under_the_floor_between_keys():
     """RV-59c (F-089): with a floor, the clearance counts each contact point deeper than FLOOR_PENETRATION's 0.15 m
     under it at the key and every frame of its spans. The acrobat standing at 7.6 is clear; dropped 0.3 m its soles
     are 0.3 m under. B's crash from 8.5 to 9.0 sinks a sole whatever B's legs at 9.0 do (measured on S-089: within 45
-    degrees of their start the right sole stays 0.218 m under; F-220)."""
+    degrees of their start the right sole stayed 0.218 m under on straight angles; on the tip RV-108 draws, 0.209 m;
+    F-220)."""
     import copy
     wizard = json.loads((EXAMPLES / "wizard_vs_acrobat" / "envelope.json").read_text(encoding="utf-8"))
     plan = json.loads((EXAMPLES / "wizard_vs_acrobat" / "plans" / "motion.json").read_text(encoding="utf-8"))

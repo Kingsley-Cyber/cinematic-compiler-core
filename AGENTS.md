@@ -102,9 +102,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 7.2; backlog 41.
-- Last session: S-095 (2026-10-12, applied): RV-59i: every prompt prints the in-between keys.
-- Next slice: RV-108 A declared turn drawn about its own axis by its net angle between keys (B's 8.5 tip), F-053's straight-Euler reading revised, the between-keys report re-measured (step motion).
-- Open findings: 144; decisions: 136 (0 proposed, 7 owner_default awaiting the owner).
+- Last session: S-096 (2026-10-12, applied): RV-108: a declared turn under a half turn is drawn as the turn it is.
+- Next slice: RV-59e BODY_OVERLAP refused at every frame between keys: B's 7.5 root re-blocked (the descent, no contact), the spans by a contact cleared with B's in-between keys (ADR-O109); what only A's rows could clear stays F-220's (step motion).
+- Open findings: 143; decisions: 136 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

@@ -10,16 +10,16 @@ Layer order 1.7; rules 7.2; backlog 41.
 
 ## Last sessions
 
-- S-093 (applied): RV-95b: the pickups judged as drawn, their stated bounds restored
 - S-094 (applied): RV-59f: in-between keys at S13 (ADR-O109)
 - S-095 (applied): RV-59i: every prompt prints the in-between keys
+- S-096 (applied): RV-108: a declared turn under a half turn is drawn as the turn it is
 
 ## Next slices
 
-- RV-108 (next, step motion): A declared turn drawn about its own axis by its net angle between keys (B's 8.5 tip), F-053's straight-Euler reading revised, the between-keys report re-measured
+- RV-59e (next, step motion): BODY_OVERLAP refused at every frame between keys: B's 7.5 root re-blocked (the descent, no contact), the spans by a contact cleared with B's in-between keys (ADR-O109); what only A's rows could clear stays F-220's
 - RV-35b (ready, step all): The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools
-- RV-59e (ready, step motion): BODY_OVERLAP refused at every frame between keys: B's 7.5 root re-blocked (the descent, no contact), the spans by a contact cleared with B's in-between keys (ADR-O109); what only A's rows could clear stays F-220's
 - RV-59c (ready, step motion): FLOOR_PENETRATION at every frame between keys; B's crash cleared with a key mid-fall (ADR-O109) after RV-108 draws its tip
+- RV-59g (ready, step motion): CONTACT_WORLD on every open support at every frame between keys (the DAG's 'respect support'), the examples' takeoffs placed where the motion leaves its surface
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -91,7 +91,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 144
+## Open findings: 143
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -140,4 +140,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O110, finding F-230, session S-096, render R20.
+Decision ADR-O110, finding F-230, session S-097, render R20.

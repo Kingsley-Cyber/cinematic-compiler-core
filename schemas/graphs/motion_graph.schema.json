@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:motion_graph:1.2",
+  "$id": "urn:cinematic-compiler:schema:motion_graph:1.3",
   "title": "S13 motion graph",
   "description": "motion = key poses (/nodes/motion) with derived quaternions; motion_edges = follows edges (/edges/motion) with derived Euler deltas, interpolation and root trajectory.",
   "type": "object",
@@ -178,7 +178,7 @@
               "slerp",
               "euler_axis"
             ],
-            "description": "slerp for undeclared changes (< 90 degrees); euler_axis for declared turns, which a shortest-arc slerp would undo."
+            "description": "slerp for undeclared changes (< 90 degrees) and for a declared turn under a half turn about its axis (the shortest arc is that turn); euler_axis for a declared turn of a half turn or more, which a shortest-arc slerp would undo (RV-108)."
           },
           "slerp_angle": {
             "type": "number",

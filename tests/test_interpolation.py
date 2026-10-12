@@ -77,7 +77,26 @@ def test_the_report_measures_the_fight_between_keys():
     from validators import between_keys_report
     found = between_keys_report.measure("reference_fight")
     assert [(row["entity"], row["span"], row["frames"], row["deepest"], row["whose"]) for row in found["sinks"]] == \
-        [("ninja_broad", (8.5, 9.0), 9, 0.385, "repo keys")]
+        [("ninja_broad", (8.5, 9.0), 5, 0.209, "repo keys")]  # 0.385 m on straight angles before RV-108
     assert max(row["deepest"] for row in found["overlaps"]) == 0.149
-    assert sum(row["frames"] for row in found["overlaps"]) == 28  # 38 on S-086, 29 after S-087, 28 after S-093
+    assert sum(row["frames"] for row in found["overlaps"]) == 24  # 38 on S-086, 29 after S-087, 28 after S-093, 24 after S-096
     assert all(row["whose"][0] == "repo keys" and row["pair"][0] == "ninja_broad" for row in found["overlaps"])
+
+
+def test_a_declared_turn_under_a_half_turn_is_slerped():
+    """RV-108 (F-225): a declared turn under a half turn about its own axis is drawn as the shortest arc; only a half
+    turn or more keeps its angles straight. B's 8.5 crash ("flip", from a key at gimbal lock) is the 90-degree tip the
+    prompt prints: halfway it has turned 45 degrees about B's side axis, where straight angles strayed 34 degrees."""
+    import json
+
+    from compiler.examples import EXAMPLES
+    from solver.quaternion import arc_degrees
+    envelope = json.loads((EXAMPLES / "reference_fight" / "envelope.json").read_text(encoding="utf-8"))
+    keys = {k["id"]: k for k in envelope["nodes"]["motion"]["items"]}
+    a, b = keys["ninja_broad@b21"], keys["ninja_broad@b22"]
+    assert a["turn"] == "flip" and not interpolation.straight(a, b)
+    middle = interpolation.pose(a, b, (a["t"] + b["t"]) / 2)["rot"]
+    assert abs(arc_degrees(a["rot"], middle) - 45) < 1e-3 and abs(arc_degrees(middle, b["rot"]) - 45) < 1e-3
+    flip = {"t": 5.1, "pos": [0, 2, 4], "rot": [0, 0, 0], "turn": "flip", "bones": {}}
+    assert interpolation.straight(flip, {**flip, "t": 5.5, "rot": [-360, 0, 0]})
+

@@ -249,7 +249,8 @@ def test_derived_graph_scope_and_determinism(order):
     by_id = {n["id"]: n for n in nodes}
     for edge in edges:
         start, end = by_id[edge["from"]], by_id[edge["to"]]
-        assert edge["interpolation"] == ("slerp" if start["turn"] == "none" else "euler_axis")
+        axis = {"flip": 0, "spin": 1, "cartwheel": 2}.get(start["turn"])  # RV-108 (F-225): a half turn or more runs straight
+        assert edge["interpolation"] == ("euler_axis" if axis is not None and abs(edge["euler_delta"][axis]) >= 180 else "slerp")
         assert edge["euler_delta"] == rounded([b - a for a, b in zip(start["rot"], end["rot"], strict=True)])
         assert math.isclose(edge["trajectory"]["distance"], math.dist(start["pos"], end["pos"]), abs_tol=1e-6)
     spin = next(e for e in edges if e["turn"] == "spin")
