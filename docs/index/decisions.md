@@ -111,6 +111,7 @@ Every owner decision. ADR IDs keep the names the code and tests cite (Q, A, B: 2
 | ADR-O83 | What CONTACT_WORLD refuses: repo misses re-blocked, source misses kep… | accepted | L4c | 2026-10-11 | [ADR-O83-contact-world-scope.md](../decisions/ADR-O83-contact-world-scope.md) |
 | ADR-O84 | Hip angles are read from the trunk, in every key | accepted | L4c | 2026-10-11 | [ADR-O84-hip-angles-read-from-the-trunk.md](../decisions/ADR-O84-hip-angles-read-from-the-trunk.md) |
 | ADR-O85 | Anime bodies get the fitted leg; live action and UGC keep the adult | accepted | L4c | 2026-10-11 | [ADR-O85-anime-bodies-get-the-fitted-leg.md](../decisions/ADR-O85-anime-bodies-get-the-fitted-leg.md) |
+| ADR-O86 | At 8.0 B moves to A's far side, so the pull runs toward the pillar | accepted | L1.1 | 2026-10-11 | [ADR-O86-b-moves-to-a-s-far-side-at-8.md](../decisions/ADR-O86-b-moves-to-a-s-far-side-at-8.md) |
 | ADR-S1 | Log every schema, library and kernel change | accepted | Schema control | 2026-10-10 | [ADR-S1-log-every-schema-library-and-kernel-change.md](../decisions/ADR-S1-log-every-schema-library-and-kernel-change.md) |
 | ADR-S2 | The owner renders; no paid model API | accepted | all | 2026-10-11 | [ADR-S2-the-owner-renders-no-paid-model-api.md](../decisions/ADR-S2-the-owner-renders-no-paid-model-api.md) |
 | ADR-S3 | Every prompt adheres to the knowledge DAG as a checklist | accepted | L6 | 2026-10-11 | [ADR-S3-every-prompt-adheres-to-the-knowledge-dag-as.md](../decisions/ADR-S3-every-prompt-adheres-to-the-knowledge-dag-as.md) |

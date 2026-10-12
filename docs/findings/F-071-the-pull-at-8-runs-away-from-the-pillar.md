@@ -12,7 +12,7 @@ medium
 L1.1
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -40,12 +40,12 @@ The prompt asks for a pull toward the pillar while the bodies are placed for a p
 pull's direction, so nothing refuses it.
 
 ## Proposed Fix
-Owner's call, one of: B's 8.0 anchor moves to A's far side (z under 4.2, the drag then runs away from the pillar, so
-"toward the pillar" is reworded); the kunai's landing moves toward the pillar (against O77's v_post); or the pickup
+Owner's call, one of: B's 8.0 anchor moves to A's far side from the pillar (z under 4.23), so the pull and the drag
+run toward the pillar as written; the kunai's landing moves toward the pillar (against O77's v_post); or the pickup
 moves to another instant.
 
 ## Owner Ruling
-none yet
+ADR-O86 (move B)
 
 ## Related
 - ADR-O18
@@ -54,4 +54,6 @@ none yet
 - F-064
 
 ## Resolution
-Open.
+M9-09h (S-032, O86): B's 8.0 anchor and key moved along z to [1.4, 1.18, 3.7], pose and facing kept, the dart on its
+torso with it; the rope from B to A's hand points about 20 degrees toward the pillar and B is dragged 1.3 m toward it
+by 8.5 (tests/test_reference_fight_golden.py PULL_ANCHOR).

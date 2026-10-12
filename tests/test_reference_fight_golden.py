@@ -115,8 +115,17 @@ def normalised(row):
 # S-030 (CONTACT_WORLD, ADR-O83, R-33): the repo-authored side of each real miss moved. The rope dart's sample at 3.0 sits
 # in A's left hand (the source's pose); at 8.0 it is the dart, wrapped on B since 7.6, so it sits on B's torso while A
 # keeps the rope's end; B steps in and straightens to catch A's elbow at 6.6 with both hands.
-REBLOCKED_SAMPLES = {("rope_dart", 3.0): [0.85, 0.74, 4.55], ("rope_dart", 8.0): [1.6, 1.53, 4.7]}
+REBLOCKED_SAMPLES = {("rope_dart", 3.0): [0.85, 0.74, 4.55], ("rope_dart", 8.0): [1.6, 1.53, 3.7]}  # 8.0: with B, O86
 CATCH_ROOT = [0.13, 1.2, 4.87]
+# Owner O86 (F-071, S-032): at 8.0 B stands on A's far side from the pillar (z 6), pose and facing kept, so the rope from
+# B to A's hand pulls toward the pillar and B is dragged that way to 8.5.
+PULL_ANCHOR = [1.4, 1.18, 3.7]
+
+
+def test_the_pull_at_8_runs_toward_the_pillar():
+    keys = {k["id"]: k for k in ENVELOPE["nodes"]["motion"]["items"]}
+    a, b, later = (keys[slot]["pos"] for slot in ("ninja_lean@b20", "ninja_broad@b20", "ninja_broad@b21"))
+    assert b == PULL_ANCHOR and a[2] > b[2] and later[2] > b[2]               # the rope and the drag both point to +z
 
 
 def test_the_re_blocked_samples_and_the_catch_are_recorded():

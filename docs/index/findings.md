@@ -76,7 +76,7 @@ Every finding: a bug, gap, contradiction, drift, question, risk or opportunity f
 | F-068 | Twelve Effort intervals declare a Shape quality their motion contradi… | question | medium | L5 | resolved | — | - the S-017 prototype (ADR-O73's measure) over th… | 2026-10-11 | [F-068-shape-qualities-contradict-the-motion.md](../findings/F-068-shape-qualities-contradict-the-motion.md) |
 | F-069 | Nine airborne spans hang longer than gravity allows | question | medium | L4a | resolved | — | - the S-018 prototype (ADR-O74's arc) over the fo… | 2026-10-11 | [F-069-airborne-spans-leave-the-gravity-arc.md](../findings/F-069-airborne-spans-leave-the-gravity-arc.md) |
 | F-070 | Most contacts miss their targets by forward kinematics | gap | high | L4c | resolved | — | - docs/reports/2026-10-11-contact-world-misses.md… | 2026-10-11 | [F-070-contacts-miss-their-targets.md](../findings/F-070-contacts-miss-their-targets.md) |
-| F-071 | A pulls B toward the pillar from the pillar's far side at 8.0 | contradiction | medium | L1.1 | open | — | - examples/reference_fight/plans/temporal.json, b… | 2026-10-11 | [F-071-the-pull-at-8-runs-away-from-the-pillar.md](../findings/F-071-the-pull-at-8-runs-away-from-the-pillar.md) |
+| F-071 | A pulls B toward the pillar from the pillar's far side at 8.0 | contradiction | medium | L1.1 | resolved | — | - examples/reference_fight/plans/temporal.json, b… | 2026-10-11 | [F-071-the-pull-at-8-runs-away-from-the-pillar.md](../findings/F-071-the-pull-at-8-runs-away-from-the-pillar.md) |
 
 ## Type values
 

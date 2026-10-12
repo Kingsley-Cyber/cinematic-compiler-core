@@ -6,6 +6,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- At 8.0 B stands on A's far side from the pillar (M9-09h, owner O86, S-032): B's anchor and key move along z to
+  [1.4, 1.18, 3.7] with the dart on its torso, so the rope dart's pull and B's drag run toward the pillar as the
+  source says. F-071 resolved.
 - The genre profiles name the body type (M9-06d, owner O85 as clarified, S-031): `schemas/modality/<genre>.schema.json`
   1.1 gain `scene.body_type` (anime: anime; live action and UGC: adult); the segment card holds two bodies keyed by
   type (card 3, schema 3.0); forward kinematics reads the genre's body_type. No output changes.

@@ -10,18 +10,18 @@ Layer order 1.7; rules 3.1; backlog 8.
 
 ## Last sessions
 
-- S-029 (applied): M9-06c: legs read from the trunk, the segment card calibrated to the source's grounded A rows, re-root (O82)
 - S-030 (applied): M9-06b: CONTACT_WORLD refuses a contact over 0.15 m; repo misses re-blocked, source misses excepted (O83)
 - S-031 (applied): M9-06d: the genre profiles name each genre's body type; the card holds two bodies (O85 as clarified)
+- S-032 (applied): M9-09h: at 8.0 B moves to A's far side, so the rope dart's pull runs toward the pillar (F-071, O86)
 
 ## Next slices
 
-- M9-09h (next, step temporal): F-071: B moves to A's far side at 8.0, so the pull runs toward the pillar (O86)
-- M9-10 (ready, step effort): F4.3/F4.4 B's active keys and the idle-fighter check
+- M9-10 (next, step effort): F4.3/F4.4 B's active keys and the idle-fighter check
 - M9-11 (ready, step render): FR.7 genre cards; FR.6 money-shot frame parts; FR.2 limb paths
 - M9-12 (ready, step render): O19 D9-style staff lines
+- M9-13 (ready, step camera): C10 camera in V5's wording, FR.5 arc, F8.1-F8.3
 
-M9: 22 of 38 slices done, 16 left (M9-03a blocked; 1 the owner's own).
+M9: 23 of 38 slices done, 15 left (M9-03a blocked; 1 the owner's own).
 
 ## Waiting on the owner
 
@@ -36,7 +36,7 @@ M9: 22 of 38 slices done, 16 left (M9-03a blocked; 1 the owner's own).
 - F-066 (high): What is a key's root position: the pelvis or the ground point?
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 
-## Open findings: 35
+## Open findings: 34
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -55,4 +55,4 @@ M9: 22 of 38 slices done, 16 left (M9-03a blocked; 1 the owner's own).
 
 ## Next free IDs
 
-Decision ADR-O86, finding F-072, session S-032, render R20.
+Decision ADR-O87, finding F-072, session S-033, render R20.
