@@ -206,8 +206,8 @@ def test_the_floor_finds_a_hit_by_what_strikes():
 
 
 def test_o92_s_own_words_pass_the_floor():
-    """F-210 (RV-99b, owner O92): a negation governs its clause, so O92's own sentences ask for no ramp and no insert and
-    pass as a hit rule's words; a negation does not reach past its clause."""
+    """F-210 (RV-99b, RV-99c; owner O92): a negation reaches the phrase it heads, so O92's own sentences ask for no ramp
+    and no insert and pass as a hit rule's words; a negation does not reach past its clause."""
     from planner import camera_library
     o92 = {"id": "o92", "trigger": "hit", "statement": "Camera hold with both bodies in frame. No playback ramps. Hits are "
            "holds, not inserts.", "asks": {"movement": ["static"], "subjects": "all_present"}}
@@ -219,6 +219,32 @@ def test_o92_s_own_words_pass_the_floor():
                        "asks": {"scale": ["close"], "movement": ["static"], "subjects": "all_present"}}
     assert "p: its words put a close-up or an insert on a hit, which owner O92 struck" in \
         camera_library.rule_problems(past_the_clause)
+
+
+def test_a_negation_reaches_only_its_phrase_and_the_feet_strike():
+    """F-233 (RV-99c, owner O92): a negation reaches only the phrase it heads, so the four rules RV-99b let through are
+    refused again, and the feet strike, so the wizard example's own hit with a close-up is refused; O92's sentences
+    (test above), a negated shake and a landing on both feet still pass."""
+    from planner import camera_library
+    push = {"scale": ["close"], "movement": ["dolly_in"]}
+    rules = [("fast_move", "Push in to a close-up without delay as the blow lands.", push),
+             ("fast_move", "Cut close with no warning on each impact.", {"scale": ["close"]}),
+             ("any_cut", "Cut without hesitation to slow motion as the knee lands.", {}),
+             ("hit", "Hold medium on both without a cut and let the frame shake on impact.",
+              {"scale": ["medium"], "movement": ["static"], "subjects": "all_present"}),
+             ("fast_move", "Never cut away and push to a close-up as the knee connects.", push),
+             ("fast_move", "Cut to a close-up as the acrobat's foot connects with the wizard's chest.", {"scale": ["close"]}),
+             ("fast_move", "Push to a close-up as A's foot meets the kunai.", push),
+             ("fast_move", "Cut to a close-up as the foot slams into the chest.", {"scale": ["close"]}),
+             ("fast_move", "Push to a close-up as the kicking leg lands.", push),
+             ("fast_move", "Push to a close-up as the stabbing kunai is driven home.", push)]
+    for trigger, statement, asks in rules:
+        assert camera_library.rule_problems({"id": "probe", "trigger": trigger, "statement": statement, "asks": asks}), statement
+    calm = [("fast_move", "Track the acrobat as both feet land on the stone.", {"movement": ["tracking"]}),
+            ("hit", "Hold medium on both fighters without a cut; no shake on impact.",
+             {"scale": ["medium"], "movement": ["static"], "subjects": "all_present"})]
+    for trigger, statement, asks in calm:
+        assert camera_library.rule_problems({"id": "calm", "trigger": trigger, "statement": statement, "asks": asks}) == []
 
 
 def test_a_hit_from_the_contacts_is_a_camera_hold_at_s16():

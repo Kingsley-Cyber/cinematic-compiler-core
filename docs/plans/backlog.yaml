@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 46
+version: 47
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -180,6 +180,7 @@ items:
      step: motion, plan: PLAN-007, depends_on: [RV-59f, RV-108], findings: [F-089, F-220, F-225], codes: []}
   # Principal review 8 (S-099) and ADR-O110 (owner, 2026-10-12): only what changes what a prompt tells the renderer,
   # or a check this run loosened, is built now (RV-113, RV-59j, RV-59k, RV-59l, RV-99c); then the owner renders.
+  # Done by S-104; the run then stops for the owner's renders (ADR-O110), the queue below waiting.
   - {id: RV-113, title: "Every prose prompt's legend hangs the legs from the spine as forward kinematics does (ADR-O84): root -> Sp -> arms, legs and NK -> HD; C29's note follows", status: done,
      step: render, plan: PLAN-007, depends_on: [], findings: [F-231], codes: []}
   - {id: RV-59j, title: "S13 refuses an in-between of a grounded body with none of its keys' claimed supports on its surface; B's 6.45 and 6.7 re-solved with both soles held (and 7.375 added), every in-between's words from its measured pose (split in S-101 before its close: the crash's floor went to RV-59m)", status: done,
@@ -190,9 +191,9 @@ items:
      step: render, plan: PLAN-007, depends_on: [RV-59i], findings: [F-232], codes: []}
   - {id: RV-59l, title: "Between keys a body standing on its keys' claimed supports is not airborne (a landing still never is): RV-59h's loosening undone", status: done,
      step: motion, plan: PLAN-007, depends_on: [RV-59h], findings: [F-233], codes: []}
-  - {id: RV-99c, title: "The camera floor's negation governs only the phrase it heads (the four rules RV-99b let through refused again, O92's own sentences passing) and the feet are striking parts", status: next,
+  - {id: RV-99c, title: "The camera floor's negation governs only the phrase it heads (the four rules RV-99b let through refused again, O92's own sentences passing) and the feet are striking parts", status: done,
      step: camera, plan: PLAN-007, depends_on: [RV-99b], findings: [F-233, F-210], codes: []}
-  - {id: RV-59g, title: "CONTACT_WORLD on every open support at every frame between keys (the DAG's 'respect support'), the examples' takeoffs placed where the motion leaves its surface", status: ready,
+  - {id: RV-59g, title: "CONTACT_WORLD on every open support at every frame between keys (the DAG's 'respect support'), the examples' takeoffs placed where the motion leaves its surface", status: next,
      step: motion, plan: PLAN-007, depends_on: [RV-59f], findings: [F-221], codes: []}
   - {id: RV-107, title: "The wizard example's push-off at the pillar's release and its landing keyed where the fall ends; c06 and c08 re-authored; beat_planning.txt teaches RV-59d's measure", status: ready,
      step: temporal, plan: PLAN-007, depends_on: [RV-59f], findings: [F-227], codes: []}

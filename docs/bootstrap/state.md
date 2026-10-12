@@ -6,20 +6,20 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 7.2; backlog 46.
+Layer order 1.7; rules 7.2; backlog 47.
 
 ## Last sessions
 
-- S-101 (applied): RV-59j: an in-between keeps its keys' supports; B's in-betweens stand, and its crash stays over the floor
 - S-102 (applied): RV-59k: an in-between inside a declared turn prints its root as mid-turn
 - S-103 (applied): RV-59l: between keys a body stands on what its last key claims, as S07 changes it
+- S-104 (applied): RV-99c: a negation reaches only the phrase it heads, and the feet strike
 
 ## Next slices
 
-- RV-99c (next, step camera): The camera floor's negation governs only the phrase it heads (the four rules RV-99b let through refused again, O92's own sentences passing) and the feet are striking parts
+- RV-59g (next, step motion): CONTACT_WORLD on every open support at every frame between keys (the DAG's 'respect support'), the examples' takeoffs placed where the motion leaves its surface
 - RV-35b (ready, step all): The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools
-- RV-59g (ready, step motion): CONTACT_WORLD on every open support at every frame between keys (the DAG's 'respect support'), the examples' takeoffs placed where the motion leaves its surface
 - RV-107 (ready, step temporal): The wizard example's push-off at the pillar's release and its landing keyed where the fall ends; c06 and c08 re-authored; beat_planning.txt teaches RV-59d's measure
+- RV-95c (ready, step motion): The pickup rows worded in the printed legend's frame, and A's head at 7.5 aimed at B by a facing goal in the re-block solver (or its words dropped)
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -91,7 +91,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 145
+## Open findings: 144
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -137,8 +137,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-216 (high, L1.1): Repo-authored fight defects outside the owner's questions
 - F-221 (high, L4c): Open supports are not checked between keys: a supporting part lifts far off its surface before its release
 - F-230 (high, L4c): B's in-between keys lift it off the ground, sink its crash and name motions they do not make
-- F-233 (high, all): Two checks this run loosened: a standing body reads airborne between keys; a negation swallows a hit
 
 ## Next free IDs
 
-Decision ADR-O111, finding F-234, session S-104, render R20.
+Decision ADR-O111, finding F-234, session S-105, render R20.

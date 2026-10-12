@@ -6,6 +6,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The camera floor's negation reaches only the phrase it heads, and the feet strike (RV-99c, F-233, S-104): "Push in
+  to a close-up without delay as the blow lands." and three more rules RV-99b let through are refused again, and so is
+  a close-up on the wizard example's own kick; O92's own sentences and the library's cards pass unchanged.
 - Between keys a body stands on what its last key claims, as S07's onsets and releases change it (RV-59l, F-233,
   S-103): a standing body's between-keys miss is no longer excused as airborne (RV-59h had read S07 alone); a landing
   still never is.

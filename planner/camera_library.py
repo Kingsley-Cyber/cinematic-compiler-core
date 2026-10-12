@@ -64,12 +64,17 @@ TERMS = [
 # or a blade meeting something (interpretation, Claude's, for owner review: the parts, the blades and the words of
 # meeting); "between hits" and a kick-off are not hits.
 CONTACT_NOUNS = r"blows?|hits?|impacts?|strikes?|struck|contacts?"
-ATTACKS = r"kicks?(?![- ]off)|punch(?:es)?|slash(?:es)?|stabs?|chops?|jabs?|headbutts?|uppercuts?"
+ATTACKS = (r"kick(?:s|ing|ed)?(?![- ]off)|punch(?:es|ing|ed)?|slash(?:es|ing|ed)?|stab(?:s|bing|bed)?|chops?|jabs?|"
+           r"headbutts?|uppercuts?")
 STRIKERS = (r"knees?|elbows?|palms?|fists?|knuckles|heels?|shins?|forearms?|kunai|blades?|knife|knives|swords?|daggers?|"
             r"darts?|spears?|shuriken")
-MEETS = (r"lands?|landing|connect(?:s|ing|ed)?|meet(?:s|ing)?|drives?|driving|drove|sinks?|sinking|sank|slam(?:s|ming|med)?|"
-         r"smash(?:es|ing|ed)?|ram(?:s|ming|med)?|bur(?:y|ies|ying|ied)|plung(?:e|es|ing|ed)|pierc(?:e|es|ing|ed)|"
-         r"embed(?:s|ding|ded)?")
+STRIKES = (r"connect(?:s|ing|ed)?|meet(?:s|ing)?|drives?|driving|drove|driven|sinks?|sinking|sank|slam(?:s|ming|med)?|"
+           r"smash(?:es|ing|ed)?|ram(?:s|ming|med)?|bur(?:y|ies|ying|ied)|plung(?:e|es|ing|ed)|pierc(?:e|es|ing|ed)|"
+           r"embed(?:s|ding|ded)?")
+MEETS = r"lands?|landing|" + STRIKES
+# F-233 (RV-99c): the feet strike too (the wizard example's hit is the acrobat's foot on the wizard's chest, the fight's
+# deflect A's foot on the kunai); a foot's landing is a landing, not a hit, so only STRIKES reads them
+FEET = r"foot|feet|boots?|toes?|soles?"
 BODY = r"spine|back|chest|ribs?|gut|stomach|belly|face|jaw|chin|shoulders?|side|body|head|neck|torso|throat|temple"
 BETWEEN_HITS = re.compile(r"\bbetween (?:blows|hits|impacts|strikes|contacts|exchanges|kicks|punches)\b", re.I)
 # F-210 (RV-99, RV-99b; owner O92): RV-60's word lists, kept as a floor under the fields on every rule a card prints
@@ -82,11 +87,16 @@ CLOSE = re.compile(r"\b(?:close[- ]?ups?|close|tight|ECUs?|macro|inserts?|detail
 SINGLE = re.compile(r"\b(?:alone|solely)\b|\b(?:only|just) (?:on )?the (?:receiver|attacker|striker|defender|target|victim)\b|"
                     r"\bon the (?:receiver|attacker|striker|defender|target|victim)\b(?! and\b)", re.I)
 SHAKE = re.compile(r"\b(?:hand-?held|shak(?:e|es|y|ing)|jitter\w*|wobbl\w*|judder\w*|trembl\w*|rattl\w*|quak\w*)\b", re.I)
-# F-210 (RV-99b): a word is said unless a negation governs it: no, not, never, without, nor, avoid or "instead of"
-# before it in its clause (a clause ends at a comma, a stop, a colon, a semicolon or "but"), so O92's "No playback
-# ramps." and "Hits are holds, not inserts" ask for neither.
+# F-210 (RV-99b), F-233 (RV-99c): a word is said unless a negation before it in its clause reaches it (a clause ends
+# at a comma, a stop, a colon, a semicolon or "but"). A negation reaches only the phrase it heads: a noun's (no,
+# without, nor, instead of) to the next preposition or conjunction, a verb's (not, never, avoid) to the next
+# conjunction; so O92's "No playback ramps." and "Hits are holds, not inserts" ask for neither, while "without delay as
+# the blow lands" still names the blow.
 NEGATION = re.compile(r"\b(?:no|not|never|without|nor|avoid(?:s|ed|ing)?|instead of)\b", re.I)
 CLAUSE = re.compile(r"[,.;:!?]|\bbut\b", re.I)
+CONJUNCTION = r"as|and|or|while|when|whenever|then|until|so|once|before|after|lets?"
+VERB_REACH = re.compile(rf"\b(?:{CONJUNCTION})\b", re.I)
+NOUN_REACH = re.compile(rf"\b(?:{CONJUNCTION}|to|on|at|in|into|onto|for|with|by|from|of|over|under|through)\b", re.I)
 
 
 def _forms(verb):
@@ -112,15 +122,26 @@ def hit_words():
     verbs = sorted({verb for field in fields.values() for verb in field["values"]} - {"throw"})
     combat = "|".join(form for verb in verbs for form in _forms(verb))
     return re.compile(rf"\b(?:{CONTACT_NOUNS}|{ATTACKS}|{combat})\b|\b(?:{STRIKERS})\b(?:\W+\w+){{0,3}}?\W+(?:{MEETS})\b|"
-                      rf"\b(?:{STRIKERS})\b(?:\W+\w+){{0,3}}?\W+into\W+(?:\w+\W+){{0,2}}?(?:{BODY})\b", re.I)
+                      rf"\b(?:{STRIKERS}|{FEET})\b(?:\W+\w+){{0,3}}?\W+into\W+(?:\w+\W+){{0,2}}?(?:{BODY})\b|"
+                      rf"\b(?:{FEET})\b(?:\W+\w+){{0,3}}?\W+(?:{STRIKES})\b", re.I)
+
+
+def _reach(words, negation):
+    """Where a negation's reach ends (RV-99c): a verb's at the next conjunction, a noun's at the next preposition or
+    conjunction, either at its clause's end."""
+    clause = CLAUSE.search(words, negation.end())
+    end = clause.start() if clause else len(words)
+    verbal = negation.group(0).lower() in ("not", "never") or negation.group(0).lower().startswith("avoid")
+    stop = (VERB_REACH if verbal else NOUN_REACH).search(words, negation.end(), end)
+    return stop.start() if stop else end
 
 
 def said(pattern, words):
-    """The first match of `pattern` (a pattern or its text) in `words` that no negation governs, else None."""
+    """The first match of `pattern` (a pattern or its text) in `words` that no negation reaches, else None."""
     pattern = re.compile(pattern, re.I) if isinstance(pattern, str) else pattern
     for found in pattern.finditer(words):
         start = max((c.end() for c in CLAUSE.finditer(words, 0, found.start())), default=0)
-        if not NEGATION.search(words, start, found.start()):
+        if not any(found.start() < _reach(words, n) for n in NEGATION.finditer(words, start, found.start())):
             return found
     return None
 

@@ -101,10 +101,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.2; backlog 46.
-- Last session: S-103 (2026-10-12, applied): RV-59l: between keys a body stands on what its last key claims, as S07 changes it.
-- Next slice: RV-99c The camera floor's negation governs only the phrase it heads (the four rules RV-99b let through refused again, O92's own sentences passing) and the feet are striking parts (step camera).
-- Open findings: 145; decisions: 137 (0 proposed, 7 owner_default awaiting the owner).
+- Layer order 1.7; rules 7.2; backlog 47.
+- Last session: S-104 (2026-10-12, applied): RV-99c: a negation reaches only the phrase it heads, and the feet strike.
+- Next slice: RV-59g CONTACT_WORLD on every open support at every frame between keys (the DAG's 'respect support'), the examples' takeoffs placed where the motion leaves its surface (step motion).
+- Open findings: 144; decisions: 137 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

@@ -12,7 +12,7 @@ high
 all
 
 ## Status
-in progress
+resolved
 
 ## Reported
 2026-10-12
@@ -66,4 +66,8 @@ ADR-O104, O92
 In part by RV-59l (S-103): between keys, and at an in-between's instant, an actor stands on what its last key claims
 (S11; an in-between takes its key's) with S07's onsets added and releases taken away since, so a standing body is not
 airborne; both planted touches are refused again (B's at 8.25, 1.112 m; the wizard's at 4.0, 0.966 m), and RV-59h's
-landing and pillar-release cases hold. Left: the camera floor (RV-99c).
+landing and pillar-release cases hold. And by RV-99c (S-104): a negation reaches only the phrase it heads (a
+noun's to the next preposition or conjunction, a verb's to the next conjunction), so the four rules RV-99b let through
+are refused again, and the feet strike (a foot, boot, toe or sole meeting something or driven into a body; a landing
+is not), so the wizard example's own hit with a close-up is refused; O92's sentences and the library's cards pass
+unchanged. F-210 stays open: the floor is still a word list.

@@ -190,3 +190,4 @@ backlog order (backlog 33).
 - 2026-10-12 — RV-59j done (S-101): an in-between keeps one of its keys' supports (INBETWEEN_SUPPORT); B stands at 6.45 and 6.7 (both soles held), 7.375 added; the in-betweens' words from their poses; the crash's floor split to RV-59m (blocked, F-215); RV-59k next.
 - 2026-10-12 — RV-59k done (S-102): an in-between inside a declared turn prints its root as mid-turn; ROTATION_ANGLES_PRINTED reads the in-between lines; RV-59l next.
 - 2026-10-12 — RV-59l done (S-103): between keys a body stands on what its last key claims, as S07 changes it; RV-59h's loosening undone; RV-99c next.
+- 2026-10-12 — RV-99c done (S-104): a negation reaches only the phrase it heads; the feet strike; F-233 resolved. ADR-O110's five are done; the run stops for the owner's renders (RV-59g next after them).
