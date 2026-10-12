@@ -46,6 +46,8 @@ Added in S-019: rule R-34 scoped to whole-body checks (ADR-O76 keeps the owner's
 (compiler/passes/derived/p11_kinematic.py): MOMENTUM_MISSING's arc and 0.3 m; the hang said once per span in RULES.
 Added in S-022 (solver/euler_solver.py): a turn that stays on the ground (a tip) needs no launch; the takeoff
 effects of the wizard's two flips sit on the beats before them (run_in, the slicing bolt).
+Added in S-024 (planner/dynamic_beat_validator.py): PROP_SUPPORT reads a top by height alone and a card's worn
+state as the wearer's support; the pellet bursts as it lands at 4.0 (the owner's words: fall after bursting).
 
 ## Impact
 Waits on the owner.

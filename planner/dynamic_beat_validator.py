@@ -19,6 +19,10 @@ Surface height (owner O21, audit X7, SURFACE_HEIGHT): when a foot starts bearing
 (its world card's geometry text, "from y=0 to y=8"; a floor without one sits at the convention's ground), the
 performer's root (its latest anchor) lies between the top, less 0.05 m, and 1.2 m above it. Interpretation (Claude's,
 for owner review): the range holds whether the root is the pelvis or the ground point (ADR-O72 open).
+Prop support (owner O78, PROP_SUPPORT): a free prop at rest lies on a surface's top (within 0.1 m of its height),
+or a fact since its last hold places it (a location, or worn: yes on its wearer). Interpretation (Claude's, for owner
+review): the height alone stands for "on the top" (surfaces have no extent), and a card's worn state is the wearer's
+support.
 Combat verbs (owner O22, plan F4.1, CONTACT_VERB): a contact's optional verb is one its contact type takes in the
 packet's `combat_verbs` (library/combat_verbs.yaml); catch, throw and disarm name a prop, and a thrown prop has a sample
 with velocity at the throw (interpretation: a throw sends the prop off moving, so a touch may throw).
@@ -41,7 +45,8 @@ PHASE_ORDER = {"pre": 0, None: 1, "post": 2}
 BEFORE = 1e-6  # a pre sample's holder is read this long before its contact
 TOP = re.compile(r"to y=(-?\d+(?:\.\d+)?)")
 GROUND = re.compile(r"y=(-?\d+(?:\.\d+)?)")
-SURFACE_SLACK_M, LEG_M = 0.05, 1.2  # interpretation (Claude's, for owner review): root height over a supporting top
+# interpretation (Claude's, for owner review): a root's height over its supporting top; a resting prop on a top
+SURFACE_SLACK_M, LEG_M, SUPPORT_M = 0.05, 1.2, 0.1
 TELEPORT_MPS = 25.0  # owner O12: anything faster between keys is a teleport (human sprint ~12, anime ~15, strikes ~20)
 
 
@@ -133,7 +138,30 @@ def validate(plan, packet):
                 findings.append(_finding("MODE_TRANSITION", "A mode change needs a beat that causes it", bid, [entity, mode]))
             last_mode[entity] = mode
     return (findings + _teleports(beats) + _vanished(beats) + _prop_kinematics(beats, props, packet["scene"]["genre"])
-            + _thrown(beats) + _surface_heights(beats, _tops(packet)))
+            + _thrown(beats) + _surface_heights(beats, _tops(packet)) + _prop_support(beats, _tops(packet)))
+
+
+def _prop_support(beats, tops):
+    """PROP_SUPPORT (owner O78, F-065): a free prop at rest has something under it."""
+    findings, held = [], holds(beats)
+    facts = sorted((b["t"] if kind == "requires" else b["t"] + b["dur"], f["subject"]["id"], f["property"], f["value"])
+                   for b in beats for kind in ("requires", "effects") for f in b[kind] if f["subject"]["kind"] == "prop")
+    for beat in beats:
+        for sample in beat.get("prop_samples", []):
+            prop, t = sample["prop"], sample["t"]
+            moving = sample["v"] is not None and any(abs(x) > EPSILON for x in sample["v"])
+            spans = held.get(prop, [])
+            if moving or sample["float"] or any(start - EPSILON <= t < end - EPSILON for start, end, _ in spans):
+                continue
+            if any(abs(sample["p"][1] - top) <= SUPPORT_M + EPSILON for top in tops.values()):
+                continue
+            since = max((end for _, end, _ in spans if end <= t + EPSILON), default=-math.inf)
+            if not any(what == prop and since - EPSILON <= at <= t + EPSILON and (
+                    (name == "location" and value != "unknown") or (name == "worn" and value == "yes"))
+                       for at, what, name, value in facts):
+                findings.append(_finding("PROP_SUPPORT", f"{prop} rests at {sample['p']} at {t} with nothing under it "
+                                         "(owner O78)", beat["id"], t))
+    return findings
 
 
 def _tops(packet):

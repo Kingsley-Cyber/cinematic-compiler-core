@@ -12,7 +12,7 @@ low
 L1.1
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -50,4 +50,5 @@ ADR-O78
 - PLAN-003
 
 ## Resolution
-Open.
+Owner O78: PROP_SUPPORT (S04; M9-09e, S-024) refuses a free prop at rest with nothing under it. A's hand throws the
+pellet down at 3.7; it bursts on the ground at 4.0 and stays (R-33; the golden test records it).

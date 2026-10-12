@@ -101,9 +101,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 3.0; backlog 5.
-- Last session: S-023 (2026-10-11, applied): M9-09d: the kunai reverses to -Z at the deflect (F-064, O77).
-- Next slice: M9-09e F-065: a prop at rest has support; the smoke pellet falls (O78) (step temporal).
-- Open findings: 36; decisions: 107 (0 proposed).
+- Last session: S-024 (2026-10-11, applied): M9-09e: a prop at rest has something under it; the smoke pellet falls (F-065, O78).
+- Next slice: M9-09f F-067: the reference query says A falls from y=10 (O79) (step intent).
+- Open findings: 35; decisions: 107 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

@@ -130,8 +130,8 @@ WHERE: 0.00-3.00 carried by A · 3.00-5.90 held by A L hand · 5.90-7.50 at rest
 ONE rope dart only: never duplicated, never in two hands at once, never lost.
 
 [PROP STATE MACHINE – smoke pellet]
-0.00 holder none, smoke sealed · 3.70 touched by A R hand · 3.70 p[0.4, 1.1, 4.7] at rest · 4.00 smoke sealed -> burst
-WHERE: 0.00-3.70 carried by A · 3.70-10.00 at rest at [0.4, 1.1, 4.7]
+0.00 holder none, smoke sealed · 3.70 touched by A R hand · 3.70 p[0.4, 1.1, 4.7] v[0, -2.2, 0] moving down · 4.00 location unknown -> ground, smoke sealed -> burst · 4.00 p[0.4, 0, 4.7] at rest
+WHERE: 0.00-3.70 carried by A · 3.70-4.00 ballistic under gravity from p[0.4, 1.1, 4.7] v[0, -2.2, 0] · 4.00-10.00 at rest on the ground at [0.4, 0, 4.7]
 ONE smoke pellet only: never duplicated, never in two hands at once, never lost.
 
 [PROP STATE MACHINE – shuriken volley]
@@ -222,6 +222,7 @@ Ink: heavy on A,broken in smears,clean on holds,smear follows ONLY the declared 
 - Rotation is continuous: turns, flips and cartwheels sweep through every angle in between.
 - From 3.00 to the end, A keeps location ground.
 - From 3.00 to the end, kunai keeps location ground.
+- From 4.00 to the end, smoke pellet keeps location ground.
 - From 4.00 to the end, smoke pellet keeps smoke burst.
 - From 4.40 to the end, substitution log keeps deployment fallen.
 - From 5.90 to the end, rope dart keeps location ground.

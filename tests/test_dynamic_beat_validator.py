@@ -201,3 +201,19 @@ def test_a_landing_stands_on_the_top_it_lands_on():
     assert codes(7.2) == ["SURFACE_HEIGHT", "SURFACE_HEIGHT"]                  # the source's 7.2: under the top
     assert codes(9.5) == ["SURFACE_HEIGHT", "SURFACE_HEIGHT"]                  # floating over it
 
+
+def test_a_resting_prop_has_something_under_it():
+    """PROP_SUPPORT (owner O78, F-065): on a top, or placed by a fact since its last hold (a location, or worn)."""
+    from planner.dynamic_beat_validator import _prop_support
+
+    def codes(y, facts=()):
+        beat = {"id": "b01", "t": 0.0, "dur": 1.0, "contacts": [], "requires": [], "effects": list(facts),
+                "prop_samples": [{"prop": "k", "t": 1.0, "p": [0.0, y, 0.0], "v": [0, 0, 0], "float": False}]}
+        return [f["code"] for f in _prop_support([beat], {"ground": 0.0})]
+
+    fact = lambda name, value: {"subject": {"kind": "prop", "id": "k"}, "property": name, "value": value}  # noqa: E731
+    assert codes(0.0) == []                                                   # on the ground
+    assert codes(1.1) == ["PROP_SUPPORT"]                                     # the pellet before O78: mid-air
+    assert codes(1.1, [fact("location", "wooden_pillar")]) == []              # stuck in the pillar
+    assert codes(1.6, [fact("worn", "yes")]) == []                            # worn: the wearer holds it up
+

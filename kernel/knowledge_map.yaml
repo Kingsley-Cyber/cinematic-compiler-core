@@ -984,6 +984,8 @@ rows:
     status: enforced
     codes: [PROP_TRACK_MISSING, PROP_LINE_MISSING, PROP_PHYSICS_UNSTATED]
     enforced_by:
+      - {file: planner/dynamic_beat_validator.py, check: _prop_support, code: PROP_SUPPORT,
+         test: tests/test_dynamic_beat_validator.py::test_a_resting_prop_has_something_under_it}
       - {file: planner/dynamic_beat_validator.py, check: _prop_kinematics, code: PROP_KINEMATICS,
          test: tests/test_dynamic_beat_validator.py::test_prop_kinematics_holds_free_flight_to_gravity}
       - {file: planner/dynamic_beat_validator.py, check: _contact_pairs, code: PROP_KINEMATICS,

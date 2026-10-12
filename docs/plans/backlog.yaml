@@ -51,9 +51,9 @@ items:
      depends_on: [M9-05], findings: [F-028, F-058], codes: [AIRBORNE_WITHOUT_LAUNCH]}
   - {id: M9-09d, title: "F-064: the kunai reverses to -Z at the deflect (O77)", status: done, step: temporal,
      plan: PLAN-003, depends_on: [M9-04a], findings: [F-064], codes: []}
-  - {id: M9-09e, title: "F-065: a prop at rest has support; the smoke pellet falls (O78)", status: next, step: temporal,
+  - {id: M9-09e, title: "F-065: a prop at rest has support; the smoke pellet falls (O78)", status: done, step: temporal,
      plan: PLAN-003, depends_on: [M9-04b], findings: [F-065], codes: [PROP_SUPPORT]}
-  - {id: M9-09f, title: "F-067: the reference query says A falls from y=10 (O79)", status: ready, step: intent,
+  - {id: M9-09f, title: "F-067: the reference query says A falls from y=10 (O79)", status: next, step: intent,
      plan: PLAN-003, depends_on: [M9-08b], findings: [F-067], codes: []}
   - {id: M9-09g, title: "R-34 audit: the face's heading through the spine (O76)", status: ready, step: facial,
      plan: PLAN-003, depends_on: [M9-09a], findings: [], codes: []}

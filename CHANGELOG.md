@@ -18,6 +18,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
   quality)" for punch and "(press quality)" and so on; S15's data and LBN-2.4 keep the Laban vocabulary.
 
 ### Added
+- PROP_SUPPORT (M9-09e, owner O78, S-024): S04 refuses a free prop resting with nothing under it (a top within
+  0.1 m, or a location or worn fact since its last hold); the smoke pellet is thrown down at 3.7 and bursts on the
+  ground at 4.0. F-065 resolved.
 - AIRBORNE_WITHOUT_LAUNCH (M9-09c, plan FR.4, owner O80, S-022): S13 refuses an airborne flip or cartwheel that
   starts turning on the ground or has no grounded support before it; the wizard's vault and dodge flip take off at
   1.20 and 8.60 (R-33); hang lines start at the first airborne key. F-058 resolved.

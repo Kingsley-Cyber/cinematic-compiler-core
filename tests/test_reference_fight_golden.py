@@ -206,5 +206,16 @@ def test_the_aerial_spans_declare_their_hang_time():
     assert all(any(t0 < t < t1 for t0, t1 in HANG_SPANS[entity]) for entity, t in floats)
 
 
+# Owner O78 (F-065, backlog M9-09e): the smoke pellet does not rest in the air; A's hand throws it down at 3.7 and it
+# bursts on the ground at 4.0 (the source's burst time) and stays there.
+PELLET = [(3.7, [0.4, 1.1, 4.7], [0, -2.2, 0]), (4.0, [0.4, 0.0, 4.7], [0, 0, 0])]
+
+
+def test_the_smoke_pellet_falls_and_bursts_on_the_ground():
+    samples = sorted((s["t"], s["p"], s["v"]) for b in ENVELOPE["nodes"]["beats"]["items"]
+                     for s in b.get("prop_samples", []) if s["prop"] == "smoke_pellet")
+    assert samples == PELLET
+
+
 def test_render_txt_is_the_render_node():
     assert (FOLDER / "render.txt").read_text(encoding="utf-8") == TEXT + "\n"
