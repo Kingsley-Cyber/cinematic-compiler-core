@@ -59,16 +59,17 @@ interpolated instant): ADR-O104 (RV-02a), for the owner to confirm.
 | RV-10 | L1.1 | high | done (S-051) | the kunai drive and the catch (F-084) |
 | RV-11 | L6 | high | done (S-052) | compile refuses non-deliverables; excluded rows N/A (F-085) |
 | RV-12 | L6 | medium | done (S-053) | the cartwheel's words (F-087) |
-| RV-13, RV-13b | L6 | high | open | prompt length (F-088) |
-| RV-14 | L4c | high | open | every-key body checks (F-089, F-062) |
-| RV-15 | L5.5 | high | open | the camera's aim and vertical framing (F-090) |
+| RV-13, RV-13b | L6 | high | RV-13 done (S-075); RV-13b waits for the owner (F-088) | prompt length (F-088) |
+| RV-14a, RV-14b | L4c | high | RV-14a done (S-078); RV-14b waits for the owner (F-148) | every-key body checks (F-089, F-062) |
+| RV-15a, RV-15b, RV-15c | L5.5 | high | RV-15a, RV-15b done (S-076, S-077); RV-15c waits for the owner (F-148) | the camera's aim and vertical framing (F-090); the body's aim (F-145) |
 | RV-16 | L6 | high | open | one laban chain per fighter (F-091) |
 | RV-17 | L2.2 | medium | open | one possession model; PROP_TWO_HOLDERS (F-092) |
 | RV-18 to RV-41 | various | medium-low | open | F-093 to F-116 and F-016, one slice each (docs/plans/backlog.yaml) |
 | RV-42 to RV-54 | various | high-low | RV-42, RV-43, RV-49, RV-45, RV-46, RV-48a, RV-48b done (S-046, S-047, S-049, S-055 to S-058); the rest open | the second review's gaps, F-122 to F-150 (docs/reports/2026-10-12-principal-review-2.md), and F-151 (a body through a prop, RV-54) |
 | RV-55 to RV-65 | various | high-medium | RV-57, RV-60, RV-61, RV-62 done (S-059 to S-062); the rest open (RV-55, RV-56, RV-63, RV-64b wait for the owner) | the third review's gaps, F-152 to F-167 (docs/reports/2026-10-12-principal-review-3.md), and RV-65 (RV-20's prompt part) |
 | RV-66 to RV-84 | various | high-medium | RV-66 to RV-72 done (S-064 to S-071); the rest open | the fourth review's gaps, F-169 to F-186 (docs/reports/2026-10-12-principal-review-4.md) |
-| RV-85 to RV-93, RV-82b | various | high-low | open (RV-82b waits for the owner) | the fifth review's gaps, F-187 to F-195 (docs/reports/2026-10-12-principal-review-5.md); its questions F-196 to F-203 |
+| RV-85 to RV-93, RV-82b | various | high-low | RV-85, RV-86 done (S-073, S-074); the rest open (RV-82b waits for the owner) | the fifth review's gaps, F-187 to F-195 (docs/reports/2026-10-12-principal-review-5.md); its questions F-196 to F-203 |
+| RV-94 | L5.5 | medium | open | a moving camera's path (F-204, S-077) |
 
 ## Dependencies
 - RV-02a after RV-05 (A's final poses); RV-02b after RV-02a, RV-03 and RV-06; RV-07 after RV-08; RV-13b after RV-13 and
@@ -156,3 +157,4 @@ RV-93, RV-75, RV-76, RV-77, RV-58, RV-18, RV-64 and the rest in backlog order (b
 - 2026-10-12 — RV-13 done (S-075): PROMPT_LENGTH refuses delivery of a prompt over both of O97's caps; fitting waits (RV-13b).
 - 2026-10-12 — RV-15a done (S-076): the camera aims at the body it frames; VERTICAL_FRAMING; RV-15 split (15b inserts and props, 15c body aim, blocked).
 - 2026-10-12 — RV-15b done (S-077): an insert aims at its detail; a framed prop is in frame; camera schemas 2.0; F-090 resolved; F-204 and RV-94 filed.
+- 2026-10-12 — RV-14a done (S-078): FLOOR_PENETRATION; every claimed support measured at every key; RV-14b (held and embedded props) waits for F-148; the table above brought up to date.

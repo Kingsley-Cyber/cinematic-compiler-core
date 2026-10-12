@@ -142,6 +142,11 @@ beat is its sample at that instant, else the hand that holds it, else its flight
 rest at its last sample, and none while carried or unplaced; an insert's detail names a part by forward kinematics'
 contact points (palm, fingers and fist read as the hand; chest, back, spine and shoulder as the torso) or a prop; in
 an insert, its target's place on screen is the detail.
+Added in S-078 (RV-14a, solver/floor_penetration.py, solver/contact_world.py): the floor is the lowest floor top,
+else the convention's ground; a body is measured by its forward-kinematics points, not its capsules' surfaces, so a
+part may sink by its radius within O72's 0.15 m; a key's claimed supports are its S11 kinematic node's, each measured
+to the top its open support contact names or, with no contact, to the floor; a claim on a surface that is not a floor
+is not measured until RV-22 gives that surface its faces.
 
 ## Impact
 Waits on the owner.

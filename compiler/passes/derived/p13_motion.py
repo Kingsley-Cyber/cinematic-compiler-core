@@ -1,7 +1,9 @@
 """S13 pass (band L4c, authored + derived): one Euler key pose per entity per beat, checked against S04.
 
 Authored: root pos/rot, the kernel joints, turn and axis declarations. Checked by solver/euler_solver.py, by
-CONTACT_WORLD (solver/contact_world.py) and by BODY_OVERLAP (solver/body_overlap.py: no body through another, RV-49).
+CONTACT_WORLD (solver/contact_world.py; a support on a floor at every key it spans, RV-14a), by BODY_OVERLAP
+(solver/body_overlap.py: no body through another, RV-49) and by FLOOR_PENETRATION (solver/floor_penetration.py: no
+body under the floor at any key, RV-14a).
 Derived: root quaternion per key (solver/quaternion.py) and per-entity follows edges with the Euler delta,
 interpolation and root trajectory (solver/trajectory.py).
 """
@@ -14,7 +16,7 @@ from compiler.authoring import run_authored, seal
 from kernel.kernel_files import load as load_kernel
 from planner.dependency_graph import ROOT, load
 from planner.scene_view import slots, values_in_progress
-from solver import body_overlap, contact_world, euler_solver, forward_kinematics, quaternion, trajectory
+from solver import body_overlap, contact_world, euler_solver, floor_penetration, forward_kinematics, quaternion, trajectory
 from validators.schema_validator import validate_schema
 
 NODE, STEP = "motion", "S13"
@@ -49,7 +51,9 @@ def prepare(envelope):
                  "joint_limits": joint_limits(envelope["scene"]["genre"]),
                  "segments": forward_kinematics.segments(envelope["scene"]["genre"]), "slots": view,  # owner O85
                  "radii": forward_kinematics.radii(envelope["scene"]["genre"]),  # RV-49 (draft)
-                 "contact_world": contact_world.packet_view(envelope)})  # plan F5.2, ADR-O83
+                 "contact_world": contact_world.packet_view(envelope),  # plan F5.2, ADR-O83
+                 "floor_y": floor_penetration.floor_level(envelope["nodes"]["surfaces"]["items"],  # RV-14a (F-089)
+                                                          envelope["scene"]["ax"].get("ground"))})
 
 
 def _keys(document, packet):
@@ -74,8 +78,10 @@ def check(document, packet):
     if any(f["code"] == "MOTION_JOINTS" for f in findings):
         return findings  # forward kinematics needs every joint
     rows = contact_world.measure_plan(keys, by_id, packet)  # CONTACT_WORLD (plan F5.2, owners O72, O83)
+    bodies = contact_world.plan_bodies(keys, by_id, packet)
     return (findings + contact_world.refusals(rows, packet["contact_world"]["exceptions"])  # the owner's list (F-123)
-            + body_overlap.refusals(contact_world.plan_bodies(keys, by_id, packet)))  # RV-49 (F-144, R-18)
+            + body_overlap.refusals(bodies)  # RV-49 (F-144, R-18)
+            + floor_penetration.refusals(bodies, packet["floor_y"]))  # RV-14a (F-089, owner O72)
 
 
 def build(envelope, document, packet):

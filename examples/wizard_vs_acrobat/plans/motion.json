@@ -1,7 +1,7 @@
 {
  "step_id": "S13",
  "band": "L4c",
- "packet_sha256": "sha256:c2fbe0454b820f4fe0b5df73d143a25b5bf1cc88e095915adf8a03d772511f5a",
+ "packet_sha256": "sha256:d88f390f302dbf8db98947b370acc140dc3c02875809601a7d259b8e8a9acc9f",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -768,22 +768,22 @@
      0
     ],
     "LUL": [
-     -20,
+     -43,
      0,
      5
     ],
     "RUL": [
-     -20,
+     -43,
      0,
      -5
     ],
     "LL": [
-     45,
+     81,
      0,
      0
     ],
     "RL": [
-     45,
+     81,
      0,
      0
     ],
@@ -820,7 +820,7 @@
    },
    "turn": "flip",
    "axis_declaration": "X",
-   "description": "Backflip takeoff: arms swung overhead, chest lifting, knees springing from a shallow bend."
+   "description": "Backflip takeoff: arms swung overhead, chest lifting, knees springing from a deep bend."
   },
   {
    "slot": "acrobat@b13",

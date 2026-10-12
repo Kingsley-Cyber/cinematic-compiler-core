@@ -101,9 +101,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.1; backlog 30.
-- Last session: S-077 (2026-10-12, applied): RV-15b: an insert aims at its detail, a framed prop is in frame, and the camera schemas name the aim.
-- Next slice: RV-14 Every-key body checks: no body under the floor; supports at every key; held and embedded props at their holder (step motion).
+- Layer order 1.7; rules 7.1; backlog 31.
+- Last session: S-078 (2026-10-12, applied): RV-14: every key keeps its bodies above the floor, its supports on their surfaces and its props in hand.
+- Next slice: RV-16 One laban chain per fighter in render.txt (step render).
 - Open findings: 125; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
@@ -153,6 +153,7 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - F-203 (medium): RV-20's layer-order ADR
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog RV-15c blocked: A strike's limb and a facing head point at their target, checked at S13; B's keys re-aimed — the owner's answer in F-148 (A's source facings: the check would refuse the golden's own rows, O10)
+- Backlog RV-14b blocked: A held or embedded prop at its holder at every sample (a rope dart's dart within its line of the hand) — the owner's answer in F-148 (the climax: A's source right hand is 0.65-0.87 m from the kunai the source keeps in B's shoulder at 8.5-9.5)
 - Backlog RV-64b blocked: The S04 packet carries the scene_reference rules — the owner's answer in F-133
 - Backlog RV-13b blocked: Every prompt fits the caps (O97) — the owner's answers in F-088
 - Backlog RV-20 blocked: external_inputs complete: the layer order states what each step depends on — an accepted ADR for the layer-order edit (R-09)

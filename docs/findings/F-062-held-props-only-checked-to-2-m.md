@@ -46,6 +46,8 @@ none needed (O8 holds prop positions to the holder; the 2 m reach is Claude's in
 - PLAN-003
 - backlog M9-04
 - backlog M9-06
+- backlog RV-14b (S-078 measured every held sample: the UGC's glasses, B's kunai and shuriken meet the hand; the
+  climax's kunai misses by 0.65-0.87 m, F-148; the rope dart's dart is not at the hand by design, it needs its line)
 
 ## Resolution
 Open. The one sample the audit found was moved into A's left hand ([0.2, 0.9, 4.9], 0.54 m from the root).

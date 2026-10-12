@@ -47,4 +47,11 @@ none needed (R-18)
 - F-084
 
 ## Resolution
-Open.
+Open in part: RV-14a (S-078) refuses a body point more than 0.15 m under the floor at any key (FLOOR_PENETRATION:
+the lowest floor top, else the convention's ground), and CONTACT_WORLD measures every key's claimed supports (its S11
+kinematic node), each part to the top its open support contact names or to the floor, not only a contact's onset.
+Re-blocked, all repo-authored: the wizard example's acrobat at 8.6 (both soles 0.185 m under the ground, now a deep
+bend), B's lunge at 3.4 and 3.7 (the front sole 0.158 m up, now planted by the hip). A's 0.126 and 0.069 m at 3.0 and
+9.0 lie within the tolerance. Open: a held or embedded prop at its holder at every sample (RV-14b, blocked on F-148:
+A's source right hand is 0.65-0.87 m from the kunai at 8.5-9.5; a rope dart's sample is its dart, which needs its
+line); a support on a surface's face (RV-22); a contact between keys (RV-59).

@@ -6,20 +6,20 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 7.1; backlog 30.
+Layer order 1.7; rules 7.1; backlog 31.
 
 ## Last sessions
 
-- S-075 (applied): RV-13: PROMPT_LENGTH: a prompt over 3,500 characters for Runway or 1,000 words for BytePlus is not delivered
 - S-076 (applied): RV-15a: the camera aims at the body it frames, and every visible part is in frame vertically
 - S-077 (applied): RV-15b: an insert aims at its detail, a framed prop is in frame, and the camera schemas name the aim
+- S-078 (applied): RV-14: every key keeps its bodies above the floor, its supports on their surfaces and its props in hand
 
 ## Next slices
 
-- RV-14 (next, step motion): Every-key body checks: no body under the floor; supports at every key; held and embedded props at their holder
-- RV-16 (ready, step render): One laban chain per fighter in render.txt
+- RV-16 (next, step render): One laban chain per fighter in render.txt
 - RV-35 (ready, step motion): Pickups crouch on the feet with a hand down; the support names the hand
-- RV-59 (ready, step motion): BODY_OVERLAP along the declared interpolation between keys; the paths re-blocked
+- RV-59 (ready, step motion): BODY_OVERLAP and CONTACT_WORLD along the declared interpolation between keys; the paths re-blocked
+- RV-37 (ready, step temporal): One strike definition at S04; S17's impact frames agree with it
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -65,6 +65,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-203 (medium): RV-20's layer-order ADR
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
 - Backlog RV-15c blocked: A strike's limb and a facing head point at their target, checked at S13; B's keys re-aimed — the owner's answer in F-148 (A's source facings: the check would refuse the golden's own rows, O10)
+- Backlog RV-14b blocked: A held or embedded prop at its holder at every sample (a rope dart's dart within its line of the hand) — the owner's answer in F-148 (the climax: A's source right hand is 0.65-0.87 m from the kunai the source keeps in B's shoulder at 8.5-9.5)
 - Backlog RV-64b blocked: The S04 packet carries the scene_reference rules — the owner's answer in F-133
 - Backlog RV-13b blocked: Every prompt fits the caps (O97) — the owner's answers in F-088
 - Backlog RV-20 blocked: external_inputs complete: the layer order states what each step depends on — an accepted ADR for the layer-order edit (R-09)
@@ -124,4 +125,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-205, session S-078, render R20.
+Decision ADR-O109, finding F-205, session S-079, render R20.

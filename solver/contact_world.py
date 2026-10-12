@@ -16,6 +16,11 @@ never from an authored plan: the owner's source rows, ADR-O83 point 2, F-123); a
 such a miss is refused, so the list stays true. A genuine artefact (ADR-O104) is a contact measured between keys or
 samples (an interpolated point) while its actor is airborne or its prop moves; at an exact instant nothing is exempt,
 and a turn alone never is (O89). Every contact measured today sits at an exact instant (`interpolated` is false).
+Every key's claimed supports (its S11 kinematic node) are measured too, not only a support contact's onset (RV-14a,
+F-089; row id `<slot>:<part>`): each part to the top of the surface its open support contact names, or to the floor
+when no contact names one (the lowest floor top, else the convention's ground). A part on any other surface than a
+floor waits for that surface's faces (RV-22); a held or embedded prop at every sample waits for F-148 (RV-14b); a
+contact between keys for RV-59. The owner's exceptions name contacts, so they keep covering only an onset.
 """
 
 import hashlib
@@ -26,6 +31,7 @@ import yaml
 
 from planner.dynamic_beat_validator import surface_tops
 from solver import forward_kinematics
+from solver.floor_penetration import floor_level
 from solver.forward_kinematics import capsules, part_capsules, part_point, part_radius, points, surface_gap
 
 TOLERANCE_M = 0.15  # owner O72
@@ -58,7 +64,7 @@ def measure(envelope):
     tops = surface_tops(surfaces, envelope["scene"]["ax"].get("ground"))
     samples = [sample for beat in envelope["nodes"]["beats"]["items"] for sample in beat.get("prop_samples", [])]
     return _rows(keys, support, tops, {s["id"] for s in surfaces if s["kind"] == "floor"}, samples,
-                 envelope["nodes"]["contacts"]["items"], radii)
+                 envelope["nodes"]["contacts"]["items"], radii, floor_level(surfaces, envelope["scene"]["ax"].get("ground")))
 
 
 def packet_view(envelope):
@@ -85,10 +91,10 @@ def measure_plan(keys, slots, packet):
     view = packet["contact_world"]
     support = {slot: slots[slot]["kinematic"]["support"] for slot in keys}
     return _rows(plan_bodies(keys, slots, packet), support, view["surface_tops"], set(view["floors"]),
-                 view["prop_samples"], view["contacts"], packet["radii"])
+                 view["prop_samples"], view["contacts"], packet["radii"], packet.get("floor_y"))
 
 
-def _rows(keys, support, tops, floors, prop_samples, contacts, radii):
+def _rows(keys, support, tops, floors, prop_samples, contacts, radii, floor=None):
     samples = {}
     for sample in prop_samples:
         samples.setdefault((sample["prop"], round(sample["t"], 6)), []).append(sample)
@@ -134,6 +140,34 @@ def _rows(keys, support, tops, floors, prop_samples, contacts, radii):
             target = [other["capsules"][name] for name in part_capsules(b.get("part") or "torso")]
             row["distance"], row["target_point"] = surface_gap(point, part_radius(c["body_part"], radii), target)
         row["measurable"] = True
+    rows += _claims(keys, support, tops, floors, contacts, floor)
+    return sorted(rows, key=lambda row: (row["t"], row["id"]))
+
+
+def _claims(keys, support, tops, floors, contacts, floor):
+    """RV-14a (F-089): every key's claimed supports, each part to its open support contact's surface or to the floor;
+    a support contact's own onset is measured with the contacts."""
+    ordered = sorted(contacts, key=lambda c: (c["t"], c["id"]))
+    onsets = {(c["a"]["id"], c["body_part"], round(c["t"], 6)) for c in ordered if c["contact_type"] == "support"}
+    rows = []
+    for (entity, t), key in sorted(keys.items(), key=lambda item: (item[0][1], item[0][0])):
+        for part in support.get(key["id"]) or []:
+            surface = None
+            for c in ordered:
+                if c["t"] > t + 1e-9:
+                    break
+                if (c["a"]["id"], c["body_part"], c["b"]["kind"]) == (entity, part, "surface"):
+                    surface = c["b"]["id"] if c["contact_type"] == "support" else (None if c["contact_type"] == "release"
+                                                                                   else surface)
+            top = (tops.get(surface) if surface in floors else None) if surface else floor
+            point = part_point(key["points"], part)
+            if (entity, part, t) in onsets or top is None or point is None:
+                continue  # an onset is measured with its contact; a face (RV-22) or a part with no point is not
+            rows.append({"id": f"{key['id']}:{part}", "t": t, "actor": entity, "part": part, "kind": KINDS["surface"],
+                         "target": _words(surface) if surface else "the floor", "actor_point": point,
+                         "target_point": [point[0], top, point[2]], "distance": round(abs(point[1] - top), 3),
+                         "measurable": True, "reason": "", "airborne": False, "rotating": key["turn"] != "none",
+                         "prop_moving": False, "interpolated": False})
     return rows
 
 

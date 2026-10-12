@@ -6,6 +6,11 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- Every key keeps its bodies out of the floor and its supports on their surfaces (RV-14a, F-089, S-078): S13 refuses a
+  body point more than 0.15 m under the floor (FLOOR_PENETRATION, owner O72's tolerance), and CONTACT_WORLD measures
+  each key's claimed supports, not only a support's first instant. Three repo-authored keys were re-posed (the wizard
+  example's backflip takeoff at 8.6, B's lunge at 3.4 and 3.7); the S13 instructions now teach the world checks. A held
+  or embedded prop at every sample waits for the owner (RV-14b, F-148).
 - An insert aims at its detail and a framed prop is held in frame (RV-15b, F-090, S-077): the detail is a part of the
   insert's target or a prop, and S16's packet places each prop at every beat (its sample, the hand that holds it, its
   flight or its rest), so VERTICAL_FRAMING covers both. The camera schemas' `position` text names the aim (camera,

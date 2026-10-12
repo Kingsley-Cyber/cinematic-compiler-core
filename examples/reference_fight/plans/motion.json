@@ -1,7 +1,7 @@
 {
  "step_id": "S13",
  "band": "L4c",
- "packet_sha256": "sha256:91c518860f7e6c6e8ead2e4eb18081d116edab96a9592b2fe620506016cdff28",
+ "packet_sha256": "sha256:5978ea10eb414e4bea76dc6c5dddfbb655722504b20a12d487fe352d9113b5b2",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -916,7 +916,7 @@
      0
     ],
     "LUL": [
-     -85.17,
+     -70.17,
      1.29,
      22.95
     ],
@@ -1138,7 +1138,7 @@
      0
     ],
     "LUL": [
-     -80.7,
+     -65.7,
      2.7,
      23.3
     ],

@@ -101,6 +101,11 @@ def test_courtyard_keys_pass_and_the_joints_come_from_the_kernel():
     ("CONTACT_WORLD", lambda p: key(p, "acrobat@b06")["bones"].update(RUL=[-40, 0, -15], RL=[15, 0, 0])),
     # RV-49 (F-144, R-18): the kick's pose before S-049 drives the acrobat's foot through the wizard's trunk
     ("BODY_OVERLAP", lambda p: key(p, "acrobat@b06")["bones"].update(Sp=[-20, 0, 0], RUL=[-87, 2.2, -2.7])),
+    # RV-14a (F-089): the backflip takeoff before S-078 sank both soles 0.185 m under the ground
+    ("FLOOR_PENETRATION", lambda p: key(p, "acrobat@b12")["bones"].update(LUL=[-20, 0, 5], LL=[45, 0, 0],
+                                                                          RUL=[-20, 0, -5], RL=[45, 0, 0])),
+    # RV-14a (F-089): a foot the kinematic node claims as a support, lifted off the floor at its key
+    ("CONTACT_WORLD", lambda p: key(p, "wizard@b05")["bones"].update(LUL=[-60, 0, 0], LL=[90, 0, 0])),
 ])
 def test_each_rule_rejects_its_violation(code, change):
     assert code in codes(change)
@@ -124,6 +129,32 @@ def test_contact_world_spares_a_listed_exception_and_an_artefact():
     assert not contact_world.artefact(miss) and contact_world.refusals([miss], {})       # an exact instant: refused
     assert contact_world.refusals([dict(miss, interpolated=True)], {}) == []             # between keys: an artefact
     assert contact_world.refusals([dict(miss, interpolated=True, airborne=False, prop_moving=False)], {})  # a turn alone
+
+
+def test_no_body_sinks_into_the_floor_at_any_key():
+    """F-089 (RV-14a, owner O72): at every key no body point lies more than 0.15 m under the floor, the lowest floor's
+    top or, where a scene names no floor, the convention's ground."""
+    from solver import floor_penetration
+    assert PACKET["floor_y"] == 0.0 and "FLOOR_PENETRATION" not in codes(lambda p: None)
+    body = {("acrobat", 1.0): {"id": "acrobat@b99", "points": {"left_foot": [0, -0.12, 0], "head": [0, 1.5, 0]}}}
+    assert floor_penetration.refusals(body, 0.0) == []                                 # 0.12 m: within O72's 0.15 m
+    assert [f["slot"] for f in floor_penetration.refusals(body, 0.1)] == ["acrobat@b99"]  # 0.22 m under a floor at 0.1
+    assert floor_penetration.floor_level([{"id": "tabletop", "kind": "tabletop"}], "y=0") == 0.0
+
+
+def test_every_claimed_support_meets_its_surface_at_every_key():
+    """F-089 (RV-14a): CONTACT_WORLD measures each key's claimed supports (its S11 kinematic node), not only a support
+    contact's onset: each part to the top its open support contact names, or to the floor when none does."""
+    from solver import contact_world
+    plan = copy.deepcopy(PLAN)
+    key(plan, "wizard@b05")["bones"].update(LUL=[-60, 0, 0], LL=[90, 0, 0])
+    rows = {r["id"]: r for r in contact_world.measure_plan({k["slot"]: k for k in plan["keys"]},
+                                                           {s["slot"]: s for s in PACKET["slots"]}, PACKET)}
+    lifted = rows["wizard@b05:left_foot"]
+    assert lifted["target"] == "the floor" and lifted["distance"] > contact_world.TOLERANCE_M
+    assert rows["wizard@b05:right_foot"]["distance"] <= contact_world.TOLERANCE_M
+    assert [(f["code"], f["contact"]) for f in contact_world.refusals(list(rows.values()), {})] == [
+        ("CONTACT_WORLD", "wizard@b05:left_foot")]
 
 
 def test_contact_world_exceptions_are_the_owners_alone():
