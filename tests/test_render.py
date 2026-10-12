@@ -26,6 +26,20 @@ def test_render_is_complete_and_hash_bound():
     assert list(SPEC)[:8] == ["variant", "fps", "dur", "ax", "key", "lma_legend", "negative", "laban"]
 
 
+def test_each_fighter_s_laban_chain_lists_its_own_moves():
+    """F-091 (RV-16, owner O1): render.txt's laban chain for each fighter lists the beats it acts in, in time order, as
+    the 2.4 source chains them: the acrobat's spinning kick is not the wizard's move."""
+    labels = RENDER["labels"]
+    beats = sorted(BEFORE["nodes"]["beats"]["items"], key=lambda b: (b["t"], b["id"]))
+    for entity, label in labels.items():
+        if entity not in {e["id"] for e in BEFORE["nodes"]["entities"]["items"]}:
+            continue
+        own = [b["label"].replace("_", " ") for b in beats if b["actor"] == entity]
+        assert SPEC["laban"][label].split("; ")[0] == ">".join(own)
+    wizard, acrobat = SPEC["laban"][labels["wizard"]], SPEC["laban"][labels["acrobat"]]
+    assert "spinning kick" in acrobat and "spinning kick" not in wizard
+
+
 def test_layout_carries_every_graph():
     assert RENDER["text"].startswith(BEFORE["provenance"]["source_prompt"])
     assert RENDER["labels"] == {"wizard": "A", "acrobat": "B"}

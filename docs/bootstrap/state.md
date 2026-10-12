@@ -10,16 +10,16 @@ Layer order 1.7; rules 7.1; backlog 31.
 
 ## Last sessions
 
-- S-076 (applied): RV-15a: the camera aims at the body it frames, and every visible part is in frame vertically
 - S-077 (applied): RV-15b: an insert aims at its detail, a framed prop is in frame, and the camera schemas name the aim
 - S-078 (applied): RV-14: every key keeps its bodies above the floor, its supports on their surfaces and its props in hand
+- S-079 (applied): RV-16: each fighter's laban chain in render.txt lists its own moves
 
 ## Next slices
 
-- RV-16 (next, step render): One laban chain per fighter in render.txt
-- RV-35 (ready, step motion): Pickups crouch on the feet with a hand down; the support names the hand
+- RV-35 (next, step motion): Pickups crouch on the feet with a hand down; the support names the hand
 - RV-59 (ready, step motion): BODY_OVERLAP and CONTACT_WORLD along the declared interpolation between keys; the paths re-blocked
 - RV-37 (ready, step temporal): One strike definition at S04; S17's impact frames agree with it
+- RV-22 (ready, step motion): The pillar has a radius and faces; landings and face contacts measured
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -83,7 +83,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 125
+## Open findings: 124
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -100,7 +100,6 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-086 (high, L4c): Mirror-symmetric keys are not refused on strikes and action beats
 - F-088 (high, L6): Every prompt is over the length caps; fitting them needs the owner's call on what goes
 - F-089 (high, L4c): Bodies and held props are checked only at contact onsets, never against the floor
-- F-091 (high, L6): render.txt's laban chains mix both fighters' moves
 - F-096 (high, L6): PASS cells are inflated: rows pass on codes that cover part of the row
 - F-115 (high, all): Two gate conditions have no check: soul_check_passes, fight_works
 - F-117 (high, L6): F-013 and F-014 cannot close
@@ -125,4 +124,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-205, session S-079, render R20.
+Decision ADR-O109, finding F-205, session S-080, render R20.

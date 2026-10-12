@@ -6,7 +6,7 @@ Genre: live_action. LBN-2.4 is read against the DAG's Master Template (O13), so 
 
 | Prompt | File | sha256 | Bytes | Words | Fits a cap | PASS | FAIL | NOT CHECKED | N/A | Deliverable |
 |---|---|---|---|---|---|---|---|---|---|---|
-| LBN | `render.txt` | `f515e1a40b83a632faf8f77f75f7d118362344482f221eb62d0fcb98d028dec9` | 13513 | 1059 | none | 4 | 49 | 14 | 17 | no |
+| LBN | `render.txt` | `ac13478fb565508938e025cf3e31601d3372627e026713d23e1fbe06848a4ef4` | 13454 | 1052 | none | 4 | 49 | 14 | 17 | no |
 | Pure | `prose_pure_staff.txt` | `afbd22f320d318e89709c5c24898ba2f1fa46a194e1adf51f10122f56fd2c60f` | 12598 | 2107 | none | 37 | 0 | 30 | 17 | no |
 | Mixed | `prose_mixed.txt` | `2a42c56ba849232bd282b303128bef1e69223dd610fb567dcc0680ddba2e671b` | 12926 | 2173 | none | 37 | 0 | 30 | 17 | no |
 | Upgr | `prose_upgraded_mixed.txt` | `c4e77cc98ba51e1ae34786c7c346394cd75d9f9f3cf9a678e088f6934da4ce8b` | 13344 | 2253 | none | 37 | 0 | 30 | 17 | no |

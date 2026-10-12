@@ -102,9 +102,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 7.1; backlog 31.
-- Last session: S-078 (2026-10-12, applied): RV-14: every key keeps its bodies above the floor, its supports on their surfaces and its props in hand.
-- Next slice: RV-16 One laban chain per fighter in render.txt (step render).
-- Open findings: 125; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
+- Last session: S-079 (2026-10-12, applied): RV-16: each fighter's laban chain in render.txt lists its own moves.
+- Next slice: RV-35 Pickups crouch on the feet with a hand down; the support names the hand (step motion).
+- Open findings: 124; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

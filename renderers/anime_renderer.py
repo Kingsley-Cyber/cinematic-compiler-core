@@ -4,9 +4,10 @@ Uncompressed and model-agnostic: no length budget, no model-specific formatting.
 applied constraint is rendered (owner invariant no_render_compression) and `coverage` proves it item by item.
 Kernel controls written for the reference actors and props are regenerated from this scene's data (labels,
 facings, props); scene-wide kernel controls are printed as written; card invariants and beat actions go to rules.
-Layout: preface text, then one JSON object: variant, fps, dur, ax, key, lma_legend, negative, laban, one track per
-actor label (rows with named fields {t, label, pos, rot, joints, desc}, owner O9), one track per prop, set (surfaces),
-cam, the genre block (here: anime frame-part directives), rules.
+Layout: preface text, then one JSON object: variant, fps, dur, ax, key, lma_legend, negative, laban (each fighter's
+own moves, the beats it acts in, then its efforts: F-091, RV-16), one track per actor label (rows with named fields
+{t, label, pos, rot, joints, desc}, owner O9), one track per prop, set (surfaces), cam, the genre block (here: anime
+frame-part directives), rules.
 `project` is shared with renderers/ugc_renderer.py.
 """
 
@@ -225,15 +226,17 @@ def _effort_words(e):
 
 
 def _laban(envelope, beats, entities, labels, cover):
+    """{label: "move>move; effort>effort"}: each fighter's own moves, the beats it acts in, in time order, as the 2.4
+    source chains them (F-091, RV-16: a beat it only takes part in is the actor's move, not its own), then its own
+    efforts; "none" for a fighter that acts in no beat."""
     efforts = sorted(_items(envelope, "nodes", "efforts"), key=lambda e: (e["t"], e["id"]))
-    slots = {n["id"] for n in _items(envelope, "nodes", "motion")}
     laban = {}
     for entity in entities:
-        sequence = [b["label"].replace("_", " ") for b in beats if f"{entity['id']}@{b['id']}" in slots]
+        sequence = [b["label"].replace("_", " ") for b in beats if b["actor"] == entity["id"]]
         own = [e for e in efforts if e["actor"] == entity["id"]]
         for e in own:
             cover.mark("efforts", e["id"])
-        laban[labels[entity["id"]]] = ">".join(sequence) + "; " + ">".join(_effort_words(e) for e in own)
+        laban[labels[entity["id"]]] = (">".join(sequence) or "none") + "; " + ">".join(_effort_words(e) for e in own)
     return laban
 
 

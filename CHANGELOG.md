@@ -6,6 +6,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- Each fighter's laban chain in render.txt lists its own moves (RV-16, F-091, S-079): the beats it acts in, in time
+  order, then its efforts; the reference fight's B chain no longer opens with A's fall, nor A's carries B's throw.
+  Only render.txt's laban field changed.
 - Every key keeps its bodies out of the floor and its supports on their surfaces (RV-14a, F-089, S-078): S13 refuses a
   body point more than 0.15 m under the floor (FLOOR_PENETRATION, owner O72's tolerance), and CONTACT_WORLD measures
   each key's claimed supports, not only a support's first instant. Three repo-authored keys were re-posed (the wizard

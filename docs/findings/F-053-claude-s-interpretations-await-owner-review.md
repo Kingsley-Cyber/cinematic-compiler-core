@@ -147,6 +147,9 @@ else the convention's ground; a body is measured by its forward-kinematics point
 part may sink by its radius within O72's 0.15 m; a key's claimed supports are its S11 kinematic node's, each measured
 to the top its open support contact names or, with no contact, to the floor; a claim on a surface that is not a floor
 is not measured until RV-22 gives that surface its faces.
+Added in S-079 (RV-16, renderers/anime_renderer.py): a fighter's own beats are the beats it acts in; its side of the
+other's beats ("caught by B" in the 2.4 source) is left out, since no node words it; a fighter that acts in none
+prints "none".
 
 ## Impact
 Waits on the owner.

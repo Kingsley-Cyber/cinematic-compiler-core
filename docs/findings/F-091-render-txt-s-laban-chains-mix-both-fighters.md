@@ -12,7 +12,7 @@ high
 L6
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -45,4 +45,10 @@ none needed (ADR-O1)
 - ADR-O1
 
 ## Resolution
-Open.
+Resolved by RV-16 (S-079): renderers/anime_renderer.py chains, for each fighter, the beats it acts in, in time order,
+then its own efforts, so A's chain in the reference fight lists its 18 moves (from 22) and B's its 5 (from 20, which
+opened with A's fall); the wizard example's and the live-action example's chains shrink the same way, and the UGC's
+one performer acts in all its beats. Only the laban field of render.txt changed. The 2.4 source's chains also name a
+fighter's side of the other's beats ("caught by B", "pulled toward pillar"); the repo has no words for that side (its
+key names follow the source's rows, which name the actor's move, "B_throws_kunai"), so the chain lists actions only
+(F-053).

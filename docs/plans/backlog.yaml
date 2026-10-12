@@ -142,9 +142,9 @@ items:
   - {id: RV-14b, title: "A held or embedded prop at its holder at every sample (a rope dart's dart within its line of the hand)", status: blocked,
      blocked_by: "the owner's answer in F-148 (the climax: A's source right hand is 0.65-0.87 m from the kunai the source keeps in B's shoulder at 8.5-9.5)",
      step: motion, plan: PLAN-007, depends_on: [RV-14a], findings: [F-089, F-062, F-084], codes: []}
-  - {id: RV-16, title: "One laban chain per fighter in render.txt", status: next,
+  - {id: RV-16, title: "One laban chain per fighter in render.txt", status: done,
      step: render, plan: PLAN-007, depends_on: [], findings: [F-091], codes: []}
-  - {id: RV-35, title: "Pickups crouch on the feet with a hand down; the support names the hand", status: ready,
+  - {id: RV-35, title: "Pickups crouch on the feet with a hand down; the support names the hand", status: next,
      step: motion, plan: PLAN-007, depends_on: [RV-02a], findings: [F-110, F-127], codes: []}
   - {id: RV-59, title: "BODY_OVERLAP and CONTACT_WORLD along the declared interpolation between keys; the paths re-blocked", status: ready,
      step: motion, plan: PLAN-007, depends_on: [RV-35], findings: [F-159, F-089], codes: []}
