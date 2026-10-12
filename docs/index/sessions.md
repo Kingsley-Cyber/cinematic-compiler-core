@@ -25,6 +25,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-016 | 2026-10-11 | Claude Code (Opus 5.5), autopilot run 1 (docs/reports/2026-10-11-autopilot-1.md) | Backlog M9-08b (split from M9-08); find… | applied | the commit whose message names [S-016] | about 30 minutes | M9-09a (F9.1 Laban direction against path and form). | [S-016-m9-08b-opening-in-v6-wording.md](../sessions/S-016-m9-08b-opening-in-v6-wording.md) |
 | S-017 | 2026-10-11 | Claude Code (Opus 5.5), autopilot run 1 (docs/reports/2026-10-11-autopilot-1.md) | Backlog M9-09a (PLAN-003 F9.1); finding… | not started | the commit whose message names [S-017] | about 25 minutes | M9-09b (F9.2 airborne momentum under gravity); M9-09a after… | [S-017-m9-09a-parked-shape-direction.md](../sessions/S-017-m9-09a-parked-shape-direction.md) |
 | S-018 | 2026-10-11 | Claude Code (Opus 5.5), autopilot run 1 (docs/reports/2026-10-11-autopilot-1.md) | Backlog M9-09b (PLAN-003 F9.2); finding… | not started | the commit whose message names [S-018] | about 20 minutes | The owner rules on ADR-O72, ADR-O73 and ADR-O74 (and the po… | [S-018-m9-09b-parked-airborne-momentum.md](../sessions/S-018-m9-09b-parked-airborne-momentum.md) |
+| S-019 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog D-09; the owner's answers to au… | applied | the commit whose message names [S-019] | about 20 minutes | M9-09a (SHAPE_DIRECTION with the owner's lean ruling). | [S-019-owner-rulings-o72-o80.md](../sessions/S-019-owner-rulings-o72-o80.md) |
 
 ## Status values
 

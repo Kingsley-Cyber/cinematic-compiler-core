@@ -3,18 +3,23 @@
 <!-- docs-version: 1.0 -->
 
 ## Status
-proposed
+accepted
 
 ## Date
 2026-10-11
 
 ## Decided By
-owner_default
+owner
 
 ## Scope
 L5
 
 ## Decision
+Owner, in chat, 2026-10-11: "ADR-O73: The check refuses contradictions only. Rewrite the 12 as recorded deviations.
+Leave the 24 as-is until M9-10. Unblock M9-09a." The measure follows ADR-O76 (an airborne turn is not judged).
+
+## Context
+The agent's proposal the owner ruled on (S-012 to S-018):
 Proposed by the agent during autopilot run 1 (S-017), for the owner to rule on:
 1. SHAPE_DIRECTION (plan F9.1, owner O31) refuses an Effort interval whose declared Shape quality neither the root's
    path nor the body's form shows while one of them shows the opposite quality (rising against sinking, advancing
@@ -26,7 +31,6 @@ Proposed by the agent during autopilot run 1 (S-017), for the owner to rule on:
    the arms' elevation or the knees' fold by over 15 degrees, the chest's lean by over 10, or the arms' spread by
    over 0.15 (unit vectors), between the interval's first key and the key at its end.
 
-## Context
 O31 rules that Laban direction is checked "against both the root's path and the body's form change"; the plan (F9.1)
 leaves the measure open. A prototype over the four examples (S-017): 24 of 42 intervals show neither reading of their
 declared quality, and 12 show the opposite one. Any SHAPE_DIRECTION check therefore re-authors Effort intervals in

@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The owner's rulings (S-019): ADR-O72 (the root is the pelvis; contacts within 0.15 m), O73 (SHAPE_DIRECTION refuses
+  contradictions only), O74 (anime declares hang time), O75 (slices rewrite the examples for their own checks, rule
+  R-33; supersedes O71), O76 (whole-body checks read the whole body, rule R-34), O77-O80 (the kunai reverses to -Z,
+  a resting prop has support, the query says y=10, a launch needs grounded support); rules 3.0; autopilot 2.0.
 - The reference opening follows O21 (M9-08a, S-015): A starts at root y=10 above the frame and lands with the feet
   on the 8 m pillar top, root 8.5 (S04 anchors, S13 roots, the golden test's recorded deviation).
 - Laban actions print as qualities (M9-07b, plan F4.2, owner O22, S-014): the implied guidance writes "(thrust

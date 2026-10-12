@@ -3,18 +3,23 @@
 <!-- docs-version: 1.0 -->
 
 ## Status
-proposed
+accepted
 
 ## Date
 2026-10-11
 
 ## Decided By
-owner_default
+owner
 
 ## Scope
 L4c
 
 ## Decision
+Owner, in chat, 2026-10-11: "ADR-O72: Root position = pelvis. Tolerance = 0.15m. Update the repo-authored keys
+to match the source."
+
+## Context
+The agent's proposal the owner ruled on (S-012 to S-018):
 Proposed by the agent during autopilot run 1 (S-012), for the owner to rule on:
 1. A key's root position is the pelvis (the hip centre), as the owner's source writes A's rows (y 0.6 to 0.9 while
    standing or crouched on both feet); the repo-authored anchors at y 0 for standing bodies move up to the standing
@@ -22,7 +27,6 @@ Proposed by the agent during autopilot run 1 (S-012), for the owner to rule on:
 2. CONTACT_WORLD refuses a touch whose limb-end point (forward kinematics, O24) and target point are more than 0.15 m
    apart at the contact time.
 
-## Context
 M9-06 (F5.1/F5.2, owner O24) computes hand and foot points from the root and the joint angles. The convention
 (kernel/conventions.yaml, Q6) fixes axes and the rest pose but not what the root position is, and the data holds both
 readings in one scene: reference_fight A at y 0.9 (b07), 0.6 (b19, b20), 0.7 (b23) on both feet, from the source; B at

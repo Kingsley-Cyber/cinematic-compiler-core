@@ -6,28 +6,25 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 2.2; backlog 4.
+Layer order 1.7; rules 3.0; backlog 5.
 
 ## Last sessions
 
-- S-016 (applied): M9-08b: the opening from above in V6's wording (F-010)
 - S-017 (not started): M9-09a parked: Shape qualities contradict the motion in every example
 - S-018 (not started): M9-09b parked: the examples' airborne spans leave the gravity arc
+- S-019 (applied): The owner's rulings O72-O80, rules R-33 and R-34
 
 ## Next slices
 
-- M9-09c (next, step motion): FR.4 launch before an aerial turn
-- M9-10 (ready, step effort): F4.3/F4.4 B's active keys and the idle-fighter check
-- M9-11 (ready, step render): FR.7 genre cards; FR.6 money-shot frame parts; FR.2 limb paths
-- M9-12 (ready, step render): O19 D9-style staff lines
+- M9-09a (next, step effort): F9.1 Laban direction against path and form (O73, O76)
+- M9-06 (ready, step motion): F5.1/F5.2 world contact points by forward kinematics; roots at the pelvis (O72)
+- M9-09b (ready, step kinematic): F9.2 airborne momentum under gravity (O74)
+- M9-09c (ready, step motion): FR.4 launch before an aerial turn; a launch needs grounded support before it (O80)
 
-M9: 11 of 30 slices done, 19 left (M9-03a blocked, M9-06 blocked, M9-09a blocked, M9-09b blocked; 1 the owner's own).
+M9: 11 of 33 slices done, 22 left (M9-03a blocked; 1 the owner's own).
 
 ## Waiting on the owner
 
-- ADR-O72 (proposed): A key's root is the pelvis, and a touch's two points meet within 0.15 m
-- ADR-O73 (proposed): SHAPE_DIRECTION refuses only a Shape quality the motion contradicts
-- ADR-O74 (proposed): Anime bodies declare their hang time; other genres follow the arc
 - F-051 (low): Draft library cards await owner review
 - F-052 (low): Kernel scope numbers await owner review
 - F-053 (medium): Claude's interpretations await owner review
@@ -40,9 +37,6 @@ M9: 11 of 30 slices done, 19 left (M9-03a blocked, M9-06 blocked, M9-09a blocked
 - F-068 (medium): Twelve Effort intervals declare a Shape quality their motion contradicts
 - F-069 (medium): Nine airborne spans hang longer than gravity allows
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
-- Backlog M9-06 blocked: F5.1/F5.2 world contact points by forward kinematics — ADR-O72 (proposed): what a key's root position is, and the contact tolerance (F-066)
-- Backlog M9-09a blocked: F9.1 Laban direction against path and form — ADR-O73 (proposed): SHAPE_DIRECTION refuses contradictions only; twelve intervals re-authored (F-068)
-- Backlog M9-09b blocked: F9.2 airborne momentum under gravity — ADR-O74 (proposed): anime bodies declare hang time; nine spans re-authored (F-069)
 
 ## Open findings: 41
 
@@ -64,4 +58,4 @@ M9: 11 of 30 slices done, 19 left (M9-03a blocked, M9-06 blocked, M9-09a blocked
 
 ## Next free IDs
 
-Decision ADR-O75, finding F-070, session S-019, render R20.
+Decision ADR-O81, finding F-070, session S-020, render R20.

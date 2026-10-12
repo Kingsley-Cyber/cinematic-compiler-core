@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 4
+version: 5
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -29,8 +29,8 @@ items:
   - {id: M9-05, title: "FR.1/FR.3 derived rotation path and rotation checks", status: done, step: motion,
      plan: PLAN-003, depends_on: [M9-01], findings: [F-028, F-058],
      codes: [ROTATION_PATH_UNSTATED, ROTATION_INCOMPLETE, ROTATION_NOT_MONOTONIC, INVERSION_MISSING]}
-  - {id: M9-06, title: "F5.1/F5.2 world contact points by forward kinematics", status: blocked,
-     blocked_by: "ADR-O72 (proposed): what a key's root position is, and the contact tolerance (F-066)", step: motion,
+  - {id: M9-06, title: "F5.1/F5.2 world contact points by forward kinematics; roots at the pelvis (O72)", status: ready,
+     step: motion,
      plan: PLAN-003, depends_on: [M9-02], findings: [F-025, F-028, F-062], codes: [CONTACT_WORLD]}
   - {id: M9-07a, title: "F4.1 combat verbs on contacts (O22; split from M9-07)", status: done, step: temporal,
      plan: PLAN-003, depends_on: [M9-02], findings: [], codes: [CONTACT_VERB]}
@@ -40,16 +40,21 @@ items:
      plan: PLAN-003, depends_on: [M9-02], findings: [F-010], codes: [SURFACE_HEIGHT]}
   - {id: M9-08b, title: "The opening from above in V6's wording (split from M9-08)", status: done, step: render,
      plan: PLAN-003, depends_on: [M9-08a], findings: [F-010], codes: [ENTRANCE_UNSTATED]}
-  - {id: M9-09a, title: "F9.1 Laban direction against path and form", status: blocked,
-     blocked_by: "ADR-O73 (proposed): SHAPE_DIRECTION refuses contradictions only; twelve intervals re-authored (F-068)",
+  - {id: M9-09a, title: "F9.1 Laban direction against path and form (O73, O76)", status: next,
      step: effort, plan: PLAN-003,
      depends_on: [M9-05], findings: [F-029], codes: [SHAPE_DIRECTION]}
-  - {id: M9-09b, title: "F9.2 airborne momentum under gravity", status: blocked,
-     blocked_by: "ADR-O74 (proposed): anime bodies declare hang time; nine spans re-authored (F-069)", step: kinematic,
+  - {id: M9-09b, title: "F9.2 airborne momentum under gravity (O74)", status: ready, step: kinematic,
      plan: PLAN-003,
      depends_on: [M9-05], findings: [F-026], codes: [MOMENTUM_MISSING]}
-  - {id: M9-09c, title: "FR.4 launch before an aerial turn", status: next, step: motion, plan: PLAN-003,
+  - {id: M9-09c, title: "FR.4 launch before an aerial turn; a launch needs grounded support before it (O80)", status: ready,
+     step: motion, plan: PLAN-003,
      depends_on: [M9-05], findings: [F-028, F-058], codes: [AIRBORNE_WITHOUT_LAUNCH]}
+  - {id: M9-09d, title: "F-064: the kunai reverses to -Z at the deflect (O77)", status: ready, step: temporal,
+     plan: PLAN-003, depends_on: [M9-04a], findings: [F-064], codes: []}
+  - {id: M9-09e, title: "F-065: a prop at rest has support; the smoke pellet falls (O78)", status: ready, step: temporal,
+     plan: PLAN-003, depends_on: [M9-04b], findings: [F-065], codes: [PROP_SUPPORT]}
+  - {id: M9-09f, title: "F-067: the reference query says A falls from y=10 (O79)", status: ready, step: intent,
+     plan: PLAN-003, depends_on: [M9-08b], findings: [F-067], codes: []}
   - {id: M9-10, title: "F4.3/F4.4 B's active keys and the idle-fighter check", status: ready, step: effort,
      plan: PLAN-003, depends_on: [M9-09a], findings: [F-029], codes: [IDLE_FIGHTER]}
   - {id: M9-11, title: "FR.7 genre cards; FR.6 money-shot frame parts; FR.2 limb paths", status: ready, step: render,
@@ -96,3 +101,5 @@ items:
      step: docs, plan: PLAN-005, depends_on: [D-06], findings: [], codes: []}
   - {id: D-08, title: "Autopilot prompt (docs/prompts/autopilot.md, /autopilot) and the decision log R-32 (O70, O71)",
      status: done, step: docs, plan: PLAN-005, depends_on: [D-07], findings: [F-063], codes: []}
+  - {id: D-09, title: "The owner's rulings O72-O80, rules R-33 and R-34, autopilot section 5 (2.0)", status: done,
+     step: docs, plan: PLAN-005, depends_on: [D-08], findings: [], codes: []}

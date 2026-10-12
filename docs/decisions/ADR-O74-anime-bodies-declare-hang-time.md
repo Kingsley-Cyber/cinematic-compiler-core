@@ -3,18 +3,23 @@
 <!-- docs-version: 1.0 -->
 
 ## Status
-proposed
+accepted
 
 ## Date
 2026-10-11
 
 ## Decided By
-owner_default
+owner
 
 ## Scope
 L4a
 
 ## Decision
+Owner, in chat, 2026-10-11: "ADR-O74: Yes — anime declares hang time per span. Realism, UGC, and documentary follow
+the gravity arc. Unblock M9-09b."
+
+## Context
+The agent's proposal the owner ruled on (S-012 to S-018):
 Proposed by the agent during autopilot run 1 (S-018), for the owner to rule on:
 1. An airborne span (keys with no support between a takeoff key and a landing key) follows one gravity arc through
    its takeoff and landing roots, each airborne root within 0.3 m of it (MOMENTUM_MISSING at S11), unless the span is
@@ -24,7 +29,6 @@ Proposed by the agent during autopilot run 1 (S-018), for the owner to rule on:
 3. The examples' spans that leave the arc (F-069) are re-authored per span by the owner's choice: a declared float
    (anime) or new timing and heights on the arc.
 
-## Context
 Plan F9.2 refuses "an airborne span whose root rises or hangs against gravity without a declared float (anime) or a
 push contact". A prototype (S-018) over the four examples: of nine airborne spans, the reference fight's six and the
 wizard's three leave the arc through their own takeoff and landing; the bodies stay airborne far longer than their

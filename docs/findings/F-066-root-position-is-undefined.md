@@ -40,7 +40,7 @@ M9-06 (world contact points, CONTACT_WORLD) and M9-14a (timed kinetic chain, whi
 Rule on ADR-O72 (recommended: the pelvis; 0.15 m).
 
 ## Owner Ruling
-none yet
+ADR-O72
 
 ## Related
 - ADR-O72

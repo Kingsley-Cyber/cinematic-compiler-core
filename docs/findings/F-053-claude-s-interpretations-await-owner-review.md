@@ -41,6 +41,7 @@ leaves its prop moving (so a touch may throw); which of the reference fight's co
 1.2 m above it, and reads a surface's top from its world card's geometry text. Added in S-016 (M9-08b,
 renderers/prose_renderer.py): an entrance is a first line in the air and a first foot support on a raised top; V6's
 "not visible before 0.20" and "never stands on the ground" are left out.
+Added in S-019: rule R-34 scoped to whole-body checks (ADR-O76 keeps the owner's wider sentence).
 
 ## Impact
 Waits on the owner.

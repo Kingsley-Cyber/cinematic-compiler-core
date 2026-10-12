@@ -44,7 +44,7 @@ and A's grounded pickup at 8.0, an S11 and S16 cascade) or the samples (reword t
 pillar). Not a leaf change, so the autopilot does not make it (ADR-O71).
 
 ## Owner Ruling
-none yet
+ADR-O77
 
 ## Related
 - F-059

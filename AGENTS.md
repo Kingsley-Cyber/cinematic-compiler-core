@@ -72,6 +72,8 @@ Full table: [docs/layer_order.md](docs/layer_order.md).
 - **R-11** Test the uncertain, build the certain: a change gets a render probe only if it is uncertain, visual and not verifiable without a render.
 - **R-31** Before asking the owner to commit or push, run the self-audit (docs/prompts/self_audit.md) and report its verdict, evidence table and wrong claims.
 - **R-32** Log every decision the plan did not spell out in the session file's Decisions section, with the rule, ruling or DAG row behind it, the alternatives and what it affects; a choice no rule or ruling makes is labelled as an interpretation or proposed as an ADR.
+- **R-33** A slice may rewrite the examples so they pass its own new check, as recorded deviations (the golden test and the session file), without a ruling per change.
+- **R-34** A check that judges a whole-body quality (direction, lean, height, momentum) reads the root's rotation, the support and every joint it depends on, and skips a span it cannot judge (an airborne turn) instead of reporting it.
 - **R-12** Never paper over a failure: when the verifier fails, fix or revert, and record what went wrong in the plan or a finding.
 - **R-13** The step IDs carry the build order: a step reads only what earlier steps wrote and writes only its own paths.
 - **R-14** Every layer that produces state has nodes and edges; L0, L0.5, L6 and L6.5 have nodes only; L4d facial runs for live action and UGC only.
@@ -98,10 +100,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 2.2; backlog 4.
-- Last session: S-018 (2026-10-11, not started): M9-09b parked: the examples' airborne spans leave the gravity arc.
-- Next slice: M9-09c FR.4 launch before an aerial turn (step motion).
-- Open findings: 41; decisions: 101 (3 proposed).
+- Layer order 1.7; rules 3.0; backlog 5.
+- Last session: S-019 (2026-10-11, applied): The owner's rulings O72-O80, rules R-33 and R-34.
+- Next slice: M9-09a F9.1 Laban direction against path and form (O73, O76) (step effort).
+- Open findings: 41; decisions: 107 (0 proposed).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
@@ -110,9 +112,6 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 ## 7. Open rulings
 
 <!-- BEGIN GENERATED: rulings -->
-- ADR-O72 (proposed): A key's root is the pelvis, and a touch's two points meet within 0.15 m
-- ADR-O73 (proposed): SHAPE_DIRECTION refuses only a Shape quality the motion contradicts
-- ADR-O74 (proposed): Anime bodies declare their hang time; other genres follow the arc
 - F-051 (low): Draft library cards await owner review
 - F-052 (low): Kernel scope numbers await owner review
 - F-053 (medium): Claude's interpretations await owner review
@@ -125,9 +124,6 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - F-068 (medium): Twelve Effort intervals declare a Shape quality their motion contradicts
 - F-069 (medium): Nine airborne spans hang longer than gravity allows
 - Backlog M9-03a blocked: GAP-04/05 checkable constraint form and the per-layer constraint run — owner approval of the checkable constraint schema (O61)
-- Backlog M9-06 blocked: F5.1/F5.2 world contact points by forward kinematics — ADR-O72 (proposed): what a key's root position is, and the contact tolerance (F-066)
-- Backlog M9-09a blocked: F9.1 Laban direction against path and form — ADR-O73 (proposed): SHAPE_DIRECTION refuses contradictions only; twelve intervals re-authored (F-068)
-- Backlog M9-09b blocked: F9.2 airborne momentum under gravity — ADR-O74 (proposed): anime bodies declare hang time; nine spans re-authored (F-069)
 <!-- END GENERATED: rulings -->
 
 The owner updates this section by ruling: in chat (the agent writes the ADR) or by writing an ADR from

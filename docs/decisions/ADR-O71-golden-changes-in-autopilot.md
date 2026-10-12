@@ -3,7 +3,7 @@
 <!-- docs-version: 1.0 -->
 
 ## Status
-accepted
+superseded
 
 ## Date
 2026-10-11
@@ -51,7 +51,7 @@ before the owner's push review (R-03), so a proposed change is seen before it is
 —
 
 ## Superseded By
-—
+ADR-O75
 
 ## Related
 - ADR-O70

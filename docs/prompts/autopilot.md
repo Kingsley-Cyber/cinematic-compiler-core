@@ -1,6 +1,6 @@
 # Autopilot: work the backlog end to end without stopping
 
-<!-- docs-version: 1.1 -->
+<!-- docs-version: 2.0 -->
 
 Invoke when the owner wants the agent to build slice after slice without waiting between them (owner ADR-O70):
 - in Claude Code, in a session opened in the repo folder: `/autopilot`;
@@ -70,18 +70,21 @@ value, what to do when two rules pull apart. Each gets a line in the session fil
 A choice missing from Decisions is a failure the self-audit reports (its section 9). Never decide silently, and never
 guess where the repo has the answer (AGENTS.md section 1).
 
-## 5. Golden and authored-data changes (ADR-O71)
+## 5. Golden and authored-data changes (ADR-O75, which carries ADR-O71 forward)
 
 First apply R-17: if a new check fails on golden content that agrees with its own words and the DAG, fix the check,
 not the golden. Otherwise:
 
 1. **Covered** by an accepted ADR or the approved slice text: make the change and record it in
    `tests/test_reference_fight_golden.py` with that ADR.
-2. **Not covered, a leaf, small:** no `next` or `ready` slice depends on this one; the change is the smallest that
+2. **The slice's own new check fails on the examples (R-33):** rewrite the examples so they pass it, each change a
+   recorded deviation (the golden test for the reference fight, the session file for all), and list them in the run
+   report. No ruling per change; never loosen the check to spare a rewrite (AGENTS.md section 11).
+3. **Not covered, a leaf, small:** no `next` or `ready` slice depends on this one; the change is the smallest that
    makes the golden agree with its own words or the DAG, keeping the golden's words (lessons L-08); and fewer than
    three proposed golden changes from this run are still waiting on the owner. Make it in this slice's commit, with
    a proposed ADR, the golden test recording it, and `[proposed ADR-Onn]` in the commit message.
-3. **Anything else (park it):** `git restore` the slice's uncommitted work, then commit the records only: the session
+4. **Anything else (park it):** `git restore` the slice's uncommitted work, then commit the records only: the session
    file (status `not started`, or `reverted` if code was written), the proposed ADR, the question finding, and the
    backlog item `blocked` with `blocked_by: "ADR-Onn (proposed): <the question>"`. Then pick the next slice.
 

@@ -57,7 +57,7 @@ floating bodies (F-036, R6-R19: aerial events about 0.75-2.7 s late).
 Rule on ADR-O74 (recommended: anime declares hang time per span; other genres follow the arc).
 
 ## Owner Ruling
-none yet
+ADR-O74
 
 ## Related
 - ADR-O74

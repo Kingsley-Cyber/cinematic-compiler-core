@@ -2,7 +2,7 @@
 # and a docs-log entry (python -m kernel.schema_log --log docs record docs/rules.yaml ...). Every rule cites accepted
 # decisions (docs/decisions/) and names what enforces it: a code or test the gate runs, or `protocol` (the agent
 # follows it; AGENTS.md). Validated by schemas/rules.schema.json.
-version: "2.2"
+version: "3.0"
 rules:
   # ---- agent: how every session works
   - {id: R-01, scope: agent, source: [ADR-S6, ADR-O64],
@@ -44,6 +44,12 @@ rules:
   - {id: R-32, scope: agent, source: [ADR-O70],
      rule: "Log every decision the plan did not spell out in the session file's Decisions section, with the rule, ruling or DAG row behind it, the alternatives and what it affects; a choice no rule or ruling makes is labelled as an interpretation or proposed as an ADR.",
      enforced_by: [protocol, docs/prompts/autopilot.md]}
+  - {id: R-33, scope: agent, source: [ADR-O75],
+     rule: "A slice may rewrite the examples so they pass its own new check, as recorded deviations (the golden test and the session file), without a ruling per change.",
+     enforced_by: [protocol, docs/prompts/autopilot.md]}
+  - {id: R-34, scope: agent, source: [ADR-O76],
+     rule: "A check that judges a whole-body quality (direction, lean, height, momentum) reads the root's rotation, the support and every joint it depends on, and skips a span it cannot judge (an airborne turn) instead of reporting it.",
+     enforced_by: [protocol]}
   - {id: R-12, scope: agent, source: [ADR-O64],
      rule: "Never paper over a failure: when the verifier fails, fix or revert, and record what went wrong in the plan or a finding.",
      enforced_by: [protocol]}

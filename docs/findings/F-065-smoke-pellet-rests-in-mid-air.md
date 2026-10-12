@@ -42,7 +42,7 @@ thrown down (a sample with v at 3.7 and a resting sample on the ground). Either 
 S08), so the autopilot leaves it (ADR-O71).
 
 ## Owner Ruling
-none yet
+ADR-O78
 
 ## Related
 - F-059

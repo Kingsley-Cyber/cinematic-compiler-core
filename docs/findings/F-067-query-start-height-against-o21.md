@@ -43,7 +43,7 @@ The owner picks: keep the query as is (the SCENE line is the owner's request), o
 y=10" for the reference example; M9-08b prints V6's wording either way.
 
 ## Owner Ruling
-none yet
+ADR-O79
 
 ## Related
 - ADR-O21

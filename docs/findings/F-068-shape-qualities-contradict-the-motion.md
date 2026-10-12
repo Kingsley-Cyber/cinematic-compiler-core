@@ -51,7 +51,7 @@ SHAPE_DIRECTION (M9-09a) cannot land without re-authoring Effort intervals that 
 Rule on ADR-O73 (recommended: refuse contradictions only; re-author these twelve).
 
 ## Owner Ruling
-none yet
+ADR-O73
 
 ## Related
 - ADR-O73

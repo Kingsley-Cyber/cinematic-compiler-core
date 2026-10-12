@@ -40,7 +40,7 @@ See the description.
 FR.3/FR.4 at S13 (backlog M9-05, M9-09) will refuse it; re-author B's keys then.
 
 ## Owner Ruling
-none yet
+ADR-O80
 
 ## Related
 - PLAN-001
