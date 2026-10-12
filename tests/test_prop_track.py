@@ -28,7 +28,7 @@ def test_a_place_set_before_a_hold_does_not_outlive_it():
     envelope = _envelope("ugc_glasses_demo")
     spans = prop_samples.track(envelope, envelope["nodes"]["render"]["items"][0]["labels"], "glasses")
     assert spans[0][3] == "at rest on the tabletop at [0.25, 0.75, 0.35]"
-    assert spans[-1][3] == "at rest at [0, 1.6, 0.1]"                  # worn, not 'on the tabletop' (S06 keeps it)
+    assert spans[-1][3] == "at rest at [0, 1.66, 0.06]"               # worn on the face (S-030), not 'on the tabletop'
 
 
 def test_a_flight_without_its_physics_is_refused():

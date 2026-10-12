@@ -15,7 +15,7 @@ from planner import dynamic_beat_validator
 from planner.scene_view import slots
 from renderers import prop_samples, prose_renderer
 from renderers.anime_renderer import constraint_rows
-from solver import euler_solver, shape_direction, staff_geometry
+from solver import contact_world, euler_solver, shape_direction, staff_geometry
 from validators import cause_reason
 
 CODES = {
@@ -63,6 +63,8 @@ CODES = {
                               "as amended by W3)",
     "MOMENTUM_MISSING": "an anime span that hangs against gravity is not said to hang (stylised hang time) in RULES "
                         "(plan F9.2, owner O74; S11 refuses an undeclared hang)",
+    "CONTACT_WORLD": "a touch or hold of a prop or a body that S13 measures does not print its two world points on its "
+                     "actor's staff line (plan F5.2, owners O24, O72, O83)",
     "SHAPE_DIRECTION": "a printed Shape quality is the opposite of what the body's path and form show (plan F9.1, owner "
                        "O31, O73; airborne turns are not judged, O76)",
     "ENTRANCE_UNSTATED": "a performer who starts in the air above a raised top lacks the rule that its feet touch the "
@@ -107,6 +109,7 @@ READS = {
     "IMPACT_CONTACT_SYNC": (STAFF, "[ANIME]", "[UGC]", "[LIVE ACTION]"), "AIRBORNE_PICKUP": (STAFF,),
     "PROP_PHYSICS_UNSTATED": (PROPS,), "PROP_VISIBILITY": (PROPS,), "ROTATION_PATH_UNSTATED": (STAFF,),
     "ENTRANCE_UNSTATED": (RULES, NEGATIVES), "SHAPE_DIRECTION": ("[IMPLIED GUIDANCE]",), "MOMENTUM_MISSING": (RULES,),
+    "CONTACT_WORLD": (STAFF,),
     "CAUSAL_LIST_MISSING": ("[CAUSAL LINKS]",), "CAUSE_REASON": ("[CAUSAL LINKS]",),
     "REACTION_WITHOUT_CAUSE": (),
     "CAUSAL_RULE_MISSING": (RULES,), "CONSERVATION_RULE_MISSING": (RULES,), "SPAN_RULE_MISSING": (STAFF, RULES),
@@ -209,6 +212,7 @@ def check(text, envelope, mode):
     _where_checks(envelope, parts, labels, add)
     _entrance_checks(envelope, parts, labels, add)
     _shape_checks(envelope, parts, labels, add)
+    _world_checks(envelope, mode, parts, labels, add)
     for rule in prose_renderer.hang_rules(envelope, labels):  # MOMENTUM_MISSING (plan F9.2, owner O74)
         if rule not in _body(parts, RULES):
             add("MOMENTUM_MISSING", f"RULES do not say: {rule}")
@@ -636,6 +640,25 @@ def _props_and_causes(envelope, parts, labels, mode, add):
     for word in ("ring", "halo", "full circle"):
         if f"no {word}" in negatives and re.search(rf"\b{word}\b", fx):
             add("PROMPT_CONTRADICTION", f"FX draws a {word} while NEGATIVES forbid it (audit X29)")
+
+
+def _world_point(values):
+    return "[" + ", ".join(f"{round(v, 2):g}" for v in values) + "]"
+
+
+def _world_checks(envelope, mode, parts, labels, add):
+    """CONTACT_WORLD (plan F5.2, owners O24, O72, O83): every touch or hold of a prop or a body that S13 measures prints
+    the actor's and the target's world points on the actor's staff line for that beat; S13 refuses the distance."""
+    lines = {(row["t"], row["label"]): row["line"] for row in _staff(parts, mode)}
+    starts = {(s["entity"], s["beat"]): round(s["t"], 2) for s in slots(envelope)}
+    beat_of = {c["id"]: c["beat"] for c in envelope["nodes"]["contacts"]["items"]}
+    for row in contact_world.measure(envelope):
+        if not row["measurable"] or row["kind"] == contact_world.KINDS["surface"]:
+            continue
+        line = lines.get((starts.get((row["actor"], beat_of[row["id"]])), labels.get(row["actor"])), "")
+        if f" at {_world_point(row['actor_point'])}, " not in line or f" at {_world_point(row['target_point'])}" not in line:
+            add("CONTACT_WORLD", f"{labels.get(row['actor'])} {row['t']:.2f}: the staff does not print the two points of "
+                                 f"{row['part'].replace('_', ' ')} on {row['target']}")
 
 
 def _shape_checks(envelope, parts, labels, add):

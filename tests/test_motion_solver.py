@@ -97,9 +97,25 @@ def test_courtyard_keys_pass_and_the_joints_come_from_the_kernel():
     ("JOINT_LIMIT", lambda p: key(p, "wizard@b03")["bones"].update(LL=[-30, 0, 0])),   # knee hyperextension (O7)
     ("JOINT_LIMIT", lambda p: key(p, "wizard@b03")["bones"].update(LFA=[-170, 0, 0])),  # elbow past 150, no anime allowance
     ("JOINT_LIMIT", lambda p: key(p, "wizard@b03")["bones"].update(NK=[40, 0, 0], HD=[40, 0, 0])),  # neck 80 > 45 + 30
+    # F5.2, owners O72, O83: the kick's pose before S-030 leaves the foot 1.2 m under the wizard's torso
+    ("CONTACT_WORLD", lambda p: key(p, "acrobat@b06")["bones"].update(RUL=[-40, 0, -15], RL=[15, 0, 0])),
+    ("CONTACT_WORLD", lambda p: p.update(contact_world_exceptions={"b04_c1": "a landing that meets the ground"})),
 ])
 def test_each_rule_rejects_its_violation(code, change):
     assert code in codes(change)
+
+
+def test_contact_world_spares_a_listed_exception_and_an_artefact():
+    """ADR-O83: a miss the plan lists with its reason is not refused; the acrobat's hand on the ground at 2.0 misses by
+    1.8 m while airborne and turning (an artefact: reported, not refused)."""
+    def kick(plan):
+        key(plan, "acrobat@b06")["bones"].update(RUL=[-40, 0, -15], RL=[15, 0, 0])
+        plan["contact_world_exceptions"] = {"b05_c2": "kept for the test"}
+    assert "CONTACT_WORLD" not in codes(kick)
+    from solver import contact_world
+    rows = {r["id"]: r for r in contact_world.measure_plan({k["slot"]: k for k in PLAN["keys"]},
+                                                           {s["slot"]: s for s in PACKET["slots"]}, PACKET)}
+    assert rows["b02_c1"]["distance"] > 1.5 and contact_world.artefact(rows["b02_c1"]) and codes(lambda p: None) == set()
 
 
 @pytest.mark.integration

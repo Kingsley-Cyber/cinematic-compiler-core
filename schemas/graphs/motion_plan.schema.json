@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:motion_plan:1.0",
+  "$id": "urn:cinematic-compiler:schema:motion_plan:1.1",
   "title": "S13 motion plan (authored in-session): one Euler key pose per entity per beat",
   "description": "Root pos equals the S04 anchor; rot agrees with the S04 facing; bones are the kernel joints; turns declare their axis (flip X, spin Y, cartwheel Z).",
   "type": "object",
@@ -46,6 +46,17 @@
       "type": "integer",
       "minimum": 1,
       "maximum": 3
+    },
+    "contact_world_exceptions": {
+      "type": "object",
+      "description": "Contacts whose miss over 0.15 m CONTACT_WORLD does not refuse, each with its reason: only the owner's source rows (ADR-O83), recorded in the golden test.",
+      "patternProperties": {
+        "^b[0-9]{2,}_c[0-9]+$": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
     },
     "keys": {
       "type": "array",

@@ -36,6 +36,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-027 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog M9-06a (split from M9-06; PLAN-… | applied | the commit whose message names [S-027] | about 120 minutes | Report the miss list to the owner (O81); M9-06b waits for t… | [S-027-m9-06a-forward-kinematics.md](../sessions/S-027-m9-06a-forward-kinematics.md) |
 | S-028 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog D-10; rulings O81, O82 | applied | the commit whose message names [S-028] | about 10 minutes | M9-06c (calibrate library/body_segments.yaml to the source'… | [S-028-bootstrap-before-compaction.md](../sessions/S-028-bootstrap-before-compaction.md) |
 | S-029 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog M9-06c; finding F-070; rulings… | applied | the commit whose message names [S-029] | about 150 minutes | M9-06b (F5.2 CONTACT_WORLD refuses over 0.15 m; scope ADR-O… | [S-029-m9-06c-legs-from-the-trunk-calibrated.md](../sessions/S-029-m9-06c-legs-from-the-trunk-calibrated.md) |
+| S-030 | 2026-10-11 | Claude Code (Opus 5.5) | Backlog M9-06b (PLAN-003 F5.2); finding… | applied | the commit whose message names [S-030] | about 120 minutes | M9-10 (F4.3/F4.4 B's active keys and the idle-fighter check… | [S-030-m9-06b-contact-world.md](../sessions/S-030-m9-06b-contact-world.md) |
 
 ## Status values
 

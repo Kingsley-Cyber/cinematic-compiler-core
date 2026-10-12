@@ -713,12 +713,16 @@ rows:
     class: style
     step: S17
     status: enforced
+    codes: [CONTACT_WORLD]
     enforced_by:
       - {file: compiler/passes/derived/p17_render.py, check: check, code: FRAME_SMEAR,
          test: tests/test_render.py::test_each_frame_rule_rejects_its_violation}
+      - {file: solver/contact_world.py, check: refusals, code: CONTACT_WORLD,
+         test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
     note: "A smear names one subject and, for a body, one part, and sits on a sudden effort of that body or an event
-      of that prop; the ink line renders 'smear follows ONLY the declared limb, body does NOT smear' (F1). The
-      physics-break exception has nothing to relax (no physics check exists)."
+      of that prop; the ink line renders 'smear follows ONLY the declared limb, body does NOT smear' (F1). M9-06b
+      (plan F5.2, owner O83): CONTACT_WORLD holds stylised bodies to their contacts too, sparing only the
+      measurement artefacts (the actor airborne or turning, the prop moving)."
 
   - id: C13
     name: Rules + Negatives
@@ -825,11 +829,15 @@ rows:
     class: mandatory
     step: S07
     status: partial
-    codes: [REACTION_WITHOUT_CAUSE, IMPACT_CONTACT_SYNC]
+    codes: [REACTION_WITHOUT_CAUSE, IMPACT_CONTACT_SYNC, CONTACT_WORLD]
     gaps: [POST_CONTACT_MISSING]
     enforced_by:
       - {file: compiler/passes/derived/p17_render.py, check: impact_sync, code: IMPACT_CONTACT_SYNC,
          test: tests/test_render.py::test_impact_contact_sync_wants_one_time_per_hit}
+      - {file: solver/contact_world.py, check: refusals, code: CONTACT_WORLD,
+         test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
+      - {file: validators/prompt_validator.py, check: _world_checks, code: CONTACT_WORLD,
+         test: tests/test_forward_kinematics.py::test_the_prompt_prints_both_points_of_each_contact}
       - {file: compiler/passes/mandatory/p07_contact.py, check: cross_check, code: PROP_CHANGE_CONTACT,
          test: tests/test_contact_pass.py::test_prop_change_without_any_contact_is_refused}
       - {file: compiler/passes/mandatory/p05_causal.py, check: edges_and_findings, code: CAUSE_TIMING,
@@ -838,7 +846,7 @@ rows:
          test: tests/test_dynamic_beat_validator.py::test_each_rule_rejects_its_violation}
       - {file: planner/dynamic_beat_validator.py, check: _thrown, code: CONTACT_VERB,
          test: tests/test_dynamic_beat_validator.py::test_a_throw_leaves_its_prop_moving}
-    note: "M9-06a (owners O24, O72, O81): each touch and hold prints the actor's and the target's world points (forward kinematics, solver/contact_world.py); the misses are reported (F-070), CONTACT_WORLD refuses in M9-06b. M9-07a (owner O22, plan F4.1): a contact may carry a combat verb its contact type takes
+    note: "M9-06a (owners O24, O72, O81): each touch and hold prints the actor's and the target's world points (forward kinematics, solver/contact_world.py); the misses are reported (F-070). M9-06b (plan F5.2, owners O72, O83): S13 refuses a touch, hold or support whose two points lie over 0.15 m apart (CONTACT_WORLD), except an artefact (the actor airborne or turning, the prop moving) and a source row the motion plan lists with its reason; the prompt prints both points. M9-07a (owner O22, plan F4.1): a contact may carry a combat verb its contact type takes
       (library/combat_verbs.yaml, draft); catch, throw and disarm name a prop and a thrown prop leaves moving (S04
       CONTACT_VERB); the staff prints the verb in capitals before the bow. M9-02 (owner O23): one time per hit; strike, throw and release contacts happen at their key pose, every
       impact frame has a touch or support onset on it and every strike lands on an impact frame (IMPACT_CONTACT_SYNC,

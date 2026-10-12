@@ -102,8 +102,8 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 3.1; backlog 7.
-- Last session: S-029 (2026-10-11, applied): M9-06c: legs read from the trunk, the segment card calibrated to the source's grounded A rows, re-root (O82).
-- Next slice: M9-06b F5.2 CONTACT_WORLD refuses a contact over 0.15 m (O72, O82; scope ADR-O83) (step motion).
+- Last session: S-030 (2026-10-11, applied): M9-06b: CONTACT_WORLD refuses a contact over 0.15 m; repo misses re-blocked, source misses excepted (O83).
+- Next slice: M9-10 F4.3/F4.4 B's active keys and the idle-fighter check (step effort).
 - Open findings: 35; decisions: 112 (0 proposed).
 <!-- END GENERATED: state -->
 

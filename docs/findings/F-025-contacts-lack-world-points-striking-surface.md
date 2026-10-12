@@ -43,4 +43,5 @@ ADR-O24
 - backlog M9-06
 
 ## Resolution
-Open.
+Open in part: the world points are computed and checked (M9-06a, M9-06b: CONTACT_WORLD) and the combat verb
+is checked (M9-07a: CONTACT_VERB); the striking surface waits on F3.1.

@@ -6,12 +6,12 @@ Genre: anime. LBN-2.4 is read against the DAG's Master Template (O13), so many o
 
 | Prompt | File | sha256 | Bytes | PASS | FAIL | NOT CHECKED | N/A | Deliverable |
 |---|---|---|---|---|---|---|---|---|
-| LBN | `render.txt` | `5409149a21c38729165484b40e820e2418ae7c80cf6b010ceb6197128efbfd1c` | 30617 | 4 | 48 | 26 | 6 | no |
-| Pure | `prose_pure_staff.txt` | `2168e3a6b95d3c8a27d558023a3e0913fa9d88f5a743b9018899a6a9fd290467` | 21338 | 38 | 0 | 40 | 6 | no |
-| Mixed | `prose_mixed.txt` | `41f520c7f69d6a16aba5ca0153fbb032eb09539548b6870c45e2f6f6ff497067` | 21728 | 38 | 0 | 40 | 6 | no |
-| Upgr | `prose_upgraded_mixed.txt` | `0225600afc28905a54e211c88767bdbac1a4891866e2c394d591e55e03f35ddd` | 22393 | 38 | 0 | 40 | 6 | no |
-| Euler | `prose_euler_heavy.txt` | `53c8805a7901766f8ccf81d331efbcac604ae4ae27beeca744bdc9dcf8251cac` | 26333 | 38 | 0 | 40 | 6 | no |
-| Any | union of the five | | | 41 | 0 | 40 | 3 | no |
+| LBN | `render.txt` | `e546e7e010673fdd725233a57854b552ca05ecd46a6723f94db63c0f11f403a2` | 30619 | 4 | 49 | 25 | 6 | no |
+| Pure | `prose_pure_staff.txt` | `0b2668bf2ad6350b7b2505de77363ed25bf2cd8cd96571bca51ef7989798c9a0` | 21329 | 39 | 0 | 39 | 6 | no |
+| Mixed | `prose_mixed.txt` | `26322d2bddfdc2fb81523f42d2057e51de82f683021b443bc5ddcc7b84ae22ce` | 21719 | 39 | 0 | 39 | 6 | no |
+| Upgr | `prose_upgraded_mixed.txt` | `e4a2039e86cf84d2de89c89697dd4ba08aef88d17fb0ce6a43929529e0dbc413` | 22384 | 39 | 0 | 39 | 6 | no |
+| Euler | `prose_euler_heavy.txt` | `b52e55bbd6d2fbe4dcc8919bc186d95dd0fef1aca6a635b463407221fac3782e` | 26326 | 39 | 0 | 39 | 6 | no |
+| Any | union of the five | | | 42 | 0 | 39 | 3 | no |
 
 | Row | Name | Class | LBN | Pure | Mixed | Upgr | Euler | Any | Findings | Evidence |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -52,7 +52,7 @@ Genre: anime. LBN-2.4 is read against the DAG's Master Template (O13), so many o
 | C9 | Spatial anchors / axis | required | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** SPATIAL_ANCHOR_MISSING ×6: cannot pass: the prompt has no [SPATIAL ANCHORS]; ENTRANCE_UNSTATED ×1: cannot pass: the prompt has no [RULES], [NEGATIVES] — **Pure, Mixed, Upgr, Euler:** pass: SPATIAL_ANCHOR_MISSING, ENTRANCE_UNSTATED |
 | C10 | Camera layer (dynamic) | style | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | not checked: Genre cards set shot length (anime 0.25-6.0 s), crossing and roll; every shot is motivated. |
 | C11 | UGC camera | style | N/A | N/A | N/A | N/A | N/A | N/A |  | O14: applies to ugc_ad; this example is anime |
-| C12 | Stylization layer | style | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | checked on the graph only (FRAME_SMEAR at S17); the prompt text is not checked |
+| C12 | Stylization layer | style | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** CONTACT_WORLD ×2: cannot pass: the prompt has no [LABAN STAFF – EULER-HEAVY] — **Pure, Mixed, Upgr, Euler:** pass: CONTACT_WORLD |
 | C13 | Rules + Negatives | mandatory | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** RULES_MISSING ×8: cannot pass: the prompt has no [RULES]; NEGATIVES_MISSING ×13: cannot pass: the prompt has no [NEGATIVES]; CAUSAL_RULE_MISSING ×9: cannot pass: the prompt has no [RULES]; SECTION_ORDER ×2: cannot pass: the prompt has no [SCENE] — **Pure, Mixed, Upgr, Euler:** pass: RULES_MISSING, NEGATIVES_MISSING, CAUSAL_RULE_MISSING, SECTION_ORDER |
 | C14 | Pure staff | style | N/A | PASS | N/A | N/A | N/A | PASS |  | **LBN, Euler:** menu (DAG §2.14, O14): the pure_staff mode's row; this prompt is euler_heavy — **Pure:** pass: EULER_MODE_MISMATCH, STAFF_FORMAT — **Mixed:** menu (DAG §2.14, O14): the pure_staff mode's row; this prompt is mixed — **Upgr:** menu (DAG §2.14, O14): the pure_staff mode's row; this prompt is upgraded_mixed |
 | C15 | Mixed Mode | style | N/A | N/A | PASS | N/A | N/A | PASS |  | **LBN, Euler:** menu (DAG §2.14, O14): the mixed mode's row; this prompt is euler_heavy — **Pure:** menu (DAG §2.14, O14): the mixed mode's row; this prompt is pure_staff — **Mixed:** pass: EULER_MODE_MISMATCH — **Upgr:** menu (DAG §2.14, O14): the mixed mode's row; this prompt is upgraded_mixed |
@@ -61,7 +61,7 @@ Genre: anime. LBN-2.4 is read against the DAG's Master Template (O13), so many o
 | C18 | Precision tags | projection | FAIL | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | **LBN:** STAFF_FORMAT ×1: cannot pass: the prompt has no [LABAN STAFF – EULER-HEAVY] — **Pure, Mixed, Upgr, Euler:** pass: STAFF_FORMAT; not checked: LBN-2.4 writes contacts as 'CONTACT:touch right_foot->kunai.blade at 3'. |
 | C19 | Master Template | style | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** SECTION_MISSING ×11: [SCENE] is missing; SECTION_ORDER ×2: cannot pass: the prompt has no [SCENE]; STACKED_GRAPHS ×1: LBN-2.4 embeds the laban, A, B, cam graphs as JSON fields; the DAG stacks two (causal links, prop state) — **Pure, Mixed, Upgr, Euler:** pass: SECTION_MISSING, SECTION_ORDER, STACKED_GRAPHS |
 | C20 | Attention tags | projection | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | not checked: No per-beat priority tags. |
-| C21 | Contact contract | mandatory | FAIL | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | **LBN:** IMPACT_CONTACT_SYNC ×1: cannot pass: the prompt has no [LABAN STAFF – EULER-HEAVY], [ANIME] — **Pure, Mixed, Upgr, Euler:** pass: REACTION_WITHOUT_CAUSE, IMPACT_CONTACT_SYNC; not built: POST_CONTACT_MISSING |
+| C21 | Contact contract | mandatory | FAIL | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | **LBN:** IMPACT_CONTACT_SYNC ×1: cannot pass: the prompt has no [LABAN STAFF – EULER-HEAVY], [ANIME]; CONTACT_WORLD ×2: cannot pass: the prompt has no [LABAN STAFF – EULER-HEAVY] — **Pure, Mixed, Upgr, Euler:** pass: REACTION_WITHOUT_CAUSE, IMPACT_CONTACT_SYNC, CONTACT_WORLD; not built: POST_CONTACT_MISSING |
 | C22 | End state per entity | required | FAIL | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED | NOT CHECKED |  | **LBN:** END_STATE_MISSING ×3: cannot pass: the prompt has no [RULES]; MOMENTUM_MISSING ×4: cannot pass: the prompt has no [RULES] — **Pure, Mixed, Upgr, Euler:** pass: END_STATE_MISSING, MOMENTUM_MISSING; not checked: S06 writes every subject's end state and chaining carries it. |
 | C23 | Anchor phrase | required | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** ANCHOR_PHRASE_MISSING ×3: cannot pass: the prompt has no [SCENE]; PROP_FIRST_STATE ×1: cannot pass: the prompt has no [SCENE] — **Pure, Mixed, Upgr, Euler:** pass: ANCHOR_PHRASE_MISSING, PROP_FIRST_STATE, PROP_VISIBILITY |
 | C24 | CUSTODY invariant | mandatory | FAIL | PASS | PASS | PASS | PASS | PASS |  | **LBN:** PROP_FIRST_STATE ×1: cannot pass: the prompt has no [SCENE] — **Pure, Mixed, Upgr, Euler:** pass: CUSTODY_RULE_MISSING, PROP_FIRST_STATE |

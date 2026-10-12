@@ -7,6 +7,7 @@ import pytest
 from conftest import ROOT
 
 from solver import contact_world, forward_kinematics
+from validators import prompt_validator
 
 pytestmark = pytest.mark.unit
 METRES = forward_kinematics.segments("live_action")                          # the adult (O85)
@@ -86,9 +87,26 @@ def test_repo_authored_roots_stand_at_the_pelvis():
         assert abs(min(a_rows[t]["points"][f"{side}_foot"][1] for side in ("left", "right")) - top) <= 0.01
 
 
-def test_the_miss_list_names_the_kunai_pickup_and_its_cause():
+def test_the_kunai_pickup_meets_since_its_re_block():
     rows = {r["id"]: r for r in contact_world.measure(_envelope("reference_fight"))}
-    pickup = rows["b19_c2"]                                                    # A takes the kunai at 8.0
-    assert pickup["measurable"] and 1.2 < pickup["distance"] < 1.35 and pickup["target_point"] == [0.6, 0.0, 4.0]
+    pickup = rows["b19_c2"]                                     # A takes the kunai at 8.0 (1.33 m apart before S-030)
+    assert pickup["measurable"] and pickup["distance"] <= contact_world.TOLERANCE_M and pickup["target_point"] == [0.6, 0.0, 4.0]
     assert rows["b01_c1"]["distance"] <= contact_world.TOLERANCE_M          # A lands on the pillar's top (O21)
     assert not rows["b18_c1"]["measurable"]                                   # the pillar's face has no top to meet
+
+
+def test_the_prompt_prints_both_points_of_each_contact():
+    """CONTACT_WORLD (plan F5.2): A's kunai pickup at 8.0 prints the hand's point and the kunai's; without the second
+    point the prompt is refused."""
+    envelope = _envelope("reference_fight")
+    text = (ROOT / "examples" / "reference_fight" / "prose_mixed.txt").read_text(encoding="utf-8")
+    assert ", kunai handle at [0.6, 0, 4]" in text
+    broken = text.replace(", kunai handle at [0.6, 0, 4]", "", 1)
+    assert "CONTACT_WORLD" in {f["code"] for f in prompt_validator.check(broken, envelope, "mixed")}
+
+
+def test_every_example_passes_contact_world():
+    """ADR-O83: after the re-blocks no example holds a real miss; the reference fight lists its one source miss."""
+    for name in ("wizard_vs_acrobat", "live_action_standoff", "ugc_glasses_demo", "reference_fight"):
+        plan = json.loads((ROOT / "examples" / name / "plans" / "motion.json").read_text(encoding="utf-8"))
+        assert contact_world.refusals(contact_world.measure(_envelope(name)), plan.get("contact_world_exceptions", {})) == []

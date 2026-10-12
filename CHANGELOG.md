@@ -6,6 +6,11 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- CONTACT_WORLD (M9-06b, plan F5.2, ADR-O83 accepted, S-030): S13 refuses a touch, hold or support whose two world
+  points lie over 0.15 m apart, except an artefact (the actor airborne or turning, the prop moving: reported) and a
+  source row the motion plan lists with its reason (motion_plan schema 1.1); the prompt prints both points. Seven
+  repo-authored keys and four prop samples re-blocked (R-33); 24 of 33 contacts meet, one source miss excepted, eight
+  artefacts reported. Rows C21 and C12. F-070 resolved.
 - Hip angles are read from the trunk in every key (M9-06c, owner O84, rule R-35, S-029): the source's crouches put
   their soles on the ground only that way. The 43 repo-authored keys that lean through the spine have their hips
   re-expressed so no point of a body moves; 47 printed leg words change (R-33 deviations,

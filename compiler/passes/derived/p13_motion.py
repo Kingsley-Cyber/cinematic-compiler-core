@@ -13,7 +13,7 @@ from compiler.authoring import run_authored, seal
 from kernel.kernel_files import load as load_kernel
 from planner.dependency_graph import ROOT, load
 from planner.scene_view import slots, values_in_progress
-from solver import euler_solver, forward_kinematics, quaternion, trajectory
+from solver import contact_world, euler_solver, forward_kinematics, quaternion, trajectory
 from validators.schema_validator import validate_schema
 
 NODE, STEP = "motion", "S13"
@@ -42,11 +42,12 @@ def prepare(envelope):
     view = [{**{k: s[k] for k in SLOT_FIELDS}, "allowed_postures": values_in_progress(envelope, s, "posture"),
              "kinematic": _body(kinematic[s["slot"]]),
              "bartenieff": _body(bartenieff[s["slot"]])} for s in slots(envelope)]
-    return seal({"step_id": STEP, "band": "L4c", "kind": "motion_plan", "schema": "urn:cinematic-compiler:schema:motion_plan:1.0",
+    return seal({"step_id": STEP, "band": "L4c", "kind": "motion_plan", "schema": "urn:cinematic-compiler:schema:motion_plan:1.1",
                  "instructions": PROMPT.read_text(encoding="utf-8"), "rotation_convention": convention,
                  "joints": euler_solver.kernel_joints(load_kernel("invariants")),
                  "joint_limits": joint_limits(envelope["scene"]["genre"]),
-                 "segments": forward_kinematics.segments(envelope["scene"]["genre"]), "slots": view})  # owner O85
+                 "segments": forward_kinematics.segments(envelope["scene"]["genre"]), "slots": view,  # owner O85
+                 "contact_world": contact_world.packet_view(envelope)})  # plan F5.2, ADR-O83
 
 
 def _keys(document, packet):
@@ -66,8 +67,12 @@ def check(document, packet):
     findings, keys, by_id = _keys(document, packet)
     if findings:
         return findings
-    return euler_solver.check(keys, by_id, packet["joints"], packet["rotation_convention"]["turns"],
-                              packet["joint_limits"])[0]
+    findings = euler_solver.check(keys, by_id, packet["joints"], packet["rotation_convention"]["turns"],
+                                  packet["joint_limits"])[0]
+    if any(f["code"] == "MOTION_JOINTS" for f in findings):
+        return findings  # forward kinematics needs every joint
+    rows = contact_world.measure_plan(keys, by_id, packet)  # CONTACT_WORLD (plan F5.2, owners O72, O83)
+    return findings + contact_world.refusals(rows, document.get("contact_world_exceptions", {}))
 
 
 def build(envelope, document, packet):

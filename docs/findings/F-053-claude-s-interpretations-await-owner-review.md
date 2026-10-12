@@ -58,6 +58,11 @@ the trunk reading, not where the joint sits); the anime leg is one scale of the 
 shin 0.56, ankle 0.10) fitted to the 17 grounded source feet other than 3.00's right; SURFACE_HEIGHT's bound is the
 body's standing leg, 0.05 m either way; A's rows at 0.6, 7.5 and 8.0 count as repo-authored roots (O21, O18) and
 were re-rooted.
+Added in S-030 (M9-06b; solver/contact_world.py, compiler/passes/derived/p13_motion.py, the examples): an exception
+naming a contact that is not a real miss is refused too; each re-block is the least change of the repo-authored
+joints (and root over the ground, both soles kept on it) that brings the point within 0.06 m; the rope dart's sample
+is its dart (the weight), so at 8.0 it sits on B while A keeps the rope's end; the UGC glasses sit on the face 0.1 m
+in front of the head's centre.
 
 ## Impact
 Waits on the owner.

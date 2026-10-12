@@ -1,21 +1,25 @@
-"""World contact points and their misses (plan F5.1, owners O24, O72, O81).
+"""World contact points, their misses and CONTACT_WORLD (plan F5.1, F5.2; owners O24, O72, O81, O83).
 
-For each touch, hold and support in the envelope: the actor's point (the S13 key at the contact's instant, its world
-points by forward kinematics) and the target's point (a prop's sample at that instant; another body's point from its
-own key; a surface's top, vertically), and the distance between them. CONTACT_WORLD will refuse a distance over
-0.15 m (ADR-O72) once the owner has reviewed the misses (ADR-O81, backlog M9-06b); until then this only measures.
-Flags mark what the owner asked to separate from real misses: the actor airborne, the actor's key turning, the prop
-moving at the instant. A contact with no key at its instant, a prop with no sample there, or a surface with no top (a
-wall, a pillar's face; a touch on any surface but a floor) is not measurable.
+For each touch, hold and support: the actor's point (the S13 key at the contact's instant, its world points by forward
+kinematics) and the target's point (a prop's sample at that instant; another body's point from its own key; a
+surface's top, vertically), and the distance between them. Flags mark the owner's measurement artefacts: the actor
+airborne, the actor's key turning, the prop moving at the instant. A contact with no key at its instant, a prop with
+no sample there, or a surface with no top (a wall, a pillar's face; a touch on any surface but a floor) is not
+measurable. `measure` reads an envelope (the report, the prose); `measure_plan` reads S13's packet and its authored
+keys (the check). CONTACT_WORLD (ADR-O83) refuses a measurable miss over 0.15 m (O72) unless it is an artefact
+(reported, not refused) or the motion plan lists it in `contact_world_exceptions` with its reason (the source's own
+rows, recorded in the golden test); an exception that names anything but such a miss is refused, so the list stays
+true.
 """
 
 import math
 
 from planner.dynamic_beat_validator import surface_tops
-from solver.forward_kinematics import part_point
+from solver.forward_kinematics import part_point, points
 
 TOLERANCE_M = 0.15  # owner O72
 KINDS = {"surface": "foot or body on a surface", "prop": "limb to prop", "entity": "limb to body"}
+MEASURED = ("touch", "possess", "support")
 
 
 def _words(text):
@@ -27,15 +31,40 @@ def measure(envelope):
     measurable, reason}] for every touch, possess and support contact, in time order."""
     keys = {(k["entity"], round(k["t"], 6)): k for k in envelope["nodes"]["motion"]["items"]}
     support = {k["id"]: k["support"] for k in envelope["nodes"]["kinematic"]["items"]}
-    tops = surface_tops(envelope["nodes"]["surfaces"]["items"], envelope["scene"]["ax"].get("ground"))
-    floors = {s["id"] for s in envelope["nodes"]["surfaces"]["items"] if s["kind"] == "floor"}
+    surfaces = envelope["nodes"]["surfaces"]["items"]
+    tops = surface_tops(surfaces, envelope["scene"]["ax"].get("ground"))
+    samples = [sample for beat in envelope["nodes"]["beats"]["items"] for sample in beat.get("prop_samples", [])]
+    return _rows(keys, support, tops, {s["id"] for s in surfaces if s["kind"] == "floor"}, samples,
+                 envelope["nodes"]["contacts"]["items"])
+
+
+def packet_view(envelope):
+    """What S13's packet carries for CONTACT_WORLD: the contacts S07 wrote, the samples S04 wrote, the surfaces' tops."""
+    surfaces = envelope["nodes"]["surfaces"]["items"]
+    tops = surface_tops(surfaces, envelope["scene"]["ax"].get("ground"))
+    return {"contacts": [{k: c[k] for k in ("id", "t", "contact_type", "body_part", "a", "b")}
+                         for c in envelope["nodes"]["contacts"]["items"] if c["contact_type"] in MEASURED],
+            "prop_samples": [{k: s[k] for k in ("prop", "t", "p", "v")} for beat in envelope["nodes"]["beats"]["items"]
+                             for s in beat.get("prop_samples", [])],
+            "surface_tops": dict(sorted(tops.items())), "floors": sorted(s["id"] for s in surfaces if s["kind"] == "floor")}
+
+
+def measure_plan(keys, slots, packet):
+    """The same rows from S13's packet and its authored keys ({slot: key}), the points by forward kinematics."""
+    view = packet["contact_world"]
+    named = {(slots[slot]["entity"], round(slots[slot]["t"], 6)):
+             {"id": slot, "turn": key["turn"], "points": points(key, packet["segments"])} for slot, key in keys.items()}
+    support = {slot: slots[slot]["kinematic"]["support"] for slot in keys}
+    return _rows(named, support, view["surface_tops"], set(view["floors"]), view["prop_samples"], view["contacts"])
+
+
+def _rows(keys, support, tops, floors, prop_samples, contacts):
     samples = {}
-    for beat in envelope["nodes"]["beats"]["items"]:
-        for sample in beat.get("prop_samples", []):
-            samples.setdefault((sample["prop"], round(sample["t"], 6)), []).append(sample)
+    for sample in prop_samples:
+        samples.setdefault((sample["prop"], round(sample["t"], 6)), []).append(sample)
     rows = []
-    for c in sorted(envelope["nodes"]["contacts"]["items"], key=lambda c: (c["t"], c["id"])):
-        if c["contact_type"] not in ("touch", "possess", "support"):
+    for c in sorted(contacts, key=lambda c: (c["t"], c["id"])):
+        if c["contact_type"] not in MEASURED:
             continue
         t, b = round(c["t"], 6), c["b"]
         key = keys.get((c["a"]["id"], t))
@@ -77,6 +106,23 @@ def measure(envelope):
             row["distance"] = round(math.dist(point, target), 3)
         row["measurable"] = True
     return rows
+
+
+def artefact(row):
+    """The owner's measurement artefacts (O81, O83): the actor airborne or turning, or the prop moving."""
+    return row["airborne"] or row["rotating"] or row["prop_moving"]
+
+
+def refusals(rows, exceptions):
+    """CONTACT_WORLD findings (ADR-O83): a real miss that no exception lists, and an exception that lists no real miss."""
+    real = {row["id"]: row for row in rows if row["measurable"] and row["distance"] > TOLERANCE_M and not artefact(row)}
+    findings = [{"code": "CONTACT_WORLD", "contact": cid, "message": f"{row['actor']} {_words(row['part'])} misses "
+                 f"{row['target']} by {row['distance']:g} m at {row['t']:g} (over {TOLERANCE_M:g} m, owner O72)"}
+                for cid, row in real.items() if cid not in exceptions]
+    findings += [{"code": "CONTACT_WORLD", "contact": cid, "message": "contact_world_exceptions lists a contact that is "
+                  "not a real miss (it meets its target, is an artefact or is not measured)"}
+                 for cid in sorted(exceptions) if cid not in real]
+    return findings
 
 
 def misses(envelope):

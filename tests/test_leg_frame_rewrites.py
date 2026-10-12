@@ -13,7 +13,9 @@ from solver import staff_geometry
 
 pytestmark = pytest.mark.unit
 
-# (example, key, side): (the word before S-029, the word now)
+# Keys re-posed again in S-030 to meet their contacts (CONTACT_WORLD, ADR-O83); their words are S-030's record.
+RE_POSED = {("reference_fight", "ninja_broad@b17"), ("wizard_vs_acrobat", "acrobat@b06")}
+# (example, key, side): (the word before S-029, the word S-029 printed)
 LEG_WORDS = {
     ("reference_fight", "ninja_broad@b01", "right"): ("right-forward-low", "forward-low"),
     ("reference_fight", "ninja_broad@b04", "left"): ("left-forward-low", "forward-low"),
@@ -72,4 +74,6 @@ def test_each_rewritten_leg_prints_its_trunk_word():
         envelope = json.loads((ROOT / "examples" / name / "envelope.json").read_text(encoding="utf-8"))
         keys |= {(name, k["id"]): k for k in envelope["nodes"]["motion"]["items"]}
     for (name, slot, side), (old, new) in LEG_WORDS.items():
+        if (name, slot) in RE_POSED:
+            continue
         assert old != new and staff_geometry.pose_words(keys[(name, slot)])[side]["leg"] == new, (name, slot, side)

@@ -12,7 +12,7 @@ high
 L4c
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -55,4 +55,8 @@ ADR-O81 (report first)
 - PLAN-003
 
 ## Resolution
-Open.
+CONTACT_WORLD (S13 and the prompt; M9-06b, S-030; ADR-O83): S13 refuses a touch, hold or support whose
+two points lie over 0.15 m apart (solver/contact_world.py `refusals`), except an artefact (reported) and a source
+row the motion plan lists with its reason; the prompt prints both points (validators/prompt_validator.py
+`_world_checks`). The repo-authored side of each real miss was re-blocked (R-33): 24 of 33 meet, one source miss is
+excepted (3.00, A's right foot), eight artefacts are reported (docs/reports/2026-10-11-contact-world-after-m9-06b.md).

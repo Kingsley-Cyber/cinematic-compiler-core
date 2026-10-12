@@ -63,15 +63,20 @@ ROOT_TURNS = ((5.1, 0, -360), (6.3, 2, -360))
 
 
 # The two pickup roots re-rooted in S-029 (O72, O82, O85): the soles on the ground under the anime body, hips read from
-# the trunk (O84); 0.6 before.
+# the trunk (O84); 0.6 before. Re-blocked in S-030 (CONTACT_WORLD, ADR-O83, R-33): the left hand reaches the rope dart
+# on the ground at 7.5 and A crouches at the kunai, which lands at [0.6, 0, 4.0] since O77, the right hand on it at 8.0
+# (each within 0.15 m; the least change of root, crouch and arm, both soles on the ground).
 GROUNDED_PICKUPS = {  # O18: A's rows at the two pickups, crouched on the ground (from A's own crouches at 5.9 and 9.5)
-    7.5: [7.5, "rope_dart_regrapple", [-0.1, 0.86, 3.2], [-330, 30, -360],
-          {"Sp": [50, 0, 0], "LUL": [-120, 0, 0], "RUL": [-120, 0, 0], "LL": [90, 0, 0], "RL": [90, 0, 0], "LA": [-30, 0, 0],
-           "RA": [-45, 0, 0], "LFA": [-10, 0, 0], "RFA": [-45, 0, 0], "HD": [-10, 0, 0], "NK": [0, 0, 0]}],
-    8.0: [8.0, "pull_b_toward_pillar", [-0.2, 0.81, 5.1], [-330, 90, -360],
-          {"Sp": [45, 0, 0], "LUL": [-110, 0, 0], "RUL": [-110, 0, 0], "LL": [80, 0, 0], "RL": [80, 0, 0], "LA": [-60, 0, 0],
-           "RA": [-30, 0, 0], "LFA": [-30, 0, 0], "RFA": [-10, 0, 0], "HD": [-10, 0, 0], "NK": [0, 0, 0]}],
+    7.5: [7.5, "rope_dart_regrapple", [-0.07, 0.57, 3.51], [-330, 30, -360],
+          {"Sp": [59.6, 0, 0], "LUL": [-110.2, 0, 0], "RUL": [-108.5, 0, 0], "LL": [104.6, 0, 0], "RL": [108, 0, 0],
+           "LA": [-65.1, -4, 0], "RA": [-45, 0, 0], "LFA": [-27, 0, 0], "RFA": [-45, 0, 0], "HD": [-10, 0, 0], "NK": [0, 0, 0]}],
+    8.0: [8.0, "pull_b_toward_pillar", [0.11, 0.59, 4.23], [-330, 90, -360],
+          {"Sp": [85.6, 0, 0], "LUL": [-104.1, 0, 0], "RUL": [-100.6, 0, 0], "LL": [89.8, 0, 0], "RL": [97.5, 0, 0],
+           "LA": [-60, 0, 0], "RA": [-68.2, 14.8, 0], "LFA": [-30, 0, 0], "RFA": [-27.9, 0, 0], "HD": [-10, 0, 0],
+           "NK": [0, 0, 0]}],
 }
+# ADR-O83 point 2: the source's one real miss, kept as the owner wrote it and listed in the motion plan with its reason.
+CONTACT_EXCEPTIONS = {"b06_c3"}  # 3.0, A's right foot 1.5 m over the ground (RUL +90 against 'R: leg fwd mid')
 
 
 GROUNDED_DESCRIPTIONS = {
@@ -105,6 +110,26 @@ def normalised(row):
         if row[0] > after:
             rot[axis] += degrees
     return [row[0], row[1].lower(), OPENING.get(row[0], row[2]), rot, joints]
+
+
+# S-030 (CONTACT_WORLD, ADR-O83, R-33): the repo-authored side of each real miss moved. The rope dart's sample at 3.0 sits
+# in A's left hand (the source's pose); at 8.0 it is the dart, wrapped on B since 7.6, so it sits on B's torso while A
+# keeps the rope's end; B steps in and straightens to catch A's elbow at 6.6 with both hands.
+REBLOCKED_SAMPLES = {("rope_dart", 3.0): [0.85, 0.74, 4.55], ("rope_dart", 8.0): [1.6, 1.53, 4.7]}
+CATCH_ROOT = [0.13, 1.2, 4.87]
+
+
+def test_the_re_blocked_samples_and_the_catch_are_recorded():
+    samples = {(s["prop"], s["t"]): s["p"] for b in ENVELOPE["nodes"]["beats"]["items"] for s in b.get("prop_samples", [])}
+    assert {k: samples[k] for k in REBLOCKED_SAMPLES} == REBLOCKED_SAMPLES
+    keys = {k["id"]: k for k in ENVELOPE["nodes"]["motion"]["items"]}
+    assert keys["ninja_broad@b17"]["pos"] == CATCH_ROOT
+
+
+def test_contact_world_excepts_only_the_source_miss():
+    plan = json.loads((ROOT / "examples" / "reference_fight" / "plans" / "motion.json").read_text(encoding="utf-8"))
+    assert set(plan["contact_world_exceptions"]) == CONTACT_EXCEPTIONS
+    assert all("O83" in reason for reason in plan["contact_world_exceptions"].values())
 
 
 def test_a_roots_and_joints_are_the_reference_rows_with_the_recorded_deviations():
