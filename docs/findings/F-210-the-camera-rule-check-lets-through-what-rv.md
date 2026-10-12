@@ -12,7 +12,7 @@ high
 L5.5
 
 ## Status
-resolved
+open
 
 ## Reported
 2026-10-12
@@ -71,3 +71,7 @@ library/combat_verbs.yaml (a throw aside), an attack on a body, or a striking pa
 fight's palm, knee, elbow and kunai drive among them), and every floor word and camera term is read outside a
 negation, so O92's own sentences pass; review 7's phrasings and new ones of the class are refused and the library's
 cards pass (tests/test_camera_solver.py).
+Reopened in S-099 (principal review 8, F-233): RV-99b's negation governs the rest of its clause, so "Push in to a
+close-up without delay as the blow lands." and three more rules refused before it now pass, and the feet are not among
+the striking parts ("Cut to a close-up as the foot slams into the chest." passes; the wizard example's hit is a foot).
+The fix "not a noun list" is still undelivered; RV-99c restores the refusals.

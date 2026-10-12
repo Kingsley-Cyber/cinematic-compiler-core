@@ -101,10 +101,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.2; backlog 41.
-- Last session: S-098 (2026-10-12, applied): RV-59c: no body under the floor at any frame between keys.
-- Next slice: RV-59g CONTACT_WORLD on every open support at every frame between keys (the DAG's 'respect support'), the examples' takeoffs placed where the motion leaves its surface (step motion).
-- Open findings: 141; decisions: 136 (0 proposed, 7 owner_default awaiting the owner).
+- Layer order 1.7; rules 7.2; backlog 42.
+- Last session: S-099 (2026-10-12, applied): Principal review 8: does the finished work match the plan?.
+- Next slice: RV-113 Every prose prompt's legend hangs the legs from the spine as forward kinematics does (ADR-O84): root -> Sp -> arms, legs and NK -> HD; C29's note follows (step render).
+- Open findings: 146; decisions: 137 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

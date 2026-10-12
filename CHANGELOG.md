@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- Principal review 8 (S-099): partially, no tampering. B's in-between keys float it at 6.45-6.7 and sink its crash
+  0.14 m (F-230), every prompt's legend parents the legs on the root against ADR-O84 (F-231), in-between lines print
+  raw angles mid-turn (F-232), and RV-59h and RV-99b each loosened a check (F-233). The owner narrows the run to
+  significant work, then renders (ADR-O110).
 - No body under the floor at any frame between keys (RV-59c, F-089, S-098): S13 refuses a body point more than 0.15 m
   under the floor between keys, each body posed by the declared interpolation through its keys and in-betweens, on
   the frame walk BODY_OVERLAP's check shares; the examples pass (B's crash held by its in-between at 8.75).
