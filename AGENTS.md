@@ -102,9 +102,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 7.2; backlog 34.
-- Last session: S-084 (2026-10-12, applied): RV-100: this run's example rewrites typed as deviations; R-19 cites O97.
-- Next slice: RV-99 Camera card rules: RV-60's word lists restored as a floor; a hit rule found from what a contact means; subject and rig words read (step camera).
-- Open findings: 139; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
+- Last session: S-085 (2026-10-12, applied): RV-99: the camera cards' rules keep RV-60's floor, and a hit rule is found from what a contact does.
+- Next slice: RV-59 BODY_OVERLAP, CONTACT_WORLD and FLOOR_PENETRATION along the declared interpolation between keys; the paths re-blocked (step motion).
+- Open findings: 136; decisions: 135 (0 proposed, 6 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

@@ -12,7 +12,7 @@ medium
 L5.5
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -48,6 +48,8 @@ none needed (O92; PLAYBACK_RAMP's reach beyond the fight is the builder's readin
 - RV-60
 
 ## Resolution
+Resolved again by RV-99 (S-085): the floor RV-85 promised is built and the hit words read what a contact does (F-210).
+What follows is the history.
 Open in part, reopened by the sixth review (S-081): the card check S-073 built lets through rules RV-60's lists
 refused (F-210, RV-99).
 Open in part (review 5, S-072): the struck sentences are gone, but no check reads the printed rule words since S-070 (F-187, RV-85).

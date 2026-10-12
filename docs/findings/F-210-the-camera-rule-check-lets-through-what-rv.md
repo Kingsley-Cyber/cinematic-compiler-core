@@ -12,7 +12,7 @@ high
 L5.5
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -53,4 +53,10 @@ none needed (O92)
 - RV-99
 
 ## Resolution
-Open.
+Resolved by RV-99 (S-085): rule_problems keeps RV-60's word lists as a floor under the fields (slowed playback
+anywhere, including slows down, slo-mo and time slows; a close-up, tight shot, ECU, macro or insert on a hit), finds a
+hit rule by what a contact does (a blow, hit, impact, strike, contact; strike, deflect, parry, catch; a kick, punch,
+slash, stab, chop, jab or headbutt; between hits and a kick-off aside), and refuses a hit rule whose words frame one
+body or shake the camera, reading a negation ('no shaky texture') as one. Every rule review 6 found passing is refused
+(a test); the library's seventeen rules pass unchanged, so no card and no prompt changed. CAMERA_RULES keeps the
+printed rules the card's word for word, so the floor reaches the prompt.

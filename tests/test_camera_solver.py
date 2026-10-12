@@ -144,6 +144,39 @@ def test_a_rule_that_speaks_of_a_hit_is_a_hit_rule():
     assert camera_library.rule_problems(between) == []
 
 
+def test_rv60_s_floor_and_the_hit_words_refuse_review_6_s_rules():
+    """F-210 (RV-99, owner O92): RV-60's word lists are a floor under the fields (slowed playback anywhere; a close-up or
+    an insert on a hit), a rule speaks of a hit by what a contact does (a kick, a punch, a contact, a parry), and a hit's
+    words may not frame one body or shake the camera: each rule review 6 found passing is refused."""
+    from planner import camera_library
+    rules = [("fast_move", "Cut to a close-up of the face at each contact.", {"scale": ["close"]}),
+             ("fast_move", "Push in on the receiver as the kick connects.", {"movement": ["dolly_in"]}),
+             ("fast_move", "Whip pan with the punch as it lands.", {"movement": ["whip_pan"]}),
+             ("any_cut", "The action slows down as the kunai lands.", {}),
+             ("any_cut", "Slo-mo on every kick.", {}),
+             ("fast_move", "Go tight on the face as each punch connects.", {}),
+             ("hit", "Hold wide on the receiver alone as each blow lands.", {"movement": ["static"], "subjects": "all_present"}),
+             ("hit", "Hold medium on both fighters with a hard handheld shake as each strike lands.",
+              {"scale": ["medium"], "movement": ["static"], "subjects": "all_present"})]
+    for trigger, statement, asks in rules:
+        assert camera_library.rule_problems({"id": "probe", "trigger": trigger, "statement": statement, "asks": asks}), statement
+    slowed = camera_library.rule_problems({"id": "p", "trigger": "any_cut", "statement": "Time slows down.", "asks": {}})
+    assert slowed == ["p: its words ask for slowed playback, which owner O92 struck (normal speed only)"]
+
+
+def test_a_negated_shake_is_read_as_one():
+    """F-210 (RV-99): the knight's "no shaky texture" keeps its hold still, so it passes; the same hold "with a shaky
+    handheld" does not."""
+    from planner import camera_library
+    rule = {"id": "knight_weight_low", "trigger": "hit", "when": "a heavy blow or charge",
+            "prefer": "Hold a low, steady frame on both fighters so the armour's weight reads; no shaky texture.",
+            "asks": {"movement": ["static"], "subjects": "all_present"}}
+    assert camera_library.rule_problems(rule) == []
+    shaky = {**rule, "prefer": "Hold a low frame on both fighters with a shaky handheld."}
+    assert camera_library.rule_problems(shaky) == ["knight_weight_low: its words shake the camera on a hit; a hit's hold is "
+                                                   "still (owner O92)"]
+
+
 def test_a_hit_from_the_contacts_is_a_camera_hold_at_s16():
     """F-155 (RV-57, owner O92): S16 sees the contacts, so the shot covering each hit holds still on every body present:
     the acrobat's kick lands on the wizard at 3.6 (HIT_HOLD)."""

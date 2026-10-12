@@ -30,7 +30,7 @@
 # Anchors are line numbers in the frozen copy (§2.2 = Mermaid block, §2.3 = node catalogue).
 # X1-X41 (§3.5) are findings about specific prompts, not rules, and are not mapped.
 
-version: 18
+version: 19
 status: draft
 basis: "Mapped by Claude 2026-10-11 against the repo at 9c9fd98 (layer_order 1.7); owner decisions O1-O4 recorded
   2026-10-11 (docs/plans/M8_DAG_PROSE.md); O13-O14 (checklist scope, not-applicable rulings) 2026-10-11; owner
@@ -743,7 +743,8 @@ rows:
       and in the prompt). RV-60 (F-160): the camera cards follow O92 (no close-up after a blow, no insert on a landing
       blade, playback normal only). RV-71b (F-177): each card rule carries its trigger and asks, checked against the
       grammar and O92 where it is written (CAMERA_CARD), and the prompt prints the genre card's rules word for word
-      (CAMERA_RULES), in place of RV-60's word lists. RV-57 (F-155): the
+      (CAMERA_RULES); RV-99 (F-210) keeps RV-60's word lists as a floor in that check and finds a hit rule from what a
+      contact does. RV-57 (F-155): the
       hits come from the contacts (planner/hits.py), so S16 holds the camera on each, as S17 and the prompt do,
       whatever S17 holds. RV-15a, RV-15b (F-090): a shot aims at the middle of the parts its scale shows of its
       target, an insert at its detail (a part or a prop), and every such part and every framed prop is in frame, up

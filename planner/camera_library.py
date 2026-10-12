@@ -54,13 +54,28 @@ TERMS = [
     ("movement", "tracking", r"\btrack(?:s|ing)?\b"),
     ("movement", "whip_pan", r"\bwhip(?:s|[- ]pans?)?\b"),
     ("movement", "zoom", r"\bzooms?\b"),
-    ("playback", "slow", r"\bslow[- ]?(?:motion|mo)\b|\bslowed\b|\bhalf[- ]speed\b|\bbullet[- ]time\b|\bovercrank(?:ed|ing)?\b"),
+    ("playback", "slow", r"\bslow?[- ]?(?:motion|mo)\b|\bslowed\b|\bhalf[- ]speed\b|\bbullet[- ]time\b|\bovercrank(?:ed|ing)?\b"),
     ("playback", "ramp", r"\b(?:speed[- ]?)?ramp(?:s|ed|ing)?\b"),
     ("playback", "freeze", r"\bfreeze(?:[- ]?frames?)?\b|\bfreezes\b|\bfrozen\b"),
     ("playback", "fast", r"\bfast[- ](?:motion|forward)\b|\bspeed(?:s|ed)? up\b|\bsped up\b|\bundercrank(?:ed|ing)?\b"),
 ]
-HIT_WORDS = re.compile(r"\b(?:blows?|hits?|impacts?|strikes?|struck)\b", re.I)
-BETWEEN_HITS = re.compile(r"\bbetween (?:blows|hits|impacts|strikes)\b", re.I)
+# F-210 (RV-99): a rule speaks of a hit when its words name what planner/hits.py counts as one: the nouns, the striking
+# verbs of the contacts' combat verbs (strike, deflect, parry; a catch of a body) and the attacks that land on a body
+# (interpretation, Claude's, for owner review: the list); "between hits" and a kick-off are not hits.
+HIT_WORDS = re.compile(r"\b(?:blows?|hits?|impacts?|strikes?|struck|contacts?|deflect(?:s|ed|ing)?|parr(?:y|ies|ied)|"
+                       r"catch(?:es)?|caught|kicks?(?![- ]off)|punch(?:es)?|slash(?:es)?|stabs?|chops?|jabs?|headbutts?)\b", re.I)
+BETWEEN_HITS = re.compile(r"\bbetween (?:blows|hits|impacts|strikes|contacts|exchanges|kicks|punches)\b", re.I)
+# F-210 (RV-99; owner O92): RV-60's word lists, kept as a floor under the fields on every rule a card prints (CAMERA_RULES
+# prints the card's rules word for word): slowed playback anywhere, a close-up or an insert on a hit.
+SLOWED = re.compile(r"\b(?:slow?[- ]?(?:motion|mo)|slowed|slows? down|slowing down|time slows|ramp(?:s|ed|ing)?|"
+                    r"freeze[- ]?frames?|freezes?|frozen|bullet[- ]time|half[- ]speed|overcrank(?:ed|ing)?)\b", re.I)
+CLOSE = re.compile(r"\b(?:close[- ]?ups?|close|tight|ECUs?|macro|inserts?|detail shots?)\b", re.I)
+# a hit holds every body present, still (owner O92): words that frame one body or shake the camera; a negation ("no shaky
+# texture") is read as one
+SINGLE = re.compile(r"\b(?:alone|solely)\b|\bonly (?:on )?the (?:receiver|attacker|striker|defender|target|victim)\b|"
+                    r"\bon the (?:receiver|attacker|striker|defender|target|victim)\b(?! and\b)", re.I)
+SHAKE = re.compile(r"(?<!\bno )(?<!\bnot )(?<!\bnever )(?<!\bwithout )\b(?:hand-?held|shak(?:e|es|y|ing)|jitter\w*|"
+                   r"wobbl\w*|judder\w*)\b", re.I)
 
 
 def terms(words):
@@ -69,9 +84,11 @@ def terms(words):
 
 
 def rule_problems(rule, playback=("normal",)):
-    """[message] for one card rule (F-177, F-187; RV-71b, RV-85): its words ask only what its fields ask, a rule whose
-    words speak of a hit is a hit rule, every scale, movement and playback is the grammar's, playback stays in the card's
-    list, and a hit rule asks for a static hold on every body present at an impact scale (owner O92, R-21).
+    """[message] for one card rule (F-177, F-187, F-210; RV-71b, RV-85, RV-99): its words ask only what its fields ask, a
+    rule whose words speak of a hit is a hit rule, its words ask for no slowed playback and, on a hit, no close-up or
+    insert, no single body and no shaking rig (RV-60's floor), every scale, movement and playback is the grammar's,
+    playback stays in the card's list, and a hit rule asks for a static hold on every body present at an impact scale
+    (owner O92, R-21).
     Interpretation (Claude's, for owner review): the triggers and asks are read from each rule's words."""
     fields = library_vocab.load("camera_subdivisions")["fields"]
     words = {"scale": fields["framing.scale"]["values"], "movement": fields["movement.kind"]["values"],
@@ -83,8 +100,17 @@ def rule_problems(rule, playback=("normal",)):
         if value not in asks.get(field, []):
             problems.append(f"{rule['id']}: its words ask for {value} ({field}), which its fields do not")
     named = BETWEEN_HITS.sub("", " ".join(rule.get(key, "") for key in ("statement", "when", "prefer")))
+    on_a_hit = rule["trigger"] == "hit" or bool(HIT_WORDS.search(named))
     if HIT_WORDS.search(named) and rule["trigger"] != "hit":  # a rule about a hit is held to O92 whatever its label
         problems.append(f"{rule['id']}: its words speak of a hit, so its trigger is hit")
+    if SLOWED.search(said):  # F-210 (RV-99): RV-60's floor, whatever the fields say
+        problems.append(f"{rule['id']}: its words ask for slowed playback, which owner O92 struck (normal speed only)")
+    if on_a_hit and CLOSE.search(said):
+        problems.append(f"{rule['id']}: its words put a close-up or an insert on a hit, which owner O92 struck")
+    if on_a_hit and SINGLE.search(said):
+        problems.append(f"{rule['id']}: its words frame one body on a hit; a hit holds every body present (owner O92)")
+    if on_a_hit and SHAKE.search(said):
+        problems.append(f"{rule['id']}: its words shake the camera on a hit; a hit's hold is still (owner O92)")
     for key, known in words.items():
         problems += [f"{rule['id']}: {value} is no {key} of the grammar" for value in asks.get(key, []) if value not in known]
     problems += [f"{rule['id']}: {value} playback is not the card's" for value in asks.get("playback", [])

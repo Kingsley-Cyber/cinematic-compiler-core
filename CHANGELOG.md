@@ -6,6 +6,10 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The camera cards' rules keep RV-60's floor (RV-99, F-210, S-085): a rule asking for slowed playback is refused
+  whatever its fields, a rule about a hit is found by what a contact does (a kick, a punch, a contact, a parry), and a
+  hit's words may not put a close-up on it, frame one body or shake the camera. Every rule review 6 found passing is
+  refused; the library's cards pass unchanged and no prompt changed.
 - This run's rewrites of the golden are typed deviations (RV-100, F-212, S-084): the golden test records S-076's eleven
   re-authored shots and S-078's lunge, held to the plans by a test and typed as DEV-32 and DEV-33; DEV-09 and DEV-10
   say what RV-95 did; R-19 cites O97's length cap (rules 7.2). No example changed.

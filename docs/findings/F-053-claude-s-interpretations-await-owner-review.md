@@ -179,3 +179,6 @@ Added in S-083 (RV-95): a hand grasping a prop at a pickup is no support (the fe
 words take bent N as 15 N degrees (the source's 'arm fwd high bent3' at 45) and their directions from the staff's
 sectors (forward and its diagonals 'fwd', back 'back', left or right 'side', place 'down' or 'up'); an ankle need only
 be over the floor, the sole being the contact point (the foot is the shin's extension, F-219).
+Added in S-085 (RV-99, planner/camera_library.py): the hit words (the nouns, the striking verbs, the attacks on a body),
+the words that frame one body (alone, solely, only or on the receiver, attacker, striker, defender, target, victim) and
+that shake a camera (handheld, shake, jitter, wobble, judder), a negation (no, not, never, without) read as one.

@@ -12,7 +12,7 @@ high
 L5.5
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-12
@@ -48,6 +48,8 @@ whether a card's rule is its printed words or its fields (listed, F-197)
 - ADR-O92
 
 ## Resolution
+Resolved again by RV-99 (S-085): the floor RV-85 promised is built and the hit words read what a contact does (F-210).
+What follows is the history.
 Open in part, reopened by the sixth review (S-081): RV-85's backlog title promised RV-60's word lists as a floor on
 the printed rules and none was built; rule_problems passes 'Cut to a close-up of the face at each contact.' and the
 hit words are review 5's probe vocabulary (F-210, RV-99).

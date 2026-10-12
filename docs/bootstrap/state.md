@@ -10,16 +10,16 @@ Layer order 1.7; rules 7.2; backlog 34.
 
 ## Last sessions
 
-- S-082 (applied): RV-96: the re-block solver re-derives a re-block from its record
 - S-083 (applied): RV-95: the pickups re-blocked from a recorded command, every part above the floor
 - S-084 (applied): RV-100: this run's example rewrites typed as deviations; R-19 cites O97
+- S-085 (applied): RV-99: the camera cards' rules keep RV-60's floor, and a hit rule is found from what a contact does
 
 ## Next slices
 
-- RV-99 (next, step camera): Camera card rules: RV-60's word lists restored as a floor; a hit rule found from what a contact means; subject and rig words read
+- RV-59 (next, step motion): BODY_OVERLAP, CONTACT_WORLD and FLOOR_PENETRATION along the declared interpolation between keys; the paths re-blocked
 - RV-35b (ready, step all): The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools
-- RV-59 (ready, step motion): BODY_OVERLAP, CONTACT_WORLD and FLOOR_PENETRATION along the declared interpolation between keys; the paths re-blocked
 - RV-97 (ready, step camera): VERTICAL_FRAMING along a static shot's window, frames on the declared interpolation, a margin by each part's radius; c11 and c20 re-authored
+- RV-98 (ready, step camera): A declared entrance may start outside its shot's frame (O21): c01 opens with A above the frame
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -88,7 +88,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 139
+## Open findings: 136
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -124,17 +124,15 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-178 (high, all): No prompt can become deliverable: thirty checklist rows have no way to pass
 - F-179 (high, all): The done-gate has conditions no slice reaches
 - F-185 (high, L1.2): CAUSE_REASON passes sentences that state no cause
-- F-187 (high, L5.5): The camera check reads the cards' labels, not the words the prompt prints
 - F-189 (high, L1.1): The decoy is guessed by distance and may come from nowhere
 - F-196 (high, all): The substitution's decoy: who declares it, where it stands, who may substitute
 - F-197 (high, all): Hits and holds: what counts, how long, how wide, and which cuts hold
 - F-198 (high, all): Which checklist rows must pass for a prompt to be a deliverable
 - F-208 (high, L5.5): A static shot is framed at its keys only and loses the hit holds' bodies between them
 - F-209 (high, L5.5): VERTICAL_FRAMING refuses O21's opening, A above the frame
-- F-210 (high, L5.5): The camera rule check lets through what RV-60's word lists refused
 - F-215 (high, L4c): May a body point sit up to 0.15 m under the floor, or only by its radius?
 - F-216 (high, L1.1): Repo-authored fight defects outside the owner's questions
 
 ## Next free IDs
 
-Decision ADR-O109, finding F-220, session S-085, render R20.
+Decision ADR-O109, finding F-220, session S-086, render R20.

@@ -171,3 +171,4 @@ backlog order (backlog 33).
 - 2026-10-12 — RV-96 done (S-082): the re-block solver is order-independent, bound by the joint limits, and re-derivable from its printed command.
 - 2026-10-12 — RV-95 done (S-083): the pickups re-blocked from recorded commands at A's own 0.57 m, every knee over the floor, the hand no support; F-206, F-110, F-207 resolved; F-219 (the ankle) filed.
 - 2026-10-12 — RV-100 done (S-084): S-076's shots and S-078's lunge typed (DEV-32, DEV-33), DEV-09 and DEV-10 updated, R-19 cites O97; F-212 resolved.
+- 2026-10-12 — RV-99 done (S-085): RV-60's word lists are a floor in the card check, and a hit rule is found from what a contact does; F-210, F-187, F-160 resolved.
