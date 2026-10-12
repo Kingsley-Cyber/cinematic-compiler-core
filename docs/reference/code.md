@@ -18,9 +18,9 @@ flowchart LR
   cli -->|1| kernel
   cli -->|2| validators
   compiler -->|19| kernel
-  compiler -->|48| planner
+  compiler -->|49| planner
   compiler -->|4| renderers
-  compiler -->|13| solver
+  compiler -->|14| solver
   compiler -->|30| validators
   kernel -->|1| compiler
   kernel -->|3| planner
@@ -56,7 +56,7 @@ flowchart LR
 | `compiler.passes.derived.p10_affordance` | `compiler.authoring`, `kernel.canonical`, `planner.dependency_graph`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, functools, json, yaml |
 | `compiler.passes.derived.p11_kinematic` | `compiler.authoring`, `planner.dependency_graph`, `planner.dynamic_beat_validator`, `planner.library_vocab`, `planner.scene_view` | math |
 | `compiler.passes.derived.p12_bartenieff` | `compiler.authoring`, `planner.dependency_graph`, `planner.library_vocab`, `planner.scene_view`, `validators.schema_validator` | json, yaml |
-| `compiler.passes.derived.p13_motion` | `compiler.authoring`, `kernel.kernel_files`, `planner.dependency_graph`, `planner.scene_view`, `solver.body_overlap`, `solver.contact_world`, `solver.euler_solver`, `solver.floor_penetration`, `solver.forward_kinematics`, `solver.quaternion`, `solver.trajectory`, `validators.schema_validator` | json, yaml |
+| `compiler.passes.derived.p13_motion` | `compiler.authoring`, `kernel.kernel_files`, `planner.dependency_graph`, `planner.dynamic_beat_validator`, `planner.scene_view`, `solver.body_overlap`, `solver.contact_world`, `solver.euler_solver`, `solver.floor_penetration`, `solver.forward_kinematics`, `solver.interpolation`, `solver.quaternion`, `solver.trajectory`, `validators.schema_validator` | json, math, yaml |
 | `compiler.passes.derived.p14_facial` | `compiler.authoring`, `planner.dependency_graph`, `planner.scene_view`, `solver.quaternion`, `validators.facial_validator`, `validators.schema_validator` | functools, json, yaml |
 | `compiler.passes.derived.p15_effort` | `compiler.authoring`, `planner.dependency_graph`, `planner.library_vocab`, `planner.scene_view`, `solver.shape_direction`, `validators.schema_validator` | json, yaml |
 | `compiler.passes.derived.p16_camera` | `compiler.authoring`, `planner.camera_library`, `planner.dependency_graph`, `planner.dynamic_beat_validator`, `planner.hits`, `planner.library_vocab`, `solver.camera_geometry`, `solver.forward_kinematics`, `solver.quaternion`, `validators.camera_validator` | — |

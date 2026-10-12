@@ -30,7 +30,7 @@
 # Anchors are line numbers in the frozen copy (§2.2 = Mermaid block, §2.3 = node catalogue).
 # X1-X41 (§3.5) are findings about specific prompts, not rules, and are not mapped.
 
-version: 26
+version: 27
 status: draft
 basis: "Mapped by Claude 2026-10-11 against the repo at 9c9fd98 (layer_order 1.7); owner decisions O1-O4 recorded
   2026-10-11 (docs/plans/M8_DAG_PROSE.md); O13-O14 (checklist scope, not-applicable rulings) 2026-10-11; owner
@@ -216,10 +216,14 @@ rows:
     enforced_by:
       - {file: compiler/passes/derived/p13_motion.py, check: _keys, code: MOTION_SLOT,
          test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
+      - {file: compiler/passes/derived/p13_motion.py, check: _inbetweens, code: INBETWEEN_SPAN,
+         test: tests/test_inbetweens.py::test_an_in_between_is_checked_like_a_key}
       - {file: solver/trajectory.py}
     note: "One key pose per entity per beat is enforced; the root trajectory between keys is derived (never authored)
-      and the kernel rule 'slerp <label> joints' is rendered. Anticipation, follow-through and airborne arcs
-      (K-Ant, K-FT, K-Air) are not checked."
+      and the kernel rule 'slerp <label> joints' is rendered. An in-between key (ADR-O109, RV-59f) stands between two
+      keys of one entity on a frame of its own, checked like a key (INBETWEEN_SPAN, its joints and limits, TELEPORT,
+      the floor and the bodies at its instant), carried on the follows edge it splits; the declared interpolation runs
+      through it. Anticipation, follow-through and airborne arcs (K-Ant, K-FT, K-Air) are not checked."
 
   - id: EXT1
     name: "[EXT] Root pos + root Euler"

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:motion_graph:1.1",
+  "$id": "urn:cinematic-compiler:schema:motion_graph:1.2",
   "title": "S13 motion graph",
   "description": "motion = key poses (/nodes/motion) with derived quaternions; motion_edges = follows edges (/edges/motion) with derived Euler deltas, interpolation and root trajectory.",
   "type": "object",
@@ -217,6 +217,103 @@
                   "null"
                 ],
                 "minimum": 0
+              }
+            }
+          },
+          "inbetweens": {
+            "type": "array",
+            "description": "ADR-O109 (RV-59f): the in-between keys of the span this edge follows, in time order; the declared interpolation runs through them.",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "entity",
+                "t",
+                "name",
+                "pos",
+                "rot",
+                "quat",
+                "bones",
+                "turn",
+                "description",
+                "points"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*@[0-9]+(\\.[0-9]+)?$"
+                },
+                "entity": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                },
+                "t": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "name": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                },
+                "pos": {
+                  "type": "array",
+                  "minItems": 3,
+                  "maxItems": 3,
+                  "items": {
+                    "type": "number"
+                  }
+                },
+                "rot": {
+                  "$ref": "#/$defs/EulerXYZ"
+                },
+                "quat": {
+                  "type": "array",
+                  "minItems": 4,
+                  "maxItems": 4,
+                  "items": {
+                    "type": "number",
+                    "minimum": -1,
+                    "maximum": 1
+                  },
+                  "description": "Derived [w, x, y, z] of the root rot, w >= 0."
+                },
+                "bones": {
+                  "type": "object",
+                  "patternProperties": {
+                    "^[A-Z][A-Za-z]*$": {
+                      "type": "array",
+                      "minItems": 3,
+                      "maxItems": 3,
+                      "items": {
+                        "type": "number",
+                        "minimum": -180,
+                        "maximum": 180
+                      },
+                      "description": "Local joint Euler degrees relative to the rest pose, same convention as the root."
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "turn": {
+                  "$ref": "#/$defs/Turn"
+                },
+                "description": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "points": {
+                  "type": "object",
+                  "description": "Owner O24, O72 (M9-06a): world points of the key by forward kinematics from the pelvis root (solver/forward_kinematics.py, library/body_segments.yaml).",
+                  "additionalProperties": {
+                    "type": "array",
+                    "minItems": 3,
+                    "maxItems": 3,
+                    "items": {
+                      "type": "number"
+                    }
+                  }
+                }
               }
             }
           }

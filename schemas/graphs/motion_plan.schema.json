@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:motion_plan:2.0",
-  "title": "S13 motion plan (authored in-session): one Euler key pose per entity per beat",
-  "description": "Root pos equals the S04 anchor; rot agrees with the S04 facing; bones are the kernel joints; turns declare their axis (flip X, spin Y, cartwheel Z).",
+  "$id": "urn:cinematic-compiler:schema:motion_plan:2.1",
+  "title": "S13 motion plan (authored in-session): one Euler key pose per entity per beat, and in-between keys",
+  "description": "Root pos equals the S04 anchor; rot agrees with the S04 facing; bones are the kernel joints; turns declare their axis (flip X, spin Y, cartwheel Z). An in-between key (ADR-O109) is one entity's pose at an instant strictly between two of its consecutive keys, on a frame of its own, with no beat, contact or anchor; S13 checks it like a key.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -105,6 +105,69 @@
           },
           "axis_declaration": {
             "$ref": "#/$defs/AxisDeclaration"
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "inbetweens": {
+      "type": "array",
+      "description": "ADR-O109 (RV-59f): poses between two of one entity's keys, placed by the repo where the declared interpolation would draw a body through another or under the floor.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "entity",
+          "t",
+          "name",
+          "pos",
+          "rot",
+          "bones",
+          "description"
+        ],
+        "properties": {
+          "entity": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "t": {
+            "type": "number",
+            "minimum": 0
+          },
+          "name": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "pos": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "number"
+            }
+          },
+          "rot": {
+            "$ref": "#/$defs/EulerXYZ"
+          },
+          "bones": {
+            "type": "object",
+            "patternProperties": {
+              "^[A-Z][A-Za-z]*$": {
+                "type": "array",
+                "minItems": 3,
+                "maxItems": 3,
+                "items": {
+                  "type": "number",
+                  "minimum": -180,
+                  "maximum": 180
+                },
+                "description": "Local joint Euler degrees relative to the rest pose, same convention as the root."
+              }
+            },
+            "additionalProperties": false
           },
           "description": {
             "type": "string",

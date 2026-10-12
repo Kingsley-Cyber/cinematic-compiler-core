@@ -17,10 +17,7 @@ from validators.contact_world_report import REPO_ROOTS, SOURCE
 
 
 def _keys(envelope):
-    keys = {}
-    for key in sorted(envelope["nodes"]["motion"]["items"], key=lambda k: (k["t"], k["id"])):
-        keys.setdefault(key["entity"], []).append(key)
-    return keys
+    return interpolation.envelope_keys(envelope)  # the keys and the in-betweens (ADR-O109)
 
 
 def _span(keys, entity, t):

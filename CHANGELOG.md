@@ -5,6 +5,13 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 
 ## Unreleased
 
+### Added
+- In-between keys at S13 (RV-59f, ADR-O109, S-094): the motion plan may carry one entity's pose between two of its
+  keys (motion_plan 2.1); S13 checks it like a key (INBETWEEN_SPAN, its joints and limits, TELEPORT, the floor and the
+  bodies at its instant), the follows edge it splits carries it (motion_graph 1.2), the declared interpolation, the
+  between-keys report and CONTACT_WORLD run through it, and the re-block solver places one (`<entity>@<t>`). No
+  example takes one yet; RV-59i prints them in the prompts before RV-59e uses them.
+
 ### Changed
 - A's pickups judged as drawn (RV-95b, F-223, F-226, S-093): the recorded commands state every bound S-083's plan
   stated (knees 0.08 m, ankles 0.045 m, the head 0.2 m over the pelvis, the trunk within 70 degrees), and both keys

@@ -86,3 +86,6 @@ degrees (deepest 0.141 m), at the cost of B's left foot 1.0 m up at 9.0; S-089's
 exempts a contact's interpolated miss and says nothing of overlaps. (5) The 4.7 knee clears with a 0.11 m gap at the
 knee, which O72 allows: option (c) is the run's to take, though it leaves the strike short. ADR-O109 answers option
 (a) on the repo's side; RV-59f, RV-59e and RV-59c carry it.
+Noted in S-094 (RV-59f): the in-between key stands at S13, checked like a key; measured with it, one in-between of B's
+at 6.45, placed by the re-block solver (B's arms, spine and root free), clears every frame from 6.333 to 6.583 of A's
+cartwheel elbow (tests/test_inbetweens.py). Its use, and the prompts' printing of it (RV-59i), come first in RV-59e.

@@ -196,6 +196,10 @@ rule excuses a landing (F-222).
 Added in S-089 (RV-59c, solver/reblock.py): the floor term applies FLOOR_PENETRATION's 0.15 m between keys; F-215 asks
 whether that allowance holds.
 
+Added in S-094 (RV-59f, compiler/passes/derived/p13_motion.py; ADR-O109): an in-between key sits on a frame no key or
+other in-between holds; it carries the turn of its entity's key before it; its root keeps TELEPORT's 25 m/s to its
+neighbours (owner O12's figure, for anchors); it is judged against the other bodies as the declared interpolation
+poses them at its instant; a performer whose keys the source gives row by row takes none (the instructions).
 ## Impact
 Waits on the owner.
 

@@ -91,13 +91,37 @@ def _misses(key, metres, goals, above, extra=None):
 
 
 def _scene_keys(plan, envelope):
-    """{entity: [key with its instant t, in time order]} for every key of the plan, timed by the envelope's beats."""
+    """{entity: [key with its instant t, in time order]} for every key of the plan, timed by the envelope's beats, and
+    every in-between key (ADR-O109), its slot `<entity>@<t>`."""
     times = {beat["id"]: beat["t"] for beat in envelope["nodes"]["beats"]["items"]}
     keys = {}
     for key in plan["keys"]:
         entity, beat = key["slot"].split("@")
         keys.setdefault(entity, []).append({**key, "t": times[beat]})
-    return {entity: sorted(own, key=lambda k: k["t"]) for entity, own in keys.items()}
+    keys = {entity: sorted(own, key=lambda k: k["t"]) for entity, own in keys.items()}
+    return interpolation.sequences(keys, [{**b, "slot": f"{b['entity']}@{b['t']:g}"} for b in plan.get("inbetweens", [])])
+
+
+def _between_slot(slot):
+    """The instant an in-between key's slot names (`<entity>@<t>`), else None for a beat's slot (`<entity>@b07`)."""
+    tail = slot.split("@")[1]
+    return None if tail.startswith("b") else float(tail)
+
+
+def _start_inbetween(plan, envelope, slot):
+    """The plan with the in-between key `slot` in it: kept if it stands, else started from the pose the declared
+    interpolation gives at its instant (ADR-O109, RV-59f)."""
+    entity, t = slot.split("@")[0], _between_slot(slot)
+    if any(b["entity"] == entity and abs(b["t"] - t) < EPSILON for b in plan.get("inbetweens", [])):
+        return plan
+    pose = _posed(_scene_keys(plan, envelope)[entity], t)
+    if pose is None:
+        raise SystemExit(f"{slot}: no keys of {entity} on both sides of {t:g}")
+    between = {"entity": entity, "t": t, "name": f"{entity}_between", "pos": [round(v, 6) for v in pose["pos"]],
+               "rot": [round(v, 6) for v in pose["rot"]], "bones": {j: [round(v, 6) for v in pose["bones"][j]]
+                                                                   for j in pose["bones"]},
+               "description": "Between keys (ADR-O109)."}
+    return {**plan, "inbetweens": [*plan.get("inbetweens", []), between]}
 
 
 def _posed(own, t):
@@ -316,7 +340,9 @@ def main(argv=None):
     plan = _plan(args.example, args.revision, args.plan)
     envelope = json.loads((ROOT / "examples" / args.example / "envelope.json").read_text(encoding="utf-8"))
     genre = envelope["scene"]["genre"]
-    key = copy.deepcopy(next(k for k in plan["keys"] if k["slot"] == args.slot))
+    if _between_slot(args.slot) is not None:  # an in-between key (ADR-O109, RV-59f)
+        plan = _start_inbetween(plan, envelope, args.slot)
+    key = copy.deepcopy(next(k for own in _scene_keys(plan, envelope).values() for k in own if k["slot"] == args.slot))
     if args.root_y is not None:
         key["pos"] = [key["pos"][0], args.root_y, key["pos"][2]]
     above = [(part.removesuffix(".y"), float(value)) for part, value in (a.split("=") for a in args.above)]
@@ -328,8 +354,11 @@ def main(argv=None):
     solved, misses = solve_key(key, forward_kinematics.segments(genre), [_goal(g) for g in args.goal],
                                args.free.split(","), bounds, above, limits(genre), extra)
     command = "python -m solver.reblock " + " ".join(shlex.quote(a) for a in (argv if argv is not None else sys.argv[1:]))
-    json.dump({"command": command, "slot": args.slot, "pos": solved["pos"], "bones": solved["bones"],
-               "misses_m2": round(misses, 6)}, sys.stdout)
+    printed = {"command": command, "slot": args.slot, "pos": solved["pos"], "bones": solved["bones"],
+               "misses_m2": round(misses, 6)}
+    if _between_slot(args.slot) is not None:
+        printed = {**printed, "entity": solved["entity"], "t": solved["t"], "rot": solved["rot"]}
+    json.dump(printed, sys.stdout)
     sys.stdout.write("\n")
     return 0
 

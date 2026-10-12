@@ -6,17 +6,17 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 7.2; backlog 39.
+Layer order 1.7; rules 7.2; backlog 40.
 
 ## Last sessions
 
-- S-091 (applied): RV-59h: a landing is never airborne at its own instant
 - S-092 (applied): RV-99b: the camera floor finds a hit by what strikes, and reads a negation in every word
 - S-093 (applied): RV-95b: the pickups judged as drawn, their stated bounds restored
+- S-094 (applied): RV-59f: in-between keys at S13 (ADR-O109)
 
 ## Next slices
 
-- RV-59f (next, step motion): In-between keys (ADR-O109): one entity's pose at an instant between two of its keys, checked like a key, printed with its instant, placed by the re-block solver
+- RV-59i (next, step render): Every prompt prints the in-between keys with their instants (the LBN rows and every prose mode; the motion control's density counts them), before RV-59e's first use
 - RV-35b (ready, step all): The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools
 - RV-95c (ready, step motion): The pickup rows worded in the printed legend's frame, and A's head at 7.5 aimed at B by a facing goal in the re-block solver (or its words dropped)
 - RV-108 (ready, step motion): A declared turn drawn about its own axis by its net angle between keys (B's 8.5 tip), F-053's straight-Euler reading revised, the between-keys report re-measured
@@ -140,4 +140,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O110, finding F-230, session S-094, render R20.
+Decision ADR-O110, finding F-230, session S-095, render R20.

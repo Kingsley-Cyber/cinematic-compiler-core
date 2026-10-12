@@ -63,7 +63,7 @@ def measure(envelope):
     genre = envelope["scene"]["genre"]
     metres, radii = forward_kinematics.segments(genre), forward_kinematics.radii(genre)
     keys = {(k["entity"], round(k["t"], 6)): {**k, "capsules": capsules(k, metres, radii)}
-            for k in envelope["nodes"]["motion"]["items"]}
+            for own in interpolation.envelope_keys(envelope).values() for k in own}  # the in-betweens too (ADR-O109)
     support = {k["id"]: k["support"] for k in envelope["nodes"]["kinematic"]["items"]}
     surfaces = envelope["nodes"]["surfaces"]["items"]
     tops = surface_tops(surfaces, envelope["scene"]["ax"].get("ground"))
@@ -94,11 +94,28 @@ def plan_bodies(keys, slots, packet):
              "capsules": capsules(key, packet["segments"], packet["radii"])} for slot, key in keys.items()}
 
 
-def measure_plan(keys, slots, packet):
-    """The same rows from S13's packet and its authored keys ({slot: key}), the points by forward kinematics."""
+def inbetween_bodies(inbetweens, packet, keys=None):
+    """{(entity, t): body} for the authored in-between keys (ADR-O109): exact poses at their instants, no supports,
+    each carrying the turn of its entity's key before it (`keys`: {(entity, t): body})."""
+    out = {}
+    for b in inbetweens:
+        before = [body for (entity, t), body in sorted((keys or {}).items(), key=lambda item: item[0][1])
+                  if entity == b["entity"] and t < b["t"]]
+        out[(b["entity"], round(b["t"], 6))] = {**b, "id": f"{b['entity']}@{b['t']:g}",
+                                                "turn": before[-1]["turn"] if before else "none",
+                                                "points": points(b, packet["segments"]),
+                                                "capsules": capsules(b, packet["segments"], packet["radii"])}
+    return out
+
+
+def measure_plan(keys, slots, packet, inbetweens=()):
+    """The same rows from S13's packet and its authored keys ({slot: key}) and in-betweens, the points by forward
+    kinematics."""
     view = packet["contact_world"]
     support = {slot: slots[slot]["kinematic"]["support"] for slot in keys}
-    return _rows(plan_bodies(keys, slots, packet), support, view["surface_tops"], set(view["floors"]),
+    bodies = plan_bodies(keys, slots, packet)
+    bodies |= inbetween_bodies(inbetweens, packet, bodies)
+    return _rows(bodies, support, view["surface_tops"], set(view["floors"]),
                  view["prop_samples"], view["contacts"], packet["radii"], packet.get("floor_y"), packet["segments"])
 
 

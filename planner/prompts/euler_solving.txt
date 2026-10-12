@@ -31,4 +31,11 @@ S13 motion (L4c). For every slot write one key pose: the body at the slot's beat
   top its open support contact names or on the floor (CONTACT_WORLD, RV-14a); no two bodies overlap at a key they
   share (BODY_OVERLAP); no body point lies more than 0.15 m under the floor (packet floor_y) at any key
   (FLOOR_PENETRATION). Meet them with the bones; the root stays the slot's pos.
+- In-between keys (ADR-O109): where the declared interpolation would draw this body through another or a point more
+  than 0.15 m under the floor, and no re-pose of the keys inside their limits clears it, add to `inbetweens` a pose of
+  one entity at an instant strictly between two of its consecutive keys, on a frame no key or other in-between holds:
+  entity, t, name, pos, rot, bones (the kernel joints), description. It has no beat, contact or anchor; its root moves
+  no faster than 25 m/s to its neighbours (TELEPORT); it is checked like a key (INBETWEEN_SPAN, JOINT_LIMIT, the floor,
+  the bodies at its instant). Densest around impacts and support changes, never every frame; a performer whose keys
+  the source gives row by row takes none.
 - name: a short snake_case pose name; description: one sentence. Copy packet_sha256.

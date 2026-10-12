@@ -5,7 +5,9 @@ Every joint's local rotation is slerped between its two keys; the root's positio
 exact only at the keys); the root's rotation is slerped too, unless the earlier key declares a turn (a flip, a spin or a
 cartwheel), when its Euler angles run straight from key to key along the turn, as the S13 edge's `euler_axis` says.
 `frames` gives every frame of the scene strictly between an entity's consecutive keys, leaving out a vanished body's
-window (owner O18: it is gone). Interpretation (Claude's, for owner review): the straight root path.
+window (owner O18: it is gone). Interpretation (Claude's, for owner review): the straight root path. An in-between key
+(ADR-O109, RV-59f) stands in its entity's sequence like a key and carries the turn of the key before it, so the
+declared interpolation runs through it (`sequences`, `envelope_keys`).
 """
 
 import math
@@ -77,3 +79,25 @@ def frames(keys, fps, gone=()):
                     continue
                 out[(entity, t)] = pose(a, b, t)
     return out
+
+
+def sequences(keys, inbetweens=()):
+    """{entity: [key, ...] in time order}: the keys ({entity: [key with t]}) joined by the in-betweens (ADR-O109), each
+    carrying the turn of the key before it."""
+    out = {entity: list(own) for entity, own in keys.items()}
+    for between in inbetweens:
+        own = out.setdefault(between["entity"], [])
+        before = max((k for k in keys.get(between["entity"], []) if k["t"] < between["t"]), key=lambda k: k["t"], default=None)
+        own.append({**between, "turn": before.get("turn", "none") if before else "none"})
+    return {entity: sorted(own, key=lambda k: k["t"]) for entity, own in out.items()}
+
+
+def envelope_keys(envelope):
+    """{entity: [key, ...] in time order} from S13's graph: its keys and the in-betweens its follows edges carry."""
+    keys = {}
+    for key in envelope["nodes"]["motion"]["items"]:
+        keys.setdefault(key["entity"], []).append(key)
+    inbetweens = [between for edge in envelope.get("edges", {}).get("motion", {}).get("items", [])
+                  for between in edge.get("inbetweens", [])]
+    return sequences(keys, inbetweens)
+

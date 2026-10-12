@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 39
+version: 40
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -170,12 +170,14 @@ items:
      step: motion, plan: PLAN-007, depends_on: [RV-95], findings: [F-223, F-226], codes: []}
   - {id: RV-95c, title: "The pickup rows worded in the printed legend's frame, and A's head at 7.5 aimed at B by a facing goal in the re-block solver (or its words dropped)", status: ready,
      step: motion, plan: PLAN-007, depends_on: [RV-95b], findings: [F-224, F-111], codes: []}
-  - {id: RV-59f, title: "In-between keys (ADR-O109): one entity's pose at an instant between two of its keys, checked like a key, printed with its instant, placed by the re-block solver", status: next,
+  - {id: RV-59f, title: "In-between keys at S13 (ADR-O109): one entity's pose at an instant between two of its keys, checked like a key, carried on its edge, run through by the declared interpolation, placed by the re-block solver", status: done,
      step: motion, plan: PLAN-007, depends_on: [RV-59b], findings: [F-220, F-159], codes: []}
+  - {id: RV-59i, title: "Every prompt prints the in-between keys with their instants (the LBN rows and every prose mode; the motion control's density counts them), before RV-59e's first use", status: next,
+     step: render, plan: PLAN-007, depends_on: [RV-59f], findings: [F-220], codes: []}
   - {id: RV-108, title: "A declared turn drawn about its own axis by its net angle between keys (B's 8.5 tip), F-053's straight-Euler reading revised, the between-keys report re-measured", status: ready,
      step: motion, plan: PLAN-007, depends_on: [RV-59a], findings: [F-225], codes: []}
   - {id: RV-59e, title: "BODY_OVERLAP refused at every frame between keys: B's 7.5 root re-blocked (the descent, no contact), the spans by a contact cleared with B's in-between keys (ADR-O109); what only A's rows could clear stays F-220's", status: ready,
-     step: motion, plan: PLAN-007, depends_on: [RV-59f], findings: [F-159, F-220], codes: []}
+     step: motion, plan: PLAN-007, depends_on: [RV-59f, RV-59i], findings: [F-159, F-220], codes: []}
   - {id: RV-59c, title: "FLOOR_PENETRATION at every frame between keys; B's crash cleared with a key mid-fall (ADR-O109) after RV-108 draws its tip", status: ready,
      step: motion, plan: PLAN-007, depends_on: [RV-59f, RV-108], findings: [F-089, F-220, F-225], codes: []}
   - {id: RV-59g, title: "CONTACT_WORLD on every open support at every frame between keys (the DAG's 'respect support'), the examples' takeoffs placed where the motion leaves its surface", status: ready,

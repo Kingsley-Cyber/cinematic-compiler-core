@@ -101,9 +101,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.2; backlog 39.
-- Last session: S-093 (2026-10-12, applied): RV-95b: the pickups judged as drawn, their stated bounds restored.
-- Next slice: RV-59f In-between keys (ADR-O109): one entity's pose at an instant between two of its keys, checked like a key, printed with its instant, placed by the re-block solver (step motion).
+- Layer order 1.7; rules 7.2; backlog 40.
+- Last session: S-094 (2026-10-12, applied): RV-59f: in-between keys at S13 (ADR-O109).
+- Next slice: RV-59i Every prompt prints the in-between keys with their instants (the LBN rows and every prose mode; the motion control's density counts them), before RV-59e's first use (step render).
 - Open findings: 144; decisions: 136 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
