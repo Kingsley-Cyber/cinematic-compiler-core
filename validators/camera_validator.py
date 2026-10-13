@@ -37,6 +37,7 @@
 
 from planner import library_vocab
 from solver import camera_geometry as geometry
+from solver import pose_mechanics
 from solver.forward_kinematics import part_point
 
 EPSILON = 1e-6
@@ -131,9 +132,11 @@ def derive(shot, packet):
         point = _place(shot, packet, subject, first)
         if point is not None:
             screen[subject] = geometry.screen_x(camera, aim_point, point, focal, sensor)
+    framed = {e: body for e in shot["framing"]["subjects"] if (body := packet.get("points", {}).get(first, {}).get(e))}
     return {"camera_pos": geometry.rounded(camera), "aim": geometry.rounded(aim_point), "height_m": round(camera[1], 6) + 0.0,
             "side": side, "fov_deg": geometry.fov_degrees(focal, sensor),
-            "frame_height_m": geometry.frame_height(shot["position"]["distance_m"], focal, sensor), "screen_x": screen}
+            "frame_height_m": geometry.frame_height(shot["position"]["distance_m"], focal, sensor), "screen_x": screen,
+            "silhouette": pose_mechanics.silhouette(camera, aim_point, framed)}  # PLAN-009 PM-4 (S-129)
 
 
 def _framing(shot, packet, geo):

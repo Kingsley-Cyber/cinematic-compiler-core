@@ -153,3 +153,48 @@ def test_the_owner_s_exceptions_keep_the_four_source_poses_and_must_stay_true(mo
                                                                                          'key: "ninja_lean@b01"'))
     monkeypatch.setattr(p14_pose_mechanics, "EXCEPTIONS", extra)
     assert {f["detail"] for f in p14_pose_mechanics.weight_findings(envelope, graph)} == {"ninja_lean@b23", "ninja_lean@b01"}
+
+
+def _eleven(joints):
+    """The 11 points forward kinematics names, from a jointed figure."""
+    return {"pelvis": joints["pelvis"], "torso": joints["torso"], "head": joints["head"],
+            **{f"{s}_{n}": joints[f"{s}_{j}"] for s in ("left", "right")
+               for n, j in (("arm", "elbow"), ("hand", "hand"), ("leg", "knee"), ("foot", "sole"))}}
+
+
+SIDE_CAMERA = ([1.2, 1.1, -6.0], [1.2, 1.1, 0.0])  # the frames' own view: square on to the picture plane
+
+
+def test_a_hand_held_against_the_chest_is_against_its_own_body_and_one_held_out_is_clear():
+    body = {"pelvis": [0, 1.0, 0], "torso": [0, 1.3, 0], "head": [0, 1.7, 0], "left_hand": [0.05, 1.3, 0.2],
+            "right_hand": [0.7, 1.4, 0], "left_foot": [-0.15, 0, 0], "right_foot": [0.15, 0, 0]}
+    sil = pose_mechanics.silhouette([0, 1.2, 5], [0, 1.2, 0], {"a": body})
+    assert {"subject": "a", "end": "left_hand", "body": "a"} in sil["against"] and "a:right_hand" in sil["clear"]
+
+
+def test_the_flying_kick_lands_on_naruto_and_sasuke_s_hands_read_clear():
+    """The flying_kick frame (Claude's reading): the kick meets Naruto's face, its own target; Sasuke's hands to the
+    ground read clear of both trunks."""
+    sasuke = _eleven(JOINTED["flying_kick/sasuke"]["joints"])
+    naruto = {**FIGURES["flying_kick/naruto"]["points"], "left_hand": [2.35, 1.95, 0], "right_hand": [1.80, 2.30, 0]}
+    sil = pose_mechanics.silhouette(*SIDE_CAMERA, {"sasuke": sasuke, "naruto": naruto})
+    assert {"subject": "sasuke", "end": "right_foot", "body": "naruto"} in sil["against"]
+    assert not any(x["subject"] == "sasuke" and x["body"] == "sasuke" and x["end"] == "right_foot" for x in sil["against"])
+    assert {"sasuke:left_hand", "sasuke:right_hand"} <= set(sil["clear"])
+
+
+def test_the_clash_reads_naruto_s_cocked_fist_clear_of_both_bodies():
+    naruto = _eleven(JOINTED["clash/naruto"]["joints"])
+    assert "naruto:left_hand" in pose_mechanics.silhouette(*SIDE_CAMERA, {"naruto": naruto})["clear"]
+
+
+def test_a_strike_hidden_against_a_body_other_than_its_target_is_named():
+    envelope = copy.deepcopy(_envelope("reference_fight"))
+    strike = next(c for c in envelope["nodes"]["contacts"]["items"]
+                  if c["contact_type"] == "touch" and c["b"]["kind"] == "entity")
+    shot = next(s for s in envelope["nodes"]["camera"]["items"] if s["beats"] and s["beats"][0] == strike["beat"])
+    side, _, part = strike["body_part"].partition("_")
+    end = f"{side}_{pose_checks.END.get(part, part)}"
+    shot["derived"]["silhouette"]["against"].append({"subject": strike["a"]["id"], "end": end, "body": strike["a"]["id"]})
+    assert [n["code"] for n in pose_checks.silhouette_readable(envelope)
+            if n["key"] == f"{shot['id']}:{strike['id']}"] == ["SILHOUETTE_READABLE"]

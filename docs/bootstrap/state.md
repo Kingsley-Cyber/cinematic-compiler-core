@@ -10,9 +10,9 @@ Layer order 1.10; rules 7.3; backlog 55.
 
 ## Last sessions
 
-- S-126 (applied): S14's first check: the line of action, computed for every key and printed on its line
 - S-127 (applied): S14's second check: the centre of mass and the counterbalance of every key
 - S-128 (applied): S14's third check: weight distribution, refusing from the start (the pose follows S11)
+- S-129 (applied): The fourth check: silhouette, computed at the camera step for every shot
 
 ## Next slices
 
@@ -138,4 +138,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O118, finding F-236, session S-129, render R21.
+Decision ADR-O118, finding F-236, session S-130, render R21.

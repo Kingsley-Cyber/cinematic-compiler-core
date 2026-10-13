@@ -422,6 +422,8 @@ def _camera_rows(envelope, labels, cover):
             f"angle elev {_num(angle['elevation_deg'])} az {_num(angle['azimuth_deg'])} roll {_num(angle['roll_deg'])}",
             f"position {name(position['target'])} {_num(position['distance_m'])}m {position['side']} side "
             f"camera {d['camera_pos']}",
+            "silhouette clear " + (",".join(d["silhouette"]["clear"]) or "none") + " against "
+            + (",".join(f"{x['subject']}:{x['end']}>{x['body']}" for x in d["silhouette"]["against"]) or "none"),
             f"lens {_num(lens['focal_length_mm'])}mm {lens['perspective']} fov{d['fov_deg'][0]}x{d['fov_deg'][1]}",
             f"focus {name(focus['target'])} {focus['depth_of_field']} {focus['transition']}",
             f"movement {s['movement']['kind']}: {s['movement']['path']}",

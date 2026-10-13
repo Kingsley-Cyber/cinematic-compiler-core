@@ -838,7 +838,18 @@ def _camera_world(s, name):
             f"{_words(s['composition']['depth_anchor'] or 'none')}, left open: "
             f"{s['composition']['negative_space'] or 'nothing'}; "
             f"intent {_words(s['intent'])}; {mq['stability']} {mq['easing']} movement, texture {mq['texture']}; "
-            f"{rel['mode']} {name(rel['subject'])}: {rel['note'].rstrip('.')}; rig {_words(s['support']['rig'])}")
+            f"{rel['mode']} {name(rel['subject'])}: {rel['note'].rstrip('.')}; rig {_words(s['support']['rig'])}; "
+            f"{_silhouette(d['silhouette'], name)}")
+
+
+def _silhouette(sil, name):
+    """PLAN-009 PM-4 (S-129): 'silhouette: clear A R hand, B L foot; against a body: A L hand against A'."""
+    def end(item):
+        who, _, part = item.partition(":")
+        return f"{name(who)} {_part(part)}"
+    clear = ", ".join(end(x) for x in sil["clear"]) or "nothing"
+    against = ", ".join(f"{name(x['subject'])} {_part(x['end'])} against {name(x['body'])}" for x in sil["against"])
+    return f"silhouette: clear {clear}" + (f"; against a body: {against}" if against else "")
 
 
 def camera_rules(envelope):

@@ -9,6 +9,9 @@ another body (S07's contacts).
 COUNTERBALANCE (S-127): a pose whose leading limb reaches out from the centre of mass with no limb on the other side
 to oppose it is named: animation's opposition, not a fall (the trunk already balances it; WEIGHT_DISTRIBUTION is the
 physics).
+
+SILHOUETTE_READABLE (S-129): a striking hand or foot that falls against a body on screen other than its target, in the
+shot that opens on the strike's beat (camera_graph derived.silhouette), is named.
 """
 
 import json
@@ -46,7 +49,30 @@ def counterbalance(envelope):
     return out
 
 
-CHECKS = {"LINE_OF_ACTION": line_of_action, "COUNTERBALANCE": counterbalance}
+END = {"hand": "hand", "fist": "hand", "palm": "hand", "fingers": "hand", "arm": "hand", "forearm": "hand",
+       "foot": "foot", "leg": "foot", "shin": "foot", "knee": "foot", "heel": "foot", "sole": "foot"}
+
+
+def silhouette_readable(envelope):
+    """SILHOUETTE_READABLE (S-129): in the shot that opens on a strike's beat, the striking hand or foot falls against a
+    body on screen other than the one it strikes (against the target is the contact itself)."""
+    out = []
+    shots = _items(envelope, "nodes", "camera")
+    for c in _items(envelope, "nodes", "contacts"):
+        if c["contact_type"] != "touch" or c["b"]["kind"] != "entity":
+            continue
+        side, _, part = c["body_part"].partition("_")
+        end = f"{side}_{END.get(part, part)}"
+        for shot in (s for s in shots if s["beats"] and s["beats"][0] == c["beat"]):
+            for x in shot["derived"]["silhouette"]["against"]:
+                if x["subject"] == c["a"]["id"] and x["end"] == end and x["body"] != c["b"]["id"]:
+                    out.append({"code": "SILHOUETTE_READABLE", "key": f"{shot['id']}:{c['id']}",
+                                "message": f"{shot['id']}: {c['a']['id']}'s striking {end} ({c['id']}) falls against "
+                                           f"{x['body']} on screen"})
+    return out
+
+
+CHECKS = {"LINE_OF_ACTION": line_of_action, "COUNTERBALANCE": counterbalance, "SILHOUETTE_READABLE": silhouette_readable}
 
 
 def report(envelope):

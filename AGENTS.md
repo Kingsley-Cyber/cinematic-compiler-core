@@ -102,7 +102,7 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.10; rules 7.3; backlog 55.
-- Last session: S-128 (2026-10-13, applied): S14's third check: weight distribution, refusing from the start (the pose follows S11).
+- Last session: S-129 (2026-10-13, applied): The fourth check: silhouette, computed at the camera step for every shot.
 - Next slice: AA-9 S13 written in parallel pieces, one per fighter and time window (each window overlapping its neighbour by one beat), merged and repaired by the solver (step motion).
 - Open findings: 143; decisions: 144 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->

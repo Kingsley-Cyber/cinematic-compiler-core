@@ -42,7 +42,7 @@ flowchart LR
   validators -->|7| kernel
   validators -->|14| planner
   validators -->|5| renderers
-  validators -->|13| solver
+  validators -->|14| solver
 ```
 
 ## Modules
@@ -121,7 +121,7 @@ flowchart LR
 | `solver.staff_geometry` | `solver.quaternion` | math |
 | `solver.trajectory` | — | math |
 | `validators.between_keys_report` | `compiler.examples`, `planner.dynamic_beat_validator`, `solver.body_overlap`, `solver.floor_penetration`, `solver.forward_kinematics`, `solver.interpolation`, `validators.contact_world_report` | json |
-| `validators.camera_validator` | `planner.library_vocab`, `solver.camera_geometry`, `solver.forward_kinematics` | — |
+| `validators.camera_validator` | `planner.library_vocab`, `solver.camera_geometry`, `solver.forward_kinematics`, `solver.pose_mechanics` | — |
 | `validators.cause_reason` | — | re |
 | `validators.checklist` | `compiler.examples`, `planner.dependency_graph`, `validators.prompt_validator` | hashlib, json, sys, yaml |
 | `validators.contact_world_report` | `compiler.examples`, `solver.contact_world` | json, math |

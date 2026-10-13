@@ -24,6 +24,11 @@ Weight distribution (PM-1, PM-2, S-128): the support base is the parts S11 says 
 spread FOOT_M across the floor (a foot's half length); `margin_m` is how far inside that base the centre of mass stands
 across the floor (negative: outside), `share` each support's part of the weight (one support carries it all; two
 share it by where the centre of mass falls between them; more, by nearness).
+
+Silhouette (PM-4, S-129; computed at S17, where the camera is): each framed body's trunk (pelvis to head) and its hands
+and feet are projected onto the camera's picture plane; a hand or foot that falls within TRUNK_M (the trunk's half
+width) of a framed trunk on screen, its own or another body's, is `against` that body and does not read in silhouette;
+every other end reads clear.
 """
 
 import math
@@ -187,3 +192,41 @@ def weight_distribution(support_points, com):
         total = sum(near.values())
         share = {p: round(v / total, 2) for p, v in near.items()}
     return {"supports": parts, "share": share, "margin_m": round(margin, 3)}
+
+
+TRUNK_M = 0.15  # a trunk's half width across the picture (the trunk capsule's 0.13 m radius and the arms beside it)
+ENDS = ("left_hand", "right_hand", "left_foot", "right_foot")
+
+
+def _picture(camera, aim, point):
+    """(x, y, depth): the point on the camera's picture plane at unit distance (both axes one scale), or None behind."""
+    forward = _unit(_sub(aim, camera))
+    right = _unit([forward[2], 0.0, -forward[0]])
+    up = [forward[1] * right[2] - forward[2] * right[1], forward[2] * right[0] - forward[0] * right[2],
+          forward[0] * right[1] - forward[1] * right[0]]
+    offset = _sub(point, camera)
+    depth = _dot(offset, forward)
+    return None if depth <= 1e-6 else (-_dot(offset, right) / depth, _dot(offset, up) / depth, depth)
+
+
+def silhouette(camera, aim, bodies):
+    """{clear: ["entity:end"], against: [{subject, end, body}]} for the framed bodies ({entity: points}) seen from the
+    camera aimed at `aim`."""
+    trunks = {}
+    for entity, points in bodies.items():
+        pelvis, head = _picture(camera, aim, points["pelvis"]), _picture(camera, aim, points["head"])
+        if pelvis and head:
+            trunks[entity] = ((pelvis[0], pelvis[1]), (head[0], head[1]), TRUNK_M / ((pelvis[2] + head[2]) / 2))
+    clear, against = [], []
+    for entity in sorted(bodies):
+        for end in ENDS:
+            seen = _picture(camera, aim, bodies[entity][end])
+            if seen is None:
+                continue
+            hit = sorted(other for other, (a, b, width) in trunks.items()
+                         if _segment_gap((seen[0], seen[1]), a, b)[0] <= width)
+            if hit:
+                against += [{"subject": entity, "end": end, "body": other} for other in hit]
+            else:
+                clear.append(f"{entity}:{end}")
+    return {"clear": clear, "against": against}

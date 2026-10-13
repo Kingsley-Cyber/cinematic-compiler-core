@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:camera_graph:2.1",
+  "$id": "urn:cinematic-compiler:schema:camera_graph:2.2",
   "title": "S17 camera graph",
   "description": "camera = shots with derived geometry (/nodes/camera); camera_edges = shot-to-shot cuts with axis and angle change (/edges/camera).",
   "type": "object",
@@ -394,7 +394,8 @@
               "side",
               "fov_deg",
               "frame_height_m",
-              "screen_x"
+              "screen_x",
+              "silhouette"
             ],
             "properties": {
               "camera_pos": {
@@ -443,6 +444,50 @@
                   }
                 },
                 "additionalProperties": false
+              },
+              "silhouette": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "clear",
+                  "against"
+                ],
+                "description": "PLAN-009 PM-4 (S-129): from this shot's camera at its first beat, the framed bodies' hands and feet that read clear in silhouette, and those that fall against a trunk on screen (solver/pose_mechanics.py).",
+                "properties": {
+                  "clear": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "against": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "subject",
+                        "end",
+                        "body"
+                      ],
+                      "properties": {
+                        "subject": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "end": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "body": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    }
+                  }
+                }
               }
             },
             "description": "Geometry derived from angle, position and lens (solver/camera_geometry.py)."
