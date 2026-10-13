@@ -822,7 +822,7 @@ def _rules_checks(envelope, parts, labels, mode, add):
 
 def _camera_checks(envelope, parts, labels, add):
     lines = [line for line in _body(parts, "[CAMERA]").splitlines()
-             if line and not line.startswith(("Camera rules:", "Holds on hits:"))]
+             if line and not line.startswith(("Camera rules:", "Holds on hits:", "- "))]  # "- ": the cuts (ADR-O113)
     shots = envelope["nodes"]["camera"]["items"]
     if len(lines) != len(shots):
         add("DISCONNECTED_CAMERA_MOTION", f"{len(lines)} camera lines for {len(shots)} shots")

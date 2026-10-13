@@ -11,7 +11,7 @@ from validators import graph_map, graph_reach
 pytestmark = pytest.mark.unit
 
 # the fields the prose renderer reads per example (S-116: holds, camera, poses, points); each S17 slice raises them
-READ_FLOOR = {"reference_fight": 99, "wizard_vs_acrobat": 87, "live_action_standoff": 79, "ugc_glasses_demo": 129}
+READ_FLOOR = {"reference_fight": 146, "wizard_vs_acrobat": 134, "live_action_standoff": 120, "ugc_glasses_demo": 171}
 
 
 @pytest.mark.parametrize("example", graph_map.EXAMPLES)

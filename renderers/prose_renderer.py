@@ -80,6 +80,12 @@ def _words(identifier):
     return " ".join(identifier.replace("_", " ").split())
 
 
+def _name(identifier):
+    """An id as words, a repeated word said once ("log_log_is_wood" -> "log is wood")."""
+    words = _words(identifier).split()
+    return " ".join(w for i, w in enumerate(words) if not i or w != words[i - 1])
+
+
 def _part(part):
     side, _, name = part.partition("_")
     return f"{side[0].upper()} {name}" if side in ("left", "right") and name else _words(part)
@@ -959,25 +965,103 @@ def entrances(envelope, labels):
     return out
 
 
+def _edge_lines(envelope, labels, omitted=()):
+    """ADR-O113 (if the graph has it, the prompt prints it): the edge graphs S17 used to drop, each in the Master
+    Template section it belongs to (STACKED_GRAPHS refuses any other): the beats' order and the paths between keys in
+    the motion control; support, coordination, Effort and state changes in the implied guidance; the contacts' order
+    in the causal links; the cuts in the camera; which rule binds which beat, and the kernel invariants, in the rules.
+    Every line opens with "- " so no check reads it as a staff line. A constraint the prose leaves to LBN-2.4 (owner O3:
+    "root exact", `omitted`) stays out here too, until the owner rules between O3 and O113. A kernel rule that names a
+    prop the scene does not hold stays out as well (F-234: S03 applies such a rule to every prop; printed, it invites
+    the prop, as the kunai in R20)."""
+    held = {p["id"] for p in _items(envelope, "nodes", "props")} | {e["id"] for e in _items(envelope, "nodes", "entities")}
+    foreign = {c["id"] for c in _items(envelope, "nodes", "constraints") if set(c.get("reference_labels", [])) - held}
+    omitted = set(omitted) | foreign
+    beats = {b["id"]: b for b in _items(envelope, "nodes", "beats")}
+    contacts = {c["id"]: c for c in _items(envelope, "nodes", "contacts")}
+    names = {p["id"]: p["name"] for p in _items(envelope, "nodes", "props")}
+
+    def beat(identifier):
+        b = beats[identifier]
+        return f"{_time(b['t'])} {labels.get(b['actor'], _words(b['actor']))} {_words(b['label'])}"
+
+    def slot(identifier):
+        entity, _, tail = identifier.partition("@")
+        when = _time(beats[tail]["t"]) if tail in beats else tail.replace("-", "–")
+        return f"{labels.get(entity, _words(entity))} {when}"
+
+    def contact(identifier):
+        c = contacts[identifier]
+        return (f"{_time(c['t'])} {labels.get(c['a']['id'], _words(c['a']['id']))} {_part(c['body_part'])} "
+                f"{_words(c['contact_type'])} {_target(c['b'], labels, names)}")
+
+    out = {"motion": [], "implied": [], "causal": [], "camera": [], "rules": []}
+    for e in _items(envelope, "edges", "temporal"):
+        out["motion"].append(f"- beat order: {beat(e['from'])} {_words(e['relation'])} {beat(e['to'])}, lasting "
+                             f"{_num(e['duration'])} s, gap {_num(e['gap'])} s")
+    for e in _items(envelope, "edges", "motion"):
+        trip = e["trajectory"]
+        out["motion"].append(f"- path {slot(e['from'])} to {slot(e['to'])}: {e['interpolation']} "
+                             f"{_num(e['slerp_angle'])} degrees, Euler change {_numbers(e['euler_delta'])}, turn "
+                             f"{_words(e['turn'])} (axis {_words(e['axis_declaration'])}), root moves "
+                             f"{_numbers(trip['displacement'])} m, {_num(trip['distance'])} m in {_num(trip['duration'])} s "
+                             f"at {_num(trip['speed'])} m/s")
+    for e in _items(envelope, "edges", "kinematic_transition"):
+        out["implied"].append(f"- support and balance, {slot(e['from'])} to {slot(e['to'])}: changes "
+                              f"{', '.join(_words(c) for c in e['changes']) or 'nothing'}")
+    for e in _items(envelope, "edges", "bartenieff_transition"):
+        out["implied"].append(f"- coordination, {slot(e['from'])} to {slot(e['to'])}: changes "
+                              f"{', '.join(_words(c) for c in e['changes']) or 'nothing'}")
+    for e in _items(envelope, "edges", "effort"):
+        out["implied"].append(f"- Effort spans: {slot(e['from'])} {_words(e['relation'])} {slot(e['to'])}, "
+                              f"{_time(e['start'])}–{_time(e['end'])}")
+    for e in _items(envelope, "edges", "state_transition"):
+        changes = "; ".join(f"{_words(c['property'])} {_words(str(c['from']))} to {_words(str(c['to']))}" for c in e["changes"])
+        out["implied"].append(f"- state at {_time(e['t'])}, {slot(e['from_state'])} to {slot(e['to_state'])} after "
+                              f"{', '.join(beat(b) for b in e['trigger_event'] if b in beats) or 'the start'}: {changes}")
+    for e in _items(envelope, "edges", "contact"):
+        out["causal"].append(f"- contact order: {contact(e['from'])} {_words(e['relation'])} {contact(e['to'])}")
+    shots = {s["id"]: s for s in _items(envelope, "nodes", "camera")}
+    for e in _items(envelope, "edges", "camera"):
+        out["camera"].append(f"- {_time(shots[e['from']]['t'])} to {_time(shots[e['to']]['t'])}: {e['transition']} "
+                             f"({_words(e['relation'])}), axis {e['axis']}, azimuth change {_num(e['azimuth_change_deg'])} "
+                             f"degrees, {_words(e['scale_from'])} to {_words(e['scale_to'])}, side {e['side_from']} to "
+                             f"{e['side_to']}")
+    binds = {}
+    for e in _items(envelope, "edges", "beat_constraint"):
+        binds.setdefault(e["to"], []).append(beats[e["from"]]["t"] if e["from"] in beats else None)
+    for constraint, times in sorted((c, x) for c, x in binds.items() if c not in omitted):
+        out["rules"].append(f"- {_name(constraint)} binds the beats at "
+                            f"{', '.join(_time(x) for x in sorted(x for x in times if x is not None))}")
+    for invariant in (i for i in envelope.get("invariants", []) if i["id"] not in omitted):
+        out["rules"].append(f"- invariant {_name(invariant['id'])} ({invariant['band']}): {invariant['rule'].rstrip('.')}")
+    return out
+
+
 def render_all(envelope, frame_parts, labels):
     """The four prose prompts: {mode: {target, variant, text, sha256, omitted_constraints}}."""
     _, rows = constraint_rows(envelope, labels)
     omitted = sorted({cid for _, _, cid, ref in rows if ref == ROOT_EXACT})
     lines = staff_lines(envelope, frame_parts, labels)
     between, turning = inbetweens(envelope), inbetweens_turning(envelope)  # ADR-O109 (RV-59i, RV-59k)
-    shared = {"scene": _scene(envelope, frame_parts, lines, labels, rows), "implied": _implied(envelope, lines, labels),
+    edges = _edge_lines(envelope, labels, omitted)  # ADR-O113
+
+    def more(block, extra):
+        return block + ("\n" + "\n".join(extra) if extra else "")
+    shared = {"scene": _scene(envelope, frame_parts, lines, labels, rows),
+              "implied": more(_implied(envelope, lines, labels), edges["implied"]),
               "spatial": _spatial(envelope, lines, labels, rows),
-              "props": _props(envelope, labels), "causal": _causal(envelope, labels),
-              "camera": _camera(envelope, frame_parts, labels),
+              "props": _props(envelope, labels), "causal": more(_causal(envelope, labels), edges["causal"]),
+              "camera": more(_camera(envelope, frame_parts, labels), edges["camera"]),
               "genre": _genre_block(envelope, frame_parts, labels), "negatives": _negatives(rows, envelope, labels)}
     result = {}
     for mode, (title, _) in MODES.items():
         staff = "\n".join(line["text"] + _euler(line, mode) for line in lines)
         verbs = any(c.get("verb") for c in _items(envelope, "nodes", "contacts"))
         blocks = [shared["scene"], _movement_language(mode, rows, verbs), f"[LABAN STAFF – {title}]\n{staff}",
-                  shared["implied"], _motion_control(lines, labels, between, mode, turning),
+                  shared["implied"], more(_motion_control(lines, labels, between, mode, turning), edges["motion"]),
                   shared["spatial"], *shared["props"], shared["causal"], shared["camera"], shared["genre"],
-                  _rules(envelope, mode, rows, lines, labels), shared["negatives"]]
+                  more(_rules(envelope, mode, rows, lines, labels), edges["rules"]), shared["negatives"]]
         text = "\n\n".join(blocks) + "\n"
         result[mode] = {"target": TARGET, "variant": f"DAG-PROSE-{title.replace(' ', '-')}", "text": text,
                         "sha256": "sha256:" + hashlib.sha256(text.encode("utf-8")).hexdigest(),

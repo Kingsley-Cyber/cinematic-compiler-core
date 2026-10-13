@@ -64,6 +64,62 @@ FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship |
 - B airborne 1.60–2.60: a realistic trajectory and rotation from the takeoff at 1.60 to the landing at 2.60.
 - B airborne 4.60–5.20: a realistic trajectory and rotation from the takeoff at 4.60 to the landing at 5.20.
 - B airborne 8.60–9.80: a realistic trajectory and rotation from the takeoff at 8.60 to the landing at 9.80.
+- support and balance, B 0.00 to B 1.20: changes support, balance, loading, tension, breathing
+- support and balance, B 1.20 to B 1.60: changes support, balance, loading, weight transfer, tension, release, breathing
+- support and balance, B 1.60 to B 2.00: changes balance, loading, yielding, weight transfer, release
+- support and balance, B 2.00 to B 2.60: changes support, balance, loading, yielding, weight transfer, tension, strain, breathing
+- support and balance, A 1.60 to A 2.60: changes loading, bracing, weight transfer, tension, strain, breathing
+- support and balance, B 2.60 to B 3.60: changes support, balance, loading, yielding, weight transfer, tension, strain, breathing
+- support and balance, A 2.60 to A 3.60: changes balance, loading, bracing, yielding, weight transfer, tension, strain, breathing
+- support and balance, B 3.60 to B 4.60: changes support, balance, bracing, tension, strain
+- support and balance, B 4.60 to B 5.20: changes support, balance, loading, yielding, weight transfer, strain, breathing
+- support and balance, A 3.60 to A 5.20: changes balance, loading, bracing, yielding, weight transfer, tension, release, strain, breathing
+- support and balance, B 5.20 to B 6.60: changes support, balance, bracing, tension, strain, restraint, breathing
+- support and balance, A 5.20 to A 6.60: changes balance, loading, release, breathing
+- support and balance, B 6.60 to B 7.60: changes balance, weight transfer, tension, restraint, breathing
+- support and balance, A 6.60 to A 7.60: changes loading, weight transfer, tension, release, breathing
+- support and balance, B 7.60 to B 8.60: changes support, loading, weight transfer, strain
+- support and balance, B 8.60 to B 9.40: changes balance, loading, yielding, weight transfer, tension, release, strain, breathing
+- support and balance, B 9.40 to B 9.80: changes support, balance, loading, bracing, yielding, weight transfer, release, restraint, breathing
+- coordination, B 0.00 to B 1.20: changes connectivity, developmental pattern, intent, initiation, follow through, body mode
+- coordination, B 1.20 to B 1.60: changes connectivity, intent, initiation, follow through
+- coordination, B 1.60 to B 2.00: changes connectivity, developmental pattern, intent, initiation, follow through, body mode
+- coordination, B 2.00 to B 2.60: changes connectivity, developmental pattern, intent, follow through, body mode
+- coordination, A 1.60 to A 2.60: changes connectivity, developmental pattern, intent, initiation, follow through
+- coordination, B 2.60 to B 3.60: changes connectivity, developmental pattern, intent, initiation, follow through, body mode
+- coordination, A 2.60 to A 3.60: changes connectivity, developmental pattern, intent, initiation, follow through
+- coordination, B 3.60 to B 4.60: changes intent, initiation, follow through, body mode
+- coordination, B 4.60 to B 5.20: changes connectivity, developmental pattern, intent, initiation, follow through
+- coordination, A 3.60 to A 5.20: changes connectivity, developmental pattern, intent, follow through
+- coordination, B 5.20 to B 6.60: changes connectivity, developmental pattern, intent, initiation, follow through, body mode
+- coordination, A 5.20 to A 6.60: changes connectivity, developmental pattern, intent, initiation, follow through
+- coordination, B 6.60 to B 7.60: changes connectivity, developmental pattern, intent, initiation, follow through, body mode
+- coordination, A 6.60 to A 7.60: changes connectivity, intent, initiation, follow through, body mode
+- coordination, B 7.60 to B 8.60: changes developmental pattern, intent
+- coordination, B 8.60 to B 9.40: changes connectivity, developmental pattern, intent, initiation, follow through, body mode
+- coordination, B 9.40 to B 9.80: changes intent
+- Effort spans: B b02–b04 overlaps A 1.60, 1.60–2.40
+- Effort spans: B 2.60 overlaps A 2.60, 2.60–3.60
+- Effort spans: B b06–b07 overlaps A 3.60, 3.60–4.60
+- Effort spans: B 5.20 overlaps A b09–b10, 5.20–6.60
+- Effort spans: A b09–b10 overlaps B 6.60, 6.60–7.80
+- Effort spans: A b09–b10 overlaps B 7.60, 7.60–7.80
+- Effort spans: B 6.60 overlaps A 7.60, 7.60–7.80
+- Effort spans: B 7.60 overlaps A 7.60, 7.60–8.60
+- state at 1.20, B 0.00 to B 1.20 after 0.00 B run in: posture unknown to crouching
+- state at 2.00, B 1.60 to B 2.00 after 1.20 B vault: posture crouching to inverted; support grounded to airborne
+- state at 2.60, B 2.00 to B 2.60 after 2.00 B land: posture inverted to crouching; support airborne to grounded
+- state at 2.40, ground 2.00 to ground 2.60 after 1.60 A cast fire bolt: damage unknown to scorched
+- state at 3.60, A 2.60 to A 3.60 after 2.60 B spinning kick: condition ok to staggered
+- state at 4.60, B 3.60 to B 4.60 after 3.60 A force ward: condition ok to staggered; support grounded to airborne
+- state at 5.20, B 4.60 to B 5.20 after 4.60 B slam pillar: location unknown to stone pillar; support airborne to braced
+- state at 5.20, stone pillar 4.60 to stone pillar 5.20 after 4.60 B slam pillar: damage unknown to cracked
+- state at 6.60, A 5.20 to A 6.60 after 5.20 A regroup: condition staggered to ok
+- state at 6.60, B 5.20 to B 6.60 after 5.20 B recover: condition staggered to ok; location stone pillar to ground; support braced to grounded
+- state at 8.60, B 7.60 to B 8.60 after 6.60 B feint charge, 7.60 A slicing bolt: posture crouching to standing; support grounded to airborne
+- state at 8.60, bamboo wall 7.60 to bamboo wall 8.60 after 7.60 A slicing bolt: damage unknown to cut
+- state at 9.40, B 8.60 to B 9.40 after 8.60 B dodge flip: posture standing to inverted
+- state at 9.80, B 9.40 to B 9.80 after 9.40 B land guard: posture inverted to crouching; support airborne to grounded
 
 [MOTION CONTROL]
 Interpolation: slerp joint rotations between lines; the root follows its derived path between positions; support and the declared Effort hold at all times.
@@ -72,6 +128,36 @@ Explicit = the staff lines and the in-between keys; implied = everything between
 In-between keys (no beat, no contact): the interpolation passes through each pose at its time.
 3.55 B: leg rising high | L arm left-mid, lower arm folded 30, L leg forward-low, lower leg folded 45, body back-high (20 lean), head forward-high | R arm right-mid, lower arm folded 30, R leg right-forward-mid, lower leg straight · Root [0.62, 1.1225, 4.705] EulerXYZ mid-turn · Joints {Sp: [-17.362236, -2.453572, -6.192], LUL: [-13.93992, -0.835327, 3.931997], RUL: [-88.976351, 2.328733, -24.93], LL: [38, 0, 0], RL: [5, 0, 0], LA: [-30.991245, -0.165959, 59.008755], RA: [-27.535355, -0.519896, -58.819468], LFA: [-23.5, 0, 0], RFA: [-22.5, 0, 0], HD: [13.772763, -1.232808, 0.259497], NK: [9.250543, -0.248777, 0.031098]}
 3.70 B: kick extended | L arm left-mid, lower arm folded 15, L leg forward-low, lower leg folded 45, body back-high (15 lean), head forward-high | R arm right-mid, lower arm folded 15, R leg forward-mid, lower leg straight · Root [0.74, 1.256, 4.81] EulerXYZ [0, -21.564, 0] · Joints {Sp: [-14.862136, -12.705, 0.143603], LUL: [-17.5, 0, 5], RUL: [-87.833886, 2.144638, -7.08659], LL: [39.5, 0, 0], RL: [7.5, 0, 0], LA: [-33.878033, -1.265046, 56.121967], RA: [-33.878033, 1.265046, -56.121967], LFA: [-22, 0, 0], RFA: [-22, 0, 0], HD: [16, 0, 0], NK: [10.5, 0, 0]}
+- beat order: 0.00 B run in precedes 1.20 B vault, lasting 1.2 s, gap 0 s
+- beat order: 1.20 B vault overlaps 1.60 A cast fire bolt, lasting 0.8 s, gap -0.4 s
+- beat order: 1.60 A cast fire bolt overlaps 2.00 B land, lasting 0.8 s, gap -0.4 s
+- beat order: 2.00 B land precedes 2.60 B spinning kick, lasting 0.6 s, gap 0 s
+- beat order: 2.60 B spinning kick precedes 3.60 A force ward, lasting 1 s, gap 0 s
+- beat order: 3.60 A force ward precedes 4.60 B slam pillar, lasting 1 s, gap 0 s
+- beat order: 4.60 B slam pillar precedes 5.20 B recover, lasting 0.6 s, gap 0 s
+- beat order: 5.20 B recover starts with 5.20 A regroup, lasting 1.4 s, gap -1.4 s
+- beat order: 5.20 A regroup precedes 6.60 B feint charge, lasting 1.4 s, gap 0 s
+- beat order: 6.60 B feint charge overlaps 7.60 A slicing bolt, lasting 1.2 s, gap -0.2 s
+- beat order: 7.60 A slicing bolt precedes 8.60 B dodge flip, lasting 1 s, gap 0 s
+- beat order: 8.60 B dodge flip precedes 9.40 B land guard, lasting 0.8 s, gap 0 s
+- beat order: 9.40 B land guard precedes 9.80 B hold guard, lasting 0.4 s, gap 0 s
+- path B 0.00 to B 1.20: slerp 0 degrees, Euler change [0, 0, 0], turn none (axis none), root moves [0, -0.4, 2.4] m, 2.433105 m in 1.2 s at 2.027588 m/s
+- path B 1.20 to B 1.60: slerp 90 degrees, Euler change [90, 0, 0], turn flip (axis X), root moves [0, 1.49, 0.6] m, 1.606269 m in 0.4 s at 4.015672 m/s
+- path B 1.60 to B 2.00: slerp 90 degrees, Euler change [90, 0, 0], turn flip (axis X), root moves [0.8, -0.22, 0.6] m, 1.023914 m in 0.4 s at 2.559785 m/s
+- path B 2.00 to B 2.60: euler_axis 180 degrees, Euler change [180, -16.7, 0], turn flip (axis X), root moves [0.2, -1.04, 0.6] m, 1.21721 m in 0.6 s at 2.028683 m/s
+- path A 1.60 to A 2.60: slerp 0 degrees, Euler change [0, 0, 0], turn none (axis none), root moves [0, 0.02, 0] m, 0.02 m in 1 s at 0.02 m/s
+- path B 2.60 to B 3.60: euler_axis 7.26 degrees, Euler change [0, -367.26, 0], turn spin (axis Y), root moves [-0.4, 0.35, 0.7] m, 0.87892 m in 1 s at 0.87892 m/s
+- path A 2.60 to A 3.60: slerp 0 degrees, Euler change [0, 0, 0], turn none (axis none), root moves [0, -0.04, -0.2] m, 0.203961 m in 1 s at 0.203961 m/s
+- path B 3.60 to B 4.60: slerp 23.96 degrees, Euler change [0, 23.96, 0], turn none (axis none), root moves [1.4, 1.16, -0.9] m, 2.028694 m in 1 s at 2.028694 m/s
+- path B 4.60 to B 5.20: slerp 36.87 degrees, Euler change [0, -36.87, 0], turn none (axis none), root moves [0.5, -0.31, -0.5] m, 0.772075 m in 0.6 s at 1.286792 m/s
+- path A 3.60 to A 5.20: slerp 0 degrees, Euler change [0, 0, 0], turn none (axis none), root moves [0, 0.02, 0] m, 0.02 m in 1.6 s at 0.0125 m/s
+- path B 5.20 to B 6.60: slerp 7.815 degrees, Euler change [0, 7.815, 0], turn none (axis none), root moves [-0.3, -0.95, 0.3] m, 1.040433 m in 1.4 s at 0.743166 m/s
+- path A 5.20 to A 6.60: slerp 0 degrees, Euler change [0, 0, 0], turn none (axis none), root moves [0, -0.01, 0] m, 0.01 m in 1.4 s at 0.007143 m/s
+- path B 6.60 to B 7.60: slerp 0 degrees, Euler change [0, 0, 0], turn none (axis none), root moves [-1, 0.06, 1] m, 1.415486 m in 1 s at 1.415486 m/s
+- path A 6.60 to A 7.60: slerp 16.7 degrees, Euler change [0, -16.7, 0], turn none (axis none), root moves [0, 0, 0] m, 0 m in 1 s at 0 m/s
+- path B 7.60 to B 8.60: slerp 0 degrees, Euler change [0, 0, 0], turn none (axis none), root moves [-0.2, -0.18, 0.2] m, 0.335261 m in 1 s at 0.335261 m/s
+- path B 8.60 to B 9.40: euler_axis 180 degrees, Euler change [-180, 0, 0], turn flip (axis X), root moves [-1.4, 0.86, 0.2] m, 1.655174 m in 0.8 s at 2.068967 m/s
+- path B 9.40 to B 9.80: euler_axis 180 degrees, Euler change [-180, 58.11, 0], turn flip (axis X), root moves [-0.7, -1.06, 0.1] m, 1.274206 m in 0.4 s at 3.185515 m/s
 
 [SPATIAL ANCHORS]
 Frame: up +Y, forward +Z, ground y=0, units m; Euler XYZ intrinsic, right-handed, degrees; +X = the performer's left; joints local to their parent (root -> Sp -> arms, legs, NK -> HD; the hips sit on the pelvis), root in the scene frame.
@@ -102,6 +188,22 @@ B feint charge ⇢ A slicing bolt: The feint baits the wizard's bolt.
 A slicing bolt ⇢ B dodge flip: The acrobat flips away from the bolt.
 B dodge flip → B land guard: Airborne, the acrobat must land.
 B land guard → B hold guard: The acrobat lands on both feet out of the flip, so it can hold the crouched guard.
+- contact order: 1.20 B R hand support ground precedes 1.60 B R hand release ground
+- contact order: 1.60 B R hand release ground releases 1.20 B R hand support ground
+- contact order: 2.60 B R foot support ground precedes 3.60 B R foot release ground
+- contact order: 3.60 B R foot release ground releases 2.60 B R foot support ground
+- contact order: 2.60 B L foot support ground precedes 4.60 B L foot release ground
+- contact order: 4.60 B L foot release ground releases 2.60 B L foot support ground
+- contact order: 5.20 B torso support stone pillar precedes 6.60 B torso release stone pillar
+- contact order: 6.60 B torso release stone pillar releases 5.20 B torso support stone pillar
+- contact order: 4.60 B L foot release ground precedes 6.60 B L foot support ground
+- contact order: 3.60 B R foot release ground precedes 6.60 B R foot support ground
+- contact order: 6.60 B L foot support ground precedes 8.60 B L foot release ground
+- contact order: 8.60 B L foot release ground releases 6.60 B L foot support ground
+- contact order: 6.60 B R foot support ground precedes 8.60 B R foot release ground
+- contact order: 8.60 B R foot release ground releases 6.60 B R foot support ground
+- contact order: 8.60 B L foot release ground precedes 9.80 B L foot support ground
+- contact order: 8.60 B R foot release ground precedes 9.80 B R foot support ground
 
 [CAMERA]
 0.00–1.20 open to wide on B, A: Acrobat sprints across the moonlit flagstones toward the planted wizard; elevation 20, azimuth 90, roll 0; 35 mm wide; static: locked-off high wide across the courtyard; normal x1; shows B run in; motivated by genre convention anime establishing wide; camera 9.04 m left of the midpoint, at [8.422421, 4.040662, 2.8177] aiming at [-0.0724, 0.9488, 2.8177]; focus deep on B (hold); motion blur none; composition B right third, A left third, depth anchor stone pillar, left open: moonlit flagstones between the fighters; intent spatial; locked linear movement, texture none; observe B: the sprint opens the distance; rig tripod.
@@ -117,6 +219,16 @@ B land guard → B hold guard: The acrobat lands on both feet out of the flip, s
 9.00–10.00 cut to wide on B, A: Inverted at the apex, the acrobat lands in a crouched guard; scorch, crack and cut bamboo stand behind; elevation 15, azimuth 43.7, roll 0; 24 mm wide; static: held tableau of the courtyard; normal x1; shows B dodge flip, B land guard, B hold guard; motivated by narrative intent b12 causes b13; camera 4 m left of the midpoint, at [3.058915, 2.053976, 8.261231] aiming at [0.38955, 1.0187, 5.4679]; focus deep on B (hold); motion blur none; composition B right third, A left third, depth anchor bamboo wall, left open: the marked courtyard around the pair; intent spatial; locked linear movement, texture none; observe B: the landing settles the exchange; rig tripod.
 Holds on hits: 3.60 impact: hold for 3 frames with BOTH bodies in frame (B and A), no close-up; 5.20 impact: hold for 2 frames with BOTH bodies in frame (B and A), no close-up.
 Camera rules: Open on a wide that sets the arena geometry before the first exchange. Hold on the frame of impact so the hit reads. A fast body move between hits is followed by a tracking or whip move with speedlines on the moving limb. Shots last 0.25-6 s. Crossing the action axis is allowed when a cut declares it.
+- 0.00 to 1.20: cut (cuts to), axis keep, azimuth change 25 degrees, wide to full, side left to left
+- 1.20 to 2.60: cut (cuts to), axis keep, azimuth change 74.1 degrees, full to full, side left to left
+- 2.60 to 3.60: smash_cut (cuts to), axis keep, azimuth change 39.1 degrees, full to full, side left to left
+- 3.60 to 4.00: cut (cuts to), axis keep, azimuth change 13.7 degrees, full to wide, side left to left
+- 4.00 to 5.20: smash_cut (cuts to), axis keep, azimuth change 16.3 degrees, wide to full, side left to left
+- 5.20 to 5.60: cut (cuts to), axis keep, azimuth change 37.4 degrees, full to close, side left to left
+- 5.60 to 6.40: cut (cuts to), axis keep, azimuth change 57.7 degrees, close to full, side left to left
+- 6.40 to 7.60: cut (cuts to), axis keep, azimuth change 37.5 degrees, full to wide, side left to left
+- 7.60 to 8.60: cut (cuts to), axis keep, azimuth change 43.9 degrees, wide to full, side left to left
+- 8.60 to 9.00: cut (cuts to), axis keep, azimuth change 25 degrees, full to wide, side left to left
 
 [ANIME]
 Impact frames: 3.60, 5.20.
@@ -154,6 +266,34 @@ Ink: heavy on silhouettes,broken in smears,clean on holds,smear follows ONLY the
 - B hangs in the air 1.60–2.60, longer than a real jump (stylised anime hang time).
 - B hangs in the air 4.60–5.20, longer than a real jump (stylised anime hang time).
 - B hangs in the air 8.60–9.80, longer than a real jump (stylised anime hang time).
+- c arch acrobat airborne needs takeoff binds the beats at 0.00, 1.20, 1.60, 2.00, 2.60, 3.60, 4.60, 5.20, 6.60, 7.60, 8.60, 9.40, 9.80
+- c arch wizard grounded caster binds the beats at 1.60, 2.60, 3.60, 5.20, 6.60, 7.60
+- c arch wizard spell has a source binds the beats at 1.60, 2.60, 3.60, 5.20, 6.60, 7.60
+- invariant c k preface 07 (constraint): Euler degrees XYZ
+- invariant c k preface 08 (constraint): Render spec exactly
+- invariant c k ax 00 (constraint): Y_up
+- invariant c k ax 03 (constraint): ground y=0
+- invariant c k key 00 (constraint): Sp=Spine
+- invariant c k key 01 (constraint): LUL/RUL=UpLeg
+- invariant c k key 02 (constraint): LL/RL=LowLeg
+- invariant c k key 03 (constraint): LA/RA=UpArm
+- invariant c k key 04 (constraint): LFA/RFA=ForeArm
+- invariant c k key 05 (constraint): HD=Head
+- invariant c k key 06 (constraint): NK=Neck
+- invariant c k negative 00 (constraint): no missing limbs
+- invariant c k negative 01 (constraint): no missing arms
+- invariant c k negative 02 (constraint): no missing hands
+- invariant c k negative 03 (constraint): no headless body
+- invariant c k negative 05 (constraint): no faceless head
+- invariant c k negative 12 (constraint): no extra weapons
+- invariant c k negative 13 (constraint): no full circle
+- invariant c k negative 14 (constraint): no ring
+- invariant c k negative 15 (constraint): no halo
+- invariant c k owner 00 (constraint): S17 output is uncompressed. The full envelope is projected; nothing is summarized, truncated, or dropped
+- invariant c world bamboo courtyard damage persists (constraint): Marks, cracks and cut bamboo stay visible for the rest of the scene once made
+- invariant c arch wizard spell has a source (constraint): A spell effect starts at a hand, staff tip or declared focus, never from empty space
+- invariant c arch wizard grounded caster (constraint): The wizard stays grounded unless a scene grants flight or levitation
+- invariant c arch acrobat airborne needs takeoff (constraint): Every airborne phase starts from a declared support contact and ends in a landing or a new contact
 
 [NEGATIVES]
 no missing limbs; no missing arms; no missing hands; no headless body; no faceless head; no extra fighters beyond A and B; no cloned A; no cloned B; no extra weapons; no full circle; no ring; no halo

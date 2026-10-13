@@ -10,9 +10,9 @@ Layer order 1.7; rules 7.3; backlog 55.
 
 ## Last sessions
 
-- S-114 (applied): Render R20 logged and the owner's critique confirmed against the code
 - S-115 (applied): ADR-O113: the graph map, and the graph-to-prompt reach measured
 - S-116 (applied): S17 prints the hold frames, the camera's place and aim, each pose's description and its world points
+- S-117 (applied): S17 prints the edge graphs: beat order, paths, transitions, contact order, cuts, rule bindings, invariants
 
 ## Next slices
 
@@ -90,7 +90,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 143
+## Open findings: 144
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -135,7 +135,8 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-216 (high, L1.1): Repo-authored fight defects outside the owner's questions
 - F-221 (high, L4c): Open supports are not checked between keys: a supporting part lifts far off its surface before its release
 - F-230 (high, L4c): B's in-between keys lift it off the ground, sink its crash and name motions they do not make
+- F-234 (high, all): A kernel prop rule is applied to every prop, whatever props it names
 
 ## Next free IDs
 
-Decision ADR-O114, finding F-234, session S-117, render R21.
+Decision ADR-O114, finding F-235, session S-118, render R21.

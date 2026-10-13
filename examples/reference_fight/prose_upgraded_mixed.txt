@@ -103,6 +103,136 @@ FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship |
 - B after the 5.50 strike: one instant contact, the limb does not stay on the target (R16), then a short natural recovery before the next phrase.
 - B airborne 5.10–6.30: a realistic trajectory and rotation from the takeoff at 5.10 to the landing at 6.30.
 - B 0.00–1.60 (1.6 s without a line): carry 'wait with kunai' through; weight transfer none, breathing steady, tension moderate.
+- support and balance, A 0.00 to A 0.60: changes support, balance, loading, bracing, yielding, tension, strain, breathing
+- support and balance, A 0.60 to A 1.10: changes balance, loading, yielding, breathing
+- support and balance, B 0.00 to B 1.60: changes restraint, breathing
+- support and balance, A 1.10 to A 1.60: changes support, loading, bracing, weight transfer, release, strain, breathing
+- support and balance, B 1.60 to B 2.00: changes loading, weight transfer, tension, release, strain, restraint, breathing
+- support and balance, A 1.60 to A 2.00: changes balance, loading, weight transfer, tension, release, breathing
+- support and balance, B 2.00 to B 2.50: changes loading, weight transfer, tension, release, strain, breathing
+- support and balance, A 2.00 to A 2.50: changes loading, tension, release, strain, breathing
+- support and balance, B 2.50 to B 3.00: changes loading, bracing, weight transfer, release
+- support and balance, A 2.50 to A 3.00: changes support, balance, bracing, yielding, tension, release, strain, breathing
+- support and balance, B 3.00 to B 3.40: changes balance, loading, bracing, weight transfer, tension, strain, breathing
+- support and balance, A 3.00 to A 3.40: changes loading, bracing, yielding, weight transfer, tension, restraint, breathing
+- support and balance, B 3.40 to B 3.70: changes loading, release, strain, breathing
+- support and balance, A 3.40 to A 3.70: changes balance, loading, bracing, yielding, tension, release, restraint, breathing
+- support and balance, B 3.70 to B 4.00: changes balance, yielding, tension, release, breathing
+- support and balance, B 4.00 to B 4.40: changes loading, release
+- support and balance, A 3.70 to A 4.40: changes balance, loading, yielding, weight transfer, tension, release, breathing
+- support and balance, B 4.40 to B 4.70: changes weight transfer, tension, strain
+- support and balance, A 4.40 to A 4.70: changes support, balance, loading, release, strain, breathing
+- support and balance, B 4.70 to B 5.10: changes support, weight transfer, tension, strain
+- support and balance, A 4.70 to A 5.10: changes loading, weight transfer, strain
+- support and balance, B 5.10 to B 5.50: changes balance, loading, yielding, weight transfer, tension, release, breathing
+- support and balance, A 5.10 to A 5.50: changes balance, loading, weight transfer, tension, release, breathing
+- support and balance, B 5.50 to B 5.90: changes loading, yielding, weight transfer, tension, release, strain
+- support and balance, A 5.50 to A 5.90: changes support, balance, loading, yielding, weight transfer
+- support and balance, B 5.90 to B 6.30: changes support, balance, bracing, yielding, weight transfer, tension, breathing
+- support and balance, A 5.90 to A 6.30: changes support, balance, loading, yielding, weight transfer, tension, release, strain, breathing
+- support and balance, B 6.30 to B 6.60: changes balance, loading, weight transfer, release, strain, breathing
+- support and balance, A 6.30 to A 6.60: changes balance, loading, yielding, weight transfer, tension, release, strain, breathing
+- support and balance, A 6.60 to A 7.00: changes balance, loading, bracing, yielding, weight transfer, tension, release, strain, breathing
+- support and balance, B 6.60 to B 7.50: changes loading, bracing, yielding, weight transfer, tension, release, strain, breathing
+- support and balance, A 7.00 to A 7.50: changes support, balance, loading, bracing, yielding, release, breathing
+- support and balance, B 7.50 to B 8.00: changes balance, yielding, tension, strain
+- support and balance, A 7.50 to A 8.00: changes balance, bracing, yielding, weight transfer, strain
+- support and balance, B 8.00 to B 8.50: changes weight transfer
+- support and balance, A 8.00 to A 8.50: changes support, balance, loading, bracing, weight transfer, release, breathing
+- support and balance, B 8.50 to B 9.00: changes support, balance, weight transfer, tension, release, strain
+- support and balance, A 8.50 to A 9.00: changes support, balance, loading, bracing, yielding, release, strain, breathing
+- support and balance, B 9.00 to B 9.50: changes yielding
+- support and balance, A 9.00 to A 9.50: changes balance, bracing, yielding, weight transfer, tension, strain, restraint, breathing
+- coordination, A 0.00 to A 0.60: changes intent, follow through
+- coordination, A 0.60 to A 1.10: changes connectivity, developmental pattern, intent, initiation, follow through, body mode
+- coordination, B 0.00 to B 1.60: changes connectivity, intent, initiation, follow through, body mode
+- coordination, A 1.10 to A 1.60: changes connectivity, intent, follow through, body mode
+- coordination, B 1.60 to B 2.00: changes connectivity, developmental pattern, intent, initiation, follow through, body mode
+- coordination, A 1.60 to A 2.00: changes connectivity, developmental pattern, intent, initiation, follow through, body mode
+- coordination, B 2.00 to B 2.50: changes connectivity, developmental pattern, intent, initiation, follow through, body mode
+- coordination, A 2.00 to A 2.50: changes connectivity, developmental pattern, intent, initiation, follow through, body mode
+- coordination, B 2.50 to B 3.00: changes connectivity, developmental pattern, intent, initiation, follow through, body mode
+- coordination, A 2.50 to A 3.00: changes connectivity, developmental pattern, intent, initiation, follow through, body mode
+- coordination, B 3.00 to B 3.40: changes connectivity, intent, follow through, body mode
+- coordination, A 3.00 to A 3.40: changes connectivity, intent, follow through
+- coordination, B 3.40 to B 3.70: changes developmental pattern, intent, initiation, follow through
+- coordination, A 3.40 to A 3.70: changes intent, follow through
+- coordination, B 3.70 to B 4.00: changes connectivity, intent, follow through, body mode
+- coordination, B 4.00 to B 4.40: changes connectivity, developmental pattern, intent, initiation, follow through, body mode
+- coordination, A 3.70 to A 4.40: changes connectivity, developmental pattern, intent, initiation, follow through
+- coordination, B 4.40 to B 4.70: changes intent, initiation, follow through
+- coordination, A 4.40 to A 4.70: changes connectivity, developmental pattern, intent, initiation, follow through, body mode
+- coordination, B 4.70 to B 5.10: changes intent, follow through
+- coordination, A 4.70 to A 5.10: changes connectivity, intent, initiation, follow through, body mode
+- coordination, B 5.10 to B 5.50: changes connectivity, developmental pattern, intent, initiation, follow through, body mode
+- coordination, A 5.10 to A 5.50: changes connectivity, developmental pattern, intent, initiation, follow through, body mode
+- coordination, B 5.50 to B 5.90: changes connectivity, developmental pattern, intent, follow through, body mode
+- coordination, A 5.50 to A 5.90: changes connectivity, intent, initiation
+- coordination, B 5.90 to B 6.30: changes intent, follow through
+- coordination, A 5.90 to A 6.30: changes connectivity, developmental pattern, intent, initiation, follow through, body mode
+- coordination, B 6.30 to B 6.60: changes connectivity, developmental pattern, intent, initiation, follow through, body mode
+- coordination, A 6.30 to A 6.60: changes connectivity, developmental pattern, intent, initiation, follow through, body mode
+- coordination, A 6.60 to A 7.00: changes connectivity, developmental pattern, intent, initiation, follow through, body mode
+- coordination, B 6.60 to B 7.50: changes connectivity, developmental pattern, intent, initiation, follow through, body mode
+- coordination, A 7.00 to A 7.50: changes connectivity, developmental pattern, intent, initiation, follow through, body mode
+- coordination, B 7.50 to B 8.00: changes intent, follow through
+- coordination, A 7.50 to A 8.00: changes developmental pattern, intent, follow through
+- coordination, B 8.00 to B 8.50: changes intent, follow through
+- coordination, A 8.00 to A 8.50: changes connectivity, developmental pattern, intent, initiation, follow through, body mode
+- coordination, B 8.50 to B 9.00: changes connectivity, intent, initiation, follow through
+- coordination, A 8.50 to A 9.00: changes connectivity, developmental pattern, intent, initiation, follow through, body mode
+- coordination, B 9.00 to B 9.50: changes intent
+- coordination, A 9.00 to A 9.50: changes connectivity, intent, follow through
+- Effort spans: B b01–b04 overlaps A b01–b02, 0.00–1.10
+- Effort spans: B b01–b04 overlaps A b03–b04, 1.10–2.00
+- Effort spans: B 2.00 overlaps A b05–b06, 2.00–2.50
+- Effort spans: A b05–b06 overlaps B b06–b07, 2.50–3.00
+- Effort spans: B b06–b07 overlaps A b07–b08, 3.00–3.40
+- Effort spans: A b07–b08 overlaps B b08–b09, 3.40–3.70
+- Effort spans: B b08–b09 overlaps A 3.70, 3.70–4.00
+- Effort spans: B b10–b11 overlaps A b11–b12, 4.40–4.70
+- Effort spans: A b11–b12 overlaps B b12–b13, 4.70–5.10
+- Effort spans: B b12–b13 overlaps A b13–b14, 5.10–5.50
+- Effort spans: A b13–b14 overlaps B 5.50, 5.50–5.90
+- Effort spans: B b15–b16 overlaps A 5.90, 5.90–6.30
+- Effort spans: B b15–b16 overlaps A 6.30, 6.30–6.60
+- Effort spans: B 6.60 overlaps A 6.60, 6.60–7.00
+- Effort spans: B b19–b21 overlaps A 7.50, 7.50–8.00
+- Effort spans: B b19–b21 overlaps A 8.00, 8.00–8.50
+- Effort spans: B b19–b21 overlaps A b21–b22, 8.50–9.00
+- Effort spans: A b21–b22 overlaps B b22–b23, 9.00–9.50
+- Effort spans: B b22–b23 overlaps A 9.50, 9.50–10.00
+- state at 0.60, A 0.00 to A 0.60 after 0.00 A fall from above: location unknown to wooden pillar; support airborne to grounded
+- state at 1.10, A 0.60 to A 1.10 after 0.60 A land pillar top: support grounded to braced
+- state at 1.60, A 1.10 to A 1.60 after 1.10 A sprint down pillar: support braced to airborne
+- state at 2.00, kunai 1.60 to kunai 2.00 after 2.00 B throw kunai: holder ninja broad to none
+- state at 3.00, A 2.50 to A 3.00 after 2.50 A foot deflect kunai: location wooden pillar to ground; support airborne to grounded
+- state at 3.00, kunai 2.50 to kunai 3.00 after 2.50 A foot deflect kunai: location unknown to ground
+- state at 3.00, rope dart 2.50 to rope dart 3.00 after 2.50 A foot deflect kunai: holder none to ninja lean
+- state at 3.70, rope dart 3.40 to rope dart 3.70 after 3.70 A kawarimi substitution: holder ninja lean to none
+- state at 3.70, smoke pellet 3.40 to smoke pellet 3.70 after 3.70 A kawarimi substitution: smoke sealed to burst
+- state at 3.70, substitution log 3.40 to substitution log 3.70 after 3.70 A kawarimi substitution: deployment standing to deployed
+- state at 4.00, rope dart 3.70 to rope dart 4.00 after 3.70 A kawarimi substitution: location unknown to ground
+- state at 4.00, smoke pellet 3.70 to smoke pellet 4.00 after 3.70 A kawarimi substitution: location unknown to ground
+- state at 4.40, B 4.00 to B 4.40 after 4.00 B palm hits log: condition unknown to staggered
+- state at 4.40, substitution log 4.00 to substitution log 4.40 after 4.00 B palm hits log: deployment deployed to fallen
+- state at 4.70, A 4.40 to A 4.70 after 4.40 A reappear behind opponent: support grounded to airborne
+- state at 5.10, B 4.70 to B 5.10 after 4.70 A knee strike spine: support grounded to airborne
+- state at 5.10, shuriken volley 4.70 to shuriken volley 5.10 after 5.10 A aerial backflip kick: flight holstered to drawn; holder none to ninja broad
+- state at 5.50, shuriken volley 5.10 to shuriken volley 5.50 after 5.50 B throw shuriken volley: flight drawn to flying; holder ninja broad to none
+- state at 5.90, A 5.50 to A 5.90 after 5.50 B throw shuriken volley: support airborne to grounded
+- state at 5.90, shuriken volley 5.50 to shuriken volley 5.90 after 5.50 B throw shuriken volley: flight flying to embedded; location unknown to wooden pillar
+- state at 6.30, A 5.90 to A 6.30 after 5.90 A slide under volley: support grounded to airborne
+- state at 6.30, B 5.90 to B 6.30 after 5.90 A slide under volley: support airborne to grounded
+- state at 7.50, A 7.00 to A 7.50 after 7.00 A wall push off pillar: support airborne to grounded
+- state at 7.50, rope dart 7.00 to rope dart 7.50 after 7.00 A wall push off pillar: holder none to ninja lean
+- state at 8.00, kunai 7.50 to kunai 8.00 after 7.50 A rope dart regrapple: holder none to ninja lean
+- state at 8.00, rope dart 7.50 to rope dart 8.00 after 7.50 A rope dart regrapple: line coiled to wrapped
+- state at 8.50, A 8.00 to A 8.50 after 8.00 A pull toward pillar: support grounded to airborne
+- state at 8.50, kunai 8.00 to kunai 8.50 after 8.50 A aerial kunai drive: embedded loose to embedded
+- state at 8.50, rope dart 8.00 to rope dart 8.50 after 8.00 A pull toward pillar: line wrapped to taut
+- state at 9.00, A 8.50 to A 9.00 after 8.50 A aerial kunai drive: support airborne to grounded
+- state at 9.00, B 8.50 to B 9.00 after 8.50 A aerial kunai drive: condition staggered to down; support grounded to lying
 
 [MOTION CONTROL]
 Interpolation: slerp joint rotations between lines; the root follows its derived path between positions; support and the declared Effort hold at all times.
@@ -115,6 +245,68 @@ In-between keys (no beat, no contact): the interpolation passes through each pos
 7.38 B: steps past a | L arm left-forward-mid, lower arm folded 30, L leg place-low, lower leg folded 45, body back-high (15 lean), head forward-high | R arm right-mid, lower arm folded 30, R leg right-forward-low, lower leg folded 45 · Root [1.32269, 1.133333, 4.99371] EulerXYZ [0, 24.607222, 0] · Joints {Sp: [-16.047797, 13.336686, -0.423836], LUL: [-1.246, -13.69, 7.961], RUL: [-9.386, -13.242, -12.927], LL: [39.611, 0, 0], RL: [38.994, 0, 0], LA: [-41.457, -2.243, 36.962], RA: [-11.402083, 13.217528, -65.865629], LFA: [-32.708333, 0, 0], RFA: [-24.899375, 0, 0], HD: [7.916667, 0, 0], NK: [4.305556, 0, 0]}
 8.45 B: crouched shift | L arm left-forward-mid, lower arm folded 30, L leg forward-mid, lower leg folded 60, body right-forward-high (15 lean), head back-high | R arm right-back-low, lower arm straight, R leg forward-mid, lower leg folded 45 · Root [1.44225, 1.09, 4.7285] EulerXYZ [0, -90, 0] · Joints {Sp: [12.405, -1.997513, 6.896239], LUL: [-63.211061, 8.348031, 6.383586], RUL: [-51.12153, 7.563416, -15.191602], LL: [58, 0, 0], RL: [47, 0, 0], LA: [-40.999542, -0.039281, 56.751], RA: [16.017002, -0.473176, -31.455481], LFA: [-22.5, 0, 0], RFA: [-11, 0, 0], HD: [-17.89, 0, 0], NK: [-5.12, 0, 0]}
 8.75 B: tipping back | L arm left-mid, lower arm folded 30, L leg forward-low, lower leg folded 45, body back-high (40 lean) | R arm right-low, lower arm straight, R leg forward-low, lower leg folded 30 · Root [1.02375, 0.59, 5.2725] EulerXYZ mid-turn · Joints {Sp: [3.542, -1.405209, 3.981], LUL: [-40.222, 3.152234, 9.750914], RUL: [-34.515356, 3.480597, -5.538], LL: [40.55, 0, 0], RL: [32, 0, 0], LA: [-20, -1.767619, 60], RA: [10, -0.877097, -40], LFA: [-25, 0, 0], RFA: [-10, 0, 0], HD: [-6.05, 0, 0], NK: [-3.4, 0, 0]}
+- beat order: 0.00 A fall from above precedes 0.60 A land pillar top, lasting 0.6 s, gap 0 s
+- beat order: 0.60 A land pillar top precedes 1.10 A sprint down pillar, lasting 0.5 s, gap 0 s
+- beat order: 1.10 A sprint down pillar precedes 1.60 A kick off pillar, lasting 0.5 s, gap 0 s
+- beat order: 1.60 A kick off pillar precedes 2.00 B throw kunai, lasting 0.4 s, gap 0 s
+- beat order: 2.00 B throw kunai precedes 2.50 A foot deflect kunai, lasting 0.5 s, gap 0 s
+- beat order: 2.50 A foot deflect kunai precedes 3.00 A land facing opponent, lasting 0.5 s, gap 0 s
+- beat order: 3.00 A land facing opponent precedes 3.40 B rising palm charge, lasting 0.4 s, gap 0 s
+- beat order: 3.40 B rising palm charge precedes 3.70 A kawarimi substitution, lasting 0.3 s, gap 0 s
+- beat order: 3.70 A kawarimi substitution precedes 4.00 B palm hits log, lasting 0.3 s, gap 0 s
+- beat order: 4.00 B palm hits log precedes 4.40 A reappear behind opponent, lasting 0.4 s, gap 0 s
+- beat order: 4.40 A reappear behind opponent precedes 4.70 A knee strike spine, lasting 0.3 s, gap 0 s
+- beat order: 4.70 A knee strike spine overlaps 5.10 A aerial backflip kick, lasting 0.4 s, gap 0 s
+- beat order: 5.10 A aerial backflip kick precedes 5.50 B throw shuriken volley, lasting 0.4 s, gap 0 s
+- beat order: 5.50 B throw shuriken volley precedes 5.90 A slide under volley, lasting 0.4 s, gap 0 s
+- beat order: 5.90 A slide under volley overlaps 6.30 A cartwheel rising elbow, lasting 0.4 s, gap 0 s
+- beat order: 6.30 A cartwheel rising elbow precedes 6.60 B catch elbow throw, lasting 0.3 s, gap 0 s
+- beat order: 6.60 B catch elbow throw precedes 7.00 A wall push off pillar, lasting 0.4 s, gap 0 s
+- beat order: 7.00 A wall push off pillar precedes 7.50 A rope dart regrapple, lasting 0.5 s, gap 0 s
+- beat order: 7.50 A rope dart regrapple precedes 8.00 A pull toward pillar, lasting 0.5 s, gap 0 s
+- beat order: 8.00 A pull toward pillar precedes 8.50 A aerial kunai drive, lasting 0.5 s, gap 0 s
+- beat order: 8.50 A aerial kunai drive precedes 9.00 A crash to ground, lasting 0.5 s, gap 0 s
+- beat order: 9.00 A crash to ground precedes 9.50 A hold crouch over opponent, lasting 0.5 s, gap 0 s
+- path A 0.00 to A 0.60: slerp 30 degrees, Euler change [30, 0, 0], turn none (axis none), root moves [0, -1.29, 2.3] m, 2.637063 m in 0.6 s at 4.395105 m/s
+- path A 0.60 to A 1.10: slerp 15 degrees, Euler change [15, 0, 0], turn none (axis none), root moves [0.3, -4.21, 0.1] m, 4.22186 m in 0.5 s at 8.44372 m/s
+- path B 0.00 to B 1.60: slerp 160 degrees, Euler change [0, 160, 0], turn spin (axis Y), root moves [1.4, 0, -1.2] m, 1.843909 m in 1.6 s at 1.152443 m/s
+- path A 1.10 to A 1.60: slerp 31.586448 degrees, Euler change [-10, -30, 0], turn none (axis none), root moves [0.3, -1.3, -0.4] m, 1.392839 m in 0.5 s at 2.785678 m/s
+- path B 1.60 to B 2.00: slerp 7 degrees, Euler change [0, 7, 0], turn none (axis none), root moves [0.37, -0.05, -0.33] m, 0.498297 m in 0.4 s at 1.245742 m/s
+- path A 1.60 to A 2.00: slerp 92.685067 degrees, Euler change [-25, 90, 0], turn spin (axis Y), root moves [-0.1, -0.7, -0.5] m, 0.866025 m in 0.4 s at 2.165062 m/s
+- path B 2.00 to B 2.50: slerp 27 degrees, Euler change [0, -27, 0], turn none (axis none), root moves [0, 0.05, 0.03] m, 0.05831 m in 0.5 s at 0.11662 m/s
+- path A 2.00 to A 2.50: slerp 30 degrees, Euler change [0, 30, 0], turn none (axis none), root moves [0, -1, -0.5] m, 1.118034 m in 0.5 s at 2.236068 m/s
+- path B 2.50 to B 3.00: slerp 50 degrees, Euler change [0, -50, 0], turn none (axis none), root moves [-0.17, -0.16, 1.8] m, 1.815076 m in 0.5 s at 3.630152 m/s
+- path A 2.50 to A 3.00: slerp 5 degrees, Euler change [-5, 0, 0], turn none (axis none), root moves [-0.1, -0.6, 0.3] m, 0.678233 m in 0.5 s at 1.356466 m/s
+- path B 3.00 to B 3.40: slerp 0 degrees, Euler change [0, 0, 0], turn none (axis none), root moves [-0.2, 0.04, -0.1] m, 0.227156 m in 0.4 s at 0.56789 m/s
+- path A 3.00 to A 3.40: slerp 0 degrees, Euler change [0, 0, 0], turn none (axis none), root moves [0, 0.2, -0.1] m, 0.223607 m in 0.4 s at 0.559017 m/s
+- path B 3.40 to B 3.70: slerp 0 degrees, Euler change [0, 0, 0], turn none (axis none), root moves [-0.01, 0, -0.17] m, 0.170294 m in 0.3 s at 0.567647 m/s
+- path A 3.40 to A 3.70: slerp 0 degrees, Euler change [0, 0, 0], turn none (axis none), root moves [0, 0, 0] m, 0 m in 0.3 s at 0 m/s
+- path B 3.70 to B 4.00: slerp 0 degrees, Euler change [0, 0, 0], turn none (axis none), root moves [-0.39, 0.02, 0.47] m, 0.611065 m in 0.3 s at 2.036883 m/s
+- path B 4.00 to B 4.40: slerp 0 degrees, Euler change [0, 0, 0], turn none (axis none), root moves [-1.40125, -0.02, -0.49125] m, 1.485001 m in 0.4 s at 3.712502 m/s
+- path A 3.70 to A 4.40: slerp 180 degrees, Euler change [0, -180, 0], turn none (axis none), root moves [0, 0, -0.3] m, 0.3 m in 0.7 s at 0.428571 m/s
+- path B 4.40 to B 4.70: slerp 0 degrees, Euler change [0, 0, 0], turn none (axis none), root moves [-0.03875, 0.13, 0.05125] m, 0.145011 m in 0.3 s at 0.48337 m/s
+- path A 4.40 to A 4.70: slerp 10 degrees, Euler change [-10, 0, 0], turn none (axis none), root moves [0, 0.3, 0.1] m, 0.316228 m in 0.3 s at 1.054093 m/s
+- path B 4.70 to B 5.10: slerp 0 degrees, Euler change [0, 0, 0], turn none (axis none), root moves [-0.76, 0.89, -0.16] m, 1.181228 m in 0.4 s at 2.95307 m/s
+- path A 4.70 to A 5.10: slerp 90.43523 degrees, Euler change [-10, -90, 0], turn spin (axis Y), root moves [0.1, 0.8, -0.5] m, 0.948683 m in 0.4 s at 2.371707 m/s
+- path B 5.10 to B 5.50: euler_axis 180 degrees, Euler change [0, -180, 0], turn spin (axis Y), root moves [-0.3, -0.22, -0.1] m, 0.385227 m in 0.4 s at 0.963067 m/s
+- path A 5.10 to A 5.50: euler_axis 90 degrees, Euler change [-360, -90, 0], turn flip (axis X), root moves [0, -0.4, 0.3] m, 0.5 m in 0.4 s at 1.25 m/s
+- path B 5.50 to B 5.90: slerp 0 degrees, Euler change [0, 0, 0], turn none (axis none), root moves [-0.1, -0.82, -0.1] m, 0.832106 m in 0.4 s at 2.080265 m/s
+- path A 5.50 to A 5.90: slerp 80 degrees, Euler change [80, 0, 0], turn none (axis none), root moves [0, -1.2, -0.5] m, 1.3 m in 0.4 s at 3.25 m/s
+- path B 5.90 to B 6.30: slerp 0 degrees, Euler change [0, 0, 0], turn none (axis none), root moves [0.6, -0.02, -0.4] m, 0.721388 m in 0.4 s at 1.80347 m/s
+- path A 5.90 to A 6.30: slerp 104.477512 degrees, Euler change [-60, 90, 0], turn spin (axis Y), root moves [-0.1, 0.9, -0.3] m, 0.953939 m in 0.4 s at 2.384847 m/s
+- path B 6.30 to B 6.60: slerp 0 degrees, Euler change [0, 0, 0], turn none (axis none), root moves [1.07, 0, 1] m, 1.464548 m in 0.3 s at 4.881827 m/s
+- path A 6.30 to A 6.60: euler_axis 90 degrees, Euler change [0, 90, -360], turn cartwheel (axis Z), root moves [-0.1, 0.3, 1] m, 1.048809 m in 0.3 s at 3.49603 m/s
+- path A 6.60 to A 7.00: slerp 71.062696 degrees, Euler change [40, 60, 0], turn none (axis none), root moves [0.2, 1, 1.4] m, 1.732051 m in 0.4 s at 4.330127 m/s
+- path B 6.60 to B 7.50: slerp 75.94 degrees, Euler change [0, -75.94, 0], turn none (axis none), root moves [1.39, 0.12, 0.2] m, 1.409433 m in 0.9 s at 1.566037 m/s
+- path A 7.00 to A 7.50: slerp 66.451884 degrees, Euler change [-30, 60, 0], turn none (axis none), root moves [0.21, -2.23, -1.68] m, 2.799893 m in 0.5 s at 5.599786 m/s
+- path B 7.50 to B 8.00: slerp 104.06 degrees, Euler change [0, -104.06, 0], turn spin (axis Y), root moves [0.74, 0.03, -1.53] m, 1.699824 m in 0.5 s at 3.399648 m/s
+- path A 7.50 to A 8.00: slerp 60 degrees, Euler change [0, 60, 0], turn none (axis none), root moves [0.2, 0, -0.22] m, 0.297321 m in 0.5 s at 0.594642 m/s
+- path B 8.00 to B 8.50: slerp 0 degrees, Euler change [0, 0, 0], turn none (axis none), root moves [-1.11, -0.1, 1.59] m, 1.9417 m in 0.5 s at 3.8834 m/s
+- path A 8.00 to A 8.50: slerp 10 degrees, Euler change [-10, 0, 0], turn none (axis none), root moves [-0.51, 0.93, 0.9] m, 1.391043 m in 0.5 s at 2.782086 m/s
+- path B 8.50 to B 9.00: slerp 90 degrees, Euler change [-90, 90, -90], turn flip (axis X), root moves [-0.13, -0.98, 0.42] m, 1.074104 m in 0.5 s at 2.148208 m/s
+- path A 8.50 to A 9.00: slerp 0 degrees, Euler change [0, 0, 0], turn none (axis none), root moves [0, -0.8, 0.4] m, 0.894427 m in 0.5 s at 1.788854 m/s
+- path B 9.00 to B 9.50: slerp 0 degrees, Euler change [0, 0, 0], turn none (axis none), root moves [0, 0, 0] m, 0 m in 0.5 s at 0 m/s
+- path A 9.00 to A 9.50: slerp 0 degrees, Euler change [0, 0, 0], turn none (axis none), root moves [-0.1, 0, 0] m, 0.1 m in 0.5 s at 0.2 m/s
 
 [SPATIAL ANCHORS]
 Frame: up +Y, forward +Z, ground y=0, units m; Euler XYZ intrinsic, right-handed, degrees; +X = the performer's left; joints local to their parent (root -> Sp -> arms, legs, NK -> HD; the hips sit on the pelvis), root in the scene frame.
@@ -177,6 +369,47 @@ A rope dart regrapple ⇢ A pull toward pillar: With the rope dart wrapped on B'
 A pull toward pillar ⇢ A aerial kunai drive: B is dragged into reach on the taut line, so A drives the kunai into B's right shoulder.
 A aerial kunai drive ⇢ A crash to ground: The kunai drive carries B down, and A and B crash to the ground together.
 A crash to ground ⇢ A hold crouch over opponent: Slammed down with the kunai in the shoulder, B stays down, and A holds the crouch over B.
+- contact order: 0.60 A L foot support wooden pillar precedes 1.60 A L foot release wooden pillar
+- contact order: 1.60 A L foot release wooden pillar releases 0.60 A L foot support wooden pillar
+- contact order: 0.60 A R foot support wooden pillar precedes 1.60 A R foot release wooden pillar
+- contact order: 1.60 A R foot release wooden pillar releases 0.60 A R foot support wooden pillar
+- contact order: 0.00 B R hand possess kunai handle precedes 2.00 B R hand release kunai handle
+- contact order: 2.00 B R hand release kunai handle releases 0.00 B R hand possess kunai handle
+- contact order: 3.00 A L foot support ground precedes 3.70 A L foot release ground
+- contact order: 3.70 A L foot release ground releases 3.00 A L foot support ground
+- contact order: 3.00 A R foot support ground precedes 3.70 A R foot release ground
+- contact order: 3.70 A R foot release ground releases 3.00 A R foot support ground
+- contact order: 3.00 A L hand possess rope dart (rope end) precedes 3.70 A L hand release rope dart (rope end)
+- contact order: 3.70 A L hand release rope dart (rope end) releases 3.00 A L hand possess rope dart (rope end)
+- contact order: 3.70 A L foot release ground precedes 4.40 A L foot support ground
+- contact order: 3.70 A R foot release ground precedes 4.40 A R foot support ground
+- contact order: 4.40 A L foot support ground precedes 4.70 A L foot release ground
+- contact order: 4.70 A L foot release ground releases 4.40 A L foot support ground
+- contact order: 4.40 A R foot support ground precedes 4.70 A R foot release ground
+- contact order: 4.70 A R foot release ground releases 4.40 A R foot support ground
+- contact order: 4.70 A L foot release ground precedes 5.90 A L foot support ground
+- contact order: 4.70 A R foot release ground precedes 5.90 A R foot support ground
+- contact order: 5.10 B R hand possess shuriken volley precedes 5.50 B R hand release shuriken volley
+- contact order: 5.50 B R hand release shuriken volley releases 5.10 B R hand possess shuriken volley
+- contact order: 5.90 A L foot support ground precedes 6.30 A L foot release ground
+- contact order: 6.30 A L foot release ground releases 5.90 A L foot support ground
+- contact order: 5.90 A R foot support ground precedes 6.30 A R foot release ground
+- contact order: 6.30 A R foot release ground releases 5.90 A R foot support ground
+- contact order: 6.60 B L hand possess A left arm precedes 6.60 B L hand release A left arm
+- contact order: 6.60 B L hand release A left arm releases 6.60 B L hand possess A left arm
+- contact order: 6.60 B R hand possess A left arm precedes 6.60 B R hand release A left arm
+- contact order: 6.60 B R hand release A left arm releases 6.60 B R hand possess A left arm
+- contact order: 1.60 A L foot release wooden pillar precedes 7.00 A L foot touch wooden pillar
+- contact order: 1.60 A R foot release wooden pillar precedes 7.00 A R foot touch wooden pillar
+- contact order: 3.70 A L hand release rope dart (rope end) precedes 7.50 A L hand possess rope dart (rope end)
+- contact order: 6.30 A L foot release ground precedes 7.50 A L foot support ground
+- contact order: 6.30 A R foot release ground precedes 7.50 A R foot support ground
+- contact order: 7.50 A L foot support ground precedes 8.50 A L foot release ground
+- contact order: 8.50 A L foot release ground releases 7.50 A L foot support ground
+- contact order: 7.50 A R foot support ground precedes 8.50 A R foot release ground
+- contact order: 8.50 A R foot release ground releases 7.50 A R foot support ground
+- contact order: 8.50 A L foot release ground precedes 9.00 A L foot support ground
+- contact order: 8.50 A R foot release ground precedes 9.00 A R foot support ground
 
 [CAMERA]
 0.00–0.60 open to wide on A: A falls from above the frame toward the pillar top, body tucked, head pointing down; elevation 35, azimuth -90, roll 0; 43.46 mm normal; tilt: tilts down with A falling from above the frame; normal x1; shows A fall from above; motivated by beat type b01; camera 8.6 m left of the ninja lean, at [-7.044708, 14.664357, 3.6011] aiming at [0, 9.7316, 3.6011]; focus deep on A (follow); motion blur subject on A; composition A center, depth anchor wooden pillar, left open: night sky above the falling body; intent rhythm; locked ease_in movement, texture none; follow A: the fall enters from the top of frame; rig tripod.
@@ -203,6 +436,27 @@ A crash to ground ⇢ A hold crouch over opponent: Slammed down with the kunai i
 9.50–10.00 cut to medium_wide on A, B: A holds a crouch over B; the shuriken stay in the pillar, the log on the ground, smoke thinning; elevation 3, azimuth 0, roll 0; 57.09 mm normal; dolly_in: slow push in on the crouch; normal x1; shows A hold crouch over opponent; motivated by beat type b23; camera 4.42 m left of the midpoint, at [1.04105, 0.838375, 9.942493] aiming at [1.04105, 0.60705, 5.52855]; focus medium on A (hold); motion blur none; composition B center, A left third, depth anchor wooden pillar, left open: the marked courtyard; intent rhythm; smooth ease_in_out movement, texture settling; observe A: the crouch over B holds to the end; rig dolly.
 Holds on hits: 2.50 impact: hold for 3 frames with BOTH bodies in frame (A and B), no close-up; 4.70 impact: hold for 3 frames with BOTH bodies in frame (A and B), no close-up; 6.60 impact: hold for 3 frames with BOTH bodies in frame (A and B), no close-up; 8.50 impact: hold for 4 frames with BOTH bodies in frame (A and B), no close-up.
 Camera rules: Open on a wide that sets the arena geometry before the first exchange. Hold on the frame of impact so the hit reads. A fast body move between hits is followed by a tracking or whip move with speedlines on the moving limb. Shots last 0.25-6 s. Crossing the action axis is allowed when a cut declares it.
+- 0.00 to 0.60: cut (cuts to), axis keep, azimuth change 180 degrees, wide to extreme wide, side left to left
+- 0.60 to 1.60: cut (cuts to), axis keep, azimuth change 33.7 degrees, extreme wide to full, side left to left
+- 1.60 to 2.00: cut (cuts to), axis keep, azimuth change 32.3 degrees, full to wide, side left to left
+- 2.00 to 2.50: smash_cut (cuts to), axis keep, azimuth change 26 degrees, wide to full, side left to left
+- 2.50 to 3.00: cut (cuts to), axis keep, azimuth change 50 degrees, full to full, side left to left
+- 3.00 to 3.40: cut (cuts to), axis keep, azimuth change 0 degrees, full to medium, side left to left
+- 3.40 to 3.70: smash_cut (cuts to), axis keep, azimuth change 0 degrees, medium to medium, side left to left
+- 3.70 to 4.00: cut (cuts to), axis keep, azimuth change 0 degrees, medium to medium, side left to left
+- 4.00 to 4.40: cut (cuts to), axis keep, azimuth change 171.9 degrees, medium to full, side left to left
+- 4.40 to 4.70: smash_cut (cuts to), axis keep, azimuth change 4.1 degrees, full to medium wide, side left to left
+- 4.70 to 5.10: cut (cuts to), axis keep, azimuth change 9.2 degrees, medium wide to full, side left to left
+- 5.10 to 5.50: whip_pan (cuts to), axis keep, azimuth change 13.2 degrees, full to medium, side left to left
+- 5.50 to 5.90: cut (cuts to), axis keep, azimuth change 10.8 degrees, medium to full, side left to left
+- 5.90 to 6.30: cut (cuts to), axis keep, azimuth change 1.3 degrees, full to medium, side left to left
+- 6.30 to 6.60: cut (cuts to), axis keep, azimuth change 12.1 degrees, medium to medium, side left to left
+- 6.60 to 7.00: cut (cuts to), axis keep, azimuth change 57.3 degrees, medium to wide, side left to left
+- 7.00 to 7.50: cut (cuts to), axis keep, azimuth change 94.7 degrees, wide to wide, side left to left
+- 7.50 to 8.00: cut (cuts to), axis keep, azimuth change 18 degrees, wide to medium wide, side left to left
+- 8.00 to 8.50: smash_cut (cuts to), axis keep, azimuth change 35 degrees, medium wide to medium, side left to left
+- 8.50 to 9.00: cut (cuts to), axis keep, azimuth change 25 degrees, medium to full, side left to left
+- 9.00 to 9.50: cut (cuts to), axis keep, azimuth change 0 degrees, full to medium wide, side left to left
 
 [ANIME]
 Impact frames: 2.50, 4.70, 5.50, 6.60, 8.50, 9.00.
@@ -257,6 +511,58 @@ Ink: heavy on A,broken in smears,clean on holds,smear follows ONLY the declared 
 - A hangs in the air 6.30–7.50, longer than a real jump (stylised anime hang time).
 - A hangs in the air 8.50–9.00, longer than a real jump (stylised anime hang time).
 - B hangs in the air 5.10–6.30, longer than a real jump (stylised anime hang time).
+- c arch ninja broad negative 00 binds the beats at 0.00, 1.60, 2.00, 2.50, 3.00, 3.40, 3.70, 4.00, 4.40, 4.70, 5.10, 5.50, 5.90, 6.30, 6.60, 7.50, 8.00, 8.50, 9.00, 9.50
+- c arch ninja broad negative 01 binds the beats at 0.00, 1.60, 2.00, 2.50, 3.00, 3.40, 3.70, 4.00, 4.40, 4.70, 5.10, 5.50, 5.90, 6.30, 6.60, 7.50, 8.00, 8.50, 9.00, 9.50
+- c arch ninja broad thrown weapon leaves hand binds the beats at 0.00, 1.60, 2.00, 2.50, 3.00, 3.40, 3.70, 4.00, 4.40, 4.70, 5.10, 5.50, 5.90, 6.30, 6.60, 7.50, 8.00, 8.50, 9.00, 9.50
+- c arch ninja lean negative 00 binds the beats at 0.00, 0.60, 1.10, 1.60, 2.00, 2.50, 3.00, 3.40, 3.70, 4.40, 4.70, 5.10, 5.50, 5.90, 6.30, 6.60, 7.00, 7.50, 8.00, 8.50, 9.00, 9.50
+- c arch ninja lean negative 01 binds the beats at 0.00, 0.60, 1.10, 1.60, 2.00, 2.50, 3.00, 3.40, 3.70, 4.40, 4.70, 5.10, 5.50, 5.90, 6.30, 6.60, 7.00, 7.50, 8.00, 8.50, 9.00, 9.50
+- c arch ninja lean negative 02 binds the beats at 0.00, 0.60, 1.10, 1.60, 2.00, 2.50, 3.00, 3.40, 3.70, 4.40, 4.70, 5.10, 5.50, 5.90, 6.30, 6.60, 7.00, 7.50, 8.00, 8.50, 9.00, 9.50
+- c arch ninja lean negative 03 binds the beats at 0.00, 0.60, 1.10, 1.60, 2.00, 2.50, 3.00, 3.40, 3.70, 4.40, 4.70, 5.10, 5.50, 5.90, 6.30, 6.60, 7.00, 7.50, 8.00, 8.50, 9.00, 9.50
+- c arch ninja lean negative 04 binds the beats at 0.00, 0.60, 1.10, 1.60, 2.00, 2.50, 3.00, 3.40, 3.70, 4.40, 4.70, 5.10, 5.50, 5.90, 6.30, 6.60, 7.00, 7.50, 8.00, 8.50, 9.00, 9.50
+- c arch ninja lean substitution leaves a log binds the beats at 0.00, 0.60, 1.10, 1.60, 2.00, 2.50, 3.00, 3.40, 3.70, 4.40, 4.70, 5.10, 5.50, 5.90, 6.30, 6.60, 7.00, 7.50, 8.00, 8.50, 9.00, 9.50
+- c k negative 08 binds the beats at 2.00, 2.50, 3.70, 4.00, 5.10, 5.50, 5.90, 7.00, 7.50, 8.00, 8.50
+- c k rules 24 binds the beats at 2.00, 2.50, 3.70, 4.00, 5.10, 5.50, 5.90, 7.00, 7.50, 8.00, 8.50
+- c obj smoke pellet smoke stays put binds the beats at 3.70
+- c obj substitution log is wood binds the beats at 3.70, 4.00
+- c obj substitution log negative 00 binds the beats at 3.70, 4.00
+- c obj substitution log negative 01 binds the beats at 3.70, 4.00
+- invariant c k preface 07 (constraint): Euler degrees XYZ
+- invariant c k preface 08 (constraint): Render spec exactly
+- invariant c k ax 00 (constraint): Y_up
+- invariant c k ax 03 (constraint): ground y=0
+- invariant c k key 00 (constraint): Sp=Spine
+- invariant c k key 01 (constraint): LUL/RUL=UpLeg
+- invariant c k key 02 (constraint): LL/RL=LowLeg
+- invariant c k key 03 (constraint): LA/RA=UpArm
+- invariant c k key 04 (constraint): LFA/RFA=ForeArm
+- invariant c k key 05 (constraint): HD=Head
+- invariant c k key 06 (constraint): NK=Neck
+- invariant c k negative 00 (constraint): no missing limbs
+- invariant c k negative 01 (constraint): no missing arms
+- invariant c k negative 02 (constraint): no missing hands
+- invariant c k negative 03 (constraint): no headless body
+- invariant c k negative 05 (constraint): no faceless head
+- invariant c k negative 08 (constraint): no duplicated kunai
+- invariant c k negative 12 (constraint): no extra weapons
+- invariant c k negative 13 (constraint): no full circle
+- invariant c k negative 14 (constraint): no ring
+- invariant c k negative 15 (constraint): no halo
+- invariant c k rules 24 (constraint): FIVE props tracked separately,never merged:kunai,rope_dart,smoke_pellet,shuriken_volley,substitution_log
+- invariant c k owner 00 (constraint): S17 output is uncompressed. The full envelope is projected; nothing is summarized, truncated, or dropped
+- invariant c world bamboo courtyard pillar embedded stays (constraint): Anything embedded in the pillar or a body stays there for the rest of the scene
+- invariant c arch ninja lean substitution leaves a log (constraint): A substitution leaves the substitution log where the body was; the body reappears somewhere else
+- invariant c arch ninja lean negative 00 (constraint): no scarf covering head
+- invariant c arch ninja lean negative 01 (constraint): no scarf covering head or face
+- invariant c arch ninja lean negative 02 (constraint): no scarf physics errors
+- invariant c arch ninja lean negative 03 (constraint): no floating limbs
+- invariant c arch ninja lean negative 04 (constraint): no inverted gravity errors
+- invariant c arch ninja broad thrown weapon leaves hand (constraint): A thrown weapon leaves the hand and does not return without a declared catch
+- invariant c arch ninja broad negative 00 (constraint): no floating limbs
+- invariant c arch ninja broad negative 01 (constraint): no inverted gravity errors
+- invariant c obj smoke pellet smoke stays put (constraint): The smoke cloud stays where the pellet burst; it does not follow anyone
+- invariant c obj substitution log is wood (constraint): substitution log is a WOODEN BLOCK NOT a fighter
+- invariant c obj substitution log negative 00 (constraint): no substitution log as a separate fighter
+- invariant c obj substitution log negative 01 (constraint): substitution log is a wooden block NOT a fighter
 
 [NEGATIVES]
 no missing limbs; no missing arms; no missing hands; no headless body; no faceless head; no extra fighters beyond A and B; no cloned A; no cloned B; no duplicated kunai; no duplicated rope dart; no duplicated smoke pellet; no duplicated shuriken beyond the declared volley of 3; no duplicated substitution log; no extra weapons; no full circle; no ring; no halo; no scarf covering head; no scarf covering head or face; no scarf physics errors; no floating limbs; no inverted gravity errors; no substitution log as a separate fighter; substitution log is a wooden block NOT a fighter; no A standing on the wooden pillar at the start

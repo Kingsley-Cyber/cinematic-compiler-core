@@ -34,11 +34,25 @@ FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship |
 - A 1.50–3.50 (2.0 s without a line): carry 'unfold at chest' through; weight transfer none, breathing steady, tension moderate.
 - A 3.50–5.50 (2.0 s without a line): carry 'lift to face' through; weight transfer up, breathing held, tension moderate.
 - A 5.50–8.00 (2.5 s without a line): hold the final pose with micro-motion; weight transfer none, breathing exhale, tension relaxed.
+- support and balance, A 0.00 to A 1.50: changes weight transfer, tension, restraint
+- support and balance, A 1.50 to A 3.50: changes loading, weight transfer, restraint, breathing
+- support and balance, A 3.50 to A 5.50: changes loading, weight transfer, tension, release, breathing
+- coordination, A 0.00 to A 1.50: changes connectivity, developmental pattern, intent, initiation, follow through, body mode
+- coordination, A 1.50 to A 3.50: changes connectivity, developmental pattern, intent, initiation, follow through, body mode
+- coordination, A 3.50 to A 5.50: changes connectivity, developmental pattern, intent, follow through
+- state at 3.50, glasses 1.50 to glasses 3.50 after 1.50 A unfold glasses: temples folded to open
+- state at 5.50, glasses 3.50 to glasses 5.50 after 3.50 A put on glasses: holder ugc creator to none; worn no to yes
 
 [MOTION CONTROL]
 Interpolation: slerp joint rotations between lines; the root follows its derived path between positions; support and the declared Effort hold at all times.
 Density (measured): 0 dense gaps under 0.6 s, 0 medium from 0.6 to 0.9 s, 3 sparse over 0.9 s; the longest is 2.00 s (A 1.50–3.50).
 Explicit = the staff lines; implied = everything between them (IMPLIED GUIDANCE).
+- beat order: 0.00 A lift glasses precedes 1.50 A unfold glasses, lasting 1.5 s, gap 0 s
+- beat order: 1.50 A unfold glasses precedes 3.50 A put on glasses, lasting 2 s, gap 0 s
+- beat order: 3.50 A put on glasses precedes 5.50 A show result, lasting 2 s, gap 0 s
+- path A 0.00 to A 1.50: slerp 0 degrees, Euler change [0, 0, 0], turn none (axis none), root moves [0, 0, 0] m, 0 m in 1.5 s at 0 m/s
+- path A 1.50 to A 3.50: slerp 0 degrees, Euler change [0, 0, 0], turn none (axis none), root moves [0, 0, 0] m, 0 m in 2 s at 0 m/s
+- path A 3.50 to A 5.50: slerp 0 degrees, Euler change [0, 0, 0], turn none (axis none), root moves [0, 0, 0] m, 0 m in 2 s at 0 m/s
 
 [SPATIAL ANCHORS]
 Frame: up +Y, forward +Z, ground y=0, units m; Euler XYZ intrinsic, right-handed, degrees; +X = the performer's left; joints local to their parent (root -> Sp -> arms, legs, NK -> HD; the hips sit on the pelvis), root in the scene frame.
@@ -60,6 +74,9 @@ Why each link holds:
 A lift glasses → A unfold glasses: Holding the frame lets the other hand open the temples.
 A unfold glasses → A put on glasses: Open temples let the glasses go on.
 A put on glasses ⇢ A show result: Wearing them, the creator shows the result.
+- contact order: 3.50 A L hand touch glasses left temple precedes 5.50 A L hand touch glasses left temple
+- contact order: 0.00 A R hand possess glasses frame precedes 5.50 A R hand release glasses frame
+- contact order: 5.50 A R hand release glasses frame releases 0.00 A R hand possess glasses frame
 
 [CAMERA]
 0.00–1.50 open to medium_close on A, glasses: Talking to camera, the creator picks the folded glasses up off the desk; elevation 3, azimuth 0, roll 0; 28 mm wide; tracking: phone drifts up with the hand as it lifts the glasses off the desk; normal x1; shows A lift glasses; motivated by genre convention ugc hook first; camera 1.1 m none of the ugc creator, at [0.0099, 1.23332, 1.377892] aiming at [0.0099, 1.17575, 0.2794]; focus medium on glasses (follow); motion blur none; composition A center, depth anchor backdrop, left open: plain backdrop beside the creator; intent product; floating ease_in_out movement, texture handheld breathing; follow A: the hand finds the glasses; rig handheld.
@@ -67,6 +84,9 @@ A put on glasses ⇢ A show result: Wearing them, the creator shows the result.
 3.50–5.50 cut to medium_close on A, glasses: Both hands lift the open glasses to the face and slide the temples over the ears; elevation 3, azimuth 0, roll 0; 28 mm wide; tracking: rises with the hands to the face; normal x1; shows A put on glasses; motivated by contact event b02 c1; camera 0.875 m none of the ugc creator, at [-0.00225, 1.478194, 1.022551] aiming at [-0.00225, 1.4324, 0.14875]; focus medium on glasses (follow); motion blur none; composition A center, depth anchor backdrop, left open: plain backdrop; intent product; floating ease_out movement, texture handheld breathing; follow A: the glasses go on; rig handheld.
 5.50–8.00 jump_cut to medium_close on A, glasses: Wearing the glasses, the creator smiles to camera and taps the frame; elevation 3, azimuth 0, roll 0; 35 mm normal; static: held on the face; normal x1; shows A show result; motivated by entity focus A; camera 1.021 m none of the ugc creator, at [0, 1.574985, 1.132551] aiming at [0, 1.52155, 0.11295]; focus shallow on A (hold); motion blur none; composition A center, depth anchor backdrop, left open: soft window light behind; intent emotion; smooth linear movement, texture steady; observe A: the smile sells it; rig gimbal.
 Camera rules: The first shot carries the hook or the product. Every product use shows the hand on the object. Talking-to-camera shots keep the eyeline in the lens. Shots last 0.4-4 s. Crossing the action axis is never allowed.
+- 0.00 to 1.50: cut (cuts to), axis keep, azimuth change 0 degrees, medium close to insert, side none to none
+- 1.50 to 3.50: cut (cuts to), axis keep, azimuth change 0 degrees, insert to medium close, side none to none
+- 3.50 to 5.50: jump_cut (cuts to), axis keep, azimuth change 0 degrees, medium close to medium close, side none to none
 
 [UGC]
 Impact frames: none.
@@ -97,6 +117,30 @@ Enables: i01 enables i02 via temples.
 - From 5.50 to the end, glasses keeps holder none.
 - From 5.50 to the end, glasses keeps worn yes.
 - End state: A at [0, 0.97, 0], support both feet place-mid.
+- c arch ugc creator hands in frame binds the beats at 0.00, 1.50, 3.50, 5.50
+- invariant c k preface 07 (constraint): Euler degrees XYZ
+- invariant c k preface 08 (constraint): Render spec exactly
+- invariant c k ax 00 (constraint): Y_up
+- invariant c k ax 03 (constraint): ground y=0
+- invariant c k key 00 (constraint): Sp=Spine
+- invariant c k key 01 (constraint): LUL/RUL=UpLeg
+- invariant c k key 02 (constraint): LL/RL=LowLeg
+- invariant c k key 03 (constraint): LA/RA=UpArm
+- invariant c k key 04 (constraint): LFA/RFA=ForeArm
+- invariant c k key 05 (constraint): HD=Head
+- invariant c k key 06 (constraint): NK=Neck
+- invariant c k negative 00 (constraint): no missing limbs
+- invariant c k negative 01 (constraint): no missing arms
+- invariant c k negative 02 (constraint): no missing hands
+- invariant c k negative 03 (constraint): no headless body
+- invariant c k negative 05 (constraint): no faceless head
+- invariant c k negative 12 (constraint): no extra weapons
+- invariant c k negative 13 (constraint): no full circle
+- invariant c k negative 14 (constraint): no ring
+- invariant c k negative 15 (constraint): no halo
+- invariant c k owner 00 (constraint): S17 output is uncompressed. The full envelope is projected; nothing is summarized, truncated, or dropped
+- invariant c world modern ugc product stays identical (constraint): The product keeps one shape, colour and label for the whole scene
+- invariant c arch ugc creator hands in frame (constraint): Hands stay in frame whenever they touch the product
 
 [NEGATIVES]
 no missing limbs; no missing arms; no missing hands; no headless body; no faceless head; no extra fighters beyond A; no cloned A; no duplicated glasses; no extra weapons; no full circle; no ring; no halo
