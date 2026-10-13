@@ -101,9 +101,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.3; backlog 49.
-- Last session: S-106 (2026-10-12, applied): ADR-O112: the automatic author planned (PLAN-008).
-- Next slice: AA-1 The automatic author's loop: `cinematic author` hands each AuthorRequired packet to a backend, binds and checks the document, sends refusals back (three retries), logs every call; a replay backend re-authors the four examples byte for byte (step all).
+- Layer order 1.7; rules 7.3; backlog 50.
+- Last session: S-107 (2026-10-12, applied): AA-1: the automatic author's loop.
+- Next slice: none.
 - Open findings: 143; decisions: 139 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 

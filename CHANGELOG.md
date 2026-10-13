@@ -6,6 +6,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The automatic author's loop (AA-1, PLAN-008, S-107): `cinematic author "<idea>" --out DIR` writes each authored
+  step with a backend from its sealed packet, sends a refusal back with its findings (three attempts), logs every
+  call to calls.jsonl and writes the prompts; the offline replay backend re-authors the four examples byte for byte.
 - The camera floor's negation reaches only the phrase it heads, and the feet strike (RV-99c, F-233, S-104): "Push in
   to a close-up without delay as the blow lands." and three more rules RV-99b let through are refused again, and so is
   a close-up on the wizard example's own kick; O92's own sentences and the library's cards pass unchanged.

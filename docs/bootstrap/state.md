@@ -6,20 +6,20 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 7.3; backlog 49.
+Layer order 1.7; rules 7.3; backlog 50.
 
 ## Last sessions
 
-- S-104 (applied): RV-99c: a negation reaches only the phrase it heads, and the feet strike
 - S-105 (applied): ADR-O111: no length cap on a prompt (owner)
 - S-106 (applied): ADR-O112: the automatic author planned (PLAN-008)
+- S-107 (applied): AA-1: the automatic author's loop
 
 ## Next slices
 
-- AA-1 (next, step all): The automatic author's loop: `cinematic author` hands each AuthorRequired packet to a backend, binds and checks the document, sends refusals back (three retries), logs every call; a replay backend re-authors the four examples byte for byte
 - RV-35b (ready, step all): The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools
 - AA-3 (ready, step all): The first live idea end to end: its calls, retries and cost reported, its prompts handed to the owner
 - AA-4 (ready, step motion): S13's overlap, floor and contact refusals repaired by the re-block solver before the model retries
+- RV-59g (ready, step motion): CONTACT_WORLD on every open support at every frame between keys (the DAG's 'respect support'), the examples' takeoffs placed where the motion leaves its surface
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -139,4 +139,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O113, finding F-234, session S-107, render R20.
+Decision ADR-O113, finding F-234, session S-108, render R20.

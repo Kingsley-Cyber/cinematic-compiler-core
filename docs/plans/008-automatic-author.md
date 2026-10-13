@@ -54,3 +54,5 @@ How the owner's design note maps onto the code:
 
 ## Changelog
 - 2026-10-12 — Created (S-106, ADR-O112).
+- 2026-10-12 — AA-1 done (S-107): compiler/author.py and `cinematic author`; the replay backend re-authors the four
+  examples byte for byte; a refusal goes back with its findings; the third refusal stops the run.

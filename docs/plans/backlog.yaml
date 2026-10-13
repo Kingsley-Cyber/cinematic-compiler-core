@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 49
+version: 50
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -194,7 +194,7 @@ items:
   - {id: RV-99c, title: "The camera floor's negation governs only the phrase it heads (the four rules RV-99b let through refused again, O92's own sentences passing) and the feet are striking parts", status: done,
      step: camera, plan: PLAN-007, depends_on: [RV-99b], findings: [F-233, F-210], codes: []}
   # ADR-O112 (owner, 2026-10-12): the automatic author (PLAN-008) comes first.
-  - {id: AA-1, title: "The automatic author's loop: `cinematic author` hands each AuthorRequired packet to a backend, binds and checks the document, sends refusals back (three retries), logs every call; a replay backend re-authors the four examples byte for byte", status: next,
+  - {id: AA-1, title: "The automatic author's loop: `cinematic author` hands each AuthorRequired packet to a backend, binds and checks the document, sends refusals back (three retries), logs every call; a replay backend re-authors the four examples byte for byte", status: done,
      step: all, plan: PLAN-008, depends_on: [], findings: [], codes: []}
   - {id: AA-2, title: "The subscription backend: `claude -p`, isolated, schema-bound output, the model per step's tier", status: blocked,
      blocked_by: "the owner's choice of live backend (PLAN-008)", step: all, plan: PLAN-008, depends_on: [AA-1], findings: [], codes: []}
