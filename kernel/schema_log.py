@@ -144,7 +144,8 @@ LIBRARY = HashLog("library/library_log.jsonl", "library", "**/*.yaml", "card", "
 KERNEL = HashLog("kernel/kernel_log.jsonl", "kernel", ("sources/*.txt", "kernel_scope.yaml", "invariants.yaml",
                                                        "state_vocabulary.yaml", "conventions.yaml", "owner_invariants.yaml",
                                                        "knowledge_map.yaml", "layer_order.yaml",  # layer order: F-078
-                                                       "contact_world_exceptions.yaml"),  # F-123
+                                                       "contact_world_exceptions.yaml",  # F-123
+                                                       "data_flow.yaml"),  # the layers' data-flow contract
                  "file", "file_version", _kernel_version)
 GENERATED_BLOCK = re.compile(r"<!-- BEGIN GENERATED: (\w+) -->\n.*?<!-- END GENERATED: \1 -->", re.S)
 DOCS_VERSION = re.compile(r"docs-version: (\S+?)(?: -->|$)", re.M)

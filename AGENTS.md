@@ -102,9 +102,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 7.3; backlog 55.
-- Last session: S-118 (2026-10-13, applied): The root printed as position data on every line; "root exact" retired (ADR-O114).
+- Last session: S-119 (2026-10-13, applied): The graphs turn as one wheel: data-flow contract, cross-graph consistency, end-to-end tracer (ADR-O115).
 - Next slice: AA-9 S13 written in parallel pieces, one per fighter and time window (each window overlapping its neighbour by one beat), merged and repaired by the solver (step motion).
-- Open findings: 144; decisions: 141 (0 proposed, 7 owner_default awaiting the owner).
+- Open findings: 144; decisions: 142 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

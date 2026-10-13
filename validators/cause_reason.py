@@ -25,12 +25,17 @@ def labels(envelope):
     return {e["id"]: chr(ord("A") + i) for i, e in enumerate(envelope["nodes"]["entities"]["items"])}
 
 
+# the fields that name each kind of thing: a surface has no name or hint, its kind names it (data-flow trace: S05 read
+# a surface's name and hint, which no layer writes)
+NAMING = {"entities": ("id", "name", "hint"), "props": ("id", "name", "hint"), "surfaces": ("id", "kind")}
+
+
 def _names(envelope):
-    """{id: words} for every entity, prop and surface: id, name and hint words."""
+    """{id: words} for every entity, prop and surface: the words of the fields that name it (NAMING)."""
     out = {}
-    for group in ("entities", "props", "surfaces"):
+    for group, fields in NAMING.items():
         for item in envelope["nodes"].get(group, {}).get("items", []):
-            text = " ".join(str(item.get(k) or "") for k in ("id", "name", "hint")).replace("_", " ").lower()
+            text = " ".join(str(item[k]) for k in fields).replace("_", " ").lower()
             out[item["id"]] = {w for w in WORD.findall(text) if len(w) >= 3 and w not in GENERIC}
     return out
 

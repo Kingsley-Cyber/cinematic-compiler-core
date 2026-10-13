@@ -260,6 +260,15 @@ def _laban(envelope, beats, entities, labels, cover):
     return laban
 
 
+JOINT_ORDER = ("Sp", "LUL", "RUL", "LL", "RL", "LA", "RA", "LFA", "RFA", "HD", "NK")
+
+
+def _joints(bones):
+    """The joints in the skeleton key's order, so the prompt is the same from the stored (sorted) envelope as from the
+    pipeline's own (data-flow trace: the render must turn on its own input)."""
+    return {**{j: bones[j] for j in JOINT_ORDER if j in bones}, **{j: v for j, v in bones.items() if j not in JOINT_ORDER}}
+
+
 def _actor_rows(envelope, entity, labels, cover):
     kinematic = {n["id"]: n for n in _items(envelope, "nodes", "kinematic")}
     bartenieff = {n["id"]: n for n in _items(envelope, "nodes", "bartenieff")}
@@ -300,11 +309,11 @@ def _actor_rows(envelope, entity, labels, cover):
             cover.mark("facial", slot)
             parts.append(_face_words(face, labels))
         rows.append({"t": _num(key["t"]), "label": key["name"], "pos": key["pos"], "rot": key["rot"],
-                     "joints": key["bones"], "desc": "; ".join(parts) + "; " + key["description"]})
+                     "joints": _joints(key["bones"]), "desc": "; ".join(parts) + "; " + key["description"]})
     between = [b for b in inbetweens(envelope) if b["entity"] == entity]
     for b in between:  # ADR-O109 (RV-59i): a pose the interpolation passes through, at its instant
         cover.mark("inbetweens", b["id"])
-        rows.append({"t": _num(b["t"]), "label": b["name"], "pos": b["pos"], "rot": b["rot"], "joints": b["bones"],
+        rows.append({"t": _num(b["t"]), "label": b["name"], "pos": b["pos"], "rot": b["rot"], "joints": _joints(b["bones"]),
                      "desc": "IN-BETWEEN key (no beat, no contact): the interpolation passes through this pose; "
                              + b["description"]})
     return sorted(rows, key=lambda row: float(row["t"])) if between else rows
