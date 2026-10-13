@@ -18,7 +18,7 @@ flowchart LR
   cli -->|1| kernel
   cli -->|1| planner
   cli -->|2| validators
-  compiler -->|20| kernel
+  compiler -->|21| kernel
   compiler -->|54| planner
   compiler -->|4| renderers
   compiler -->|18| solver
@@ -50,7 +50,7 @@ flowchart LR
 | Module | Imports (internal) | Imports (standard library / external) |
 |---|---|---|
 | `cli.main` | `compiler.author`, `compiler.authoring`, `compiler.pipeline`, `compiler.replan_trigger`, `kernel.canonical`, `planner.intent_parser`, `validators.checklist`, `validators.envelope_validator` | argparse, json, pathlib, sys, yaml |
-| `compiler.author` | `compiler.authoring`, `compiler.passes.derived.p13_motion`, `compiler.pipeline`, `compiler.replan_trigger`, `kernel.canonical`, `planner.card_loader`, `planner.dependency_graph`, `planner.intent_parser`, `planner.query_expander`, `planner.scene_view`, `solver.contact_world`, `solver.floor_penetration`, `solver.forward_kinematics`, `solver.reblock`, `validators.schema_validator` | concurrent, copy, datetime, json, os, pathlib, re, subprocess, tempfile, time |
+| `compiler.author` | `compiler.authoring`, `compiler.passes.derived.p13_motion`, `compiler.pipeline`, `compiler.replan_trigger`, `kernel.canonical`, `kernel.kernel_files`, `planner.card_loader`, `planner.dependency_graph`, `planner.intent_parser`, `planner.query_expander`, `planner.scene_view`, `solver.contact_world`, `solver.floor_penetration`, `solver.forward_kinematics`, `solver.reblock`, `validators.schema_validator` | concurrent, copy, datetime, json, os, pathlib, re, subprocess, tempfile, time |
 | `compiler.authoring` | `kernel.canonical`, `planner.dependency_graph`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
 | `compiler.examples` | `compiler.pipeline`, `kernel.canonical`, `kernel.kernel_files`, `planner.dependency_graph` | json, sys |
 | `compiler.passes.derived.p08_hand_role` | `compiler.authoring`, `compiler.passes.mandatory.p07_contact`, `planner.dependency_graph`, `planner.library_vocab`, `validators.schema_validator` | json, yaml |

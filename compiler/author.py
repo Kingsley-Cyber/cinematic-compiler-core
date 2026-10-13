@@ -233,10 +233,14 @@ class ClaudeCLI:
         parts = ["THE IDEA:", idea,
                  "THE LIBRARY'S CARDS (reuse one when it fits; its names are what the query must say):", canonical_json(index),
                  "THE CARD SCHEMAS (one per kind; a new card must match its kind's schema):", canonical_json(schemas),
-                 "THE QUERY FORMS THE PARSER READS: '<n> seconds <genre>[ fight scene]: ' then, for two performers, "
-                 "'<name> versus <name>', or a cast line per performer: 'A: <name>, <looks>. B: <name>, <looks>.'; a "
-                 "prop as 'holding a <prop name>' or 'props (<name>, <name>)'; the place as 'in a <place name>' or "
-                 "'on a <place name>'. Name each performer, prop and place by a card name, exactly."]
+                 "THE QUERY FORM THE PARSER READS, EXACTLY: '<n> seconds <genre>. A: <performer card name>, <looks and "
+                 "actions>. B: <performer card name>, <looks and actions>. On a <place card name>, holding a <prop card "
+                 "name>.' Each cast line starts right after a full stop and a space ('. A: '), never after a colon. The "
+                 "place must be a world card's name (write a world card, with a floor surface at y=0 and any obstacles, "
+                 "when no library world fits); each performer and prop must be a card's name. Example: '6 seconds "
+                 "anime. A: kunoichi, slim woman in a dark blue outfit, sprints and vaults the chimney, landing crouched "
+                 "as she draws her kunai. On a moonlit rooftop, holding a kunai.' Name the place once, only in that "
+                 "last sentence: the parser refuses a place it reads twice (no 'across the rooftop' in the actions)."]
         if findings:
             parts += ["YOUR PREVIOUS ANSWER WAS REFUSED:", canonical_json(findings)]
         schema = {"type": "object", "additionalProperties": False, "required": ["query", "cards"],
@@ -402,27 +406,33 @@ def casting(idea, backend, *, genre=None, attempts=3, progress=None):
                for kind in FOLDERS}
     index = [{"card_id": c["card_id"], "kind": c["kind"], "names": c["names"], "description": c.get("description")}
              for c in library.values()]
-    findings = None
+    from kernel import kernel_files
+
+    conventions = kernel_files.load("conventions")
+    axes = {"up": conventions["up"], "forward": conventions["forward"], "ground": conventions["ground"], "unit": "m"}
+    findings, kept = None, {}
     for _ in range(attempts):
         started = time.perf_counter()
         answer, usage = backend.cast(idea, index, schemas, findings)
         if progress:
             progress(f"cast written by {usage['model']} in {time.perf_counter() - started:.0f} s")
-        cards, new, findings = copy.deepcopy(library), [], []
+        cards, findings = copy.deepcopy(library), []
+        cards.update(kept)  # cards an earlier attempt wrote that passed their schema
         for card in answer.get("cards", []):
+            if card.get("kind") == "world":  # the kernel's axes; match terms only (S02 reads required_terms against
+                card = {k: v for k, v in card.items() if k != "required_terms"} | {"ax": dict(axes)}  # raw query words)
             card = {**card, "status": "draft", "card_version": 1,
                     "provenance": {"authored_by": "cinematic author (claude -p)",
                                    "date": datetime.date.today().isoformat(),
                                    "basis": "Drafted for this idea by the automatic author (AA-6); needs owner review."}}
             try:
-                if card.get("kind") not in schemas or card.get("card_id") in cards:
+                if card.get("kind") not in schemas or card.get("card_id") in library:
                     raise ContractError("CARD", "unknown kind or a card_id the library already uses", card.get("card_id"))
                 validate_schema(card, schemas[card["kind"]])
             except ContractError as refused:
                 findings.append({"code": "CARD", "card": card.get("card_id"), "message": str(refused)})
                 continue
-            cards[card["card_id"]] = card
-            new.append(card)
+            cards[card["card_id"]] = kept[card["card_id"]] = card
         if not findings:
             try:
                 entities, surfaces = cast_of(answer["query"], cards)
@@ -430,9 +440,17 @@ def casting(idea, backend, *, genre=None, attempts=3, progress=None):
                 entities, surfaces = [], []
                 findings.append({"code": "CAST", "message": str(refused)})
             if entities and surfaces:
-                return answer["query"], cards, new
+                return answer["query"], cards, list(kept.values())
+            read = parse_intent(answer["query"])
+            parsed, unsure = read["parsed"], [a for a in read.get("ambiguous", []) if a["field"] == "setting"]
             findings.append({"code": "CAST", "message": f"S02 cast {len(entities)} performer(s) and "
-                             f"{len(surfaces)} surface(s) from {answer['query']!r}: it needs a performer and a place"})
+                             f"{len(surfaces)} surface(s) from {answer['query']!r}: it needs a performer and a place. The "
+                             f"parser read performers {parsed.get('entities_hinted')}, props {parsed.get('props_hinted')} "
+                             f"and the place {parsed.get('setting')!r}; a performer needs a cast line after '. ' naming a "
+                             "card, the place a world card whose name it is"
+                             + (f"; the parser read the place twice ({', '.join(repr(c['text']) for c in seen)}) "
+                                "and so took neither: name it once" if (seen := unsure[0]["candidates"] if unsure else [])
+                                else "")})
         if progress:
             progress("cast refused: " + "; ".join(f["message"][:120] for f in findings))
     raise AuthorFailed("cast", findings, [])
