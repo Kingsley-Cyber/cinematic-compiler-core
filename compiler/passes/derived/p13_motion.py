@@ -284,7 +284,7 @@ def build(envelope, document, packet):
     for node in nodes:
         prior = last.get(node["entity"])
         if prior:
-            edge = {"id": f"{prior['id']}__{node['id']}", "from": prior["id"], "to": node["id"], "relation": "follows",
+            edge = {"id": f"{prior['id']}__{node['id']}", "from": prior["id"], "to": node["id"],
                     "turn": prior["turn"], "axis_declaration": prior["axis_declaration"],
                     "euler_delta": [round(b - a, 6) + 0.0 for a, b in zip(prior["rot"], node["rot"], strict=True)],
                     "interpolation": "euler_axis" if interpolation.straight(prior, node) else "slerp",  # RV-108

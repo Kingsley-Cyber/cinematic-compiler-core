@@ -75,7 +75,7 @@ def build(envelope):
             if interaction is None:
                 findings.append({"code": "OBJECT_STATE_INTERACTION", "message": f"{obj} changes in {beat} outside any "
                                  "S08 interaction on it", "detail": e["id"]})
-            edges.append({"id": f"{e['id']}@{beat}", "from": e["from_state"], "to": e["to_state"], "relation": "transitions_to",
+            edges.append({"id": f"{e['id']}@{beat}", "from": e["from_state"], "to": e["to_state"],
                           "changes": changes, "trigger_beat": beat, "trigger_contact": trigger, "interaction": interaction})
     return {"object_state": states, "object_state_transition": edges}, findings
 

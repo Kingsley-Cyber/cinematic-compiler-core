@@ -7,6 +7,7 @@ import pytest
 from scenes import courtyard, courtyard_plans
 
 from compiler.passes.derived import p17_render
+from compiler.passes.mandatory import p03_constraint
 from validators.envelope_validator import validate_envelope
 from validators.layer_dependency_validator import check_pass_writes
 
@@ -59,7 +60,9 @@ def test_layout_carries_every_graph():
 
 
 def test_kernel_controls_are_printed_or_regenerated_for_this_cast():
-    printed = [c["rule"] for c in BEFORE["nodes"]["constraints"]["items"] if c["scope"] == "kernel" and c["field"] != "owner"]
+    scene_wide = {i["id"] for i in p03_constraint.load_kernel()["items"] if i["scope"] == "kernel"}  # S-123
+    printed = [c["rule"] for c in BEFORE["nodes"]["constraints"]["items"]
+               if c["source"]["ref"] in scene_wide and c["field"] != "owner"]
     assert all(rule in RENDER["text"] for rule in printed)
     for text in ("A faces -Z", "B faces +Z", "no cloned A", "no cloned B", "no extra fighters beyond A and B",
                  "slerp A joints", "B root exact", "TWO fighter identities A and B never merge or duplicate"):

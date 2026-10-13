@@ -1,10 +1,28 @@
-version: 4
+version: 6
 status: draft
 measured_on:
 - reference_fight
 - wizard_vs_acrobat
 - live_action_standoff
 - ugc_glasses_demo
+declared:
+  intent.band: 'provenance: S01''s layer tags'
+  intent.flags: 'provenance: the flags the run was given (the tracer re-runs S01 from them)'
+  intent.step_id: 'provenance: S01''s layer tags'
+  nodes.entities.card_status: 'provenance: the card and version that built it'
+  nodes.entities.card_version: 'provenance: the card and version that built it'
+  nodes.entities.hint_evidence: 'provenance: the query words that cast it'
+  nodes.facial.arousal: 'printed as S14''s words (feeling, display, NOT): owner F4 keeps numbers and AU codes out'
+  nodes.facial.display_rule: 'printed as S14''s words (feeling, display, NOT): owner F4 keeps numbers and AU codes out'
+  nodes.facial.inactive_aus: 'printed as S14''s words (feeling, display, NOT): owner F4 keeps numbers and AU codes out'
+  nodes.facial.valence: 'printed as S14''s words (feeling, display, NOT): owner F4 keeps numbers and AU codes out'
+  nodes.props.card_status: 'provenance: the card and version that built it'
+  nodes.props.card_version: 'provenance: the card and version that built it'
+  nodes.props.hint_evidence: 'provenance: the query words that cast it'
+  nodes.states.facing: 'read across clips: the next clip''s start (planner/chaining.py)'
+  nodes.surfaces.card_status: 'provenance: the card and version that built it'
+  nodes.surfaces.card_version: 'provenance: the card and version that built it'
+  nodes.surfaces.world_card_id: 'provenance: the card and version that built it'
 about: 'Per layer: the graph fields it reads (held or looked for), writes, checks it runs (the layer order''s validated_by)
   and passes downstream (written and read by a later layer). Measured by validators/data_flow.py on the examples; the gate
   refuses any layer that flows otherwise.'
@@ -13,21 +31,21 @@ layers:
   step: S01
   reads: []
   writes:
-  - intent.ambiguous
   - intent.band
-  - intent.confidence
   - intent.evidence
   - intent.flags
-  - intent.missing
   - intent.parsed
   - intent.raw_query
   - intent.step_id
   validates:
   - schema
   passes_downstream:
+  - intent.band
   - intent.evidence
+  - intent.flags
   - intent.parsed
   - intent.raw_query
+  - intent.step_id
 - id: brief
   step: S02
   reads:
@@ -96,10 +114,13 @@ layers:
   passes_downstream:
   - nodes.entities.capabilities
   - nodes.entities.card_id
+  - nodes.entities.card_status
+  - nodes.entities.card_version
   - nodes.entities.costume
   - nodes.entities.description
   - nodes.entities.face_profile
   - nodes.entities.hint
+  - nodes.entities.hint_evidence
   - nodes.entities.id
   - nodes.entities.modes
   - nodes.entities.name
@@ -107,22 +128,29 @@ layers:
   - nodes.entities.silhouette
   - nodes.props.affordances
   - nodes.props.card_id
+  - nodes.props.card_status
+  - nodes.props.card_version
   - nodes.props.carried_by
   - nodes.props.count
   - nodes.props.description
   - nodes.props.grips
   - nodes.props.group_name
   - nodes.props.hint
+  - nodes.props.hint_evidence
   - nodes.props.id
+  - nodes.props.materials
   - nodes.props.name
   - nodes.props.parts
   - nodes.props.states
   - nodes.props.unit_name
   - nodes.surfaces.ax
   - nodes.surfaces.boxes
+  - nodes.surfaces.card_status
+  - nodes.surfaces.card_version
   - nodes.surfaces.description
   - nodes.surfaces.id
   - nodes.surfaces.kind
+  - nodes.surfaces.world_card_id
   - scene.ambiguous
   - scene.ax
   - scene.ax_source
@@ -155,15 +183,10 @@ layers:
   - invariants.band
   - invariants.id
   - invariants.rule
-  - nodes.constraints.enforcement
   - nodes.constraints.field
   - nodes.constraints.id
-  - nodes.constraints.origin
-  - nodes.constraints.reference_labels
   - nodes.constraints.rule
-  - nodes.constraints.scope
   - nodes.constraints.source
-  - nodes.constraints.status
   validates:
   - schema
   passes_downstream:
@@ -327,7 +350,6 @@ layers:
   - edges.causal.causal_strength
   - edges.causal.from
   - edges.causal.id
-  - edges.causal.relation
   - edges.causal.to
   - edges.causal.why
   - scene.quadrant
@@ -376,7 +398,6 @@ layers:
   - nodes.states.hands
   - nodes.states.id
   - nodes.states.pos
-  - nodes.states.pos_source
   - nodes.states.subject
   - nodes.states.t
   validates:
@@ -393,6 +414,7 @@ layers:
   - nodes.states.beat
   - nodes.states.before_own_effects
   - nodes.states.conditions
+  - nodes.states.facing
   - nodes.states.hands
   - nodes.states.id
   - nodes.states.pos
@@ -474,9 +496,7 @@ layers:
   writes:
   - edges.hand_role_transition.agent_hand_changed
   - edges.hand_role_transition.from
-  - edges.hand_role_transition.gap
   - edges.hand_role_transition.id
-  - edges.hand_role_transition.relation
   - edges.hand_role_transition.support_hand_changed
   - edges.hand_role_transition.to
   - nodes.hand_role.actor
@@ -498,7 +518,11 @@ layers:
   - invariants
   - constraint
   passes_downstream:
+  - edges.hand_role_transition.agent_hand_changed
+  - edges.hand_role_transition.from
   - edges.hand_role_transition.id
+  - edges.hand_role_transition.support_hand_changed
+  - edges.hand_role_transition.to
   - nodes.hand_role.actor
   - nodes.hand_role.agent_grip
   - nodes.hand_role.agent_hand
@@ -548,7 +572,6 @@ layers:
   - edges.object_state_transition.from
   - edges.object_state_transition.id
   - edges.object_state_transition.interaction
-  - edges.object_state_transition.relation
   - edges.object_state_transition.to
   - edges.object_state_transition.trigger_beat
   - edges.object_state_transition.trigger_contact
@@ -565,6 +588,7 @@ layers:
   - constraint
   passes_downstream:
   - edges.object_state_transition.changes
+  - edges.object_state_transition.from
   - edges.object_state_transition.id
   - edges.object_state_transition.interaction
   - edges.object_state_transition.to
@@ -598,7 +622,6 @@ layers:
   writes:
   - edges.affordance_dependency.from
   - edges.affordance_dependency.id
-  - edges.affordance_dependency.relation
   - edges.affordance_dependency.to
   - edges.affordance_dependency.via
   - nodes.affordance.action
@@ -608,12 +631,10 @@ layers:
   - nodes.affordance.duration
   - nodes.affordance.duration_range
   - nodes.affordance.id
-  - nodes.affordance.library
   - nodes.affordance.object
   - nodes.affordance.postconditions
   - nodes.affordance.preconditions
   - nodes.affordance.required_grip
-  - nodes.affordance.satisfied
   validates:
   - schema
   - invariants
@@ -625,6 +646,7 @@ layers:
   - edges.affordance_dependency.via
   - nodes.affordance.action
   - nodes.affordance.after
+  - nodes.affordance.agent_grip
   - nodes.affordance.before
   - nodes.affordance.duration
   - nodes.affordance.duration_range
@@ -849,7 +871,6 @@ layers:
   - edges.motion.id
   - edges.motion.inbetweens
   - edges.motion.interpolation
-  - edges.motion.relation
   - edges.motion.slerp_angle
   - edges.motion.to
   - edges.motion.trajectory
@@ -938,7 +959,6 @@ layers:
   - edges.facial_transition.id
   - edges.facial_transition.onset
   - edges.facial_transition.onset_frames
-  - edges.facial_transition.relation
   - edges.facial_transition.to
   - edges.facial_transition.trigger
   - nodes.facial.arousal
@@ -963,14 +983,28 @@ layers:
   - invariants
   - constraint
   passes_downstream:
+  - edges.facial_transition.from
   - edges.facial_transition.id
+  - edges.facial_transition.onset
+  - edges.facial_transition.onset_frames
+  - edges.facial_transition.to
+  - edges.facial_transition.trigger
+  - nodes.facial.arousal
   - nodes.facial.aus
   - nodes.facial.beat
   - nodes.facial.description
+  - nodes.facial.display_rule
+  - nodes.facial.emotion_label
   - nodes.facial.entity
+  - nodes.facial.family
   - nodes.facial.gaze_target
   - nodes.facial.id
+  - nodes.facial.inactive_aus
+  - nodes.facial.onset
+  - nodes.facial.onset_frames
   - nodes.facial.salience
+  - nodes.facial.t
+  - nodes.facial.valence
   - nodes.facial.words
 - id: effort
   step: S15
@@ -1220,6 +1254,7 @@ layers:
   - edges.camera.transition
   - edges.causal.causal_strength
   - edges.causal.from
+  - edges.causal.id
   - edges.causal.to
   - edges.causal.why
   - edges.constraint_application.constraint_id
@@ -1232,6 +1267,15 @@ layers:
   - edges.effort.relation
   - edges.effort.start
   - edges.effort.to
+  - edges.facial_transition.from
+  - edges.facial_transition.onset
+  - edges.facial_transition.onset_frames
+  - edges.facial_transition.to
+  - edges.facial_transition.trigger
+  - edges.hand_role_transition.agent_hand_changed
+  - edges.hand_role_transition.from
+  - edges.hand_role_transition.support_hand_changed
+  - edges.hand_role_transition.to
   - edges.kinematic_transition.changes
   - edges.kinematic_transition.from
   - edges.kinematic_transition.to
@@ -1245,6 +1289,7 @@ layers:
   - edges.motion.trajectory
   - edges.motion.turn
   - edges.object_state_transition.changes
+  - edges.object_state_transition.from
   - edges.object_state_transition.interaction
   - edges.object_state_transition.to
   - edges.object_state_transition.trigger_beat
@@ -1264,6 +1309,7 @@ layers:
   - invariants.rule
   - nodes.affordance.action
   - nodes.affordance.after
+  - nodes.affordance.agent_grip
   - nodes.affordance.before
   - nodes.affordance.duration
   - nodes.affordance.duration_range
@@ -1341,9 +1387,15 @@ layers:
   - nodes.entities.parts
   - nodes.entities.silhouette
   - nodes.facial.description
+  - nodes.facial.emotion_label
+  - nodes.facial.entity
+  - nodes.facial.family
   - nodes.facial.gaze_target
   - nodes.facial.id
+  - nodes.facial.onset
+  - nodes.facial.onset_frames
   - nodes.facial.salience
+  - nodes.facial.t
   - nodes.facial.words
   - nodes.hand_role.actor
   - nodes.hand_role.agent_grip
@@ -1394,6 +1446,7 @@ layers:
   - nodes.props.count
   - nodes.props.group_name
   - nodes.props.id
+  - nodes.props.materials
   - nodes.props.name
   - nodes.props.states
   - nodes.props.unit_name

@@ -38,13 +38,14 @@ def test_required_terms_pick_the_pillar_world_only_when_the_query_names_it():
 
 def test_card_negatives_and_object_invariants_become_constraints():
     constraints = pipeline.run(QUERY, until="constraint")["nodes"]["constraints"]["items"]
-    negatives = {c["rule"] for c in constraints if c["field"] == "negative" and c["origin"] != "kernel"}
+    negatives = {c["rule"] for c in constraints if c["field"] == "negative" and c["source"]["kind"] != "kernel_invariant"}
     assert negatives == {"no scarf covering head", "no substitution log as a separate fighter",
                          "substitution log is a wooden block NOT a fighter",
                          # owner O54: FINAL's four negatives, through the fighters' cards
                          "no scarf covering head or face", "no scarf physics errors", "no floating limbs",
                          "no inverted gravity errors"}
-    assert "substitution log is a WOODEN BLOCK NOT a fighter" in {c["rule"] for c in constraints if c["origin"] == "object"}
+    objects = {c["rule"] for c in constraints if c["id"].startswith("c_obj_")}  # S-123: an object card's rules
+    assert "substitution log is a WOODEN BLOCK NOT a fighter" in objects
 
 
 def test_each_prop_records_the_fighter_whose_card_carries_it():

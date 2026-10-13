@@ -28,9 +28,9 @@
 # `edge_endpoints` names the node groups each edge group connects; `scene` stands for
 # the scene itself. Endpoints must be written at or before the edge group's step.
 
-version: "1.7"
+version: "1.8"
 kernel: LBN-2.4
-envelope: MGRAPH-1.1
+envelope: MGRAPH-1.2
 modalities: [live_action, anime, ugc_ad]
 
 # Envelope paths written outside any layer pass (pipeline and validators).

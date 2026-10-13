@@ -35,16 +35,19 @@ def _ugc(envelope, frame_parts, labels, cover):
                                                   f"{' during ' + s['interaction'] if s['interaction'] else ''}")
     for e in edges["object_state_transition"]["items"]:
         changes = ",".join(f"{c['property']} {c['from']}->{c['to']}" for c in e["changes"])
-        states[e["to"].split("@")[0]].append(f"change {changes} in {e['trigger_beat']} by {e['trigger_contact']} "
-                                             f"({e['interaction']})")
+        states[e["to"].split("@")[0]].append(f"change {changes} from {e['from']} to {e['to']} in {e['trigger_beat']} by "
+                                             f"{e['trigger_contact']} ({e['interaction']})")
     proven = []
     for a in nodes["affordance"]["items"]:
         cover.mark("affordance", a["id"])
         proven.append(f"{a['id']} {a['action']} {a['object']}: before {_state(a['before'])} -> after {_state(a['after'])}; "
                       f"pre "
                       f"{_conditions(a['preconditions'])}; post {_conditions(a['postconditions'])}; grip {a['required_grip']}; "
-                      f"{_num(a['duration'])}s in {a['duration_range'][0]}-{a['duration_range'][1]}s; proven")
-    return {"hand_roles": roles, "object_states": states, "affordances": proven,
+                      f"agent grip {a['agent_grip']}; {_num(a['duration'])}s in "
+                      f"{a['duration_range'][0]}-{a['duration_range'][1]}s; proven")
+    handoffs = [f"{e['from']} -> {e['to']}: agent hand {'changes' if e['agent_hand_changed'] else 'stays'}, support hand "
+                f"{'changes' if e['support_hand_changed'] else 'stays'}" for e in edges["hand_role_transition"]["items"]]
+    return {"hand_roles": roles, "handoffs": handoffs, "object_states": states, "affordances": proven,
             "enables": [f"{e['from']} enables {e['to']} via {','.join(e['via'])}"
                         for e in edges["affordance_dependency"]["items"]],
             "frames": _anime(frame_parts, labels)}

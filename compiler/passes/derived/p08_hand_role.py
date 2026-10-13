@@ -141,10 +141,8 @@ def build(envelope, document, packet):
         prior = last.get(node["actor"])
         if prior:
             edges.append({"id": f"{prior['id']}__{node['id']}", "from": prior["id"], "to": node["id"],
-                          "relation": "next_interaction",
                           "agent_hand_changed": prior["agent_hand"] != node["agent_hand"],
-                          "support_hand_changed": prior["support_hand"] != node["support_hand"],
-                          "gap": round(node["t"] - prior["end"], 6) + 0.0})
+                          "support_hand_changed": prior["support_hand"] != node["support_hand"]})
         last[node["actor"]] = node
     return {"/nodes/hand_role": nodes, "/edges/hand_role_transition": edges}
 

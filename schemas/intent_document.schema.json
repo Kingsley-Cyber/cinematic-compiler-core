@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:intent_document:1.0",
+  "$id": "urn:cinematic-compiler:schema:intent_document:1.1",
   "title": "Intent Document (S01, band L0)",
   "description": "Literal extraction from the user query and CLI flags. Every parsed value is backed by evidence (a query span or a flag); every unextracted field is named in `missing`. Embedded in the envelope at /intent.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["step_id", "band", "raw_query", "flags", "parsed", "evidence", "missing", "ambiguous", "confidence"],
+  "required": ["step_id", "band", "raw_query", "flags", "parsed", "evidence"],
   "properties": {
     "step_id": {"const": "S01"},
     "band": {"const": "L0"},

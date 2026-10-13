@@ -163,7 +163,8 @@ def test_s01_pass_writes_only_intent_and_never_mutates_input(order):
     snapshot = copy.deepcopy(before)
     after = p01_intent.run(before, CORPUS[0], order=order)
     assert before == snapshot
-    assert after["intent"] == parse_intent(CORPUS[0])
+    assert after["intent"] == {k: v for k, v in parse_intent(CORPUS[0]).items()  # S-123: no parser diagnostics
+                               if k not in p01_intent.PARSE_DIAGNOSTICS}
     assert check_pass_writes(order, "intent", before, after) == []
     assert check_pass_writes(order, "brief", before, after)[0]["code"] == "WRITE_SCOPE"
 

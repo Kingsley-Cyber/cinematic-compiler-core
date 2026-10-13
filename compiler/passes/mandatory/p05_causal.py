@@ -45,7 +45,7 @@ def edges_and_findings(beats, *, linear=True):
         if linear and len(beat["causes"]) > 1:
             findings.append(_finding("CAUSE_BRANCHING", "Linear causality allows one outgoing cause per beat", beat["id"]))
         for cause in beat["causes"]:
-            edge = {"id": f"{beat['id']}__causes__{cause['to']}", "from": beat["id"], "to": cause["to"], "relation": "causes",
+            edge = {"id": f"{beat['id']}__causes__{cause['to']}", "from": beat["id"], "to": cause["to"],
                     "causal_strength": cause["causal_strength"], "why": cause["why"]}
             edges.append(edge)
             target = by_id.get(cause["to"])

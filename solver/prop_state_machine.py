@@ -86,18 +86,15 @@ def replay(beats, subjects, tables, end_time, carried=None):
     snapshots, transitions, last = [], [], {}
     for time, beat_id, beat in points:
         for kind, sid in subjects:
-            pos = facing = source = None
+            pos = facing = None
             if kind == "entity":
                 if beat is not None and sid in beat["pos"]:
                     anchors[sid] = (beat["pos"][sid], beat["facing"][sid])
-                    source = "beat"
-                elif sid in anchors:
-                    source = "carried"
                 if sid in anchors:
                     pos, facing = (list(v) for v in anchors[sid])
             conditions = {prop: value_at((kind, sid, prop), time) for prop in tables[(kind, sid)]}
             node = {"id": f"{sid}@{beat_id}", "subject": {"kind": kind, "id": sid}, "beat": beat_id, "t": time,
-                    "pos": pos, "facing": facing, "pos_source": source, "conditions": conditions}
+                    "pos": pos, "facing": facing, "conditions": conditions}
             if beat is not None:  # F-161 (RV-61): the values before the beat's own effects, as its requirements read them
                 own = {prop: value_at((kind, sid, prop), time, before=beat_id) for prop in tables[(kind, sid)]}
                 own = {prop: value for prop, value in own.items() if value != conditions[prop]}

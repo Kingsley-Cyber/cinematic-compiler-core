@@ -13,11 +13,16 @@ NODE = "intent"
 SCHEMA = ROOT / "schemas" / "intent_document.schema.json"
 
 
+# what the parser reports for its own callers (the author's casting reads `ambiguous`); no layer reads them (S-123)
+PARSE_DIAGNOSTICS = ("missing", "ambiguous", "confidence")
+
+
 def run(envelope, query, *, genre=None, duration_s=None, order=None):
     """Return a new envelope with /intent set; the input envelope is never mutated."""
     order = order or load()
     after = copy.deepcopy(envelope)
-    after["intent"] = parse_intent(query, genre=genre, duration_s=duration_s)
+    parsed = parse_intent(query, genre=genre, duration_s=duration_s)  # the parser's own diagnostics stay out (S-123)
+    after["intent"] = {k: v for k, v in parsed.items() if k not in PARSE_DIAGNOSTICS}
     validate_schema(after["intent"], json.loads(SCHEMA.read_text(encoding="utf-8")))
     findings = check_pass_writes(order, NODE, envelope, after)
     if findings:

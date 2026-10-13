@@ -80,7 +80,8 @@ def test_completeness_and_non_invention(query):
 def test_reference_fight_rules_are_never_applied():
     for query in QUERIES:
         constraints = graph_of(run(query))["constraints"]
-        assert not [c for c in constraints if c["scope"] == "scene_reference"]
+        reference = {i["id"] for i in KERNEL["items"] if i["scope"] == "scene_reference"}  # S-123: the kernel's own scope
+        assert not [c for c in constraints if c["source"]["ref"] in reference]
 
 
 @pytest.mark.integration

@@ -172,8 +172,9 @@ BREAKS = [
     ("IMPACT_CONTACT_SYNC", "reference_fight", "mixed", _replace("Impact frames: 2.50,", "Impact frames: 2.40,")),
     ("AIRBORNE_PICKUP", "reference_fight", "mixed", _replace(  # the support words since RV-95 (S-083): A steps to the kunai
         "7.50 A: SUPPORT steps left alternating [f:alt] |", "7.50 A: SUPPORT NO SUPPORT |")),
-    ("HIDDEN_PHRASING", "reference_fight", "mixed", _replace("substitution log (on the ground, deployment standing until 3.70)",
-                                                             "substitution log (hidden in A's coat until 3.70)")),
+    ("HIDDEN_PHRASING", "reference_fight", "mixed",  # S-123: the prop line names its materials
+     _replace("substitution log (made of wood, on the ground, deployment standing until 3.70)",
+              "substitution log (made of wood, hidden in A's coat until 3.70)")),
     ("MOMENTUM_MISSING", "wizard_vs_acrobat", "mixed", _line("- B hangs in the air 8.60")),
     ("HIT_HOLD", "reference_fight", "mixed", _replace("2.50 impact: hold for 3 frames with", "2.50 impact: cut to")),  # O92
     ("PLAYBACK_RAMP", "reference_fight", "mixed", _replace("normal x1; shows A foot deflect kunai",

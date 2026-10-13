@@ -23,8 +23,7 @@ def test_glasses_verbs_are_proven_and_linked():
     validate_schema(graph, GRAPH)
     assert findings == [] and [(a["id"], a["action"], a["after"]) for a in graph["affordance"]] == [
         ("i01", "unfold", {"temples": "open", "worn": "no"}), ("i02", "put_on", {"temples": "open", "worn": "yes"})]
-    assert graph["affordance_dependency"] == [{"id": "i01__enables__i02", "from": "i01", "to": "i02", "relation": "enables",
-                                               "via": ["temples"]}]
+    assert graph["affordance_dependency"] == [{"id": "i01__enables__i02", "from": "i01", "to": "i02", "via": ["temples"]}]
 
 
 def test_library_entries_match_their_object_cards():

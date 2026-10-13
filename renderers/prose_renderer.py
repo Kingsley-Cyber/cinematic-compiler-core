@@ -562,6 +562,7 @@ def _scene(envelope, frame_parts, lines, labels, rows):
     first = first_states(envelope, labels)
     out.append("Props at the start: " + ("; ".join(
         f"{p['name']} (" + ", ".join(([f"{p['count']} {p['unit_name']}"] if p.get("count", 1) > 1 else [])
+                                     + [f"made of {' and '.join(p['materials'])}"] * bool(p.get("materials"))
                                      + first[p["id"]]) + ")" for p in props) if props else "none") + ".")
     out.append(_render_intent(envelope, frame_parts, lines, labels))
     for text in (t for s, t, _, _ in rows if s == "preface"):
@@ -840,6 +841,7 @@ def _genre_block(envelope, frame_parts, labels):
     if envelope["scene"]["genre"] == "ugc_ad":
         ugc = ugc_renderer._ugc(envelope, frame_parts, labels, _Unseen())
         out += ["Hand roles: " + "; ".join(ugc["hand_roles"]) + ".",
+                "Hand handoffs: " + ("; ".join(ugc["handoffs"]) or "none") + ".",
                 "Object states: " + "; ".join(f"{k}: {', '.join(v)}" for k, v in sorted(ugc["object_states"].items())) + ".",
                 "Affordances: " + "; ".join(ugc["affordances"]) + ".",
                 "Enables: " + ("; ".join(ugc["enables"]) or "none") + "."]
@@ -1031,6 +1033,15 @@ def _edge_lines(envelope, labels, omitted=()):
                              f"{_words(e['turn'])} (axis {_words(e['axis_declaration'])}), root moves "
                              f"{_numbers(trip['displacement'])} m, {_num(trip['distance'])} m in {_num(trip['duration'])} s "
                              f"at {_num(trip['speed'])} m/s")
+    faces = {f["id"]: f for f in _items(envelope, "nodes", "facial")}
+    causal = {e["id"]: e for e in _items(envelope, "edges", "causal")}
+    for e in _items(envelope, "edges", "facial_transition"):  # S-123: the face changes S14 writes
+        start, end = faces[e["from"]], faces[e["to"]]
+        why = causal.get(e["trigger"])
+        out["implied"].append(f"- face, {labels.get(start['entity'], _words(start['entity']))} {_time(start['t'])} to "
+                              f"{_time(end['t'])}: {_words(start['emotion_label'])} to {_words(end['emotion_label'])}, "
+                              f"onset {e['onset']} over {e['onset_frames']} frames"
+                              + (f", because {beat(why['from'])} causes {beat(why['to'])}" if why else ""))
     for e in _items(envelope, "edges", "kinematic_transition"):
         out["implied"].append(f"- support and balance, {slot(e['from'])} to {slot(e['to'])}: changes "
                               f"{', '.join(_words(c) for c in e['changes']) or 'nothing'}")

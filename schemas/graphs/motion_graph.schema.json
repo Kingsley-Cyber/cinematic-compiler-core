@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:motion_graph:1.4",
+  "$id": "urn:cinematic-compiler:schema:motion_graph:1.5",
   "title": "S13 motion graph",
   "description": "motion = key poses (/nodes/motion) with derived quaternions; motion_edges = follows edges (/edges/motion) with derived Euler deltas, interpolation and root trajectory.",
   "type": "object",
@@ -133,7 +133,6 @@
           "id",
           "from",
           "to",
-          "relation",
           "turn",
           "axis_declaration",
           "euler_delta",
@@ -153,9 +152,6 @@
           "to": {
             "type": "string",
             "pattern": "^[a-z][a-z0-9_]*@b[0-9]{2,3}$"
-          },
-          "relation": {
-            "const": "follows"
           },
           "turn": {
             "$ref": "#/$defs/Turn"

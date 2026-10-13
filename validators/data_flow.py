@@ -31,6 +31,22 @@ from validators.graph_map import EXAMPLES, MAP, _items_schema, _schema
 CONTRACT = ROOT / "kernel" / "data_flow.yaml"
 GROUPS = [".".join(where) for _, _, where in MAP] + ["scene", "intent"]
 OUTPUT = {"nodes.render"}  # the prompt itself: written for the reader, not for a later layer
+# fields no later layer reads, declared, not orphaned (owner, 2026-10-13, the orphan split S-123): provenance records
+# what built the scene; the end states' facing is read by the next clip (planner/chaining.py), a reader the examples,
+# which chain nothing, never run
+DECLARED = {
+    **dict.fromkeys(["nodes.entities.card_status", "nodes.props.card_status", "nodes.surfaces.card_status",
+                     "nodes.entities.card_version", "nodes.props.card_version", "nodes.surfaces.card_version",
+                     "nodes.surfaces.world_card_id"], "provenance: the card and version that built it"),
+    **dict.fromkeys(["nodes.entities.hint_evidence", "nodes.props.hint_evidence"],
+                    "provenance: the query words that cast it"),
+    **dict.fromkeys(["intent.band", "intent.step_id"], "provenance: S01's layer tags"),
+    "intent.flags": "provenance: the flags the run was given (the tracer re-runs S01 from them)",
+    "nodes.states.facing": "read across clips: the next clip's start (planner/chaining.py)",
+    **dict.fromkeys(["nodes.facial.valence", "nodes.facial.arousal", "nodes.facial.display_rule",
+                     "nodes.facial.inactive_aus"],
+                    "printed as S14's words (feeling, display, NOT): owner F4 keeps numbers and AU codes out"),
+}
 
 
 class _Tracked(dict):
@@ -296,8 +312,8 @@ def report(rows, order=None, written_anywhere=None):
                 (unexercised if key in schema.get(group, ()) else phantom).add(field)
         later = [rows[n]["reads"] | rows[n]["absent"] for n in sequence[i + 1:]]
         later_reads = set().union(*later) if later else set()
-        dead = {f for f in row["writes"]
-                if f not in later_reads and f.rsplit(".", 1)[0] not in OUTPUT and not f.endswith(".id")}
+        dead = {f for f in row["writes"] if f not in later_reads and f.rsplit(".", 1)[0] not in OUTPUT
+                and not f.endswith(".id") and f not in DECLARED}
         out[node_id] = {"phantom": sorted(phantom), "unexercised": sorted(unexercised), "optional": sorted(optional),
                         "early": sorted(early),
                         "dead": sorted(dead), "passes_downstream": sorted(row["writes"] - dead)}
@@ -403,7 +419,7 @@ def contract_from(example_rows):
             layer["writes"] |= row["writes"]
             layer["passes_downstream"] |= set(flow[node_id]["passes_downstream"])
     ordered = sorted(layers.items(), key=lambda kv: kv[1]["step"])
-    return {"version": 1, "status": "draft", "measured_on": list(example_rows),
+    return {"version": 1, "status": "draft", "measured_on": list(example_rows), "declared": dict(sorted(DECLARED.items())),
             "about": "Per layer: the graph fields it reads (held or looked for), writes, checks it runs (the layer "
                      "order's validated_by) and passes downstream (written and read by a later layer). Measured by "
                      "validators/data_flow.py on the examples; the gate refuses any layer that flows otherwise.",
@@ -414,7 +430,8 @@ def contract_from(example_rows):
 
 def contract_problems(example_rows=None, declared=None):
     """[{code, layer, message}]: DATA_FLOW_CONTRACT for a layer that reads or writes other than it declares, or runs
-    other than whole on an example; DATA_FLOW_PHANTOM for a read no layer writes."""
+    other than whole on an example; DATA_FLOW_PHANTOM for a read no layer writes; DATA_FLOW_ORPHAN for a field written,
+    read by no later layer in any example and not DECLARED."""
     declared = declared or yaml.safe_load(CONTRACT.read_text(encoding="utf-8"))
     example_rows = example_rows or _example_rows()
     found = contract_from(example_rows)
@@ -435,6 +452,16 @@ def contract_problems(example_rows=None, declared=None):
             out.append({"code": "DATA_FLOW_CONTRACT", "layer": node_id,
                         "message": f"{node_id} validates {have['validates']}, the layer order says "
                                    f"{index[node_id].get('validated_by', [])}"})
+    read_somewhere = set()
+    for rows in example_rows.values():
+        for flow in report(rows, written_anywhere=written_in(example_rows)).values():
+            read_somewhere |= set(flow["passes_downstream"])
+    for rows in example_rows.values():
+        for node_id, flow in report(rows, written_anywhere=written_in(example_rows)).items():
+            for field in sorted(set(flow["dead"]) - read_somewhere):  # owner: frozen is temporary
+                out.append({"code": "DATA_FLOW_ORPHAN", "layer": node_id,
+                            "message": f"{node_id} writes {field}, which nothing reads: print it, delete it or declare it"})
+                read_somewhere.add(field)
     for name, rows in example_rows.items():
         for node_id, row in rows.items():
             if row["mode"] not in ("computed", "authored") or row["reproduced"] is False:

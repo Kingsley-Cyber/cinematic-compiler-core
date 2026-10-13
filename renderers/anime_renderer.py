@@ -332,7 +332,15 @@ def _face_words(face, labels):
     text = f"{lead}: " + (", ".join(words["face"]) or "relaxed, no visible expression")
     if words["not"]:
         text += "; NOT: " + ", ".join(words["not"])
-    return text + f"; feeling {words['feeling']}, {words['display']}; {gaze}; {face['description']}"
+    # S-123 (the orphan split): the S14 node's emotion and onset, in words (owner F4: no AU codes, no valence numbers;
+    # valence, arousal, display rule and the AUs held off reach the prompt as S14's own words above)
+    data = (f"{_words_of(face['emotion_label'])} ({face['family']}), onset {face['onset']} over "
+            f"{face['onset_frames']} frames")
+    return text + f"; feeling {words['feeling']}, {words['display']}; {gaze}; {data}; {face['description']}"
+
+
+def _words_of(identifier):
+    return " ".join(identifier.split("_"))
 
 
 def _subject_rows(envelope, kind, identity, states, labels, cover):

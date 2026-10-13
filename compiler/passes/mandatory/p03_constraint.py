@@ -65,46 +65,39 @@ def build(scene, entities, props, *, cards, kernel):
                    "kernel_prop": prop_targets, "scene_reference": []}[item["scope"]]
         if item["scope"] == "kernel_prop" and not all(_held(label, props) for label in item["reference_labels"]):
             continue
-        add({"id": "c_" + item["id"].lower(), "origin": "kernel", "scope": item["scope"], "field": item["field"],
-             "rule": item["text"], "source": {"kind": "kernel_invariant", "ref": item["id"],
-                                              "version": f"{kernel['version']}:{kernel['status']}"},
-             "reference_labels": list(item["reference_labels"]), "status": kernel["status"],
-             "enforcement": "required"}, targets)
+        add({"id": "c_" + item["id"].lower(), "field": item["field"], "rule": item["text"],
+             "source": {"kind": "kernel_invariant", "ref": item["id"],
+                        "version": f"{kernel['version']}:{kernel['status']}"}}, targets)
     if scene["world"]:
         world = cards[scene["world"]]
         for row in world["invariants"]:
-            add({"id": f"c_world_{world['card_id']}_{row['id']}", "origin": "world", "scope": "world",
-                 "field": "invariant", "rule": row["rule"],
+            add({"id": f"c_world_{world['card_id']}_{row['id']}", "field": "invariant", "rule": row["rule"],
                  "source": {"kind": "card", "ref": world["card_id"],
-                            "version": f"{world['card_version']}:{world['status']}"},
-                 "reference_labels": [], "status": world["status"], "enforcement": "required"}, [("scene", "scene")])
-    def card_rules(card, origin, prefix, targets):
+                            "version": f"{world['card_version']}:{world['status']}"}}, [("scene", "scene")])
+    def card_rules(card, prefix, targets):
         source = {"kind": "card", "ref": card["card_id"], "version": f"{card['card_version']}:{card['status']}"}
         for row in card.get("invariants", []):
             needed = row.get("requires_prop")
             if needed and not any(needed in ("any", p["card_id"]) for p in props):
                 continue
-            add({"id": f"c_{prefix}_{card['card_id']}_{row['id']}", "origin": origin, "scope": origin,
-                 "field": "invariant", "rule": row["rule"], "source": source, "reference_labels": [],
-                 "status": card["status"], "enforcement": "required"}, targets)
+            add({"id": f"c_{prefix}_{card['card_id']}_{row['id']}", "field": "invariant", "rule": row["rule"],
+                 "source": source}, targets)
         for index, text in enumerate(card.get("negatives", [])):
-            add({"id": f"c_{prefix}_{card['card_id']}_negative_{index:02d}", "origin": origin, "scope": origin,
-                 "field": "negative", "rule": text, "source": source, "reference_labels": [],
-                 "status": card["status"], "enforcement": "required"}, targets)
+            add({"id": f"c_{prefix}_{card['card_id']}_negative_{index:02d}", "field": "negative", "rule": text,
+                 "source": source}, targets)
 
     if scene["world"]:
         world = cards[scene["world"]]
         for index, text in enumerate(world.get("negatives", [])):
-            add({"id": f"c_world_{world['card_id']}_negative_{index:02d}", "origin": "world", "scope": "world",
-                 "field": "negative", "rule": text,
-                 "source": {"kind": "card", "ref": world["card_id"], "version": f"{world['card_version']}:{world['status']}"},
-                 "reference_labels": [], "status": world["status"], "enforcement": "required"}, [("scene", "scene")])
-    for kind, group, origin, prefix in (("entity", entities, "archetype", "arch"), ("prop", props, "object", "obj")):
+            add({"id": f"c_world_{world['card_id']}_negative_{index:02d}", "field": "negative", "rule": text,
+                 "source": {"kind": "card", "ref": world["card_id"],
+                            "version": f"{world['card_version']}:{world['status']}"}}, [("scene", "scene")])
+    for kind, group, prefix in (("entity", entities, "arch"), ("prop", props, "obj")):
         by_card = {}
         for item in group:
             by_card.setdefault(item["card_id"], []).append((kind, item["id"]))
         for card_id, targets in by_card.items():
-            card_rules(cards[card_id], origin, prefix, targets)
+            card_rules(cards[card_id], prefix, targets)
     invariants = [{"id": row["id"], "band": "constraint", "rule": row["rule"]} for row in constraints]
     return {"constraints": constraints, "applications": applications, "invariants": invariants}
 

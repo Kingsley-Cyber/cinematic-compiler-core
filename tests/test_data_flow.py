@@ -45,10 +45,17 @@ def test_a_read_no_layer_writes_is_a_phantom(traced):
     assert flow["camera"]["phantom"] == ["nodes.beats.invented_field"]
 
 
-def test_a_field_written_and_read_by_no_later_layer_is_dead(traced):
-    flow = data_flow.report(traced["reference_fight"], written_anywhere=data_flow.written_in(traced))
-    assert "intent.confidence" in flow["intent"]["dead"]
-    assert all(not f.endswith(".id") for row in flow.values() for f in row["dead"])  # identity is not data
+def test_a_field_written_and_read_by_no_later_layer_is_an_orphan_and_fails_the_gate(traced):
+    """Owner (S-123): frozen is temporary; every field is read, printed, deleted or declared."""
+    rows = copy.deepcopy(traced)
+    rows["reference_fight"]["causal"]["writes"].add("edges.causal.unread")
+    flow = data_flow.report(rows["reference_fight"], written_anywhere=data_flow.written_in(rows))
+    assert flow["causal"]["dead"] == ["edges.causal.unread"]
+    assert not any(f.endswith(".id") or f in data_flow.DECLARED for row in flow.values() for f in row["dead"])
+    declared = yaml.safe_load(data_flow.CONTRACT.read_text(encoding="utf-8"))
+    causal = next(layer for layer in declared["layers"] if layer["id"] == "causal")
+    causal["writes"].append("edges.causal.unread")
+    assert [p["code"] for p in data_flow.contract_problems(rows, declared)] == ["DATA_FLOW_ORPHAN"]
 
 
 def test_the_tracer_counts_a_copy_as_no_read():

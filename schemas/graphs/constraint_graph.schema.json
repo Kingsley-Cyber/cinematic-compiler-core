@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:constraint_graph:1.0",
+  "$id": "urn:cinematic-compiler:schema:constraint_graph:1.1",
   "title": "S03 constraint graph (band constraint): constraints, applications, envelope invariants",
   "description": "Every rule is copied verbatim from the kernel or a library card; every constraint applies to at least one target.",
   "type": "object",
@@ -36,37 +36,14 @@
       "additionalProperties": false,
       "required": [
         "id",
-        "origin",
-        "scope",
         "field",
         "rule",
-        "source",
-        "reference_labels",
-        "status",
-        "enforcement"
+        "source"
       ],
       "properties": {
         "id": {
           "type": "string",
           "pattern": "^[a-z][a-z0-9_]*$"
-        },
-        "origin": {
-          "enum": [
-            "kernel",
-            "world",
-            "archetype",
-            "object"
-          ]
-        },
-        "scope": {
-          "enum": [
-            "kernel",
-            "kernel_actor",
-            "kernel_prop",
-            "world",
-            "archetype",
-            "object"
-          ]
         },
         "field": {
           "enum": [
@@ -107,22 +84,6 @@
               "minLength": 1
             }
           }
-        },
-        "reference_labels": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "minLength": 1
-          }
-        },
-        "status": {
-          "enum": [
-            "draft",
-            "approved"
-          ]
-        },
-        "enforcement": {
-          "const": "required"
         }
       }
     },

@@ -75,10 +75,10 @@ def build(envelope):
         if not low - EPSILON <= i["duration"] <= high + EPSILON:
             problems.append(("AFFORDANCE_DURATION", f"{i['verb']} takes {low}-{high} s, not {i['duration']}"))
         findings += [{"code": code, "message": message, "detail": i["id"]} for code, message in problems]
-        affordances.append({"id": i["id"], "object": i["object"], "action": i["verb"], "library": entry["library"],
+        affordances.append({"id": i["id"], "object": i["object"], "action": i["verb"],
                             "preconditions": entry["preconditions"], "postconditions": entry["postconditions"],
                             "required_grip": entry["required_grip"], "agent_grip": i["agent_grip"], "duration": i["duration"],
-                            "duration_range": entry["duration_s"], "before": before, "after": after, "satisfied": True})
+                            "duration_range": entry["duration_s"], "before": before, "after": after})
     edges = []
     for x in affordances:
         for y in affordances:
@@ -87,7 +87,7 @@ def build(envelope):
             produced = {c["property"]: set(c["values"]) for c in x["postconditions"]}
             via = [c["property"] for c in y["preconditions"] if produced.get(c["property"], set()) & set(c["values"])]
             if via:
-                edges.append({"id": f"{x['id']}__enables__{y['id']}", "from": x["id"], "to": y["id"], "relation": "enables",
+                edges.append({"id": f"{x['id']}__enables__{y['id']}", "from": x["id"], "to": y["id"],
                               "via": via})
     return {"affordance": affordances, "affordance_dependency": edges}, findings
 

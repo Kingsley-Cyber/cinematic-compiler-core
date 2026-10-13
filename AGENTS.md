@@ -101,8 +101,8 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.3; backlog 55.
-- Last session: S-122 (2026-10-13, applied): Surfaces placed in metres: every surface has boxes, S04 checks a body reaches the surface it meets, the prompt prints where each is.
+- Layer order 1.8; rules 7.3; backlog 55.
+- Last session: S-123 (2026-10-13, applied): The orphan split: every field a layer writes is read, printed, deleted or declared.
 - Next slice: AA-9 S13 written in parallel pieces, one per fighter and time window (each window overlapping its neighbour by one beat), merged and repaired by the solver (step motion).
 - Open findings: 144; decisions: 143 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->

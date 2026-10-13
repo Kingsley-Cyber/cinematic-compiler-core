@@ -76,7 +76,6 @@ def build(envelope, document, packet):
         if prior:
             trigger = next((e["id"] for e in by_slot[node["id"]]["reacts_to"]), None)
             edges.append({"id": f"{prior['id']}__{node['id']}", "from": prior["id"], "to": node["id"],
-                          "relation": "transitions_to",
                           "onset": node["onset"], "onset_frames": node["onset_frames"], "trigger": trigger})
         last[node["entity"]] = node
     return {"/nodes/facial": nodes, "/edges/facial_transition": edges}
