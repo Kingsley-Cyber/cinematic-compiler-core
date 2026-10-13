@@ -26,3 +26,8 @@ def load(genre):
 def body_type(genre):
     """The genre's body (owner O85): the library/body_segments.yaml entry forward kinematics uses."""
     return load(genre)["body_type"]
+
+
+def com_allowance(genre):
+    """How far a stable pose's centre of mass may stand outside its support base (owner, 2026-10-13; PLAN-009)."""
+    return load(genre)["com_allowance_m"]

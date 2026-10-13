@@ -30,7 +30,7 @@ the commit whose message names [S-127]
 3. S14 writes both per key; the staff line and the LBN row print them; COUNTERBALANCE (a report) names a reach no limb
    opposes.
 
-Predictions, made before the change (16:10 by the clock):
+Predictions, made before the change (12:14 by the clock):
 1. The two jointed reference figures balance as drawn: Naruto's rear leg leads and his front leg counters; Sasuke's
    kick leads and his arms counter.
 2. A standing body's centre of mass sits over its hips with no reach.
@@ -51,7 +51,7 @@ Verdict: READY TO PUSH.
 | Tests | PASS | four new: the standing body, the two reference figures, the named reach |
 
 ## Duration
-from 16:10 to 17:00
+from 12:14 to 12:27 (corrected in S-128 from the commit times; the clock times first written were estimates)
 
 ## Changes
 - library/body_segments.yaml 6 and schemas/cards/body_segments.schema.json 3.2 (logged); solver/forward_kinematics.py

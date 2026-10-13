@@ -2,7 +2,8 @@
 # Claude for owner review: only body_type is set (owner O85); the rendering values wait on backlog M9-11.
 card_id: ugc_ad
 kind: genre_profile
-card_version: 1
+card_version: 2
 status: draft
 genre: ugc_ad
 body_type: adult
+com_allowance_m: 0.1  # owner, 2026-10-13 (PLAN-009 WEIGHT_DISTRIBUTION)

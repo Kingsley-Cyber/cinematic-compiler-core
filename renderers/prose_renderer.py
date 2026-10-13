@@ -339,6 +339,13 @@ def _balance(node):
             + (f" (also extended: {', '.join(others)})" if others else ""))
 
 
+def _weight(weight):
+    """S-128: 'weight: L foot 45 %, R foot 55 %, the centre of mass 0.12 m inside the feet' (or outside them)."""
+    shares = ", ".join(f"{_part(p)} {round(v * 100)} %" for p, v in sorted(weight["share"].items()))
+    where = "inside" if weight["margin_m"] >= 0 else "outside"
+    return f"weight: {shares}, the centre of mass {_num(abs(weight['margin_m']))} m {where} the support"
+
+
 def _hands(hands, names):
     words = [f"{side} {names.get(hands[hand], hands[hand]) if hands[hand] != 'empty' else 'empty'}"
              for side, hand in (("L", "left_hand"), ("R", "right_hand"))]
@@ -425,6 +432,8 @@ def staff_lines(envelope, frame_parts, labels):
         if slot["slot"] in mechanics:  # PLAN-009 (S14): the pose's mechanics, computed
             notes.append(_line_of_action(mechanics[slot["slot"]]["line_of_action"]))
             notes.append(_balance(mechanics[slot["slot"]]))
+            if mechanics[slot["slot"]]["weight"] is not None:
+                notes.append(_weight(mechanics[slot["slot"]]["weight"]))
         if slot["slot"] in held:  # R20 next action 1 (S06 `hands`): what each hand holds, empty said aloud
             notes.append(_hands(held[slot["slot"]], names))
         if slot["role"] == "actor" and slot["event_type"] == "substitution":

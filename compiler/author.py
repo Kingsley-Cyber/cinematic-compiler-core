@@ -58,7 +58,9 @@ GUIDES = {"anime": "reference_fight", "live_action": "live_action_standoff", "ug
 FRONTIER = ("temporal",)  # the frontier model's first attempts (PLAN-008, AA-8)
 RETRY_FRONTIER = ("temporal", "motion", "effort", "camera")  # its retries
 PIECE = 5  # AA-9: about the most slots one S13 piece writes (a beat's slots stay together)
-ROUTES = {"HIT_HOLD": "camera"}  # a refusal some later step finds, fixed where its content is written (AA-8)
+# a refusal some later step finds, fixed where its content is written (AA-8); WEIGHT_DISTRIBUTION: the pose follows
+# S11's intent, so S13 re-poses (owner, 2026-10-13, PLAN-009)
+ROUTES = {"HIT_HOLD": "camera", "WEIGHT_DISTRIBUTION": "motion"}
 FILLED = ("step_id", "band", "packet_sha256", "author", "attempt")  # the author sets these; the model never copies them
 ENV = ("HOME", "PATH", "USER", "LOGNAME", "SHELL", "TMPDIR", "LANG")
 

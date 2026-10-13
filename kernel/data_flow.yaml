@@ -1,4 +1,4 @@
-version: 9
+version: 10
 status: draft
 measured_on:
 - reference_fight
@@ -921,6 +921,9 @@ layers:
 - id: pose_mechanics
   step: S14
   reads:
+  - nodes.kinematic.balance
+  - nodes.kinematic.id
+  - nodes.kinematic.support
   - nodes.motion.bones
   - nodes.motion.id
   - nodes.motion.points
@@ -933,6 +936,7 @@ layers:
   - nodes.pose_mechanics.counterbalance
   - nodes.pose_mechanics.id
   - nodes.pose_mechanics.line_of_action
+  - nodes.pose_mechanics.weight
   validates:
   - schema
   passes_downstream:
@@ -940,6 +944,7 @@ layers:
   - nodes.pose_mechanics.counterbalance
   - nodes.pose_mechanics.id
   - nodes.pose_mechanics.line_of_action
+  - nodes.pose_mechanics.weight
 - id: facial
   step: S15
   reads:
@@ -1467,6 +1472,7 @@ layers:
   - nodes.pose_mechanics.counterbalance
   - nodes.pose_mechanics.id
   - nodes.pose_mechanics.line_of_action
+  - nodes.pose_mechanics.weight
   - nodes.props.affordances
   - nodes.props.carried_by
   - nodes.props.count

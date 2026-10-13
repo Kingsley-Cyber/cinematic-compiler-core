@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:pose_mechanics_graph:1.2",
+  "$id": "urn:cinematic-compiler:schema:pose_mechanics_graph:1.3",
   "title": "S14 pose mechanics graph (PLAN-009): what makes each pose read, computed from the motion keys",
   "description": "One node per S13 key (its id), one edge between a performer's consecutive poses. S-125 adds the empty step; each mechanic (line of action, counterbalance, weight distribution) adds its own fields in its own slice.",
   "type": "object",
@@ -19,7 +19,8 @@
           "id",
           "line_of_action",
           "centre_of_mass",
-          "counterbalance"
+          "counterbalance",
+          "weight"
         ],
         "properties": {
           "id": {
@@ -146,6 +147,43 @@
                 }
               }
             }
+          },
+          "weight": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "supports",
+                  "share",
+                  "margin_m"
+                ],
+                "description": "S-128: the parts S11 says carry the body, each one's share of the weight, and how far inside its support base (spread a half foot) the centre of mass stands (negative: outside). Null for a body nothing carries.",
+                "properties": {
+                  "supports": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "share": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    }
+                  },
+                  "margin_m": {
+                    "type": "number"
+                  }
+                }
+              }
+            ]
           }
         }
       }

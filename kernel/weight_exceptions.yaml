@@ -1,0 +1,28 @@
+# The owner's WEIGHT_DISTRIBUTION exceptions (PLAN-009, S-128): a pose S11 calls stable whose centre of mass stands
+# outside its support base past the genre's allowance, kept because the owner ruled it a recorded deviation. Only the
+# owner's rulings add entries; an entry naming a pose that is not such a miss is refused, so the list stays true. A
+# scene is named by the sha256 of its query.
+version: 1
+status: draft
+basis: "Owner, 2026-10-13: 'check the anime body model first. If the model causes the misses, fix the model. If the model is correct, record the four as deviations. Do not touch the source without evidence.'"
+exceptions:
+  - scene: reference_fight
+    query_sha256: "082ea619e0226b5bd0d008e19c18164920c00e50cff47bddeecc85d9cad58865"
+    key: "ninja_lean@b07"
+    ruling: owner PLAN-009 (2026-10-13)
+    reason: "The source pose stands 0.21 m past its feet (anime allows 0.15 m). The body model is not the cause: only the anime legs put its soles on the ground, and its spine leans forward as written; the source's legs set both feet, 0.2 m apart, beside the body (S-128)."
+  - scene: reference_fight
+    query_sha256: "082ea619e0226b5bd0d008e19c18164920c00e50cff47bddeecc85d9cad58865"
+    key: "ninja_lean@b08"
+    ruling: owner PLAN-009 (2026-10-13)
+    reason: "The source pose stands 0.22 m past its feet (anime allows 0.15 m). The body model is not the cause: only the anime legs put its soles on the ground, and its spine leans forward as written; the source's legs set both feet, 0.2 m apart, beside the body (S-128)."
+  - scene: reference_fight
+    query_sha256: "082ea619e0226b5bd0d008e19c18164920c00e50cff47bddeecc85d9cad58865"
+    key: "ninja_lean@b11"
+    ruling: owner PLAN-009 (2026-10-13)
+    reason: "The source pose stands 0.23 m past its feet (anime allows 0.15 m). The body model is not the cause: only the anime legs put its soles on the ground, and its spine leans forward as written; the source's legs set both feet, 0.2 m apart, beside the body (S-128)."
+  - scene: reference_fight
+    query_sha256: "082ea619e0226b5bd0d008e19c18164920c00e50cff47bddeecc85d9cad58865"
+    key: "ninja_lean@b23"
+    ruling: owner PLAN-009 (2026-10-13)
+    reason: "The source pose stands 0.16 m past its feet (anime allows 0.15 m). The body model is not the cause: only the anime legs put its soles on the ground, and its spine leans forward as written; the source's legs set both feet, 0.2 m apart, beside the body (S-128)."

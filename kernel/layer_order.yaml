@@ -28,9 +28,9 @@
 # `edge_endpoints` names the node groups each edge group connects; `scene` stands for
 # the scene itself. Endpoints must be written at or before the edge group's step.
 
-version: "1.9"
+version: "1.10"
 kernel: LBN-2.4
-envelope: MGRAPH-1.3
+envelope: MGRAPH-1.4
 modalities: [live_action, anime, ugc_ad]
 
 # Envelope paths written outside any layer pass (pipeline and validators).
@@ -172,7 +172,7 @@ nodes:
     step_id: S14
     band: L4e
     builds: Pose mechanics (computed from the motion keys; PLAN-009, S-125)
-    depends_on: [motion]
+    depends_on: [motion, kinematic]
     validated_by: [schema]
     writes: [/nodes/pose_mechanics, /edges/pose_mechanics_transition]
 

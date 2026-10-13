@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:cinematic_ir:MGRAPH-1.3",
+  "$id": "urn:cinematic-compiler:schema:cinematic_ir:MGRAPH-1.4",
   "title": "Cinematic IR: movement-graph envelope",
   "description": "Generated from kernel/layer_order.yaml by kernel/build_ir_schema.py; do not edit by hand.",
   "type": "object",
@@ -18,7 +18,7 @@
   ],
   "properties": {
     "graph_version": {
-      "const": "MGRAPH-1.3"
+      "const": "MGRAPH-1.4"
     },
     "derived_from": {
       "const": "LBN-2.4"
@@ -2239,7 +2239,7 @@
           "const": "LBN-2.4"
         },
         "layer_order_version": {
-          "const": "1.9"
+          "const": "1.10"
         },
         "kernel_hash": {
           "type": "string",

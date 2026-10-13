@@ -23,7 +23,7 @@
    ],
    "bones": {
     "Sp": [
-     30.1,
+     26,
      -2.6,
      0
     ],
@@ -80,7 +80,7 @@
    },
    "turn": "none",
    "axis_declaration": "none",
-   "description": "Upright at the desk, leaning in, the right hand reaching down for the folded glasses."
+   "description": "Upright at the desk, leaning in a little, the right hand reaching down for the folded glasses."
   },
   {
    "slot": "ugc_creator@b02",

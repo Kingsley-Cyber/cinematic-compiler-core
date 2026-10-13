@@ -101,8 +101,8 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.9; rules 7.3; backlog 55.
-- Last session: S-127 (2026-10-13, applied): S14's second check: the centre of mass and the counterbalance of every key.
+- Layer order 1.10; rules 7.3; backlog 55.
+- Last session: S-128 (2026-10-13, applied): S14's third check: weight distribution, refusing from the start (the pose follows S11).
 - Next slice: AA-9 S13 written in parallel pieces, one per fighter and time window (each window overlapping its neighbour by one beat), merged and repaired by the solver (step motion).
 - Open findings: 143; decisions: 144 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->

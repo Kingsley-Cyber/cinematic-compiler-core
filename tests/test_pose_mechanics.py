@@ -100,3 +100,56 @@ def test_a_reach_with_nothing_on_the_other_side_is_named():
     node = envelope["nodes"]["pose_mechanics"]["items"][0]
     node["counterbalance"] = {"extended": ["right_arm"], "lead": "right_arm", "reach_m": 0.7, "counter": []}
     assert node["id"] in [n["key"] for n in pose_checks.counterbalance(envelope)]
+
+
+def test_two_feet_share_the_weight_by_where_the_centre_of_mass_falls_and_outside_is_negative():
+    feet = {"left_foot": [-0.2, 0, 0], "right_foot": [0.2, 0, 0]}
+    middle = pose_mechanics.weight_distribution(feet, [0, 1, 0])
+    assert middle["share"] == {"left_foot": 0.5, "right_foot": 0.5} and middle["margin_m"] == 0.1
+    leaning = pose_mechanics.weight_distribution(feet, [0.1, 1, 0])
+    assert leaning["share"] == {"left_foot": 0.25, "right_foot": 0.75}
+    beyond = pose_mechanics.weight_distribution(feet, [0, 1, 0.5])
+    assert beyond["margin_m"] == -0.4
+    assert pose_mechanics.weight_distribution({}, [0, 1, 0]) is None
+    tripod = pose_mechanics.weight_distribution({"a": [0, 0, 0], "b": [1, 0, 0], "c": [0, 0, 1]}, [0.2, 1, 0.2])
+    assert tripod["margin_m"] > 0.1 and abs(sum(tripod["share"].values()) - 1) < 0.02
+
+
+def test_the_clash_puts_naruto_s_weight_on_his_front_foot():
+    """The clash frame (Claude's reading): Naruto drives off the rear foot onto the front one."""
+    joints = JOINTED["clash/naruto"]["joints"]
+    com = pose_mechanics.centre_of_mass(joints, forward_kinematics.masses())
+    weight = pose_mechanics.weight_distribution({"left_foot": joints["left_sole"], "right_foot": joints["right_sole"]}, com)
+    assert weight["share"]["right_foot"] > 0.5 and weight["margin_m"] > 0
+
+
+def test_a_stable_pose_outside_its_support_is_refused_and_sent_to_s13():
+    from compiler.author import ROUTES
+    from compiler.passes.derived import p14_pose_mechanics
+
+    envelope = _envelope("live_action_standoff")
+    graph = {"pose_mechanics": copy.deepcopy(envelope["nodes"]["pose_mechanics"]["items"])}
+    stable = next(k["id"] for k in envelope["nodes"]["kinematic"]["items"] if k["balance"] == "stable")
+    node = next(n for n in graph["pose_mechanics"] if n["id"] == stable)
+    node["weight"] = {**node["weight"], "margin_m": -0.06}  # past live action's 0.05 m (owner)
+    assert [f["detail"] for f in p14_pose_mechanics.weight_findings(envelope, graph)] == [stable]
+    node["weight"]["margin_m"] = -0.04
+    assert p14_pose_mechanics.weight_findings(envelope, graph) == []
+    assert ROUTES["WEIGHT_DISTRIBUTION"] == "motion"
+
+
+def test_the_owner_s_exceptions_keep_the_four_source_poses_and_must_stay_true(monkeypatch, tmp_path):
+    """The owner (2026-10-13): the reference fight's b07, b08, b11, b23 are recorded deviations; an exception that names a
+    pose which is not a miss is refused."""
+    from compiler.passes.derived import p14_pose_mechanics
+
+    envelope = _envelope("reference_fight")
+    graph = {"pose_mechanics": envelope["nodes"]["pose_mechanics"]["items"]}
+    kept = p14_pose_mechanics.owner_exceptions(envelope["provenance"]["source_prompt"])
+    assert sorted(kept) == ["ninja_lean@b07", "ninja_lean@b08", "ninja_lean@b11", "ninja_lean@b23"]
+    assert p14_pose_mechanics.weight_findings(envelope, graph) == []
+    extra = tmp_path / "weight_exceptions.yaml"
+    extra.write_text(p14_pose_mechanics.EXCEPTIONS.read_text(encoding="utf-8").replace('key: "ninja_lean@b23"',
+                                                                                         'key: "ninja_lean@b01"'))
+    monkeypatch.setattr(p14_pose_mechanics, "EXCEPTIONS", extra)
+    assert {f["detail"] for f in p14_pose_mechanics.weight_findings(envelope, graph)} == {"ninja_lean@b23", "ninja_lean@b01"}

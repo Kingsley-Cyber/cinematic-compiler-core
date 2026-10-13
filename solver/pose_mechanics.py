@@ -18,7 +18,12 @@ kinematics).
 Counterbalance (PM-3, S-127): a limb is extended when it runs nearly straight (its ends at EXTENDED_STRAIGHT of its
 length or more) and its end lies REACH_M or more from the centre of mass across the floor; the limb that reaches
 furthest leads, and the limbs whose ends lie COUNTER_M or more across the floor on the other side of the centre of
-mass counter it. A lead with no counter is a reach the body does not balance.
+mass counter it. A lead with no counter is a reach no limb opposes.
+
+Weight distribution (PM-1, PM-2, S-128): the support base is the parts S11 says carry the body (their world points),
+spread FOOT_M across the floor (a foot's half length); `margin_m` is how far inside that base the centre of mass stands
+across the floor (negative: outside), `share` each support's part of the weight (one support carries it all; two
+share it by where the centre of mass falls between them; more, by nearness).
 """
 
 import math
@@ -120,3 +125,65 @@ def counterbalance(joints, com):
         counter = [limb for limb, chain in LIMBS.items() if limb != lead
                    and _dot(_across(joints[chain[-1]], com), way) <= -COUNTER_M]
     return {"extended": extended, "lead": lead, "reach_m": round(reach[lead], 3) if lead else 0.0, "counter": counter}
+
+
+FOOT_M = 0.1  # a support point's own reach across the floor (half a foot's length)
+
+
+def _floor(p):
+    return (p[0], p[2])
+
+
+def _segment_gap(p, a, b):
+    dx, dz = b[0] - a[0], b[1] - a[1]
+    span = dx * dx + dz * dz
+    t = 0.0 if span < 1e-12 else max(0.0, min(1.0, ((p[0] - a[0]) * dx + (p[1] - a[1]) * dz) / span))
+    return math.hypot(p[0] - (a[0] + t * dx), p[1] - (a[1] + t * dz)), t
+
+
+def _hull(points):
+    pts = sorted(set(points))
+    if len(pts) < 3:
+        return pts
+
+    def turn(o, a, b):
+        return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
+    lower, upper = [], []
+    for p in pts:
+        while len(lower) >= 2 and turn(lower[-2], lower[-1], p) <= 0:
+            lower.pop()
+        lower.append(p)
+    for p in reversed(pts):
+        while len(upper) >= 2 and turn(upper[-2], upper[-1], p) <= 0:
+            upper.pop()
+        upper.append(p)
+    return lower[:-1] + upper[:-1]
+
+
+def weight_distribution(support_points, com):
+    """{supports, share, margin_m} for the parts carrying the body ({part: world point}) and the centre of mass, or None
+    for a body nothing carries."""
+    if not support_points:
+        return None
+    parts = sorted(support_points)
+    c = _floor(com)
+    hull = _hull([_floor(support_points[p]) for p in parts])
+    if len(hull) == 1:
+        gap, inside = math.dist(c, hull[0]), False
+    elif len(hull) == 2:
+        gap, inside = _segment_gap(c, hull[0], hull[1])[0], False
+    else:
+        edges = list(zip(hull, hull[1:] + hull[:1], strict=True))
+        gap = min(_segment_gap(c, a, b)[0] for a, b in edges)
+        inside = all((b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0]) >= 0 for a, b in edges)
+    margin = FOOT_M + gap if inside else FOOT_M - gap
+    if len(parts) == 1:
+        share = {parts[0]: 1.0}
+    elif len(parts) == 2:
+        t = _segment_gap(c, _floor(support_points[parts[0]]), _floor(support_points[parts[1]]))[1]
+        share = {parts[0]: round(1 - t, 2), parts[1]: round(t, 2)}
+    else:
+        near = {p: 1 / max(math.dist(c, _floor(support_points[p])), 1e-3) for p in parts}
+        total = sum(near.values())
+        share = {p: round(v / total, 2) for p, v in near.items()}
+    return {"supports": parts, "share": share, "margin_m": round(margin, 3)}

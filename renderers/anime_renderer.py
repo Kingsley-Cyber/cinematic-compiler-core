@@ -301,6 +301,10 @@ def _actor_rows(envelope, entity, labels, cover):
             parts.append(f"BALANCE:com {mechanics[slot]['centre_of_mass']},lead {cb['lead'] or 'none'} reach "
                          f"{cb['reach_m']},counter {'+'.join(cb['counter']) or 'none'},extended "
                          f"{'+'.join(cb['extended']) or 'none'}")
+            weight = mechanics[slot]["weight"]
+            if weight is not None:
+                parts.append("WEIGHT:" + ",".join(f"{p} {v}" for p, v in sorted(weight["share"].items()))
+                             + f",margin {weight['margin_m']}")
         ext = " [labelled extension]" if b["extensions"] else ""
         parts.append(f"BODY:{b['connectivity']}{ext} connectivity,{b['developmental_pattern']} pattern,{b['initiation']} "
                      f"initiates,follow {'>'.join(b['follow_through'])},{b['body_mode']} mode,intent {b['intent']}")

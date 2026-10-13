@@ -127,7 +127,7 @@
      15
     ],
     "RA": [
-     -91.1,
+     -62.5,
      -0.8,
      -2.4
     ],
@@ -154,7 +154,7 @@
    },
    "turn": "flip",
    "axis_declaration": "X",
-   "description": "Deep crouch pitched forward over the knees, the right hand planted on the ground ahead, the feet leaving it."
+   "description": "Deep crouch pitched forward over the knees, the right hand planted on the ground under the shoulders, the feet leaving it."
   },
   {
    "slot": "acrobat@b03",

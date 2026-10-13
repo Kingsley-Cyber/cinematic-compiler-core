@@ -31,7 +31,7 @@ the commit whose message names [S-126]
 4. The owner's four reference frames as number fixtures (tests/pose_references.py, Claude's interpretation; the images
    stay out of the repository), read back by the mechanics.
 
-Predictions, made before the change (15:10 by the clock):
+Predictions, made before the change (12:05 by the clock):
 1. The reference frames read back as the owner's stills show them.
 2. A standing body reads close to straight.
 
@@ -52,7 +52,7 @@ Verdict: READY TO PUSH.
 | Tests | PASS | tests/test_pose_mechanics.py new (13), the reference frames among them |
 
 ## Duration
-from 15:10 to 16:00
+from 12:05 to 12:14 (corrected in S-128 from the commit times; the clock times first written were estimates)
 
 ## Changes
 - solver/pose_mechanics.py, validators/pose_checks.py (new); compiler/passes/derived/p14_pose_mechanics.py;

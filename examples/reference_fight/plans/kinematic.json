@@ -1,7 +1,7 @@
 {
  "step_id": "S11",
  "band": "L4a",
- "packet_sha256": "sha256:0d6a651374bdf14af99565b9499740992cb065b06ded1131bbc710f1376ffb0c",
+ "packet_sha256": "sha256:0d040bd266b37fb2008fc585feef07ff0fe43e6ed2cc0eb5a1291acfb0354850",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -441,10 +441,7 @@
   },
   {
    "slot": "ninja_lean@b15",
-   "support": [
-    "left_foot",
-    "right_foot"
-   ],
+   "support": [],
    "balance": "stable",
    "loading": "loaded",
    "bracing": "none",
@@ -455,7 +452,7 @@
    "strain": "none",
    "restraint": "none",
    "breathing": "held",
-   "reads": "Low slide on the ground, legs folded, the three shuriken passing overhead."
+   "reads": "Sliding, no support: a low slide, legs folded, the three shuriken passing overhead."
   },
   {
    "slot": "ninja_broad@b15",
@@ -597,7 +594,7 @@
    "slot": "ninja_lean@b20",
    "support": [
     "left_foot",
-    "right_foot"
+    "right_hand"
    ],
    "balance": "stable",
    "loading": "loaded",
@@ -609,7 +606,7 @@
    "strain": "high",
    "restraint": "none",
    "breathing": "held",
-   "reads": "Crouched by the kunai: the right hand takes it from the ground while the left hauls the taut rope dart."
+   "reads": "Crouched on the right hand and the left foot: the right hand takes the kunai from the ground while the left hauls the taut rope dart."
   },
   {
    "slot": "ninja_broad@b20",

@@ -1640,7 +1640,7 @@
       "id": "ninja_lean"
      },
      "property": "support",
-     "value": "grounded"
+     "value": "airborne"
     }
    ],
    "contacts": [
@@ -1658,32 +1658,6 @@
      },
      "at": "start",
      "verb": "throw"
-    },
-    {
-     "contact_type": "support",
-     "a": {
-      "kind": "entity",
-      "id": "ninja_lean",
-      "part": "left_foot"
-     },
-     "b": {
-      "kind": "surface",
-      "id": "ground",
-      "part": null
-     }
-    },
-    {
-     "contact_type": "support",
-     "a": {
-      "kind": "entity",
-      "id": "ninja_lean",
-      "part": "right_foot"
-     },
-     "b": {
-      "kind": "surface",
-      "id": "ground",
-      "part": null
-     }
     },
     {
      "contact_type": "release",
@@ -1789,34 +1763,7 @@
      "value": "grounded"
     }
    ],
-   "contacts": [
-    {
-     "contact_type": "release",
-     "a": {
-      "kind": "entity",
-      "id": "ninja_lean",
-      "part": "left_foot"
-     },
-     "b": {
-      "kind": "surface",
-      "id": "ground",
-      "part": null
-     }
-    },
-    {
-     "contact_type": "release",
-     "a": {
-      "kind": "entity",
-      "id": "ninja_lean",
-      "part": "right_foot"
-     },
-     "b": {
-      "kind": "surface",
-      "id": "ground",
-      "part": null
-     }
-    }
-   ],
+   "contacts": [],
    "causes": [
     {
      "to": "b16",
@@ -2241,6 +2188,32 @@
       "id": "kunai",
       "part": "handle"
      }
+    },
+    {
+     "a": {
+      "id": "ninja_lean",
+      "kind": "entity",
+      "part": "right_foot"
+     },
+     "b": {
+      "id": "ground",
+      "kind": "surface",
+      "part": null
+     },
+     "contact_type": "release"
+    },
+    {
+     "a": {
+      "id": "ninja_lean",
+      "kind": "entity",
+      "part": "right_hand"
+     },
+     "b": {
+      "id": "ground",
+      "kind": "surface",
+      "part": null
+     },
+     "contact_type": "support"
     }
    ],
    "causes": [
@@ -2347,7 +2320,7 @@
      "a": {
       "kind": "entity",
       "id": "ninja_lean",
-      "part": "right_foot"
+      "part": "right_hand"
      },
      "b": {
       "kind": "surface",

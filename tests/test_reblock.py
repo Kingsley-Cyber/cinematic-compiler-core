@@ -148,7 +148,9 @@ def test_the_pickups_crouch_on_the_feet_with_one_hand_down():
         trunk = [c - p for c, p in zip(joints["chest"], joints["pelvis"], strict=True)]
         drawn[slot] = (round(math.degrees(math.acos(trunk[1] / math.hypot(*trunk))), 1),
                        round(joints["left_ankle"][1], 4), round(joints["right_ankle"][1], 4))
-        assert kinematic[slot]["support"] == ["left_foot", "right_foot"]
+        # the owner, 2026-10-13 (S-128): at 8.0 A rests on the right hand and the left foot, not the feet (over O18/R-34)
+        assert kinematic[slot]["support"] == {"ninja_lean@b19": ["left_foot", "right_foot"],
+                                              "ninja_lean@b20": ["left_foot", "right_hand"]}[slot]
     assert drawn == {"ninja_lean@b19": (70.2, 0.0385, 0.0263), "ninja_lean@b20": (71.2, 0.0484, 0.0449)}
 
 
