@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:motion_graph:1.3",
+  "$id": "urn:cinematic-compiler:schema:motion_graph:1.4",
   "title": "S13 motion graph",
   "description": "motion = key poses (/nodes/motion) with derived quaternions; motion_edges = follows edges (/edges/motion) with derived Euler deltas, interpolation and root trajectory.",
   "type": "object",
@@ -75,6 +75,7 @@
             "description": "Derived [w, x, y, z] of the root rot, w >= 0."
           },
           "bones": {
+            "description": "Joint angles, one entry per kernel joint. Canonical order: the kernel skeleton key (kernel/invariants.yaml 'key' rows: Sp, LUL, RUL, LL, RL, LA, RA, LFA, RFA, HD, NK); S13 writes it, the stored envelope sorts keys, so every reader takes the order from the kernel, never from this object (JOINTS_IN_CANONICAL_ORDER, DETERMINISM).",
             "type": "object",
             "patternProperties": {
               "^[A-Z][A-Za-z]*$": {
@@ -279,6 +280,7 @@
                   "description": "Derived [w, x, y, z] of the root rot, w >= 0."
                 },
                 "bones": {
+                  "description": "Joint angles, one entry per kernel joint. Canonical order: the kernel skeleton key (kernel/invariants.yaml 'key' rows: Sp, LUL, RUL, LL, RL, LA, RA, LFA, RFA, HD, NK); S13 writes it, the stored envelope sorts keys, so every reader takes the order from the kernel, never from this object (JOINTS_IN_CANONICAL_ORDER, DETERMINISM).",
                   "type": "object",
                   "patternProperties": {
                     "^[A-Z][A-Za-z]*$": {

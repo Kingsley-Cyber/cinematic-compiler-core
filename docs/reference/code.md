@@ -39,10 +39,10 @@ flowchart LR
   solver -->|5| planner
   solver -->|1| validators
   validators -->|16| compiler
-  validators -->|5| kernel
-  validators -->|13| planner
-  validators -->|4| renderers
-  validators -->|12| solver
+  validators -->|7| kernel
+  validators -->|14| planner
+  validators -->|5| renderers
+  validators -->|13| solver
 ```
 
 ## Modules
@@ -126,6 +126,7 @@ flowchart LR
 | `validators.continuity_validator` | `solver.prop_state_machine` | — |
 | `validators.cross_graph` | `validators.graph_map` | json, pathlib, sys |
 | `validators.data_flow` | `compiler.authoring`, `compiler.passes.derived.p09_object_state`, `compiler.passes.derived.p10_affordance`, `compiler.passes.derived.p17_render`, `compiler.passes.mandatory.p01_intent`, `compiler.passes.mandatory.p02_brief`, `compiler.passes.mandatory.p03_constraint`, `compiler.passes.mandatory.p05_causal`, `compiler.passes.mandatory.p06_state`, `compiler.passes.mandatory.p07_contact`, `compiler.pipeline`, `kernel.canonical`, `planner.dependency_graph`, `validators.graph_map` | argparse, copy, json, pathlib, sys, yaml |
+| `validators.determinism` | `kernel.canonical`, `kernel.kernel_files`, `planner.dependency_graph`, `renderers.anime_renderer`, `solver.euler_solver`, `validators.data_flow`, `validators.graph_map` | hashlib, json, pathlib, re, sys |
 | `validators.envelope_validator` | `kernel.kernel_files`, `planner.dependency_graph`, `planner.modality`, `validators.layer_dependency_validator`, `validators.schema_validator` | json |
 | `validators.facial_validator` | — | json, re |
 | `validators.graph_map` | `planner.dependency_graph`, `validators.schema_validator` | json, pathlib, sys |

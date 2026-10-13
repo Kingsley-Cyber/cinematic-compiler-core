@@ -10,9 +10,9 @@ Layer order 1.7; rules 7.3; backlog 55.
 
 ## Last sessions
 
-- S-117 (applied): S17 prints the edge graphs: beat order, paths, transitions, contact order, cuts, rule bindings, invariants
 - S-118 (applied): The root printed as position data on every line; "root exact" retired (ADR-O114)
 - S-119 (applied): The graphs turn as one wheel: data-flow contract, cross-graph consistency, end-to-end tracer (ADR-O115)
+- S-120 (applied): Determinism and the control layer: the prompt is the same from disk, from memory, in any key order
 
 ## Next slices
 
@@ -139,4 +139,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O116, finding F-235, session S-120, render R21.
+Decision ADR-O117, finding F-235, session S-121, render R21.

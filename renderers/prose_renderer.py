@@ -27,7 +27,16 @@ from compiler.passes.mandatory.p07_contact import events_for, lifecycle
 from planner import camera_library, dynamic_beat_validator, hits
 from planner.scene_view import slots
 from renderers import prop_samples, ugc_renderer
-from renderers.anime_renderer import NUMBERS, _face_words, _items, _num, constraint_rows, inbetweens, inbetweens_turning
+from renderers.anime_renderer import (
+    JOINT_ORDER,
+    NUMBERS,
+    _face_words,
+    _items,
+    _num,
+    constraint_rows,
+    inbetweens,
+    inbetweens_turning,
+)
 from solver import contact_world, euler_solver, staff_geometry
 
 TARGET = "structured-prose"
@@ -42,7 +51,7 @@ MODES = {
     "euler_heavy": ("EULER-HEAVY", "Euler-heavy: every line carries Root, EulerXYZ and the full Joints dictionary; the "
                                    "staff words stay primary"),
 }
-JOINTS = ("Sp", "LUL", "RUL", "LL", "RL", "LA", "RA", "LFA", "RFA", "HD", "NK")
+JOINTS = JOINT_ORDER  # the kernel skeleton key, one constant for every renderer (determinism)
 ROOT_EXACT = "k_rules_01"  # '<label> root exact': the phrase is retired, the root printed as data (ADR-O114)
 GENRES = {"anime": "anime", "live_action": "live-action", "ugc_ad": "UGC ad"}
 TRAVEL_M = 0.2

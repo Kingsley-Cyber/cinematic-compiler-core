@@ -260,6 +260,8 @@ def _laban(envelope, beats, entities, labels, cover):
     return laban
 
 
+# the canonical joint order: the kernel skeleton key (kernel/invariants.yaml; motion_graph schema `bones`);
+# validators/determinism.py holds this equal to the kernel's
 JOINT_ORDER = ("Sp", "LUL", "RUL", "LL", "RL", "LA", "RA", "LFA", "RFA", "HD", "NK")
 
 
