@@ -99,3 +99,33 @@ def test_a_re_run_takes_every_accepted_step_from_the_cache(tmp_path):
     first, _ = author(query, Replay(folder / "plans"), cache=tmp_path)
     again, calls = author(query, _Never(), cache=tmp_path)
     assert canonical_json(again) == canonical_json(first) and {c["model"] for c in calls} == {"cache"}
+
+
+def test_the_pose_step_is_written_in_pieces_and_a_retry_redoes_only_the_refused_piece():
+    """AA-9: S13's slots go out in pieces of at most three, one fighter and one time window each, written at once and
+    merged; a retry writes again only the pieces that hold a refused slot."""
+    from compiler import author as module
+    from compiler import pipeline
+    from compiler.passes.derived import p13_motion
+    folder = EXAMPLES / "wizard_vs_acrobat"
+    query = json.loads((folder / "request.json").read_text(encoding="utf-8"))["query"]
+    plans = {p.stem: json.loads(p.read_text(encoding="utf-8")) for p in sorted((folder / "plans").glob("*.json"))}
+    packet = p13_motion.prepare(pipeline.run(query, until="bartenieff", plans=plans))
+    committed = {k["slot"]: k for k in plans["motion"]["keys"]}
+    asked = []
+
+    class Fake(module.ClaudeCLI):
+        def _call(self, node, step_id, packet, findings, previous, note=None):
+            slots = note.split("SLOTS: ")[1].split(" (")[0].split(", ")
+            asked.append(slots)
+            return {"keys": [committed[s] for s in slots], "inbetweens": plans["motion"]["inbetweens"]}, \
+                {"model": "fake", "tokens_in": 1, "tokens_out": 1, "list_cost_usd": 0.0}
+
+    backend = Fake("anime")
+    document, usage = backend.write("motion", "S13", packet)
+    assert sorted(k["slot"] for k in document["keys"]) == sorted(committed)
+    assert all(len(piece) <= module.PIECE and len({s.split("@")[0] for s in piece}) == 1 for piece in asked)
+    assert usage["pieces"] == len(asked) and document["inbetweens"] == plans["motion"]["inbetweens"]
+    asked.clear()
+    backend.write("motion", "S13", packet, [{"code": "BODY_OVERLAP", "slot": "acrobat@b06", "message": "."}])
+    assert len(asked) == 1 and "acrobat@b06" in asked[0]

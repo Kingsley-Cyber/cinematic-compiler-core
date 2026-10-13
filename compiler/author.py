@@ -57,6 +57,7 @@ ROOT = Path(__file__).resolve().parents[1]
 GUIDES = {"anime": "reference_fight", "live_action": "live_action_standoff", "ugc_ad": "ugc_glasses_demo"}  # AA-8
 FRONTIER = ("temporal",)  # the frontier model's first attempts (PLAN-008, AA-8)
 RETRY_FRONTIER = ("temporal", "motion", "effort", "camera")  # its retries
+PIECE = 3  # AA-9: the most slots one S13 piece writes
 ROUTES = {"HIT_HOLD": "camera"}  # a refusal some later step finds, fixed where its content is written (AA-8)
 FILLED = ("step_id", "band", "packet_sha256", "author", "attempt")  # the author sets these; the model never copies them
 ENV = ("HOME", "PATH", "USER", "LOGNAME", "SHELL", "TMPDIR", "LANG")
@@ -82,8 +83,8 @@ class ClaudeCLI:
 
     name = "claude-cli"
 
-    def __init__(self, genre, frontier="claude-opus-5-5", other="claude-sonnet-5-5", timeout_s=1800):
-        self.genre, self.frontier, self.other, self.timeout_s = genre, frontier, other, timeout_s
+    def __init__(self, genre, frontier="claude-opus-5-5", other="claude-sonnet-5-5", timeout_s=1800, split=True):
+        self.genre, self.frontier, self.other, self.timeout_s, self.split = genre, frontier, other, timeout_s, split
         self.previous = {}
 
     def _guide(self, node):
@@ -95,6 +96,69 @@ class ClaudeCLI:
         return {k: v for k, v in json.loads(path.read_text(encoding="utf-8")).items() if k not in FILLED}
 
     def write(self, node, step_id, packet, findings=None):
+        if node == "motion" and self.split:
+            document, usage = self._split_motion(step_id, packet, findings)
+        else:
+            document, usage = self._call(node, step_id, packet, findings, self.previous.get(node, {}))
+        self.previous[node] = document
+        return ({**document, "step_id": packet.get("step_id", step_id), "band": packet.get("band"),
+                 "author": {"host": "cinematic author (claude -p, subscription)", "model": usage["model"]}}, usage)
+
+    def _split_motion(self, step_id, packet, findings):
+        """AA-9: S13 in parallel pieces, each one fighter's keys in one time window (at most PIECE slots), merged into
+        one document. On a retry only the pieces holding a refused slot are written again, with their findings."""
+        from concurrent.futures import ThreadPoolExecutor
+
+        by_entity = {}
+        for slot in sorted(packet["slots"], key=lambda s: s["t"]):
+            by_entity.setdefault(slot["entity"], []).append(slot)
+        pieces = [own[i:i + PIECE] for own in by_entity.values() for i in range(0, len(own), PIECE)]
+        previous = self.previous.get("motion") or {}
+
+        def span(piece):
+            """(entity, from, to): the times a piece owns, to its entity's next piece (in-betweens fall inside)."""
+            own = by_entity[piece[0]["entity"]]
+            after = own.index(piece[-1]) + 1
+            return piece[0]["entity"], piece[0]["t"], own[after]["t"] if after < len(own) else float("inf")
+
+        def holds(piece, finding):
+            entity, low, high = span(piece)
+            slot = finding.get("slot") or ""
+            if slot in {s["slot"] for s in piece}:
+                return True
+            head, _, tail = slot.partition("@")
+            return head == entity and not tail.startswith("b") and tail and low <= float(tail) < high
+
+        redo = [p for p in pieces if not findings or not previous or any(holds(p, f) for f in findings)] or pieces
+
+        def write(piece):
+            entity, low, high = span(piece)
+            mine = [f for f in findings or [] if holds(piece, f)] or findings
+            own_keys = [k for k in previous.get("keys", []) if k["slot"] in {s["slot"] for s in piece}]
+            note = (f"WRITE ONLY THE KEYS OF THESE SLOTS: {', '.join(s['slot'] for s in piece)} ({entity}, "
+                    f"{low:g} s to {'the end' if high == float('inf') else f'{high:g} s'}). Other authors write the other "
+                    "slots at the same time from the same packet: keep every key on its packet anchor and facing, and add "
+                    f"in-betweens only for {entity} inside that time.")
+            return self._call("motion", step_id, packet, mine, {"keys": own_keys} if findings else {}, note)
+
+        with ThreadPoolExecutor(max_workers=len(redo)) as pool:
+            written = dict(zip(map(id, redo), pool.map(write, redo), strict=True))
+        keys, inbetweens, usage = [], [], {"model": None, "tokens_in": 0, "tokens_out": 0, "cost_usd": 0.0,
+                                           "list_cost_usd": 0.0, "billing": "subscription", "pieces": len(redo)}
+        for piece in pieces:
+            entity, low, high = span(piece)
+            slots = {s["slot"] for s in piece}
+            document, used = written.get(id(piece), (previous, None))
+            keys += [k for k in document.get("keys", []) if k["slot"] in slots]
+            inbetweens += [b for b in document.get("inbetweens", []) if b["entity"] == entity and low < b["t"] < high]
+            if used:
+                usage["model"] = used["model"]
+                for field in ("tokens_in", "tokens_out", "list_cost_usd"):
+                    usage[field] = round(usage[field] + used[field], 4)
+        return {"keys": keys, "inbetweens": inbetweens}, usage
+
+    def _call(self, node, step_id, packet, findings, previous, note=None):
+        """One `claude -p` call: (the model's document, usage)."""
         import os
         import subprocess
         import tempfile
@@ -106,8 +170,10 @@ class ClaudeCLI:
         if guide is not None:
             parts += ["A DOCUMENT FOR THIS STEP THAT PASSED IN ANOTHER SCENE (its shape and level of detail, not its "
                       "content; write yours for this packet's slots):", canonical_json(guide)]
+        if note:
+            parts.append(note)
         if findings:
-            parts += ["YOUR PREVIOUS DOCUMENT:", canonical_json(self.previous.get(node, {})),
+            parts += ["YOUR PREVIOUS DOCUMENT:", canonical_json(previous),
                       "THE STEP'S CHECKS REFUSED IT FOR THESE FINDINGS. Fix every one and return the whole document:",
                       canonical_json(findings)]
         system = ("You author one step of a cinematic compiler. Write the step's document for the packet you are given, "
@@ -138,13 +204,10 @@ class ClaudeCLI:
                 detail = str(reply.get("result"))[-500:]
                 continue
             usage = reply.get("usage", {})
-            self.previous[node] = document
-            return ({**document, "step_id": packet.get("step_id", step_id), "band": packet.get("band"),
-                     "author": {"host": "cinematic author (claude -p, subscription)", "model": model}},
-                    {"model": model, "tokens_in": usage.get("input_tokens", 0) + usage.get("cache_creation_input_tokens", 0)
-                     + usage.get("cache_read_input_tokens", 0), "tokens_out": usage.get("output_tokens", 0),
-                     "cost_usd": 0.0, "list_cost_usd": round(reply.get("total_cost_usd") or 0.0, 4),
-                     "billing": "subscription"})
+            return document, {"model": model, "tokens_out": usage.get("output_tokens", 0),
+                              "tokens_in": usage.get("input_tokens", 0) + usage.get("cache_creation_input_tokens", 0)
+                              + usage.get("cache_read_input_tokens", 0), "cost_usd": 0.0,
+                              "list_cost_usd": round(reply.get("total_cost_usd") or 0.0, 4), "billing": "subscription"}
         raise BackendError(node, detail)
 
 

@@ -10,9 +10,9 @@ Layer order 1.7; rules 7.3; backlog 53.
 
 ## Last sessions
 
-- S-108 (applied): AA-2: the subscription backend, and the first live runs
 - S-109 (applied): AA-4: the solver repairs S13 before the model retries; AA-3: the first idea end to end
 - S-110 (applied): AA-7: the resume cache; AA-8: Sonnet first, HIT_HOLD to the camera, the owner's fight as guide
+- S-111 (applied): AA-8 measured live; AA-9: the pose step in parallel pieces
 
 ## Next slices
 
@@ -138,4 +138,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O113, finding F-234, session S-111, render R20.
+Decision ADR-O113, finding F-234, session S-112, render R20.
