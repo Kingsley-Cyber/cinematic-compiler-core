@@ -10,9 +10,9 @@ Layer order 1.7; rules 7.3; backlog 55.
 
 ## Last sessions
 
-- S-111 (applied): AA-8 measured live; AA-9: the pose step in parallel pieces
 - S-112 (applied): AA-9 split measured, AA-10 (turns whole, far contacts to S04), AA-6 casting built
 - S-113 (applied): AA-6: casting made to work live (the kunoichi on a rooftop)
+- S-114 (applied): Render R20 logged and the owner's critique confirmed against the code
 
 ## Next slices
 
@@ -138,4 +138,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O113, finding F-234, session S-114, render R20.
+Decision ADR-O113, finding F-234, session S-115, render R21.

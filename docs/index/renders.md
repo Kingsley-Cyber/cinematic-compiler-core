@@ -25,6 +25,7 @@ Every render, bound to its prompt hash. The owner renders; Claude never does. Ve
 | R17 | 2026-10-11 | sha256 c0b09df4c9ffd967… | Seedance 2.0 Mini (from the f… | not fixed (no s… | pending | fail | F-042 | [R17-v2b-log-unmentioned.md](../renders/R17-v2b-log-unmentioned.md) |
 | R18 | 2026-10-11 | sha256 7c07df8f54b6b8f8… | Seedance 2.0 Mini (from the f… | not fixed (no s… | pending | pass | F-036, F-037, F-043 | [R18-v3b-backflip-plain.md](../renders/R18-v3b-backflip-plain.md) |
 | R19 | 2026-10-11 | sha256 707dacf8a732e050… | Seedance 2.0 Mini (from the f… | not fixed (no s… | pending | partial | F-010, F-036 | [R19-v6-opening-from-above.md](../renders/R19-v6-opening-from-above.md) |
+| R20 | 2026-10-13 | sha256:9ac40f31bf1b9ea1… | not stated by the owner | not fixed | fail | — | see the confirmation report | [R20-author-1-ninja-versus-knight.md](../renders/R20-author-1-ninja-versus-knight.md) |
 
 ## Verdict values
 
