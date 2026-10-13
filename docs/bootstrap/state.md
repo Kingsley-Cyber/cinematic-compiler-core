@@ -10,9 +10,9 @@ Layer order 1.7; rules 7.3; backlog 55.
 
 ## Last sessions
 
-- S-113 (applied): AA-6: casting made to work live (the kunoichi on a rooftop)
 - S-114 (applied): Render R20 logged and the owner's critique confirmed against the code
 - S-115 (applied): ADR-O113: the graph map, and the graph-to-prompt reach measured
+- S-116 (applied): S17 prints the hold frames, the camera's place and aim, each pose's description and its world points
 
 ## Next slices
 
@@ -138,4 +138,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O114, finding F-234, session S-116, render R21.
+Decision ADR-O114, finding F-234, session S-117, render R21.

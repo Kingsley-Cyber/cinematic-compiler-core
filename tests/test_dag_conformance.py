@@ -164,7 +164,7 @@ BREAKS = [
     ("VANISHED_BODY", "reference_fight", "mixed", _line(r"- A is gone from")),
     ("TURN_LABEL", "reference_fight", "mixed", _replace("ONE backflip about", "ONE spin to the left about")),
     # W1-W4, the probe wording rules (owner O47-O49): each break restores a wording a probe render refused
-    ("BODY_HOLD_FRAMES", "reference_fight", "mixed", _replace("Impact frames:", "Holds: 0.60 for 3 frames.\nImpact frames:")),
+    ("BODY_HOLD_FRAMES", "reference_fight", "mixed", _replace("0.60 for 3 frames", "0.60")),  # ADR-O113: a hold's frames
     ("EMPTY_HAND_UNSTATED", "reference_fight", "mixed", _replace("; B's right hand is empty from 2.00", "")),
     ("ROTATION_ANGLES_PRINTED", "reference_fight", "mixed", _replace(
         "ONE backflip about the side-to-side axis (sagittal plane), 5.10–5.50",
@@ -175,7 +175,7 @@ BREAKS = [
     ("HIDDEN_PHRASING", "reference_fight", "mixed", _replace("substitution log (on the ground, deployment standing until 3.70)",
                                                              "substitution log (hidden in A's coat until 3.70)")),
     ("MOMENTUM_MISSING", "wizard_vs_acrobat", "mixed", _line("- B hangs in the air 8.60")),
-    ("HIT_HOLD", "reference_fight", "mixed", _replace("2.50 impact: hold with", "2.50 impact: cut to")),  # O92
+    ("HIT_HOLD", "reference_fight", "mixed", _replace("2.50 impact: hold for 3 frames with", "2.50 impact: cut to")),  # O92
     ("PLAYBACK_RAMP", "reference_fight", "mixed", _replace("normal x1; shows A foot deflect kunai",
                                                            "slow x0.25; shows A foot deflect kunai")),
     ("CAMERA_RULES", "reference_fight", "mixed", _replace("Camera rules: ", "Camera rules: Cut close on the receiver "

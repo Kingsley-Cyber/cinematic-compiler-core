@@ -180,14 +180,14 @@ def test_hits_are_camera_holds_and_nothing_plays_slow():
     PLAYBACK_RAMP)."""
     envelope, render = load(ROOT / "examples" / "reference_fight")
     text = render["prose"]["mixed"]["text"]
-    assert ("Holds on hits: 2.50 impact: hold with BOTH bodies in frame (A and B), no close-up; 4.70 impact: hold with "
-            "BOTH bodies") in text and "8.50 impact: hold with BOTH bodies" in text
+    assert ("Holds on hits: 2.50 impact: hold for 3 frames with BOTH bodies in frame (A and B), no close-up; 4.70 impact: "
+            "hold for 3 frames with BOTH bodies") in text and "8.50 impact: hold for 4 frames with BOTH bodies" in text
     assert not re.search(r"; (slow|ramp|freeze) x", text)
 
     def fired(prompt):
         return {f["code"] for f in prompt_validator.check(prompt, envelope, "mixed")}
     assert not {"HIT_HOLD", "PLAYBACK_RAMP"} & fired(text)
-    assert "HIT_HOLD" in fired(text.replace("2.50 impact: hold with", "2.50 impact: cut to", 1))
+    assert "HIT_HOLD" in fired(text.replace("2.50 impact: hold for 3 frames with", "2.50 impact: cut to", 1))
     assert "PLAYBACK_RAMP" in fired(text.replace("normal x1; shows A foot deflect kunai", "slow x0.25; shows A foot "
                                                  "deflect kunai", 1))
 
@@ -239,7 +239,7 @@ def test_the_prompt_owes_a_hold_at_every_hit_whatever_s17_holds():
     unheld = copy.deepcopy(envelope)
     frame = unheld["nodes"]["render"]["items"][0]["frame_parts"]
     frame["holds"] = [h for h in frame["holds"] if abs(h["t"] - 4.7) > 1e-6]
-    dropped = text.replace("4.70 impact: hold with BOTH bodies in frame (A and B), no close-up; ", "", 1)
+    dropped = text.replace("4.70 impact: hold for 3 frames with BOTH bodies in frame (A and B), no close-up; ", "", 1)
     assert dropped != text and "HIT_HOLD" not in {f["code"] for f in prompt_validator.check(text, unheld, "mixed")}
     assert "HIT_HOLD" in {f["code"] for f in prompt_validator.check(dropped, unheld, "mixed")}
 
@@ -272,8 +272,8 @@ def test_the_printed_hold_names_every_body_present():
     at the hit is refused (HIT_HOLD)."""
     envelope, render = load(ROOT / "examples" / "reference_fight")
     text = render["prose"]["mixed"]["text"]
-    one = text.replace("2.50 impact: hold with BOTH bodies in frame (A and B)", "2.50 impact: hold with BOTH bodies in "
-                       "frame (A)", 1)
+    one = text.replace("2.50 impact: hold for 3 frames with BOTH bodies in frame (A and B)", "2.50 impact: hold for 3 "
+                       "frames with BOTH bodies in frame (A)", 1)
     found = [f["message"] for f in prompt_validator.check(one, envelope, "mixed") if f["code"] == "HIT_HOLD"]
     assert one != text and found == ["The hold at 2.50 leaves out B"]
     assert not [f for f in prompt_validator.check(text, envelope, "mixed") if f["code"] == "HIT_HOLD"]

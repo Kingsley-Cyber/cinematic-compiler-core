@@ -51,7 +51,7 @@ CODES = {
     "VANISHED_BODY": "a substituted body has a staff line before it reappears, its vanish line carries its support or a "
                      "path into the vanish, or RULES do not say it is gone",
     "TURN_LABEL": "a line whose beat names a flip or a cartwheel does not write that turn",
-    "BODY_HOLD_FRAMES": "a hold, freeze or pause is written in frames (probes R10, R11, R14 stretched each to about 1 s)",
+    "BODY_HOLD_FRAMES": "a hold the S17 graph gives is printed without its frame count (ADR-O113; O47's clause gone)",
     "EMPTY_HAND_UNSTATED": "a hand that releases a prop and then holds nothing is not said to be empty (probe R11 kept a "
                            "second kunai in the throwing hand)",
     "ROTATION_ANGLES_PRINTED": "a turn is written as angles at times or a rate, or a line inside a turn prints its "
@@ -464,8 +464,10 @@ def _impact_checks(envelope, parts, mode, add):
 def _wording_checks(envelope, text, parts, labels, mode, add):
     """The probe wording rules W1-W4 (owner O47-O49; docs/render_tests/2026-10-11-m9-probes): no hold or freeze in
     frames, the empty hand after a release, a turn named once without angles, no prop called hidden."""
-    for match in HOLD_FRAMES.finditer(text):
-        add("BODY_HOLD_FRAMES", f"'{match.group(0)[:70]}'")
+    frame_parts = envelope["nodes"]["render"]["items"][0]["frame_parts"]
+    for hold in frame_parts.get("holds", []):  # ADR-O113: if the graph has it, the prompt prints it
+        if f"{prose_renderer._time(hold['t'])} for {hold['frames']} frames" not in text:
+            add("BODY_HOLD_FRAMES", f"the hold at {hold['t']:g} ({hold['frames']} frames) is not printed with its frames")
     rows = _staff(parts, mode)
     staff = "\n".join(row["line"] for row in rows)
     for phrase in prose_renderer.empty_hands(envelope, labels).values():
@@ -839,11 +841,12 @@ def _camera_checks(envelope, parts, labels, add):
     for t in hits.hold_times(envelope, frame_parts):  # every hit, from the contacts or S17's holds (owner O92, F-155)
         shot = next((m for m in map(SHOT.match, lines) if m and float(m.group(1)) - EPSILON <= t < float(m.group(2)) - EPSILON),
                     None)
-        if (f"{t:.2f} impact: hold with " not in held or shot is None or "; static: " not in shot.string
+        opened = re.search(rf"{t:.2f} impact: hold(?: for \d+ frames)? with ", held)  # ADR-O113: its frames
+        if (opened is None or shot is None or "; static: " not in shot.string
                 or any(word in shot.group(3) for word in ("close", "insert"))):
             add("HIT_HOLD", f"The hit at {t:.2f} is not a camera hold with the bodies in frame")
             continue
-        entry = held.split(f"{t:.2f} impact: hold with ", 1)[1].split("; ", 1)[0]  # F-177 (RV-71a): the bodies it names
+        entry = held[opened.end():].split("; ", 1)[0]  # F-177 (RV-71a): the bodies it names
         named = set(re.split(r", | and ", entry[entry.find("(") + 1:entry.find(")")])) if "(" in entry else set()
         present = {labels[e["id"]] for e in envelope["nodes"]["entities"]["items"]
                    if not any(actor == e["id"] and start < t - EPSILON and (back is None or t < back - EPSILON)

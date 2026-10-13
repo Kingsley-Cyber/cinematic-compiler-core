@@ -102,7 +102,7 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 7.3; backlog 55.
-- Last session: S-115 (2026-10-13, applied): ADR-O113: the graph map, and the graph-to-prompt reach measured.
+- Last session: S-116 (2026-10-13, applied): S17 prints the hold frames, the camera's place and aim, each pose's description and its world points.
 - Next slice: AA-9 S13 written in parallel pieces, one per fighter and time window (each window overlapping its neighbour by one beat), merged and repaired by the solver (step motion).
 - Open findings: 143; decisions: 140 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->

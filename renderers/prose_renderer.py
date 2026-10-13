@@ -228,7 +228,9 @@ def hit_holds(envelope, frame_parts, labels):
             who = f"the whole body in frame ({bodies[0]})"
         else:
             continue
-        out.append(f"{_time(t)} impact: hold with {who}, no close-up")
+        frames = next((h["frames"] for h in frame_parts.get("holds", []) if abs(h["t"] - t) <= tolerance), None)
+        held = f" for {frames} frames" if frames else ""  # ADR-O113: the S17 hold's own frame count
+        out.append(f"{_time(t)} impact: hold{held} with {who}, no close-up")
     return out
 
 
@@ -371,6 +373,7 @@ def staff_lines(envelope, frame_parts, labels):
             notes.append(f"chain {_words(b['initiation'])} > {' > '.join(_words(p) for p in b['follow_through'])}")
         if slot["role"] == "actor":
             notes.append(slot["action"].rstrip("."))
+        notes.append(f"pose: {key['description'].rstrip('.')}")  # ADR-O113: the S13 key's own description
         if slot["role"] == "actor" and slot["event_type"] == "substitution":
             notes.append(vanish_note(gone.get((entity, slot["beat"]))))
         if slot["slot"] in facial:
@@ -402,8 +405,9 @@ def _euler(line, mode):
     # W3: inside a turn the root's angles would read as an angle list (R13); the run is named on its first line
     root = f"Root {_numbers(key['pos'])} EulerXYZ " + ("mid-turn" if line["mid_turn"] else _numbers(key["rot"]))
     joints = "Joints {" + ", ".join(f"{j}: {_numbers(key['bones'][j])}" for j in JOINTS) + "}"
-    if mode == "euler_heavy":
-        return f" · {root} · {joints}"
+    points = "Points {" + ", ".join(f"{_words(n)}: {_point(p)}" for n, p in sorted(key["points"].items())) + "}"
+    if mode == "euler_heavy":  # ADR-O113: every key's per-limb world points (forward kinematics)
+        return f" · {root} · {joints} · {points}"
     if mode == "upgraded_mixed" and (line["strike"] or line["last"]):
         return f" · {root} · {joints}"
     if mode == "mixed" and (line["strike"] or line["first"] or line["last"]):
@@ -740,11 +744,29 @@ def _camera(envelope, frame_parts, labels):
                    f"{f['visible_action'].rstrip('.')}; elevation {_num(a['elevation_deg'])}, azimuth "
                    f"{_num(a['azimuth_deg'])}, roll {_num(a['roll_deg'])}; {_num(lens['focal_length_mm'])} mm "
                    f"{lens['perspective']}; {mv['kind']}: {mv['path'].rstrip('.')}; {pb['treatment']} x{_num(pb['speed'])}; "
-                   f"shows {shows}; motivated by {_words(s['motivation']['kind'])} {name(s['motivation']['ref'])}.")
+                   f"shows {shows}; motivated by {_words(s['motivation']['kind'])} {name(s['motivation']['ref'])}; "
+                   + _camera_world(s, name) + ".")
     rules = camera_rules(envelope)
     holds = hit_holds(envelope, frame_parts, labels)
     return "[CAMERA]\n" + "\n".join(out + (["Holds on hits: " + "; ".join(holds) + "."] if holds else [])
                                      + ["Camera rules: " + " ".join(rules)])
+
+
+def _camera_world(s, name):
+    """ADR-O113: what the camera graph holds beyond the shot's grammar: where the camera stands and aims in the scene
+    (solver/camera_geometry.py), its focus, blur, composition, intent, movement quality, relation to the action and rig."""
+    pos, d = s["position"], s["derived"]
+    affected = s["blur"]["affected"]
+    blur = s["blur"]["motion_blur"] + (f" on {', '.join(name(x) for x in affected)}" if affected else "")
+    placement = ", ".join(f"{name(k)} {_words(v)}" for k, v in sorted(s["composition"]["placement"].items()))
+    rel, mq = s["relation_to_action"], s["movement_quality"]
+    return (f"camera {_num(pos['distance_m'])} m {pos['side']} of the {_words(pos['target'])}, at {_numbers(d['camera_pos'])} "
+            f"aiming at {_numbers(d['aim'])}; focus {s['focus']['depth_of_field']} on {name(s['focus']['target'])} "
+            f"({s['focus']['transition']}); motion blur {blur}; composition {placement or 'free'}, depth anchor "
+            f"{_words(s['composition']['depth_anchor'] or 'none')}, left open: "
+            f"{s['composition']['negative_space'] or 'nothing'}; "
+            f"intent {_words(s['intent'])}; {mq['stability']} {mq['easing']} movement, texture {mq['texture']}; "
+            f"{rel['mode']} {name(rel['subject'])}: {rel['note'].rstrip('.')}; rig {_words(s['support']['rig'])}")
 
 
 def camera_rules(envelope):
@@ -771,6 +793,8 @@ def _genre_block(envelope, frame_parts, labels):
         return f"{_time(item['t0'])}–{_time(item['t1'])}"
 
     out = ["Impact frames: " + (", ".join(_time(t) for t in frame_parts["impact"]) or "none") + ".",
+           *(["Holds: " + ", ".join(f"{_time(h['t'])} for {h['frames']} frames" for h in frame_parts["holds"]) + "."]
+             if frame_parts.get("holds") else []),  # ADR-O113: the frame counts the graph holds (O47's clause gone)
            "Smears, only on the declared limb or prop (the body does not smear): " + ("; ".join(
                f"{span(x)} {who(x['subject'])}{' ' + _words(x['part']) if x['part'] else ''}, {x['note']}"
                for x in frame_parts["smear"]) or "none") + ".",

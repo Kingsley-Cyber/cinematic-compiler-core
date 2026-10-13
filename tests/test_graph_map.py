@@ -10,8 +10,8 @@ from validators import graph_map, graph_reach
 
 pytestmark = pytest.mark.unit
 
-# the fields the prose renderer reads per example, as S17 stood at S-115; each S17 slice raises them (never lowers)
-READ_FLOOR = {"reference_fight": 89, "wizard_vs_acrobat": 76, "live_action_standoff": 68, "ugc_glasses_demo": 119}
+# the fields the prose renderer reads per example (S-116: holds, camera, poses, points); each S17 slice raises them
+READ_FLOOR = {"reference_fight": 99, "wizard_vs_acrobat": 87, "live_action_standoff": 79, "ugc_glasses_demo": 129}
 
 
 @pytest.mark.parametrize("example", graph_map.EXAMPLES)
