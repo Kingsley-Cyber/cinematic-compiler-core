@@ -101,9 +101,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.3; backlog 53.
-- Last session: S-111 (2026-10-13, applied): AA-8 measured live; AA-9: the pose step in parallel pieces.
-- Next slice: AA-6 The author casts any idea: when S02's cards find no performer, prop or surface (a kunoichi on a rooftop), the author writes the brief's entities, props and surfaces against its schema, the cards still winning where they match (step brief).
+- Layer order 1.7; rules 7.3; backlog 55.
+- Last session: S-112 (2026-10-13, applied): AA-9 split measured, AA-10 (turns whole, far contacts to S04), AA-6 casting built.
+- Next slice: AA-9 S13 written in parallel pieces, one per fighter and time window (each window overlapping its neighbour by one beat), merged and repaired by the solver (step motion).
 - Open findings: 143; decisions: 139 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 

@@ -57,7 +57,7 @@ ROOT = Path(__file__).resolve().parents[1]
 GUIDES = {"anime": "reference_fight", "live_action": "live_action_standoff", "ugc_ad": "ugc_glasses_demo"}  # AA-8
 FRONTIER = ("temporal",)  # the frontier model's first attempts (PLAN-008, AA-8)
 RETRY_FRONTIER = ("temporal", "motion", "effort", "camera")  # its retries
-PIECE = 3  # AA-9: the most slots one S13 piece writes
+PIECE = 5  # AA-9: about the most slots one S13 piece writes (a beat's slots stay together)
 ROUTES = {"HIT_HOLD": "camera"}  # a refusal some later step finds, fixed where its content is written (AA-8)
 FILLED = ("step_id", "band", "packet_sha256", "author", "attempt")  # the author sets these; the model never copies them
 ENV = ("HOME", "PATH", "USER", "LOGNAME", "SHELL", "TMPDIR", "LANG")
@@ -96,7 +96,8 @@ class ClaudeCLI:
         return {k: v for k, v in json.loads(path.read_text(encoding="utf-8")).items() if k not in FILLED}
 
     def write(self, node, step_id, packet, findings=None):
-        if node == "motion" and self.split:
+        whole = any(f.get("code", "").startswith(("ROTATION", "TURN")) for f in findings or [])  # a turn spans pieces
+        if node == "motion" and self.split and not whole:
             document, usage = self._split_motion(step_id, packet, findings)
         else:
             document, usage = self._call(node, step_id, packet, findings, self.previous.get(node, {}))
@@ -105,64 +106,72 @@ class ClaudeCLI:
                  "author": {"host": "cinematic author (claude -p, subscription)", "model": usage["model"]}}, usage)
 
     def _split_motion(self, step_id, packet, findings):
-        """AA-9: S13 in parallel pieces, each one fighter's keys in one time window (at most PIECE slots), merged into
-        one document. On a retry only the pieces holding a refused slot are written again, with their findings."""
+        """AA-9: S13 in parallel pieces, each one time window holding every fighter's keys in it (a beat never split,
+        about PIECE slots a piece), merged into one document. Fighters stay in one piece so a strike and its target are
+        posed together: split by fighter, the pieces met 18 refusals where one call met 6 (S-112). On a retry only the
+        pieces that hold a refused slot are written again, with their findings and their own previous keys."""
         from concurrent.futures import ThreadPoolExecutor
 
-        by_entity = {}
-        for slot in sorted(packet["slots"], key=lambda s: s["t"]):
-            by_entity.setdefault(slot["entity"], []).append(slot)
-        pieces = [own[i:i + PIECE] for own in by_entity.values() for i in range(0, len(own), PIECE)]
+        beats = {}
+        for slot in sorted(packet["slots"], key=lambda s: (s["t"], s["slot"])):
+            beats.setdefault(slot["t"], []).append(slot)
+        pieces, piece = [], []
+        for group in beats.values():
+            if piece and len(piece) + len(group) > PIECE:
+                pieces.append(piece)
+                piece = []
+            piece = piece + group
+        if piece:
+            pieces.append(piece)
+        bounds = [p[0]["t"] for p in pieces] + [float("inf")]
         previous = self.previous.get("motion") or {}
 
-        def span(piece):
-            """(entity, from, to): the times a piece owns, to its entity's next piece (in-betweens fall inside)."""
-            own = by_entity[piece[0]["entity"]]
-            after = own.index(piece[-1]) + 1
-            return piece[0]["entity"], piece[0]["t"], own[after]["t"] if after < len(own) else float("inf")
+        def span(index):
+            return bounds[index], bounds[index + 1]
 
-        def holds(piece, finding):
-            entity, low, high = span(piece)
+        def holds(index, finding):
+            low, high = span(index)
             slot = finding.get("slot") or ""
-            if slot in {s["slot"] for s in piece}:
+            if slot in {s["slot"] for s in pieces[index]}:
                 return True
-            head, _, tail = slot.partition("@")
-            return head == entity and not tail.startswith("b") and tail and low <= float(tail) < high
+            tail = slot.partition("@")[2]
+            return bool(tail) and not tail.startswith("b") and low <= float(tail) < high
 
-        redo = [p for p in pieces if not findings or not previous or any(holds(p, f) for f in findings)] or pieces
+        redo = [i for i in range(len(pieces)) if not findings or not previous or any(holds(i, f) for f in findings)]
+        redo = redo or list(range(len(pieces)))
 
-        def write(piece):
-            entity, low, high = span(piece)
-            mine = [f for f in findings or [] if holds(piece, f)] or findings
-            own_keys = [k for k in previous.get("keys", []) if k["slot"] in {s["slot"] for s in piece}]
-            note = (f"WRITE ONLY THE KEYS OF THESE SLOTS: {', '.join(s['slot'] for s in piece)} ({entity}, "
-                    f"{low:g} s to {'the end' if high == float('inf') else f'{high:g} s'}). Other authors write the other "
-                    "slots at the same time from the same packet: keep every key on its packet anchor and facing, and add "
-                    f"in-betweens only for {entity} inside that time.")
-            return self._call("motion", step_id, packet, mine, {"keys": own_keys} if findings else {}, note)
+        def write(index):
+            low, high = span(index)
+            slots = {s["slot"] for s in pieces[index]}
+            mine = [f for f in findings or [] if holds(index, f)] or findings
+            own = {"keys": [k for k in previous.get("keys", []) if k["slot"] in slots],
+                   "inbetweens": [b for b in previous.get("inbetweens", []) if low < b["t"] < high]}
+            note = (f"WRITE ONLY THE KEYS OF THESE SLOTS: {', '.join(sorted(slots))} (every fighter, {low:g} s to "
+                    f"{'the end' if high == float('inf') else f'{high:g} s'}). Other authors write the other times at "
+                    "the same time from the same packet: keep every key on its packet anchor and facing, and add "
+                    "in-betweens only inside that time.")
+            return self._call("motion", step_id, packet, mine, own if findings else {}, note)
 
         with ThreadPoolExecutor(max_workers=len(redo)) as pool:
-            written = dict(zip(map(id, redo), pool.map(write, redo), strict=True))
-        keys, inbetweens, usage = [], [], {"model": None, "tokens_in": 0, "tokens_out": 0, "cost_usd": 0.0,
+            written = dict(zip(redo, pool.map(write, redo), strict=True))
+        keys, inbetweens, usage = [], {}, {"model": None, "tokens_in": 0, "tokens_out": 0, "cost_usd": 0.0,
                                            "list_cost_usd": 0.0, "billing": "subscription", "pieces": len(redo)}
-        for piece in pieces:
-            entity, low, high = span(piece)
+        for index, piece in enumerate(pieces):
+            low, high = span(index)
             slots = {s["slot"] for s in piece}
-            document, used = written.get(id(piece), (previous, None))
+            document, used = written.get(index, (previous, None))
             keys += [k for k in document.get("keys", []) if k["slot"] in slots]
-            inbetweens += [b for b in document.get("inbetweens", []) if b["entity"] == entity and low < b["t"] < high]
+            for b in document.get("inbetweens", []):
+                if low < b["t"] < high:
+                    inbetweens[(b["entity"], round(b["t"], 4))] = b  # one per entity and instant
             if used:
                 usage["model"] = used["model"]
                 for field in ("tokens_in", "tokens_out", "list_cost_usd"):
                     usage[field] = round(usage[field] + used[field], 4)
-        return {"keys": keys, "inbetweens": inbetweens}, usage
+        return {"keys": keys, "inbetweens": sorted(inbetweens.values(), key=lambda b: (b["t"], b["entity"]))}, usage
 
     def _call(self, node, step_id, packet, findings, previous, note=None):
         """One `claude -p` call: (the model's document, usage)."""
-        import os
-        import subprocess
-        import tempfile
-
         model = self.frontier if node in FRONTIER or (findings and node in RETRY_FRONTIER) else self.other
         parts = [f"STEP {step_id} ({node}). THE PACKET (its `instructions` are your brief; follow them exactly):",
                  canonical_json(packet)]
@@ -181,8 +190,16 @@ class ClaudeCLI:
                   "values (its vocabulary, slots, ids, modes and their allowed combinations), use only those, copied "
                   "exactly, and check every combination against the packet before you answer. Return only the "
                   "document.")
+        return self._run(node, parts, _schema(node), system, model)
+
+    def _run(self, label, parts, schema, system, model):
+        """One isolated `claude -p` call: (the structured reply, usage), or BackendError."""
+        import os
+        import subprocess
+        import tempfile
+
         env = {k: os.environ[k] for k in ENV if k in os.environ}
-        argv = ["claude", "-p", "--output-format", "json", "--json-schema", json.dumps(_schema(node)),
+        argv = ["claude", "-p", "--output-format", "json", "--json-schema", json.dumps(schema),
                 "--system-prompt", system, "--tools", "", "--safe-mode", "--setting-sources", "project",
                 "--strict-mcp-config", "--no-session-persistence", "--model", model]
         detail = None
@@ -208,7 +225,28 @@ class ClaudeCLI:
                               "tokens_in": usage.get("input_tokens", 0) + usage.get("cache_creation_input_tokens", 0)
                               + usage.get("cache_read_input_tokens", 0), "cost_usd": 0.0,
                               "list_cost_usd": round(reply.get("total_cost_usd") or 0.0, 4), "billing": "subscription"}
-        raise BackendError(node, detail)
+        raise BackendError(label, detail)
+
+    def cast(self, idea, index, schemas, findings=None):
+        """AA-6: the idea rewritten in the forms S01 reads (a cast line per performer, `holding a <prop>`, `on a
+        <setting>`), every detail kept, and a draft card for each performer, prop or place the library lacks."""
+        parts = ["THE IDEA:", idea,
+                 "THE LIBRARY'S CARDS (reuse one when it fits; its names are what the query must say):", canonical_json(index),
+                 "THE CARD SCHEMAS (one per kind; a new card must match its kind's schema):", canonical_json(schemas),
+                 "THE QUERY FORMS THE PARSER READS: '<n> seconds <genre>[ fight scene]: ' then, for two performers, "
+                 "'<name> versus <name>', or a cast line per performer: 'A: <name>, <looks>. B: <name>, <looks>.'; a "
+                 "prop as 'holding a <prop name>' or 'props (<name>, <name>)'; the place as 'in a <place name>' or "
+                 "'on a <place name>'. Name each performer, prop and place by a card name, exactly."]
+        if findings:
+            parts += ["YOUR PREVIOUS ANSWER WAS REFUSED:", canonical_json(findings)]
+        schema = {"type": "object", "additionalProperties": False, "required": ["query", "cards"],
+                  "properties": {"query": {"type": "string", "minLength": 10},
+                                 "cards": {"type": "array", "items": {"type": "object"}}}}
+        system = ("You cast a scene for a cinematic compiler. Rewrite the idea as one query in the parser's forms, "
+                  "keeping every detail of the idea (looks, actions, timing, mood) in its words, and write a new draft "
+                  "card only for a performer, prop or place no library card covers. Return only the JSON.")
+        return self._run("cast", parts, schema, system, self.other)
+
 
 
 REPAIRABLE = ("CONTACT_WORLD", "BODY_OVERLAP", "FLOOR_PENETRATION")  # in the order they are repaired
@@ -217,7 +255,7 @@ LEGS = ["LUL.x", "LUL.y", "LUL.z", "RUL.x", "RUL.y", "RUL.z", "LL.x", "RL.x"]
 BETWEEN = re.compile(r"at (\d+(?:\.\d+)?) between keys")
 
 
-def repair_motion(document, findings, envelope, rounds=6):
+def repair_motion(document, findings, envelope, rounds=None):
     """AA-4 (PLAN-008): S13's overlap and floor refusals repaired by the re-block solver before the model retries,
     one finding at a time, S13 re-checking after each (`rounds` at most). A refusal at a key re-blocks the key: its arms
     and spine free inside the joint limits, its root on its S04 anchor, its soles and every part it touches something
@@ -271,6 +309,7 @@ def repair_motion(document, findings, envelope, rounds=6):
         return goals, parts
 
     skipped = set()
+    rounds = rounds or min(40, 2 * len(findings) + 4)  # enough for every finding, its repair re-checked
     for _ in range(rounds):
         mine = sorted((f for f in findings if f.get("code") in REPAIRABLE and canonical_json(f) not in skipped),
                       key=lambda f: REPAIRABLE.index(f["code"]))
@@ -332,6 +371,108 @@ def repair_motion(document, findings, envelope, rounds=6):
     return plan
 
 
+def casting(idea, backend, *, genre=None, attempts=3, progress=None):
+    """AA-6: (query, cards, new_cards) for any idea. When S01 and S02 already cast the idea from the library (a performer
+    and a place), it stands as written. Otherwise the backend rewrites it in the parser's forms and drafts a card for
+    each performer, prop or place the library lacks; a new card is checked against its kind's schema, marked a draft
+    for the owner (R-30), and the cast is refused until S02 finds a performer and a place."""
+    import copy
+    import datetime
+
+    from planner.card_loader import FOLDERS, load_cards
+    from planner.query_expander import expand
+    from validators.schema_validator import validate_schema
+
+    library = load_cards()
+
+    def cast_of(query, cards):
+        intent = {"raw_query": query, **parse_intent(query)}
+        if genre:
+            intent["parsed"]["genre"] = genre
+        result = expand(intent, cards)
+        return result["entities"], result["surfaces"]
+
+    try:
+        entities, surfaces = cast_of(idea, library)
+    except ContractError:
+        entities, surfaces = [], []
+    if entities and surfaces:
+        return idea, library, []
+    schemas = {kind: json.loads((ROOT / "schemas" / "cards" / f"{kind}_card.schema.json").read_text(encoding="utf-8"))
+               for kind in FOLDERS}
+    index = [{"card_id": c["card_id"], "kind": c["kind"], "names": c["names"], "description": c.get("description")}
+             for c in library.values()]
+    findings = None
+    for _ in range(attempts):
+        started = time.perf_counter()
+        answer, usage = backend.cast(idea, index, schemas, findings)
+        if progress:
+            progress(f"cast written by {usage['model']} in {time.perf_counter() - started:.0f} s")
+        cards, new, findings = copy.deepcopy(library), [], []
+        for card in answer.get("cards", []):
+            card = {**card, "status": "draft", "card_version": 1,
+                    "provenance": {"authored_by": "cinematic author (claude -p)",
+                                   "date": datetime.date.today().isoformat(),
+                                   "basis": "Drafted for this idea by the automatic author (AA-6); needs owner review."}}
+            try:
+                if card.get("kind") not in schemas or card.get("card_id") in cards:
+                    raise ContractError("CARD", "unknown kind or a card_id the library already uses", card.get("card_id"))
+                validate_schema(card, schemas[card["kind"]])
+            except ContractError as refused:
+                findings.append({"code": "CARD", "card": card.get("card_id"), "message": str(refused)})
+                continue
+            cards[card["card_id"]] = card
+            new.append(card)
+        if not findings:
+            try:
+                entities, surfaces = cast_of(answer["query"], cards)
+            except ContractError as refused:
+                entities, surfaces = [], []
+                findings.append({"code": "CAST", "message": str(refused)})
+            if entities and surfaces:
+                return answer["query"], cards, new
+            findings.append({"code": "CAST", "message": f"S02 cast {len(entities)} performer(s) and "
+                             f"{len(surfaces)} surface(s) from {answer['query']!r}: it needs a performer and a place"})
+        if progress:
+            progress("cast refused: " + "; ".join(f["message"][:120] for f in findings))
+    raise AuthorFailed("cast", findings, [])
+
+
+FAR_M = 0.3  # a contact still this far off after the solver's repair goes back to S04's anchors (AA-10)
+MISS = re.compile(r"by (\d+(?:\.\d+)?) m")
+
+
+REACH_M = 1.5  # two bodies' anchors farther apart than this, on the ground plane, cannot meet by a limb
+
+
+def _out_of_reach(envelope, findings):
+    """Whether every missed contact in `findings` joins two bodies whose S04 anchors are over REACH_M apart at its
+    instant (the target at its nearest slot in time): S13 cannot close that with a key's root fixed on its anchor."""
+    from planner.scene_view import slots
+
+    contacts = {c["id"]: c for c in envelope["nodes"]["contacts"]["items"]}
+    by_entity = {}
+    for slot in slots(envelope):
+        by_entity.setdefault(slot["entity"], []).append(slot)
+    for finding in findings:
+        contact = contacts.get(finding.get("contact"))
+        if not contact or contact["b"]["kind"] != "entity":
+            return False
+        mine, theirs = by_entity.get(contact["a"]["id"]), by_entity.get(contact["b"]["id"])
+        if not mine or not theirs:
+            return False
+        a = min(mine, key=lambda s: abs(s["t"] - contact["t"]))["pos"]
+        b = min(theirs, key=lambda s: abs(s["t"] - contact["t"]))["pos"]
+        if ((a[0] - b[0]) ** 2 + (a[2] - b[2]) ** 2) ** 0.5 <= REACH_M:
+            return False
+    return True
+
+
+def _miss(finding):
+    found = MISS.search(finding.get("message", ""))
+    return float(found.group(1)) if found else 0.0
+
+
 def _keep(cache, plans):
     """AA-7: each document under its packet's hash (the steps before a refusal passed; at the end, all of them)."""
     if cache is None:
@@ -346,7 +487,7 @@ def _sequence(query, genre):
 
 
 def author(query, backend, *, genre=None, duration_s=None, until="render", load_bearing=False, progress=None,
-           cache=None):
+           cache=None, cards=None):
     """(envelope, calls): the compiled envelope with every authored step written by `backend`, and the call log;
     `progress(line)`, when given, hears each call as it returns and each refusal. `cache` (a folder, AA-7) keeps each
     accepted document under its packet's hash, so a re-run writes only the steps whose packets changed."""
@@ -360,7 +501,7 @@ def author(query, backend, *, genre=None, duration_s=None, until="render", load_
 
     def run(target):
         return pipeline.run(query, genre=genre, duration_s=duration_s, until=target, plans=plans,
-                            load_bearing=load_bearing)
+                            load_bearing=load_bearing, cards=cards)
 
     def refuse(node, findings):
         if progress:
@@ -379,6 +520,13 @@ def author(query, backend, *, genre=None, duration_s=None, until="render", load_
         except StepFailed as failed:  # an authored step's gate (GateFailed) or a derived step's check
             node = replan_trigger.owning_step(node_of[failed.step_id], resolved)
             findings = failed.findings
+            far = [f for f in findings if f.get("code") == "CONTACT_WORLD" and _miss(f) > FAR_M]
+            if (node == "motion" and far and repairs.get(attempts.get(node)) is not None
+                    and attempts.get("temporal", 0) < replan_trigger.MAX_ATTEMPTS
+                    and _out_of_reach(run(sequence[sequence.index("motion") - 1]), far)):
+                node = "temporal"  # the solver could not reach: S04 placed the bodies out of reach (AA-10)
+                findings = [{**f, "message": f["message"] + "; the beat's anchors put the two bodies out of reach: "
+                             "place them so this contact can land"} for f in far]
             routed = {ROUTES.get(f.get("code")) for f in findings}
             if len(routed) == 1 and None not in routed and next(iter(routed)) in plans:
                 node = next(iter(routed))  # AA-8: e.g. HIT_HOLD at S17 is the camera's to fix
@@ -415,6 +563,9 @@ def author(query, backend, *, genre=None, duration_s=None, until="render", load_
         for later in sequence[sequence.index(node) + 1:]:
             if plans.pop(later, None) is not None:  # written for a packet this step may change
                 next(c for c in reversed(calls) if c["node"] == later).setdefault("result", "dropped")
+                attempts.pop(later, None)  # a new packet: its attempts start again
+                if later == "motion":
+                    repairs.clear()
         attempts[node] = attempts.get(node, 0) + 1
         started = time.perf_counter()
         kept = cache / f"{packet['packet_sha256'].split(':')[1]}.json" if cache and not findings else None

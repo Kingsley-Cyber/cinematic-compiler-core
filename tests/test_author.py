@@ -102,8 +102,8 @@ def test_a_re_run_takes_every_accepted_step_from_the_cache(tmp_path):
 
 
 def test_the_pose_step_is_written_in_pieces_and_a_retry_redoes_only_the_refused_piece():
-    """AA-9: S13's slots go out in pieces of at most three, one fighter and one time window each, written at once and
-    merged; a retry writes again only the pieces that hold a refused slot."""
+    """AA-9: S13's slots go out in time windows of about five, every fighter of a beat in one piece, written at once
+    and merged; a retry writes again only the pieces that hold a refused slot."""
     from compiler import author as module
     from compiler import pipeline
     from compiler.passes.derived import p13_motion
@@ -112,6 +112,7 @@ def test_the_pose_step_is_written_in_pieces_and_a_retry_redoes_only_the_refused_
     plans = {p.stem: json.loads(p.read_text(encoding="utf-8")) for p in sorted((folder / "plans").glob("*.json"))}
     packet = p13_motion.prepare(pipeline.run(query, until="bartenieff", plans=plans))
     committed = {k["slot"]: k for k in plans["motion"]["keys"]}
+    beat_of = {s["slot"]: s["t"] for s in packet["slots"]}
     asked = []
 
     class Fake(module.ClaudeCLI):
@@ -124,8 +125,39 @@ def test_the_pose_step_is_written_in_pieces_and_a_retry_redoes_only_the_refused_
     backend = Fake("anime")
     document, usage = backend.write("motion", "S13", packet)
     assert sorted(k["slot"] for k in document["keys"]) == sorted(committed)
-    assert all(len(piece) <= module.PIECE and len({s.split("@")[0] for s in piece}) == 1 for piece in asked)
-    assert usage["pieces"] == len(asked) and document["inbetweens"] == plans["motion"]["inbetweens"]
+    assert len(asked) > 1 and usage["pieces"] == len(asked)
+    times = [{beat_of[s] for s in piece} for piece in asked]
+    assert all(not (a & b) for i, a in enumerate(times) for b in times[i + 1:])  # a beat is never split
+    assert document["inbetweens"] == plans["motion"]["inbetweens"]
     asked.clear()
     backend.write("motion", "S13", packet, [{"code": "BODY_OVERLAP", "slot": "acrobat@b06", "message": "."}])
     assert len(asked) == 1 and "acrobat@b06" in asked[0]
+
+
+def test_an_idea_the_library_cannot_cast_is_cast_from_new_draft_cards():
+    """AA-6: S02 casts nobody from "a kunoichi ... on a moonlit rooftop"; the backend's rewrite and its draft cards (a
+    kunoichi, a rooftop) cast the kunoichi on the roof; a castable idea stands as written; a new card is a draft."""
+    import copy
+
+    import yaml
+
+    from compiler import pipeline
+    from compiler.author import casting
+    ninja = yaml.safe_load((ROOT / "library" / "archetypes" / "ninja.yaml").read_text(encoding="utf-8"))
+    world = yaml.safe_load((ROOT / "library" / "worlds" / "bamboo_courtyard.yaml").read_text(encoding="utf-8"))
+    kunoichi = {**copy.deepcopy(ninja), "card_id": "kunoichi", "names": ["kunoichi"], "status": "approved"}
+    rooftop = {**copy.deepcopy(world), "card_id": "moonlit_rooftop", "names": ["moonlit rooftop"], "match_terms": ["rooftop"],
+               "surfaces": [{"id": "roof", "kind": "floor", "description": "Flat roof at y=0."}]}
+
+    class Caster:
+        def cast(self, idea, index, schemas, findings=None):
+            return {"query": "6 seconds anime fight scene. A: kunoichi, dark blue outfit. On a moonlit rooftop.",
+                    "cards": [kunoichi, rooftop]}, {"model": "fake"}
+
+    query, cards, new = casting("6 seconds anime: a kunoichi in dark blue sprints across a moonlit rooftop", Caster())
+    envelope = pipeline.run(query, until="brief", cards=cards)
+    assert [e["id"] for e in envelope["nodes"]["entities"]["items"]] == ["kunoichi"]
+    assert [s["id"] for s in envelope["nodes"]["surfaces"]["items"]] == ["roof"]
+    assert {c["card_id"]: c["status"] for c in new} == {"kunoichi": "draft", "moonlit_rooftop": "draft"}
+    castable = "6 seconds anime fight scene: ninja versus knight in a moonlit bamboo courtyard"
+    assert casting(castable, None)[0] == castable

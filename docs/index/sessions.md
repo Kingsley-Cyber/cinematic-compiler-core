@@ -118,6 +118,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-109 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog AA-4, AA-3 (PLAN-008); ADR-O112 | applied | the commit whose message names [S-109] | from 23:20 to 00:05 | — | [S-109-aa-4-the-solver-repairs-s13.md](../sessions/S-109-aa-4-the-solver-repairs-s13.md) |
 | S-110 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog AA-7, AA-8 (PLAN-008); the owne… | applied | the commit whose message names [S-110] | from 00:20 to 00:30 | — | [S-110-aa-7-the-resume-cache-and-aa-8.md](../sessions/S-110-aa-7-the-resume-cache-and-aa-8.md) |
 | S-111 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog AA-8, AA-9 (PLAN-008); the owne… | applied | the commit whose message names [S-111] | from 00:30 to 00:45 | — | [S-111-aa-8-measured-and-aa-9-the-split.md](../sessions/S-111-aa-8-measured-and-aa-9-the-split.md) |
+| S-112 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog AA-9, AA-10, AA-6 (PLAN-008); t… | applied | the commit whose message names [S-112] | from 00:40 to 01:10 | — | [S-112-aa-9-and-aa-10-the-pose-split-and-anchors.md](../sessions/S-112-aa-9-and-aa-10-the-pose-split-and-anchors.md) |
 
 ## Status values
 

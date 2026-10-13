@@ -78,3 +78,12 @@ and S15/S16 in parallel, and S13 begun before S12 ends, since each reads the ste
   a solver repair), 26.6 min, $4.06 at list price on the subscription; the prose prompts 18.8k to 23.0k characters,
   3 checklist rows failing (M4 among them) and 29 not checked. AA-6 (casting any idea) next.
 - 2026-10-13 — The owner's speed plan recorded: AA-7, AA-8, AA-9; AA-6 alongside.
+- 2026-10-13 — AA-8 measured (S-111): the same idea in 10.2 min and $2.08 at list price (26.6 min and $4.06 before):
+  S04 61 s, S11 32 s, S12 21 s (no retry), S13 189 s Sonnet + 33 s solver + 100 s Opus, S15 24 + 35 s, S16 105 s,
+  S17 10 s; the prose prompts 38 PASS, 0 FAIL. AA-9's split built and tested offline; its live time next.
+- 2026-10-13 — AA-9 measured (S-112): split by fighter, S13's first draft took 34 s but met 18 refusals (6 to 7 in one
+  call) and the run stopped at S13 after 6 min (two strikes 0.35 m short); split by time window with every fighter of
+  a beat together, 51 s and 9 refusals, stopped at S13 after 7.5 min (a spin across two windows, two strikes 0.52 and
+  0.23 m short). AA-10: a turn refusal is rewritten whole; a contact still over 0.3 m off after the solver goes back
+  to S04 when the anchors are over 1.5 m apart; the repair's rounds scale with its findings. AA-6's casting built and
+  tested offline (a kunoichi and a rooftop cast from draft cards); its first live run next.

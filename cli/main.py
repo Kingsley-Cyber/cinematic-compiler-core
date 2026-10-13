@@ -98,8 +98,19 @@ def _author(args):
         def say(line):
             progress.write(line + "\n")
             progress.flush()
+        cards = None
+        if hasattr(backend, "cast"):  # AA-6: any idea, cast from the library and new draft cards
+            import yaml
+
+            query, cards, new = author.casting(query, backend, genre=args.genre, progress=say)
+            (out / "query.txt").write_text(query + "\n", encoding="utf-8")
+            for card in new:
+                (out / "cards").mkdir(exist_ok=True)
+                (out / "cards" / f"{card['card_id']}.yaml").write_text(yaml.safe_dump(card, sort_keys=False),
+                                                                      encoding="utf-8")
+            say(f"cast: {query}" + (f" (new draft cards: {', '.join(c['card_id'] for c in new)})" if new else ""))
         envelope, calls = author.author(query, backend, genre=args.genre, duration_s=duration, progress=say,
-                                        cache=None if args.no_cache else Path(args.cache).expanduser())
+                                        cache=None if args.no_cache else Path(args.cache).expanduser(), cards=cards)
     except author.BackendError as failed:
         print(f"stopped: {failed} ({failed.path})", file=sys.stderr)
         return 7
