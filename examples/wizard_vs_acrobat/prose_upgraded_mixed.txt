@@ -164,9 +164,9 @@ In-between keys (no beat, no contact): the interpolation passes through each pos
 [SPATIAL ANCHORS]
 Frame: up +Y, forward +Z, ground y=0, units m; Euler XYZ intrinsic, right-handed, degrees; +X = the performer's left; joints local to their parent (root -> Sp -> arms, legs, NK -> HD; the hips sit on the pelvis), root in the scene frame.
 Axes: Y_up, A faces -Z, B faces +Z, ground y=0.
-ground (floor): Flat flagstone ground at y=0; solid.
-bamboo wall (boundary): Dense bamboo stalks around the courtyard edge; solid.
-stone pillar (obstacle): Weathered stone pillar inside the courtyard; solid.
+ground (floor): Flat flagstone ground at y=0; at x -9 to 9, y -0.5 to 0, z -9 to 9 m; solid.
+bamboo wall (boundary): Dense bamboo stalks around the courtyard edge; at x -9.5 to 9.5, y 0 to 6, z -9.5 to -9 m and x -9.5 to 9.5, y 0 to 6, z 9 to 9.5 m and x -9.5 to -9, y 0 to 6, z -9 to 9 m and x 9 to 9.5, y 0 to 6, z -9 to 9 m; solid.
+stone pillar (obstacle): Weathered stone pillar inside the courtyard; at x 2.4 to 3.2, y 0 to 3, z 2.7 to 3.5 m; solid.
 B starts at [0, 0.96, 0].
 A starts at [0, 1.19, 6].
 Height used: y 0.56 to 2.3 m; depth used: z 0 to 6 m.

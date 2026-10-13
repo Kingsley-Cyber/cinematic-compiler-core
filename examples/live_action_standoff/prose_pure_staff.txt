@@ -76,8 +76,8 @@ Explicit = the staff lines; implied = everything between them (IMPLIED GUIDANCE)
 [SPATIAL ANCHORS]
 Frame: up +Y, forward +Z, ground y=0, units m; Euler XYZ intrinsic, right-handed, degrees; +X = the performer's left; joints local to their parent (root -> Sp -> arms, legs, NK -> HD; the hips sit on the pelvis), root in the scene frame.
 Axes: Y_up, A faces -Z, B faces +Z, ground y=0.
-ground (floor): Packed earth or stone flooring at y=0; solid.
-stone wall (wall): Heavy stone wall bounding the space; solid.
+ground (floor): Packed earth or stone flooring at y=0; at x -9 to 9, y -0.5 to 0, z -9 to 9 m; solid.
+stone wall (wall): Heavy stone wall bounding the space; at x -9.5 to 9.5, y 0 to 4, z -9.5 to -9 m and x -9.5 to 9.5, y 0 to 4, z 9 to 9.5 m and x -9.5 to -9, y 0 to 4, z -9 to 9 m and x 9 to 9.5, y 0 to 4, z -9 to 9 m; solid.
 A starts at [0, 0.97, 4].
 B starts at [0, 0.92, 0].
 Height used: y 0.92 to 0.97 m; depth used: z 0 to 4 m.

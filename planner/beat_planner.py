@@ -34,7 +34,8 @@ def prepare(envelope):
         "entities": [{key: e[key] for key in ("id", "name", "description", "parts", "capabilities", "modes")} for e in entities],
         "props": [{key: p[key] for key in ("id", "name", "description", "parts", "states", "affordances", "grips")}
                   for p in props],
-        "surfaces": [{**{key: s[key] for key in ("id", "kind", "description")}, "ax": s.get("ax")} for s in surfaces],
+        "surfaces": [{**{key: s[key] for key in ("id", "kind", "description", "boxes")}, "ax": s.get("ax")}
+                     for s in surfaces],  # boxes: where each surface is, in metres (R20 next action 2)
         "constraints": [{"id": c["id"], "rule": c["rule"], "applies_to": targets.get(c["id"], [])}
                         for c in nodes["constraints"]["items"]],
         "vocabulary": resolve(entities, props, surfaces, kernel_files.load("state_vocabulary")),

@@ -10,9 +10,9 @@ Layer order 1.7; rules 7.3; backlog 55.
 
 ## Last sessions
 
-- S-119 (applied): The graphs turn as one wheel: data-flow contract, cross-graph consistency, end-to-end tracer (ADR-O115)
 - S-120 (applied): Determinism and the control layer: the prompt is the same from disk, from memory, in any key order
 - S-121 (applied): Hands and props: every hand empty or holding a named prop on every line; no rule for a prop the scene lacks
+- S-122 (applied): Surfaces placed in metres: every surface has boxes, S04 checks a body reaches the surface it meets, the prompt prints where each is
 
 ## Next slices
 
@@ -90,7 +90,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 143
+## Open findings: 144
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -135,7 +135,8 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-216 (high, L1.1): Repo-authored fight defects outside the owner's questions
 - F-221 (high, L4c): Open supports are not checked between keys: a supporting part lifts far off its surface before its release
 - F-230 (high, L4c): B's in-between keys lift it off the ground, sink its crash and name motions they do not make
+- F-235 (high, all): A contact with a surface's face is not measured; the reference fight's wall push is off its pillar
 
 ## Next free IDs
 
-Decision ADR-O117, finding F-235, session S-122, render R21.
+Decision ADR-O117, finding F-236, session S-123, render R21.

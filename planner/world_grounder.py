@@ -31,5 +31,6 @@ def ground_world(setting, cards, query=""):
 def surfaces_from_card(card):
     return [{"id": row["id"], "world_card_id": card["card_id"], "card_version": card["card_version"],
              "card_status": card["status"], "kind": row["kind"], "description": row["description"],
+             "boxes": [{"min": list(box["min"]), "max": list(box["max"])} for box in row["boxes"]],
              **({"ax": row["ax"]} if "ax" in row else {})}
             for row in card["surfaces"]]

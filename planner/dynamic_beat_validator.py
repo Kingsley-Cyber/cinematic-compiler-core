@@ -23,7 +23,8 @@ prop it changes and places within 0.15 m of its actor's anchor at its start (O12
 hand, and no other prop may. A float (stylised, no gravity) is allowed in anime only. The 2 m reach and the 0.25 m
 tolerance are Claude's interpretation.
 Surface height (owner O21, audit X7, SURFACE_HEIGHT): when a foot starts bearing weight on a surface whose top is known
-(its world card's geometry text, "from y=0 to y=8"; a floor without one sits at the convention's ground), the
+(its geometry text, "to y=8", or a floor's or tabletop's boxes, R20 next action 2; else a floor sits at the convention's
+ground), the
 performer's root (its anchor at that instant; a landing between two keys has none and is not judged) lies between
 the top and the standing leg of the genre's body above it (the packet's `standing_leg_m`: thigh, shin and ankle of
 library/body_segments.yaml, owner O85), within 0.05 m either way. Interpretation (Claude's, for owner review): the
@@ -53,10 +54,13 @@ REACH_M, KINEMATIC_TOLERANCE_M = 2.0, 0.25
 VELOCITY_TOLERANCE_MPS = 0.25  # interpretation (Claude's, for owner review): the pre sample's velocity under gravity
 PHASE_ORDER = {"pre": 0, None: 1, "post": 2}
 BEFORE = 1e-6  # a pre sample's holder is read this long before its contact
-TOP = re.compile(r"to y=(-?\d+(?:\.\d+)?)")
 GROUND = re.compile(r"y=(-?\d+(?:\.\d+)?)")
 # interpretation (Claude's, for owner review): a root's height over its supporting top; a resting prop on a top
+TOP = re.compile(r"to y=(-?\d+(?:\.\d+)?)")
+# kinds whose top is stood or set on; a pillar or wall is met on its faces (not measured yet: F-235)
+WALKABLE = ("floor", "tabletop")
 SURFACE_SLACK_M, SUPPORT_M = 0.05, 0.1
+SURFACE_REACH_M = 1.5  # a body's reach from its root (compiler/author.py REACH_M, AA-10): Claude's interpretation
 TELEPORT_MPS = 25.0  # owner O12: anything faster between keys is a teleport (human sprint ~12, anime ~15, strikes ~20)
 DECOY_M = 0.15  # owner O72's contact tolerance: the decoy stands where its actor stood (O48: A swaps places with it)
 
@@ -154,7 +158,7 @@ def validate(plan, packet):
     return (findings + _teleports(beats) + _vanished(beats) + _release_at_pose(beats)
             + _prop_kinematics(beats, props, packet["scene"]["genre"])
             + _thrown(beats) + _surface_heights(beats, _tops(packet), packet["standing_leg_m"])
-            + _prop_support(beats, _tops(packet)))
+            + _prop_support(beats, _tops(packet)) + _surface_reach(beats, packet["surfaces"]))
 
 
 def _prop_support(beats, tops):
@@ -192,11 +196,41 @@ def surface_tops(surfaces, ground_text):
     tops = {}
     for surface in surfaces:
         found = TOP.search(surface.get("ax") or "")
-        if found:
+        if found:  # a top its geometry text names ("from y=0 to y=8": the reference pillar's top is stood on)
             tops[surface["id"]] = float(found.group(1))
+        elif surface["kind"] in WALKABLE and surface.get("boxes"):  # R20 next action 2: its place in metres
+            tops[surface["id"]] = max(box["max"][1] for box in surface["boxes"])
         elif surface["kind"] == "floor" and ground:
             tops[surface["id"]] = float(ground.group(1))
     return tops
+
+
+def box_distance(point, boxes):
+    """Metres from a point to the nearest of a surface's boxes (0 inside one)."""
+    return min(math.dist(point, [min(max(v, lo), hi) for v, lo, hi in zip(point, box["min"], box["max"], strict=True)])
+               for box in boxes)
+
+
+def _surface_reach(beats, surfaces):
+    """SURFACE_REACH (R20 next action 2: the pillar sat to the side): a body touching, standing on or leaving a
+    surface other than a floor is within reach of where that surface is: its anchor before or after the contact's
+    instant within SURFACE_REACH_M of the surface's boxes."""
+    findings = []
+    places = {s["id"]: s["boxes"] for s in surfaces if s["kind"] != "floor" and s.get("boxes")}
+    anchors = sorted((b["t"], entity, pos) for b in beats for entity, pos in b["pos"].items() if pos is not None)
+    for beat in beats:
+        for contact in beat["contacts"]:
+            surface, entity = contact["b"]["id"], contact["a"]["id"]
+            if contact["b"]["kind"] != "surface" or surface not in places:
+                continue
+            t = _at(beat, contact)
+            near = [pos for at, who, pos in anchors if who == entity and at <= t + EPSILON][-1:] + \
+                   [pos for at, who, pos in anchors if who == entity and at >= t - EPSILON][:1]
+            gaps = [box_distance(pos, places[surface]) for pos in near]
+            if gaps and min(gaps) > SURFACE_REACH_M:
+                findings.append(_finding("SURFACE_REACH", f"{entity} meets {surface} at {t:g} from {min(gaps):.2f} m "
+                                         f"away (its anchor; reach {SURFACE_REACH_M} m)", beat["id"], contact))
+    return findings
 
 
 def _surface_heights(beats, tops, leg):

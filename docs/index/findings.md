@@ -240,6 +240,7 @@ Every finding: a bug, gap, contradiction, drift, question, risk or opportunity f
 | F-232 | In-between lines print raw angles inside a declared turn; an in-betwe… | gap | medium | L6 | in progress | — | - Principal review 8 (S-099, layers S10-S18): the… | 2026-10-12 | [F-232-in-between-lines-print-raw-angles-inside-a.md](../findings/F-232-in-between-lines-print-raw-angles-inside-a.md) |
 | F-233 | Two checks this run loosened: a standing body reads airborne between… | bug | high | all | resolved | — | - RV-59h (S-091): between keys `airborne` now rea… | 2026-10-12 | [F-233-two-checks-this-run-loosened-a-standing.md](../findings/F-233-two-checks-this-run-loosened-a-standing.md) |
 | F-234 | A kernel prop rule is applied to every prop, whatever props it names | bug | high | all | resolved | — | - S03 (compiler/passes/mandatory/p03_constraint.p… | 2026-10-13 | [F-234-a-kernel-prop-rule-is-applied-to-every.md](../findings/F-234-a-kernel-prop-rule-is-applied-to-every.md) |
+| F-235 | A contact with a surface's face is not measured; the reference fight'… | gap | high | all | open | — | - solver/contact_world.py: a touch on any surface… | 2026-10-13 | [F-235-a-contact-with-a-surface-s-face-is-not-measured.md](../findings/F-235-a-contact-with-a-surface-s-face-is-not-measured.md) |
 
 ## Type values
 

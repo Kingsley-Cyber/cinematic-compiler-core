@@ -59,8 +59,8 @@ Explicit = the staff lines; implied = everything between them (IMPLIED GUIDANCE)
 [SPATIAL ANCHORS]
 Frame: up +Y, forward +Z, ground y=0, units m; Euler XYZ intrinsic, right-handed, degrees; +X = the performer's left; joints local to their parent (root -> Sp -> arms, legs, NK -> HD; the hips sit on the pelvis), root in the scene frame.
 Axes: Y_up, A faces +Z, ground y=0.
-tabletop (tabletop): Flat surface where the product rests between interactions; solid.
-backdrop (backdrop): Plain background behind the hands and product; solid.
+tabletop (tabletop): Flat surface where the product rests between interactions; at x -0.6 to 0.6, y 0.72 to 0.75, z 0.3 to 0.9 m; solid.
+backdrop (backdrop): Plain background behind the hands and product; at x -2 to 2, y 0 to 2.5, z -1.6 to -1.5 m; solid.
 A starts at [0, 0.97, 0].
 Height used: y 0.97 to 0.97 m; depth used: z 0 to 0 m.
 

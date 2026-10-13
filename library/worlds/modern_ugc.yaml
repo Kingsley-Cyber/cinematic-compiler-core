@@ -1,6 +1,6 @@
 card_id: modern_ugc
 kind: world
-card_version: 1
+card_version: 2
 status: draft
 names: [modern ugc]
 description: A present-day home or studio space framed for a handheld product video.
@@ -8,8 +8,8 @@ match_terms: [kitchen, counter, countertop, desk, bathroom, vanity, bedroom, stu
 genres: [ugc_ad]
 ax: {up: "+Y", forward: "+Z", ground: "y=0", unit: m}
 surfaces:
-  - {id: tabletop, kind: tabletop, description: Flat surface where the product rests between interactions.}
-  - {id: backdrop, kind: backdrop, description: Plain background behind the hands and product.}
+  - {id: tabletop, kind: tabletop, description: Flat surface where the product rests between interactions., boxes: [{min: [-0.6, 0.72, 0.3], max: [0.6, 0.75, 0.9]}]}
+  - {id: backdrop, kind: backdrop, description: Plain background behind the hands and product., boxes: [{min: [-2, 0, -1.6], max: [2, 2.5, -1.5]}]}
 invariants:
   - id: product_stays_identical
     rule: The product keeps one shape, colour and label for the whole scene.

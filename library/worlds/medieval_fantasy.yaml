@@ -1,6 +1,6 @@
 card_id: medieval_fantasy
 kind: world
-card_version: 1
+card_version: 2
 status: draft
 names: [medieval fantasy]
 description: A medieval fantasy setting of stone castles, keeps and battlefields.
@@ -8,8 +8,8 @@ match_terms: [castle, keep, battlefield, medieval, throne, tavern, village]
 genres: [anime, live_action]
 ax: {up: "+Y", forward: "+Z", ground: "y=0", unit: m}
 surfaces:
-  - {id: ground, kind: floor, description: Packed earth or stone flooring at y=0.}
-  - {id: stone_wall, kind: wall, description: Heavy stone wall bounding the space.}
+  - {id: ground, kind: floor, description: Packed earth or stone flooring at y=0., boxes: [{min: [-9, -0.5, -9], max: [9, 0, 9]}]}
+  - {id: stone_wall, kind: wall, description: Heavy stone wall bounding the space., boxes: [{min: [-9.5, 0, -9.5], max: [9.5, 4, -9]}, {min: [-9.5, 0, 9], max: [9.5, 4, 9.5]}, {min: [-9.5, 0, -9], max: [-9, 4, 9]}, {min: [9, 0, -9], max: [9.5, 4, 9]}]}
 invariants:
   - id: no_modern_technology
     rule: No modern technology appears unless the scene declares it.

@@ -195,6 +195,9 @@ def project(envelope, frame_parts, block_key, genre_block):
         cover.mark("surfaces", surface["id"])
         if surface.get("ax"):
             ax.append(surface["ax"])
+        for box in surface.get("boxes", []):  # R20 next action 2: where it is, in metres
+            ax.append(f"{surface['id']} " + " ".join(f"{a} {_num(lo)}..{_num(hi)}" for a, lo, hi in
+                                                    zip("xyz", box["min"], box["max"], strict=True)))
 
     spec = {"variant": VARIANT, "fps": _num(scene["fps"]), "dur": float(scene["duration_s"]), "ax": ",".join(ax),
             "key": " ".join(sections["key"]), "lma_legend": _legend(), "negative": ",".join(sections["negative"]),

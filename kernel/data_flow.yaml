@@ -1,4 +1,4 @@
-version: 2
+version: 4
 status: draft
 measured_on:
 - reference_fight
@@ -67,6 +67,7 @@ layers:
   - nodes.props.states
   - nodes.props.unit_name
   - nodes.surfaces.ax
+  - nodes.surfaces.boxes
   - nodes.surfaces.card_status
   - nodes.surfaces.card_version
   - nodes.surfaces.description
@@ -118,6 +119,7 @@ layers:
   - nodes.props.states
   - nodes.props.unit_name
   - nodes.surfaces.ax
+  - nodes.surfaces.boxes
   - nodes.surfaces.description
   - nodes.surfaces.id
   - nodes.surfaces.kind
@@ -198,6 +200,7 @@ layers:
   - nodes.props.parts
   - nodes.props.states
   - nodes.surfaces.ax
+  - nodes.surfaces.boxes
   - nodes.surfaces.description
   - nodes.surfaces.id
   - nodes.surfaces.kind
@@ -832,6 +835,7 @@ layers:
   - nodes.states.conditions
   - nodes.states.id
   - nodes.surfaces.ax
+  - nodes.surfaces.boxes
   - nodes.surfaces.id
   - nodes.surfaces.kind
   - scene.ax
@@ -1400,6 +1404,7 @@ layers:
   - nodes.states.subject
   - nodes.states.t
   - nodes.surfaces.ax
+  - nodes.surfaces.boxes
   - nodes.surfaces.description
   - nodes.surfaces.id
   - nodes.surfaces.kind

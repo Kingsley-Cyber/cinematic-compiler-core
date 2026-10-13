@@ -310,9 +310,9 @@ In-between keys (no beat, no contact): the interpolation passes through each pos
 [SPATIAL ANCHORS]
 Frame: up +Y, forward +Z, ground y=0, units m; Euler XYZ intrinsic, right-handed, degrees; +X = the performer's left; joints local to their parent (root -> Sp -> arms, legs, NK -> HD; the hips sit on the pelvis), root in the scene frame.
 Axes: Y_up, A faces +Z, B faces -Z, ground y=0.
-ground (floor): Flat courtyard ground at y=0; solid.
-wooden pillar (obstacle): Tall wooden pillar at the back of the courtyard; pillar at z=6 from y=0 to y=8; solid.
-bamboo canopy (backdrop): Dark under-canopy of bamboo on the left; bamboo canopy left side; solid.
+ground (floor): Flat courtyard ground at y=0; at x -10 to 10, y -0.5 to 0, z -10 to 10 m; solid.
+wooden pillar (obstacle): Tall wooden pillar at the back of the courtyard; pillar at z=6 from y=0 to y=8; at x -0.3 to 0.3, y 0 to 8, z 5.7 to 6.3 m; solid.
+bamboo canopy (backdrop): Dark under-canopy of bamboo on the left; bamboo canopy left side; at x 4 to 8, y 0 to 10, z -2 to 10 m; solid.
 A starts at [0, 10, 3.5].
 B starts at [0, 1.19, 4.5].
 Height used: y 0.1 to 10 m; depth used: z 2.97 to 5.9 m.

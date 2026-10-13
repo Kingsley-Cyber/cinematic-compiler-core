@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:brief_nodes:1.1",
+  "$id": "urn:cinematic-compiler:schema:brief_nodes:1.2",
   "title": "S02 brief node items (band L0.5): entities, props, surfaces",
   "description": "Item schemas for the groups S02 writes. Every field is copied from a library card; hints carry their S01 query evidence.",
   "type": "object",
@@ -394,6 +394,37 @@
           "type": "string",
           "minLength": 1
         },
+        "boxes": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Where the surface is (R20 next action 2): one or more axis-aligned boxes in scene metres, {min: [x, y, z], max: [x, y, z]}; a floor's top is its highest max y. Several boxes for a surface in pieces (a boundary on four sides).",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "min",
+              "max"
+            ],
+            "properties": {
+              "min": {
+                "type": "array",
+                "minItems": 3,
+                "maxItems": 3,
+                "items": {
+                  "type": "number"
+                }
+              },
+              "max": {
+                "type": "array",
+                "minItems": 3,
+                "maxItems": 3,
+                "items": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
         "ax": {
           "type": "string",
           "minLength": 1
@@ -405,7 +436,8 @@
         "card_version",
         "card_status",
         "kind",
-        "description"
+        "description",
+        "boxes"
       ]
     },
     "CardEvidence": {

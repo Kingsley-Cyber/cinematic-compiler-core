@@ -665,6 +665,12 @@ def _inbetween_lines(between, mode, labels, turning=frozenset()):
     return out
 
 
+def box_words(boxes):
+    """'x -0.3 to 0.3, y 0 to 8, z 5.7 to 6.3 m', boxes joined by ' and '."""
+    return " and ".join(", ".join(f"{axis} {_num(lo)} to {_num(hi)}" for axis, lo, hi in
+                                  zip("xyz", box["min"], box["max"], strict=True)) + " m" for box in boxes) or "no place"
+
+
 def _spatial(envelope, lines, labels, rows):
     scene = envelope["scene"]
     c = scene["ax"]["rotation_convention"]
@@ -673,9 +679,9 @@ def _spatial(envelope, lines, labels, rows):
            f"+X = the performer's left; joints local to their parent (root -> Sp -> arms, legs, NK -> HD; the hips sit on "
            f"the pelvis), root in the scene frame.",
            "Axes: " + ", ".join(t for s, t, _, _ in rows if s == "ax") + "."]
-    for surface in _items(envelope, "nodes", "surfaces"):
+    for surface in _items(envelope, "nodes", "surfaces"):  # R20 next action 2: where each surface is, in metres
         out.append(f"{_words(surface['id'])} ({surface['kind']}): {surface['description'].rstrip('.')}"
-                   f"{'; ' + surface['ax'] if surface.get('ax') else ''}; solid.")
+                   f"{'; ' + surface['ax'] if surface.get('ax') else ''}; at {box_words(surface.get('boxes', []))}; solid.")
     firsts = {}
     for line in lines:
         firsts.setdefault(line["entity"], line)

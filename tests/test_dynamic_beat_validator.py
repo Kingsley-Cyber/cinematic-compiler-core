@@ -61,6 +61,8 @@ def test_courtyard_plan_passes():
     ("FILLER_BEAT", lambda p: beat(p, "b03").update(effects=[], causes=[], contacts=[])),  # b03 lifts the vault hand (O89)
     ("MODE_COHERENCE", lambda p: beat(p, "b01")["modes"].update(acrobat="calm_casting")),
     ("MODE_TRANSITION", lambda p: beat(p, "b03")["modes"].update(acrobat="focused")),
+    # R20 next action 2: the acrobat slams into the stone pillar at 5.2 from 5 m away (the pillar sat to the side)
+    ("SURFACE_REACH", lambda p: beat(p, "b08")["pos"].update(acrobat=[-2.5, 1.99, 0])),
 ])
 def test_each_rule_rejects_its_violation(code, change):
     assert code in codes_after(change)
@@ -341,3 +343,14 @@ def test_a_substitution_swaps_only_its_decoy():
         beats["b08"].setdefault("prop_samples", []).append(
             {"prop": "smoke_pellet", "t": 3.4, "p": [1.18, 0.0, 4.85], "v": None, "float": False})
     assert "PROP_KINEMATICS" in fight_codes(pellet_jump)
+
+
+def test_every_surface_of_every_world_has_a_place_and_the_prompt_prints_it():
+    """R20 next action 2: surfaces in metres (world cards' boxes, copied by S02, printed in [SPATIAL ANCHORS])."""
+    from planner.card_loader import load_cards
+
+    worlds = [c for c in load_cards().values() if c["kind"] == "world"]
+    assert worlds and all(row["boxes"] for card in worlds for row in card["surfaces"])
+    text = json.loads((EXAMPLE / "envelope.json").read_text())["nodes"]["render"]["items"][0]["prose"]["mixed"]["text"]
+    assert "stone pillar (obstacle): Weathered stone pillar inside the courtyard; at x 2.4 to 3.2, y 0 to 3, " \
+           "z 2.7 to 3.5 m" in text

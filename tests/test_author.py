@@ -147,7 +147,8 @@ def test_an_idea_the_library_cannot_cast_is_cast_from_new_draft_cards():
     world = yaml.safe_load((ROOT / "library" / "worlds" / "bamboo_courtyard.yaml").read_text(encoding="utf-8"))
     kunoichi = {**copy.deepcopy(ninja), "card_id": "kunoichi", "names": ["kunoichi"], "status": "approved"}
     rooftop = {**copy.deepcopy(world), "card_id": "moonlit_rooftop", "names": ["moonlit rooftop"], "match_terms": ["rooftop"],
-               "surfaces": [{"id": "roof", "kind": "floor", "description": "Flat roof at y=0."}]}
+               "surfaces": [{"id": "roof", "kind": "floor", "description": "Flat roof at y=0.",
+                             "boxes": [{"min": [-6, -0.5, -6], "max": [6, 0, 6]}]}]}  # R20 next action 2 (S-122)
 
     class Caster:
         def cast(self, idea, index, schemas, findings=None):

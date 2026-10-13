@@ -1,0 +1,56 @@
+# F-235 — A contact with a surface's face is not measured; the reference fight's wall push is off its pillar
+
+<!-- docs-version: 1.0 -->
+
+## Type
+gap
+
+## Severity
+high
+
+## Layer
+all
+
+## Status
+open
+
+## Reported
+2026-10-13
+
+## Reporter
+agent
+
+## Legacy ID
+—
+
+## Evidence
+- solver/contact_world.py: a touch on any surface but a floor, and a support on a surface with no top, is "a
+  surface's face (no top to meet)" and is not measured; a support on a top is measured vertically only.
+- S-122 gave every surface boxes. Measured against them, the reference fight's own pillar contacts miss: at 0.60 A's
+  feet stand on the top at z 5.31, 0.39 m in front of a 0.6 m pillar centred at z 6 ("pillar at z=6", its card); at
+  7.00 the wall push puts the left foot inside the pillar (z 5.96) and the right foot 0.96 m in front of it (z 4.76)
+  with the root at z 5.9, inside it.
+- The wizard example's back-first slam (5.20) fits its pillar's boxes (S-122 placed the pillar from it).
+
+## Description
+Without the faces measured, a body can meet a wall or pillar anywhere; SURFACE_REACH (S04) bounds it to 1.5 m of the
+surface, not to its face.
+
+## Impact
+A wall run, a slam or a push off a pillar can land in the air beside it; the prompt prints the pillar's place and a
+contact that does not reach it.
+
+## Proposed Fix
+CONTACT_WORLD measures every surface contact to the nearest point of the surface's boxes (a top for a support from
+above, a face otherwise), within its 0.15 m. The reference fight's pillar contacts then need its pillar's size or its
+motion re-authored: the owner's ruling (which is the reference's truth: the pillar at z=6, or A's feet).
+
+## Owner Ruling
+—
+
+## Related
+- F-230
+- R20 next action 2
+
+## Resolution
+—
