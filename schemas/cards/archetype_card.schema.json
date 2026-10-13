@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:archetype_card:1.1",
+  "$id": "urn:cinematic-compiler:schema:archetype_card:1.2",
   "title": "Archetype card (character definition; L0.5 entities)",
   "description": "Library concept card. Draft cards are owner-reviewable data, not research claims.",
   "type": "object",
@@ -136,6 +136,11 @@
           "rule": {
             "type": "string",
             "minLength": 1
+          },
+          "requires_prop": {
+            "type": "string",
+            "pattern": "^(any|[a-z][a-z0-9_]*)$",
+            "description": "The rule applies only when the scene holds this prop (an object card id), or some prop (`any`); S03 leaves it out otherwise (R20: a thrown-weapon rule with no weapon in the scene invited one)."
           }
         }
       }

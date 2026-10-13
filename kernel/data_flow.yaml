@@ -1,4 +1,4 @@
-version: 1
+version: 2
 status: draft
 measured_on:
 - reference_fight
@@ -144,6 +144,7 @@ layers:
   - nodes.entities.id
   - nodes.props.card_id
   - nodes.props.id
+  - nodes.props.name
   - scene.world
   writes:
   - edges.constraint_application.constraint_id
@@ -172,7 +173,6 @@ layers:
   - invariants.rule
   - nodes.constraints.field
   - nodes.constraints.id
-  - nodes.constraints.reference_labels
   - nodes.constraints.rule
   - nodes.constraints.source
 - id: temporal
@@ -351,6 +351,7 @@ layers:
   - nodes.beats.requires
   - nodes.beats.t
   - nodes.entities.id
+  - nodes.entities.parts
   - nodes.props.carried_by
   - nodes.props.id
   - nodes.props.states
@@ -369,6 +370,7 @@ layers:
   - nodes.states.before_own_effects
   - nodes.states.conditions
   - nodes.states.facing
+  - nodes.states.hands
   - nodes.states.id
   - nodes.states.pos
   - nodes.states.pos_source
@@ -388,6 +390,7 @@ layers:
   - nodes.states.beat
   - nodes.states.before_own_effects
   - nodes.states.conditions
+  - nodes.states.hands
   - nodes.states.id
   - nodes.states.pos
   - nodes.states.subject
@@ -1307,7 +1310,6 @@ layers:
   - nodes.camera.t
   - nodes.constraints.field
   - nodes.constraints.id
-  - nodes.constraints.reference_labels
   - nodes.constraints.rule
   - nodes.constraints.source
   - nodes.contacts.a
@@ -1392,6 +1394,7 @@ layers:
   - nodes.props.states
   - nodes.props.unit_name
   - nodes.states.conditions
+  - nodes.states.hands
   - nodes.states.id
   - nodes.states.pos
   - nodes.states.subject

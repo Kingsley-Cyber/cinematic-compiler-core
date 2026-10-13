@@ -1,16 +1,20 @@
 """S03 pass (band constraint): build the constraint graph from kernel + world + archetype rules.
 
 - kernel items with scope `kernel` apply to the scene; `kernel_actor` to every declared entity;
-  `kernel_prop` to every declared prop; `scene_reference` items are not applied (reference fight only).
+  `kernel_prop` to every declared prop, when every prop its reference labels name is in the scene (F-234: the
+  reference fight's five-prop rule is not the glasses'); `scene_reference` items are not applied (reference fight only).
 - the matched world card's invariants apply to the scene; each archetype card's invariants apply to
   the entities built from it; each object card's invariants apply to the props built from it;
-- card negatives (world, archetype, object) become `negative` constraints on the same targets.
+- card negatives (world, archetype, object) become `negative` constraints on the same targets;
+- a card invariant with `requires_prop` applies only when the scene holds that prop (`any`: some prop): a rule about
+  a thrown weapon printed with no weapon in the scene invites one (R20's kunai).
 Rules are copied verbatim; a constraint with nothing to apply to is not emitted.
 Writes /nodes/constraints, /edges/constraint_application and /invariants; nothing else.
 """
 
 import copy
 import json
+import re
 
 import yaml
 
@@ -32,6 +36,17 @@ def load_kernel():
     return document
 
 
+def _words(text):
+    return set(re.findall(r"[a-z0-9]+", text.lower().replace("_", " ")))
+
+
+def _held(label, props):
+    """Whether a reference label ("rope dart", "shuriken") names a prop in the scene: its words are one prop's id, card
+    or name words, or a part of them."""
+    words = _words(label)
+    return any(words <= _words(" ".join((p["id"], p["card_id"], p["name"]))) for p in props)
+
+
 def build(scene, entities, props, *, cards, kernel):
     constraints, applications = [], []
 
@@ -48,6 +63,8 @@ def build(scene, entities, props, *, cards, kernel):
     for item in kernel["items"]:
         targets = {"kernel": [("scene", "scene")], "kernel_actor": entity_targets,
                    "kernel_prop": prop_targets, "scene_reference": []}[item["scope"]]
+        if item["scope"] == "kernel_prop" and not all(_held(label, props) for label in item["reference_labels"]):
+            continue
         add({"id": "c_" + item["id"].lower(), "origin": "kernel", "scope": item["scope"], "field": item["field"],
              "rule": item["text"], "source": {"kind": "kernel_invariant", "ref": item["id"],
                                               "version": f"{kernel['version']}:{kernel['status']}"},
@@ -64,6 +81,9 @@ def build(scene, entities, props, *, cards, kernel):
     def card_rules(card, origin, prefix, targets):
         source = {"kind": "card", "ref": card["card_id"], "version": f"{card['card_version']}:{card['status']}"}
         for row in card.get("invariants", []):
+            needed = row.get("requires_prop")
+            if needed and not any(needed in ("any", p["card_id"]) for p in props):
+                continue
             add({"id": f"c_{prefix}_{card['card_id']}_{row['id']}", "origin": origin, "scope": origin,
                  "field": "invariant", "rule": row["rule"], "source": source, "reference_labels": [],
                  "status": card["status"], "enforcement": "required"}, targets)

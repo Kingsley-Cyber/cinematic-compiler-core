@@ -102,9 +102,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 7.3; backlog 55.
-- Last session: S-120 (2026-10-13, applied): Determinism and the control layer: the prompt is the same from disk, from memory, in any key order.
+- Last session: S-121 (2026-10-13, applied): Hands and props: every hand empty or holding a named prop on every line; no rule for a prop the scene lacks.
 - Next slice: AA-9 S13 written in parallel pieces, one per fighter and time window (each window overlapping its neighbour by one beat), merged and repaired by the solver (step motion).
-- Open findings: 144; decisions: 143 (0 proposed, 7 owner_default awaiting the owner).
+- Open findings: 143; decisions: 143 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

@@ -53,9 +53,10 @@ def test_completeness_and_non_invention(query):
         targets.setdefault(row["constraint_id"], []).append((row["target"]["kind"], row["target"]["id"]))
     assert set(targets) == set(by_id)
     for item in KERNEL["items"]:
+        named = all(p03_constraint._held(label, props) for label in item["reference_labels"])  # F-234 (S-121)
         expected = {"kernel": [("scene", "scene")], "scene_reference": [],
                     "kernel_actor": [("entity", e["id"]) for e in entities],
-                    "kernel_prop": [("prop", p["id"]) for p in props]}[item["scope"]]
+                    "kernel_prop": [("prop", p["id"]) for p in props] if named else []}[item["scope"]]
         cid = "c_" + item["id"].lower()
         assert targets.get(cid, []) == expected, item["id"]
         if expected:
@@ -66,6 +67,10 @@ def test_completeness_and_non_invention(query):
     for card_id in {e["card_id"] for e in entities}:
         for row in CARDS[card_id]["invariants"]:
             constraint = f"c_arch_{card_id}_{row['id']}"
+            needed = row.get("requires_prop")  # S-121: a rule that needs a prop the scene lacks is not applied
+            if needed and not any(needed in ("any", p["card_id"]) for p in props):
+                assert constraint not in by_id
+                continue
             assert by_id[constraint]["rule"] == row["rule"]
             expected = sorted(("entity", e["id"]) for e in entities if e["card_id"] == card_id)
             assert sorted(targets[constraint]) == expected
@@ -99,3 +104,13 @@ def test_s03_pass_writes_only_its_paths_and_needs_s02(order):
     with pytest.raises(ContractError) as error:
         p03_constraint.run(run(QUERIES[0], until="intent"), cards=CARDS, kernel=KERNEL, order=order)
     assert error.value.code == "MISSING_INPUT"
+
+
+def test_a_rule_naming_a_prop_the_scene_lacks_is_not_applied():
+    """F-234 and R20's kunai (S-121): the reference fight's five-prop rule and its no-duplicated-kunai negative stay
+    off the glasses; a thrown-weapon rule stays off a ninja with no prop."""
+    glasses = graph_of(run("ugc 15s, glasses product demo, kitchen counter"))
+    ids = {c["id"] for c in glasses["constraints"]}
+    assert not ids & {"c_k_rules_24", "c_k_negative_08", "c_k_negative_09", "c_k_negative_10", "c_k_negative_11"}
+    bare = graph_of(run("6 seconds anime fight scene: ninja versus knight in a moonlit bamboo courtyard"))
+    assert "c_arch_ninja_thrown_weapon_leaves_hand" not in {c["id"] for c in bare["constraints"]}

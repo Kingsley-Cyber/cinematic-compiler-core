@@ -469,8 +469,12 @@ def main(argv=None):
     parser.add_argument("--dormant", action="store_true")
     parser.add_argument("--write-contract", action="store_true")
     args = parser.parse_args(argv)
-    if args.write_contract:
-        CONTRACT.write_text(yaml.safe_dump(contract_from(_example_rows()), sort_keys=False, width=120), encoding="utf-8")
+    if args.write_contract:  # a changed flow is a new version of the contract (the kernel log records each)
+        contract = contract_from(_example_rows())
+        if CONTRACT.exists():
+            held = yaml.safe_load(CONTRACT.read_text(encoding="utf-8"))
+            contract["version"] = held["version"] + (held["layers"] != contract["layers"])
+        CONTRACT.write_text(yaml.safe_dump(contract, sort_keys=False, width=120), encoding="utf-8")
         print("wrote", CONTRACT.relative_to(ROOT))
         return
     if args.envelope:

@@ -239,7 +239,7 @@ Every finding: a bug, gap, contradiction, drift, question, risk or opportunity f
 | F-231 | Every prompt's legend hangs the legs from the root; the poses hang th… | contradiction | high | L6 | resolved | — | - renderers/prose_renderer.py, the [SPATIAL ANCHO… | 2026-10-12 | [F-231-every-prompt-s-legend-hangs-the-legs-from.md](../findings/F-231-every-prompt-s-legend-hangs-the-legs-from.md) |
 | F-232 | In-between lines print raw angles inside a declared turn; an in-betwe… | gap | medium | L6 | in progress | — | - Principal review 8 (S-099, layers S10-S18): the… | 2026-10-12 | [F-232-in-between-lines-print-raw-angles-inside-a.md](../findings/F-232-in-between-lines-print-raw-angles-inside-a.md) |
 | F-233 | Two checks this run loosened: a standing body reads airborne between… | bug | high | all | resolved | — | - RV-59h (S-091): between keys `airborne` now rea… | 2026-10-12 | [F-233-two-checks-this-run-loosened-a-standing.md](../findings/F-233-two-checks-this-run-loosened-a-standing.md) |
-| F-234 | A kernel prop rule is applied to every prop, whatever props it names | bug | high | all | open | — | - S03 (compiler/passes/mandatory/p03_constraint.p… | 2026-10-13 | [F-234-a-kernel-prop-rule-is-applied-to-every.md](../findings/F-234-a-kernel-prop-rule-is-applied-to-every.md) |
+| F-234 | A kernel prop rule is applied to every prop, whatever props it names | bug | high | all | resolved | — | - S03 (compiler/passes/mandatory/p03_constraint.p… | 2026-10-13 | [F-234-a-kernel-prop-rule-is-applied-to-every.md](../findings/F-234-a-kernel-prop-rule-is-applied-to-every.md) |
 
 ## Type values
 

@@ -1,6 +1,6 @@
 card_id: ninja
 kind: archetype
-card_version: 1
+card_version: 2
 status: draft
 names: [ninja, shinobi]
 description: A stealthy fighter who closes distance fast and uses short blades and thrown weapons.
@@ -13,6 +13,7 @@ genres: [anime, live_action]
 invariants:
   - id: thrown_weapon_leaves_hand
     rule: A thrown weapon leaves the hand and does not return without a declared catch.
+    requires_prop: any
 face_profile:  # scarf or hood may cover the lower face (draft: covered)
   visible_regions: [brows, eyes]
   dominant_side: none

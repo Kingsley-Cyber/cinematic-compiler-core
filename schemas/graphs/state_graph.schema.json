@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:state_graph:1.4",
+  "$id": "urn:cinematic-compiler:schema:state_graph:1.5",
   "title": "S06 state graph: one state per subject per beat (+ end), transitions with triggering beats",
   "description": "States are replayed from the beat plan: requires are read at t, effects commit at t + dur (at t when marked `at: start`, O91; a change of hands at its possess or release, F-061); a property's starting value comes only from its first requirement, else unknown. pos/facing come from the beat (authoritative) or are carried from the entity's last anchor (pos_source says which). A beat's snapshot holds the values after its own at-start effects; before_own_effects keeps, where they changed a value, the value before them, as the beat's requirements read it (F-161, RV-61).",
   "type": "object",
@@ -93,6 +93,32 @@
             "additionalProperties": {
               "type": "string",
               "minLength": 1
+            }
+          },
+          "hands": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "left_hand",
+              "right_hand"
+            ],
+            "description": "A performer's hands at this state (R20 next action 1): each hand empty or holding a named prop, from the props' holder at the same state and the last possess contact that names the hand; `unplaced` lists a prop it holds by no contact naming a hand. Absent for a performer without hands and for props and surfaces.",
+            "properties": {
+              "left_hand": {
+                "type": "string",
+                "minLength": 1
+              },
+              "right_hand": {
+                "type": "string",
+                "minLength": 1
+              },
+              "unplaced": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
             }
           },
           "before_own_effects": {

@@ -21,10 +21,10 @@ Root [x, y, z] is the scene position in metres; EulerXYZ and joints are degrees.
 FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship | path/notes
 
 [LABAN STAFF – MIXED MODE]
-0.00 A: SUPPORT both feet place-mid [f:both] | L arm left-forward-low, lower arm folded 30, L leg forward-low, lower leg straight, body forward-high (30 lean), head forward-high | R arm forward-low, lower arm straight, R leg forward-low, lower leg straight | [contact: R hand-glasses frame retained]; R hand at [-0.25, 0.78, 0.4], glasses frame at [-0.25, 0.75, 0.35] | Talking to camera, the creator picks the folded glasses up off the desk with the right hand; pose: Upright at the desk, leaning in, the right hand reaching down for the folded glasses; FACE: cheeks raised, crow's feet at the eyes (trace), lip corners pulled up (slight); feeling pleased, pleasant and steady, a genuine expression; looking into the lens; An easy, friendly smile while chatting to the lens. · Root [0, 0.97, 0] EulerXYZ [0, 0, 0]
-1.50 A: SUPPORT both feet place-mid [f:both] | L arm place-low, lower arm folded 90, L leg left-forward-low, lower leg straight, head forward-high | R arm forward-low, lower arm folded 75, R leg right-forward-low, lower leg straight | contact bow: L hand > glasses left temple at 3.50; L hand at [0.04, 1.26, 0.31], glasses left temple at [0, 1.25, 0.25] | Holding the frame steady in the right hand, the left hand swings the temples open, one then the other; pose: Glasses held at chest height in the right hand; the left fingers swing the temples open; FACE: brows lowered and drawn together (trace), lids tightened, eyes narrowed (trace); NOT: no smile; feeling focused, neutral and steady, a genuine expression; eyes on glasses; Eyes down on the glasses, a small concentrating frown, no smile. · position: [0, 0.97, 0]
-3.50 A: SUPPORT both feet place-mid [f:both] | L arm left-forward-low, lower arm folded 105, L leg place-low, lower leg straight | R arm right-low, lower arm folded 105, R leg place-low, lower leg straight | contact bow: L hand > glasses left temple at 5.50; L hand at [0.02, 1.66, 0.12], glasses left temple at [0, 1.66, 0.06]; contact bow: head > glasses frame at 5.50; head at [0, 1.68, -0.04], glasses frame at [0, 1.66, 0.06]; [contact: glasses frame ENDS – released at 5.50]; A's right hand is empty from 5.50; R hand at [-0.06, 1.68, 0.16], glasses frame at [0, 1.66, 0.06] | Both hands lift the open glasses to the face and slide the temples over the ears; the right hand lets go; pose: Both hands raise the open glasses to the face, elbows out; FACE: inner ends of the brows lifted (trace), outer brows lifted (trace); NOT: no frown; feeling curious, pleasant and activated, a genuine expression; looking into the lens; Brows lift a little as the glasses settle on the face, eyes back to the lens. · position: [0, 0.97, 0]
-5.50 A: SUPPORT both feet place-mid [f:both] | L arm forward-mid, lower arm folded 120, L leg place-low, lower leg straight | R arm forward-mid, lower arm folded 120, R leg place-low, lower leg straight | - | Wearing the glasses, the creator smiles to camera and taps the frame; pose: Wearing the glasses, sitting back, the right index finger tapping the frame; FACE (carries the beat): cheeks raised, crow's feet at the eyes (slight), lip corners pulled up (marked on their left, slight on their right), lips parted (slight); NOT: no frown; feeling delighted, strongly pleasant and activated, a genuine expression; looking into the lens; A wide, genuine smile at the result, eyes creased, the smile a touch stronger on the left.; hold sign to the end · Root [0, 0.97, 0] EulerXYZ [0, 0, 0]
+0.00 A: SUPPORT both feet place-mid [f:both] | L arm left-forward-low, lower arm folded 30, L leg forward-low, lower leg straight, body forward-high (30 lean), head forward-high | R arm forward-low, lower arm straight, R leg forward-low, lower leg straight | [contact: R hand-glasses frame retained]; R hand at [-0.25, 0.78, 0.4], glasses frame at [-0.25, 0.75, 0.35] | Talking to camera, the creator picks the folded glasses up off the desk with the right hand; pose: Upright at the desk, leaning in, the right hand reaching down for the folded glasses; hands: L empty, R glasses; FACE: cheeks raised, crow's feet at the eyes (trace), lip corners pulled up (slight); feeling pleased, pleasant and steady, a genuine expression; looking into the lens; An easy, friendly smile while chatting to the lens. · Root [0, 0.97, 0] EulerXYZ [0, 0, 0]
+1.50 A: SUPPORT both feet place-mid [f:both] | L arm place-low, lower arm folded 90, L leg left-forward-low, lower leg straight, head forward-high | R arm forward-low, lower arm folded 75, R leg right-forward-low, lower leg straight | contact bow: L hand > glasses left temple at 3.50; L hand at [0.04, 1.26, 0.31], glasses left temple at [0, 1.25, 0.25] | Holding the frame steady in the right hand, the left hand swings the temples open, one then the other; pose: Glasses held at chest height in the right hand; the left fingers swing the temples open; hands: L empty, R glasses; FACE: brows lowered and drawn together (trace), lids tightened, eyes narrowed (trace); NOT: no smile; feeling focused, neutral and steady, a genuine expression; eyes on glasses; Eyes down on the glasses, a small concentrating frown, no smile. · position: [0, 0.97, 0]
+3.50 A: SUPPORT both feet place-mid [f:both] | L arm left-forward-low, lower arm folded 105, L leg place-low, lower leg straight | R arm right-low, lower arm folded 105, R leg place-low, lower leg straight | contact bow: L hand > glasses left temple at 5.50; L hand at [0.02, 1.66, 0.12], glasses left temple at [0, 1.66, 0.06]; contact bow: head > glasses frame at 5.50; head at [0, 1.68, -0.04], glasses frame at [0, 1.66, 0.06]; [contact: glasses frame ENDS – released at 5.50]; A's right hand is empty from 5.50; R hand at [-0.06, 1.68, 0.16], glasses frame at [0, 1.66, 0.06] | Both hands lift the open glasses to the face and slide the temples over the ears; the right hand lets go; pose: Both hands raise the open glasses to the face, elbows out; hands: L empty, R glasses; FACE: inner ends of the brows lifted (trace), outer brows lifted (trace); NOT: no frown; feeling curious, pleasant and activated, a genuine expression; looking into the lens; Brows lift a little as the glasses settle on the face, eyes back to the lens. · position: [0, 0.97, 0]
+5.50 A: SUPPORT both feet place-mid [f:both] | L arm forward-mid, lower arm folded 120, L leg place-low, lower leg straight | R arm forward-mid, lower arm folded 120, R leg place-low, lower leg straight | - | Wearing the glasses, the creator smiles to camera and taps the frame; pose: Wearing the glasses, sitting back, the right index finger tapping the frame; hands: L empty, R empty; FACE (carries the beat): cheeks raised, crow's feet at the eyes (slight), lip corners pulled up (marked on their left, slight on their right), lips parted (slight); NOT: no frown; feeling delighted, strongly pleasant and activated, a genuine expression; looking into the lens; A wide, genuine smile at the result, eyes creased, the smile a touch stronger on the left.; hold sign to the end · Root [0, 0.97, 0] EulerXYZ [0, 0, 0]
 
 [IMPLIED GUIDANCE]
 - Between lines every performer keeps the declared Effort below, preserves momentum and a clear weight transfer, and travels through space between positions.
@@ -105,7 +105,6 @@ Enables: i01 enables i02 via temples.
 - Laban support and contacts are primary; Euler numbers are precision override only.
 - slerp A joints
 - ONE fighter identities A never merge or duplicate
-- ONE props tracked separately,never merged:glasses
 - The product keeps one shape, colour and label for the whole scene.
 - Hands stay in frame whenever they touch the product.
 - Identity is immutable: every performer and prop stays itself for the whole scene.
@@ -119,9 +118,15 @@ Enables: i01 enables i02 via temples.
 - From 5.50 to the end, glasses keeps worn yes.
 - End state: A at [0, 0.97, 0], support both feet place-mid.
 - c arch ugc creator hands in frame binds the beats at 0.00, 1.50, 3.50, 5.50
+- c k ax 01 binds the beats at 0.00, 1.50, 3.50, 5.50
+- c k negative 06 binds the beats at 0.00, 1.50, 3.50, 5.50
+- c k negative 07 binds the beats at 0.00, 1.50, 3.50, 5.50
+- c k rules 00 binds the beats at 0.00, 1.50, 3.50, 5.50
+- c k rules 23 binds the beats at 0.00, 1.50, 3.50, 5.50
 - invariant c k preface 07 (constraint): Euler degrees XYZ
 - invariant c k preface 08 (constraint): Render spec exactly
 - invariant c k ax 00 (constraint): Y_up
+- invariant c k ax 01 (constraint): A faces +Z
 - invariant c k ax 03 (constraint): ground y=0
 - invariant c k key 00 (constraint): Sp=Spine
 - invariant c k key 01 (constraint): LUL/RUL=UpLeg
@@ -135,13 +140,17 @@ Enables: i01 enables i02 via temples.
 - invariant c k negative 02 (constraint): no missing hands
 - invariant c k negative 03 (constraint): no headless body
 - invariant c k negative 05 (constraint): no faceless head
+- invariant c k negative 06 (constraint): no extra fighters beyond A and B
+- invariant c k negative 07 (constraint): no cloned A
 - invariant c k negative 12 (constraint): no extra weapons
 - invariant c k negative 13 (constraint): no full circle
 - invariant c k negative 14 (constraint): no ring
 - invariant c k negative 15 (constraint): no halo
+- invariant c k rules 00 (constraint): slerp A joints
+- invariant c k rules 23 (constraint): TWO fighter identities A and B never merge or duplicate
 - invariant c k owner 00 (constraint): S17 output is uncompressed. The full envelope is projected; nothing is summarized, truncated, or dropped
 - invariant c world modern ugc product stays identical (constraint): The product keeps one shape, colour and label for the whole scene
 - invariant c arch ugc creator hands in frame (constraint): Hands stay in frame whenever they touch the product
 
 [NEGATIVES]
-no missing limbs; no missing arms; no missing hands; no headless body; no faceless head; no extra fighters beyond A; no cloned A; no duplicated glasses; no extra weapons; no full circle; no ring; no halo
+no missing limbs; no missing arms; no missing hands; no headless body; no faceless head; no extra fighters beyond A; no cloned A; no extra weapons; no full circle; no ring; no halo

@@ -12,7 +12,7 @@ high
 all
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-13
@@ -48,4 +48,6 @@ R20 next action 1 (S03): a kernel or card rule that names a prop not in the scen
 - ADR-O113
 
 ## Resolution
-—
+S-121: S03 applies a kernel prop rule only when every prop its reference labels name is in the scene, and a
+card rule with `requires_prop` only when the scene holds that prop; S17's own filter is removed (the graph no longer
+holds such a rule).

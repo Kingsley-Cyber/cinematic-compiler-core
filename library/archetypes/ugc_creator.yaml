@@ -1,6 +1,6 @@
 card_id: ugc_creator
 kind: archetype
-card_version: 1
+card_version: 2
 status: draft
 names: [creator, ugc creator, presenter]
 description: "A person presenting a product to a phone camera in a home setting."
@@ -13,6 +13,7 @@ genres: [ugc_ad]
 invariants:
   - id: hands_in_frame
     rule: "Hands stay in frame whenever they touch the product."
+    requires_prop: any
 face_profile:
   visible_regions: [brows, eyes, cheeks, nose, mouth, jaw]
   dominant_side: none

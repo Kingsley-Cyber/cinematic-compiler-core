@@ -316,6 +316,13 @@ def _point(values):
     return "[" + ", ".join(f"{round(v, 2):g}" for v in values) + "]"
 
 
+def _hands(hands, names):
+    words = [f"{side} {names.get(hands[hand], hands[hand]) if hands[hand] != 'empty' else 'empty'}"
+             for side, hand in (("L", "left_hand"), ("R", "right_hand"))]
+    extra = "".join(f", also holds {names.get(p, p)} (hand not declared)" for p in hands.get("unplaced", []))
+    return f"hands: {', '.join(words)}{extra}"
+
+
 def staff_lines(envelope, frame_parts, labels):
     """One line per slot with the facts the modes need: text without Euler blocks, strike flag, the key."""
     keys = {k["id"]: k for k in _items(envelope, "nodes", "motion")}
@@ -327,6 +334,7 @@ def staff_lines(envelope, frame_parts, labels):
     strikes = strike_contacts(envelope, frame_parts["impact"])
     spans = _supports(envelope, labels)
     empty = empty_hands(envelope, labels)
+    held = {s["id"]: s["hands"] for s in _items(envelope, "nodes", "states") if "hands" in s}
     runs = turn_runs(envelope, labels)
     heads = {r["slots"][0]: r["head"] for r in runs}
     world = {r["id"]: r for r in contact_world.measure(envelope) if r["measurable"] and r["kind"] != "foot or body on a surface"}
@@ -390,6 +398,8 @@ def staff_lines(envelope, frame_parts, labels):
         if slot["role"] == "actor":
             notes.append(slot["action"].rstrip("."))
         notes.append(f"pose: {key['description'].rstrip('.')}")  # ADR-O113: the S13 key's own description
+        if slot["slot"] in held:  # R20 next action 1 (S06 `hands`): what each hand holds, empty said aloud
+            notes.append(_hands(held[slot["slot"]], names))
         if slot["role"] == "actor" and slot["event_type"] == "substitution":
             notes.append(vanish_note(gone.get((entity, slot["beat"]))))
         if slot["slot"] in facial:
@@ -431,7 +441,7 @@ def _euler(line, mode):
     return f" · position: {_numbers(key['pos'])}"  # ADR-O114: the root as data on every line, never "root exact"
 
 
-def _movement_language(mode, rows, verbs=False):
+def _movement_language(mode, rows, verbs=()):
     lines = [
         f"Labanotation written as words. Mode: {MODES[mode][1]}.",
         "Each line = one measure for one performer; time in seconds; a symbol lasts until the next line.",
@@ -454,9 +464,9 @@ def _movement_language(mode, rows, verbs=False):
         lines.append("Root [x, y, z] is the scene position in metres; EulerXYZ and joints are degrees.")
     if mode in ("upgraded_mixed", "euler_heavy"):
         lines.append("Skeleton key: " + " ".join(t for s, t, _, _ in rows if s == "key"))
-    if verbs:  # owner O22: only prompts whose contacts carry a combat verb
-        lines.append("A word in capitals before a bow or contact (THROW, DEFLECT, STRIKE ...) names the combat action it "
-                     "performs; the Effort below stays Laban.")
+    if verbs:  # owner O22: only prompts whose contacts carry a combat verb; it names only the verbs this one uses
+        lines.append(f"A word in capitals before a bow or contact ({', '.join(v.upper() for v in verbs)}) names the "
+                     "combat action it performs; the Effort below stays Laban.")
     lines.append("FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship | path/notes")
     return "[MOVEMENT LANGUAGE]\n" + "\n".join(lines)
 
@@ -985,11 +995,7 @@ def _edge_lines(envelope, labels, omitted=()):
     in the causal links; the cuts in the camera; which rule binds which beat, and the kernel invariants, in the rules.
     Every line opens with "- " so no check reads it as a staff line. The "root exact" rule (`omitted`) stays out: its
     data, each key's position, is on every staff line (ADR-O114: O113 for the data, O3 for the phrasing). A kernel
-    rule that names a prop the scene does not hold stays out as well (F-234: S03 applies such a rule to every prop;
-    printed, it invites the prop, as the kunai in R20)."""
-    held = {p["id"] for p in _items(envelope, "nodes", "props")} | {e["id"] for e in _items(envelope, "nodes", "entities")}
-    foreign = {c["id"] for c in _items(envelope, "nodes", "constraints") if set(c.get("reference_labels", [])) - held}
-    omitted = set(omitted) | foreign
+    rule that names a prop the scene does not hold is not in the graph (S03, F-234)."""
     beats = {b["id"]: b for b in _items(envelope, "nodes", "beats")}
     contacts = {c["id"]: c for c in _items(envelope, "nodes", "contacts")}
     names = {p["id"]: p["name"] for p in _items(envelope, "nodes", "props")}
@@ -1070,7 +1076,7 @@ def render_all(envelope, frame_parts, labels):
     result = {}
     for mode, (title, _) in MODES.items():
         staff = "\n".join(line["text"] + _euler(line, mode) for line in lines)
-        verbs = any(c.get("verb") for c in _items(envelope, "nodes", "contacts"))
+        verbs = sorted({c["verb"] for c in _items(envelope, "nodes", "contacts") if c.get("verb")})
         blocks = [shared["scene"], _movement_language(mode, rows, verbs), f"[LABAN STAFF – {title}]\n{staff}",
                   shared["implied"], more(_motion_control(lines, labels, between, mode, turning), edges["motion"]),
                   shared["spatial"], *shared["props"], shared["causal"], shared["camera"], shared["genre"],

@@ -127,6 +127,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-118 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | ADR-O114 (owner): O113 for the data, O3… | applied | the commit whose message names [S-118] | from 04:40 to 05:10 | — | [S-118-the-root-printed-as-position-data.md](../sessions/S-118-the-root-printed-as-position-data.md) |
 | S-119 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | ADR-O115 (owner): no check proved the g… | applied | the commit whose message names [S-119] | from 05:20 to 07:10 | — | [S-119-the-graphs-turn-as-one-wheel.md](../sessions/S-119-the-graphs-turn-as-one-wheel.md) |
 | S-120 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | ADR-O116 (owner): the joint-order bug S… | applied | the commit whose message names [S-120] | from 07:40 to 08:20 | — | [S-120-determinism-and-the-control-layer.md](../sessions/S-120-determinism-and-the-control-layer.md) |
+| S-121 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | R20 next action 1 (owner: "work on hand… | applied | the commit whose message names [S-121] | from 08:30 to 09:40 | — | [S-121-hands-and-props.md](../sessions/S-121-hands-and-props.md) |
 
 ## Status values
 
