@@ -30,7 +30,7 @@ Recorded in docs/plans/MASTER_PLAN.md, table "Knowledge DAG and structured prose
 —
 
 ## Superseded By
-—
+- ADR-O113 (its clause on frame counts)
 
 ## Related
 - ADR-O33

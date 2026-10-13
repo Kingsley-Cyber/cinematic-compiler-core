@@ -121,6 +121,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-112 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog AA-9, AA-10, AA-6 (PLAN-008); t… | applied | the commit whose message names [S-112] | from 00:40 to 01:10 | — | [S-112-aa-9-and-aa-10-the-pose-split-and-anchors.md](../sessions/S-112-aa-9-and-aa-10-the-pose-split-and-anchors.md) |
 | S-113 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog AA-6 (PLAN-008) | applied | the commit whose message names [S-113] | from 01:05 to 01:20 | — | [S-113-aa-6-casting-made-to-work-live.md](../sessions/S-113-aa-6-casting-made-to-work-live.md) |
 | S-114 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | The owner's render of the author's firs… | applied | the commit whose message names [S-114] | from 01:20 to 01:45 | — | [S-114-render-20-confirmation.md](../sessions/S-114-render-20-confirmation.md) |
+| S-115 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Owner instruction (ADR-O113): if the gr… | applied | the commit whose message names [S-115] | from 02:05 to 02:40 | — | [S-115-adr-o113-graph-map-and-reach.md](../sessions/S-115-adr-o113-graph-map-and-reach.md) |
 
 ## Status values
 

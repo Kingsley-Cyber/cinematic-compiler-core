@@ -40,8 +40,8 @@ flowchart LR
   solver -->|1| validators
   validators -->|5| compiler
   validators -->|4| kernel
-  validators -->|10| planner
-  validators -->|3| renderers
+  validators -->|12| planner
+  validators -->|4| renderers
   validators -->|12| solver
 ```
 
@@ -126,6 +126,8 @@ flowchart LR
 | `validators.continuity_validator` | `solver.prop_state_machine` | — |
 | `validators.envelope_validator` | `kernel.kernel_files`, `planner.dependency_graph`, `planner.modality`, `validators.layer_dependency_validator`, `validators.schema_validator` | json |
 | `validators.facial_validator` | — | json, re |
+| `validators.graph_map` | `planner.dependency_graph`, `validators.schema_validator` | json, pathlib, sys |
+| `validators.graph_reach` | `planner.dependency_graph`, `renderers.prose_renderer`, `validators.graph_map` | copy, json, pathlib, sys |
 | `validators.layer_dependency_validator` | `kernel.canonical`, `kernel.version`, `planner.dependency_graph`, `planner.topological_sort` | re |
 | `validators.prompt_validator` | `compiler.passes.derived.p11_kinematic`, `compiler.passes.mandatory.p07_contact`, `planner.dynamic_beat_validator`, `planner.hits`, `planner.scene_view`, `renderers.anime_renderer`, `renderers.prop_samples`, `renderers.prose_renderer`, `solver.contact_world`, `solver.euler_solver`, `solver.shape_direction`, `solver.staff_geometry`, `validators.cause_reason` | math, re |
 | `validators.schema_validator` | `kernel.canonical` | re |
