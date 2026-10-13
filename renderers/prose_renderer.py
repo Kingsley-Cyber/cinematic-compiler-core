@@ -32,7 +32,8 @@ from solver import contact_world, euler_solver, staff_geometry
 
 TARGET = "structured-prose"
 MODES = {
-    "pure_staff": ("PURE STAFF", "pure staff: the staff words carry the movement; no numbers"),
+    "pure_staff": ("PURE STAFF", "pure staff: the staff words carry the movement; the only numbers are each line's "
+                                 "position"),
     "mixed": ("MIXED MODE", "Mixed: staff lines primary; Root [x, y, z] + EulerXYZ [x, y, z] on strike lines and on "
                             "each performer's first and last line, as precision override"),
     "upgraded_mixed": ("UPGRADED MIXED", "Upgraded Mixed: staff lines primary; Root, EulerXYZ and the full Joints "
@@ -42,7 +43,7 @@ MODES = {
                                    "staff words stay primary"),
 }
 JOINTS = ("Sp", "LUL", "RUL", "LL", "RL", "LA", "RA", "LFA", "RFA", "HD", "NK")
-ROOT_EXACT = "k_rules_01"  # '<label> root exact': left out of the prose (owner O3)
+ROOT_EXACT = "k_rules_01"  # '<label> root exact': the phrase is retired, the root printed as data (ADR-O114)
 GENRES = {"anime": "anime", "live_action": "live-action", "ugc_ad": "UGC ad"}
 TRAVEL_M = 0.2
 HANDS = ("left_hand", "right_hand")
@@ -418,7 +419,7 @@ def _euler(line, mode):
         return f" · {root} · {joints}"
     if mode == "mixed" and (line["strike"] or line["first"] or line["last"]):
         return f" · {root}"
-    return ""
+    return f" · position: {_numbers(key['pos'])}"  # ADR-O114: the root as data on every line, never "root exact"
 
 
 def _movement_language(mode, rows, verbs=False):
@@ -439,6 +440,7 @@ def _movement_language(mode, rows, verbs=False):
         "Explicit = the written lines (every support change, contact and accent has one); implied = everything "
         "between lines.",
     ]
+    lines.append("position: [x, y, z] is the performer's root in scene metres, on every line that has no Root block.")
     if mode != "pure_staff":
         lines.append("Root [x, y, z] is the scene position in metres; EulerXYZ and joints are degrees.")
     if mode in ("upgraded_mixed", "euler_heavy"):
@@ -625,7 +627,8 @@ def _motion_control(lines, labels, between=(), mode="pure_staff", turning=frozen
 
 def _inbetween_lines(between, mode, labels, turning=frozenset()):
     """ADR-O109 (RV-59i): each in-between key's time, performer, name and pose words; Root and Joints in every mode but
-    the pure staff, the root of one inside a declared turn as mid-turn, as the staff rows write it (W3, RV-59k)."""
+    the pure staff, which prints the position (ADR-O114); the root of one inside a declared turn as mid-turn, as the
+    staff rows write it (W3, RV-59k)."""
     out = []
     for b in between:
         words = staff_geometry.pose_words(b)
@@ -636,8 +639,9 @@ def _inbetween_lines(between, mode, labels, turning=frozenset()):
         right = (f"R arm {words['right']['arm']}, lower arm {words['right']['lower_arm']}, R leg {words['right']['leg']}, "
                  f"lower leg {words['right']['lower_leg']}")
         rot = "mid-turn" if b["id"] in turning else _numbers(b["rot"])
-        euler = "" if mode == "pure_staff" else (f" · Root {_numbers(b['pos'])} EulerXYZ {rot} · Joints {{"
-                                                 + ", ".join(f"{j}: {_numbers(b['bones'][j])}" for j in JOINTS) + "}")
+        euler = (f" · position: {_numbers(b['pos'])}" if mode == "pure_staff" else
+                 f" · Root {_numbers(b['pos'])} EulerXYZ {rot} · Joints {{"
+                 + ", ".join(f"{j}: {_numbers(b['bones'][j])}" for j in JOINTS) + "}")
         out.append(f"{_time(b['t'])} {labels[b['entity']]}: {_words(b['name'])} | {left} | {right}{euler}")
     return out
 
@@ -970,10 +974,10 @@ def _edge_lines(envelope, labels, omitted=()):
     Template section it belongs to (STACKED_GRAPHS refuses any other): the beats' order and the paths between keys in
     the motion control; support, coordination, Effort and state changes in the implied guidance; the contacts' order
     in the causal links; the cuts in the camera; which rule binds which beat, and the kernel invariants, in the rules.
-    Every line opens with "- " so no check reads it as a staff line. A constraint the prose leaves to LBN-2.4 (owner O3:
-    "root exact", `omitted`) stays out here too, until the owner rules between O3 and O113. A kernel rule that names a
-    prop the scene does not hold stays out as well (F-234: S03 applies such a rule to every prop; printed, it invites
-    the prop, as the kunai in R20)."""
+    Every line opens with "- " so no check reads it as a staff line. The "root exact" rule (`omitted`) stays out: its
+    data, each key's position, is on every staff line (ADR-O114: O113 for the data, O3 for the phrasing). A kernel
+    rule that names a prop the scene does not hold stays out as well (F-234: S03 applies such a rule to every prop;
+    printed, it invites the prop, as the kunai in R20)."""
     held = {p["id"] for p in _items(envelope, "nodes", "props")} | {e["id"] for e in _items(envelope, "nodes", "entities")}
     foreign = {c["id"] for c in _items(envelope, "nodes", "constraints") if set(c.get("reference_labels", [])) - held}
     omitted = set(omitted) | foreign

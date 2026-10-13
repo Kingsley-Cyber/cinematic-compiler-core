@@ -10,9 +10,9 @@ Layer order 1.7; rules 7.3; backlog 55.
 
 ## Last sessions
 
-- S-115 (applied): ADR-O113: the graph map, and the graph-to-prompt reach measured
 - S-116 (applied): S17 prints the hold frames, the camera's place and aim, each pose's description and its world points
 - S-117 (applied): S17 prints the edge graphs: beat order, paths, transitions, contact order, cuts, rule bindings, invariants
+- S-118 (applied): The root printed as position data on every line; "root exact" retired (ADR-O114)
 
 ## Next slices
 
@@ -139,4 +139,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O114, finding F-235, session S-118, render R21.
+Decision ADR-O115, finding F-235, session S-119, render R21.

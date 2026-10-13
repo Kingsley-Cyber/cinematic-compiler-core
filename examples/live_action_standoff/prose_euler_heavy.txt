@@ -16,6 +16,7 @@ Directions are relative to the performer's front: forward, back, left, right and
 Turns name the axis and the plane: a flip turns about the side-to-side axis (sagittal plane), a spin about the vertical axis (transverse plane), a cartwheel about the front-to-back axis (frontal plane); each turn is written once, on the line where it starts, with its count.
 Precision tags: [f:L|R|both] feet, [h:L|R|both] hands, [f:alt] stepping, _on_<surface> when the support is not the ground.
 Explicit = the written lines (every support change, contact and accent has one); implied = everything between lines.
+position: [x, y, z] is the performer's root in scene metres, on every line that has no Root block.
 Root [x, y, z] is the scene position in metres; EulerXYZ and joints are degrees.
 Skeleton key: Sp=Spine LUL/RUL=UpLeg LL/RL=LowLeg LA/RA=UpArm LFA/RFA=ForeArm HD=Head NK=Neck
 FORMAT: TIME PERFORMER: SUPPORT [precision tags] | LEFT | RIGHT | relationship | path/notes

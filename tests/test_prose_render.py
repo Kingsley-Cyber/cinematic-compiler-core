@@ -57,7 +57,10 @@ def test_euler_blocks_sit_on_the_lines_each_mode_names(folder):
         assert ("Root [" in lines["mixed"][i]) == (strike or i in first.values() or i in last.values())
         assert "Joints {" not in lines["mixed"][i]
         assert ("Joints {" in lines["upgraded_mixed"][i]) == (strike or i in last.values())
-        assert lines["mixed"][i].startswith(line) and lines["euler_heavy"][i].startswith(line)
+        bare = line.split(" · position: [")[0]  # ADR-O114: the pure staff prints the root as its position
+        assert lines["mixed"][i].startswith(bare) and lines["euler_heavy"][i].startswith(bare)
+    for line in (line for mode_lines in lines.values() for line in mode_lines):  # the root once on every line
+        assert ("Root [" in line) != ("position: [" in line), line
 
 
 @pytest.mark.parametrize("folder", EXAMPLES, ids=lambda p: p.name)

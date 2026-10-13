@@ -213,7 +213,7 @@ def check(text, envelope, mode):
     if text != fresh or render["prose"][mode]["text"] != text:
         add("PROSE_STALE", "The text differs from the projection of the current envelope")
     if re.search(r"root exact", text, re.I):
-        add("ROOT_EXACT_PRESENT", "The prose carries 'root exact' (owner O3 leaves it to LBN-2.4)")
+        add("ROOT_EXACT_PRESENT", "The prose carries 'root exact' (ADR-O114: the root is printed as position data)")
 
     _staff_checks(envelope, mode, parts, labels, frame_parts, add)
     _guidance_checks(envelope, parts, labels, mode, add)
@@ -310,6 +310,7 @@ def _euler_check(row, key, mode, first, last, add, mid=False):
     inside a turn writes its root position and 'EulerXYZ mid-turn' (W3)."""
     blocks = row["columns"][4].split(" · ")[1:]
     root = next((b for b in blocks if b.startswith("Root [")), None)
+    position = next((b for b in blocks if b.startswith("position: [")), None)
     joints = next((b for b in blocks if b.startswith("Joints {")), None)
     strike = "[DOUBLE BOW + accent:" in row["columns"][3]
     want_root = {"pure_staff": False, "mixed": strike or first or last, "upgraded_mixed": strike or last,
@@ -318,6 +319,10 @@ def _euler_check(row, key, mode, first, last, add, mid=False):
     label = f"{row['label']} {row['t']:.2f}"
     if (root is not None) != want_root:
         add("EULER_MODE_MISMATCH", f"{label}: Root block {'missing' if want_root else 'not allowed'} in {mode}")
+    if (position is None) == (root is None):  # ADR-O114: the root as data on every line, once
+        add("EULER_MODE_MISMATCH", f"{label}: position {'missing' if position is None else 'printed beside a Root block'}")
+    elif position is not None and _numbers(position) != [float(v) for v in key["pos"]]:
+        add("EULER_MODE_MISMATCH", f"{label}: position differs from the S13 key")
     if (joints is not None) != want_joints:
         add("EULER_MODE_MISMATCH", f"{label}: Joints block {'missing' if want_joints else 'not allowed'} in {mode}")
     if root is not None and _numbers(root) != [float(v) for v in key["pos"] + ([] if mid else key["rot"])]:

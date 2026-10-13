@@ -102,9 +102,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.7; rules 7.3; backlog 55.
-- Last session: S-117 (2026-10-13, applied): S17 prints the edge graphs: beat order, paths, transitions, contact order, cuts, rule bindings, invariants.
+- Last session: S-118 (2026-10-13, applied): The root printed as position data on every line; "root exact" retired (ADR-O114).
 - Next slice: AA-9 S13 written in parallel pieces, one per fighter and time window (each window overlapping its neighbour by one beat), merged and repaired by the solver (step motion).
-- Open findings: 144; decisions: 140 (0 proposed, 7 owner_default awaiting the owner).
+- Open findings: 144; decisions: 141 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

@@ -30,7 +30,7 @@ Recorded in docs/plans/MASTER_PLAN.md, table "Knowledge DAG and structured prose
 —
 
 ## Superseded By
-—
+- ADR-O114 (the root is printed as position data; the phrase "root exact" stays out)
 
 ## Related
 - —

@@ -124,6 +124,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-115 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Owner instruction (ADR-O113): if the gr… | applied | the commit whose message names [S-115] | from 02:05 to 02:40 | — | [S-115-adr-o113-graph-map-and-reach.md](../sessions/S-115-adr-o113-graph-map-and-reach.md) |
 | S-116 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | ADR-O113 (owner): stop thinning the dat… | applied | the commit whose message names [S-116] | from 02:45 to 03:15 | — | [S-116-s17-prints-holds-camera-poses-points.md](../sessions/S-116-s17-prints-holds-camera-poses-points.md) |
 | S-117 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | ADR-O113 (owner): "Print every edge gra… | applied | the commit whose message names [S-117] | from 03:20 to 04:30 | — | [S-117-s17-prints-the-edge-graphs.md](../sessions/S-117-s17-prints-the-edge-graphs.md) |
+| S-118 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | ADR-O114 (owner): O113 for the data, O3… | applied | the commit whose message names [S-118] | from 04:40 to 05:10 | — | [S-118-the-root-printed-as-position-data.md](../sessions/S-118-the-root-printed-as-position-data.md) |
 
 ## Status values
 

@@ -216,6 +216,14 @@ def test_each_code_fires_on_a_prompt_broken_that_way(code, example, mode, edit, 
     assert code in {f["code"] for f in prompt_validator.check(text, broken, mode)}
 
 
+def test_a_staff_line_without_its_position_is_refused(compiled):
+    """ADR-O114: the root is printed as data, as each line's position, in the pure staff too."""
+    envelope = compiled["wizard_vs_acrobat"]
+    text, broken = _staff_first(lambda line: re.sub(r" · position: \[.*$", "", line))(
+        envelope["nodes"]["render"]["items"][0]["prose"]["pure_staff"]["text"], envelope)
+    assert "EULER_MODE_MISMATCH" in {f["code"] for f in prompt_validator.check(text, broken, "pure_staff")}
+
+
 def test_every_code_has_a_break_and_every_map_code_is_real():
     assert sorted(b[0] for b in BREAKS) == sorted(prompt_validator.CODES)  # one break per code, no code left out
     rows = yaml.safe_load((ROOT / "kernel" / "knowledge_map.yaml").read_text(encoding="utf-8"))["rows"]
