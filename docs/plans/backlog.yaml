@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 52
+version: 53
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -204,6 +204,15 @@ items:
      step: motion, plan: PLAN-008, depends_on: [AA-1], findings: [], codes: []}
   - {id: AA-6, title: "The author casts any idea: when S02's cards find no performer, prop or surface (a kunoichi on a rooftop), the author writes the brief's entities, props and surfaces against its schema, the cards still winning where they match", status: next,
      step: brief, plan: PLAN-008, depends_on: [AA-2], findings: [], codes: []}
+  # The owner's speed plan (2026-10-13): target 3-4 minutes per idea (the builder's estimate 5-7); time and cost per
+  # step reported after each fix. Not taken: S11/S12 and S15/S16 in parallel, and S13 started before S12 ends (each
+  # reads the one before it: docs/layer_order.md).
+  - {id: AA-7, title: "A resume cache: each accepted step's document kept by its packet hash, so a re-run redoes only what changed", status: done,
+     step: all, plan: PLAN-008, depends_on: [AA-1], findings: [], codes: []}
+  - {id: AA-8, title: "Sonnet writes S13 and S16 first, Opus only on a retry; HIT_HOLD refusals routed to S16; the owner's reference fight is the anime guide; S12's brief fix measured", status: ready,
+     step: all, plan: PLAN-008, depends_on: [AA-7], findings: [], codes: []}
+  - {id: AA-9, title: "S13 written in parallel pieces, one per fighter and time window (each window overlapping its neighbour by one beat), merged and repaired by the solver", status: ready,
+     step: motion, plan: PLAN-008, depends_on: [AA-8, AA-4], findings: [], codes: []}
   - {id: AA-5, title: "A paid API backend with a budget per idea", status: blocked,
      blocked_by: "the owner's approval and budget (PLAN-008)", step: all, plan: PLAN-008, depends_on: [AA-1], findings: [], codes: []}
   - {id: RV-59g, title: "CONTACT_WORLD on every open support at every frame between keys (the DAG's 'respect support'), the examples' takeoffs placed where the motion leaves its surface", status: ready,

@@ -54,8 +54,10 @@ class BackendError(ContractError):
 
 
 ROOT = Path(__file__).resolve().parents[1]
-GUIDES = {"anime": "wizard_vs_acrobat", "live_action": "live_action_standoff", "ugc_ad": "ugc_glasses_demo"}
-FRONTIER = ("temporal", "motion", "effort", "camera")  # the creative steps (PLAN-008)
+GUIDES = {"anime": "reference_fight", "live_action": "live_action_standoff", "ugc_ad": "ugc_glasses_demo"}  # AA-8
+FRONTIER = ("temporal",)  # the frontier model's first attempts (PLAN-008, AA-8)
+RETRY_FRONTIER = ("temporal", "motion", "effort", "camera")  # its retries
+ROUTES = {"HIT_HOLD": "camera"}  # a refusal some later step finds, fixed where its content is written (AA-8)
 FILLED = ("step_id", "band", "packet_sha256", "author", "attempt")  # the author sets these; the model never copies them
 ENV = ("HOME", "PATH", "USER", "LOGNAME", "SHELL", "TMPDIR", "LANG")
 
@@ -97,7 +99,7 @@ class ClaudeCLI:
         import subprocess
         import tempfile
 
-        model = self.frontier if node in FRONTIER else self.other
+        model = self.frontier if node in FRONTIER or (findings and node in RETRY_FRONTIER) else self.other
         parts = [f"STEP {step_id} ({node}). THE PACKET (its `instructions` are your brief; follow them exactly):",
                  canonical_json(packet)]
         guide = self._guide(node)
@@ -267,13 +269,25 @@ def repair_motion(document, findings, envelope, rounds=6):
     return plan
 
 
+def _keep(cache, plans):
+    """AA-7: each document under its packet's hash (the steps before a refusal passed; at the end, all of them)."""
+    if cache is None:
+        return
+    cache.mkdir(parents=True, exist_ok=True)
+    for document in plans.values():
+        (cache / f"{document['packet_sha256'].split(':')[1]}.json").write_text(canonical_json(document), encoding="utf-8")
+
+
 def _sequence(query, genre):
     return pipeline.sequence_for(pipeline.load(), genre or parse_intent(query)["parsed"]["genre"])
 
 
-def author(query, backend, *, genre=None, duration_s=None, until="render", load_bearing=False, progress=None):
+def author(query, backend, *, genre=None, duration_s=None, until="render", load_bearing=False, progress=None,
+           cache=None):
     """(envelope, calls): the compiled envelope with every authored step written by `backend`, and the call log;
-    `progress(line)`, when given, hears each call as it returns and each refusal."""
+    `progress(line)`, when given, hears each call as it returns and each refusal. `cache` (a folder, AA-7) keeps each
+    accepted document under its packet's hash, so a re-run writes only the steps whose packets changed."""
+    cache = Path(cache) if cache else None
     order = pipeline.load()
     index = node_index(order)
     node_of = {spec["step_id"]: node for node, spec in index.items()}
@@ -302,6 +316,9 @@ def author(query, backend, *, genre=None, duration_s=None, until="render", load_
         except StepFailed as failed:  # an authored step's gate (GateFailed) or a derived step's check
             node = replan_trigger.owning_step(node_of[failed.step_id], resolved)
             findings = failed.findings
+            routed = {ROUTES.get(f.get("code")) for f in findings}
+            if len(routed) == 1 and None not in routed and next(iter(routed)) in plans:
+                node = next(iter(routed))  # AA-8: e.g. HIT_HOLD at S17 is the camera's to fix
             if node == "motion" and repairs.get(attempts.get(node)) is None:  # AA-4: the solver first
                 started = time.perf_counter()
                 repaired = repair_motion(plans[node], findings, run(sequence[sequence.index(node) - 1]))
@@ -330,13 +347,20 @@ def author(query, backend, *, genre=None, duration_s=None, until="render", load_
         else:
             for call in calls:
                 call.setdefault("result", "passed")
+            _keep(cache, plans)
             return envelope, calls
         for later in sequence[sequence.index(node) + 1:]:
             if plans.pop(later, None) is not None:  # written for a packet this step may change
                 next(c for c in reversed(calls) if c["node"] == later).setdefault("result", "dropped")
         attempts[node] = attempts.get(node, 0) + 1
         started = time.perf_counter()
-        document, usage = backend.write(node, index[node]["step_id"], packet, findings)
+        kept = cache / f"{packet['packet_sha256'].split(':')[1]}.json" if cache and not findings else None
+        if kept is not None and kept.exists():  # AA-7: this packet's document was accepted before
+            document = json.loads(kept.read_text(encoding="utf-8"))
+            usage = {"model": "cache", "tokens_in": 0, "tokens_out": 0, "cost_usd": 0.0}
+        else:
+            _keep(cache, {n: d for n, d in plans.items() if sequence.index(n) < sequence.index(node)})
+            document, usage = backend.write(node, index[node]["step_id"], packet, findings)
         plans[node] = {**document, "packet_sha256": packet["packet_sha256"], "attempt": attempts[node]}
         last = node
         calls.append({"step_id": index[node]["step_id"], "node": node, "attempt": attempts[node],

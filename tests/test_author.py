@@ -83,3 +83,19 @@ def test_the_solver_repairs_an_overlap_between_keys_before_the_model_retries():
     assert repair_motion(bare, [{"code": "MOTION_POS"}], envelope) is None  # another kind only: the model's
     mixed = repair_motion(bare, [*found, {"code": "CONTACT_WORLD", "contact": "x", "message": "."}], envelope)
     assert p13_motion.check(mixed, packet) == []  # the overlaps repaired, the rest left for the model
+
+
+class _Never:
+    name = "never"
+
+    def write(self, node, step_id, packet, findings=None):
+        raise AssertionError(f"{node} was written again")
+
+
+def test_a_re_run_takes_every_accepted_step_from_the_cache(tmp_path):
+    """AA-7: each accepted document is kept by its packet's hash; a re-run of the same idea writes nothing."""
+    folder = EXAMPLES / "wizard_vs_acrobat"
+    query = json.loads((folder / "request.json").read_text(encoding="utf-8"))["query"]
+    first, _ = author(query, Replay(folder / "plans"), cache=tmp_path)
+    again, calls = author(query, _Never(), cache=tmp_path)
+    assert canonical_json(again) == canonical_json(first) and {c["model"] for c in calls} == {"cache"}

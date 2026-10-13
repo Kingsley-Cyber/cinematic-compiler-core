@@ -101,8 +101,8 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.3; backlog 52.
-- Last session: S-109 (2026-10-13, applied): AA-4: the solver repairs S13 before the model retries; AA-3: the first idea end to end.
+- Layer order 1.7; rules 7.3; backlog 53.
+- Last session: S-110 (2026-10-13, applied): AA-7: the resume cache; AA-8: Sonnet first, HIT_HOLD to the camera, the owner's fight as guide.
 - Next slice: AA-6 The author casts any idea: when S02's cards find no performer, prop or surface (a kunoichi on a rooftop), the author writes the brief's entities, props and surfaces against its schema, the cards still winning where they match (step brief).
 - Open findings: 143; decisions: 139 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->

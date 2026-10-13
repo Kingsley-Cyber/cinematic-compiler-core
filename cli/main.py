@@ -98,7 +98,8 @@ def _author(args):
         def say(line):
             progress.write(line + "\n")
             progress.flush()
-        envelope, calls = author.author(query, backend, genre=args.genre, duration_s=duration, progress=say)
+        envelope, calls = author.author(query, backend, genre=args.genre, duration_s=duration, progress=say,
+                                        cache=None if args.no_cache else Path(args.cache).expanduser())
     except author.BackendError as failed:
         print(f"stopped: {failed} ({failed.path})", file=sys.stderr)
         return 7
@@ -164,6 +165,8 @@ def main(argv=None):
     aut.add_argument("--replay-from", help="replay: a folder of committed plans")
     aut.add_argument("--genre")
     aut.add_argument("--duration", type=float)
+    aut.add_argument("--cache", default="~/.cache/cinematic-author", help="accepted steps by packet hash (AA-7)")
+    aut.add_argument("--no-cache", action="store_true")
     val = sub.add_parser("validate")
     val.add_argument("envelope")
     gra = sub.add_parser("graph")

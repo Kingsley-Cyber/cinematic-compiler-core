@@ -52,6 +52,13 @@ How the owner's design note maps onto the code:
    Y" phrasing; a free idea ("a kunoichi ... on a moonlit rooftop") casts nobody, so S04 has no actor (S-108's first
    live run).
 
+7. AA-7: a resume cache (accepted documents by packet hash).
+8. AA-8: Sonnet first for S13 and S16 (Opus on a retry), HIT_HOLD routed to S16, the reference fight as the anime
+   guide, S12's brief fix measured.
+9. AA-9: S13 in parallel pieces, fighter by time window, merged and repaired by the solver.
+The owner's target (2026-10-13): 3 to 4 minutes per idea; time and cost per step after each fix. Not taken: S11/S12
+and S15/S16 in parallel, and S13 begun before S12 ends, since each reads the step before it.
+
 ## Verification
 - `scripts/verify.sh`; AA-1's replay test; AA-3's run log and prompts, judged by the owner's eyes (R-29)
 
@@ -70,3 +77,4 @@ How the owner's design note maps onto the code:
   "6 seconds anime fight scene: ninja versus knight in a moonlit bamboo courtyard" compiled end to end: 12 calls (one
   a solver repair), 26.6 min, $4.06 at list price on the subscription; the prose prompts 18.8k to 23.0k characters,
   3 checklist rows failing (M4 among them) and 29 not checked. AA-6 (casting any idea) next.
+- 2026-10-13 — The owner's speed plan recorded: AA-7, AA-8, AA-9; AA-6 alongside.

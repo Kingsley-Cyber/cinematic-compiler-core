@@ -6,6 +6,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The automatic author keeps each accepted step by its packet's hash (AA-7, S-110; `--cache`, default
+  ~/.cache/cinematic-author): a re-run writes only what changed. Sonnet writes poses, effort and camera first, Opus on a
+  retry; HIT_HOLD refusals go to the camera step; anime ideas take the owner's reference fight as their guide (AA-8).
 - The automatic author repairs S13 with the re-block solver before the model retries (AA-4, S-109), and the first
   idea compiled end to end with no hand authoring: "ninja versus knight in a moonlit bamboo courtyard", 12 calls,
   26.6 min (AA-3).

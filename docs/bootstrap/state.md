@@ -6,20 +6,20 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 7.3; backlog 52.
+Layer order 1.7; rules 7.3; backlog 53.
 
 ## Last sessions
 
-- S-107 (applied): AA-1: the automatic author's loop
 - S-108 (applied): AA-2: the subscription backend, and the first live runs
 - S-109 (applied): AA-4: the solver repairs S13 before the model retries; AA-3: the first idea end to end
+- S-110 (applied): AA-7: the resume cache; AA-8: Sonnet first, HIT_HOLD to the camera, the owner's fight as guide
 
 ## Next slices
 
 - AA-6 (next, step brief): The author casts any idea: when S02's cards find no performer, prop or surface (a kunoichi on a rooftop), the author writes the brief's entities, props and surfaces against its schema, the cards still winning where they match
 - RV-35b (ready, step all): The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools
-- RV-59g (ready, step motion): CONTACT_WORLD on every open support at every frame between keys (the DAG's 'respect support'), the examples' takeoffs placed where the motion leaves its surface
-- RV-107 (ready, step temporal): The wizard example's push-off at the pillar's release and its landing keyed where the fall ends; c06 and c08 re-authored; beat_planning.txt teaches RV-59d's measure
+- AA-8 (ready, step all): Sonnet writes S13 and S16 first, Opus only on a retry; HIT_HOLD refusals routed to S16; the owner's reference fight is the anime guide; S12's brief fix measured
+- AA-9 (ready, step motion): S13 written in parallel pieces, one per fighter and time window (each window overlapping its neighbour by one beat), merged and repaired by the solver
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -138,4 +138,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O113, finding F-234, session S-110, render R20.
+Decision ADR-O113, finding F-234, session S-111, render R20.
