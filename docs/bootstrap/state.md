@@ -6,20 +6,20 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 7.3; backlog 48.
+Layer order 1.7; rules 7.3; backlog 49.
 
 ## Last sessions
 
-- S-103 (applied): RV-59l: between keys a body stands on what its last key claims, as S07 changes it
 - S-104 (applied): RV-99c: a negation reaches only the phrase it heads, and the feet strike
 - S-105 (applied): ADR-O111: no length cap on a prompt (owner)
+- S-106 (applied): ADR-O112: the automatic author planned (PLAN-008)
 
 ## Next slices
 
-- RV-59g (next, step motion): CONTACT_WORLD on every open support at every frame between keys (the DAG's 'respect support'), the examples' takeoffs placed where the motion leaves its surface
+- AA-1 (next, step all): The automatic author's loop: `cinematic author` hands each AuthorRequired packet to a backend, binds and checks the document, sends refusals back (three retries), logs every call; a replay backend re-authors the four examples byte for byte
 - RV-35b (ready, step all): The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools
-- RV-107 (ready, step temporal): The wizard example's push-off at the pillar's release and its landing keyed where the fall ends; c06 and c08 re-authored; beat_planning.txt teaches RV-59d's measure
-- RV-95c (ready, step motion): The pickup rows worded in the printed legend's frame, and A's head at 7.5 aimed at B by a facing goal in the re-block solver (or its words dropped)
+- AA-3 (ready, step all): The first live idea end to end: its calls, retries and cost reported, its prompts handed to the owner
+- AA-4 (ready, step motion): S13's overlap, floor and contact refusals repaired by the re-block solver before the model retries
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -71,6 +71,8 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-15c blocked: A strike's limb and a facing head point at their target, checked at S13 (B's keys re-aimed in RV-103b) — the owner's answer in F-148 (A's source facings: the check would refuse the golden's own rows, O10)
 - Backlog RV-14b blocked: A held or embedded prop at its holder at every sample (the rope dart's line in RV-14c) — the owner's answer in F-148 (the climax: A's source right hand is 0.65-0.87 m from the kunai the source keeps in B's shoulder at 8.5-9.5)
 - Backlog RV-59m blocked: B's crash held over the floor with no allowance for the repo's keys: the measured solve flings B's legs 1.2-1.5 m up at 8.75 with the trunk past horizontal, so it waits for F-215 and the owner's renders — F-215 (the floor's allowance) and the owner's renders (ADR-O110)
+- Backlog AA-2 blocked: The subscription backend: `claude -p`, isolated, schema-bound output, the model per step's tier — the owner's choice of live backend (PLAN-008)
+- Backlog AA-5 blocked: A paid API backend with a budget per idea — the owner's approval and budget (PLAN-008)
 - Backlog RV-87 blocked: The substitution's decoy is declared, stands in the scene from the first beat, and is measured where the actor stood; a substitution needs the capability — the owner's answers in F-196 (Q1-Q3: who declares the decoy, whether it stands from the first frame, who may substitute)
 - Backlog RV-90b blocked: HIT_HOLD's scale follows the grammar's impact scales — the owner's answer in F-197 (Q3: may a hit be held at a wide scale)
 - Backlog RV-64b blocked: The S04 packet carries the scene_reference rules — the owner's answer in F-133
@@ -137,4 +139,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O112, finding F-234, session S-106, render R20.
+Decision ADR-O113, finding F-234, session S-107, render R20.

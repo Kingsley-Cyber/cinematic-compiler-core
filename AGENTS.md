@@ -101,10 +101,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.3; backlog 48.
-- Last session: S-105 (2026-10-12, applied): ADR-O111: no length cap on a prompt (owner).
-- Next slice: RV-59g CONTACT_WORLD on every open support at every frame between keys (the DAG's 'respect support'), the examples' takeoffs placed where the motion leaves its surface (step motion).
-- Open findings: 143; decisions: 138 (0 proposed, 7 owner_default awaiting the owner).
+- Layer order 1.7; rules 7.3; backlog 49.
+- Last session: S-106 (2026-10-12, applied): ADR-O112: the automatic author planned (PLAN-008).
+- Next slice: AA-1 The automatic author's loop: `cinematic author` hands each AuthorRequired packet to a backend, binds and checks the document, sends refusals back (three retries), logs every call; a replay backend re-authors the four examples byte for byte (step all).
+- Open findings: 143; decisions: 139 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
@@ -159,6 +159,8 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - Backlog RV-15c blocked: A strike's limb and a facing head point at their target, checked at S13 (B's keys re-aimed in RV-103b) — the owner's answer in F-148 (A's source facings: the check would refuse the golden's own rows, O10)
 - Backlog RV-14b blocked: A held or embedded prop at its holder at every sample (the rope dart's line in RV-14c) — the owner's answer in F-148 (the climax: A's source right hand is 0.65-0.87 m from the kunai the source keeps in B's shoulder at 8.5-9.5)
 - Backlog RV-59m blocked: B's crash held over the floor with no allowance for the repo's keys: the measured solve flings B's legs 1.2-1.5 m up at 8.75 with the trunk past horizontal, so it waits for F-215 and the owner's renders — F-215 (the floor's allowance) and the owner's renders (ADR-O110)
+- Backlog AA-2 blocked: The subscription backend: `claude -p`, isolated, schema-bound output, the model per step's tier — the owner's choice of live backend (PLAN-008)
+- Backlog AA-5 blocked: A paid API backend with a budget per idea — the owner's approval and budget (PLAN-008)
 - Backlog RV-87 blocked: The substitution's decoy is declared, stands in the scene from the first beat, and is measured where the actor stood; a substitution needs the capability — the owner's answers in F-196 (Q1-Q3: who declares the decoy, whether it stands from the first frame, who may substitute)
 - Backlog RV-90b blocked: HIT_HOLD's scale follows the grammar's impact scales — the owner's answer in F-197 (Q3: may a hit be held at a wide scale)
 - Backlog RV-64b blocked: The S04 packet carries the scene_reference rules — the owner's answer in F-133
