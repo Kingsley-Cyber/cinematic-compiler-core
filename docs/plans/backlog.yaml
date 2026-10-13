@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 51
+version: 52
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -198,11 +198,11 @@ items:
      step: all, plan: PLAN-008, depends_on: [], findings: [], codes: []}
   - {id: AA-2, title: "The subscription backend: `claude -p`, isolated, schema-bound output, the model per step's tier", status: done,
      step: all, plan: PLAN-008, depends_on: [AA-1], findings: [], codes: []}
-  - {id: AA-3, title: "The first live idea end to end: its calls, retries and cost reported, its prompts handed to the owner", status: ready,
+  - {id: AA-3, title: "The first live idea end to end: its calls, retries and cost reported, its prompts handed to the owner", status: done,
      step: all, plan: PLAN-008, depends_on: [AA-2], findings: [], codes: []}
-  - {id: AA-4, title: "S13's overlap, floor and contact refusals repaired by the re-block solver before the model retries", status: next,
+  - {id: AA-4, title: "S13's overlap, floor and contact refusals repaired by the re-block solver before the model retries", status: done,
      step: motion, plan: PLAN-008, depends_on: [AA-1], findings: [], codes: []}
-  - {id: AA-6, title: "The author casts any idea: when S02's cards find no performer, prop or surface (a kunoichi on a rooftop), the author writes the brief's entities, props and surfaces against its schema, the cards still winning where they match", status: ready,
+  - {id: AA-6, title: "The author casts any idea: when S02's cards find no performer, prop or surface (a kunoichi on a rooftop), the author writes the brief's entities, props and surfaces against its schema, the cards still winning where they match", status: next,
      step: brief, plan: PLAN-008, depends_on: [AA-2], findings: [], codes: []}
   - {id: AA-5, title: "A paid API backend with a budget per idea", status: blocked,
      blocked_by: "the owner's approval and budget (PLAN-008)", step: all, plan: PLAN-008, depends_on: [AA-1], findings: [], codes: []}

@@ -115,6 +115,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-106 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Owner instruction in chat (ADR-O112); P… | applied | the commit whose message names [S-106] | from 15:24 to 15:30 | — | [S-106-adr-o112-the-automatic-author-planned.md](../sessions/S-106-adr-o112-the-automatic-author-planned.md) |
 | S-107 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog AA-1 (PLAN-008); ADR-O112 | applied | the commit whose message names [S-107] | from 15:33 to 15:45 | — | [S-107-aa-1-the-automatic-author-s-loop.md](../sessions/S-107-aa-1-the-automatic-author-s-loop.md) |
 | S-108 | 2026-10-12 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog AA-2 (PLAN-008); the owner's ch… | applied | the commit whose message names [S-108] | from 15:52 to 23:12 (two live runs; the clock read 22:54 at the first run's end) | — | [S-108-aa-2-the-subscription-backend.md](../sessions/S-108-aa-2-the-subscription-backend.md) |
+| S-109 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Backlog AA-4, AA-3 (PLAN-008); ADR-O112 | applied | the commit whose message names [S-109] | from 23:20 to 00:05 | — | [S-109-aa-4-the-solver-repairs-s13.md](../sessions/S-109-aa-4-the-solver-repairs-s13.md) |
 
 ## Status values
 

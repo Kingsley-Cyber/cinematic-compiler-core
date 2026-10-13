@@ -6,6 +6,9 @@ All notable changes, newest first. Format: [Keep a Changelog](https://keepachang
 ## Unreleased
 
 ### Changed
+- The automatic author repairs S13 with the re-block solver before the model retries (AA-4, S-109), and the first
+  idea compiled end to end with no hand authoring: "ninja versus knight in a moonlit bamboo courtyard", 12 calls,
+  26.6 min (AA-3).
 - The automatic author calls the owner's Claude subscription (AA-2, S-108): `cinematic author "<idea>" --backend
   claude-cli --out DIR`, one isolated `claude -p` call per step (Opus for beats, poses, effort and camera; Sonnet for
   the rest), its progress in progress.log. First live fight: S04 to S12 passed, S13 refused three times.

@@ -21,7 +21,7 @@ flowchart LR
   compiler -->|20| kernel
   compiler -->|51| planner
   compiler -->|4| renderers
-  compiler -->|14| solver
+  compiler -->|18| solver
   compiler -->|30| validators
   kernel -->|1| compiler
   kernel -->|3| planner
@@ -50,7 +50,7 @@ flowchart LR
 | Module | Imports (internal) | Imports (standard library / external) |
 |---|---|---|
 | `cli.main` | `compiler.author`, `compiler.authoring`, `compiler.pipeline`, `compiler.replan_trigger`, `kernel.canonical`, `planner.intent_parser`, `validators.checklist`, `validators.envelope_validator` | argparse, json, pathlib, sys |
-| `compiler.author` | `compiler.authoring`, `compiler.pipeline`, `compiler.replan_trigger`, `kernel.canonical`, `planner.dependency_graph`, `planner.intent_parser` | json, os, pathlib, subprocess, tempfile, time |
+| `compiler.author` | `compiler.authoring`, `compiler.passes.derived.p13_motion`, `compiler.pipeline`, `compiler.replan_trigger`, `kernel.canonical`, `planner.dependency_graph`, `planner.intent_parser`, `solver.contact_world`, `solver.floor_penetration`, `solver.forward_kinematics`, `solver.reblock` | copy, json, os, pathlib, re, subprocess, tempfile, time |
 | `compiler.authoring` | `kernel.canonical`, `planner.dependency_graph`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
 | `compiler.examples` | `compiler.pipeline`, `kernel.canonical`, `kernel.kernel_files`, `planner.dependency_graph` | json, sys |
 | `compiler.passes.derived.p08_hand_role` | `compiler.authoring`, `compiler.passes.mandatory.p07_contact`, `planner.dependency_graph`, `planner.library_vocab`, `validators.schema_validator` | json, yaml |

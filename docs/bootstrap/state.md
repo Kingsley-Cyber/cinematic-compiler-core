@@ -6,20 +6,20 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 7.3; backlog 51.
+Layer order 1.7; rules 7.3; backlog 52.
 
 ## Last sessions
 
-- S-106 (applied): ADR-O112: the automatic author planned (PLAN-008)
 - S-107 (applied): AA-1: the automatic author's loop
 - S-108 (applied): AA-2: the subscription backend, and the first live runs
+- S-109 (applied): AA-4: the solver repairs S13 before the model retries; AA-3: the first idea end to end
 
 ## Next slices
 
-- AA-4 (next, step motion): S13's overlap, floor and contact refusals repaired by the re-block solver before the model retries
+- AA-6 (next, step brief): The author casts any idea: when S02's cards find no performer, prop or surface (a kunoichi on a rooftop), the author writes the brief's entities, props and surfaces against its schema, the cards still winning where they match
 - RV-35b (ready, step all): The recorded re-blocks (S-030 to S-049) and the camera trials (S-050, S-076) re-derived with committed tools
-- AA-3 (ready, step all): The first live idea end to end: its calls, retries and cost reported, its prompts handed to the owner
-- AA-6 (ready, step brief): The author casts any idea: when S02's cards find no performer, prop or surface (a kunoichi on a rooftop), the author writes the brief's entities, props and surfaces against its schema, the cards still winning where they match
+- RV-59g (ready, step motion): CONTACT_WORLD on every open support at every frame between keys (the DAG's 'respect support'), the examples' takeoffs placed where the motion leaves its surface
+- RV-107 (ready, step temporal): The wizard example's push-off at the pillar's release and its landing keyed where the fall ends; c06 and c08 re-authored; beat_planning.txt teaches RV-59d's measure
 
 M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's own).
 
@@ -138,4 +138,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O113, finding F-234, session S-109, render R20.
+Decision ADR-O113, finding F-234, session S-110, render R20.

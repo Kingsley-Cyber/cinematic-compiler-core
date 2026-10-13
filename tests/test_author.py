@@ -49,7 +49,7 @@ def test_a_refusal_goes_back_with_its_findings_and_the_retry_passes():
     query = json.loads((EXAMPLES / "wizard_vs_acrobat" / "request.json").read_text(encoding="utf-8"))["query"]
     backend = _Breaks(EXAMPLES / "wizard_vs_acrobat" / "plans", times=1)
     envelope, calls = author(query, backend)
-    motion = [c for c in calls if c["node"] == "motion"]
+    motion = [c for c in calls if c["node"] == "motion" and c["backend"] != "reblock-solver"]
     assert [(c["attempt"], c["result"]) for c in motion] == [(1, "refused"), (2, "passed")]
     assert backend.seen[0] is None and "FLOOR_PENETRATION" in {f["code"] for f in backend.seen[1]}
     assert "render" in envelope["nodes"]
@@ -59,5 +59,27 @@ def test_a_step_refused_on_every_attempt_stops_the_run():
     query = json.loads((EXAMPLES / "wizard_vs_acrobat" / "request.json").read_text(encoding="utf-8"))["query"]
     with pytest.raises(AuthorFailed) as stopped:
         author(query, _Breaks(EXAMPLES / "wizard_vs_acrobat" / "plans", times=99))
-    assert stopped.value.node == "motion" and [c["result"] for c in stopped.value.calls if c["node"] == "motion"] == \
-        ["refused"] * 3
+    assert stopped.value.node == "motion" and [c["result"] for c in stopped.value.calls
+                                               if c["node"] == "motion" and c["backend"] != "reblock-solver"] == ["refused"] * 3
+
+
+def test_the_solver_repairs_an_overlap_between_keys_before_the_model_retries():
+    """AA-4: without its in-betweens the wizard example's kick passes through the wizard's trunk on both sides of the
+    contact; the solver alone places in-betweens one frame off the contact's key and S13 refuses nothing."""
+    from compiler import pipeline
+    from compiler.author import repair_motion
+    from compiler.passes.derived import p13_motion
+    folder = EXAMPLES / "wizard_vs_acrobat"
+    query = json.loads((folder / "request.json").read_text(encoding="utf-8"))["query"]
+    plans = {p.stem: json.loads(p.read_text(encoding="utf-8")) for p in sorted((folder / "plans").glob("*.json"))}
+    envelope = pipeline.run(query, until="bartenieff", plans=plans)
+    packet = p13_motion.prepare(envelope)
+    bare = {**plans["motion"], "inbetweens": []}
+    found = p13_motion.check(bare, packet)
+    assert {f["code"] for f in found} == {"BODY_OVERLAP"}
+    repaired = repair_motion(bare, found, envelope)
+    assert p13_motion.check(repaired, packet) == []
+    assert [(b["entity"], b["t"]) for b in repaired["inbetweens"]] == [("acrobat", 3.54167), ("acrobat", 3.70833)]
+    assert repair_motion(bare, [{"code": "MOTION_POS"}], envelope) is None  # another kind only: the model's
+    mixed = repair_motion(bare, [*found, {"code": "CONTACT_WORLD", "contact": "x", "message": "."}], envelope)
+    assert p13_motion.check(mixed, packet) == []  # the overlaps repaired, the rest left for the model

@@ -101,9 +101,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.3; backlog 51.
-- Last session: S-108 (2026-10-12, applied): AA-2: the subscription backend, and the first live runs.
-- Next slice: AA-4 S13's overlap, floor and contact refusals repaired by the re-block solver before the model retries (step motion).
+- Layer order 1.7; rules 7.3; backlog 52.
+- Last session: S-109 (2026-10-13, applied): AA-4: the solver repairs S13 before the model retries; AA-3: the first idea end to end.
+- Next slice: AA-6 The author casts any idea: when S02's cards find no performer, prop or surface (a kunoichi on a rooftop), the author writes the brief's entities, props and surfaces against its schema, the cards still winning where they match (step brief).
 - Open findings: 143; decisions: 139 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 

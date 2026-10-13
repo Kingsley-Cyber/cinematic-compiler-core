@@ -64,3 +64,9 @@ How the owner's design note maps onto the code:
   passed S04, S11 and S12 (one retry) and stopped at S13 after three attempts, its overlaps 7, then two contact
   misses, then 2 (the knight's forearm 0.045 m into the ninja's trunk): 7 calls, 910 s, $2.53 at list price on the
   subscription. AA-4 next.
+- 2026-10-13 — AA-4 and AA-3 done (S-109): S13's refusals are repaired by the re-block solver before the model
+  retries (a missed contact's part placed on its target's surface; an overlap at a key re-blocked with its root on
+  its anchor; an overlap between keys cleared by an in-between one frame off any key; the rest left for the model).
+  "6 seconds anime fight scene: ninja versus knight in a moonlit bamboo courtyard" compiled end to end: 12 calls (one
+  a solver repair), 26.6 min, $4.06 at list price on the subscription; the prose prompts 18.8k to 23.0k characters,
+  3 checklist rows failing (M4 among them) and 29 not checked. AA-6 (casting any idea) next.
