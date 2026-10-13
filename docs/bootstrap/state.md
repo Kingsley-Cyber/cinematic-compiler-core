@@ -10,9 +10,9 @@ Layer order 1.9; rules 7.3; backlog 55.
 
 ## Last sessions
 
-- S-123 (applied): The orphan split: every field a layer writes is read, printed, deleted or declared
 - S-124 (applied): The pillar fitted to the fight's feet; contacts with a surface's face are measured
 - S-125 (applied): The renumber and an empty S14 (ADR-O117)
+- S-126 (applied): S14's first check: the line of action, computed for every key and printed on its line
 
 ## Next slices
 
@@ -138,4 +138,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O118, finding F-236, session S-126, render R21.
+Decision ADR-O118, finding F-236, session S-127, render R21.

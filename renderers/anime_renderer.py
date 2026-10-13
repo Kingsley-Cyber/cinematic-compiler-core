@@ -281,6 +281,7 @@ def _actor_rows(envelope, entity, labels, cover):
     efforts = _items(envelope, "nodes", "efforts")
     contacts = _items(envelope, "nodes", "contacts")
     facial = {n["id"]: n for n in _items(envelope, "nodes", "facial")}
+    mechanics = {n["id"]: n for n in _items(envelope, "nodes", "pose_mechanics")}
     rows = []
     keys = [k for k in _items(envelope, "nodes", "motion") if k["entity"] == entity]
     for key in sorted(keys, key=lambda k: (k["t"], k["id"])):
@@ -290,6 +291,12 @@ def _actor_rows(envelope, entity, labels, cover):
         k, b = kinematic[slot], bartenieff[slot]
         parts = ["support=" + (",".join(k["support"]) or "none airborne"),
                  "KIN:" + ",".join(f"{c}={k[c]}" for c in CUES)]
+        if slot in mechanics:  # PLAN-009 (S14): the line of action, computed (PM-3, S-126)
+            cover.mark("pose_mechanics", slot)
+            line = mechanics[slot]["line_of_action"]
+            parts.append(f"LINE:{line['shape']} apex {line['apex']},tension {line['tension']},bulge "
+                         f"{line['bulge']},head to {line['base']} along {line['chord']}"
+                         + (",inverted" if line["inverted"] else ""))
         ext = " [labelled extension]" if b["extensions"] else ""
         parts.append(f"BODY:{b['connectivity']}{ext} connectivity,{b['developmental_pattern']} pattern,{b['initiation']} "
                      f"initiates,follow {'>'.join(b['follow_through'])},{b['body_mode']} mode,intent {b['intent']}")

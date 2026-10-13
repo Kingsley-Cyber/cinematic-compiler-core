@@ -1,8 +1,8 @@
 """S14 pass (band L4e, computed; PLAN-009): the pose mechanics of every S13 key, computed, never authored.
 
-S-125 adds the step empty: it writes its two groups with no items, so the renumber lands on a green gate before any
-mechanic does. Each mechanic (line of action, counterbalance, weight distribution) adds its fields in its own slice;
-the camera-dependent ones (silhouette) are computed in S17's `derived` block.
+S-125 added the step empty; S-126 writes each key's line of action. Each mechanic (line of action, counterbalance,
+weight distribution) adds its fields in its own slice; the camera-dependent ones (silhouette) are computed in S17's
+`derived` block.
 """
 
 import copy
@@ -10,6 +10,7 @@ import json
 
 from kernel.canonical import ContractError
 from planner.dependency_graph import ROOT, load, node_index
+from solver import pose_mechanics
 from validators.layer_dependency_validator import check_pass_writes
 from validators.schema_validator import validate_schema
 
@@ -18,8 +19,14 @@ GRAPH_SCHEMA = ROOT / "schemas" / "graphs" / "pose_mechanics_graph.schema.json"
 
 
 def build(envelope):
-    """{pose_mechanics: [...], pose_mechanics_transition: [...]} for the envelope's motion keys."""
-    return {"pose_mechanics": [], "pose_mechanics_transition": []}
+    """{pose_mechanics: [...], pose_mechanics_transition: [...]} for the envelope's motion keys: one node per key,
+    its line of action (PM-3, S-126)."""
+    nodes = []
+    for key in sorted(envelope["nodes"]["motion"]["items"], key=lambda k: (k["t"], k["id"])):
+        line = pose_mechanics.line_of_action(key["points"])
+        if line is not None:
+            nodes.append({"id": key["id"], "line_of_action": line})
+    return {"pose_mechanics": nodes, "pose_mechanics_transition": []}
 
 
 def run(envelope, *, order=None):

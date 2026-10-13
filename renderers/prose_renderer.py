@@ -316,6 +316,15 @@ def _point(values):
     return "[" + ", ".join(f"{round(v, 2):g}" for v in values) + "]"
 
 
+def _line_of_action(line):
+    """PM-3 (S-126): 'line of action: C curve bulging [x, y, z] at the chest, tension 0.18, head to R foot along [..]'."""
+    shape = {"c": "C curve", "s": "S curve", "straight": "straight line"}[line["shape"]]
+    apex = {"torso": "the chest", "pelvis": "the hips"}[line["apex"]]
+    bend = "" if line["shape"] == "straight" else f" bulging {_numbers(line['bulge'])} at {apex}"
+    return (f"line of action: {shape}{bend}, tension {_num(line['tension'])}, head to {_part(line['base'])} along "
+            f"{_numbers(line['chord'])}{', inverted (head below the hips)' if line['inverted'] else ''}")
+
+
 def _hands(hands, names):
     words = [f"{side} {names.get(hands[hand], hands[hand]) if hands[hand] != 'empty' else 'empty'}"
              for side, hand in (("L", "left_hand"), ("R", "right_hand"))]
@@ -335,6 +344,7 @@ def staff_lines(envelope, frame_parts, labels):
     spans = _supports(envelope, labels)
     empty = empty_hands(envelope, labels)
     held = {s["id"]: s["hands"] for s in _items(envelope, "nodes", "states") if "hands" in s}
+    mechanics = {m["id"]: m for m in _items(envelope, "nodes", "pose_mechanics")}
     runs = turn_runs(envelope, labels)
     heads = {r["slots"][0]: r["head"] for r in runs}
     world = {r["id"]: r for r in contact_world.measure(envelope) if r["measurable"] and r["kind"] != "foot or body on a surface"}
@@ -398,6 +408,8 @@ def staff_lines(envelope, frame_parts, labels):
         if slot["role"] == "actor":
             notes.append(slot["action"].rstrip("."))
         notes.append(f"pose: {key['description'].rstrip('.')}")  # ADR-O113: the S13 key's own description
+        if slot["slot"] in mechanics:  # PLAN-009 (S14): the pose's mechanics, computed
+            notes.append(_line_of_action(mechanics[slot["slot"]]["line_of_action"]))
         if slot["slot"] in held:  # R20 next action 1 (S06 `hands`): what each hand holds, empty said aloud
             notes.append(_hands(held[slot["slot"]], names))
         if slot["role"] == "actor" and slot["event_type"] == "substitution":

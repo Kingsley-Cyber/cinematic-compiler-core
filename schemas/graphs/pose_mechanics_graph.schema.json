@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:pose_mechanics_graph:1.0",
+  "$id": "urn:cinematic-compiler:schema:pose_mechanics_graph:1.1",
   "title": "S14 pose mechanics graph (PLAN-009): what makes each pose read, computed from the motion keys",
   "description": "One node per S13 key (its id), one edge between a performer's consecutive poses. S-125 adds the empty step; each mechanic (line of action, counterbalance, weight distribution) adds its own fields in its own slice.",
   "type": "object",
@@ -16,12 +16,71 @@
         "type": "object",
         "additionalProperties": false,
         "required": [
-          "id"
+          "id",
+          "line_of_action"
         ],
         "properties": {
           "id": {
             "type": "string",
             "minLength": 1
+          },
+          "line_of_action": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "shape",
+              "apex",
+              "tension",
+              "bulge",
+              "chord",
+              "base",
+              "inverted"
+            ],
+            "description": "PM-3 (S-126): the curve from the head through the chest and pelvis to the base foot (solver/pose_mechanics.py).",
+            "properties": {
+              "shape": {
+                "enum": [
+                  "straight",
+                  "c",
+                  "s"
+                ]
+              },
+              "apex": {
+                "enum": [
+                  "torso",
+                  "pelvis"
+                ]
+              },
+              "tension": {
+                "type": "number",
+                "minimum": 0
+              },
+              "bulge": {
+                "type": "array",
+                "minItems": 3,
+                "maxItems": 3,
+                "items": {
+                  "type": "number"
+                }
+              },
+              "chord": {
+                "type": "array",
+                "minItems": 3,
+                "maxItems": 3,
+                "items": {
+                  "type": "number"
+                }
+              },
+              "base": {
+                "enum": [
+                  "left_foot",
+                  "right_foot"
+                ]
+              },
+              "inverted": {
+                "type": "boolean"
+              }
+            }
           }
         }
       }
