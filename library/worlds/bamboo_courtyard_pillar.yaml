@@ -1,6 +1,6 @@
 card_id: bamboo_courtyard_pillar
 kind: world
-card_version: 2
+card_version: 3
 status: draft
 names: [bamboo courtyard with wooden pillar]
 description: "A moonlit bamboo courtyard with one tall wooden pillar at the back and a dark bamboo under-canopy on the left."
@@ -10,7 +10,7 @@ genres: [anime, live_action]
 ax: {up: "+Y", forward: "+Z", ground: "y=0", unit: m}
 surfaces:
   - {id: ground, kind: floor, description: "Flat courtyard ground at y=0.", boxes: [{min: [-10, -0.5, -10], max: [10, 0, 10]}]}
-  - {id: wooden_pillar, kind: obstacle, description: "Tall wooden pillar at the back of the courtyard.", ax: "pillar at z=6 from y=0 to y=8", boxes: [{min: [-0.3, 0, 5.7], max: [0.3, 8, 6.3]}]}
+  - {id: wooden_pillar, kind: obstacle, description: "Tall wooden pillar at the back of the courtyard.", ax: "pillar at z=6 from y=0 to y=8", boxes: [{min: [-0.3, 0, 5.3], max: [0.3, 8, 5.95]}]}
   - {id: bamboo_canopy, kind: backdrop, description: "Dark under-canopy of bamboo on the left.", ax: "bamboo canopy left side", boxes: [{min: [4, 0, -2], max: [8, 10, 10]}]}
 invariants:
   - id: embedded_stays

@@ -107,7 +107,9 @@ def test_the_kunai_pickup_meets_since_its_re_block():
     pickup = rows["b19_c2"]                                     # A takes the kunai at 8.0
     assert pickup["measurable"] and pickup["distance"] <= contact_world.TOLERANCE_M and pickup["target_point"] == [1.4, 0.0, 3.77]
     assert rows["b01_c1"]["distance"] <= contact_world.TOLERANCE_M          # A lands on the pillar's top (O21)
-    assert not rows["b18_c1"]["measurable"]                                   # the pillar's face has no top to meet
+    assert rows["b18_c1"]["measurable"] and rows["b18_c1"]["distance"] > 1   # F-235 (S-124): the face is measured;
+    query = _envelope("reference_fight")["provenance"]["source_prompt"]
+    assert "b18_c1" in contact_world.owner_exceptions(query)  # the 7.00 wall push: the owner's exception
 
 
 def test_a_strike_is_measured_to_the_target_s_surface():

@@ -1,7 +1,7 @@
 # The owner's CONTACT_WORLD exceptions (ADR-O83 point 2; F-123, RV-43): a contact whose miss over 0.15 m S13 does not
 # refuse because both its sides are the owner's source rows. Only the owner's rulings add entries; the S13 author
 # cannot list one (schemas/graphs/motion_plan.schema.json 2.0). A scene is named by the sha256 of its query.
-version: 2
+version: 3
 status: draft
 basis: "Owner ADR-O83 point 2 and the owner's M9-06b words (S-030): 'keep the source misses as exceptions (calibrated to the trunk reading)'."
 exceptions:
@@ -15,3 +15,13 @@ exceptions:
     contact: b14_c3
     ruling: ADR-O83
     reason: "The owner's source pose at 5.9 (root y 0.6, both legs folded under, 'support=both feet') holds A's right sole 0.35 m over the ground under the anime body; both sides are the source's (ADR-O83 point 2; not an artefact under O89)."
+  - scene: reference_fight
+    query_sha256: "082ea619e0226b5bd0d008e19c18164920c00e50cff47bddeecc85d9cad58865"
+    contact: b18_c1
+    ruling: owner F-235 (2026-10-13)
+    reason: "The owner, 2026-10-13: 'move the pillar to fit the feet. The fight is the truth; the backdrop serves it.' The pillar's box fits every other foot on it (0.60 on its top, 1.10 down its face); at 7.00 the wall push puts the left foot 1.09 m from it, and no one box reaches both of this push's feet and the earlier ones (S-124)."
+  - scene: reference_fight
+    query_sha256: "082ea619e0226b5bd0d008e19c18164920c00e50cff47bddeecc85d9cad58865"
+    contact: b18_c2
+    ruling: owner F-235 (2026-10-13)
+    reason: "The owner, 2026-10-13: 'move the pillar to fit the feet. The fight is the truth; the backdrop serves it.' The pillar's box fits every other foot on it (0.60 on its top, 1.10 down its face); at 7.00 the wall push puts the right foot 0.59 m from it, and no one box reaches both of this push's feet and the earlier ones (S-124)."

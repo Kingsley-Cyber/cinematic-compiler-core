@@ -102,7 +102,7 @@ GROUNDED_PICKUPS = {  # O18: A's rows at the two pickups, crouched on the ground
 # exception; O88's flip of that hip to the row's own "R: leg fwd mid" puts the foot on the ground (S-038). O89 (S-039):
 # a turn exempts nothing, so the source's slide at 5.9 (both soles 0.35-0.55 m over the ground, the source's root and
 # legs) is listed with its reason, as the owner's M9-06b ruling keeps the source's misses.
-CONTACT_EXCEPTIONS = {"b14_c2", "b14_c3"}
+CONTACT_EXCEPTIONS = {"b14_c2", "b14_c3", "b18_c1", "b18_c2"}  # b18: the 7.00 wall push off the pillar (owner F-235, S-124)
 
 
 GROUNDED_DESCRIPTIONS = {
@@ -214,7 +214,7 @@ def test_contact_world_excepts_only_the_source_miss():
     plan = json.loads((ROOT / "examples" / "reference_fight" / "plans" / "motion.json").read_text(encoding="utf-8"))
     kept = contact_world.owner_exceptions(ENVELOPE["provenance"]["source_prompt"])
     assert set(kept) == CONTACT_EXCEPTIONS and "contact_world_exceptions" not in plan
-    assert all("O83" in reason for reason in kept.values())
+    assert all("O83" in reason or "F-235" in reason for reason in kept.values())  # each cites its owner ruling
 
 
 def test_a_roots_and_joints_are_the_reference_rows_with_the_recorded_deviations():

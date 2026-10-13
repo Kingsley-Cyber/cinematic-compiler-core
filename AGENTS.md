@@ -102,9 +102,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.8; rules 7.3; backlog 55.
-- Last session: S-123 (2026-10-13, applied): The orphan split: every field a layer writes is read, printed, deleted or declared.
+- Last session: S-124 (2026-10-13, applied): The pillar fitted to the fight's feet; contacts with a surface's face are measured.
 - Next slice: AA-9 S13 written in parallel pieces, one per fighter and time window (each window overlapping its neighbour by one beat), merged and repaired by the solver (step motion).
-- Open findings: 144; decisions: 143 (0 proposed, 7 owner_default awaiting the owner).
+- Open findings: 143; decisions: 143 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

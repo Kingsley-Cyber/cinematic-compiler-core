@@ -12,7 +12,7 @@ high
 all
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-13
@@ -46,11 +46,16 @@ above, a face otherwise), within its 0.15 m. The reference fight's pillar contac
 motion re-authored: the owner's ruling (which is the reference's truth: the pillar at z=6, or A's feet).
 
 ## Owner Ruling
-—
+Owner, 2026-10-13: "move the pillar to fit the feet. The fight is the truth; the backdrop serves it ... Record
+as a deviation. Turn on side measurement."
 
 ## Related
 - F-230
 - R20 next action 2
 
 ## Resolution
-—
+S-124: CONTACT_WORLD measures every contact with a surface but a floor to the nearest point of its boxes (top or
+face). The reference pillar's box is fitted to the fight's own feet: x -0.3 to 0.3, z 5.3 to 5.95, y 0 to 8 (its back
+face at the source's z=6); the 0.60 landing (0.002 m) and the 1.10 run down its face (0.10, 0.01 m) meet it. The 7.00
+wall push's feet (1.09 and 0.59 m off) cannot meet any one box together with the earlier feet; they are the owner's
+exceptions (kernel/contact_world_exceptions.yaml, ruling F-235), the recorded deviation.

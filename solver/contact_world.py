@@ -1,8 +1,9 @@
 """World contact points, their misses and CONTACT_WORLD (plan F5.1, F5.2; owners O24, O72, O81, O83).
 
 For each touch, hold and support: the actor's point (the S13 key at the contact's instant, its world points by forward
-kinematics) and the target's point (a prop's sample at that instant; a surface's top, vertically; another body's
-surface, from its own key: the nearest point of the named part's capsules, the torso when none is named), and the
+kinematics) and the target's point (a prop's sample at that instant; a floor's top, vertically; any other surface's
+nearest point on its boxes, top or face, F-235, S-124; another body's surface, from its own key: the nearest point of
+the named part's capsules, the torso when none is named), and the
 distance between them; between two bodies it runs from surface to surface, the actor's part carrying its segment's
 radius (RV-49, F-144: a strike is measured to the target's surface, and BODY_OVERLAP refuses one inside it; F-152 asks
 the owner whether O72's point measure or this one holds). Flags mark the conditions ADR-O83 named for a measurement
@@ -13,8 +14,8 @@ row is then `interpolated` (RV-59d), its actor airborne there only when it stand
 (what its last key claims, an in-between taking its key's, with S07's onsets added and releases taken away since:
 RV-59l, F-233) and never at a landing, a support's own onset (RV-59h, F-222), and turning when the key before declares
 a turn. A contact outside its
-actor's keys or its prop's samples, or on a surface with no top (a wall, a pillar's face; a touch on any surface but
-a floor), is not measurable. `measure` reads an envelope (the report, the prose);
+actor's keys or its prop's samples, or on a surface with neither a top nor boxes, is not measurable. `measure` reads an
+envelope (the report, the prose);
 `measure_plan` reads S13's packet and its authored keys (the check). CONTACT_WORLD (ADR-O83, O89) refuses a
 measurable miss over 0.15 m (O72) unless it is a genuine
 artefact, or the owner's list keeps it with its reason (kernel/contact_world_exceptions.yaml, read through S13's packet,
@@ -24,8 +25,8 @@ samples (an interpolated point) while its actor is airborne or its prop moves; a
 and a turn alone never is (O89).
 Every key's claimed supports (its S11 kinematic node) are measured too, not only a support contact's onset (RV-14a,
 F-089; row id `<slot>:<part>`): each part to the top of the surface its open support contact names, or to the floor
-when no contact names one (the lowest floor top, else the convention's ground). A part on any other surface than a
-floor waits for that surface's faces (RV-22); a held or embedded prop at every sample waits for F-148 (RV-14b). The
+when no contact names one (the lowest floor top, else the convention's ground); a part on any other surface to the
+nearest point of its boxes (F-235, S-124). A held or embedded prop at every sample waits for F-148 (RV-14b). The
 owner's exceptions name contacts, so they keep covering only an onset.
 """
 
@@ -71,7 +72,7 @@ def measure(envelope):
     samples = [sample for beat in envelope["nodes"]["beats"]["items"] for sample in beat.get("prop_samples", [])]
     return _rows(keys, support, tops, {s["id"] for s in surfaces if s["kind"] == "floor"}, samples,
                  envelope["nodes"]["contacts"]["items"], radii, floor_level(surfaces, envelope["scene"]["ax"].get("ground")),
-                 metres)
+                 metres, faces(surfaces))
 
 
 def packet_view(envelope):
@@ -83,6 +84,7 @@ def packet_view(envelope):
             "prop_samples": [{k: s[k] for k in ("prop", "t", "p", "v")} for beat in envelope["nodes"]["beats"]["items"]
                              for s in beat.get("prop_samples", [])],
             "surface_tops": dict(sorted(tops.items())), "floors": sorted(s["id"] for s in surfaces if s["kind"] == "floor"),
+            "surface_faces": faces(surfaces),
             "exceptions": owner_exceptions(envelope["provenance"]["source_prompt"])}
 
 
@@ -126,7 +128,7 @@ def inbetween_claims(inbetweens, keys, slots, packet):
             here = inbetween_bodies([between], packet, bodies)
             body = next(iter(here.values()))
             out[body["id"]] = _claims(here, {body["id"]: common}, view["surface_tops"], set(view["floors"]),
-                                      view["contacts"], packet.get("floor_y"))
+                                      view["contacts"], packet.get("floor_y"), view["surface_faces"])
     return out
 
 
@@ -138,7 +140,8 @@ def measure_plan(keys, slots, packet, inbetweens=()):
     bodies = plan_bodies(keys, slots, packet)
     bodies |= inbetween_bodies(inbetweens, packet, bodies)
     return _rows(bodies, support, view["surface_tops"], set(view["floors"]),
-                 view["prop_samples"], view["contacts"], packet["radii"], packet.get("floor_y"), packet["segments"])
+                 view["prop_samples"], view["contacts"], packet["radii"], packet.get("floor_y"), packet["segments"],
+                 view["surface_faces"])
 
 
 def _between(keys, entity, t, metres, radii):
@@ -195,7 +198,32 @@ def _supported(keys, support, ordered, actor, t):
     return parts
 
 
-def _rows(keys, support, tops, floors, prop_samples, contacts, radii, floor=None, metres=None):
+def faces(surfaces):
+    """{surface: boxes} for every surface but a floor (F-235, S-124): a pillar, a wall or a table is met at the nearest
+    point of its boxes, on its top or on a face; a floor keeps its top."""
+    return {s["id"]: s["boxes"] for s in sorted(surfaces, key=lambda s: s["id"]) if s["kind"] != "floor" and s.get("boxes")}
+
+
+def box_gap(point, boxes):
+    """(metres, nearest surface point) from a point to the surface of the nearest box: outside, to the box; inside, out
+    through the nearest face (a part pressed into a pillar misses its face by that depth)."""
+    best = None
+    for box in boxes:
+        lo, hi = box["min"], box["max"]
+        clamped = [min(max(v, a), b) for v, a, b in zip(point, lo, hi, strict=True)]
+        if clamped != list(point):
+            gap, near = math.dist(point, clamped), clamped
+        else:
+            gap, axis, edge = min((min(v - a, b - v), i, a if v - a <= b - v else b)
+                                  for i, (v, a, b) in enumerate(zip(point, lo, hi, strict=True)))
+            near = [edge if i == axis else v for i, v in enumerate(point)]
+        if best is None or gap < best[0]:
+            best = (gap, near)
+    return round(best[0], 3), [round(v, 6) for v in best[1]]
+
+
+def _rows(keys, support, tops, floors, prop_samples, contacts, radii, floor=None, metres=None, faces=None):
+    faces = faces or {}
     samples = {}
     for sample in prop_samples:
         samples.setdefault((sample["prop"], round(sample["t"], 6)), []).append(sample)
@@ -226,7 +254,9 @@ def _rows(keys, support, tops, floors, prop_samples, contacts, radii, floor=None
             row["reason"] = f"no point for {c['body_part']}"
             continue
         row["actor_point"] = point
-        if b["kind"] == "surface":
+        if b["kind"] == "surface" and b["id"] in faces:  # F-235 (S-124): its top or a face, the nearest
+            row["distance"], row["target_point"] = box_gap(point, faces[b["id"]])
+        elif b["kind"] == "surface":
             if b["id"] not in tops or (c["contact_type"] == "touch" and b["id"] not in floors):
                 row["reason"] = "a surface's face (no top to meet)"  # a touch on a wall or a pillar; a floor has only a top
                 continue
@@ -249,11 +279,11 @@ def _rows(keys, support, tops, floors, prop_samples, contacts, radii, floor=None
             target = [other["capsules"][name] for name in part_capsules(b.get("part") or "torso")]
             row["distance"], row["target_point"] = surface_gap(point, part_radius(c["body_part"], radii), target)
         row["measurable"] = True
-    rows += _claims(keys, support, tops, floors, contacts, floor)
+    rows += _claims(keys, support, tops, floors, contacts, floor, faces)
     return sorted(rows, key=lambda row: (row["t"], row["id"]))
 
 
-def _claims(keys, support, tops, floors, contacts, floor):
+def _claims(keys, support, tops, floors, contacts, floor, faces=None):
     """RV-14a (F-089): every key's claimed supports, each part to its open support contact's surface or to the floor;
     a support contact's own onset is measured with the contacts."""
     ordered = sorted(contacts, key=lambda c: (c["t"], c["id"]))
@@ -270,11 +300,13 @@ def _claims(keys, support, tops, floors, contacts, floor):
                                                                                    else surface)
             top = (tops.get(surface) if surface in floors else None) if surface else floor
             point = part_point(key["points"], part)
-            if (entity, part, t) in onsets or top is None or point is None:
-                continue  # an onset is measured with its contact; a face (RV-22) or a part with no point is not
+            boxes = (faces or {}).get(surface)
+            if (entity, part, t) in onsets or (top is None and boxes is None) or point is None:
+                continue  # an onset is measured with its contact; a part with no point is not
+            gap, near = box_gap(point, boxes) if boxes else (round(abs(point[1] - top), 3), [point[0], top, point[2]])
             rows.append({"id": f"{key['id']}:{part}", "t": t, "actor": entity, "part": part, "kind": KINDS["surface"],
                          "target": _words(surface) if surface else "the floor", "actor_point": point,
-                         "target_point": [point[0], top, point[2]], "distance": round(abs(point[1] - top), 3),
+                         "target_point": near, "distance": gap,
                          "measurable": True, "reason": "", "airborne": False, "rotating": key["turn"] != "none",
                          "prop_moving": False, "interpolated": False})
     return rows
