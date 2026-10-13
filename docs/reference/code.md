@@ -16,6 +16,7 @@ Arrow = imports (count of module-level imports).
 flowchart LR
   cli -->|4| compiler
   cli -->|1| kernel
+  cli -->|1| planner
   cli -->|2| validators
   compiler -->|20| kernel
   compiler -->|51| planner
@@ -48,8 +49,8 @@ flowchart LR
 
 | Module | Imports (internal) | Imports (standard library / external) |
 |---|---|---|
-| `cli.main` | `compiler.author`, `compiler.authoring`, `compiler.pipeline`, `compiler.replan_trigger`, `kernel.canonical`, `validators.checklist`, `validators.envelope_validator` | argparse, json, pathlib, sys |
-| `compiler.author` | `compiler.authoring`, `compiler.pipeline`, `compiler.replan_trigger`, `kernel.canonical`, `planner.dependency_graph`, `planner.intent_parser` | json, pathlib, time |
+| `cli.main` | `compiler.author`, `compiler.authoring`, `compiler.pipeline`, `compiler.replan_trigger`, `kernel.canonical`, `planner.intent_parser`, `validators.checklist`, `validators.envelope_validator` | argparse, json, pathlib, sys |
+| `compiler.author` | `compiler.authoring`, `compiler.pipeline`, `compiler.replan_trigger`, `kernel.canonical`, `planner.dependency_graph`, `planner.intent_parser` | json, os, pathlib, subprocess, tempfile, time |
 | `compiler.authoring` | `kernel.canonical`, `planner.dependency_graph`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
 | `compiler.examples` | `compiler.pipeline`, `kernel.canonical`, `kernel.kernel_files`, `planner.dependency_graph` | json, sys |
 | `compiler.passes.derived.p08_hand_role` | `compiler.authoring`, `compiler.passes.mandatory.p07_contact`, `planner.dependency_graph`, `planner.library_vocab`, `validators.schema_validator` | json, yaml |

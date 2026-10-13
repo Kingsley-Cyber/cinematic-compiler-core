@@ -101,9 +101,9 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.3; backlog 50.
-- Last session: S-107 (2026-10-12, applied): AA-1: the automatic author's loop.
-- Next slice: none.
+- Layer order 1.7; rules 7.3; backlog 51.
+- Last session: S-108 (2026-10-12, applied): AA-2: the subscription backend, and the first live runs.
+- Next slice: AA-4 S13's overlap, floor and contact refusals repaired by the re-block solver before the model retries (step motion).
 - Open findings: 143; decisions: 139 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
@@ -159,7 +159,6 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - Backlog RV-15c blocked: A strike's limb and a facing head point at their target, checked at S13 (B's keys re-aimed in RV-103b) — the owner's answer in F-148 (A's source facings: the check would refuse the golden's own rows, O10)
 - Backlog RV-14b blocked: A held or embedded prop at its holder at every sample (the rope dart's line in RV-14c) — the owner's answer in F-148 (the climax: A's source right hand is 0.65-0.87 m from the kunai the source keeps in B's shoulder at 8.5-9.5)
 - Backlog RV-59m blocked: B's crash held over the floor with no allowance for the repo's keys: the measured solve flings B's legs 1.2-1.5 m up at 8.75 with the trunk past horizontal, so it waits for F-215 and the owner's renders — F-215 (the floor's allowance) and the owner's renders (ADR-O110)
-- Backlog AA-2 blocked: The subscription backend: `claude -p`, isolated, schema-bound output, the model per step's tier — the owner's choice of live backend (PLAN-008)
 - Backlog AA-5 blocked: A paid API backend with a budget per idea — the owner's approval and budget (PLAN-008)
 - Backlog RV-87 blocked: The substitution's decoy is declared, stands in the scene from the first beat, and is measured where the actor stood; a substitution needs the capability — the owner's answers in F-196 (Q1-Q3: who declares the decoy, whether it stands from the first frame, who may substitute)
 - Backlog RV-90b blocked: HIT_HOLD's scale follows the grammar's impact scales — the owner's answer in F-197 (Q3: may a hit be held at a wide scale)

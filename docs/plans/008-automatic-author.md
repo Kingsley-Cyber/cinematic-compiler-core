@@ -48,6 +48,9 @@ How the owner's design note maps onto the code:
 3. AA-3: the first live idea end to end; its calls, retries and cost reported.
 4. AA-4: S13's refusals repaired by the re-block solver before the model retries.
 5. AA-5: a paid API backend, if the owner wants one.
+6. AA-6: the author casts any idea. S02 only knows its eight archetype cards, its three worlds and the "X versus
+   Y" phrasing; a free idea ("a kunoichi ... on a moonlit rooftop") casts nobody, so S04 has no actor (S-108's first
+   live run).
 
 ## Verification
 - `scripts/verify.sh`; AA-1's replay test; AA-3's run log and prompts, judged by the owner's eyes (R-29)
@@ -56,3 +59,8 @@ How the owner's design note maps onto the code:
 - 2026-10-12 — Created (S-106, ADR-O112).
 - 2026-10-12 — AA-1 done (S-107): compiler/author.py and `cinematic author`; the replay backend re-authors the four
   examples byte for byte; a refusal goes back with its findings; the third refusal stops the run.
+- 2026-10-12 — AA-2 done (S-108): the owner chose the Claude subscription; `--backend claude-cli`. Live runs: "a
+  kunoichi ... on a moonlit rooftop" cast nobody at S02 (AA-6); "ninja versus knight in a moonlit bamboo courtyard"
+  passed S04, S11 and S12 (one retry) and stopped at S13 after three attempts, its overlaps 7, then two contact
+  misses, then 2 (the knight's forearm 0.045 m into the ninja's trunk): 7 calls, 910 s, $2.53 at list price on the
+  subscription. AA-4 next.

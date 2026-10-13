@@ -81,15 +81,27 @@ def _author(args):
     from compiler import author
 
     query = Path(args.query[1:]).read_text(encoding="utf-8").strip() if args.query.startswith("@") else args.query
-    if args.backend != "replay":
-        print(f"no backend named {args.backend} yet (PLAN-008: AA-2, AA-5)", file=sys.stderr)
+    if args.backend == "replay":
+        backend = author.Replay(args.replay_from)
+    elif args.backend == "claude-cli":  # AA-2: the owner's Claude subscription
+        from planner.intent_parser import parse_intent
+        backend = author.ClaudeCLI(args.genre or parse_intent(query)["parsed"]["genre"])
+    else:
+        print(f"no backend named {args.backend} (replay, claude-cli)", file=sys.stderr)
         return 2
-    backend = author.Replay(args.replay_from)
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     duration = int(args.duration) if args.duration is not None and float(args.duration).is_integer() else args.duration
     try:
-        envelope, calls = author.author(query, backend, genre=args.genre, duration_s=duration)
+        progress = (out / "progress.log").open("w", encoding="utf-8")
+
+        def say(line):
+            progress.write(line + "\n")
+            progress.flush()
+        envelope, calls = author.author(query, backend, genre=args.genre, duration_s=duration, progress=say)
+    except author.BackendError as failed:
+        print(f"stopped: {failed} ({failed.path})", file=sys.stderr)
+        return 7
     except author.AuthorFailed as stopped:
         (out / "calls.jsonl").write_text("".join(json.dumps(c) + "\n" for c in stopped.calls), encoding="utf-8")
         (out / "refused.json").write_text(canonical_json({"node": stopped.node, "findings": stopped.findings}), encoding="utf-8")
