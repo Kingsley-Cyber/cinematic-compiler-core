@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:pose_mechanics_graph:1.1",
+  "$id": "urn:cinematic-compiler:schema:pose_mechanics_graph:1.2",
   "title": "S14 pose mechanics graph (PLAN-009): what makes each pose read, computed from the motion keys",
   "description": "One node per S13 key (its id), one edge between a performer's consecutive poses. S-125 adds the empty step; each mechanic (line of action, counterbalance, weight distribution) adds its own fields in its own slice.",
   "type": "object",
@@ -17,7 +17,9 @@
         "additionalProperties": false,
         "required": [
           "id",
-          "line_of_action"
+          "line_of_action",
+          "centre_of_mass",
+          "counterbalance"
         ],
         "properties": {
           "id": {
@@ -79,6 +81,69 @@
               },
               "inverted": {
                 "type": "boolean"
+              }
+            }
+          },
+          "centre_of_mass": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "number"
+            },
+            "description": "S-127: the body's centre of mass (Dempster via Winter, library/body_segments.yaml masses)."
+          },
+          "counterbalance": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "extended",
+              "lead",
+              "reach_m",
+              "counter"
+            ],
+            "description": "S-127: the nearly straight limbs reaching out from the centre of mass, the one reaching furthest, and the limbs on the other side that counter it (solver/pose_mechanics.py).",
+            "properties": {
+              "extended": {
+                "type": "array",
+                "items": {
+                  "enum": [
+                    "left_arm",
+                    "right_arm",
+                    "left_leg",
+                    "right_leg"
+                  ]
+                }
+              },
+              "lead": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "left_arm",
+                      "right_arm",
+                      "left_leg",
+                      "right_leg"
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "reach_m": {
+                "type": "number",
+                "minimum": 0
+              },
+              "counter": {
+                "type": "array",
+                "items": {
+                  "enum": [
+                    "left_arm",
+                    "right_arm",
+                    "left_leg",
+                    "right_leg"
+                  ]
+                }
               }
             }
           }

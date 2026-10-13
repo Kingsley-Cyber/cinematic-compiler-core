@@ -30,3 +30,27 @@ FIGURES = {
                                           "left_foot": [2.40, 1.10, 0], "right_foot": [2.55, 1.30, 0]},
                                "shows": {"shape": "straight", "horizontal": True}},
 }
+
+# Two figures with every joint, for the centre of mass and the counterbalance (S-127; the same reading, by eye).
+JOINTED = {
+    # clash: Naruto's rear (left) leg stretched back, the front (right) leg bent forward under him, the rear arm cocked
+    # back behind the head, the front arm tucked: the long rear leg leads and the front leg counters it
+    "clash/naruto": {"joints": {
+        "pelvis": [1.10, 0.62, 0], "torso": [1.22, 0.96, 0], "chest": [1.25, 1.05, 0], "neck": [1.30, 1.12, 0],
+        "head": [1.40, 1.20, 0], "left_shoulder": [1.15, 1.10, 0], "left_elbow": [0.95, 1.20, 0],
+        "left_hand": [0.75, 1.17, 0], "right_shoulder": [1.30, 1.05, 0], "right_elbow": [1.45, 0.95, 0],
+        "right_hand": [1.55, 1.05, 0], "left_hip": [1.05, 0.62, 0], "left_knee": [0.70, 0.40, 0],
+        "left_ankle": [0.40, 0.15, 0], "left_sole": [0.35, 0.12, 0], "right_hip": [1.15, 0.62, 0],
+        "right_knee": [1.60, 0.50, 0], "right_ankle": [1.80, 0.18, 0], "right_sole": [1.85, 0.12, 0]},
+        "shows": {"lead": "left_leg", "counter_has": "right_leg"}},
+    # flying_kick: Sasuke's kicking (right) leg straight up into Naruto's face, both arms reaching down and back to
+    # the ground: the kick leads, the arms counter it
+    "flying_kick/sasuke": {"joints": {
+        "pelvis": [0.92, 1.12, 0], "torso": [0.62, 0.79, 0], "chest": [0.55, 0.68, 0], "neck": [0.48, 0.55, 0],
+        "head": [0.40, 0.45, 0], "left_shoulder": [0.50, 0.72, 0], "left_elbow": [0.35, 0.45, 0],
+        "left_hand": [0.22, 0.20, 0], "right_shoulder": [0.62, 0.62, 0], "right_elbow": [0.45, 0.38, 0],
+        "right_hand": [0.30, 0.12, 0], "left_hip": [0.88, 1.15, 0], "left_knee": [1.20, 1.50, 0],
+        "left_ankle": [1.05, 1.40, 0], "left_sole": [1.00, 1.35, 0], "right_hip": [0.97, 1.08, 0],
+        "right_knee": [1.40, 1.45, 0], "right_ankle": [1.85, 1.76, 0], "right_sole": [1.95, 1.82, 0]},
+        "shows": {"lead": "right_leg", "counter_has": "left_arm"}},
+}

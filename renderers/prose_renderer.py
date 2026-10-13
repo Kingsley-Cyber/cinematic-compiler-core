@@ -325,6 +325,20 @@ def _line_of_action(line):
             f"{_numbers(line['chord'])}{', inverted (head below the hips)' if line['inverted'] else ''}")
 
 
+def _balance(node):
+    """S-127: 'centre of mass [x, y, z]; R leg reaches 0.83 m from it, countered by L arm (also extended: ..)'; a reach
+    no limb opposes says so (the trunk balances it: animation's opposition, not physics)."""
+    cb, limb = node["counterbalance"], _part
+    text = f"centre of mass {_numbers(node['centre_of_mass'])}"
+    if cb["lead"] is None:
+        return text + "; no limb reaches out from it"
+    counter = ", ".join(limb(c) for c in cb["counter"])
+    others = [limb(e) for e in cb["extended"] if e != cb["lead"]]
+    opposed = f"countered by {counter}" if counter else "no limb opposes it"
+    return (text + f"; {limb(cb['lead'])} reaches {_num(cb['reach_m'])} m from it, {opposed}"
+            + (f" (also extended: {', '.join(others)})" if others else ""))
+
+
 def _hands(hands, names):
     words = [f"{side} {names.get(hands[hand], hands[hand]) if hands[hand] != 'empty' else 'empty'}"
              for side, hand in (("L", "left_hand"), ("R", "right_hand"))]
@@ -410,6 +424,7 @@ def staff_lines(envelope, frame_parts, labels):
         notes.append(f"pose: {key['description'].rstrip('.')}")  # ADR-O113: the S13 key's own description
         if slot["slot"] in mechanics:  # PLAN-009 (S14): the pose's mechanics, computed
             notes.append(_line_of_action(mechanics[slot["slot"]]["line_of_action"]))
+            notes.append(_balance(mechanics[slot["slot"]]))
         if slot["slot"] in held:  # R20 next action 1 (S06 `hands`): what each hand holds, empty said aloud
             notes.append(_hands(held[slot["slot"]], names))
         if slot["role"] == "actor" and slot["event_type"] == "substitution":

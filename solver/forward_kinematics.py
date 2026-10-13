@@ -44,6 +44,11 @@ def _card():
     return card
 
 
+def masses():
+    """{segment: {fraction, from, to, at, sided}}: the body's mass by segment (PLAN-009, S-127; Dempster via Winter)."""
+    return _card()["masses"]["segments"]
+
+
 def segments(genre):
     """The metres of the body the genre's profile names (owner O85: library/genre_profiles/<genre>.yaml body_type)."""
     return _card()["bodies"][genre_profile.body_type(genre)]["metres"]

@@ -297,6 +297,10 @@ def _actor_rows(envelope, entity, labels, cover):
             parts.append(f"LINE:{line['shape']} apex {line['apex']},tension {line['tension']},bulge "
                          f"{line['bulge']},head to {line['base']} along {line['chord']}"
                          + (",inverted" if line["inverted"] else ""))
+            cb = mechanics[slot]["counterbalance"]
+            parts.append(f"BALANCE:com {mechanics[slot]['centre_of_mass']},lead {cb['lead'] or 'none'} reach "
+                         f"{cb['reach_m']},counter {'+'.join(cb['counter']) or 'none'},extended "
+                         f"{'+'.join(cb['extended']) or 'none'}")
         ext = " [labelled extension]" if b["extensions"] else ""
         parts.append(f"BODY:{b['connectivity']}{ext} connectivity,{b['developmental_pattern']} pattern,{b['initiation']} "
                      f"initiates,follow {'>'.join(b['follow_through'])},{b['body_mode']} mode,intent {b['intent']}")

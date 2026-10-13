@@ -1,4 +1,4 @@
-version: 8
+version: 9
 status: draft
 measured_on:
 - reference_fight
@@ -921,15 +921,23 @@ layers:
 - id: pose_mechanics
   step: S14
   reads:
+  - nodes.motion.bones
   - nodes.motion.id
   - nodes.motion.points
+  - nodes.motion.pos
+  - nodes.motion.rot
   - nodes.motion.t
+  - scene.genre
   writes:
+  - nodes.pose_mechanics.centre_of_mass
+  - nodes.pose_mechanics.counterbalance
   - nodes.pose_mechanics.id
   - nodes.pose_mechanics.line_of_action
   validates:
   - schema
   passes_downstream:
+  - nodes.pose_mechanics.centre_of_mass
+  - nodes.pose_mechanics.counterbalance
   - nodes.pose_mechanics.id
   - nodes.pose_mechanics.line_of_action
 - id: facial
@@ -1455,6 +1463,8 @@ layers:
   - nodes.object_state.object
   - nodes.object_state.state_name
   - nodes.object_state.t
+  - nodes.pose_mechanics.centre_of_mass
+  - nodes.pose_mechanics.counterbalance
   - nodes.pose_mechanics.id
   - nodes.pose_mechanics.line_of_action
   - nodes.props.affordances

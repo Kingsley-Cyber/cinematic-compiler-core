@@ -1,15 +1,28 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:body_segments:3.1",
+  "$id": "urn:cinematic-compiler:schema:body_segments:3.2",
   "title": "Body segments (S13 forward kinematics)",
   "description": "Segment lengths in metres for forward kinematics from the pelvis root (owner O24, O72), one body per body type, chosen by the genre profile's body_type (owner O85): the chain root -> Sp -> (NK -> HD, LA -> LFA, RA -> RFA, LUL -> LL, RUL -> RL) of the Q6 convention, the hips read from the trunk (owner O84). Each segment is also a capsule with a radius (RV-49, F-144): S13 keeps one body out of another (BODY_OVERLAP) and measures a strike to the target's surface.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["library_id", "version", "status", "basis", "bodies"],
+  "required": ["library_id", "version", "status", "basis", "bodies", "masses"],
   "properties": {
     "library_id": {"const": "body_segments"},
     "version": {"type": "integer", "minimum": 1},
     "status": {"enum": ["draft", "approved"]},
+    "masses": {
+      "type": "object", "additionalProperties": false, "required": ["source", "basis", "segments"],
+      "description": "PLAN-009 (S-127): each segment's share of the body's mass and where its centre sits from its first joint (Dempster via Winter), for a pose's centre of mass.",
+      "properties": {
+        "source": {"type": "string", "minLength": 1},
+        "basis": {"type": "string", "minLength": 1},
+        "segments": {"type": "object", "additionalProperties": {
+          "type": "object", "additionalProperties": false, "required": ["fraction", "from", "to", "at"],
+          "properties": {"fraction": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+                         "from": {"type": "string", "minLength": 1}, "to": {"type": "string", "minLength": 1},
+                         "at": {"type": "number", "minimum": 0, "maximum": 1}, "sided": {"type": "boolean"}}}}
+      }
+    },
     "basis": {"type": "string", "minLength": 1},
     "bodies": {
       "type": "object",

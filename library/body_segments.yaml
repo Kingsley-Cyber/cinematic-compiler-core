@@ -4,7 +4,7 @@
 # Radii (RV-49, F-144, R-18): each segment is a capsule, its axis between two joints and this radius, so S13 can keep
 # one body out of another (BODY_OVERLAP) and measure a strike to the target's surface.
 library_id: body_segments
-version: 5
+version: 6
 status: draft
 basis: "Owner O24, O72, O84 and O85; PLAN-003 F5.1 (segment lengths per archetype or body mode)."
 bodies:
@@ -20,3 +20,16 @@ bodies:
              upper_arm: 0.30, forearm: 0.35, neck: 0.10, head: 0.11}
     radii: {trunk: 0.13, girdle: 0.06, hips: 0.08, neck: 0.05, head: 0.10, upper_arm: 0.05, forearm: 0.04,
             thigh: 0.08, shin: 0.055, foot: 0.045}
+masses:  # PLAN-009 (S-127): the centre of mass of a pose, from each segment's share of the body and where it sits
+  source: "Dempster (1955), as tabulated in Winter, Biomechanics and Motor Control of Human Movement, Table 4.1 (public data)"
+  basis: "Fraction of total body mass and the centre of mass's place along the segment from its first joint. The joints are
+    solver/forward_kinematics.py's; the head and neck's centre sits at the head joint (Winter: at the ear canal). The anime
+    body keeps these fractions on its longer legs: Claude's interpretation, for the owner's review."
+  segments:
+    trunk: {fraction: 0.497, from: pelvis, to: chest, at: 0.5}
+    head_neck: {fraction: 0.081, from: neck, to: head, at: 1.0}
+    upper_arm: {fraction: 0.028, from: shoulder, to: elbow, at: 0.436, sided: true}
+    forearm_hand: {fraction: 0.022, from: elbow, to: hand, at: 0.682, sided: true}
+    thigh: {fraction: 0.1, from: hip, to: knee, at: 0.433, sided: true}
+    shank: {fraction: 0.0465, from: knee, to: ankle, at: 0.433, sided: true}
+    foot: {fraction: 0.0145, from: ankle, to: sole, at: 0.5, sided: true}

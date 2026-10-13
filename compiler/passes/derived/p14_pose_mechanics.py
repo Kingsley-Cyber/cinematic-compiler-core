@@ -10,7 +10,7 @@ import json
 
 from kernel.canonical import ContractError
 from planner.dependency_graph import ROOT, load, node_index
-from solver import pose_mechanics
+from solver import forward_kinematics, pose_mechanics
 from validators.layer_dependency_validator import check_pass_writes
 from validators.schema_validator import validate_schema
 
@@ -20,12 +20,17 @@ GRAPH_SCHEMA = ROOT / "schemas" / "graphs" / "pose_mechanics_graph.schema.json"
 
 def build(envelope):
     """{pose_mechanics: [...], pose_mechanics_transition: [...]} for the envelope's motion keys: one node per key,
-    its line of action (PM-3, S-126)."""
+    its line of action (PM-3, S-126), its centre of mass and counterbalance (S-127)."""
     nodes = []
+    metres, masses = forward_kinematics.segments(envelope["scene"]["genre"]), forward_kinematics.masses()
     for key in sorted(envelope["nodes"]["motion"]["items"], key=lambda k: (k["t"], k["id"])):
         line = pose_mechanics.line_of_action(key["points"])
-        if line is not None:
-            nodes.append({"id": key["id"], "line_of_action": line})
+        if line is None:
+            continue
+        joints = forward_kinematics.joints(key, metres)
+        com = pose_mechanics.centre_of_mass(joints, masses)
+        nodes.append({"id": key["id"], "line_of_action": line, "centre_of_mass": com,
+                      "counterbalance": pose_mechanics.counterbalance(joints, com)})
     return {"pose_mechanics": nodes, "pose_mechanics_transition": []}
 
 

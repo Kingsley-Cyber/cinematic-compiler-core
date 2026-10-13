@@ -6,8 +6,9 @@ import json
 
 import pytest
 from conftest import ROOT
-from pose_references import FIGURES
+from pose_references import FIGURES, JOINTED
 
+from solver import forward_kinematics, pose_mechanics
 from solver.pose_mechanics import line_of_action
 from validators import pose_checks
 
@@ -73,3 +74,29 @@ def test_a_strike_along_a_straight_line_is_named():
     node = next(m for m in envelope["nodes"]["pose_mechanics"]["items"] if m["id"] == key)
     node["line_of_action"] = {**node["line_of_action"], "shape": "straight", "tension": 0.02}
     assert [n["key"] for n in pose_checks.line_of_action(envelope)] == [key]
+
+
+def test_a_body_standing_straight_has_its_centre_of_mass_over_its_hips_and_no_reach():
+    joints = {"pelvis": [0, 1.0, 0], "chest": [0, 1.5, 0], "neck": [0, 1.6, 0], "head": [0, 1.7, 0],
+              **{f"{s}_{j}": [x, y, 0] for s, x in (("left", 0.15), ("right", -0.15))
+                 for j, y in (("shoulder", 1.5), ("elbow", 1.2), ("hand", 0.85), ("hip", 1.0), ("knee", 0.55),
+                              ("ankle", 0.1), ("sole", 0.0))}}
+    com = pose_mechanics.centre_of_mass(joints, forward_kinematics.masses())
+    assert com[0] == 0 and 0.9 < com[1] < 1.15
+    assert pose_mechanics.counterbalance(joints, com) == {"extended": [], "lead": None, "reach_m": 0.0, "counter": []}
+
+
+@pytest.mark.parametrize("name", sorted(JOINTED))
+def test_the_owner_reference_frames_balance_as_drawn(name):
+    """The reach that leads and the limb that counters it, as the frame shows (Claude's reading of the image)."""
+    figure = JOINTED[name]
+    com = pose_mechanics.centre_of_mass(figure["joints"], forward_kinematics.masses())
+    cb = pose_mechanics.counterbalance(figure["joints"], com)
+    assert cb["lead"] == figure["shows"]["lead"] and figure["shows"]["counter_has"] in cb["counter"]
+
+
+def test_a_reach_with_nothing_on_the_other_side_is_named():
+    envelope = copy.deepcopy(_envelope("wizard_vs_acrobat"))
+    node = envelope["nodes"]["pose_mechanics"]["items"][0]
+    node["counterbalance"] = {"extended": ["right_arm"], "lead": "right_arm", "reach_m": 0.7, "counter": []}
+    assert node["id"] in [n["key"] for n in pose_checks.counterbalance(envelope)]
