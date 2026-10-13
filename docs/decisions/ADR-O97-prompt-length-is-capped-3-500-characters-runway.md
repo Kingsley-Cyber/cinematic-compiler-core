@@ -3,7 +3,7 @@
 <!-- docs-version: 1.0 -->
 
 ## Status
-accepted
+superseded
 
 ## Date
 2026-10-11
@@ -31,7 +31,7 @@ F-088: prose_mixed runs to about 8,200 words and render.txt to about 70 KB; the 
 —
 
 ## Superseded By
-—
+ADR-O111
 
 ## Related
 - F-088

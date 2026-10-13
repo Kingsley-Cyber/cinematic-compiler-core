@@ -82,7 +82,7 @@ Full table: [docs/layer_order.md](docs/layer_order.md).
 - **R-17** Where the golden contradicts its own words or the DAG, fix the golden as a recorded deviation; where a new check fails on internally consistent golden content, fix the check.
 - **R-18** Bodies and props obey the scene's physics: no teleport above 25 m/s except a declared substitution; props follow gravity unless a float is declared (anime only).
 - **R-35** Hip angles are read from the trunk (the root, then Sp) in every key, genre and example: forward kinematics hangs the legs from the spine, and every authored key writes its hips that way.
-- **R-19** A prompt is a deliverable only when every applicable DAG-map row passes on it, shown per prompt, and it fits a documented target's length cap (O97: PROMPT_LENGTH); NOT CHECKED is not a pass; a row the DAG excludes is N/A unless a code checks it; cinematic compile refuses a prompt that is not a deliverable.
+- **R-19** A prompt is a deliverable only when every applicable DAG-map row passes on it, shown per prompt; its length never refuses it (O111 removed O97's caps); NOT CHECKED is not a pass; a row the DAG excludes is N/A unless a code checks it; cinematic compile refuses a prompt that is not a deliverable.
 - **R-20** The format comes from the DAG's own instances (D6, D9, D10).
 - **R-21** No hold, freeze or pause is written in frames; a hit gets a camera hold with the bodies in frame and no close-up or insert; no shot changes playback speed (no slow motion or ramps in a fixed-length clip).
 - **R-22** A hand that releases a prop and then holds nothing is said to be empty.
@@ -101,10 +101,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.7; rules 7.2; backlog 47.
-- Last session: S-104 (2026-10-12, applied): RV-99c: a negation reaches only the phrase it heads, and the feet strike.
+- Layer order 1.7; rules 7.3; backlog 48.
+- Last session: S-105 (2026-10-12, applied): ADR-O111: no length cap on a prompt (owner).
 - Next slice: RV-59g CONTACT_WORLD on every open support at every frame between keys (the DAG's 'respect support'), the examples' takeoffs placed where the motion leaves its surface (step motion).
-- Open findings: 144; decisions: 137 (0 proposed, 7 owner_default awaiting the owner).
+- Open findings: 143; decisions: 138 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the
@@ -128,7 +128,6 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - F-057 (low): The kernel rule 'substitution log reveals' reads against O48's staging
 - F-059 (low): Reference-fight deviations from its own data await review
 - F-060 (low): What is a motif?
-- F-088 (high): Every prompt is over the length caps; fitting them needs the owner's call on what goes
 - F-108 (medium): B's track departs from the source
 - F-111 (medium): Limb words mix frames against the legend
 - F-114 (medium): Do R-21, R-23 and R-25 bind render.txt?
@@ -163,7 +162,6 @@ backlog and findings, and running `make docs`; the verifier checks that it match
 - Backlog RV-87 blocked: The substitution's decoy is declared, stands in the scene from the first beat, and is measured where the actor stood; a substitution needs the capability — the owner's answers in F-196 (Q1-Q3: who declares the decoy, whether it stands from the first frame, who may substitute)
 - Backlog RV-90b blocked: HIT_HOLD's scale follows the grammar's impact scales — the owner's answer in F-197 (Q3: may a hit be held at a wide scale)
 - Backlog RV-64b blocked: The S04 packet carries the scene_reference rules — the owner's answer in F-133
-- Backlog RV-13b blocked: Every prompt fits the caps (O97) — the owner's answers in F-088
 - Backlog RV-20 blocked: external_inputs complete: the layer order states what each step depends on — an accepted ADR for the layer-order edit (R-09)
 - Backlog RV-82b blocked: A shot on a declared turn looks along the turn's axis — the owner's answer in F-202 (a turn plane against the 180-degree side)
 - Backlog RV-24 blocked: The launch check per O80's words: the prior beat, every launch — the owner's ruling on A's 5.1 backflip in F-099

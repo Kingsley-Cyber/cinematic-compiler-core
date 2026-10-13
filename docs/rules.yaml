@@ -2,7 +2,7 @@
 # and a docs-log entry (python -m kernel.schema_log --log docs record docs/rules.yaml ...). Every rule cites accepted
 # decisions (docs/decisions/) and names what enforces it: a code or test the gate runs, or `protocol` (the agent
 # follows it; AGENTS.md). Validated by schemas/rules.schema.json.
-version: "7.2"
+version: "7.3"
 rules:
   # ---- agent: how every session works
   - {id: R-01, scope: agent, source: [ADR-S6, ADR-O64],
@@ -76,9 +76,9 @@ rules:
      rule: "Hip angles are read from the trunk (the root, then Sp) in every key, genre and example: forward kinematics hangs the legs from the spine, and every authored key writes its hips that way.",
      enforced_by: [solver/forward_kinematics.py, planner/prompts/euler_solving.txt, tests/test_forward_kinematics.py]}
   # ---- prompt: what every emitted prompt must say
-  - {id: R-19, scope: prompt, source: [ADR-S3, ADR-O13, ADR-O94, ADR-O97],
-     rule: "A prompt is a deliverable only when every applicable DAG-map row passes on it, shown per prompt, and it fits a documented target's length cap (O97: PROMPT_LENGTH); NOT CHECKED is not a pass; a row the DAG excludes is N/A unless a code checks it; cinematic compile refuses a prompt that is not a deliverable.",
-     enforced_by: [validators/checklist.py, validators/prompt_length.py, examples/*/checklist.md, cli/main.py]}
+  - {id: R-19, scope: prompt, source: [ADR-S3, ADR-O13, ADR-O94, ADR-O111],
+     rule: "A prompt is a deliverable only when every applicable DAG-map row passes on it, shown per prompt; its length never refuses it (O111 removed O97's caps); NOT CHECKED is not a pass; a row the DAG excludes is N/A unless a code checks it; cinematic compile refuses a prompt that is not a deliverable.",
+     enforced_by: [validators/checklist.py, examples/*/checklist.md, cli/main.py]}
   - {id: R-20, scope: prompt, source: [ADR-S7, ADR-O19],
      rule: "The format comes from the DAG's own instances (D6, D9, D10).",
      enforced_by: [validators/prompt_validator.py SECTION_ORDER, STAFF_FORMAT]}

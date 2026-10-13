@@ -12,7 +12,7 @@ high
 L6
 
 ## Status
-open
+resolved
 
 ## Reported
 2026-10-11
@@ -39,7 +39,7 @@ Until answered, the check (RV-13) refuses every prompt.
 Backlog RV-13 (the check, ready) and RV-13b (fitting the prompts, blocked on this finding).
 
 ## Owner Ruling
-ADR-O97 (the cap); the three questions open
+ADR-O111
 
 ## Related
 - PLAN-007
@@ -56,3 +56,5 @@ Noted in S-081 (the sixth review): with no target named a prompt fits either cap
 at up to about 13,000 characters (the prompts run 5.4 to 13 characters a word); a word is a run of non-space
 characters, which under-counts JSON; R-19 does not cite O97 (RV-100). The questions stand: one cap or both, and what a
 BytePlus word is.
+Resolved by owner ruling ADR-O111 (2026-10-12, S-105): the length caps are removed; a prompt's length never refuses
+its delivery, and nothing is trimmed to fit.

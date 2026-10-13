@@ -45,7 +45,6 @@ done only when every row that applies passes. Claude never renders; you render, 
 - F-057 (low): The kernel rule 'substitution log reveals' reads against O48's staging
 - F-059 (low): Reference-fight deviations from its own data await review
 - F-060 (low): What is a motif?
-- F-088 (high): Every prompt is over the length caps; fitting them needs the owner's call on what goes
 - F-108 (medium): B's track departs from the source
 - F-111 (medium): Limb words mix frames against the legend
 - F-114 (medium): Do R-21, R-23 and R-25 bind render.txt?
@@ -80,7 +79,6 @@ done only when every row that applies passes. Claude never renders; you render, 
 - Backlog RV-87 blocked: The substitution's decoy is declared, stands in the scene from the first beat, and is measured where the actor stood; a substitution needs the capability — the owner's answers in F-196 (Q1-Q3: who declares the decoy, whether it stands from the first frame, who may substitute)
 - Backlog RV-90b blocked: HIT_HOLD's scale follows the grammar's impact scales — the owner's answer in F-197 (Q3: may a hit be held at a wide scale)
 - Backlog RV-64b blocked: The S04 packet carries the scene_reference rules — the owner's answer in F-133
-- Backlog RV-13b blocked: Every prompt fits the caps (O97) — the owner's answers in F-088
 - Backlog RV-20 blocked: external_inputs complete: the layer order states what each step depends on — an accepted ADR for the layer-order edit (R-09)
 - Backlog RV-82b blocked: A shot on a declared turn looks along the turn's axis — the owner's answer in F-202 (a turn plane against the 180-degree side)
 - Backlog RV-24 blocked: The launch check per O80's words: the prior beat, every launch — the owner's ruling on A's 5.1 backflip in F-099

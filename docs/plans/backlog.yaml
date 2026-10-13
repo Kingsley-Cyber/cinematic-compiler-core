@@ -6,7 +6,7 @@
 # blocked (waiting on an owner ruling: `blocked_by`) | deferred.
 # Source of the order: docs/plans/deconfliction_2026-10-11.md section 9 (owner O61) with each check at the first
 # step that can see its data (plan v1.2); multi-step slices are split per step.
-version: 47
+version: 48
 items:
   - {id: M9-01, title: "Probe wording rules W1-W4, O48's post, O54's negatives", status: done, step: render,
      plan: PLAN-003, commit: 7cc69f8, depends_on: [],
@@ -128,8 +128,8 @@ items:
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-187, F-160, F-177], codes: []}
   - {id: RV-86, title: "TELEPORT's exemption needs a decoy in the actor's place", status: done,
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-188], codes: []}
-  - {id: RV-13, title: "PROMPT_LENGTH: 3,500 characters for Runway, 1,000 words for BytePlus (O97)", status: done,
-     step: render, plan: PLAN-007, depends_on: [], findings: [F-088], codes: [PROMPT_LENGTH]}
+  - {id: RV-13, title: "PROMPT_LENGTH: 3,500 characters for Runway, 1,000 words for BytePlus (O97; removed by owner O111, S-105)", status: done,
+     step: render, plan: PLAN-007, depends_on: [], findings: [F-088], codes: []}
   - {id: RV-15a, title: "The camera aims at the body it frames; every part its scale shows is in frame, up and down", status: done,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-090], codes: [VERTICAL_FRAMING]}
   - {id: RV-15b, title: "An insert aims at its detail and a framed prop is in frame; the camera schemas' position text names the aim", status: done,
@@ -266,8 +266,7 @@ items:
   - {id: RV-64b, title: "The S04 packet carries the scene_reference rules", status: blocked,
      blocked_by: "the owner's answer in F-133",
      step: temporal, plan: PLAN-007, depends_on: [RV-64], findings: [F-133, F-167], codes: []}
-  - {id: RV-13b, title: "Every prompt fits the caps (O97)", status: blocked,
-     blocked_by: "the owner's answers in F-088",
+  - {id: RV-13b, title: "Every prompt fits the caps (O97; withdrawn: owner O111 removed the caps)", status: deferred,
      step: render, plan: PLAN-007, depends_on: [RV-13], findings: [F-088], codes: []}
   - {id: RV-74, title: "PROP_SUPPORT: a location on a surface with a known top puts the resting prop at that top", status: ready,
      step: temporal, plan: PLAN-007, depends_on: [RV-54, RV-22], findings: [F-171], codes: []}

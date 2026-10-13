@@ -6,13 +6,13 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.7; rules 7.2; backlog 47.
+Layer order 1.7; rules 7.3; backlog 48.
 
 ## Last sessions
 
-- S-102 (applied): RV-59k: an in-between inside a declared turn prints its root as mid-turn
 - S-103 (applied): RV-59l: between keys a body stands on what its last key claims, as S07 changes it
 - S-104 (applied): RV-99c: a negation reaches only the phrase it heads, and the feet strike
+- S-105 (applied): ADR-O111: no length cap on a prompt (owner)
 
 ## Next slices
 
@@ -40,7 +40,6 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-057 (low): The kernel rule 'substitution log reveals' reads against O48's staging
 - F-059 (low): Reference-fight deviations from its own data await review
 - F-060 (low): What is a motif?
-- F-088 (high): Every prompt is over the length caps; fitting them needs the owner's call on what goes
 - F-108 (medium): B's track departs from the source
 - F-111 (medium): Limb words mix frames against the legend
 - F-114 (medium): Do R-21, R-23 and R-25 bind render.txt?
@@ -75,7 +74,6 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-87 blocked: The substitution's decoy is declared, stands in the scene from the first beat, and is measured where the actor stood; a substitution needs the capability — the owner's answers in F-196 (Q1-Q3: who declares the decoy, whether it stands from the first frame, who may substitute)
 - Backlog RV-90b blocked: HIT_HOLD's scale follows the grammar's impact scales — the owner's answer in F-197 (Q3: may a hit be held at a wide scale)
 - Backlog RV-64b blocked: The S04 packet carries the scene_reference rules — the owner's answer in F-133
-- Backlog RV-13b blocked: Every prompt fits the caps (O97) — the owner's answers in F-088
 - Backlog RV-20 blocked: external_inputs complete: the layer order states what each step depends on — an accepted ADR for the layer-order edit (R-09)
 - Backlog RV-82b blocked: A shot on a declared turn looks along the turn's axis — the owner's answer in F-202 (a turn plane against the 180-degree side)
 - Backlog RV-24 blocked: The launch check per O80's words: the prior beat, every launch — the owner's ruling on A's 5.1 backflip in F-099
@@ -91,7 +89,7 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - Backlog RV-63 blocked: A prop let go without a throw starts at rest; the dart's and the pellet's drops re-timed — the owner's answer on O90's timing in F-164
 - Backlog M9-11 blocked: FR.7 genre cards; FR.6 money-shot frame parts (FR.2 moved to AS-05) — the owner's answer in F-118 (O37 or the genre profile)
 
-## Open findings: 144
+## Open findings: 143
 
 - F-003 (high, all): The conformance test passed placeholders
 - F-004 (high, L5.5): The camera plan is not the DAG's
@@ -106,7 +104,6 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 - F-036 (high, L6): Aerial timing is not followed: takeoffs come late
 - F-084 (high, L1.1): The kunai drive and the catch print as instant strikes, and the kunai floats over the downed B
 - F-086 (high, L4c): Mirror-symmetric keys are not refused on strikes and action beats
-- F-088 (high, L6): Every prompt is over the length caps; fitting them needs the owner's call on what goes
 - F-089 (high, L4c): Bodies and held props are checked only at contact onsets, never against the floor
 - F-090 (high, L5.5): The camera aims about 1 m too high since O72, and vertical framing is unchecked
 - F-091 (high, L6): render.txt's laban chains mix both fighters' moves
@@ -140,4 +137,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O111, finding F-234, session S-105, render R20.
+Decision ADR-O112, finding F-234, session S-106, render R20.
