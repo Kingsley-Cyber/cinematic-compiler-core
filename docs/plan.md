@@ -107,7 +107,7 @@ Backlog version **55**. The build order across every plan, one row per slice. A 
 | RV-95c | The pickup rows worded in the printed legend's frame, and A's head at 7.5 aimed at B by a facing goal in the re-block solver (or its words dropped) | ready | motion | L4c | F-224, F-111 | — | RV-95b | PLAN-007 |
 | RV-97 | VERTICAL_FRAMING along a static shot's window, frames on the declared interpolation, a margin by each part's radius; c11 and c20 re-authored | ready | camera | L5.5 | F-208, F-090 | — | RV-59a | PLAN-007 |
 | RV-110 | CONTACT_WORLD reads a free prop between samples on S04's gravity arc and a held one at its holder's hand | ready | motion | L4c | F-228 | — | RV-59d | PLAN-007 |
-| RV-111 | S15 refuses one body's overlapping Effort spans; the wizard example's acrobat spans meet at 7.6 | ready | effort | L5 | F-229 | — | — | PLAN-007 |
+| RV-111 | S16 refuses one body's overlapping Effort spans; the wizard example's acrobat spans meet at 7.6 | ready | effort | L5 | F-229 | — | — | PLAN-007 |
 | RV-98 | A declared entrance may start outside its shot's frame (O21): c01 opens with A above the frame | ready | camera | L5.5 | F-209, F-090 | — | — | PLAN-007 |
 | RV-101 | An insert's detail has a point; a carried prop takes its carrier's point; a prop a shot's action names is framed; a vanished body is no aim | ready | camera | L5.5 | F-213, F-090 | — | — | PLAN-007 |
 | RV-103a | S04: the kunai in B's hand at 0.6, the rope dart's 9.5 sample at its line, one time for the wrap | ready | temporal | L1.1 | F-216 | — | — | PLAN-007 |
@@ -117,17 +117,17 @@ Backlog version **55**. The build order across every plan, one row per slice. A 
 | RV-104 | A commit's tests run in an exported tree with an isolated path; self_audit.md names the script | ready | all | all | F-217 | — | — | PLAN-007 |
 | RV-105 | The checklist's Any row is deliverable only when one prompt is | ready | render | L6 | F-218 | — | — | PLAN-007 |
 | RV-14c | A line prop's dart stays within its line of the hand that holds it (the rope dart) | ready | motion | L4c | F-062, F-186 | — | RV-14a | PLAN-007 |
-| RV-37 | One strike definition at S04; S17's impact frames agree with it | ready | temporal | L1.1 | F-112 | — | — | PLAN-007 |
+| RV-37 | One strike definition at S04; S18's impact frames agree with it | ready | temporal | L1.1 | F-112 | — | — | PLAN-007 |
 | RV-22 | The pillar has a radius and faces; landings and face contacts measured | ready | motion | L4c | F-097 | — | RV-14a | PLAN-007 |
 | RV-102 | A camera stands inside the set and sees its subjects past the pillar's extent | ready | camera | L5.5 | F-214 | — | RV-22 | PLAN-007 |
 | RV-88 | S09's trigger is the interaction's hand on the object at the change's instant | ready | object_state | L2.6 | F-190, F-173 | — | — | PLAN-007 |
 | RV-89 | A thrown prop is a hit only in flight | ready | camera | L5.5 | F-191 | — | — | PLAN-007 |
-| RV-92 | The S08 and S16 instructions teach RV-69's, RV-71a's and RV-72's rules | ready | all | all | F-195 | — | — | PLAN-007 |
+| RV-92 | The S08 and S17 instructions teach RV-69's, RV-71a's and RV-72's rules | ready | all | all | F-195 | — | — | PLAN-007 |
 | RV-73 | S04 refuses a contact by a vanished body inside its window, the actor's own beat inside it, and a contact by a body outside its beat | ready | temporal | L1.1 | F-172, F-136 | — | — | PLAN-007 |
 | RV-87 | The substitution's decoy is declared, stands in the scene from the first beat, and is measured where the actor stood; a substitution needs the capability | blocked | temporal | L1.1 | F-189 | — | RV-86 | PLAN-007 |
-| RV-90 | S16 refuses a gone subject and VANISHED_BODY reads [CAMERA]; the impact rule speaks of hits | ready | camera | L5.5 | F-192 | — | — | PLAN-007 |
+| RV-90 | S17 refuses a gone subject and VANISHED_BODY reads [CAMERA]; the impact rule speaks of hits | ready | camera | L5.5 | F-192 | — | — | PLAN-007 |
 | RV-90b | HIT_HOLD's scale follows the grammar's impact scales | blocked | camera | L5.5 | F-192 | — | RV-90 | PLAN-007 |
-| RV-91 | A vanish that never returns: S15 refuses an Effort across a vanish; no end state or reappearance for a body gone to the end; a compiled test scene | ready | render | L6 | F-193 | — | — | PLAN-007 |
+| RV-91 | A vanish that never returns: S16 refuses an Effort across a vanish; no end state or reappearance for a body gone to the end; a compiled test scene | ready | render | L6 | F-193 | — | — | PLAN-007 |
 | RV-93 | S07: a prop's change needs a contact on it in its beat, or a hold by a body of that beat (MASTER_PLAN S07.3) | ready | contact | L2.2 | F-130 | — | — | PLAN-007 |
 | RV-94 | A moving camera's path per movement kind, derived and framed at every beat its shot lists | ready | camera | L5.5 | F-204 | — | RV-15b | PLAN-007 |
 | RV-75 | CAUSE_REASON asks that a reason state a cause | ready | causal | L1.2 | F-185, F-001, F-002 | — | — | PLAN-007 |
@@ -141,12 +141,12 @@ Backlog version **55**. The build order across every plan, one row per slice. A 
 | RV-74 | PROP_SUPPORT: a location on a surface with a known top puts the resting prop at that top | ready | temporal | L1.1 | F-171 | — | RV-54, RV-22 | PLAN-007 |
 | RV-19 | Replans reach the step that owns the fix | ready | all | all | F-094 | — | — | PLAN-007 |
 | RV-20 | external_inputs complete: the layer order states what each step depends on | blocked | all | all | F-095 | — | — | PLAN-007 |
-| RV-65 | The instructions of S11 to S17 name every rule their plans must meet (tests/test_instructions.py) | ready | all | all | F-095 | — | RV-48b | PLAN-007 |
+| RV-65 | The instructions of S11 to S18 name every rule their plans must meet (tests/test_instructions.py) | ready | all | all | F-095 | — | RV-48b | PLAN-007 |
 | RV-78 | The S04 packet gives each prop's carried_by; the S08 packet gives the affordance entries S10 judges it by | ready | temporal | L1.1 | F-174 | — | — | PLAN-007 |
 | RV-79 | A second fight compiled end to end from a new query, through every authored step | ready | all | all | F-179 | — | RV-64, RV-78 | PLAN-007 |
 | RV-80 | Render probes prepared for the owner, F-015's among them; no render (R-29) | ready | render | L6 | F-179, F-015, F-117 | — | — | PLAN-007 |
 | RV-81 | A launch ends its support at the launching key and prints the takeoff there | ready | render | L6 | F-183 | — | — | PLAN-007 |
-| RV-82 | Surfaces carry footprints; S16 refuses a line to a subject through a solid | ready | camera | L5.5 | F-184 | — | — | PLAN-007 |
+| RV-82 | Surfaces carry footprints; S17 refuses a line to a subject through a solid | ready | camera | L5.5 | F-184 | — | — | PLAN-007 |
 | RV-82b | A shot on a declared turn looks along the turn's axis | blocked | camera | L5.5 | F-184, F-202 | — | RV-82 | PLAN-007 |
 | RV-83 | Each unsliced DAG row gets a slice, or goes on the list for the owner's N/A ruling | ready | all | all | F-178, F-117 | — | — | PLAN-007 |
 | RV-84 | Each printed line follows the source or a typed deviation (the smoke, the opening fall, the deflect, the kunai at B's shoulder, B's opening steps) | ready | render | L6 | F-186 | — | — | PLAN-007 |
@@ -202,7 +202,7 @@ Backlog version **55**. The build order across every plan, one row per slice. A 
 | M9-15e | Part 3 remainder: FP.2, FP.3, FP.5, FP.7-FP.12 | ready | render | L6 | — | — | M9-15b | PLAN-003 |
 | M9-16 | The applicability stage with the 16-layer coverage report (O16) | ready | all | all | — | — | M9-15e | PLAN-003 |
 | M9-17 | One full-fight render by the owner, logged | ready | owner | owner | — | — | M9-16 | PLAN-003 |
-| M7-01 | Post-generation validation (S18) after a model is chosen | deferred | post_generation | L6.5 | F-032 | — | — | PLAN-001 |
+| M7-01 | Post-generation validation (S19) after a model is chosen | deferred | post_generation | L6.5 | F-032 | — | — | PLAN-001 |
 | D-01 | Docs plane: five indexes, templates, one file per artifact | done | docs | docs | — | — | — | PLAN-005 |
 | D-02 | Docs plane: canonical and control docs, AGENTS.md, verify.sh, Makefile, hook, freeze | done | docs | docs | — | — | D-01 | PLAN-005 |
 | D-03 | Docs plane: seven schemas (O65) | done | docs | docs | F-060 | — | D-02 | PLAN-005 |

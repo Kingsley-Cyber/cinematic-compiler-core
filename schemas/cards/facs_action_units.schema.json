@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:facs_action_units:1.0",
-  "title": "FACS action units (S14 facial)",
+  "$id": "urn:cinematic-compiler:schema:facs_action_units:1.1",
+  "title": "FACS action units (S15 facial)",
   "description": "The action units a face may use: name, face region, laterality (either side, both sides only, one side only), words for the render and words for its absence; the A-E intensity scale and its words.",
   "type": "object",
   "additionalProperties": false,

@@ -1,7 +1,7 @@
 """Committed examples must recompile byte-for-byte and carry the current kernel hash (stale = gate failure).
 
 Layout: examples/<name>/request.json {"query", "genre", "duration_s", "until"}, optional plans/<node>.json
-(authored inputs), envelope.json (expected canonical output) and, once S17 has run, render.txt (the rendered prompt,
+(authored inputs), envelope.json (expected canonical output) and, once S18 has run, render.txt (the rendered prompt,
 exactly the render node's text, ready to paste into a video model) and prose_<mode>.txt (M8: the structured-prose
 prompts in the four movement modes).
 """
@@ -33,7 +33,7 @@ def render_text(envelope):
 
 
 def prose_texts(envelope):
-    """{file name: text} for the structured-prose prompts (empty before S17)."""
+    """{file name: text} for the structured-prose prompts (empty before S18)."""
     render = envelope.get("nodes", {}).get("render")
     return {f"prose_{mode}.txt": row["text"] for mode, row in render["items"][0]["prose"].items()} if render else {}
 

@@ -1,5 +1,5 @@
 # Knowledge-DAG map (owner request 2026-10-11): every node of the frozen knowledge DAG
-# (docs/sources/knowledge_dag_v1.md, never edited) attached to the S01-S17 step that owns it.
+# (docs/sources/knowledge_dag_v1.md, never edited) attached to the S01-S18 step that owns it.
 # Owner, 2026-10-11: the DAG is the compiler and workflow for writing the owner's prompts in structured prose;
 # it details the dependency chains and the graph QA/QC for the final outputs, in its final form.
 # kernel/layer_order.yaml stays the single source of steps; this file adds no step, rule or check.
@@ -10,7 +10,7 @@
 #   mandatory  - true in every compile; a violation fails the gate (exit 4, replan)
 #   required   - must be present for the active genre; a missing authored step is exit 3
 #   style      - genre or mode choice; lives in library cards, checked as ranges
-#   projection - S17 render wording only
+#   projection - S18 render wording only
 #   evidence   - metrics, instances, failure modes, owner render results; never enforced
 #   excluded   - P3.2 / P4.2 items the DAG deliberately did not add
 # status:
@@ -30,7 +30,7 @@
 # Anchors are line numbers in the frozen copy (§2.2 = Mermaid block, §2.3 = node catalogue).
 # X1-X41 (§3.5) are findings about specific prompts, not rules, and are not mapped.
 
-version: 34
+version: 35
 status: draft
 basis: "Mapped by Claude 2026-10-11 against the repo at 9c9fd98 (layer_order 1.7); owner decisions O1-O4 recorded
   2026-10-11 (docs/plans/M8_DAG_PROSE.md); O13-O14 (checklist scope, not-applicable rulings) 2026-10-11; owner
@@ -71,7 +71,7 @@ rows:
          test: tests/test_temporal_pass.py::test_wrong_packet_and_failed_gates_are_refused}
     note: "An upstream change re-seals every downstream packet (sha256), so a plan bound to the old packet is refused
       and must be re-authored: the cascade is forced. The DAG's worked example (an Effort change softens angles,
-      speed, contact and camera) cannot run in the repo, because Effort (S15) sits below motion (see M3)."
+      speed, contact and camera) cannot run in the repo, because Effort (S16) sits below motion (see M3)."
 
   - id: M3
     name: Higher layer wins (Laban over Euler)
@@ -86,7 +86,7 @@ rows:
       - {file: compiler/passes/derived/p11_kinematic.py, check: check, code: KINEMATIC_SUPPORT,
          test: tests/test_kinematic_solver.py::test_each_rule_rejects_its_violation}
     note: "Lower never contradicts higher holds for position, facing and posture (S13 vs S04/S06) and support
-      (S11 vs S07/S06). Owner O4 (2026-10-11): the repo order stands, so S15 effort is authored from the finished
+      (S11 vs S07/S06). Owner O4 (2026-10-11): the repo order stands, so S16 effort is authored from the finished
       keys rather than vetoing them. The prose states 'Laban support and contacts primary; Euler precision override'
       (O3, M8.2); its codes land in M8.4."
 
@@ -110,7 +110,7 @@ rows:
          test: tests/test_prop_track.py::test_a_track_never_says_toward_what_the_prompt_says_not}
       - {file: validators/prompt_validator.py, check: _turn_checks, code: ROTATION_PATH_UNSTATED,
          test: tests/test_motion_solver.py::test_a_spin_is_written_once_like_a_named_flip}
-      - {file: compiler/passes/derived/p17_render.py, check: check, code: RENDER_COVERAGE,
+      - {file: compiler/passes/derived/p18_render.py, check: check, code: RENDER_COVERAGE,
          test: tests/test_render.py::test_a_dropped_item_fails_coverage}
     note: "M9 W1-W4 (owner O47-O49; probes R10-R18): the wording the model followed is the rule. No hold or freeze is written in frames; a hit gets a camera hold with the bodies in frame, no close-up (BODY_HOLD_FRAMES). A hand that releases and then holds nothing is said to be empty (EMPTY_HAND_UNSTATED). A turn is named once, by axis, plane and count, with takeoff and landing; no angles at times, no rate, no angles on the lines inside it (ROTATION_ANGLES_PRINTED). No prop is called hidden or not visible; a later object stands in the scene from the start (HIDDEN_PHRASING, O48). M8.12 (owner O18, audit X5/X6): a beat that names a flip or a cartwheel has its actor declare that turn, and the staff writes it (TURN_LABEL; S13 named_turn_findings). M8.12 (owner O18, audit X9): a substituted body has no line, pose or support until it reappears, and RULES say so (VANISHED_BODY; S04 refuses a beat that lists it). RV-06 (owner O90): S04 also refuses a vanished body's support or hold left open while it is gone. Two counts that disagree are a reader contradiction (COUNT_CONTRADICTION, M8.12). M8.12: a word written twice in a row is a reading defect (DOUBLED_WORD; F8's 'rope dart dart'). M8.4: validators/prompt_validator.py reads each prose prompt whole and compares every section with the
       envelope and with each other (staff contacts vs prop state machines, causal order vs times, FX vs negatives).
@@ -122,18 +122,18 @@ rows:
     name: "[LMA] Body / Effort / Shape / Space / Phrasing"
     anchor: "§2.2 L842; §2.3 L1176; §1.3 L64"
     class: required
-    step: S15
+    step: S16
     status: partial
     codes: [EFFORT_UNDECLARED, SHAPE_DIRECTION]
     gaps: [PHRASING_MISSING]
     enforced_by:
-      - {file: compiler/passes/derived/p15_effort.py, check: check, code: SHAPE_DIRECTION,
+      - {file: compiler/passes/derived/p16_effort.py, check: check, code: SHAPE_DIRECTION,
          test: tests/test_effort_solver.py::test_each_rule_rejects_its_violation}
       - {file: validators/prompt_validator.py, check: _shape_checks, code: SHAPE_DIRECTION,
          test: tests/test_effort_solver.py::test_a_printed_shape_against_the_motion_is_refused}
-      - {file: compiler/passes/derived/p15_effort.py, check: check, code: EFFORT_VOCABULARY,
+      - {file: compiler/passes/derived/p16_effort.py, check: check, code: EFFORT_VOCABULARY,
          test: tests/test_effort_solver.py::test_each_rule_rejects_its_violation}
-      - {file: compiler/passes/derived/p15_effort.py, check: check, code: EFFORT_COVERAGE,
+      - {file: compiler/passes/derived/p16_effort.py, check: check, code: EFFORT_COVERAGE,
          test: tests/test_effort_solver.py::test_each_rule_rejects_its_violation}
       - {file: compiler/passes/derived/p12_bartenieff.py, check: check, code: BARTENIEFF_VOCABULARY,
          test: tests/test_bartenieff_solver.py::test_each_rule_rejects_its_violation}
@@ -284,7 +284,7 @@ rows:
     name: Camera primitives
     anchor: "§2.2 L850; §2.3 L1209; §1.8 L149"
     class: required
-    step: S16
+    step: S17
     status: enforced
     codes: [DISCONNECTED_CAMERA_MOTION]
     enforced_by:
@@ -297,12 +297,12 @@ rows:
     name: Stylization primitives
     anchor: "§2.2 L851; §2.3 L1210; §1.8 L157"
     class: style
-    step: S17
+    step: S18
     status: enforced
     enforced_by:
-      - {file: compiler/passes/derived/p17_render.py, check: check, code: FRAME_SMEAR,
+      - {file: compiler/passes/derived/p18_render.py, check: check, code: FRAME_SMEAR,
          test: tests/test_render.py::test_each_frame_rule_rejects_its_violation}
-      - {file: compiler/passes/derived/p17_render.py, check: check, code: FRAME_IMPACT,
+      - {file: compiler/passes/derived/p18_render.py, check: check, code: FRAME_IMPACT,
          test: tests/test_render.py::test_each_frame_rule_rejects_its_violation}
     note: "The six channels (impact, smear, speedlines, holds, fx, ink) are authored frame parts with placement
       checks. Lighting, colour keys and foreshortening have no channel."
@@ -316,7 +316,7 @@ rows:
     codes: [NEGATIVES_MISSING, COUNT_CONTRADICTION]
     enforced_by:
       - {file: compiler/passes/mandatory/p03_constraint.py}
-      - {file: compiler/passes/derived/p17_render.py, check: check, code: RENDER_COVERAGE,
+      - {file: compiler/passes/derived/p18_render.py, check: check, code: RENDER_COVERAGE,
          test: tests/test_render.py::test_a_dropped_item_fails_coverage}
     note: "M8.12 (owner O17): every stated count of fighters, props and a prop's units agrees with the scene (COUNT_CONTRADICTION; render finding F12, R5's four shuriken under 'FOUR props' and 'FIVE props'). Kernel negatives (per scene, actor and prop) and card negatives become 'negative' constraints at S03, and
       render coverage marks every constraint item by item. No test drops a negative: the coverage test drops an
@@ -327,7 +327,7 @@ rows:
     name: Flat 2D street fight
     anchor: "§2.2 L855; §2.3 L1217; §3.6 L1570"
     class: evidence
-    step: S16
+    step: S17
     status: partial
     note: "Mitigations present: C9 anchors, C10 camera layer (partial). Absent: V3 levers, V6 quotas, C10's
       height/depth cadence."
@@ -338,7 +338,7 @@ rows:
     class: evidence
     step: S13
     status: partial
-    note: "Mitigations present: S15 Effort, S11 support, derived interpolation. Absent: C4 implied guidance, C14 staff."
+    note: "Mitigations present: S16 Effort, S11 support, derived interpolation. Absent: C4 implied guidance, C14 staff."
 
   - id: FM3
     name: Prop duplication / teleport
@@ -371,7 +371,7 @@ rows:
     name: Prompt bloat / parse confusion
     anchor: "§2.2 L860; §2.3 L1222; §3.6 L1575"
     class: evidence
-    step: S17
+    step: S18
     status: partial
     note: "Renders run 11-75 KB (examples); no_render_compression forbids trimming and per-model compression waits for
       M7. Explicit keys sit at beats, not every frame (C1). Owner O111 (2026-10-12) removed O97's length caps (RV-13's
@@ -398,7 +398,7 @@ rows:
     name: Merged or swapped events
     anchor: "§2.2 L863; P4.1 L1681"
     class: evidence
-    step: S17
+    step: S18
     status: missing
     note: "Contacts are separate events with their own ids and beats, but no C32 rule line reaches the prompt."
 
@@ -414,7 +414,7 @@ rows:
       - {file: validators/layer_dependency_validator.py, check: check_layer_order, code: STEP_ORDER,
          test: tests/test_layer_dependency.py::test_step_ids_must_be_well_formed_unique_and_rise_with_build_order}
     note: "The cascade order is the step order: Director S01-S02, Choreographer S04, Biomechanist S11-S13,
-      Technician S17. Roles are not named and 'encode so the model cannot misinterpret' has no check (M4)."
+      Technician S18. Roles are not named and 'encode so the model cannot misinterpret' has no check (M4)."
 
   - id: T2
     name: Roles v2 (6)
@@ -463,22 +463,22 @@ rows:
       - {file: kernel/layer_order.yaml}
     note: "Owner O14 (2026-10-11): checked on the prompt as section order and the precedence rule; the build order
       differs by owner O4. v3 is linear with Laban Effort above key poses and Support above Spatial. Owner O4 (2026-10-11): the repo
-      order stands (S04 pos/facing authoritative, owner Q2, before S11 support; S15 effort after S13 motion). The
+      order stands (S04 pos/facing authoritative, owner Q2, before S11 support; S16 effort after S13 motion). The
       prose sections follow the DAG's order (M8.2); SECTION_ORDER lands in M8.4."
 
   - id: T6
     name: Laban checklist
     anchor: "§2.2 L871; §2.3 L1238"
     class: mandatory
-    step: S15
+    step: S16
     status: partial
     codes: [EFFORT_UNDECLARED, SHAPE_DIRECTION]
     gaps: [PHRASING_MISSING]
     enforced_by:
-      - {file: compiler/passes/derived/p15_effort.py, check: check, code: EFFORT_VOCABULARY,
+      - {file: compiler/passes/derived/p16_effort.py, check: check, code: EFFORT_VOCABULARY,
          test: tests/test_effort_solver.py::test_each_rule_rejects_its_violation}
-    note: "Body (S12) and Effort/Shape/Space (S15) are checked for vocabulary and coverage; Phrasing is absent.
-      'Verify before locking keyframes' is inverted by S15 running after S13 (M3 clash)."
+    note: "Body (S12) and Effort/Shape/Space (S16) are checked for vocabulary and coverage; Phrasing is absent.
+      'Verify before locking keyframes' is inverted by S16 running after S13 (M3 clash)."
 
   - id: T7
     name: Biomechanical gate
@@ -505,7 +505,7 @@ rows:
     step: all
     status: enforced
     codes: [SECTION_MISSING, SECTION_ORDER, PROMPT_CONTRADICTION]
-    note: "Steps map to S01, S04, S15, S04, S07/S11, S04 beats, S13, S06, S16, S17, S03; step 12 is M4 (partial).
+    note: "Steps map to S01, S04, S16, S04, S07/S11, S04 beats, S13, S06, S17, S18, S03; step 12 is M4 (partial).
       Step 3 (Effort) before step 6 (key poses) is reversed in the repo (M3 clash)."
 
   - id: T9
@@ -594,7 +594,7 @@ rows:
     name: Dual encoding
     anchor: "§2.2 L878; P3.1 L1618"
     class: projection
-    step: S17
+    step: S18
     status: enforced
     codes: [GESTURE_MISMATCH, EULER_MODE_MISMATCH]
     note: "Each slot is rendered as numbers (root, Euler, joints) and words (KIN, BODY, EFFORT, SHAPE, SPACE; faces
@@ -605,7 +605,7 @@ rows:
     name: motion_control block
     anchor: "§2.2 L881; §2.3 L1252; §3.1 L350"
     class: projection
-    step: S17
+    step: S18
     status: enforced
     codes: [INTERPOLATION_UNDECLARED]
     enforced_by:
@@ -618,12 +618,12 @@ rows:
     name: Implied guidance
     anchor: "§2.2 L882; §2.3 L1254; §3.1 L357-L360"
     class: projection
-    step: S17
+    step: S18
     status: enforced
     codes: [IMPLIED_GUIDANCE_MISSING, KEY_GAP_UNGUIDED]
     enforced_by:
       - {file: renderers/prose_renderer.py, check: render_all, test: tests/test_prose_render.py::test_every_gap_over_one_and_a_half_seconds_has_implied_guidance}
-    note: "The prose [IMPLIED GUIDANCE] (M8.3) states each Effort interval (S15), secondary-motion lag on the
+    note: "The prose [IMPLIED GUIDANCE] (M8.3) states each Effort interval (S16), secondary-motion lag on the
       costume's loose parts (S02), recovery after each strike, airborne arcs with takeoff and landing, and guidance for
       every gap over 1.5 s; LBN-2.4 has none."
 
@@ -694,7 +694,7 @@ rows:
     status: partial
     codes: [CAUSAL_LIST_MISSING]
     note: "Causal (S05) and attachment (S06/S07) graphs are built before key poses (S13), as the DAG places them;
-      'after Laban' does not hold (S15 comes later). Embedding them in the prompt is V7."
+      'after Laban' does not hold (S16 comes later). Embedding them in the prompt is V7."
 
   - id: C9
     name: Spatial anchors / axis
@@ -722,7 +722,7 @@ rows:
     name: Camera layer (dynamic)
     anchor: "§2.2 L888; §2.3 L1266; §3.2 L377; §4.5 L636"
     class: style
-    step: S16
+    step: S17
     status: partial
     codes: [HIT_HOLD, PLAYBACK_RAMP, CAMERA_RULES]
     enforced_by:
@@ -730,7 +730,7 @@ rows:
          test: tests/test_camera_solver.py::test_genre_card_rules_apply_scene_wide}
       - {file: validators/camera_validator.py, check: check, code: PLAYBACK_RAMP,
          test: tests/test_camera_solver.py::test_each_rule_rejects_its_violation}
-      - {file: compiler/passes/derived/p17_render.py, check: hit_hold, code: HIT_HOLD,
+      - {file: compiler/passes/derived/p18_render.py, check: hit_hold, code: HIT_HOLD,
          test: tests/test_render.py::test_a_hit_is_a_camera_hold_on_the_bodies}
       - {file: validators/prompt_validator.py, check: _camera_checks, code: HIT_HOLD,
          test: tests/test_prose_render.py::test_hits_are_camera_holds_and_nothing_plays_slow}
@@ -742,7 +742,7 @@ rows:
          test: tests/test_camera_solver.py::test_no_camera_card_slows_playback_or_puts_a_close_up_on_a_hit}
       - {file: validators/camera_validator.py, check: _hit_holds, code: HIT_HOLD,
          test: tests/test_camera_solver.py::test_a_hit_from_the_contacts_is_a_camera_hold_at_s16}
-      - {file: compiler/passes/derived/p17_render.py, check: hit_hold, code: HIT_HOLD,
+      - {file: compiler/passes/derived/p18_render.py, check: hit_hold, code: HIT_HOLD,
          test: tests/test_render.py::test_a_hit_from_the_contacts_is_held_whatever_s17_holds}
       - {file: validators/prompt_validator.py, check: _camera_checks, code: HIT_HOLD,
          test: tests/test_prose_render.py::test_the_prompt_owes_a_hold_at_every_hit_whatever_s17_holds}
@@ -752,15 +752,15 @@ rows:
          test: tests/test_camera_solver.py::test_every_part_a_shot_shows_is_in_frame_up_and_down}
     note: "Genre cards set shot length (anime 0.25-6.0 s), crossing and roll; every shot is motivated. RV-09 (owner
       O92, F-083): a hit (a hold on an impact frame) is a static camera hold with every body present in frame, no
-      close-up or insert (HIT_HOLD at S17 and in the prompt), and every shot plays at normal x1 (PLAYBACK_RAMP at S16
+      close-up or insert (HIT_HOLD at S18 and in the prompt), and every shot plays at normal x1 (PLAYBACK_RAMP at S17
       and in the prompt). RV-60 (F-160): the camera cards follow O92 (no close-up after a blow, no insert on a landing
       blade, playback normal only). RV-71b (F-177): each card rule carries its trigger and asks, checked against the
       grammar and O92 where it is written (CAMERA_CARD), and the prompt prints the genre card's rules word for word
       (CAMERA_RULES); RV-99 (F-210) keeps RV-60's word lists as a floor in that check and finds a hit rule from what a
       contact does; RV-99b (F-210) finds it by a combat verb of library/combat_verbs.yaml, an attack, or a striking part
       or a blade meeting something, and reads every floor word and term outside a negation. RV-57 (F-155): the
-      hits come from the contacts (planner/hits.py), so S16 holds the camera on each, as S17 and the prompt do,
-      whatever S17 holds. RV-15a, RV-15b (F-090): a shot aims at the middle of the parts its scale shows of its
+      hits come from the contacts (planner/hits.py), so S17 holds the camera on each, as S18 and the prompt do,
+      whatever S18 holds. RV-15a, RV-15b (F-090): a shot aims at the middle of the parts its scale shows of its
       target, an insert at its detail (a part or a prop), and every such part and every framed prop is in frame, up
       and down, at every beat a static shot lists (VERTICAL_FRAMING); a moving camera's path is RV-94's. Not encoded:
       the six rules (eye-level medium at most 1.2 s, height change every 2 s, low angles in aerial dominance,
@@ -770,7 +770,7 @@ rows:
     name: UGC camera
     anchor: "§2.2 L889; §2.3 L1268; §3.2 L378"
     class: style
-    step: S16
+    step: S17
     status: partial
     applies_when: {genre: [ugc_ad]}
     enforced_by:
@@ -783,10 +783,10 @@ rows:
     name: Stylization layer
     anchor: "§2.2 L890; §2.3 L1270; P3.1 L1634"
     class: style
-    step: S17
+    step: S18
     status: enforced
     enforced_by:
-      - {file: compiler/passes/derived/p17_render.py, check: check, code: FRAME_SMEAR,
+      - {file: compiler/passes/derived/p18_render.py, check: check, code: FRAME_SMEAR,
          test: tests/test_render.py::test_each_frame_rule_rejects_its_violation}
     note: "A smear names one subject and, for a body, one part, and sits on a sudden effort of that body or an event
       of that prop; the ink line renders 'smear follows ONLY the declared limb, body does NOT smear' (F1). S-030 put
@@ -803,7 +803,7 @@ rows:
     codes: [RULES_MISSING, NEGATIVES_MISSING, CAUSAL_RULE_MISSING, SECTION_ORDER]
     enforced_by:
       - {file: compiler/passes/mandatory/p03_constraint.py}
-      - {file: compiler/passes/derived/p17_render.py, check: check, code: RENDER_COVERAGE,
+      - {file: compiler/passes/derived/p18_render.py, check: check, code: RENDER_COVERAGE,
          test: tests/test_render.py::test_a_dropped_item_fails_coverage}
     note: "Kernel and card rules and negatives are built at S03 and all rendered. The veto is not mechanical: rules
       are copied verbatim and not checked against the plan, except where a step check covers one. Rules render
@@ -813,7 +813,7 @@ rows:
     name: Pure staff
     anchor: "§2.2 L892; §2.3 L1274; §2.15 L340"
     class: style
-    step: S17
+    step: S18
     status: enforced
     applies_when: {mode: pure_staff}
     codes: [EULER_MODE_MISMATCH, STAFF_FORMAT]
@@ -826,7 +826,7 @@ rows:
     name: Mixed Mode
     anchor: "§2.2 L893; §2.3 L1276; §2.14 L332"
     class: style
-    step: S17
+    step: S18
     status: enforced
     applies_when: {mode: mixed}
     codes: [EULER_MODE_MISMATCH]
@@ -839,7 +839,7 @@ rows:
     name: Upgraded Mixed
     anchor: "§2.2 L894; §2.3 L1278; §2.14 L335"
     class: style
-    step: S17
+    step: S18
     status: enforced
     applies_when: {mode: upgraded_mixed}
     codes: [EULER_MODE_MISMATCH]
@@ -852,14 +852,14 @@ rows:
     name: Euler-heavy keypose
     anchor: "§2.2 L895; §2.3 L1280; §2.14 L333"
     class: style
-    step: S17
+    step: S18
     status: enforced
     applies_when: {mode: euler_heavy}
     codes: [EULER_MODE_MISMATCH]
     enforced_by:
       - {file: solver/euler_solver.py, check: check, code: MOTION_JOINTS,
          test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
-      - {file: compiler/passes/derived/p17_render.py, check: check, code: RENDER_COVERAGE,
+      - {file: compiler/passes/derived/p18_render.py, check: check, code: RENDER_COVERAGE,
          test: tests/test_render.py::test_a_dropped_item_fails_coverage}
     note: "The repo's only mode: LBN-2.4-ADV-LMA layout, every key with root, root Euler and all 11 joints (owner
       kernel decision + no_render_compression)."
@@ -868,7 +868,7 @@ rows:
     name: Precision tags
     anchor: "§2.2 L896; §2.3 L1282; §3.6 L520"
     class: projection
-    step: S17
+    step: S18
     status: partial
     codes: [STAFF_FORMAT]
     note: "LBN-2.4 writes contacts as 'CONTACT:touch right_foot->kunai.blade at 3'. The prose (M8.2) writes [f:..]/[h:..]
@@ -879,7 +879,7 @@ rows:
     name: Master Template
     anchor: "§2.2 L897; §2.3 L1284; §3.5 L501"
     class: style
-    step: S17
+    step: S18
     status: enforced
     codes: [SECTION_MISSING, SECTION_ORDER, STACKED_GRAPHS]
     note: "M8.2: the Master Template compiles in four modes with [SCENE], [MOVEMENT LANGUAGE] + FORMAT, the staff,
@@ -889,7 +889,7 @@ rows:
     name: Attention tags
     anchor: "§2.2 L898; P3.1 L1619"
     class: projection
-    step: S17
+    step: S18
     status: missing
     note: "No per-beat priority tags."
 
@@ -902,7 +902,7 @@ rows:
     codes: [REACTION_WITHOUT_CAUSE, IMPACT_CONTACT_SYNC, CONTACT_WORLD]
     gaps: [POST_CONTACT_MISSING]
     enforced_by:
-      - {file: compiler/passes/derived/p17_render.py, check: impact_sync, code: IMPACT_CONTACT_SYNC,
+      - {file: compiler/passes/derived/p18_render.py, check: impact_sync, code: IMPACT_CONTACT_SYNC,
          test: tests/test_render.py::test_impact_contact_sync_wants_one_time_per_hit}
       - {file: solver/contact_world.py, check: refusals, code: CONTACT_WORLD,
          test: tests/test_motion_solver.py::test_each_rule_rejects_its_violation}
@@ -930,7 +930,7 @@ rows:
       M9-02 (owner O23): one time per hit; strike, throw and release contacts happen at their key pose, and S04 refuses a
       throw, or a release of a prop or a body, off its actor's key (RELEASE_AT_POSE, RV-48a); every impact frame has a
       touch, support or possess onset on it (a catch or a lodging blade, owner O93, RV-10) and every strike lands on an
-      impact frame (IMPACT_CONTACT_SYNC, S17 and the prompt). Contact before effect holds for prop changes (S07; a
+      impact frame (IMPACT_CONTACT_SYNC, S18 and the prompt). Contact before effect holds for prop changes (S07; a
       substitution changes its own decoy without one, RV-48a) and hard causes (S05). The S04 instructions teach these
       rules (RV-48b). At-contact and post-contact phases (intersection; compress, accelerate, follow-through) are not
       modelled."
@@ -982,14 +982,14 @@ rows:
     name: Shot program
     anchor: "§2.2 L903; P3.1 L1624"
     class: required
-    step: S16
+    step: S17
     status: partial
     codes: [DISCONNECTED_CAMERA_MOTION, HIT_HOLD]
     gaps: [SHOT_TRANSITION_MISSING]
     enforced_by:
       - {file: validators/camera_validator.py, check: _coupling, code: CAMERA_COUPLING,
          test: tests/test_camera_solver.py::test_each_rule_rejects_its_violation}
-      - {file: compiler/passes/derived/p17_render.py, check: hit_hold, code: HIT_HOLD,
+      - {file: compiler/passes/derived/p18_render.py, check: hit_hold, code: HIT_HOLD,
          test: tests/test_render.py::test_a_hit_is_a_camera_hold_on_the_bodies}
       - {file: validators/camera_validator.py, check: _motivation, code: CAMERA_MOTIVATION,
          test: tests/test_camera_solver.py::test_each_rule_rejects_its_violation}
@@ -1032,7 +1032,7 @@ rows:
     codes: [RENDER_INTENT_MISSING]
     enforced_by:
       - {file: renderers/prose_renderer.py, check: render_all, test: tests/test_prose_render.py::test_every_master_template_section_in_order}
-    note: "Derived in the prose [SCENE] (M8.3): motion (speed, weight, acceleration from S15; readability from the
+    note: "Derived in the prose [SCENE] (M8.3): motion (speed, weight, acceleration from S16; readability from the
       shot rate), animation (genre, style_reference, spacing, smear and impact counts), choreography (cause before
       effect; final instruction from each performer's last key). S01 still parses no intent fields of its own."
 
@@ -1101,7 +1101,7 @@ rows:
     name: Event-separation rule
     anchor: "§2.2 L910; P4.1 L1680"
     class: projection
-    step: S17
+    step: S18
     status: enforced
     codes: [EVENT_SEPARATION_MISSING]
     enforced_by:
@@ -1121,7 +1121,7 @@ rows:
          test: tests/test_layer_dependency.py::test_wrong_layer_tag_inactive_data_missing_and_unknown_groups}
       - {file: validators/camera_validator.py, check: _genre, code: CAMERA_GENRE,
          test: tests/test_camera_solver.py::test_genre_card_rules_apply_scene_wide}
-    note: "Repo genres are media (live_action, anime, ugc_ad) that switch steps (S08-S10, S14) and camera cards. The
+    note: "Repo genres are media (live_action, anime, ugc_ad) that switch steps (S08-S10, S15) and camera cards. The
       DAG's six content genres with dominant layers and default Effort are not encoded (effort modes calm,
       desperate, trained are per archetype)."
 
@@ -1132,7 +1132,7 @@ rows:
     step: all
     status: partial
     enforced_by:
-      - {file: compiler/passes/derived/p15_effort.py, check: check, code: EFFORT_MODE,
+      - {file: compiler/passes/derived/p16_effort.py, check: check, code: EFFORT_MODE,
          test: tests/test_effort_solver.py::test_each_rule_rejects_its_violation}
       - {file: validators/camera_validator.py, check: _intent, code: CAMERA_INTENT,
          test: tests/test_camera_solver.py::test_each_rule_rejects_its_violation}
@@ -1143,7 +1143,7 @@ rows:
     name: Anti-street-fight levers
     anchor: "§2.2 L915; §2.3 L1292; §2.10 L286"
     class: style
-    step: S16
+    step: S17
     status: missing
     note: "No Y/Z-over-X priority, height-level count, camera height/depth cadence or airborne share."
 
@@ -1173,7 +1173,7 @@ rows:
     name: Advanced tricks
     anchor: "§2.2 L918; §2.3 L1295; §2.13 L317"
     class: style
-    step: S16
+    step: S17
     status: missing
     note: "No depth budget, verticality quota, camera personality, contrast switching or anti-pattern negatives."
 
@@ -1181,7 +1181,7 @@ rows:
     name: Graph-embed rule
     anchor: "§2.2 L919; §2.3 L1296; §2.6 L223"
     class: style
-    step: S17
+    step: S18
     status: partial
     codes: [CAUSAL_LIST_MISSING]
     enforced_by:
@@ -1194,7 +1194,7 @@ rows:
     name: Stack-only-2 rule
     anchor: "§2.2 L920; §2.3 L1297; §1.7 L147"
     class: style
-    step: S17
+    step: S18
     status: enforced
     codes: [STACKED_GRAPHS]
     enforced_by:
@@ -1206,7 +1206,7 @@ rows:
     name: Mode preference
     anchor: "§2.2 L921; §2.3 L1298; §2.14 L338"
     class: style
-    step: S17
+    step: S18
     status: partial
     note: "Owner O1/O2 (2026-10-11): no per-scene choice; all four modes compile alongside LBN-2.4, which stays the
       uncompressed projection no_render_compression is checked on (M8.2 done)."
@@ -1240,7 +1240,7 @@ rows:
     name: Multi-syntax output
     anchor: "§2.2 L925; P3.1 L1631"
     class: projection
-    step: S17
+    step: S18
     status: missing
     note: "One syntax: the LBN-2.4 preface + JSON text. The envelope is not a prompt."
 
@@ -1249,7 +1249,7 @@ rows:
     name: D5 LBN-2.3-ADV-FINAL
     anchor: "§2.2 L928; §2.3 L1304; §3.4 L388"
     class: evidence
-    step: S17
+    step: S18
     status: partial
     enforced_by:
       - {file: kernel/sources/lbn-2.3-adv.txt}
@@ -1269,7 +1269,7 @@ rows:
     name: D6 Mixed fight
     anchor: "§2.2 L930; §2.3 L1306"
     class: evidence
-    step: S17
+    step: S18
     status: missing
     note: "Not in the repo."
 
@@ -1277,7 +1277,7 @@ rows:
     name: D9 Refined staff fight
     anchor: "§2.2 L931; §2.3 L1307"
     class: evidence
-    step: S17
+    step: S18
     status: missing
     note: "Not in the repo."
 
@@ -1285,7 +1285,7 @@ rows:
     name: D10 Upgraded fight
     anchor: "§2.2 L932; §2.3 L1308"
     class: evidence
-    step: S17
+    step: S18
     status: missing
     note: "Not in the repo."
 
@@ -1310,7 +1310,7 @@ rows:
     name: Camera thresholds
     anchor: "§2.2 L937; §2.3 L1316; §4.5 L636"
     class: evidence
-    step: S16
+    step: S17
     status: missing
     note: "The DAG's thresholds (1, 1.2, 1.5-2, 2 s) disagree with each other (X39); none is encoded. Genre cards
       carry shot-length ranges only."
@@ -1319,7 +1319,7 @@ rows:
     name: Quotas
     anchor: "§2.2 L938; §2.3 L1317; §4.6 L652"
     class: evidence
-    step: S16
+    step: S17
     status: missing
     note: "No height-level count, verticality share or depth score."
 
@@ -1336,7 +1336,7 @@ rows:
     name: D7 pros/cons
     anchor: "§2.2 L940; §2.3 L1319"
     class: evidence
-    step: S17
+    step: S18
     status: missing
     note: "Not in the repo."
 
@@ -1344,7 +1344,7 @@ rows:
     name: D8 layer mapping
     anchor: "§2.2 L941; §2.3 L1320"
     class: evidence
-    step: S17
+    step: S18
     status: missing
     note: "Not in the repo."
 
@@ -1352,7 +1352,7 @@ rows:
     name: D2/D10 graph ratings
     anchor: "§2.2 L942; §2.3 L1321; §1.7 L136"
     class: evidence
-    step: S17
+    step: S18
     status: missing
     note: "Not in the repo."
 
@@ -1360,7 +1360,7 @@ rows:
     name: Numeric payload
     anchor: "§2.2 L943; §2.3 L1322; §4.8 L681"
     class: evidence
-    step: S17
+    step: S18
     status: missing
     note: "The repo does not count pose numbers per render."
 
@@ -1377,7 +1377,7 @@ rows:
     name: Owner render evidence
     anchor: "§2.2 L945; §2.3 L1324; §5.3 L771"
     class: evidence
-    step: S17
+    step: S18
     status: partial
     enforced_by:
       - {file: docs/render_log.md}
@@ -1401,7 +1401,7 @@ rows:
     name: "Static camera; 3 motivated moves; 'camera motivation > camera timeline'"
     anchor: "P3.2 L1645"
     class: excluded
-    step: S16
+    step: S17
     status: excluded
     note: "The repo requires a motivation per shot (CAMERA_MOTIVATION), which can coexist with a height/depth cadence;
       no static-camera or three-move rule."
@@ -1441,12 +1441,12 @@ rows:
     name: "screen_geometry: PRESERVE_AXIS"
     anchor: "P3.2 L1649"
     class: excluded
-    step: S16
+    step: S17
     status: excluded
     enforced_by:
       - {file: validators/camera_validator.py, check: _cut, code: CAMERA_AXIS,
          test: tests/test_camera_solver.py::test_each_rule_rejects_its_violation}
-    note: "Owner O53 (2026-10-11): keep the repo rule; the clash is settled. Was a clash: S16 keeps the 180-degree line across cuts unless the shot declares 'cross' and the genre card allows
+    note: "Owner O53 (2026-10-11): keep the repo rule; the clash is settled. Was a clash: S17 keeps the 180-degree line across cuts unless the shot declares 'cross' and the genre card allows
       it (anime and live_action allow, ugc_ad forbids). Orbits inside one shot and Dutch roll (anime up to 30
       degrees) are not blocked. Owner's call: keep the axis rule or drop it."
 
@@ -1454,7 +1454,7 @@ rows:
     name: "Laws placed first in the prompt"
     anchor: "P3.2 L1650"
     class: excluded
-    step: S17
+    step: S18
     status: excluded
     note: "The render opens with the query preface and ends with rules; the negative block sits after the key legend,
       before the keys, as in D5."
@@ -1479,7 +1479,7 @@ rows:
     name: "Prose-first always"
     anchor: "P3.2 L1653"
     class: excluded
-    step: S17
+    step: S18
     status: excluded
     note: "Agrees with the DAG: movement renders Euler-heavy. Faces are words-only by owner F4 (faces, not movement)."
 
@@ -1498,7 +1498,7 @@ rows:
     name: "'>' does two jobs as a design principle"
     anchor: "P4.2 L1694"
     class: excluded
-    step: S17
+    step: S18
     status: excluded
     note: "Agrees with the DAG: the render uses '>' only for sequence (laban, follow-through) and '->' for contact
       targets and value changes, each in its own fields."

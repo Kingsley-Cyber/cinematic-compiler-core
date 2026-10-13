@@ -236,7 +236,7 @@ def test_the_vanishing_actor_s_line_ends_its_support_and_walks_nowhere():
 
 def test_the_prompt_owes_a_hold_at_every_hit_whatever_s17_holds():
     """F-155 (RV-57, owner O92): the prompt prints a camera hold at every hit the contacts give, and a prompt that drops
-    one is refused even when S17's frame parts drop that hold too (HIT_HOLD)."""
+    one is refused even when S18's frame parts drop that hold too (HIT_HOLD)."""
     envelope, render = load(ROOT / "examples" / "reference_fight")
     text = render["prose"]["mixed"]["text"]
     unheld = copy.deepcopy(envelope)

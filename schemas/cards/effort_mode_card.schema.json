@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:effort_mode_card:1.0",
-  "title": "Effort mode card (S15, L5)",
+  "$id": "urn:cinematic-compiler:schema:effort_mode_card:1.1",
+  "title": "Effort mode card (S16, L5)",
   "description": "How an entity spends effort: the intensity range an interval in this mode must fall in, and informational factor tendencies (not enforced).",
   "type": "object",
   "additionalProperties": false,

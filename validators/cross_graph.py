@@ -22,7 +22,7 @@ EDGES = {"temporal": ("beats", "beats"), "causal": ("beats", "beats"), "beat_con
          "affordance_dependency": ("affordance", "affordance"),
          "kinematic_transition": ("kinematic", "kinematic"), "bartenieff_transition": ("bartenieff", "bartenieff"),
          "motion": ("motion", "motion"), "facial_transition": ("facial", "facial"), "effort": ("efforts", "efforts"),
-         "camera": ("camera", "camera")}
+         "camera": ("camera", "camera"), "pose_mechanics_transition": ("pose_mechanics", "pose_mechanics")}
 PER_PERFORMER = ("kinematic", "bartenieff", "motion", "facial")
 END = "end"  # S06's closing snapshot: one state per subject per beat, plus the end (state_graph schema)
 MIDPOINT = "midpoint"  # a shot's target between the two axis entities (camera_graph schema)
@@ -40,7 +40,7 @@ def problems(envelope):
 
     ids = {group: {i["id"] for i in _items(envelope, "nodes", group)} for group in
            ("entities", "props", "surfaces", "constraints", "beats", "states", "contacts", "hand_role", "object_state",
-            "affordance", "kinematic", "bartenieff", "motion", "facial", "efforts", "camera")}
+            "affordance", "kinematic", "bartenieff", "motion", "pose_mechanics", "facial", "efforts", "camera")}
     parts = {i["id"]: set(i.get("parts", [])) for g in ("entities", "props") for i in _items(envelope, "nodes", g)}
     beats = {b["id"]: b for b in _items(envelope, "nodes", "beats")}
 

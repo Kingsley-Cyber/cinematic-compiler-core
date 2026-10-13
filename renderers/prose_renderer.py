@@ -1,7 +1,7 @@
-"""S17 structured-prose prompts (M8; owner O1-O3): the knowledge DAG's Master Template in four movement modes.
+"""S18 structured-prose prompts (M8; owner O1-O3): the knowledge DAG's Master Template in four movement modes.
 
 Compiled alongside the LBN-2.4 prompt, which stays the uncompressed projection (no_render_compression). Derived only:
-a pure function of the envelope and the S17 frame parts. Spec: docs/plans/M8_DAG_PROSE.md (Master Template C19, D8
+a pure function of the envelope and the S18 frame parts. Spec: docs/plans/M8_DAG_PROSE.md (Master Template C19, D8
 wrapper, D9 blocks, FORMAT line L507, precision tags L522).
 
 Sections in order: [SCENE] (with the render intent), [MOVEMENT LANGUAGE] + FORMAT, [LABAN STAFF – <MODE>], [IMPLIED
@@ -9,7 +9,7 @@ GUIDANCE], [MOTION CONTROL], [SPATIAL ANCHORS], [PROP STATE MACHINE – <prop>] 
 genre block ([ANIME], [UGC], [LIVE ACTION]), [RULES], [NEGATIVES]. Staff words come
 from solver/staff_geometry.py; one line per slot (performer x beat). SUPPORT reads 'steps <direction> alternating'
 only when this line and the next stand on the ground on feet with no height change between them. A strike is a touch
-whose beat holds an S17 impact frame (contacts are stamped at their beat's end, impact frames where the hit reads), on
+whose beat holds an S18 impact frame (contacts are stamped at their beat's end, impact frames where the hit reads), on
 anything but a prop the performer holds (touching your own held prop is handling, e.g. a throw, not a hit).
 Modes differ only in the Euler blocks:
 pure staff none; Mixed root + EulerXYZ on strike lines and each performer's first and last line; Upgraded Mixed
@@ -224,10 +224,10 @@ CLOSE = ("insert", "close")
 
 def hit_holds(envelope, frame_parts, labels):
     """W1 (owner O47; probes R10, R11, R14 stretched every hold or freeze given in frames to 0.85-1.75 s; R15 held a hit
-    as V5 wrote it): an S17 hold on an impact frame is printed as the camera holding the hit with the bodies in frame,
+    as V5 wrote it): an S18 hold on an impact frame is printed as the camera holding the hit with the bodies in frame,
     never as a body freeze in frames, and only where the shot covering it frames two or more bodies (or the only one)
     without a close-up; holds elsewhere stay in the graph and in LBN-2.4. Since RV-57 (F-155) every hit the contacts give
-    is printed too, whatever S17 holds (planner/hits.py)."""
+    is printed too, whatever S18 holds (planner/hits.py)."""
     tolerance = 0.5 / envelope["scene"]["fps"] + 1e-9
     entities = [e["id"] for e in _items(envelope, "nodes", "entities")]
     out = []
@@ -245,7 +245,7 @@ def hit_holds(envelope, frame_parts, labels):
         else:
             continue
         frames = next((h["frames"] for h in frame_parts.get("holds", []) if abs(h["t"] - t) <= tolerance), None)
-        held = f" for {frames} frames" if frames else ""  # ADR-O113: the S17 hold's own frame count
+        held = f" for {frames} frames" if frames else ""  # ADR-O113: the S18 hold's own frame count
         out.append(f"{_time(t)} impact: hold{held} with {who}, no close-up")
     return out
 
@@ -294,10 +294,10 @@ def _numbers(values):
 
 
 def strike_contacts(envelope, impacts):
-    """{contact id}: the strikes. A strike is a touch in a beat that holds an S17 impact frame, on anything but a held
+    """{contact id}: the strikes. A strike is a touch in a beat that holds an S18 impact frame, on anything but a held
     prop (touching your own held prop is handling, e.g. a throw, not a hit; a body that meets a prop another performer
     holds is struck by that blade, not striking with it: the kunai driven into B at 8.5, O93). Shared by the staff's
-    DOUBLE BOW and IMPACT_CONTACT_SYNC (S17 and the prompt)."""
+    DOUBLE BOW and IMPACT_CONTACT_SYNC (S18 and the prompt)."""
     tolerance = 0.5 / envelope["scene"]["fps"] + 1e-9
     beats = {b["id"]: b for b in _items(envelope, "nodes", "beats")}
     holders = {s["id"]: s["conditions"].get("holder") for s in _items(envelope, "nodes", "states")}
@@ -997,7 +997,7 @@ def entrances(envelope, labels):
 
 
 def _edge_lines(envelope, labels, omitted=()):
-    """ADR-O113 (if the graph has it, the prompt prints it): the edge graphs S17 used to drop, each in the Master
+    """ADR-O113 (if the graph has it, the prompt prints it): the edge graphs S18 used to drop, each in the Master
     Template section it belongs to (STACKED_GRAPHS refuses any other): the beats' order and the paths between keys in
     the motion control; support, coordination, Effort and state changes in the implied guidance; the contacts' order
     in the causal links; the cuts in the camera; which rule binds which beat, and the kernel invariants, in the rules.
@@ -1035,7 +1035,7 @@ def _edge_lines(envelope, labels, omitted=()):
                              f"at {_num(trip['speed'])} m/s")
     faces = {f["id"]: f for f in _items(envelope, "nodes", "facial")}
     causal = {e["id"]: e for e in _items(envelope, "edges", "causal")}
-    for e in _items(envelope, "edges", "facial_transition"):  # S-123: the face changes S14 writes
+    for e in _items(envelope, "edges", "facial_transition"):  # S-123: the face changes S15 writes
         start, end = faces[e["from"]], faces[e["to"]]
         why = causal.get(e["trigger"])
         out["implied"].append(f"- face, {labels.get(start['entity'], _words(start['entity']))} {_time(start['t'])} to "

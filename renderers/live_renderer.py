@@ -1,4 +1,4 @@
-"""S17 renderer for live_action: the shared LBN projection with the frame parts under `frames` (no anime block)."""
+"""S18 renderer for live_action: the shared LBN projection with the frame parts under `frames` (no anime block)."""
 
 from renderers.anime_renderer import _anime, project
 

@@ -205,7 +205,7 @@ items:
   - {id: AA-6, title: "The author casts any idea: when S02's cards find no performer, prop or surface (a kunoichi on a rooftop), the author writes the brief's entities, props and surfaces against its schema, the cards still winning where they match", status: ready,
      step: brief, plan: PLAN-008, depends_on: [AA-2], findings: [], codes: []}
   # The owner's speed plan (2026-10-13): target 3-4 minutes per idea (the builder's estimate 5-7); time and cost per
-  # step reported after each fix. Not taken: S11/S12 and S15/S16 in parallel, and S13 started before S12 ends (each
+  # step reported after each fix. Not taken: S11/S12 and S16/S17 in parallel, and S13 started before S12 ends (each
   # reads the one before it: docs/layer_order.md).
   - {id: AA-7, title: "A resume cache: each accepted step's document kept by its packet hash, so a re-run redoes only what changed", status: done,
      step: all, plan: PLAN-008, depends_on: [AA-1], findings: [], codes: []}
@@ -227,7 +227,7 @@ items:
      step: camera, plan: PLAN-007, depends_on: [RV-59a], findings: [F-208, F-090], codes: []}
   - {id: RV-110, title: "CONTACT_WORLD reads a free prop between samples on S04's gravity arc and a held one at its holder's hand", status: ready,
      step: motion, plan: PLAN-007, depends_on: [RV-59d], findings: [F-228], codes: []}
-  - {id: RV-111, title: "S15 refuses one body's overlapping Effort spans; the wizard example's acrobat spans meet at 7.6", status: ready,
+  - {id: RV-111, title: "S16 refuses one body's overlapping Effort spans; the wizard example's acrobat spans meet at 7.6", status: ready,
      step: effort, plan: PLAN-007, depends_on: [], findings: [F-229], codes: []}
   - {id: RV-98, title: "A declared entrance may start outside its shot's frame (O21): c01 opens with A above the frame", status: ready,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-209, F-090], codes: []}
@@ -247,7 +247,7 @@ items:
      step: render, plan: PLAN-007, depends_on: [], findings: [F-218], codes: []}
   - {id: RV-14c, title: "A line prop's dart stays within its line of the hand that holds it (the rope dart)", status: ready,
      step: motion, plan: PLAN-007, depends_on: [RV-14a], findings: [F-062, F-186], codes: []}
-  - {id: RV-37, title: "One strike definition at S04; S17's impact frames agree with it", status: ready,
+  - {id: RV-37, title: "One strike definition at S04; S18's impact frames agree with it", status: ready,
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-112], codes: []}
   - {id: RV-22, title: "The pillar has a radius and faces; landings and face contacts measured", status: ready,
      step: motion, plan: PLAN-007, depends_on: [RV-14a], findings: [F-097], codes: []}
@@ -257,19 +257,19 @@ items:
      step: object_state, plan: PLAN-007, depends_on: [], findings: [F-190, F-173], codes: []}
   - {id: RV-89, title: "A thrown prop is a hit only in flight", status: ready,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-191], codes: []}
-  - {id: RV-92, title: "The S08 and S16 instructions teach RV-69's, RV-71a's and RV-72's rules", status: ready,
+  - {id: RV-92, title: "The S08 and S17 instructions teach RV-69's, RV-71a's and RV-72's rules", status: ready,
      step: all, plan: PLAN-007, depends_on: [], findings: [F-195], codes: []}
   - {id: RV-73, title: "S04 refuses a contact by a vanished body inside its window, the actor's own beat inside it, and a contact by a body outside its beat", status: ready,
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-172, F-136], codes: []}
   - {id: RV-87, title: "The substitution's decoy is declared, stands in the scene from the first beat, and is measured where the actor stood; a substitution needs the capability", status: blocked,
      blocked_by: "the owner's answers in F-196 (Q1-Q3: who declares the decoy, whether it stands from the first frame, who may substitute)",
      step: temporal, plan: PLAN-007, depends_on: [RV-86], findings: [F-189], codes: []}
-  - {id: RV-90, title: "S16 refuses a gone subject and VANISHED_BODY reads [CAMERA]; the impact rule speaks of hits", status: ready,
+  - {id: RV-90, title: "S17 refuses a gone subject and VANISHED_BODY reads [CAMERA]; the impact rule speaks of hits", status: ready,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-192], codes: []}
   - {id: RV-90b, title: "HIT_HOLD's scale follows the grammar's impact scales", status: blocked,
      blocked_by: "the owner's answer in F-197 (Q3: may a hit be held at a wide scale)",
      step: camera, plan: PLAN-007, depends_on: [RV-90], findings: [F-192], codes: []}
-  - {id: RV-91, title: "A vanish that never returns: S15 refuses an Effort across a vanish; no end state or reappearance for a body gone to the end; a compiled test scene", status: ready,
+  - {id: RV-91, title: "A vanish that never returns: S16 refuses an Effort across a vanish; no end state or reappearance for a body gone to the end; a compiled test scene", status: ready,
      step: render, plan: PLAN-007, depends_on: [], findings: [F-193], codes: []}
   - {id: RV-93, title: "S07: a prop's change needs a contact on it in its beat, or a hold by a body of that beat (MASTER_PLAN S07.3)", status: ready,
      step: contact, plan: PLAN-007, depends_on: [], findings: [F-130], codes: []}
@@ -299,7 +299,7 @@ items:
   - {id: RV-20, title: "external_inputs complete: the layer order states what each step depends on", status: blocked,
      blocked_by: "an accepted ADR for the layer-order edit (R-09)",
      step: all, plan: PLAN-007, depends_on: [], findings: [F-095], codes: []}
-  - {id: RV-65, title: "The instructions of S11 to S17 name every rule their plans must meet (tests/test_instructions.py)", status: ready,
+  - {id: RV-65, title: "The instructions of S11 to S18 name every rule their plans must meet (tests/test_instructions.py)", status: ready,
      step: all, plan: PLAN-007, depends_on: [RV-48b], findings: [F-095], codes: []}
   - {id: RV-78, title: "The S04 packet gives each prop's carried_by; the S08 packet gives the affordance entries S10 judges it by", status: ready,
      step: temporal, plan: PLAN-007, depends_on: [], findings: [F-174], codes: []}
@@ -309,7 +309,7 @@ items:
      step: render, plan: PLAN-007, depends_on: [], findings: [F-179, F-015, F-117], codes: []}
   - {id: RV-81, title: "A launch ends its support at the launching key and prints the takeoff there", status: ready,
      step: render, plan: PLAN-007, depends_on: [], findings: [F-183], codes: []}
-  - {id: RV-82, title: "Surfaces carry footprints; S16 refuses a line to a subject through a solid", status: ready,
+  - {id: RV-82, title: "Surfaces carry footprints; S17 refuses a line to a subject through a solid", status: ready,
      step: camera, plan: PLAN-007, depends_on: [], findings: [F-184], codes: []}
   - {id: RV-82b, title: "A shot on a declared turn looks along the turn's axis", status: blocked,
      blocked_by: "the owner's answer in F-202 (a turn plane against the 180-degree side)",
@@ -434,7 +434,7 @@ items:
      plan: PLAN-003, depends_on: [M9-15e], findings: [], codes: []}
   - {id: M9-17, title: "One full-fight render by the owner, logged", status: ready, step: owner, plan: PLAN-003,
      depends_on: [M9-16], findings: [], codes: []}
-  - {id: M7-01, title: "Post-generation validation (S18) after a model is chosen", status: deferred,
+  - {id: M7-01, title: "Post-generation validation (S19) after a model is chosen", status: deferred,
      step: post_generation, plan: PLAN-001, depends_on: [], findings: [F-032], codes: []}
   - {id: D-01, title: "Docs plane: five indexes, templates, one file per artifact", status: done, step: docs,
      plan: PLAN-005, depends_on: [], findings: [], codes: []}

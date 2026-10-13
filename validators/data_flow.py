@@ -45,7 +45,7 @@ DECLARED = {
     "nodes.states.facing": "read across clips: the next clip's start (planner/chaining.py)",
     **dict.fromkeys(["nodes.facial.valence", "nodes.facial.arousal", "nodes.facial.display_rule",
                      "nodes.facial.inactive_aus"],
-                    "printed as S14's words (feeling, display, NOT): owner F4 keeps numbers and AU codes out"),
+                    "printed as S15's words (feeling, display, NOT): owner F4 keeps numbers and AU codes out"),
 }
 
 
@@ -196,12 +196,12 @@ def _sequence(envelope):
 
 
 def _render_plan(envelope, before):
-    """S17's document rebuilt from the render node (its frame parts are the only authored field)."""
-    from compiler.passes.derived import p17_render
+    """S18's document rebuilt from the render node (its frame parts are the only authored field)."""
+    from compiler.passes.derived import p18_render
 
     render = envelope["nodes"]["render"]["items"][0]
-    packet = p17_render.prepare(before)
-    return {"step_id": "S17", "band": "L6", "packet_sha256": packet["packet_sha256"],
+    packet = p18_render.prepare(before)
+    return {"step_id": "S18", "band": "L6", "packet_sha256": packet["packet_sha256"],
             "author": {"host": "data-flow trace", "model": "rebuilt"}, "attempt": 1, "frame_parts": render["frame_parts"]}
 
 
@@ -209,7 +209,7 @@ def run_layer(node_id, before, envelope, plans, order, *, cards=None, untracked=
     """Run one layer on `before`; returns (envelope after, mode). `envelope` is the finished one (query, render plan);
     `untracked`, the same input without tracking, rebuilds the render plan so its hashing is not counted as reads."""
     from compiler import pipeline
-    from compiler.passes.derived import p09_object_state, p10_affordance
+    from compiler.passes.derived import p09_object_state, p10_affordance, p14_pose_mechanics
     from compiler.passes.mandatory import p01_intent, p02_brief, p03_constraint, p05_causal, p06_state, p07_contact
 
     query = envelope["provenance"]["source_prompt"]
@@ -223,6 +223,7 @@ def run_layer(node_id, before, envelope, plans, order, *, cards=None, untracked=
         "contact": lambda env: p07_contact.run(env, order=order),
         "object_state": lambda env: p09_object_state.run(env, order=order),
         "affordance": lambda env: p10_affordance.run(env, order=order),
+        "pose_mechanics": lambda env: p14_pose_mechanics.run(env, order=order),
     }
     if node_id in computed:
         return computed[node_id](before), "computed"

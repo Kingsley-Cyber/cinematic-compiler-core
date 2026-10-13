@@ -1,4 +1,4 @@
-"""Camera library (S16): grammar, tempo, per-genre conventions and per-archetype idioms, each schema-checked."""
+"""Camera library (S17): grammar, tempo, per-genre conventions and per-archetype idioms, each schema-checked."""
 
 import json
 import re
@@ -163,7 +163,7 @@ def rule_problems(rule, playback=("normal",)):
              "playback": fields["playback.treatment"]["values"]}
     impact = next(r["in"] for r in grammar()["intents"]["impact"] if r["field"] == "framing.scale")
     asks, problems = rule["asks"], []
-    words_said = rule.get("statement") or rule.get("prefer", "")  # what the prompt prints, or what the S16 author reads
+    words_said = rule.get("statement") or rule.get("prefer", "")  # what the prompt prints, or what the S17 author reads
     for field, value in sorted(terms(words_said)):  # F-187 (RV-85): the words ask only what the fields ask
         if value not in asks.get(field, []):
             problems.append(f"{rule['id']}: its words ask for {value} ({field}), which its fields do not")

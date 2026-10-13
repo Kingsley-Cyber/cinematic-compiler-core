@@ -547,7 +547,7 @@ def author(query, backend, *, genre=None, duration_s=None, until="render", load_
                              "place them so this contact can land"} for f in far]
             routed = {ROUTES.get(f.get("code")) for f in findings}
             if len(routed) == 1 and None not in routed and next(iter(routed)) in plans:
-                node = next(iter(routed))  # AA-8: e.g. HIT_HOLD at S17 is the camera's to fix
+                node = next(iter(routed))  # AA-8: e.g. HIT_HOLD at S18 is the camera's to fix
             if node == "motion" and repairs.get(attempts.get(node)) is None:  # AA-4: the solver first
                 started = time.perf_counter()
                 repaired = repair_motion(plans[node], findings, run(sequence[sequence.index(node) - 1]))

@@ -1,4 +1,4 @@
-"""S16 camera checks. Every rule reads the sealed packet (scene facts + library), never the envelope.
+"""S17 camera checks. Every rule reads the sealed packet (scene facts + library), never the envelope.
 
 - tiling: shots run in time order from 0 to the scene end with no gap or overlap; ids unique; the first shot opens,
   except in a chained clip (M5.5), where it cuts from the previous clip's last shot under the axis and jump-cut rules;
@@ -16,7 +16,7 @@
   shown (entity is a subject, the part is visible at the scale or is the insert detail); every subject is in frame;
 - framing (VERTICAL_FRAMING, F-090, RV-15a, RV-15b): every part the scale shows of each subject (an insert's detail)
   and every framed prop with a point projects inside the frame, up and down as well as across, at every listed beat
-  of a static shot and at the first beat of a moving one (S16 does not model a moving camera's path, F-204);
+  of a static shot and at the first beat of a moving one (S17 does not model a moving camera's path, F-204);
 - composition: declared screen placement agrees with the projected screen x of each subject's place: a performer's
   pelvis, the root (owner O72), or its detail in an insert on it; a prop's point (left/right sign and order);
 - continuity: no jump cut (same target and scale with an azimuth change under the grammar's minimum) unless the cut
@@ -30,7 +30,7 @@
   vs treatment, camera blur needs movement, insert needs a detail, focus/relation subjects are framed, a following
   relation needs movement;
 - intent: the grammar's intent requirements and the tempo's shot-length range;
-- faces (S14 scenes only): a face that carries its beat is shown by a shot listing that beat which frames the entity
+- faces (S15 scenes only): a face that carries its beat is shown by a shot listing that beat which frames the entity
   at a scale showing the head, with the face turned toward the camera (under 90 degrees); its stronger side faces the
   camera unless the shot is frontal (within the grammar's frontal_deg).
 """
@@ -139,8 +139,8 @@ def derive(shot, packet):
 def _framing(shot, packet, geo):
     """VERTICAL_FRAMING (F-090, RV-15a, RV-15b): every part the shot's scale shows of each subject (an insert's detail)
     and every framed prop with a point projects inside the frame, up and down as well as across: at every listed
-    beat's key in a static shot, whose camera stands where S16 derived it, and at the first beat's key in a moving one
-    (S16 does not model a moving camera's path, F-204)."""
+    beat's key in a static shot, whose camera stands where S17 derived it, and at the first beat's key in a moving one
+    (S17 does not model a moving camera's path, F-204)."""
     rows = []
     beats = sorted(shot["beats"], key=lambda b: packet["beat_index"][b])
     detail = shot["framing"]["detail"] if shot["framing"]["scale"] == "insert" else None

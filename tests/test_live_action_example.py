@@ -1,4 +1,4 @@
-"""M3.5 F.8b/F.9b: the live-action standoff compiles through S17 with faces and the live-action layout."""
+"""M3.5 F.8b/F.9b: the live-action standoff compiles through S18 with faces and the live-action layout."""
 
 import json
 import re
@@ -6,7 +6,7 @@ import re
 import pytest
 from conftest import ROOT
 
-from compiler.passes.derived import p17_render
+from compiler.passes.derived import p18_render
 from renderers import live_renderer
 from validators.envelope_validator import validate_envelope
 
@@ -24,7 +24,7 @@ def test_complete_live_action_envelope_with_faces():
 
 
 def test_live_action_layout_puts_frame_parts_under_frames():
-    assert p17_render.renderer(ENVELOPE) is live_renderer
+    assert p18_render.renderer(ENVELOPE) is live_renderer
     assert "frames" in SPEC and "anime" not in SPEC and list(SPEC)[-2:] == ["frames", "rules"]
 
 

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:camera_tempo:1.0",
-  "title": "Camera tempo (S16, L5.5)",
+  "$id": "urn:cinematic-compiler:schema:camera_tempo:1.1",
+  "title": "Camera tempo (S17, L5.5)",
   "description": "Story-time shot length range per intent, in seconds.",
   "type": "object",
   "additionalProperties": false,

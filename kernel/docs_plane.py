@@ -38,8 +38,8 @@ LINK = re.compile(r"\]\((?!https?://|#|mailto:)([^)#\s]+)(?:#[^)]*)?\)")
 # steps with these labels; the step ids in kernel/layer_order.yaml carry the order.
 LAYER_LABELS = {"intent": "L0", "brief": "L0.5", "constraint": "L1.5", "temporal": "L1.1", "causal": "L1.2",
                 "state": "L2.1", "contact": "L2.2", "hand_role": "L2.5", "object_state": "L2.6", "affordance": "L2.7",
-                "kinematic": "L4a", "bartenieff": "L4b", "motion": "L4c", "facial": "L4d", "effort": "L5",
-                "camera": "L5.5", "render": "L6", "post_generation": "L6.5"}
+                "kinematic": "L4a", "bartenieff": "L4b", "motion": "L4c", "pose_mechanics": "L4e", "facial": "L4d",
+                "effort": "L5", "camera": "L5.5", "render": "L6", "post_generation": "L6.5"}
 LAYERS = tuple(LAYER_LABELS.values()) + ("all", "docs")
 TERMINAL = {"intent", "brief", "render", "post_generation"}  # O58: nodes only
 

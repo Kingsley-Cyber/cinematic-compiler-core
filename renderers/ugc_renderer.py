@@ -1,4 +1,4 @@
-"""S17 renderer for ugc_ad: the shared LBN projection plus a `ugc` block that carries the UGC graphs.
+"""S18 renderer for ugc_ad: the shared LBN projection plus a `ugc` block that carries the UGC graphs.
 
 The ugc block lists every hand-role interaction with its locked hands and grips, each object's internal state track,
 every proven affordance (before -> after, grip, duration) and the enables links, then the frame parts. Like the anime

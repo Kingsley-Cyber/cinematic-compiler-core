@@ -1,4 +1,4 @@
-"""S17 renderer: deterministic projection of a built envelope into the full LBN-2.x layout (anime target).
+"""S18 renderer: deterministic projection of a built envelope into the full LBN-2.x layout (anime target).
 
 Uncompressed and model-agnostic: no length budget, no model-specific formatting. Every node group item and every
 applied constraint is rendered (owner invariant no_render_compression) and `coverage` proves it item by item.
@@ -310,7 +310,7 @@ def _actor_rows(envelope, entity, labels, cover):
         if key["turn"] != "none":
             parts.append(f"TURN:{key['turn']} about {key['axis_declaration']}")
         face = facial.get(slot)
-        if face is not None:  # S14, live_action and ugc_ad: words only (owner F4)
+        if face is not None:  # S15, live_action and ugc_ad: words only (owner F4)
             cover.mark("facial", slot)
             parts.append(_face_words(face, labels))
         rows.append({"t": _num(key["t"]), "label": key["name"], "pos": key["pos"], "rot": key["rot"],
@@ -332,8 +332,8 @@ def _face_words(face, labels):
     text = f"{lead}: " + (", ".join(words["face"]) or "relaxed, no visible expression")
     if words["not"]:
         text += "; NOT: " + ", ".join(words["not"])
-    # S-123 (the orphan split): the S14 node's emotion and onset, in words (owner F4: no AU codes, no valence numbers;
-    # valence, arousal, display rule and the AUs held off reach the prompt as S14's own words above)
+    # S-123 (the orphan split): the S15 node's emotion and onset, in words (owner F4: no AU codes, no valence numbers;
+    # valence, arousal, display rule and the AUs held off reach the prompt as S15's own words above)
     data = (f"{_words_of(face['emotion_label'])} ({face['family']}), onset {face['onset']} over "
             f"{face['onset_frames']} frames")
     return text + f"; feeling {words['feeling']}, {words['display']}; {gaze}; {data}; {face['description']}"

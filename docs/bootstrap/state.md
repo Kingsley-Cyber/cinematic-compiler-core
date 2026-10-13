@@ -6,13 +6,13 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.8; rules 7.3; backlog 55.
+Layer order 1.9; rules 7.3; backlog 55.
 
 ## Last sessions
 
-- S-122 (applied): Surfaces placed in metres: every surface has boxes, S04 checks a body reaches the surface it meets, the prompt prints where each is
 - S-123 (applied): The orphan split: every field a layer writes is read, printed, deleted or declared
 - S-124 (applied): The pillar fitted to the fight's feet; contacts with a surface's face are measured
+- S-125 (applied): The renumber and an empty S14 (ADR-O117)
 
 ## Next slices
 
@@ -138,4 +138,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O117, finding F-236, session S-125, render R21.
+Decision ADR-O118, finding F-236, session S-126, render R21.

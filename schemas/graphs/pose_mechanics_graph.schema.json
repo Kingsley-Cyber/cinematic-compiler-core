@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cinematic-compiler:schema:pose_mechanics_graph:1.0",
+  "title": "S14 pose mechanics graph (PLAN-009): what makes each pose read, computed from the motion keys",
+  "description": "One node per S13 key (its id), one edge between a performer's consecutive poses. S-125 adds the empty step; each mechanic (line of action, counterbalance, weight distribution) adds its own fields in its own slice.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "pose_mechanics",
+    "pose_mechanics_transition"
+  ],
+  "properties": {
+    "pose_mechanics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "pose_mechanics_transition": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "from",
+          "to"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "from": {
+            "type": "string",
+            "minLength": 1
+          },
+          "to": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

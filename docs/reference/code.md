@@ -18,11 +18,11 @@ flowchart LR
   cli -->|1| kernel
   cli -->|1| planner
   cli -->|2| validators
-  compiler -->|21| kernel
-  compiler -->|54| planner
+  compiler -->|22| kernel
+  compiler -->|55| planner
   compiler -->|4| renderers
   compiler -->|18| solver
-  compiler -->|31| validators
+  compiler -->|33| validators
   kernel -->|1| compiler
   kernel -->|3| planner
   kernel -->|3| validators
@@ -38,7 +38,7 @@ flowchart LR
   solver -->|1| kernel
   solver -->|5| planner
   solver -->|1| validators
-  validators -->|16| compiler
+  validators -->|17| compiler
   validators -->|7| kernel
   validators -->|14| planner
   validators -->|5| renderers
@@ -59,10 +59,11 @@ flowchart LR
 | `compiler.passes.derived.p11_kinematic` | `compiler.authoring`, `planner.dependency_graph`, `planner.dynamic_beat_validator`, `planner.library_vocab`, `planner.scene_view` | math |
 | `compiler.passes.derived.p12_bartenieff` | `compiler.authoring`, `planner.dependency_graph`, `planner.library_vocab`, `planner.scene_view`, `validators.schema_validator` | json, yaml |
 | `compiler.passes.derived.p13_motion` | `compiler.authoring`, `kernel.kernel_files`, `planner.dependency_graph`, `planner.dynamic_beat_validator`, `planner.scene_view`, `solver.body_overlap`, `solver.contact_world`, `solver.euler_solver`, `solver.floor_penetration`, `solver.forward_kinematics`, `solver.interpolation`, `solver.quaternion`, `solver.trajectory`, `validators.schema_validator` | json, math, yaml |
-| `compiler.passes.derived.p14_facial` | `compiler.authoring`, `planner.dependency_graph`, `planner.scene_view`, `solver.quaternion`, `validators.facial_validator`, `validators.schema_validator` | functools, json, yaml |
-| `compiler.passes.derived.p15_effort` | `compiler.authoring`, `planner.dependency_graph`, `planner.library_vocab`, `planner.scene_view`, `solver.shape_direction`, `validators.schema_validator` | json, yaml |
-| `compiler.passes.derived.p16_camera` | `compiler.authoring`, `planner.camera_library`, `planner.dependency_graph`, `planner.dynamic_beat_validator`, `planner.hits`, `planner.library_vocab`, `solver.camera_geometry`, `solver.forward_kinematics`, `solver.quaternion`, `validators.camera_validator` | — |
-| `compiler.passes.derived.p17_render` | `compiler.authoring`, `planner.dependency_graph`, `planner.dynamic_beat_validator`, `planner.hits`, `renderers.anime_renderer`, `renderers.live_renderer`, `renderers.prose_renderer`, `renderers.ugc_renderer`, `validators.camera_validator` | — |
+| `compiler.passes.derived.p14_pose_mechanics` | `kernel.canonical`, `planner.dependency_graph`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
+| `compiler.passes.derived.p15_facial` | `compiler.authoring`, `planner.dependency_graph`, `planner.scene_view`, `solver.quaternion`, `validators.facial_validator`, `validators.schema_validator` | functools, json, yaml |
+| `compiler.passes.derived.p16_effort` | `compiler.authoring`, `planner.dependency_graph`, `planner.library_vocab`, `planner.scene_view`, `solver.shape_direction`, `validators.schema_validator` | json, yaml |
+| `compiler.passes.derived.p17_camera` | `compiler.authoring`, `planner.camera_library`, `planner.dependency_graph`, `planner.dynamic_beat_validator`, `planner.hits`, `planner.library_vocab`, `solver.camera_geometry`, `solver.forward_kinematics`, `solver.quaternion`, `validators.camera_validator` | — |
+| `compiler.passes.derived.p18_render` | `compiler.authoring`, `planner.dependency_graph`, `planner.dynamic_beat_validator`, `planner.hits`, `renderers.anime_renderer`, `renderers.live_renderer`, `renderers.prose_renderer`, `renderers.ugc_renderer`, `validators.camera_validator` | — |
 | `compiler.passes.mandatory.p01_intent` | `kernel.canonical`, `planner.dependency_graph`, `planner.intent_parser`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
 | `compiler.passes.mandatory.p02_brief` | `kernel.canonical`, `planner.dependency_graph`, `planner.query_expander`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
 | `compiler.passes.mandatory.p03_constraint` | `kernel.canonical`, `planner.card_loader`, `planner.dependency_graph`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json, re, yaml |
@@ -70,7 +71,7 @@ flowchart LR
 | `compiler.passes.mandatory.p05_causal` | `compiler.authoring`, `kernel.canonical`, `planner.dependency_graph`, `validators.cause_reason`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
 | `compiler.passes.mandatory.p06_state` | `compiler.authoring`, `kernel.canonical`, `kernel.kernel_files`, `planner.dependency_graph`, `planner.vocabulary`, `solver.prop_state_machine`, `validators.continuity_validator`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
 | `compiler.passes.mandatory.p07_contact` | `compiler.authoring`, `kernel.canonical`, `planner.dependency_graph`, `planner.dynamic_beat_validator`, `validators.layer_dependency_validator`, `validators.schema_validator` | copy, json |
-| `compiler.pipeline` | `compiler.authoring`, `compiler.passes.derived.p08_hand_role`, `compiler.passes.derived.p09_object_state`, `compiler.passes.derived.p10_affordance`, `compiler.passes.derived.p11_kinematic`, `compiler.passes.derived.p12_bartenieff`, `compiler.passes.derived.p13_motion`, `compiler.passes.derived.p14_facial`, `compiler.passes.derived.p15_effort`, `compiler.passes.derived.p16_camera`, `compiler.passes.derived.p17_render`, `compiler.passes.mandatory.p01_intent`, `compiler.passes.mandatory.p02_brief`, `compiler.passes.mandatory.p03_constraint`, `compiler.passes.mandatory.p04_temporal`, `compiler.passes.mandatory.p05_causal`, `compiler.passes.mandatory.p06_state`, `compiler.passes.mandatory.p07_contact`, `kernel.canonical`, `kernel.kernel_files`, `kernel.version`, `planner.dependency_graph`, `planner.intent_parser`, `planner.topological_sort` | argparse, importlib, json, pathlib, subprocess, sys, time |
+| `compiler.pipeline` | `compiler.authoring`, `compiler.passes.derived.p08_hand_role`, `compiler.passes.derived.p09_object_state`, `compiler.passes.derived.p10_affordance`, `compiler.passes.derived.p11_kinematic`, `compiler.passes.derived.p12_bartenieff`, `compiler.passes.derived.p13_motion`, `compiler.passes.derived.p14_pose_mechanics`, `compiler.passes.derived.p15_facial`, `compiler.passes.derived.p16_effort`, `compiler.passes.derived.p17_camera`, `compiler.passes.derived.p18_render`, `compiler.passes.mandatory.p01_intent`, `compiler.passes.mandatory.p02_brief`, `compiler.passes.mandatory.p03_constraint`, `compiler.passes.mandatory.p04_temporal`, `compiler.passes.mandatory.p05_causal`, `compiler.passes.mandatory.p06_state`, `compiler.passes.mandatory.p07_contact`, `kernel.canonical`, `kernel.kernel_files`, `kernel.version`, `planner.dependency_graph`, `planner.intent_parser`, `planner.topological_sort` | argparse, importlib, json, pathlib, subprocess, sys, time |
 | `compiler.rebind` | `compiler.examples`, `compiler.pipeline`, `kernel.canonical`, `planner.dependency_graph` | json, sys |
 | `compiler.replan_trigger` | `compiler.authoring`, `kernel.canonical`, `planner.dependency_graph`, `planner.topological_sort` | — |
 | `kernel.build_docs` | `compiler.pipeline`, `planner.dependency_graph`, `planner.topological_sort` | ast, json, re, sys, tomllib, yaml |
@@ -125,7 +126,7 @@ flowchart LR
 | `validators.contact_world_report` | `compiler.examples`, `solver.contact_world` | json, math |
 | `validators.continuity_validator` | `solver.prop_state_machine` | — |
 | `validators.cross_graph` | `validators.graph_map` | json, pathlib, sys |
-| `validators.data_flow` | `compiler.authoring`, `compiler.passes.derived.p09_object_state`, `compiler.passes.derived.p10_affordance`, `compiler.passes.derived.p17_render`, `compiler.passes.mandatory.p01_intent`, `compiler.passes.mandatory.p02_brief`, `compiler.passes.mandatory.p03_constraint`, `compiler.passes.mandatory.p05_causal`, `compiler.passes.mandatory.p06_state`, `compiler.passes.mandatory.p07_contact`, `compiler.pipeline`, `kernel.canonical`, `planner.dependency_graph`, `validators.graph_map` | argparse, copy, json, pathlib, sys, yaml |
+| `validators.data_flow` | `compiler.authoring`, `compiler.passes.derived.p09_object_state`, `compiler.passes.derived.p10_affordance`, `compiler.passes.derived.p14_pose_mechanics`, `compiler.passes.derived.p18_render`, `compiler.passes.mandatory.p01_intent`, `compiler.passes.mandatory.p02_brief`, `compiler.passes.mandatory.p03_constraint`, `compiler.passes.mandatory.p05_causal`, `compiler.passes.mandatory.p06_state`, `compiler.passes.mandatory.p07_contact`, `compiler.pipeline`, `kernel.canonical`, `planner.dependency_graph`, `validators.graph_map` | argparse, copy, json, pathlib, sys, yaml |
 | `validators.determinism` | `kernel.canonical`, `kernel.kernel_files`, `planner.dependency_graph`, `renderers.anime_renderer`, `solver.euler_solver`, `validators.data_flow`, `validators.graph_map` | hashlib, json, pathlib, re, sys |
 | `validators.envelope_validator` | `kernel.kernel_files`, `planner.dependency_graph`, `planner.modality`, `validators.layer_dependency_validator`, `validators.schema_validator` | json |
 | `validators.facial_validator` | — | json, re |

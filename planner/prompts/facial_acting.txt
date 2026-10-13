@@ -1,4 +1,4 @@
-S14 facial (L4d). For every slot write one face: the action units that show, each either even on both sides
+S15 facial (L4d). For every slot write one face: the action units that show, each either even on both sides
 (intensity A trace, B slight, C marked, D severe, E maximum) or per side (left/right intensity, the absent side null,
 with the dominant side, the step difference and, when it is one, the named pattern). Left and right are the
 performer's own sides. List the units that must NOT show (e.g. AU12 when there is no smile).

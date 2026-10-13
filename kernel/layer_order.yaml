@@ -18,7 +18,7 @@
 #     The most specific owner wins; an inner owner always runs after the outer one.
 #   - S04 also writes edges.beat_constraint (beats -> constraints).
 #   - nodes.render is a projection group (no edges); L6.5 writes validation.post_generation.
-# Owner decisions 2026-10-11 (face layer F1-F4): facial (S14, L4d) runs for live_action and ugc_ad only,
+# Owner decisions 2026-10-11 (face layer F1-F4): facial (S15, L4d) runs for live_action and ugc_ad only,
 #   after motion (it reads head pose); camera and render read it; effort does not (LMA stays distinct).
 #
 # `depends_on` lists data inputs. `validated_by: constraint` also orders the
@@ -28,9 +28,9 @@
 # `edge_endpoints` names the node groups each edge group connects; `scene` stands for
 # the scene itself. Endpoints must be written at or before the edge group's step.
 
-version: "1.8"
+version: "1.9"
 kernel: LBN-2.4
-envelope: MGRAPH-1.2
+envelope: MGRAPH-1.3
 modalities: [live_action, anime, ugc_ad]
 
 # Envelope paths written outside any layer pass (pipeline and validators).
@@ -53,6 +53,7 @@ edge_endpoints:
   facial_transition: {from: [facial], to: [facial]}
   effort: {from: [efforts], to: [efforts]}
   camera: {from: [camera], to: [camera]}
+  pose_mechanics_transition: {from: [pose_mechanics], to: [pose_mechanics]}
 
 nodes:
   - id: intent
@@ -167,8 +168,16 @@ nodes:
     validated_by: [schema, invariants, constraint]
     writes: [/nodes/motion, /edges/motion]
 
-  - id: facial
+  - id: pose_mechanics
     step_id: S14
+    band: L4e
+    builds: Pose mechanics (computed from the motion keys; PLAN-009, S-125)
+    depends_on: [motion]
+    validated_by: [schema]
+    writes: [/nodes/pose_mechanics, /edges/pose_mechanics_transition]
+
+  - id: facial
+    step_id: S15
     band: L4d
     builds: Facial graph (FACS action units, valence/arousal, salience per entity per beat)
     when: [live_action, ugc_ad]
@@ -178,7 +187,7 @@ nodes:
     writes: [/nodes/facial, /edges/facial_transition]
 
   - id: effort
-    step_id: S15
+    step_id: S16
     band: L5
     builds: Effort graph (LMA Effort factors plus Shape and Space)
     depends_on: [motion]
@@ -186,7 +195,7 @@ nodes:
     writes: [/nodes/efforts, /edges/effort]
 
   - id: camera
-    step_id: S16
+    step_id: S17
     band: L5.5
     builds: Camera graph (13 subdivisions + motivation)
     depends_on: [motion, effort, facial]
@@ -194,7 +203,7 @@ nodes:
     writes: [/nodes/camera, /edges/camera]
 
   - id: render
-    step_id: S17
+    step_id: S18
     band: L6
     builds: Prose / render projection (full LBN layout, uncompressed)
     projection: true
@@ -204,7 +213,7 @@ nodes:
     writes: [/nodes/render]
 
   - id: post_generation
-    step_id: S18
+    step_id: S19
     band: L6.5
     builds: Post-generation report (only when a video model is available)
     depends_on: [render]

@@ -1,4 +1,4 @@
-"""Camera geometry for S16 (derived, never authored): aim point, camera position, axis side, frame size, screen x.
+"""Camera geometry for S17 (derived, never authored): aim point, camera position, axis side, frame size, screen x.
 
 Kernel frame: +Y up; +X is the performer's left when facing +Z. Azimuth is the world heading from the aim point to
 the camera (degrees from +Z toward +X); elevation lifts the camera above the aim point; roll (dutch) is ignored for
@@ -34,7 +34,7 @@ def rounded(values):
 
 
 def aim(target, positions, axis, height):
-    """`height` above the target's root (the axis pair's midpoint for `midpoint`): S16's aim only where it has no body
+    """`height` above the target's root (the axis pair's midpoint for `midpoint`): S17's aim only where it has no body
     points to aim at, an insert until RV-15b (validators/camera_validator.derive aims at the body, F-090)."""
     if target == "midpoint":
         base = [(a + b) / 2 for a, b in zip(positions[axis[0]], positions[axis[1]], strict=True)]

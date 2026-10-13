@@ -27,16 +27,17 @@ from .passes.derived import (
     p11_kinematic,
     p12_bartenieff,
     p13_motion,
-    p14_facial,
-    p15_effort,
-    p16_camera,
-    p17_render,
+    p14_pose_mechanics,
+    p15_facial,
+    p16_effort,
+    p17_camera,
+    p18_render,
 )
 from .passes.mandatory import p01_intent, p02_brief, p03_constraint, p04_temporal, p05_causal, p06_state, p07_contact
 
 AUTHORED = {"temporal": p04_temporal, "hand_role": p08_hand_role, "kinematic": p11_kinematic,
-            "bartenieff": p12_bartenieff, "motion": p13_motion, "facial": p14_facial, "effort": p15_effort,
-            "camera": p16_camera, "render": p17_render}
+            "bartenieff": p12_bartenieff, "motion": p13_motion, "facial": p15_facial, "effort": p16_effort,
+            "camera": p17_camera, "render": p18_render}
 
 VALIDATION_KEYS = ("schema", "invariants", "layer_dependency", "camera_kinematic_coupling", "post_generation")
 UNSTAMPED = "unstamped"
@@ -107,6 +108,7 @@ def run(query, *, genre=None, duration_s=None, until="constraint", cards=None, p
               "contact": lambda env: p07_contact.run(env, order=order),
               "object_state": lambda env: p09_object_state.run(env, order=order),
               "affordance": lambda env: p10_affordance.run(env, order=order),
+              "pose_mechanics": lambda env: p14_pose_mechanics.run(env, order=order),
               **{node: authored(node) for node in AUTHORED}}
     # The genre decides which steps exist; S01's literal parse reads it from the query when no flag is given.
     sequence = sequence_for(order, genre or parse_intent(query)["parsed"]["genre"])
@@ -122,7 +124,7 @@ def run(query, *, genre=None, duration_s=None, until="constraint", cards=None, p
         if node == "brief" and envelope["scene"]["chained_from"]:
             envelope["provenance"]["chained_from_envelope_hash"] = envelope["scene"]["chained_from"]["envelope_sha256"]
         if node == "camera":
-            envelope["validation"]["camera_kinematic_coupling"] = "pass"  # S16 refuses any coupling failure
+            envelope["validation"]["camera_kinematic_coupling"] = "pass"  # S17 refuses any coupling failure
         envelope["provenance"]["pass_history"].append({
             "pass": f"p{index[node]['step_id'][1:]}_{node}", "commit": commit,
             "duration_ms": round((time.perf_counter() - started) * 1000, 3) if stamp else 0})

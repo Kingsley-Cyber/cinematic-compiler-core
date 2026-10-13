@@ -564,7 +564,7 @@ Ink: heavy on A,broken in smears,clean on holds,smear follows ONLY the declared 
 - invariant c k rules 00 (constraint): slerp A joints
 - invariant c k rules 23 (constraint): TWO fighter identities A and B never merge or duplicate
 - invariant c k rules 24 (constraint): FIVE props tracked separately,never merged:kunai,rope_dart,smoke_pellet,shuriken_volley,substitution_log
-- invariant c k owner 00 (constraint): S17 output is uncompressed. The full envelope is projected; nothing is summarized, truncated, or dropped
+- invariant c k owner 00 (constraint): S18 output is uncompressed. The full envelope is projected; nothing is summarized, truncated, or dropped
 - invariant c world bamboo courtyard pillar embedded stays (constraint): Anything embedded in the pillar or a body stays there for the rest of the scene
 - invariant c arch ninja lean substitution leaves a log (constraint): A substitution leaves the substitution log where the body was; the body reappears somewhere else
 - invariant c arch ninja lean negative 00 (constraint): no scarf covering head

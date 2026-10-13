@@ -1,5 +1,5 @@
 """Hits (owner O92, R-21, F-155, RV-57): the contacts that are hits, found from the contacts themselves, so each owes a
-camera hold on every body present whatever S17 holds (HIT_HOLD at S16, S17 and in the prompt). A hit is
+camera hold on every body present whatever S18 holds (HIT_HOLD at S17, S18 and in the prompt). A hit is
 - a touch on another performer's body (A's knee on B at 4.7);
 - a strike, deflect or parry on a prop another performer holds, or threw and no one holds (A's foot on the kunai B
   threw, 2.5);
@@ -63,7 +63,7 @@ def hits(envelope):
 
 
 def hold_times(envelope, frame_parts):
-    """The instants a camera hold is owed (owner O92): every hit from the contacts and every S17 hold on an impact frame,
+    """The instants a camera hold is owed (owner O92): every hit from the contacts and every S18 hold on an impact frame,
     one per frame."""
     tolerance = 0.5 / envelope["scene"]["fps"] + EPSILON
     held = {round(h["t"], 6) for h in frame_parts["holds"] if any(abs(h["t"] - i) <= tolerance for i in frame_parts["impact"])}

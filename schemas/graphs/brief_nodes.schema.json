@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:brief_nodes:1.2",
+  "$id": "urn:cinematic-compiler:schema:brief_nodes:1.3",
   "title": "S02 brief node items (band L0.5): entities, props, surfaces",
   "description": "Item schemas for the groups S02 writes. Every field is copied from a library card; hints carry their S01 query evidence.",
   "type": "object",
@@ -200,7 +200,7 @@
               }
             }
           },
-          "description": "S14 facial: which face regions the costume leaves visible, the side that leads asymmetric expressions, the emotion families the archetype shows and its resting valence/arousal (-1..1)."
+          "description": "S15 facial: which face regions the costume leaves visible, the side that leads asymmetric expressions, the emotion families the archetype shows and its resting valence/arousal (-1..1)."
         }
       },
       "required": [

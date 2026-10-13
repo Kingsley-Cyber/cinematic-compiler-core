@@ -1,4 +1,4 @@
-"""S17: the LBN-2.x projection is complete, deterministic and generated from the graphs; frame-part checks."""
+"""S18: the LBN-2.x projection is complete, deterministic and generated from the graphs; frame-part checks."""
 
 import copy
 import json
@@ -6,7 +6,7 @@ import json
 import pytest
 from scenes import courtyard, courtyard_plans
 
-from compiler.passes.derived import p17_render
+from compiler.passes.derived import p18_render
 from compiler.passes.mandatory import p03_constraint
 from validators.envelope_validator import validate_envelope
 from validators.layer_dependency_validator import check_pass_writes
@@ -14,7 +14,7 @@ from validators.layer_dependency_validator import check_pass_writes
 pytestmark = pytest.mark.unit
 PLAN = courtyard_plans()["render"]
 BEFORE = courtyard("camera")
-PACKET = p17_render.prepare(BEFORE)
+PACKET = p18_render.prepare(BEFORE)
 RENDER = courtyard("render")["nodes"]["render"]["items"][0]
 SPEC = json.loads(RENDER["text"][RENDER["text"].index("{"):])
 
@@ -71,18 +71,18 @@ def test_kernel_controls_are_printed_or_regenerated_for_this_cast():
 
 
 def test_courtyard_frame_parts_pass():
-    assert p17_render.check(PLAN, PACKET, BEFORE) == [] and PACKET["packet_sha256"] == PLAN["packet_sha256"]
+    assert p18_render.check(PLAN, PACKET, BEFORE) == [] and PACKET["packet_sha256"] == PLAN["packet_sha256"]
 
 
 def codes(change, envelope=BEFORE):
     plan = copy.deepcopy(PLAN)
     change(plan["frame_parts"])
-    return {f["code"] for f in p17_render.check(plan, PACKET, envelope)}
+    return {f["code"] for f in p18_render.check(plan, PACKET, envelope)}
 
 
 def test_a_hit_is_a_camera_hold_on_the_bodies():
     """Owner O92 (RV-09, F-083, R-21): a hold on an impact frame is a hit; the shot covering it holds still with every
-    body present in frame and is no close-up, or S17 refuses it (HIT_HOLD)."""
+    body present in frame and is no close-up, or S18 refuses it (HIT_HOLD)."""
     assert "HIT_HOLD" not in codes(lambda f: None)
     moving = copy.deepcopy(BEFORE)
     next(s for s in moving["nodes"]["camera"]["items"] if s["id"] == "c04")["movement"]["kind"] = "tracking"
@@ -95,7 +95,7 @@ def test_a_hit_is_a_camera_hold_on_the_bodies():
 
 def test_a_hit_from_the_contacts_is_held_whatever_s17_holds():
     """F-155 (RV-57, owner O92): the acrobat's kick lands on the wizard at 3.6, so the shot there owes a camera hold even
-    when S17's frame parts drop the hold (HIT_HOLD)."""
+    when S18's frame parts drop the hold (HIT_HOLD)."""
     moving = copy.deepcopy(BEFORE)
     next(s for s in moving["nodes"]["camera"]["items"] if s["id"] == "c04")["movement"]["kind"] = "tracking"
 
@@ -106,7 +106,7 @@ def test_a_hit_from_the_contacts_is_held_whatever_s17_holds():
 
 def test_a_hit_s_hold_is_on_a_still_rig_at_s17():
     """F-177 (RV-71a, owner O92): the shot holding the 3.6 kick is static on a locked tripod; on a shaky handheld rig it
-    is no hold, and S17 refuses it (HIT_HOLD)."""
+    is no hold, and S18 refuses it (HIT_HOLD)."""
     shaky = copy.deepcopy(BEFORE)
     c04 = next(s for s in shaky["nodes"]["camera"]["items"] if s["id"] == "c04")
     c04["support"]["rig"], c04["movement_quality"]["stability"] = "handheld", "shaky"
@@ -134,11 +134,11 @@ def test_a_dropped_item_fails_coverage():
 
 @pytest.mark.integration
 def test_render_scope_and_complete_envelope(order):
-    after, _ = p17_render.run(copy.deepcopy(BEFORE), PLAN, order=order)
+    after, _ = p18_render.run(copy.deepcopy(BEFORE), PLAN, order=order)
     assert check_pass_writes(order, "render", BEFORE, after) == []
     assert after["nodes"]["render"]["projection"] is True and "render" not in after["edges"]
     assert validate_envelope(after) == {"ok": True, "complete": True, "findings": []}
-    assert after["nodes"]["render"]["items"][0]["text"] == p17_render.run(copy.deepcopy(BEFORE), PLAN, order=order)[0][
+    assert after["nodes"]["render"]["items"][0]["text"] == p18_render.run(copy.deepcopy(BEFORE), PLAN, order=order)[0][
         "nodes"]["render"]["items"][0]["text"]
 
 
@@ -151,12 +151,12 @@ def test_impact_contact_sync_wants_one_time_per_hit():
 
     envelope = json.loads((ROOT / "examples" / "reference_fight" / "envelope.json").read_text(encoding="utf-8"))
     impacts = envelope["nodes"]["render"]["items"][0]["frame_parts"]["impact"]
-    assert p17_render.impact_sync(envelope, impacts) == []
+    assert p18_render.impact_sync(envelope, impacts) == []
     moved = copy.deepcopy(envelope)
     next(c for c in moved["nodes"]["contacts"]["items"] if c["id"] == "b06_c1")["t"] = 3.0  # the deflect lands late
-    assert {f["message"] for f in p17_render.impact_sync(moved, impacts)} == {
+    assert {f["message"] for f in p18_render.impact_sync(moved, impacts)} == {
         "Impact at 2.5 has no touch or support onset on that frame", "Strike b06_c1 at 3.0 lands on no impact frame"}
-    assert [f["code"] for f in p17_render.impact_sync(envelope, impacts + [3.2])] == ["IMPACT_CONTACT_SYNC"]
+    assert [f["code"] for f in p18_render.impact_sync(envelope, impacts + [3.2])] == ["IMPACT_CONTACT_SYNC"]
 
 
 def test_laban_actions_print_as_qualities_and_punch_as_thrust():

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:facial_graph:1.1",
-  "title": "S14 facial graph",
+  "$id": "urn:cinematic-compiler:schema:facial_graph:1.2",
+  "title": "S15 facial graph",
   "description": "facial = one face per entity per beat with derived words (/nodes/facial); facial_transition = how each face arrives from the entity's previous one, triggered by the beat's incoming causal edge (/edges/facial_transition).",
   "type": "object",
   "additionalProperties": false,

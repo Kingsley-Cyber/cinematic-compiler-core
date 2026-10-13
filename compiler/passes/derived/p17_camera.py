@@ -1,4 +1,4 @@
-"""S16 pass (band L5.5, authored): the shot list — 13 subdivisions + motivation per shot, checked and placed.
+"""S17 pass (band L5.5, authored): the shot list — 13 subdivisions + motivation per shot, checked and placed.
 
 The packet carries the scene facts a camera answers to (beats, positions, contact onsets, effort intervals, causal
 edges, surfaces) and the camera library (subdivision vocabulary, grammar, tempo, the genre's conventions, the
@@ -17,7 +17,7 @@ from solver.camera_geometry import azimuth_change
 from solver.quaternion import head_heading
 from validators import camera_validator
 
-NODE, STEP = "camera", "S16"
+NODE, STEP = "camera", "S17"
 PLAN_SCHEMA = ROOT / "schemas" / "graphs" / "camera_plan.schema.json"
 PROMPT = ROOT / "planner" / "prompts" / "camera_selection.txt"
 ONSETS = ("touch", "possess", "support")
@@ -92,7 +92,7 @@ def prepare(envelope):
     ids = sorted(entities)
     motion = {n["id"]: {k: n[k] for k in ("name", "turn", "description")} for n in envelope["nodes"]["motion"]["items"]}
     return seal({
-        "step_id": STEP, "band": "L5.5", "kind": "camera_plan", "schema": "urn:cinematic-compiler:schema:camera_plan:2.0",
+        "step_id": STEP, "band": "L5.5", "kind": "camera_plan", "schema": "urn:cinematic-compiler:schema:camera_plan:2.1",
         "instructions": PROMPT.read_text(encoding="utf-8"),
         "scene": {k: scene[k] for k in ("genre", "duration_s", "fps", "setting", "style_reference")},
         "beats": [{"id": b["id"], "t": b["t"], "dur": b["dur"], "event_type": b["event_type"], "actor": b["actor"],
@@ -123,7 +123,7 @@ def prepare(envelope):
 
 
 def _faces(envelope):
-    """S14 faces the camera must answer to: salience, head heading and the dominant side of one-sided units."""
+    """S15 faces the camera must answer to: salience, head heading and the dominant side of one-sided units."""
     motion = {n["id"]: n for n in envelope["nodes"]["motion"]["items"]}
     return [{"slot": f["id"], "entity": f["entity"], "beat": f["beat"], "salience": f["salience"],
              "head_heading_deg": head_heading(motion[f["id"]]),

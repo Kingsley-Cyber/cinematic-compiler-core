@@ -1,6 +1,6 @@
 # cinematic-compiler
 
-Compiles a scene request into a validated movement-graph envelope (MGRAPH-1.2) and then into
+Compiles a scene request into a validated movement-graph envelope (MGRAPH-1.3) and then into
 video-model prompts, layer by layer (L0 intent → L6.5 post-generation).
 
 - Layer DAG: `kernel/layer_order.yaml`; each step, its reads, writes and checks: `docs/layer_order.md` (generated).

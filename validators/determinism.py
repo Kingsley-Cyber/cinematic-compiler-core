@@ -61,7 +61,7 @@ def reverse_keys(value):
 
 
 def render(envelope):
-    """{prompt name: text}: S17 re-run on `envelope` (its document rebuilt from the render node)."""
+    """{prompt name: text}: S18 re-run on `envelope` (its document rebuilt from the render node)."""
     from validators import data_flow
 
     order = load()

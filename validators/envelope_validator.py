@@ -27,6 +27,8 @@ GROUP_SCHEMAS = {  # schema file -> {schema key: (kind, envelope group)}
     "bartenieff_graph": {"bartenieff": ("nodes", "bartenieff"), "bartenieff_transition": ("edges", "bartenieff_transition")},
     "motion_graph": {"motion": ("nodes", "motion"), "motion_edges": ("edges", "motion")},
     "facial_graph": {"facial": ("nodes", "facial"), "facial_transition": ("edges", "facial_transition")},
+    "pose_mechanics_graph": {"pose_mechanics": ("nodes", "pose_mechanics"),
+                             "pose_mechanics_transition": ("edges", "pose_mechanics_transition")},
     "effort_graph": {"efforts": ("nodes", "efforts"), "effort": ("edges", "effort")},
     "camera_graph": {"camera": ("nodes", "camera"), "camera_edges": ("edges", "camera")},
     "render": {"render": ("nodes", "render")},

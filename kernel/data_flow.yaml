@@ -1,4 +1,4 @@
-version: 6
+version: 7
 status: draft
 measured_on:
 - reference_fight
@@ -12,10 +12,10 @@ declared:
   nodes.entities.card_status: 'provenance: the card and version that built it'
   nodes.entities.card_version: 'provenance: the card and version that built it'
   nodes.entities.hint_evidence: 'provenance: the query words that cast it'
-  nodes.facial.arousal: 'printed as S14''s words (feeling, display, NOT): owner F4 keeps numbers and AU codes out'
-  nodes.facial.display_rule: 'printed as S14''s words (feeling, display, NOT): owner F4 keeps numbers and AU codes out'
-  nodes.facial.inactive_aus: 'printed as S14''s words (feeling, display, NOT): owner F4 keeps numbers and AU codes out'
-  nodes.facial.valence: 'printed as S14''s words (feeling, display, NOT): owner F4 keeps numbers and AU codes out'
+  nodes.facial.arousal: 'printed as S15''s words (feeling, display, NOT): owner F4 keeps numbers and AU codes out'
+  nodes.facial.display_rule: 'printed as S15''s words (feeling, display, NOT): owner F4 keeps numbers and AU codes out'
+  nodes.facial.inactive_aus: 'printed as S15''s words (feeling, display, NOT): owner F4 keeps numbers and AU codes out'
+  nodes.facial.valence: 'printed as S15''s words (feeling, display, NOT): owner F4 keeps numbers and AU codes out'
   nodes.props.card_status: 'provenance: the card and version that built it'
   nodes.props.card_version: 'provenance: the card and version that built it'
   nodes.props.hint_evidence: 'provenance: the query words that cast it'
@@ -918,8 +918,15 @@ layers:
   - nodes.motion.rot
   - nodes.motion.t
   - nodes.motion.turn
-- id: facial
+- id: pose_mechanics
   step: S14
+  reads: []
+  writes: []
+  validates:
+  - schema
+  passes_downstream: []
+- id: facial
+  step: S15
   reads:
   - edges.causal.causal_strength
   - edges.causal.from
@@ -1007,7 +1014,7 @@ layers:
   - nodes.facial.valence
   - nodes.facial.words
 - id: effort
-  step: S15
+  step: S16
   reads:
   - nodes.bartenieff.beat
   - nodes.bartenieff.body_mode
@@ -1107,7 +1114,7 @@ layers:
   - nodes.efforts.space
   - nodes.efforts.t
 - id: camera
-  step: S16
+  step: S17
   reads:
   - edges.causal.from
   - edges.causal.id
@@ -1232,7 +1239,7 @@ layers:
   - nodes.camera.support
   - nodes.camera.t
 - id: render
-  step: S17
+  step: S18
   reads:
   - edges.affordance_dependency.from
   - edges.affordance_dependency.to

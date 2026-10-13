@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:emotion_families:1.0",
-  "title": "Emotion labels and families (S14 facial)",
+  "$id": "urn:cinematic-compiler:schema:emotion_families:1.1",
+  "title": "Emotion labels and families (S15 facial)",
   "description": "Emotion labels with their family and valence/arousal ranges on -1..1, informational prototype units, the word bands the render uses for valence and arousal, and the words for each display rule.",
   "type": "object",
   "additionalProperties": false,

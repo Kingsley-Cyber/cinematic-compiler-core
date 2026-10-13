@@ -51,7 +51,7 @@ CODES = {
     "VANISHED_BODY": "a substituted body has a staff line before it reappears, its vanish line carries its support or a "
                      "path into the vanish, or RULES do not say it is gone",
     "TURN_LABEL": "a line whose beat names a flip or a cartwheel does not write that turn",
-    "BODY_HOLD_FRAMES": "a hold the S17 graph gives is printed without its frame count (ADR-O113; O47's clause gone)",
+    "BODY_HOLD_FRAMES": "a hold the S18 graph gives is printed without its frame count (ADR-O113; O47's clause gone)",
     "EMPTY_HAND_UNSTATED": "a hand that releases a prop and then holds nothing is not said to be empty (probe R11 kept a "
                            "second kunai in the throwing hand)",
     "ROTATION_ANGLES_PRINTED": "a turn is written as angles at times or a rate, or a line inside a turn prints its "
@@ -843,7 +843,7 @@ def _camera_checks(envelope, parts, labels, add):
         add("CAMERA_RULES", "The printed camera rules are not the genre card's, word for word")
     held = camera.split("Holds on hits: ", 1)[1].split("\n", 1)[0] if "Holds on hits: " in camera else ""
     frame_parts = envelope["nodes"]["render"]["items"][0]["frame_parts"]
-    for t in hits.hold_times(envelope, frame_parts):  # every hit, from the contacts or S17's holds (owner O92, F-155)
+    for t in hits.hold_times(envelope, frame_parts):  # every hit, from the contacts or S18's holds (owner O92, F-155)
         shot = next((m for m in map(SHOT.match, lines) if m and float(m.group(1)) - EPSILON <= t < float(m.group(2)) - EPSILON),
                     None)
         opened = re.search(rf"{t:.2f} impact: hold(?: for \d+ frames)? with ", held)  # ADR-O113: its frames

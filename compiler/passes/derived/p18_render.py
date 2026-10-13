@@ -1,4 +1,4 @@
-"""S17 pass (band L6, projection, authored frame parts): render the envelope into the full LBN-2.x layout.
+"""S18 pass (band L6, projection, authored frame parts): render the envelope into the full LBN-2.x layout.
 
 Authored: frame-part directives (impact, smear, speedlines, holds, fx, ink). Checks: impacts sit on contact onsets or
 impact shots, and one time per hit (IMPACT_CONTACT_SYNC, O23); a smear names one subject and, for a body, one part
@@ -19,7 +19,7 @@ from planner.dynamic_beat_validator import vanish_windows
 from renderers import anime_renderer, live_renderer, prose_renderer, ugc_renderer
 from validators import camera_validator
 
-NODE, STEP = "render", "S17"
+NODE, STEP = "render", "S18"
 RENDERERS = {"ugc_ad": ugc_renderer, "live_action": live_renderer}  # anime uses the anime LBN layout
 PLAN_SCHEMA = ROOT / "schemas" / "graphs" / "frame_parts_plan.schema.json"
 PROMPT = ROOT / "planner" / "prompts" / "frame_parts.txt"
@@ -34,7 +34,7 @@ def prepare(envelope):
     scene = envelope["scene"]
     beats = sorted(envelope["nodes"]["beats"]["items"], key=lambda b: (b["t"], b["id"]))
     return seal({
-        "step_id": STEP, "band": "L6", "kind": "frame_parts_plan", "schema": "urn:cinematic-compiler:schema:frame_parts_plan:1.0",
+        "step_id": STEP, "band": "L6", "kind": "frame_parts_plan", "schema": "urn:cinematic-compiler:schema:frame_parts_plan:1.1",
         "instructions": PROMPT.read_text(encoding="utf-8"),
         "scene": {"genre": scene["genre"], "fps": scene["fps"], "duration_s": scene["duration_s"]},
         "beats": [{k: b[k] for k in ("id", "t", "dur", "actor", "label", "action")} for b in beats],
@@ -83,8 +83,8 @@ def impact_sync(envelope, impacts):
 def hit_hold(envelope, frame):
     """HIT_HOLD (owner O92, R-21, F-083, F-155): every hit from the contacts (planner/hits.py) and every hold on an
     impact frame is a hit, and the shot covering it holds the camera still (static) with every body present at that
-    instant in frame (a vanished body is not, O18), at no close-up or insert, whatever S17 holds. The fix is upstream,
-    in the S16 shot; playback is S16's PLAYBACK_RAMP."""
+    instant in frame (a vanished body is not, O18), at no close-up or insert, whatever S18 holds. The fix is upstream,
+    in the S17 shot; playback is S17's PLAYBACK_RAMP."""
     fps = envelope["scene"]["fps"]
     gone = vanish_windows(envelope["nodes"]["beats"]["items"])
     findings = []

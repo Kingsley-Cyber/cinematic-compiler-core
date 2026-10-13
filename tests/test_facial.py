@@ -1,4 +1,4 @@
-"""S14 facial: FACS units, structured asymmetry, valence/arousal, face-body agreement, gaze, onsets; words only."""
+"""S15 facial: FACS units, structured asymmetry, valence/arousal, face-body agreement, gaze, onsets; words only."""
 
 import copy
 import json
@@ -8,7 +8,7 @@ import pytest
 from conftest import ROOT
 from ugc_scene import glasses, ugc_plans
 
-from compiler.passes.derived import p14_facial
+from compiler.passes.derived import p15_facial
 from kernel.canonical import canonical_json
 from planner.card_loader import load_cards
 from planner.dependency_graph import load
@@ -19,7 +19,7 @@ from validators.schema_validator import validate_schema
 pytestmark = pytest.mark.unit
 PLAN = ugc_plans()["facial"]
 BEFORE = glasses("motion")
-PACKET = p14_facial.prepare(BEFORE)
+PACKET = p15_facial.prepare(BEFORE)
 GRAPH = json.loads((ROOT / "schemas" / "graphs" / "facial_graph.schema.json").read_text())
 
 
@@ -34,11 +34,11 @@ def unit(plan, beat, au):
 def codes(change, packet=PACKET):
     plan = copy.deepcopy(PLAN)
     change(plan)
-    return {f["code"] for f in p14_facial.check(plan, packet)}
+    return {f["code"] for f in p15_facial.check(plan, packet)}
 
 
 def test_glasses_faces_pass_and_libraries_are_complete():
-    assert p14_facial.check(PLAN, PACKET) == [] and PACKET["packet_sha256"] == PLAN["packet_sha256"]
+    assert p15_facial.check(PLAN, PACKET) == [] and PACKET["packet_sha256"] == PLAN["packet_sha256"]
     assert all("face_profile" in c for c in load_cards().values() if c["kind"] == "archetype")
     assert {"AU6", "AU12", "AU14", "AU46"} <= set(PACKET["units"]) and PACKET["units"]["AU46"]["laterality"] == "unilateral_only"
 
@@ -111,7 +111,7 @@ def test_contempt_pattern_needs_one_sided_12_and_14_on_the_same_side():
 
 @pytest.mark.integration
 def test_graph_words_scope_and_determinism(order):
-    after, _ = p14_facial.run(copy.deepcopy(BEFORE), PLAN, order=order)
+    after, _ = p15_facial.run(copy.deepcopy(BEFORE), PLAN, order=order)
     assert check_pass_writes(order, "facial", BEFORE, after) == []
     nodes, edges = after["nodes"]["facial"]["items"], after["edges"]["facial_transition"]["items"]
     validate_schema({"facial": nodes, "facial_transition": edges}, GRAPH)
@@ -119,7 +119,7 @@ def test_graph_words_scope_and_determinism(order):
     assert reveal["face"][1] == "lip corners pulled up (marked on their left, slight on their right)"
     assert reveal["feeling"] == "delighted, strongly pleasant and activated"
     assert [e["trigger"] for e in edges] == ["b01__causes__b02", "b02__causes__b03", "b03__causes__b04"]
-    assert canonical_json(after) == canonical_json(p14_facial.run(copy.deepcopy(BEFORE), PLAN, order=order)[0])
+    assert canonical_json(after) == canonical_json(p15_facial.run(copy.deepcopy(BEFORE), PLAN, order=order)[0])
 
 
 def test_the_render_describes_faces_in_words_only():
@@ -132,11 +132,11 @@ CAMERA_PLAN = ugc_plans()["camera"]
 
 
 def camera_codes(change):
-    from compiler.passes.derived import p16_camera
-    packet = p16_camera.prepare(glasses("effort"))
+    from compiler.passes.derived import p17_camera
+    packet = p17_camera.prepare(glasses("effort"))
     plan = copy.deepcopy(CAMERA_PLAN)
     change(next(s for s in plan["shots"] if s["id"] == "c04"))
-    return {f["code"] for f in p16_camera.check(plan, packet)}
+    return {f["code"] for f in p17_camera.check(plan, packet)}
 
 
 @pytest.mark.parametrize("code, change", [
@@ -153,5 +153,5 @@ def test_the_camera_shows_the_face_that_carries_the_beat(code, change):
 def test_anime_camera_packets_carry_no_faces():
     from scenes import courtyard
 
-    from compiler.passes.derived import p16_camera
-    assert "faces" not in p16_camera.prepare(courtyard("effort"))
+    from compiler.passes.derived import p17_camera
+    assert "faces" not in p17_camera.prepare(courtyard("effort"))

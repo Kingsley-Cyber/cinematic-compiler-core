@@ -39,6 +39,8 @@ MAP = [
     ("bartenieff_graph", "bartenieff", ("nodes", "bartenieff")),
     ("bartenieff_graph", "bartenieff_transition", ("edges", "bartenieff_transition")),
     ("motion_graph", "motion", ("nodes", "motion")), ("motion_graph", "motion_edges", ("edges", "motion")),
+    ("pose_mechanics_graph", "pose_mechanics", ("nodes", "pose_mechanics")),
+    ("pose_mechanics_graph", "pose_mechanics_transition", ("edges", "pose_mechanics_transition")),
     ("facial_graph", "facial", ("nodes", "facial")), ("facial_graph", "facial_transition", ("edges", "facial_transition")),
     ("effort_graph", "efforts", ("nodes", "efforts")), ("effort_graph", "effort", ("edges", "effort")),
     ("camera_graph", "camera", ("nodes", "camera")), ("camera_graph", "camera_edges", ("edges", "camera")),

@@ -1,4 +1,4 @@
-"""S15 pass (band L5, authored): LMA Effort, Shape and Space per interval of one entity's consecutive slots.
+"""S16 pass (band L5, authored): LMA Effort, Shape and Space per interval of one entity's consecutive slots.
 
 Checks: an interval names slots its actor has, consecutive in time; every slot is covered exactly once; values come
 from library/laban_vocabulary.yaml; the effort action matches weight x time x space (Laban's eight basic effort
@@ -17,7 +17,7 @@ from planner.scene_view import slots
 from solver import shape_direction
 from validators.schema_validator import validate_schema
 
-NODE, STEP = "effort", "S15"
+NODE, STEP = "effort", "S16"
 PLAN_SCHEMA = ROOT / "schemas" / "graphs" / "effort_plan.schema.json"
 PROMPT = ROOT / "planner" / "prompts" / "laban_synthesis.txt"
 EPSILON = 1e-9
@@ -50,7 +50,7 @@ def prepare(envelope):
              "motion": _body(groups["motion"][s["slot"]], ("id", "entity", "beat", "t", "quat", "heading_basis"))}
             for s in slots(envelope)]
     modes = {k: {f: v[f] for f in ("description", "intensity", "tendencies")} for k, v in effort_modes().items()}
-    return seal({"step_id": STEP, "band": "L5", "kind": "effort_plan", "schema": "urn:cinematic-compiler:schema:effort_plan:1.0",
+    return seal({"step_id": STEP, "band": "L5", "kind": "effort_plan", "schema": "urn:cinematic-compiler:schema:effort_plan:1.1",
                  "instructions": PROMPT.read_text(encoding="utf-8"), "slots": view,
                  "vocabulary": library_vocab.load("laban_vocabulary")["fields"], "effort_modes": modes})
 

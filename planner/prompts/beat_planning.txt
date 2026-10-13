@@ -88,5 +88,5 @@ Causes
   performers or props involved; never a timeline ("leads into the next exchange") and never a label (CAUSE_REASON).
 
 Later steps measure what this plan places: S13 refuses two bodies that overlap at a shared key (BODY_OVERLAP) and a
-contact whose two points lie over 0.15 m apart (CONTACT_WORLD); S17 wants every strike on an impact frame
+contact whose two points lie over 0.15 m apart (CONTACT_WORLD); S18 wants every strike on an impact frame
 (IMPACT_CONTACT_SYNC). Place the bodies and time the contacts with them in mind.

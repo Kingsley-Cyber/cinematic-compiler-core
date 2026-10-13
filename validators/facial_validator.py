@@ -1,4 +1,4 @@
-"""S14 facial checks and words. Every rule reads the sealed packet (scene facts + face libraries).
+"""S15 facial checks and words. Every rule reads the sealed packet (scene facts + face libraries).
 
 - FACIAL_COVERAGE: one face per slot, none for a slot that does not exist.
 - FACE_PROFILE_MISSING: every entity with a face has a face profile on its archetype card.

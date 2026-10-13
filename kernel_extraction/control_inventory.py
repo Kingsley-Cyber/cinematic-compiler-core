@@ -85,7 +85,10 @@ def build(root=ROOT):
         shared.append({"id": f"k_owner_{index:02d}", "field": "owner", "text": row["statement"], "scope": "kernel",
                        "reason": row["learned_from"], "reference_labels": [], "origin": "owner",
                        "sources": [{"file": OWNER_FILE, "span": [start, start + len(row["statement"])]}]})
-    return {"version": 1, "status": scope["status"], "basis": scope["basis"], "sources": sources, "items": shared}
+    held = yaml.safe_load(TARGET.read_text(encoding="utf-8")) if TARGET.exists() else {}
+    document = {"version": 1, "status": scope["status"], "basis": scope["basis"], "sources": sources, "items": shared}
+    same = {**held, "version": 0} == {**document, "version": 0}
+    return {**document, "version": held.get("version", 1) if same else held.get("version", 0) + 1}
 
 
 def render(document):
@@ -93,7 +96,7 @@ def render(document):
 
 
 def main():
-    text = render(build())
+    text = render(build())  # ADR-O106: build() bumps the version when the kernel changes (S-125)
     if "--check" in sys.argv:
         sys.exit(0 if TARGET.exists() and TARGET.read_text(encoding="utf-8") == text else 1)
     TARGET.write_text(text, encoding="utf-8")

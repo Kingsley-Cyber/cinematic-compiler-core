@@ -131,6 +131,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-122 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | R20 next action 2 (owner: "proceed with… | applied | the commit whose message names [S-122] | from 09:50 to 11:00 | — | [S-122-surfaces-placed-in-metres.md](../sessions/S-122-surfaces-placed-in-metres.md) |
 | S-123 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | Owner, 2026-10-13: "Print the ones the… | applied | the commit whose message names [S-123] | from 11:10 to 12:40 | — | [S-123-the-orphan-split.md](../sessions/S-123-the-orphan-split.md) |
 | S-124 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | F-235; owner, 2026-10-13: "move the pil… | applied | the commit whose message names [S-124] | from 12:50 to 13:40 | — | [S-124-pillar-fitted-and-faces-measured.md](../sessions/S-124-pillar-fitted-and-faces-measured.md) |
+| S-125 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | PLAN-009 PM-0 (owner: "Start the first… | applied | the commit whose message names [S-125] | from 13:50 to 15:00 | — | [S-125-renumber-and-an-empty-s14.md](../sessions/S-125-renumber-and-an-empty-s14.md) |
 
 ## Status values
 

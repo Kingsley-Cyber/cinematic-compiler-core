@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:facs_asymmetry_bounds:1.0",
-  "title": "Facial asymmetry bounds and named patterns (S14 facial)",
+  "$id": "urn:cinematic-compiler:schema:facs_asymmetry_bounds:1.1",
+  "title": "Facial asymmetry bounds and named patterns (S15 facial)",
   "description": "max_step_difference caps how far apart the two sides of a unit present on both sides may be; patterns name known asymmetric expressions with the form each unit must take, forbidden units, same-side rule and valence/arousal ranges.",
   "type": "object",
   "additionalProperties": false,

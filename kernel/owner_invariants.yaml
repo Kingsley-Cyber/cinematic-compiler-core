@@ -1,11 +1,11 @@
 # Owner-authored kernel invariants, merged into kernel/invariants.yaml as origin: owner.
-version: 1
+version: 2
 status: approved
 items:
   - id: no_render_compression
     band: structural
-    statement: "S17 output is uncompressed. The full envelope is projected; nothing is summarized, truncated, or dropped."
+    statement: "S18 output is uncompressed. The full envelope is projected; nothing is summarized, truncated, or dropped."
     check: "Every node group in the envelope has a corresponding entry in the render. Coverage is 100%."
-    layer: S17
+    layer: S18
     learned_from: "Compression removes signal. A compressed prompt loses the constraints that make the output correct."
     kernel_version: "1.0"

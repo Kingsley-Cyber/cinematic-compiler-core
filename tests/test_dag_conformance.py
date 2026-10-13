@@ -2,7 +2,7 @@
 DAG map's mandatory and required rows, each checked by its semantic codes (validators/prompt_validator.py).
 
 - Test prompts: every example (request.json + authored plans), compiled from its query, not read from envelope.json.
-  Between them they build every step S01-S17 across anime, ugc_ad and live_action (S18 waits for M7).
+  Between them they build every step S01-S18 across anime, ugc_ad and live_action (S19 waits for M7).
 - Every structured-prose prompt returns no finding. KNOWN would list findings the owner chooses to keep, each with its
   reason (never silent; an entry that stops occurring fails the test); owner O10 keeps it empty.
 - Every code fires on a prompt broken in that one way (BREAKS), so no code is decorative.

@@ -1,4 +1,4 @@
-"""S16: camera geometry, the shot-list checks (one violation per rule family), derived edges, scope."""
+"""S17: camera geometry, the shot-list checks (one violation per rule family), derived edges, scope."""
 
 import copy
 import json
@@ -8,7 +8,7 @@ import yaml
 from conftest import ROOT
 from scenes import courtyard, courtyard_plans
 
-from compiler.passes.derived import p16_camera
+from compiler.passes.derived import p17_camera
 from kernel.canonical import canonical_json
 from solver import camera_geometry as geometry
 from validators import camera_validator
@@ -17,7 +17,7 @@ from validators.schema_validator import validate_schema
 
 pytestmark = pytest.mark.unit
 PLAN = courtyard_plans()["camera"]
-PACKET = p16_camera.prepare(courtyard("effort"))
+PACKET = p17_camera.prepare(courtyard("effort"))
 GRAPH = json.loads((ROOT / "schemas" / "graphs" / "camera_graph.schema.json").read_text())
 
 
@@ -43,7 +43,7 @@ def test_plan_schema_embeds_the_camera_node_schema():
 
 
 def test_courtyard_shot_list_passes():
-    assert p16_camera.check(PLAN, PACKET) == [] and PACKET["packet_sha256"] == PLAN["packet_sha256"]
+    assert p17_camera.check(PLAN, PACKET) == [] and PACKET["packet_sha256"] == PLAN["packet_sha256"]
 
 
 def shot(plan, sid):
@@ -53,7 +53,7 @@ def shot(plan, sid):
 def codes(change, packet=PACKET):
     plan = copy.deepcopy(PLAN)
     change(plan)
-    return {f["code"] for f in p16_camera.check(plan, packet)}
+    return {f["code"] for f in p17_camera.check(plan, packet)}
 
 
 def unframe_acrobat(plan):
@@ -248,7 +248,7 @@ def test_a_negation_reaches_only_its_phrase_and_the_feet_strike():
 
 
 def test_a_hit_from_the_contacts_is_a_camera_hold_at_s16():
-    """F-155 (RV-57, owner O92): S16 sees the contacts, so the shot covering each hit holds still on every body present:
+    """F-155 (RV-57, owner O92): S17 sees the contacts, so the shot covering each hit holds still on every body present:
     the acrobat's kick lands on the wizard at 3.6 (HIT_HOLD)."""
     assert [(h["t"], h["bodies"]) for h in PACKET["hits"]] == [(3.6, ["acrobat", "wizard"])]
     assert "HIT_HOLD" not in codes(lambda p: None)
@@ -257,7 +257,7 @@ def test_a_hit_from_the_contacts_is_a_camera_hold_at_s16():
 
 
 def test_a_hit_s_hold_is_on_a_still_rig_and_idioms_reach_their_archetypes():
-    """F-177 (RV-71a, owner O92): a static shot on a shaky or floating rig is no hold (HIT_HOLD at S16); the ninja
+    """F-177 (RV-71a, owner O92): a static shot on a shaky or floating rig is no hold (HIT_HOLD at S17); the ninja
     idioms reach the fight's ninja_lean and ninja_broad through their cards' camera_idioms."""
     assert "HIT_HOLD" not in codes(lambda p: None)
     assert "HIT_HOLD" in codes(lambda p: (shot(p, "c04")["support"].update(rig="handheld"),
@@ -292,7 +292,7 @@ def test_every_part_a_shot_shows_is_in_frame_up_and_down():
     packet = copy.deepcopy(PACKET)
     body = packet["points"]["b14"]["acrobat"]
     packet["points"]["b14"]["acrobat"] = {**body, "head": [body["head"][0], body["head"][1] + 6, body["head"][2]]}
-    found = [f for f in p16_camera.check(PLAN, packet) if f["code"] == "VERTICAL_FRAMING"]
+    found = [f for f in p17_camera.check(PLAN, packet) if f["code"] == "VERTICAL_FRAMING"]
     assert [(f["slot"], f["message"].split(" is ")[0]) for f in found] == [("c11", "At b14, acrobat's head")]
 
 
@@ -343,13 +343,13 @@ def test_genre_card_rules_apply_scene_wide():
 def test_derived_geometry_edges_scope_and_determinism(order):
     before = courtyard("effort")
     snapshot = copy.deepcopy(before)
-    after, _ = p16_camera.run(before, PLAN, order=order)
+    after, _ = p17_camera.run(before, PLAN, order=order)
     assert before == snapshot and check_pass_writes(order, "camera", before, after) == []
     nodes, edges = after["nodes"]["camera"]["items"], after["edges"]["camera"]["items"]
     validate_schema({"camera": nodes, "camera_edges": edges}, GRAPH)
     assert [n["id"] for n in nodes] == [f"c{i:02d}" for i in range(1, 12)] and len(edges) == len(nodes) - 1
     assert all(n["derived"]["side"] == n["position"]["side"] for n in nodes)
     assert {e["side_to"] for e in edges} == {"left"}  # the kick's on-axis insert became a hold on both bodies (O92)
-    assert camera_validator.derive(nodes[0], p16_camera.prepare(before)) == nodes[0]["derived"]
+    assert camera_validator.derive(nodes[0], p17_camera.prepare(before)) == nodes[0]["derived"]
     assert courtyard("camera")["validation"]["camera_kinematic_coupling"] == "pass"
-    assert canonical_json(after) == canonical_json(p16_camera.run(courtyard("effort"), PLAN, order=order)[0])
+    assert canonical_json(after) == canonical_json(p17_camera.run(courtyard("effort"), PLAN, order=order)[0])

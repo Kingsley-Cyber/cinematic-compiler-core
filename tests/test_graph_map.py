@@ -10,7 +10,7 @@ from validators import graph_map, graph_reach
 
 pytestmark = pytest.mark.unit
 
-# the fields the prose renderer reads per example (S-116: holds, camera, poses, points); each S17 slice raises them
+# the fields the prose renderer reads per example (S-116: holds, camera, poses, points); each S18 slice raises them
 READ_FLOOR = {"reference_fight": 146, "wizard_vs_acrobat": 134, "live_action_standoff": 120, "ugc_glasses_demo": 171}
 
 

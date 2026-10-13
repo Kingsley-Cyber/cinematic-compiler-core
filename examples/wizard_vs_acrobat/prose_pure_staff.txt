@@ -299,7 +299,7 @@ Ink: heavy on silhouettes,broken in smears,clean on holds,smear follows ONLY the
 - invariant c k negative 15 (constraint): no halo
 - invariant c k rules 00 (constraint): slerp A joints
 - invariant c k rules 23 (constraint): TWO fighter identities A and B never merge or duplicate
-- invariant c k owner 00 (constraint): S17 output is uncompressed. The full envelope is projected; nothing is summarized, truncated, or dropped
+- invariant c k owner 00 (constraint): S18 output is uncompressed. The full envelope is projected; nothing is summarized, truncated, or dropped
 - invariant c world bamboo courtyard damage persists (constraint): Marks, cracks and cut bamboo stay visible for the rest of the scene once made
 - invariant c arch wizard spell has a source (constraint): A spell effect starts at a hand, staff tip or declared focus, never from empty space
 - invariant c arch wizard grounded caster (constraint): The wizard stays grounded unless a scene grants flight or levitation

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:facial_plan:1.0",
-  "title": "S14 facial plan (authored in-session): one face per entity per beat",
+  "$id": "urn:cinematic-compiler:schema:facial_plan:1.1",
+  "title": "S15 facial plan (authored in-session): one face per entity per beat",
   "description": "FACS action units (even or per side), units that must not show, valence and arousal on -1..1, emotion label, display rule, gaze target (an entity or prop id, camera, none), salience for the camera, and how the expression arrives (onset, frames).",
   "type": "object",
   "additionalProperties": false,
@@ -15,7 +15,7 @@
   ],
   "properties": {
     "step_id": {
-      "const": "S14"
+      "const": "S15"
     },
     "band": {
       "const": "L4d"

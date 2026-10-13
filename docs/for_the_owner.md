@@ -1,6 +1,6 @@
 # For the owner: this repo in plain English
 
-<!-- docs-version: 1.1 -->
+<!-- docs-version: 1.2 -->
 
 You don't need to read code to audit this repo. This page explains what it does, where every answer lives, what each
 technical word means, and what is waiting for you.
@@ -115,7 +115,7 @@ changes one, and the lists above update. You can also write the ADR yourself fro
 |---|---|
 | ADR | Architecture Decision Record: one file per decision you made (docs/decisions/). IDs keep the old names: O48, Q6, F2. |
 | Agent | The AI coding assistant working in the repo (Claude). It follows AGENTS.md. |
-| Authored step | A step whose content is written by the agent in the session, from a sealed packet. Steps S04, S08 and S11-S17. |
+| Authored step | A step whose content is written by the agent in the session, from a sealed packet. Steps S04, S08, S11-S13 and S15-S18 (S14, the pose mechanics, is computed). |
 | Backlog / slice | One unit of work and one commit, listed in docs/plans/backlog.yaml and shown in plan.md. |
 | Bartenieff | How the body coordinates a move: which part starts it and how it flows through the body. Step S12. |
 | Beat | One timed event in the scene ("B throws the kunai, 2.0-2.5 s"). Step S04. |
@@ -130,7 +130,7 @@ changes one, and the lists above update. You can also write the ADR yourself fro
 | DAG | Your knowledge DAG (docs/sources/knowledge_dag_v1.md), mapped row by row in kernel/knowledge_map.yaml. |
 | Derived step | A step computed by code from earlier steps, with nothing written by hand. |
 | Edge / node | A node is a thing (a beat, a contact, a pose). An edge connects two of them ("causes", "follows"). |
-| Effort (Laban) | The quality of a move: weight, time, space, flow ("strong, sudden, direct"). Step S15. |
+| Effort (Laban) | The quality of a move: weight, time, space, flow ("strong, sudden, direct"). Step S16. |
 | Envelope | The one data file the compiler builds for a scene, holding every step's output. |
 | Euler angles | A rotation written as three angles (X, Y, Z) in degrees. Flips turn about X, spins about Y, cartwheels about Z. |
 | Finding | Something discovered (a bug, gap, question...), one file each in docs/findings/. |
@@ -142,7 +142,7 @@ changes one, and the lists above update. You can also write the ADR yourself fro
 | Index | One generated table listing every file of a kind (docs/index/). |
 | Kernel | The 68 controls that both LBN-2.3 and LBN-2.4 state; the compiler prints them all. |
 | Labanotation (staff) | Movement written as symbols, here written as words on staff lines (support, limbs, contacts). |
-| Layer / step | One stage of the build (S01 intent ... S18 post-generation), with the owner labels L0 ... L6.5. |
+| Layer / step | One stage of the build (S01 intent ... S19 post-generation), with the owner labels L0 ... L6.5. |
 | LBN-2.4 | The repo's full, numeric prompt format (render.txt). |
 | Packet | The sealed input an authored step is written from. Its hash proves the step saw exactly that input. |
 | Probe | A short 5 s render testing one wording question (docs/render_tests/). |

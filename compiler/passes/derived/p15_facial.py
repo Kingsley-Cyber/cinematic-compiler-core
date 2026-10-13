@@ -1,4 +1,4 @@
-"""S14 pass (band L4d, authored; live_action and ugc_ad): one face per entity per beat.
+"""S15 pass (band L4d, authored; live_action and ugc_ad): one face per entity per beat.
 
 The packet carries what the face answers to (the slot's beat, its kinematic tension/breathing/strain, the head pose
 from S13, the causal edges the beat reacts to, the archetype face profile) and the three face libraries. Checks:
@@ -18,7 +18,7 @@ from solver.quaternion import head_heading
 from validators import facial_validator
 from validators.schema_validator import validate_schema
 
-NODE, STEP = "facial", "S14"
+NODE, STEP = "facial", "S15"
 PLAN_SCHEMA = ROOT / "schemas" / "graphs" / "facial_plan.schema.json"
 PROMPT = ROOT / "planner" / "prompts" / "facial_acting.txt"
 LIBRARIES = ("facs_action_units", "facs_asymmetry_bounds", "emotion_families")
@@ -47,7 +47,7 @@ def prepare(envelope):
                      "reacts_to": [{k: e[k] for k in ("id", "from", "causal_strength", "why")}
                                    for e in causes if e["to"] == s["beat"]]})
     return seal({
-        "step_id": STEP, "band": "L4d", "kind": "facial_plan", "schema": "urn:cinematic-compiler:schema:facial_plan:1.0",
+        "step_id": STEP, "band": "L4d", "kind": "facial_plan", "schema": "urn:cinematic-compiler:schema:facial_plan:1.1",
         "instructions": PROMPT.read_text(encoding="utf-8"), "fps": envelope["scene"]["fps"], "slots": view,
         "entities": {e["id"]: {"name": e["name"], "face_profile": e.get("face_profile")}
                      for e in envelope["nodes"]["entities"]["items"]},

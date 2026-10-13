@@ -1,6 +1,6 @@
 # AGENTS.md — The Agent Operating Manual
 
-<!-- docs-version: 2.4 -->
+<!-- docs-version: 2.5 -->
 
 > Before every session, read `AGENTS.md` fully — it is the map of this repo, not a suggestion — and follow its
 > nine-step session protocol exactly: read the five indexes, run `scripts/verify.sh`, pick one gap, confirm its layer
@@ -20,8 +20,8 @@ ruling.
 
 ## 2. What this repo is
 
-`cinematic-compiler-core` compiles a scene request into one validated envelope through 18 ordered steps (S01 intent to
-S18 post-generation), then projects it into video-model prompts: LBN-2.4 (`render.txt`) and four structured-prose
+`cinematic-compiler-core` compiles a scene request into one validated envelope through 19 ordered steps (S01 intent to
+S19 post-generation), then projects it into video-model prompts: LBN-2.4 (`render.txt`) and four structured-prose
 modes. The mission (ADR-S3): every emitted prompt provably adheres to the owner's knowledge DAG
 (`docs/sources/knowledge_dag_v1.md`, mapped in `kernel/knowledge_map.yaml`), row by row, as a checklist. A green test is
 not adherence, and a PASS a render contradicts is NOT CHECKED. The repo is model-agnostic and built for Seedance
@@ -51,7 +51,7 @@ Indexes first, then only the files the gap needs. Generated files say so in thei
 ## 4. Layer order
 
 <!-- BEGIN GENERATED: layer_order -->
-S01 intent (L0) → S02 brief (L0.5) → S03 constraint (L1.5) → S04 temporal (L1.1) → S05 causal (L1.2) → S06 state (L2.1) → S07 contact (L2.2) → S08 hand_role (L2.5) → S09 object_state (L2.6) → S10 affordance (L2.7) → S11 kinematic (L4a) → S12 bartenieff (L4b) → S13 motion (L4c) → S14 facial (L4d) → S15 effort (L5) → S16 camera (L5.5) → S17 render (L6) → S18 post_generation (L6.5)
+S01 intent (L0) → S02 brief (L0.5) → S03 constraint (L1.5) → S04 temporal (L1.1) → S05 causal (L1.2) → S06 state (L2.1) → S07 contact (L2.2) → S08 hand_role (L2.5) → S09 object_state (L2.6) → S10 affordance (L2.7) → S11 kinematic (L4a) → S12 bartenieff (L4b) → S13 motion (L4c) → S14 pose_mechanics (L4e) → S15 facial (L4d) → S16 effort (L5) → S17 camera (L5.5) → S18 render (L6) → S19 post_generation (L6.5)
 
 Full table: [docs/layer_order.md](docs/layer_order.md).
 <!-- END GENERATED: layer_order -->
@@ -101,10 +101,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.8; rules 7.3; backlog 55.
-- Last session: S-124 (2026-10-13, applied): The pillar fitted to the fight's feet; contacts with a surface's face are measured.
+- Layer order 1.9; rules 7.3; backlog 55.
+- Last session: S-125 (2026-10-13, applied): The renumber and an empty S14 (ADR-O117).
 - Next slice: AA-9 S13 written in parallel pieces, one per fighter and time window (each window overlapping its neighbour by one beat), merged and repaired by the solver (step motion).
-- Open findings: 143; decisions: 143 (0 proposed, 7 owner_default awaiting the owner).
+- Open findings: 143; decisions: 144 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

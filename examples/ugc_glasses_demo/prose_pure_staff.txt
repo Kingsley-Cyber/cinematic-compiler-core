@@ -151,7 +151,7 @@ Enables: i01 enables i02 via temples.
 - invariant c k negative 15 (constraint): no halo
 - invariant c k rules 00 (constraint): slerp A joints
 - invariant c k rules 23 (constraint): TWO fighter identities A and B never merge or duplicate
-- invariant c k owner 00 (constraint): S17 output is uncompressed. The full envelope is projected; nothing is summarized, truncated, or dropped
+- invariant c k owner 00 (constraint): S18 output is uncompressed. The full envelope is projected; nothing is summarized, truncated, or dropped
 - invariant c world modern ugc product stays identical (constraint): The product keeps one shape, colour and label for the whole scene
 - invariant c arch ugc creator hands in frame (constraint): Hands stay in frame whenever they touch the product
 
