@@ -1,7 +1,7 @@
 {
  "step_id": "S04",
  "band": "L1",
- "packet_sha256": "sha256:3fa54c4775ace70e7e15eee2b55773a0ca4bf5be8cc61e885cfc0c744668a2e0",
+ "packet_sha256": "sha256:16d635e1d770a51d2e5ec0d6a9e8f48b541c6424ac97ed436fd67f914872d36f",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -249,6 +249,41 @@
      "v": null,
      "float": false
     }
+   ],
+   "roles": [
+    {
+     "performer": "ninja_lean",
+     "limb": "left_foot",
+     "role": "support",
+     "target": {
+      "kind": "surface",
+      "id": "wooden_pillar",
+      "part": null
+     },
+     "at": "end"
+    },
+    {
+     "performer": "ninja_lean",
+     "limb": "right_foot",
+     "role": "support",
+     "target": {
+      "kind": "surface",
+      "id": "wooden_pillar",
+      "part": null
+     },
+     "at": "end"
+    },
+    {
+     "performer": "ninja_broad",
+     "limb": "right_hand",
+     "role": "carry",
+     "target": {
+      "kind": "prop",
+      "id": "kunai",
+      "part": "handle"
+     },
+     "at": "start"
+    }
    ]
   },
   {
@@ -300,7 +335,8 @@
      "causal_strength": "soft",
      "why": "From the crouch on the pillar top A tips over the edge and runs down the pillar face toward B."
     }
-   ]
+   ],
+   "roles": []
   },
   {
    "id": "b03",
@@ -378,7 +414,8 @@
      "causal_strength": "soft",
      "why": "Running down the pillar face, A kicks off it with both feet to arc toward B."
     }
-   ]
+   ],
+   "roles": []
   },
   {
    "id": "b04",
@@ -430,7 +467,8 @@
      "causal_strength": "soft",
      "why": "The kick-off leaves A descending toward B with no footing, so B throws the kunai up at A mid-descent."
     }
-   ]
+   ],
+   "roles": []
   },
   {
    "id": "b05",
@@ -553,7 +591,8 @@
      "float": false,
      "phase": "pre"
     }
-   ]
+   ],
+   "roles": []
   },
   {
    "id": "b06",
@@ -747,6 +786,52 @@
      ],
      "float": false
     }
+   ],
+   "roles": [
+    {
+     "performer": "ninja_lean",
+     "limb": "right_foot",
+     "role": "strike",
+     "target": {
+      "kind": "prop",
+      "id": "kunai",
+      "part": "blade"
+     },
+     "at": "start"
+    },
+    {
+     "performer": "ninja_lean",
+     "limb": "left_foot",
+     "role": "support",
+     "target": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     },
+     "at": "end"
+    },
+    {
+     "performer": "ninja_lean",
+     "limb": "right_foot",
+     "role": "support",
+     "target": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     },
+     "at": "end"
+    },
+    {
+     "performer": "ninja_lean",
+     "limb": "left_hand",
+     "role": "carry",
+     "target": {
+      "kind": "prop",
+      "id": "rope_dart",
+      "part": "rope"
+     },
+     "at": "end"
+    }
    ]
   },
   {
@@ -812,7 +897,8 @@
      "v": null,
      "float": false
     }
-   ]
+   ],
+   "roles": []
   },
   {
    "id": "b08",
@@ -881,7 +967,8 @@
      ],
      "float": false
     }
-   ]
+   ],
+   "roles": []
   },
   {
    "id": "b09",
@@ -1114,6 +1201,19 @@
      "v": null,
      "float": false
     }
+   ],
+   "roles": [
+    {
+     "performer": "ninja_lean",
+     "limb": "right_hand",
+     "role": "strike",
+     "target": {
+      "kind": "prop",
+      "id": "smoke_pellet",
+      "part": "shell"
+     },
+     "at": "start"
+    }
    ]
   },
   {
@@ -1214,6 +1314,19 @@
       0
      ],
      "float": false
+    }
+   ],
+   "roles": [
+    {
+     "performer": "ninja_broad",
+     "limb": "right_hand",
+     "role": "strike",
+     "target": {
+      "kind": "prop",
+      "id": "substitution_log",
+      "part": "log"
+     },
+     "at": "start"
     }
    ]
   },
@@ -1348,6 +1461,30 @@
      ],
      "float": false
     }
+   ],
+   "roles": [
+    {
+     "performer": "ninja_lean",
+     "limb": "left_foot",
+     "role": "support",
+     "target": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     },
+     "at": "start"
+    },
+    {
+     "performer": "ninja_lean",
+     "limb": "right_foot",
+     "role": "support",
+     "target": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     },
+     "at": "start"
+    }
    ]
   },
   {
@@ -1424,6 +1561,19 @@
      "to": "b13",
      "causal_strength": "soft",
      "why": "The knee launches B forward into the air, and A follows with an aerial backflip kick."
+    }
+   ],
+   "roles": [
+    {
+     "performer": "ninja_lean",
+     "limb": "right_leg",
+     "role": "strike",
+     "target": {
+      "kind": "entity",
+      "id": "ninja_broad",
+      "part": "torso"
+     },
+     "at": "start"
     }
    ]
   },
@@ -1526,6 +1676,19 @@
      ],
      "v": null,
      "float": false
+    }
+   ],
+   "roles": [
+    {
+     "performer": "ninja_broad",
+     "limb": "right_hand",
+     "role": "carry",
+     "target": {
+      "kind": "prop",
+      "id": "shuriken_volley",
+      "part": null
+     },
+     "at": "start"
     }
    ]
   },
@@ -1697,6 +1860,19 @@
      ],
      "float": false
     }
+   ],
+   "roles": [
+    {
+     "performer": "ninja_broad",
+     "limb": "right_hand",
+     "role": "strike",
+     "target": {
+      "kind": "prop",
+      "id": "shuriken_volley",
+      "part": "star_1"
+     },
+     "at": "start"
+    }
    ]
   },
   {
@@ -1787,7 +1963,8 @@
      ],
      "float": false
     }
-   ]
+   ],
+   "roles": []
   },
   {
    "id": "b16",
@@ -1839,7 +2016,8 @@
      "causal_strength": "soft",
      "why": "A's rising elbow comes at B, so B catches the left elbow and throws A toward the pillar."
     }
-   ]
+   ],
+   "roles": []
   },
   {
    "id": "b17",
@@ -1951,6 +2129,30 @@
      "to": "b18",
      "causal_strength": "soft",
      "why": "Thrown at the pillar, A meets it with the feet, pushes off and lands crouched by the rope dart."
+    }
+   ],
+   "roles": [
+    {
+     "performer": "ninja_broad",
+     "limb": "left_hand",
+     "role": "carry",
+     "target": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "left_arm"
+     },
+     "at": "start"
+    },
+    {
+     "performer": "ninja_broad",
+     "limb": "right_hand",
+     "role": "carry",
+     "target": {
+      "kind": "entity",
+      "id": "ninja_lean",
+      "part": "left_arm"
+     },
+     "at": "start"
     }
    ]
   },
@@ -2082,6 +2284,63 @@
      "to": "b19",
      "causal_strength": "hard",
      "why": "Crouched by the rope dart with it in the left hand, A whips it out to wrap B's right shoulder."
+    }
+   ],
+   "roles": [
+    {
+     "performer": "ninja_lean",
+     "limb": "left_foot",
+     "role": "support",
+     "target": {
+      "kind": "surface",
+      "id": "wooden_pillar",
+      "part": null
+     },
+     "at": "start"
+    },
+    {
+     "performer": "ninja_lean",
+     "limb": "right_foot",
+     "role": "support",
+     "target": {
+      "kind": "surface",
+      "id": "wooden_pillar",
+      "part": null
+     },
+     "at": "start"
+    },
+    {
+     "performer": "ninja_lean",
+     "limb": "left_hand",
+     "role": "carry",
+     "target": {
+      "kind": "prop",
+      "id": "rope_dart",
+      "part": "rope"
+     },
+     "at": "end"
+    },
+    {
+     "performer": "ninja_lean",
+     "limb": "left_foot",
+     "role": "support",
+     "target": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     },
+     "at": "end"
+    },
+    {
+     "performer": "ninja_lean",
+     "limb": "right_foot",
+     "role": "support",
+     "target": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     },
+     "at": "end"
     }
    ]
   },
@@ -2235,6 +2494,41 @@
      "v": null,
      "float": false
     }
+   ],
+   "roles": [
+    {
+     "performer": "ninja_broad",
+     "limb": "torso",
+     "role": "strike",
+     "target": {
+      "kind": "prop",
+      "id": "rope_dart",
+      "part": "dart"
+     },
+     "at": "end"
+    },
+    {
+     "performer": "ninja_lean",
+     "limb": "right_hand",
+     "role": "carry",
+     "target": {
+      "kind": "prop",
+      "id": "kunai",
+      "part": "handle"
+     },
+     "at": "end"
+    },
+    {
+     "performer": "ninja_lean",
+     "limb": "right_hand",
+     "role": "support",
+     "target": {
+      "id": "ground",
+      "kind": "surface",
+      "part": null
+     },
+     "at": "end"
+    }
    ]
   },
   {
@@ -2359,7 +2653,8 @@
      "v": null,
      "float": false
     }
-   ]
+   ],
+   "roles": []
   },
   {
    "id": "b21",
@@ -2529,6 +2824,52 @@
      "v": null,
      "float": false
     }
+   ],
+   "roles": [
+    {
+     "performer": "ninja_broad",
+     "limb": "torso",
+     "role": "strike",
+     "target": {
+      "kind": "prop",
+      "id": "kunai",
+      "part": "blade"
+     },
+     "at": "start"
+    },
+    {
+     "performer": "ninja_lean",
+     "limb": "left_foot",
+     "role": "support",
+     "target": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     },
+     "at": "end"
+    },
+    {
+     "performer": "ninja_lean",
+     "limb": "right_foot",
+     "role": "support",
+     "target": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     },
+     "at": "end"
+    },
+    {
+     "performer": "ninja_broad",
+     "limb": "torso",
+     "role": "support",
+     "target": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     },
+     "at": "end"
+    }
    ]
   },
   {
@@ -2598,7 +2939,8 @@
      ],
      "float": false
     }
-   ]
+   ],
+   "roles": []
   },
   {
    "id": "b23",
@@ -2687,7 +3029,8 @@
      ],
      "float": false
     }
-   ]
+   ],
+   "roles": []
   }
  ]
 }

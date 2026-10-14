@@ -11,6 +11,7 @@ from compiler import pipeline
 from compiler.passes.derived import p17_camera
 from kernel.canonical import ContractError, content_hash
 from planner.beat_planner import prepare
+from planner.dynamic_beat_validator import roles_from
 
 pytestmark = pytest.mark.integration
 COURTYARD = json.loads((ROOT / "examples" / "wizard_vs_acrobat" / "envelope.json").read_text(encoding="utf-8"))
@@ -26,7 +27,8 @@ def fact(kind, sid, prop, value):
 def plan_for(query, previous, beats):
     envelope = pipeline.run(query, until="constraint", previous=previous)
     return {"step_id": "S04", "band": "L1", "packet_sha256": prepare(envelope)["packet_sha256"],
-            "author": {"host": "test fixture", "model": "none"}, "attempt": 1, "beats": beats}
+            "author": {"host": "test fixture", "model": "none"}, "attempt": 1,
+            "beats": [{**b, "roles": roles_from(b)} for b in beats]}  # S-133: roles declared from the contacts
 
 
 def beat(bid, t, dur, actor, others, action, *, requires=(), effects=(), contacts=(), causes=(), event_type="action"):

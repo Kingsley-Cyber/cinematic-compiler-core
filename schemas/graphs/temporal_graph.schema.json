@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:temporal_graph:1.6",
+  "$id": "urn:cinematic-compiler:schema:temporal_graph:1.7",
   "title": "S04 temporal graph: beats, temporal edges, beat-constraint edges",
   "description": "Beats are copied from the beat plan; temporal and beat_constraint edges are computed, never authored.",
   "type": "object",
@@ -363,6 +363,12 @@
           "items": {
             "$ref": "#/$defs/PropSample"
           }
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Role"
+          }
         }
       }
     },
@@ -443,6 +449,71 @@
             "end"
           ],
           "description": "When the change takes effect inside its beat: at its start, or (the default) at its end; a change of hands takes effect at its possess or release (F-061). RV-07, O91."
+        }
+      }
+    },
+    "Role": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "performer",
+        "limb",
+        "role",
+        "target",
+        "at"
+      ],
+      "description": "PLAN-010 (S-133, owner: one part, one job; declared, not inferred): a limb's job in this beat, the twin of a contact the limb makes (support: a support contact or a touch on a surface; strike: a touch on a body or a prop; block: a touch whose verb is block; carry: a possess). A limb with no entry is free. S04 refuses a beat whose roles are not its contacts' (CONSTRAINT_SATISFIABLE) and keeps them out of the graph.",
+      "properties": {
+        "performer": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "limb": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "role": {
+          "enum": [
+            "support",
+            "strike",
+            "block",
+            "carry"
+          ]
+        },
+        "target": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "id",
+            "part"
+          ],
+          "properties": {
+            "kind": {
+              "enum": [
+                "entity",
+                "prop",
+                "surface"
+              ]
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*$"
+            },
+            "part": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^[a-z][a-z0-9_]*$"
+            }
+          }
+        },
+        "at": {
+          "enum": [
+            "start",
+            "end"
+          ]
         }
       }
     }

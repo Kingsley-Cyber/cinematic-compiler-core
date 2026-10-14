@@ -1,7 +1,7 @@
 {
  "step_id": "S04",
  "band": "L1",
- "packet_sha256": "sha256:7540aade26d8c9859a8ee72621b928dee8260d920615247a2e8f8a0cf6c0cc29",
+ "packet_sha256": "sha256:0f267c59f8ffdea24c764976218c96863c8ee585c4b9344729c93d6a41d62be4",
  "author": {
   "host": "Claude Code desktop, in-session",
   "model": "claude-opus-5-5"
@@ -74,7 +74,8 @@
      "causal_strength": "hard",
      "why": "The crouch loads the legs for the vault."
     }
-   ]
+   ],
+   "roles": []
   },
   {
    "id": "b02",
@@ -165,6 +166,19 @@
      "causal_strength": "hard",
      "why": "Airborne after the vault, the acrobat must land."
     }
+   ],
+   "roles": [
+    {
+     "performer": "acrobat",
+     "limb": "right_hand",
+     "role": "support",
+     "target": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     },
+     "at": "start"
+    }
    ]
   },
   {
@@ -254,7 +268,8 @@
      "causal_strength": "soft",
      "why": "The acrobat lands clear of the scorch."
     }
-   ]
+   ],
+   "roles": []
   },
   {
    "id": "b04",
@@ -348,6 +363,30 @@
      "to": "b05",
      "causal_strength": "hard",
      "why": "Grounded again, the acrobat can spin into a kick."
+    }
+   ],
+   "roles": [
+    {
+     "performer": "acrobat",
+     "limb": "left_foot",
+     "role": "support",
+     "target": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     },
+     "at": "end"
+    },
+    {
+     "performer": "acrobat",
+     "limb": "right_foot",
+     "role": "support",
+     "target": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     },
+     "at": "end"
     }
    ]
   },
@@ -446,6 +485,19 @@
      "causal_strength": "hard",
      "why": "The staggered wizard throws a desperate ward."
     }
+   ],
+   "roles": [
+    {
+     "performer": "acrobat",
+     "limb": "right_foot",
+     "role": "strike",
+     "target": {
+      "kind": "entity",
+      "id": "wizard",
+      "part": "torso"
+     },
+     "at": "end"
+    }
    ]
   },
   {
@@ -538,7 +590,8 @@
      "causal_strength": "hard",
      "why": "Thrown through the air, the acrobat hits the pillar."
     }
-   ]
+   ],
+   "roles": []
   },
   {
    "id": "b07",
@@ -627,6 +680,19 @@
      "to": "b08",
      "causal_strength": "hard",
      "why": "Braced on the pillar, the acrobat pushes off to recover."
+    }
+   ],
+   "roles": [
+    {
+     "performer": "acrobat",
+     "limb": "torso",
+     "role": "support",
+     "target": {
+      "kind": "surface",
+      "id": "stone_pillar",
+      "part": null
+     },
+     "at": "end"
     }
    ]
   },
@@ -756,6 +822,30 @@
      "causal_strength": "hard",
      "why": "Recovered, the acrobat can attack again."
     }
+   ],
+   "roles": [
+    {
+     "performer": "acrobat",
+     "limb": "left_foot",
+     "role": "support",
+     "target": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     },
+     "at": "end"
+    },
+    {
+     "performer": "acrobat",
+     "limb": "right_foot",
+     "role": "support",
+     "target": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     },
+     "at": "end"
+    }
    ]
   },
   {
@@ -811,7 +901,8 @@
      "causal_strength": "hard",
      "why": "Steady again, the wizard can cast."
     }
-   ]
+   ],
+   "roles": []
   },
   {
    "id": "b10",
@@ -889,7 +980,8 @@
      "causal_strength": "soft",
      "why": "The feint baits the wizard's bolt."
     }
-   ]
+   ],
+   "roles": []
   },
   {
    "id": "b11",
@@ -971,7 +1063,8 @@
      "causal_strength": "soft",
      "why": "The acrobat flips away from the bolt."
     }
-   ]
+   ],
+   "roles": []
   },
   {
    "id": "b12",
@@ -1068,7 +1161,8 @@
      "causal_strength": "hard",
      "why": "Airborne, the acrobat must land."
     }
-   ]
+   ],
+   "roles": []
   },
   {
    "id": "b13",
@@ -1163,6 +1257,30 @@
      "causal_strength": "hard",
      "why": "The acrobat lands on both feet out of the flip, so it can hold the crouched guard."
     }
+   ],
+   "roles": [
+    {
+     "performer": "acrobat",
+     "limb": "left_foot",
+     "role": "support",
+     "target": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     },
+     "at": "end"
+    },
+    {
+     "performer": "acrobat",
+     "limb": "right_foot",
+     "role": "support",
+     "target": {
+      "kind": "surface",
+      "id": "ground",
+      "part": null
+     },
+     "at": "end"
+    }
    ]
   },
   {
@@ -1208,7 +1326,8 @@
    ],
    "effects": [],
    "contacts": [],
-   "causes": []
+   "causes": [],
+   "roles": []
   }
  ]
 }

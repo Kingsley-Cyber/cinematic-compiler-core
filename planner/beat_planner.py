@@ -8,7 +8,7 @@ from planner.vocabulary import resolve
 from solver import forward_kinematics
 
 PROMPT = ROOT / "planner" / "prompts" / "beat_planning.txt"
-SCHEMA_ID = "urn:cinematic-compiler:schema:beat_plan:1.6"
+SCHEMA_ID = "urn:cinematic-compiler:schema:beat_plan:1.7"
 
 
 def given_duration(intent):

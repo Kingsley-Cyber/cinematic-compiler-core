@@ -7,6 +7,7 @@ from conftest import ROOT
 
 from compiler import pipeline
 from planner.beat_planner import prepare
+from planner.dynamic_beat_validator import roles_from
 
 COURTYARD = ROOT / "examples" / "wizard_vs_acrobat"
 COURTYARD_QUERY = json.loads((COURTYARD / "request.json").read_text())["query"]
@@ -65,4 +66,6 @@ def cup(until, edit=None):
     plan = cup_plan(envelope)
     if edit:
         edit(plan)
+    for b in plan["beats"]:  # S-133: the fixture declares each beat's roles from its contacts, after any edit
+        b["roles"] = roles_from(b)
     return pipeline.run(CUP_QUERY, until=until, plans={"temporal": plan})

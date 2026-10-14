@@ -11,6 +11,7 @@ from scenes import COURTYARD, COURTYARD_PLAN, COURTYARD_QUERY, CUP_QUERY, cup_pl
 
 from compiler import pipeline
 from kernel.canonical import canonical_json
+from planner.dynamic_beat_validator import roles_from
 
 pytestmark = pytest.mark.integration
 
@@ -54,6 +55,8 @@ def test_authored_gate_failure_returns_a_replan_request(tmp_path):
 def test_derived_failure_routes_to_the_beat_plan_and_stops_after_two_retries(tmp_path):
     plan = cup_plan(pipeline.run(CUP_QUERY, until="constraint"))
     plan["beats"][2]["requires"][0]["value"] = "knight"
+    for beat in plan["beats"]:  # S-133: the plan declares its roles (S04 refuses one that does not)
+        beat["roles"] = roles_from(beat)
     result = cli("compile", CUP_QUERY, "--plans", str(write_plan(tmp_path, plan)))
     replan = json.loads(result.stdout)
     assert result.returncode == 4 and (replan["step_id"], replan["failed_step_id"]) == ("S04", "S06")

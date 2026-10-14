@@ -51,7 +51,9 @@ def build(envelope, plan):
     findings = validate(plan, packet)
     if findings:
         raise GateFailed("S04", findings, packet)
-    beats = sorted((copy.deepcopy(b) for b in plan["beats"]), key=lambda b: (b["t"], b["id"]))
+    # the roles are S04's declaration, checked against the contacts (CONSTRAINT_SATISFIABLE); the contacts carry them on
+    beats = sorted(({k: copy.deepcopy(v) for k, v in b.items() if k != "roles"} for b in plan["beats"]),
+                   key=lambda b: (b["t"], b["id"]))
     graph = {"beats": beats, "temporal": _temporal_edges(beats),
              "beat_constraint": _beat_constraint_edges(beats, envelope["edges"]["constraint_application"]["items"])}
     validate_schema(graph, json.loads(GRAPH_SCHEMA.read_text(encoding="utf-8")))

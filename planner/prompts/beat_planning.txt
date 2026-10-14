@@ -26,6 +26,14 @@ Poses
   tabletop's highest `max` y in its `boxes`), the performer's anchor at that instant, if it has one, lies between
   the top and the top plus `standing_leg_m` (the genre body's standing leg), within 0.05 m (SURFACE_HEIGHT, owners O21,
   O85).
+- Every beat lists its `roles`: for each contact a limb makes, that limb's one job in the beat, `{performer, limb,
+  role, target, at}` with the contact's own target and `at`: support (a support contact, or a touch on a surface: a
+  push off it), carry (a possess), block (a touch whose verb is block), strike (any other touch). A release has no
+  role. The roles are the contacts' twins, one for one (CONSTRAINT_SATISFIABLE).
+- One part, one job (ONE_PART_ONE_JOB): a limb that stands on something cannot strike or block until it is released;
+  release a foot at or before the instant it kicks. A limb stands on one thing at a time.
+- A strike lands from within reach: at its instant the striker's anchor and its target's are at most 1.5 m apart
+  (CONSTRAINT_SATISFIABLE); place the bodies so it can.
 - Every surface has a place: `boxes`, axis-aligned boxes in scene metres. A body that touches, stands on or leaves a
   surface other than a floor has its anchor before or after that instant within 1.5 m of the surface's boxes
   (SURFACE_REACH): put the fight where the pillar, the wall or the table is.

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:beat:1.3",
+  "$id": "urn:cinematic-compiler:schema:beat:1.4",
   "title": "Beat (shared definition)",
   "description": "One timed event of a scene with its actor, participants, positions, facings, requirements, effects, contacts, causes and prop samples (S04). Shared by the beat plan and the temporal graph (owner O65); Contact is embedded from contact.schema.json by kernel/shared_schemas.py.",
   "$defs": {
@@ -308,6 +308,12 @@
           "items": {
             "$ref": "#/$defs/PropSample"
           }
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Role"
+          }
         }
       }
     },
@@ -359,6 +365,71 @@
             "post"
           ],
           "description": "F2.2: at a contact on the prop, the sample just before (pre) or just after (post) it; a pair shares t and p, and a free prop moving into a contact needs one."
+        }
+      }
+    },
+    "Role": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "performer",
+        "limb",
+        "role",
+        "target",
+        "at"
+      ],
+      "description": "PLAN-010 (S-133, owner: one part, one job; declared, not inferred): a limb's job in this beat, the twin of a contact the limb makes (support: a support contact or a touch on a surface; strike: a touch on a body or a prop; block: a touch whose verb is block; carry: a possess). A limb with no entry is free. S04 refuses a beat whose roles are not its contacts' (CONSTRAINT_SATISFIABLE) and keeps them out of the graph.",
+      "properties": {
+        "performer": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "limb": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "role": {
+          "enum": [
+            "support",
+            "strike",
+            "block",
+            "carry"
+          ]
+        },
+        "target": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "id",
+            "part"
+          ],
+          "properties": {
+            "kind": {
+              "enum": [
+                "entity",
+                "prop",
+                "surface"
+              ]
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*$"
+            },
+            "part": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^[a-z][a-z0-9_]*$"
+            }
+          }
+        },
+        "at": {
+          "enum": [
+            "start",
+            "end"
+          ]
         }
       }
     }

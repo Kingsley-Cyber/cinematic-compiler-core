@@ -18,7 +18,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-BEAT_DEFS = ["Ref", "Vec3", "Fact", "Effect", "Contact", "Cause", "Beat", "PropSample"]
+BEAT_DEFS = ["Ref", "Vec3", "Fact", "Effect", "Contact", "Cause", "Beat", "PropSample", "Role"]
 ROTATION_DEFS = ["EulerXYZ", "Turn", "AxisDeclaration"]
 # target -> [(source, [definition names])], applied in order (contact into beat before beat into the graphs)
 EMBEDS = {

@@ -60,7 +60,7 @@ TOP = re.compile(r"to y=(-?\d+(?:\.\d+)?)")
 # kinds whose top is stood or set on; a pillar or wall is met on its faces (not measured yet: F-235)
 WALKABLE = ("floor", "tabletop")
 SURFACE_SLACK_M, SUPPORT_M = 0.05, 0.1
-SURFACE_REACH_M = 1.5  # a body's reach from its root (compiler/author.py REACH_M, AA-10): Claude's interpretation
+SURFACE_REACH_M = BODY_REACH_M = 1.5  # a body's reach from its root (compiler/author.py REACH_M, AA-10): Claude's interpretation
 TELEPORT_MPS = 25.0  # owner O12: anything faster between keys is a teleport (human sprint ~12, anime ~15, strikes ~20)
 DECOY_M = 0.15  # owner O72's contact tolerance: the decoy stands where its actor stood (O48: A swaps places with it)
 
@@ -158,7 +158,8 @@ def validate(plan, packet):
     return (findings + _teleports(beats) + _vanished(beats) + _release_at_pose(beats)
             + _prop_kinematics(beats, props, packet["scene"]["genre"])
             + _thrown(beats) + _surface_heights(beats, _tops(packet), packet["standing_leg_m"])
-            + _prop_support(beats, _tops(packet)) + _surface_reach(beats, packet["surfaces"]))
+            + _prop_support(beats, _tops(packet)) + _surface_reach(beats, packet["surfaces"])
+            + _roles_agree(beats) + _one_part_one_job(beats) + _within_reach(beats))
 
 
 def _prop_support(beats, tops):
@@ -203,6 +204,85 @@ def surface_tops(surfaces, ground_text):
         elif surface["kind"] == "floor" and ground:
             tops[surface["id"]] = float(ground.group(1))
     return tops
+
+
+def role_of(contact):
+    """The job a contact gives its limb (PLAN-010, S-133): support (a support, or a touch on a surface: a push off it),
+    carry (a possess), block (a touch whose verb is block), strike (any other touch); a release gives none."""
+    kind, target = contact["contact_type"], contact["b"]["kind"]
+    if kind == "release":
+        return None
+    if kind == "support" or (kind == "touch" and target == "surface"):
+        return "support"
+    if kind == "possess":
+        return "carry"
+    return "block" if contact.get("verb") == "block" else "strike"
+
+
+def roles_from(beat):
+    """The roles a beat's contacts declare, as S04 must write them in `roles` (S-133)."""
+    return [{"performer": c["a"]["id"], "limb": c["a"]["part"], "role": role_of(c), "target": c["b"],
+             "at": c.get("at", "end")} for c in beat["contacts"] if role_of(c)]
+
+
+def _roles_agree(beats):
+    """CONSTRAINT_SATISFIABLE (PLAN-010, S-133): a beat's declared roles are its contacts' jobs, one for one (owner:
+    declared, not inferred; the contacts and the roles cannot drift apart)."""
+    findings = []
+    key = lambda r: (r["performer"], r["limb"], r["role"], r["target"]["kind"], r["target"]["id"], r["at"])  # noqa: E731
+    for beat in beats:
+        want, have = sorted(map(key, roles_from(beat))), sorted(map(key, beat.get("roles", [])))
+        if want != have:
+            missing = [w for w in want if w not in have]
+            extra = [h for h in have if h not in want]
+            findings.append(_finding("CONSTRAINT_SATISFIABLE", f"the roles do not match the contacts: missing {missing}, "
+                                     f"not a contact {extra}", beat["id"]))
+    return findings
+
+
+def _one_part_one_job(beats):
+    """ONE_PART_ONE_JOB (R20 next action 3, PLAN-010, S-133): at any instant a limb supports or strikes or blocks, not
+    two of them; a support stays from its onset until its release; a carried prop may strike with its hand."""
+    events = sorted(((_at(b, c), c["contact_type"] == "release", b["id"], c) for b in beats for c in b["contacts"]),
+                    key=lambda e: (e[0], not e[1]))  # a release at a strike's instant frees the limb for it
+    open_support, findings = {}, []
+    for t, _, beat_id, c in events:
+        limb = (c["a"]["id"], c["a"]["part"])
+        if c["contact_type"] == "release":
+            if open_support.get(limb, (None, None))[1] == c["b"]["id"]:
+                open_support.pop(limb)
+            continue
+        role = role_of(c)
+        held = open_support.get(limb)
+        if role in ("strike", "block") and held is not None:
+            findings.append(_finding("ONE_PART_ONE_JOB", f"{limb[0]} {limb[1]} strikes {c['b']['id']} at {t:g} while it "
+                                     f"stands on {held[1]} (since {held[0]:g}): one part, one job", beat_id, c))
+        if c["contact_type"] == "support":  # a touch on a surface (a push off it) is a moment: it opens no stand
+            if held is not None and held[1] != c["b"]["id"]:
+                findings.append(_finding("ONE_PART_ONE_JOB", f"{limb[0]} {limb[1]} stands on {c['b']['id']} at {t:g} while "
+                                         f"it stands on {held[1]}", beat_id, c))
+            open_support[limb] = (t, c["b"]["id"])
+    return findings
+
+
+def _within_reach(beats):
+    """CONSTRAINT_SATISFIABLE (S-133): a strike or a block lands from within reach: the striker's anchor and the
+    target's, at the strike's instant, no more than BODY_REACH_M apart (AA-10's rule, at S04 before any pose)."""
+    anchors = sorted((b["t"], e, p) for b in beats for e, p in b["pos"].items() if p is not None)
+
+    def anchor(entity, t):
+        return next((p for at, e, p in reversed(anchors) if e == entity and at <= t + EPSILON), None)
+    findings = []
+    for beat in beats:
+        for c in beat["contacts"]:
+            if role_of(c) not in ("strike", "block") or c["b"]["kind"] != "entity":
+                continue
+            t = _at(beat, c)
+            a, b = anchor(c["a"]["id"], t), anchor(c["b"]["id"], t)
+            if a is not None and b is not None and math.dist(a, b) > BODY_REACH_M:
+                findings.append(_finding("CONSTRAINT_SATISFIABLE", f"{c['a']['id']} {c['a']['part']} strikes {c['b']['id']} "
+                                         f"at {t:g} from {math.dist(a, b):.2f} m away (reach {BODY_REACH_M} m)", beat["id"], c))
+    return findings
 
 
 def box_distance(point, boxes):
