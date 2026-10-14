@@ -75,6 +75,9 @@ Full table: [docs/layer_order.md](docs/layer_order.md).
 - **R-33** A slice may rewrite the examples so they pass its own new check, as recorded deviations (the golden test and the session file), without a ruling per change.
 - **R-34** A check that judges a whole-body quality (direction, lean, height, momentum) reads the root's rotation, the support and every joint it depends on, and skips a span it cannot judge (an airborne turn) instead of reporting it.
 - **R-12** Never paper over a failure: when the verifier fails, fix or revert, and record what went wrong in the plan or a finding.
+- **R-36** Once the owner approves a plan, run all of it without asking and report at the end; stop only when the gate fails, a new decision is needed, or a bug changes the plan.
+- **R-37** Tests come from the checks: each check has one test of its valid case and one of its invalid case, each testing one behavior, the goal not the implementation, and failing if the check is wrong; a test that checks framework behavior, duplicates another, tests an impossible condition or a pass-through, or can never fail is deleted.
+- **R-38** The test budget: at most 20 tests and 200 lines per file, at most 100 ms per test; tests/budget_baseline.json lists what was over it on 2026-10-13 and only shrinks.
 - **R-13** The step IDs carry the build order: a step reads only what earlier steps wrote and writes only its own paths.
 - **R-14** Every layer that produces state has nodes and edges; L0, L0.5, L6 and L6.5 have nodes only; L4d facial runs for live action and UGC only.
 - **R-15** Contracts are JSON Schemas checked by the in-repo validator; no Pydantic; pyyaml is the only runtime dependency.
@@ -101,10 +104,10 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 ## 6. Current state
 
 <!-- BEGIN GENERATED: state -->
-- Layer order 1.10; rules 7.3; backlog 55.
-- Last session: S-131 (2026-10-13, applied): The re-block solver hands a finding it cannot clear to the model at once, and measures once per round.
+- Layer order 1.10; rules 7.4; backlog 55.
+- Last session: S-132 (2026-10-13, applied): The gate on six cores; the test budget in the gate; an approved plan runs to its end (ADR-O119).
 - Next slice: AA-9 S13 written in parallel pieces, one per fighter and time window (each window overlapping its neighbour by one beat), merged and repaired by the solver (step motion).
-- Open findings: 143; decisions: 145 (0 proposed, 7 owner_default awaiting the owner).
+- Open findings: 143; decisions: 146 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->
 
 The agent updates this section after every session by writing its session file (`docs/sessions/`), updating the

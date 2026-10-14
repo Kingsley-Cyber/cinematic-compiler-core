@@ -43,3 +43,18 @@ def empty_envelope(order, modality):
                            "style": 0, "quadrant": "D", "strata": [1], "load_bearing": False})
     base = skeleton("10s fight, 24fps, moonlit bamboo courtyard")
     return {**base, "intent": intent, "scene": scene, "nodes": groups["nodes"], "edges": groups["edges"]}
+
+
+# ADR-O119 (R-38): each test's call time, written once per full run for scripts/test_budget.py
+_DURATIONS = {}
+
+
+def pytest_runtest_logreport(report):
+    if report.when == "call":
+        _DURATIONS[report.nodeid] = round(report.duration, 4)
+
+
+def pytest_sessionfinish(session):
+    if not hasattr(session.config, "workerinput") and _DURATIONS:  # the controller, not an xdist worker
+        (Path(__file__).resolve().parents[1] / ".test_durations.json").write_text(
+            json.dumps(_DURATIONS, indent=0, sort_keys=True), encoding="utf-8")

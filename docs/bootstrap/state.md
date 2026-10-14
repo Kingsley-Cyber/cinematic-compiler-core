@@ -6,13 +6,13 @@ Where the work stands, from the repo's files only. For git state (unpushed commi
 
 ## Versions
 
-Layer order 1.10; rules 7.3; backlog 55.
+Layer order 1.10; rules 7.4; backlog 55.
 
 ## Last sessions
 
-- S-129 (applied): The fourth check: silhouette, computed at the camera step for every shot
 - S-130 (applied): Contacts with a surface measured from the skin; the solver repairs a lifted support and a beat-end contact
 - S-131 (applied): The re-block solver hands a finding it cannot clear to the model at once, and measures once per round
+- S-132 (applied): The gate on six cores; the test budget in the gate; an approved plan runs to its end (ADR-O119)
 
 ## Next slices
 
@@ -138,4 +138,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O119, finding F-236, session S-132, render R21.
+Decision ADR-O120, finding F-236, session S-133, render R21.

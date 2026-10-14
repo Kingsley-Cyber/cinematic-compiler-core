@@ -8,3 +8,4 @@ __pycache__/
 .ignore
 .DS_Store
 gate.log
+.test_durations.json

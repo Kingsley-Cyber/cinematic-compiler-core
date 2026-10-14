@@ -7,6 +7,7 @@ cd "$(dirname "$0")/.."
 if command -v mise >/dev/null 2>&1; then RUN="mise exec -- uv run --locked"; else RUN="uv run --locked"; fi
 $RUN ruff check .
 $RUN pytest -q
+$RUN python scripts/test_budget.py  # ADR-O119: the test budget (reads the run's .test_durations.json)
 for log in schemas library kernel docs; do
   $RUN python -m kernel.schema_log --log "$log" verify > /dev/null
 done

@@ -138,6 +138,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-129 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | PLAN-009 PM-4, check 4 of 4 (silhouette… | applied | the commit whose message names [S-129] | from 16:31 to 16:38 | — | [S-129-silhouette.md](../sessions/S-129-silhouette.md) |
 | S-130 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | The R20 idea re-run (R21 attempt) stopp… | applied | the commit whose message names [S-130] | from 18:31 to 18:38 | — | [S-130-contact-skin-and-two-repairs.md](../sessions/S-130-contact-skin-and-two-repairs.md) |
 | S-131 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | S-130's solver took 561 s and 312 s on… | applied | the commit whose message names [S-131] | from 19:05 to 19:11 | — | [S-131-solver-stops-retrying-what-it-cannot-fix.md](../sessions/S-131-solver-stops-retrying-what-it-cannot-fix.md) |
+| S-132 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | PLAN-010 Phase 0; ADR-O119 (owner: "add… | applied | the commit whose message names [S-132] | from 19:26 to 19:50 | — | [S-132-fast-gate-and-the-test-budget.md](../sessions/S-132-fast-gate-and-the-test-budget.md) |
 
 ## Status values
 

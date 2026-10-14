@@ -11,8 +11,10 @@ Every plan. Sorted by status, then ID. Counts are the open findings whose Relate
 | PLAN-007 | The principal review of 2026-10-11: every gap named, the owner's rulings, the gate | in progress | 62 | 0 | 15 | 15 | 2026-10-12 | [007-principal-review.md](../plans/007-principal-review.md) |
 | PLAN-008 | The automatic author: an idea in, a prompt out | in progress | 0 | 0 | 0 | 0 | 2026-10-12 | [008-automatic-author.md](../plans/008-automatic-author.md) |
 | PLAN-009 | Pose mechanics: the eight principles that make a pose read, computed and printed | in progress | 0 | 0 | 0 | 0 | 2026-10-13 | [009-pose-mechanics.md](../plans/009-pose-mechanics.md) |
+| PLAN-010 | Constraints in, angles out: the model declares what each limb does, a CPU solver computes the pose | in progress | 0 | 0 | 0 | 0 | 2026-10-13 | [010-constraints-in-angles-out.md](../plans/010-constraints-in-angles-out.md) |
 | PLAN-004 | Checkable constraints and equipment | blocked | 0 | 0 | 0 | 0 | 2026-10-11 | [004-checkable-constraints.md](../plans/004-checkable-constraints.md) |
 | PLAN-006 | Ten asymmetric things per beat (owner O87) | not started | 4 | 0 | 1 | 0 | 2026-10-11 | [006-ten-asymmetric-things.md](../plans/006-ten-asymmetric-things.md) |
+| PLAN-011 | The test diet: the suite brought within ADR-O119's budget | not started | 0 | 0 | 0 | 0 | 2026-10-13 | [011-test-diet.md](../plans/011-test-diet.md) |
 | PLAN-002 | M8: structured-prose prompts and DAG conformance | applied | 1 | 0 | 1 | 0 | 2026-10-11 | [M8_DAG_PROSE.md](../plans/M8_DAG_PROSE.md) |
 | PLAN-005 | The docs plane | applied | 1 | 0 | 0 | 1 | 2026-10-11 | [005-docs-plane.md](../plans/005-docs-plane.md) |
 

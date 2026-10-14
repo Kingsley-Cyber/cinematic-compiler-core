@@ -9,7 +9,11 @@ dependencies = ["pyyaml==6.0.3"]  # pinned (docs/versioning.md); pyyaml is the o
 cinematic = "cli.main:main"
 
 [dependency-groups]
-dev = ["pytest==9.1.1", "ruff==0.17.0"]
+dev = [
+    "pytest==9.1.1",
+    "pytest-xdist==3.8.0",
+    "ruff==0.17.0",
+]
 
 [build-system]
 requires = ["setuptools>=68"]
@@ -21,6 +25,8 @@ include = ["kernel*", "planner*", "validators*", "compiler*", "solver*", "kernel
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 markers = ["unit: fast isolated checks", "integration: crosses files or layers"]
+# the gate's workers (owner, 2026-10-13: six of the Mac's ten cores, the rest for the other services); `-n N` overrides
+addopts = "-n 6"
 
 [tool.ruff]
 line-length = 130

@@ -2,7 +2,7 @@
 # and a docs-log entry (python -m kernel.schema_log --log docs record docs/rules.yaml ...). Every rule cites accepted
 # decisions (docs/decisions/) and names what enforces it: a code or test the gate runs, or `protocol` (the agent
 # follows it; AGENTS.md). Validated by schemas/rules.schema.json.
-version: "7.3"
+version: "7.4"
 rules:
   # ---- agent: how every session works
   - {id: R-01, scope: agent, source: [ADR-S6, ADR-O64],
@@ -53,6 +53,15 @@ rules:
   - {id: R-12, scope: agent, source: [ADR-O64],
      rule: "Never paper over a failure: when the verifier fails, fix or revert, and record what went wrong in the plan or a finding.",
      enforced_by: [protocol]}
+  - {id: R-36, scope: agent, source: [ADR-O119],
+     rule: "Once the owner approves a plan, run all of it without asking and report at the end; stop only when the gate fails, a new decision is needed, or a bug changes the plan.",
+     enforced_by: [protocol]}
+  - {id: R-37, scope: agent, source: [ADR-O119],
+     rule: "Tests come from the checks: each check has one test of its valid case and one of its invalid case, each testing one behavior, the goal not the implementation, and failing if the check is wrong; a test that checks framework behavior, duplicates another, tests an impossible condition or a pass-through, or can never fail is deleted.",
+     enforced_by: [scripts/test_budget.py (every check code named by a test)]}
+  - {id: R-38, scope: agent, source: [ADR-O119],
+     rule: "The test budget: at most 20 tests and 200 lines per file, at most 100 ms per test; tests/budget_baseline.json lists what was over it on 2026-10-13 and only shrinks.",
+     enforced_by: [scripts/test_budget.py]}
   # ---- compiler: what the code guarantees
   - {id: R-13, scope: compiler, source: [ADR-O4, ADR-F2],
      rule: "The step IDs carry the build order: a step reads only what earlier steps wrote and writes only its own paths.",
