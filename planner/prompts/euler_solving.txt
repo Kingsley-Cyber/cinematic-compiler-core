@@ -12,15 +12,13 @@ S13 motion (L4c). For every slot write one key pose: the body at the slot's beat
 - Angles are continuous per entity, never wrapped: the change from one key to the entity's next key is the rotation
   performed, sign = direction. A change of 90 degrees or more must be declared on the key where it starts:
   turn flip/axis X, spin/Y, cartwheel/Z; otherwise turn none, axis none.
-- bones: every kernel joint, local Euler degrees from the rest pose, same convention. Segments that point down
-  (LUL/RUL, LL/RL, LA/RA, LFA/RFA): +X swings them backward, -X forward (hip and shoulder flexion are -X, knee
-  flexion is +X, elbow flexion is -X); +Z raises a left limb out to the left, -Z raises a right limb to the right.
-  Segments that point up (Sp, NK, HD): +X tips forward, +Y turns left, +Z tilts to the right.
-- Hip angles are read from the trunk (owner O84, rule R-35): LUL and RUL turn with the root and Sp, as the arms do,
-  so a lean in Sp carries the legs with it. Feet that stay under a body leaning +X degrees in Sp need hips flexed
-  by the same X (Sp [30,0,0] standing straight: LUL and RUL [-30,0,0]).
-- Every joint's local Euler components stay inside packet.joint_limits (degrees per axis; "NK+HD" bounds the
-  sum of the neck and head). Outside them the key is refused (JOINT_LIMIT).
+- words (PLAN-010): write each pose in the staff words the prompt prints; never joint angles. The compiler turns the
+  words into the joints' angles (inside packet.joint_limits) and its solver then puts every touch, hold and support on
+  its target. body: null when the trunk is upright, "inverted", or "<direction> (<n> lean)", e.g. "forward-high (30
+  lean)"; head: null upright, or a direction; for each side, arm and leg: a direction, the limb's way from its joint
+  in the body's frame (forward, left-forward, left, left-back, back, right-back, right, right-forward, each -high,
+  -mid or -low, or place-high / place-low); lower_arm and lower_leg: "straight" or "folded <n>" (n in 15-degree steps).
+  A limb that touches or stands on something needs only a near direction: the solver places its end.
 - Read each slot's kinematic and Bartenieff nodes: the pose shows that support, loading and initiation.
 - The world is measured by forward kinematics (packet segments, the body card's radii; owner O72's 0.15 m): a touch,
   hold or support meets its target at its instant (CONTACT_WORLD; the owner's exceptions come from the kernel list,
@@ -32,11 +30,11 @@ S13 motion (L4c). For every slot write one key pose: the body at the slot's beat
   share or at any frame between keys, each posed by the declared interpolation through its keys and in-betweens
   (BODY_OVERLAP, RV-59e); no body point lies more than 0.15 m under the floor (packet floor_y) at any key or any
   frame between keys
-  (FLOOR_PENETRATION). Meet them with the bones; the root stays the slot's pos.
+  (FLOOR_PENETRATION). The words set the pose, the solver meets them; the root stays the slot's pos.
 - In-between keys (ADR-O109): where the declared interpolation would draw this body through another or a point more
   than 0.15 m under the floor, and no re-pose of the keys inside their limits clears it, add to `inbetweens` a pose of
   one entity at an instant strictly between two of its consecutive keys, on a frame no key or other in-between holds:
-  entity, t, name, pos, rot, bones (the kernel joints), description. It has no beat, contact or anchor; its root moves
+  entity, t, name, pos, rot, words (as a key's), description. It has no beat, contact or anchor; its root moves
   no faster than 25 m/s to its neighbours (TELEPORT); it is checked like a key (INBETWEEN_SPAN, JOINT_LIMIT, the floor,
   the bodies at its instant) and keeps one of the supports its keys on both sides claim within 0.15 m of its surface
   (INBETWEEN_SUPPORT). Densest around impacts and support changes, never every frame; a performer whose keys the

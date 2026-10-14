@@ -72,6 +72,13 @@ def _schema(node):
     schema["properties"] = {k: v for k, v in schema.get("properties", {}).items() if k not in FILLED}
     for key in ("$schema", "$id"):
         schema.pop(key, None)
+    if node == "motion":  # PLAN-010 (S-134): the model writes each pose in words, never joint angles
+        for group in ("keys", "inbetweens"):
+            item = schema.get("properties", {}).get(group, {}).get("items")
+            if item:
+                item["properties"].pop("bones", None)
+                item.pop("anyOf", None)
+                item["required"] = [*item["required"], "words"]
     return schema
 
 
@@ -95,7 +102,13 @@ class ClaudeCLI:
             path = next((ROOT / "examples").glob(f"*/plans/{node}.json"), None)
         if path is None:
             return None
-        return {k: v for k, v in json.loads(path.read_text(encoding="utf-8")).items() if k not in FILLED}
+        guide = {k: v for k, v in json.loads(path.read_text(encoding="utf-8")).items() if k not in FILLED}
+        if node == "motion":  # PLAN-010 (S-134): the guide shows words, as the model writes them
+            from solver.intent import words_of
+            for group in ("keys", "inbetweens"):
+                guide[group] = [{**{k: v for k, v in item.items() if k != "bones"}, "words": words_of(item)}
+                                for item in guide.get(group, [])]
+        return guide
 
     def write(self, node, step_id, packet, findings=None):
         whole = any(f.get("code", "").startswith(("ROTATION", "TURN")) for f in findings or [])  # a turn spans pieces
@@ -280,7 +293,8 @@ def repair_motion(document, findings, envelope, rounds=None):
     if not any(f.get("code") in REPAIRABLE for f in findings or []):
         return None
     packet = p13_motion.prepare(envelope)
-    plan, genre = copy.deepcopy(document), envelope["scene"]["genre"]
+    # PLAN-010 (S-134): a key the model wrote in words gets its angles first; the solver works on angles
+    plan, genre = p13_motion.resolved(copy.deepcopy(document), packet), envelope["scene"]["genre"]
     metres = forward_kinematics.segments(genre)
     entities = sorted({k["slot"].split("@")[0] for k in plan["keys"]})
     floor = floor_penetration.floor_level(envelope["nodes"]["surfaces"]["items"], envelope["scene"]["ax"].get("ground"))

@@ -30,6 +30,7 @@ from solver import (
     euler_solver,
     floor_penetration,
     forward_kinematics,
+    intent,
     interpolation,
     quaternion,
     trajectory,
@@ -62,7 +63,7 @@ def prepare(envelope):
     view = [{**{k: s[k] for k in SLOT_FIELDS}, "allowed_postures": values_in_progress(envelope, s, "posture"),
              "kinematic": _body(kinematic[s["slot"]]),
              "bartenieff": _body(bartenieff[s["slot"]])} for s in slots(envelope)]
-    return seal({"step_id": STEP, "band": "L4c", "kind": "motion_plan", "schema": "urn:cinematic-compiler:schema:motion_plan:2.1",
+    return seal({"step_id": STEP, "band": "L4c", "kind": "motion_plan", "schema": "urn:cinematic-compiler:schema:motion_plan:2.2",
                  "instructions": PROMPT.read_text(encoding="utf-8"), "rotation_convention": convention,
                  "joints": euler_solver.kernel_joints(load_kernel("invariants")),
                  "joint_limits": joint_limits(envelope["scene"]["genre"]),
@@ -245,7 +246,16 @@ def _posed(sequence, t):
     return interpolation.pose(before[-1], after[0], t) if before and after else None
 
 
+def resolved(document, packet):
+    """PLAN-010 (S-134): the document with every key the model wrote in words given its angles (solver/intent.py),
+    inside the packet's joint limits; a key with bones (the owner's source, the solver's repair) keeps them."""
+    flat = {f"{joint}.{axis}": tuple(bounds) for joint, row in packet["joint_limits"].items() if "+" not in joint
+            for axis, bounds in row.items()}
+    return intent.resolve(document, flat)
+
+
 def check(document, packet):
+    document = resolved(document, packet)
     findings, keys, by_id = _keys(document, packet)
     if findings:
         return findings
@@ -267,6 +277,7 @@ def check(document, packet):
 
 
 def build(envelope, document, packet):
+    document = resolved(document, packet)
     _, keys, by_id = _keys(document, packet)
     bases = euler_solver.check(keys, by_id, packet["joints"], packet["rotation_convention"]["turns"],
                                packet["joint_limits"])[1]

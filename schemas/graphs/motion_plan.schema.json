@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:cinematic-compiler:schema:motion_plan:2.1",
+  "$id": "urn:cinematic-compiler:schema:motion_plan:2.2",
   "title": "S13 motion plan (authored in-session): one Euler key pose per entity per beat, and in-between keys",
   "description": "Root pos equals the S04 anchor; rot agrees with the S04 facing; bones are the kernel joints; turns declare their axis (flip X, spin Y, cartwheel Z). An in-between key (ADR-O109) is one entity's pose at an instant strictly between two of its consecutive keys, on a frame of its own, with no beat, contact or anchor; S13 checks it like a key.",
   "type": "object",
@@ -58,7 +58,6 @@
           "name",
           "pos",
           "rot",
-          "bones",
           "turn",
           "axis_declaration",
           "description"
@@ -109,8 +108,23 @@
           "description": {
             "type": "string",
             "minLength": 1
+          },
+          "words": {
+            "$ref": "#/$defs/PoseWords"
           }
-        }
+        },
+        "anyOf": [
+          {
+            "required": [
+              "bones"
+            ]
+          },
+          {
+            "required": [
+              "words"
+            ]
+          }
+        ]
       }
     },
     "inbetweens": {
@@ -125,7 +139,6 @@
           "name",
           "pos",
           "rot",
-          "bones",
           "description"
         ],
         "properties": {
@@ -172,8 +185,23 @@
           "description": {
             "type": "string",
             "minLength": 1
+          },
+          "words": {
+            "$ref": "#/$defs/PoseWords"
           }
-        }
+        },
+        "anyOf": [
+          {
+            "required": [
+              "bones"
+            ]
+          },
+          {
+            "required": [
+              "words"
+            ]
+          }
+        ]
       }
     }
   },
@@ -204,6 +232,227 @@
         "Y",
         "Z"
       ]
+    },
+    "PoseWords": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "body",
+        "head",
+        "left",
+        "right"
+      ],
+      "description": "PLAN-010 (S-134): the pose in the staff words the prompt prints, the model's intent; the compiler turns them into the joint angles (solver/intent.py) and the solver puts each contact on its target. body: null upright, 'inverted', or '<direction> (<n> lean)'; head: null upright or a direction; each side's arm and leg a direction, its lower arm and leg 'straight' or 'folded <n>'.",
+      "properties": {
+        "body": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "pattern": "^(inverted|[a-z-]+-(high|mid|low) \\([0-9]+ lean\\))$"
+            }
+          ]
+        },
+        "head": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "enum": [
+                "forward-high",
+                "forward-mid",
+                "forward-low",
+                "left-forward-high",
+                "left-forward-mid",
+                "left-forward-low",
+                "left-high",
+                "left-mid",
+                "left-low",
+                "left-back-high",
+                "left-back-mid",
+                "left-back-low",
+                "back-high",
+                "back-mid",
+                "back-low",
+                "right-back-high",
+                "right-back-mid",
+                "right-back-low",
+                "right-high",
+                "right-mid",
+                "right-low",
+                "right-forward-high",
+                "right-forward-mid",
+                "right-forward-low",
+                "place-high",
+                "place-low"
+              ]
+            }
+          ]
+        },
+        "left": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "arm",
+            "lower_arm",
+            "leg",
+            "lower_leg"
+          ],
+          "properties": {
+            "arm": {
+              "enum": [
+                "forward-high",
+                "forward-mid",
+                "forward-low",
+                "left-forward-high",
+                "left-forward-mid",
+                "left-forward-low",
+                "left-high",
+                "left-mid",
+                "left-low",
+                "left-back-high",
+                "left-back-mid",
+                "left-back-low",
+                "back-high",
+                "back-mid",
+                "back-low",
+                "right-back-high",
+                "right-back-mid",
+                "right-back-low",
+                "right-high",
+                "right-mid",
+                "right-low",
+                "right-forward-high",
+                "right-forward-mid",
+                "right-forward-low",
+                "place-high",
+                "place-low"
+              ]
+            },
+            "lower_arm": {
+              "type": "string",
+              "pattern": "^(straight|folded (1[5-9]|[2-9][0-9]|1[0-7][0-9]|180))$"
+            },
+            "leg": {
+              "enum": [
+                "forward-high",
+                "forward-mid",
+                "forward-low",
+                "left-forward-high",
+                "left-forward-mid",
+                "left-forward-low",
+                "left-high",
+                "left-mid",
+                "left-low",
+                "left-back-high",
+                "left-back-mid",
+                "left-back-low",
+                "back-high",
+                "back-mid",
+                "back-low",
+                "right-back-high",
+                "right-back-mid",
+                "right-back-low",
+                "right-high",
+                "right-mid",
+                "right-low",
+                "right-forward-high",
+                "right-forward-mid",
+                "right-forward-low",
+                "place-high",
+                "place-low"
+              ]
+            },
+            "lower_leg": {
+              "type": "string",
+              "pattern": "^(straight|folded (1[5-9]|[2-9][0-9]|1[0-7][0-9]|180))$"
+            }
+          }
+        },
+        "right": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "arm",
+            "lower_arm",
+            "leg",
+            "lower_leg"
+          ],
+          "properties": {
+            "arm": {
+              "enum": [
+                "forward-high",
+                "forward-mid",
+                "forward-low",
+                "left-forward-high",
+                "left-forward-mid",
+                "left-forward-low",
+                "left-high",
+                "left-mid",
+                "left-low",
+                "left-back-high",
+                "left-back-mid",
+                "left-back-low",
+                "back-high",
+                "back-mid",
+                "back-low",
+                "right-back-high",
+                "right-back-mid",
+                "right-back-low",
+                "right-high",
+                "right-mid",
+                "right-low",
+                "right-forward-high",
+                "right-forward-mid",
+                "right-forward-low",
+                "place-high",
+                "place-low"
+              ]
+            },
+            "lower_arm": {
+              "type": "string",
+              "pattern": "^(straight|folded (1[5-9]|[2-9][0-9]|1[0-7][0-9]|180))$"
+            },
+            "leg": {
+              "enum": [
+                "forward-high",
+                "forward-mid",
+                "forward-low",
+                "left-forward-high",
+                "left-forward-mid",
+                "left-forward-low",
+                "left-high",
+                "left-mid",
+                "left-low",
+                "left-back-high",
+                "left-back-mid",
+                "left-back-low",
+                "back-high",
+                "back-mid",
+                "back-low",
+                "right-back-high",
+                "right-back-mid",
+                "right-back-low",
+                "right-high",
+                "right-mid",
+                "right-low",
+                "right-forward-high",
+                "right-forward-mid",
+                "right-forward-low",
+                "place-high",
+                "place-low"
+              ]
+            },
+            "lower_leg": {
+              "type": "string",
+              "pattern": "^(straight|folded (1[5-9]|[2-9][0-9]|1[0-7][0-9]|180))$"
+            }
+          }
+        }
+      }
     }
   }
 }
