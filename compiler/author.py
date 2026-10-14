@@ -314,6 +314,16 @@ def repair_motion(document, findings, envelope, rounds=None):
             parts.add(name)
         return goals, parts
 
+    def claim_goal(slot, part, points):
+        """Where a claimed support goes: its row's nearest surface point, the part's skin off it (S-130)."""
+        rows = {r["id"]: r for r in contact_world.measure_plan({k["slot"]: k for k in plan["keys"]}, slots, packet,
+                                                               plan.get("inbetweens", []))}
+        target = rows[f"{slot}:{part}"]["target_point"]
+        away = [a - b for a, b in zip(points[part], target, strict=True)]
+        length = sum(v * v for v in away) ** 0.5
+        up = [v / length for v in away] if length > 1e-9 else [0.0, 1.0, 0.0]
+        return [b + v * contact_world.skin(part, radii) for b, v in zip(target, up, strict=True)]
+
     skipped = set()
     rounds = rounds or min(40, 2 * len(findings) + 4)  # enough for every finding, its repair re-checked
     for _ in range(rounds):
@@ -324,11 +334,16 @@ def repair_motion(document, findings, envelope, rounds=None):
         finding = mine[0]
         if finding["code"] == "CONTACT_WORLD":  # the actor's key at the contact's instant
             contact = contacts.get(finding.get("contact"))
-            slot = f"{contact['a']['id']}@{contact['beat']}" if contact else None
-            if not contact or not any(k["slot"] == slot for k in plan["keys"]):
+            claim = None
+            if contact:  # S-130: the key at the contact's own instant (a contact at its beat's end is the next key's)
+                slot = next((k["slot"] for k in plan["keys"] if slots.get(k["slot"], {}).get("entity") == contact["a"]["id"]
+                             and abs(slots[k["slot"]]["t"] - contact["t"]) < 1e-6), None)
+            else:  # S-130: a key's claimed support ("<slot>:<part>") off its surface
+                slot, _, claim = (finding.get("contact") or "").partition(":")
+            if not slot or not claim and not contact or not any(k["slot"] == slot for k in plan["keys"]):
                 skipped.add(canonical_json(finding))  # between keys or unknown: the model's
                 continue
-            finding = {**finding, "slot": slot, "message": ""}
+            finding = {**finding, "slot": slot, "message": "", "claim": claim or None}
         entity = finding["slot"].split("@")[0]
         between = BETWEEN.search(finding.get("message", ""))
         others = [e for e in entities if e != entity]
@@ -360,6 +375,9 @@ def repair_motion(document, findings, envelope, rounds=None):
                                      if k["slot"] == slot))
             points = forward_kinematics.points(key, metres)
             goals, parts = touch_goals(entity, key["t"], key)
+            if finding.get("claim"):  # S-130: the part S11 says it stands on, put on that surface (its skin on it)
+                goals.append((finding["claim"], claim_goal(slot, finding["claim"], points)))
+                parts.add(finding["claim"])
             goals += [(sole, points[sole]) for sole in ("left_foot", "right_foot") if sole not in parts]
             legs = any(p.endswith(("_foot", "_leg")) for p in parts)
             free = ARMS_SPINE + (LEGS if legs else [])

@@ -128,7 +128,7 @@ def inbetween_claims(inbetweens, keys, slots, packet):
             here = inbetween_bodies([between], packet, bodies)
             body = next(iter(here.values()))
             out[body["id"]] = _claims(here, {body["id"]: common}, view["surface_tops"], set(view["floors"]),
-                                      view["contacts"], packet.get("floor_y"), view["surface_faces"])
+                                      view["contacts"], packet.get("floor_y"), view["surface_faces"], packet["radii"])
     return out
 
 
@@ -205,8 +205,8 @@ def faces(surfaces):
 
 
 def box_gap(point, boxes):
-    """(metres, nearest surface point) from a point to the surface of the nearest box: outside, to the box; inside, out
-    through the nearest face (a part pressed into a pillar misses its face by that depth)."""
+    """(metres, nearest surface point, inside) from a point to the surface of the nearest box: outside, to the box;
+    inside, out through the nearest face (a part pressed into a pillar misses its face by that depth)."""
     best = None
     for box in boxes:
         lo, hi = box["min"], box["max"]
@@ -218,8 +218,23 @@ def box_gap(point, boxes):
                                   for i, (v, a, b) in enumerate(zip(point, lo, hi, strict=True)))
             near = [edge if i == axis else v for i, v in enumerate(point)]
         if best is None or gap < best[0]:
-            best = (gap, near)
-    return round(best[0], 3), [round(v, 6) for v in best[1]]
+            best = (gap, near, clamped == list(point))
+    return round(best[0], 3), [round(v, 6) for v in best[1]], best[2]
+
+
+def skin(part, radii):
+    """How far a part's point lies inside its body (S-130): a sole is the foot's underside, every other point is on its
+    segment's axis, its capsule's radius in from the skin that meets a surface (as body to body, RV-49)."""
+    return 0.0 if part.endswith("_foot") or radii is None else part_radius(part, radii)
+
+
+def surface_miss(point, part, radii, top=None, boxes=None):
+    """(metres, surface point) from the part's skin to a surface: a floor's top below it, or a box's nearest point."""
+    r = skin(part, radii)
+    if boxes is not None:
+        gap, near, inside = box_gap(point, boxes)
+        return round(gap + r if inside else abs(gap - r), 3), near
+    return round(abs(point[1] - top - r), 3), [point[0], top, point[2]]
 
 
 def _rows(keys, support, tops, floors, prop_samples, contacts, radii, floor=None, metres=None, faces=None):
@@ -254,14 +269,13 @@ def _rows(keys, support, tops, floors, prop_samples, contacts, radii, floor=None
             row["reason"] = f"no point for {c['body_part']}"
             continue
         row["actor_point"] = point
-        if b["kind"] == "surface" and b["id"] in faces:  # F-235 (S-124): its top or a face, the nearest
-            row["distance"], row["target_point"] = box_gap(point, faces[b["id"]])
+        if b["kind"] == "surface" and b["id"] in faces:  # F-235 (S-124): its top or a face, the nearest; S-130 its skin
+            row["distance"], row["target_point"] = surface_miss(point, c["body_part"], radii, boxes=faces[b["id"]])
         elif b["kind"] == "surface":
             if b["id"] not in tops or (c["contact_type"] == "touch" and b["id"] not in floors):
                 row["reason"] = "a surface's face (no top to meet)"  # a touch on a wall or a pillar; a floor has only a top
                 continue
-            row["target_point"] = [point[0], tops[b["id"]], point[2]]
-            row["distance"] = round(abs(point[1] - tops[b["id"]]), 3)
+            row["distance"], row["target_point"] = surface_miss(point, c["body_part"], radii, top=tops[b["id"]])
         elif b["kind"] == "prop":
             here, moving, between = _prop_at(samples, b["id"], t)
             if not here:
@@ -279,11 +293,11 @@ def _rows(keys, support, tops, floors, prop_samples, contacts, radii, floor=None
             target = [other["capsules"][name] for name in part_capsules(b.get("part") or "torso")]
             row["distance"], row["target_point"] = surface_gap(point, part_radius(c["body_part"], radii), target)
         row["measurable"] = True
-    rows += _claims(keys, support, tops, floors, contacts, floor, faces)
+    rows += _claims(keys, support, tops, floors, contacts, floor, faces, radii)
     return sorted(rows, key=lambda row: (row["t"], row["id"]))
 
 
-def _claims(keys, support, tops, floors, contacts, floor, faces=None):
+def _claims(keys, support, tops, floors, contacts, floor, faces=None, radii=None):
     """RV-14a (F-089): every key's claimed supports, each part to its open support contact's surface or to the floor;
     a support contact's own onset is measured with the contacts."""
     ordered = sorted(contacts, key=lambda c: (c["t"], c["id"]))
@@ -303,7 +317,7 @@ def _claims(keys, support, tops, floors, contacts, floor, faces=None):
             boxes = (faces or {}).get(surface)
             if (entity, part, t) in onsets or (top is None and boxes is None) or point is None:
                 continue  # an onset is measured with its contact; a part with no point is not
-            gap, near = box_gap(point, boxes) if boxes else (round(abs(point[1] - top), 3), [point[0], top, point[2]])
+            gap, near = surface_miss(point, part, radii, top=top, boxes=boxes)  # S-130: from the part's skin
             rows.append({"id": f"{key['id']}:{part}", "t": t, "actor": entity, "part": part, "kind": KINDS["surface"],
                          "target": _words(surface) if surface else "the floor", "actor_point": point,
                          "target_point": near, "distance": gap,
