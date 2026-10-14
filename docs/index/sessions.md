@@ -137,6 +137,7 @@ Every session, in order. Each follows the nine-step protocol in AGENTS.md.
 | S-128 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | PLAN-009 PM-1/PM-2, check 3 of 4 (WEIGH… | applied | the commit whose message names [S-128] | from 12:27 to 12:45 and from 16:08 to 16:35 (the owner's rulings between) | — | [S-128-weight-distribution.md](../sessions/S-128-weight-distribution.md) |
 | S-129 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | PLAN-009 PM-4, check 4 of 4 (silhouette… | applied | the commit whose message names [S-129] | from 16:31 to 16:38 | — | [S-129-silhouette.md](../sessions/S-129-silhouette.md) |
 | S-130 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | The R20 idea re-run (R21 attempt) stopp… | applied | the commit whose message names [S-130] | from 18:31 to 18:38 | — | [S-130-contact-skin-and-two-repairs.md](../sessions/S-130-contact-skin-and-two-repairs.md) |
+| S-131 | 2026-10-13 | Claude Code (Opus 5.5), finish run 1 (docs/reports/2026-10-11-finish-1.md) | S-130's solver took 561 s and 312 s on… | applied | the commit whose message names [S-131] | from 19:05 to 19:11 | — | [S-131-solver-stops-retrying-what-it-cannot-fix.md](../sessions/S-131-solver-stops-retrying-what-it-cannot-fix.md) |
 
 ## Status values
 

@@ -289,10 +289,18 @@ def repair_motion(document, findings, envelope, rounds=None):
     radii = forward_kinematics.radii(genre)
     slots = {s["slot"]: s for s in packet["slots"]}
 
+    measured = {}
+
+    def rows_now():
+        """The contact rows of the plan as it stands, measured once per round (S-131: not once per goal)."""
+        if "rows" not in measured:
+            measured["rows"] = {r["id"]: r for r in contact_world.measure_plan(
+                {k["slot"]: k for k in plan["keys"]}, slots, packet, plan.get("inbetweens", []))}
+        return measured["rows"]
+
     def touch_goals(entity, t, key):
         """(goals, parts) placing each part the entity touches something with at instant t on its target."""
-        rows = {r["id"]: r for r in contact_world.measure_plan({k["slot"]: k for k in plan["keys"]}, slots, packet,
-                                                               plan.get("inbetweens", []))}
+        rows = rows_now()
         goals, parts = [], set()
         for c in contacts.values():
             row = rows.get(c["id"])
@@ -316,9 +324,7 @@ def repair_motion(document, findings, envelope, rounds=None):
 
     def claim_goal(slot, part, points):
         """Where a claimed support goes: its row's nearest surface point, the part's skin off it (S-130)."""
-        rows = {r["id"]: r for r in contact_world.measure_plan({k["slot"]: k for k in plan["keys"]}, slots, packet,
-                                                               plan.get("inbetweens", []))}
-        target = rows[f"{slot}:{part}"]["target_point"]
+        target = rows_now()[f"{slot}:{part}"]["target_point"]
         away = [a - b for a, b in zip(points[part], target, strict=True)]
         length = sum(v * v for v in away) ** 0.5
         up = [v / length for v in away] if length > 1e-9 else [0.0, 1.0, 0.0]
@@ -331,7 +337,7 @@ def repair_motion(document, findings, envelope, rounds=None):
                       key=lambda f: REPAIRABLE.index(f["code"]))
         if not mine:
             break
-        finding = mine[0]
+        finding = original = mine[0]
         if finding["code"] == "CONTACT_WORLD":  # the actor's key at the contact's instant
             contact = contacts.get(finding.get("contact"))
             claim = None
@@ -391,7 +397,10 @@ def repair_motion(document, findings, envelope, rounds=None):
                 item.update(pos=solved["pos"], rot=solved["rot"], bones=solved["bones"],
                             name=f"clear_of_{others[0]}" if others else "clear",
                             description=f"{entity} kept clear of {' and '.join(others)} between keys (placed by the solver).")
+        measured.clear()
         findings = p13_motion.check(plan, packet)
+        if canonical_json(original) in {canonical_json(f) for f in findings}:
+            skipped.add(canonical_json(original))  # S-131: the solver could not clear it; the model's, at once
     return plan
 
 

@@ -10,9 +10,9 @@ Layer order 1.10; rules 7.3; backlog 55.
 
 ## Last sessions
 
-- S-128 (applied): S14's third check: weight distribution, refusing from the start (the pose follows S11)
 - S-129 (applied): The fourth check: silhouette, computed at the camera step for every shot
 - S-130 (applied): Contacts with a surface measured from the skin; the solver repairs a lifted support and a beat-end contact
+- S-131 (applied): The re-block solver hands a finding it cannot clear to the model at once, and measures once per round
 
 ## Next slices
 
@@ -138,4 +138,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O119, finding F-236, session S-131, render R21.
+Decision ADR-O119, finding F-236, session S-132, render R21.
