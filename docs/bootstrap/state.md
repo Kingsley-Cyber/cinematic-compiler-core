@@ -10,9 +10,9 @@ Layer order 1.10; rules 7.4; backlog 55.
 
 ## Last sessions
 
-- S-133 (applied): One part, one job: S04 declares each limb's role and refuses a brief no pose can meet
 - S-134 (applied): The model writes each pose in words, the compiler the joint angles, the solver the contacts
 - S-135 (applied): The wasteland world card; S01 reads a world card's name as a place
+- S-136 (applied): A side-pointing arm's angles stay inside the schema bound
 
 ## Next slices
 
@@ -138,4 +138,4 @@ M9: 24 of 39 slices done, 15 left (M9-03a blocked, M9-11 blocked; 1 the owner's 
 
 ## Next free IDs
 
-Decision ADR-O120, finding F-236, session S-136, render R21.
+Decision ADR-O120, finding F-236, session S-137, render R21.

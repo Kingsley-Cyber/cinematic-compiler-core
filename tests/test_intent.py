@@ -52,3 +52,8 @@ def test_the_model_writes_words_and_never_angles():
     from compiler.author import _schema
     item = _schema("motion")["properties"]["keys"]["items"]
     assert "bones" not in item["properties"] and "words" in item["required"]
+
+
+def test_every_direction_word_stays_inside_the_schema_bound():
+    """S-136: an arm straight out to the side reads the same at every pitch; the search keeps the one nearest rest."""
+    assert all(abs(v) <= 180 for word in DIRECTIONS for v in intent.limb_angles(word))

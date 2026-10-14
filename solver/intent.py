@@ -38,17 +38,17 @@ def _angle(u, v):
 
 
 def _search(rest, target, steps=(30, 10, 3, 1)):
-    """[pitch, 0, roll] whose rotation turns `rest` closest to `target` (a coarse grid, then finer around the best)."""
-    best = (math.inf, 0.0, 0.0)
-    for x in range(-180, 181, steps[0]):
-        for z in range(-90, 91, steps[0]):
-            best = min(best, (_angle(apply(matrix([x, 0, z]), rest), target), x, z))
+    """[pitch, 0, roll] whose rotation turns `rest` closest to `target` (a coarse grid, then finer around the best),
+    inside pitch -180..180 and roll -90..90; among equally close angles the one nearest rest (an arm straight out to
+    the side reads the same at every pitch: S-136)."""
+    def score(x, z):
+        return (round(_angle(apply(matrix([x, 0, z]), rest), target), 6), abs(x) + abs(z), x, z)
+    best = min(score(x, z) for x in range(-180, 181, steps[0]) for z in range(-90, 91, steps[0]))
     for step in steps[1:]:
-        _, bx, bz = best
-        for x in (bx + step * i for i in range(-3, 4)):
-            for z in (bz + step * i for i in range(-3, 4)):
-                best = min(best, (_angle(apply(matrix([x, 0, z]), rest), target), x, z))
-    return [round(best[1], 6) + 0.0, 0.0, round(best[2], 6) + 0.0]
+        _, _, bx, bz = best
+        best = min([best] + [score(x, z) for x in (bx + step * i for i in range(-3, 4)) if -180 <= x <= 180
+                             for z in (bz + step * i for i in range(-3, 4)) if -90 <= z <= 90])
+    return [round(best[2], 6) + 0.0, 0.0, round(best[3], 6) + 0.0]
 
 
 def limb_angles(word):
