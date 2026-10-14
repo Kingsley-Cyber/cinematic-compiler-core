@@ -1,0 +1,20 @@
+card_id: desolate_wasteland
+kind: world
+card_version: 1
+status: draft
+names: [desolate wasteland, wasteland]
+description: A post-apocalyptic wasteland of cracked dry earth under a dust-red sky, with broken concrete slabs and the rusted shell of a car.
+match_terms: [wasteland, apocalypse, apocalyptic, rubble, dust]
+genres: [anime, live_action]
+ax: {up: "+Y", forward: "+Z", ground: "y=0", unit: m}
+surfaces:
+  - {id: ground, kind: floor, description: Cracked dry earth at y=0., boxes: [{min: [-9, -0.5, -9], max: [9, 0, 9]}]}
+  - {id: concrete_slab, kind: obstacle, description: A broken concrete slab tilted out of the ground., boxes: [{min: [-4.5, 0, -3.5], max: [-3, 1.2, -2.5]}]}
+  - {id: car_wreck, kind: obstacle, description: The rusted shell of a car half buried in sand., boxes: [{min: [3.5, 0, 3], max: [5.5, 1.4, 4.8]}]}
+invariants:
+  - id: damage_persists
+    rule: Craters, cracks and broken concrete stay visible for the rest of the scene once made.
+provenance:
+  authored_by: claude-code
+  date: "2026-10-13"
+  basis: Draft card for the owner's Fist of the North Star idea (owner asked for the world card only, 2026-10-13); not research-sourced; needs owner review.

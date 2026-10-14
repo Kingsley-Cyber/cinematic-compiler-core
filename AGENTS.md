@@ -105,7 +105,7 @@ With sources and enforcement: [docs/rules.md](docs/rules.md).
 
 <!-- BEGIN GENERATED: state -->
 - Layer order 1.10; rules 7.4; backlog 55.
-- Last session: S-134 (2026-10-13, applied): The model writes each pose in words, the compiler the joint angles, the solver the contacts.
+- Last session: S-135 (2026-10-13, applied): The wasteland world card; S01 reads a world card's name as a place.
 - Next slice: AA-9 S13 written in parallel pieces, one per fighter and time window (each window overlapping its neighbour by one beat), merged and repaired by the solver (step motion).
 - Open findings: 143; decisions: 146 (0 proposed, 7 owner_default awaiting the owner).
 <!-- END GENERATED: state -->

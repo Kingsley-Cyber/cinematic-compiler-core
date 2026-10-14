@@ -93,7 +93,7 @@ flowchart LR
 | `planner.entity_grounder` | — | — |
 | `planner.genre_profile` | `kernel.canonical`, `planner.dependency_graph`, `validators.schema_validator` | functools, json, yaml |
 | `planner.hits` | `compiler.passes.mandatory.p07_contact`, `planner.dynamic_beat_validator` | — |
-| `planner.intent_parser` | `kernel.canonical` | argparse, re, sys |
+| `planner.intent_parser` | `kernel.canonical` | argparse, functools, pathlib, re, sys, yaml |
 | `planner.library_vocab` | `planner.dependency_graph`, `validators.schema_validator` | functools, json, yaml |
 | `planner.modality` | `kernel.canonical`, `planner.dependency_graph`, `validators.schema_validator` | functools, json |
 | `planner.query_expander` | `kernel.canonical`, `kernel.kernel_files`, `planner.archetype_resolver`, `planner.card_loader`, `planner.chaining`, `planner.entity_grounder`, `planner.intent_parser`, `planner.modality`, `planner.world_grounder` | argparse, sys |

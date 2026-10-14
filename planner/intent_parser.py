@@ -1,11 +1,12 @@
-"""S01 intent parser (band L0): literal extraction from the query, no model, no library, no inference.
+"""S01 intent parser (band L0): literal extraction, no model, no inference; place names also from world cards.
 
 Rules (deterministic; an unmatched field stays null/empty and is named in `missing`):
 - duration_s: <digits><optional space/hyphen><s|sec|secs|second|seconds>, or a number word with a
   space/hyphen before the unit ("ten-second").
 - fps: <digits> fps | <digits> frames per second | fps <digits>.
 - genre: "anime", "ugc"/"ugc ad", "live action"/"live-action" -> the declared modality names.
-- setting: "in|on|at|inside|atop a|an|the <phrase>" or a comma segment, ending in a place noun.
+- setting: "in|on|at|inside|atop a|an|the <phrase>" or a comma segment, ending in a place noun: one of PLACE_NOUNS or the
+  last word of a world card's name (library/worlds; owner, 2026-10-13: the cards name the places).
 - entities_hinted: the words on each side of "vs"/"versus", the words before "product", and cast lines
   "<capital letter>: <description>" (up to three words before the first comma, e.g. "A: lean ninja, dark coat").
 - props_hinted: "with|holding|wielding|carrying a|an|the|his|her|their|its <one or two words>", and each comma
@@ -18,6 +19,10 @@ field give null plus an ambiguity entry, never a guess. String values are exact 
 import argparse
 import re
 import sys
+from functools import cache
+from pathlib import Path
+
+import yaml
 
 from kernel.canonical import ContractError, canonical_json
 
@@ -59,6 +64,16 @@ PLACE_NOUNS = {"courtyard", "rooftop", "rooftops", "roof", "street", "alley", "a
                "castle", "battlefield", "desert", "mountain", "cliff", "ship", "train", "subway", "cafe",
                "bar", "classroom", "library", "stage", "ruins", "harbor", "pier", "docks", "lab",
                "laboratory", "hospital", "school", "store", "shop", "mall", "vanity", "countertop", "counter"}
+WORLDS = Path(__file__).resolve().parents[1] / "library" / "worlds"
+
+
+@cache
+def place_nouns():
+    """PLACE_NOUNS and the last word of every world card's names: a place the library has a card for reads as a place."""
+    names = (n for p in sorted(WORLDS.glob("*.yaml")) for n in yaml.safe_load(p.read_text(encoding="utf-8"))["names"])
+    return frozenset(PLACE_NOUNS | {n.split()[-1].lower() for n in names})
+
+
 STOP = {"a", "an", "the", "and", "or", "of", "between", "with", "in", "on", "at", "while", "as", "where",
         "during", "under", "to", "for", "by", "from", "choreographed", "epic", "cinematic", "anime", "ugc",
         "ad", "live", "action", "fight", "fights", "battle", "duel", "scene", "showdown", "clash", "match",
@@ -121,13 +136,13 @@ def _collect(raw):
                 break
             words.append(word)
         words = words[:5]
-        if words and words[-1][2].lower() in PLACE_NOUNS and not words[0][2].lower().startswith("style"):
+        if words and words[-1][2].lower() in place_nouns() and not words[0][2].lower().startswith("style"):
             start, end = _phrase(raw, words)
             found["setting"].append((raw[start:end], _evidence(raw, start, end)))
             covered.add(seg_start)
     for seg_start, seg_end in segments:
         words = _words(raw, seg_start, seg_end)
-        if seg_start in covered or not words or words[-1][2].lower() not in PLACE_NOUNS:
+        if seg_start in covered or not words or words[-1][2].lower() not in place_nouns():
             continue
         if any(_stop(w[2]) and w[2].lower() not in {"a", "an", "the"} for w in words):
             continue
